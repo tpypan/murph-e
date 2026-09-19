@@ -242,9 +242,10 @@ cannot be connected to the same badge at once; that is fine on the floor.
 | `uitree` as a shortcut | on the idle QR screen the widget dump contains `Tony Pan` and `Badge ID: quiet-phoenix-noble-bold` as label text. The cabinet can greet a badge by name the instant it is plugged in if it happens to be on that screen, before any app is opened. A nicety, not the identity path |
 
 | unplug and replug | port disappears on unplug, reappears on replug, and `badge> ` answers on the first try with no reboot |
+| two badges at once | two ports (`usbmodem1101`, `usbmodem101`), distinct USB serial numbers, both consoles answer. The app was pushed to the second badge in 0.87 s while the first stayed on its own port. With both in the app, 89 button events arrived over two independent readers, every button on both badges, correctly tagged per port, including overlapping holds (DOWN and LEFT together) |
 
-Not yet run: two badges on one hub at once. Expected to be routine, on the
-setup-day list.
+Every check the tier 2 wired design depends on has now passed on real
+hardware. Still untested: badge-to-badge Share timing and BLE (tier 3).
 
 The original checklist, kept for the next badge:
 
