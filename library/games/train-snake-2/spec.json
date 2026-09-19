@@ -1,0 +1,26 @@
+{
+  "title": "TRAIN SNAKE",
+  "oneLiner": "Guide a growing train through the station without smashing into yourself or the walls.",
+  "genre": "snake",
+  "mechanics": [
+    "Steer the locomotive around the one-screen track grid.",
+    "Collect cargo cars to grow longer and earn points.",
+    "Avoid the walls and your own train cars.",
+    "The train moves faster as more cargo is collected."
+  ],
+  "controls": {
+    "left": "Turn the train left",
+    "right": "Turn the train right",
+    "up": null,
+    "down": null,
+    "a": "Sound the whistle for a brief speed burst",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "The game ends when the train hits a wall or its own cars.",
+  "scoring": "Earn points and add a car for each cargo crate collected.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0715-a-snake-game-but-the-snake-is-a"
+}

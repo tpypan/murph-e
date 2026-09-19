@@ -1,0 +1,26 @@
+{
+  "title": "CAT CATCHER",
+  "oneLiner": "Guide a nimble cat across the rooftops to catch falling fish and dodge mischievous birds.",
+  "genre": "dodge",
+  "mechanics": [
+    "Move the cat left and right along a rooftop.",
+    "Catch falling fish to score points.",
+    "Avoid birds and falling flowerpots.",
+    "More objects fall faster as time passes."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": null,
+    "down": null,
+    "a": "Leap briefly",
+    "b": "Whistle to attract nearby fish"
+  },
+  "palette": "arcade",
+  "lose": "The cat is hit three times by birds or flowerpots.",
+  "scoring": "Each caught fish scores points, with bonus points for consecutive catches.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0723-something-with-cats"
+}

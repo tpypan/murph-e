@@ -1,0 +1,26 @@
+{
+  "title": "EXAM ESCAPE",
+  "oneLiner": "Dodge flying exam papers and grab lucky notes before the bell rings!",
+  "genre": "dodge",
+  "mechanics": [
+    "Move the student around one screen while exam papers drift in from above.",
+    "Collect glowing cheat-sheet icons to score points.",
+    "Avoid papers, pencils, and ticking clocks; three hits end the run.",
+    "More hazards arrive and move faster as the timer climbs."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": "Move up",
+    "down": "Move down",
+    "a": "Dash briefly in the current direction",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "The student is hit three times or the exam bell timer expires.",
+  "scoring": "Collect glowing notes for points, with bonus points for streaks.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0724-a-game-about-avoiding-my-exams"
+}

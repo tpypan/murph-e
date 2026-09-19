@@ -1,0 +1,26 @@
+{
+  "title": "ASTEROID BLAST",
+  "oneLiner": "Pilot your tiny ship through a storm of tumbling space rocks and blast them before they crush you.",
+  "genre": "shooter",
+  "mechanics": [
+    "Move the ship around the screen with the d-pad.",
+    "Press A to fire shots at drifting asteroids.",
+    "Large asteroids split into smaller, faster chunks when hit.",
+    "Score points for every asteroid destroyed; the swarm speeds up over time."
+  ],
+  "controls": {
+    "left": "Rotate ship left",
+    "right": "Rotate ship right",
+    "up": "Thrust forward",
+    "down": "Brake and reverse drift",
+    "a": "Fire a laser",
+    "b": "Hypershift a short distance, with a cooldown"
+  },
+  "palette": "arcade",
+  "lose": "The ship loses all three lives after colliding with an asteroid.",
+  "scoring": "Earn more points for destroying smaller asteroid chunks and clearing waves.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0726-asteroids"
+}

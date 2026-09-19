@@ -1,0 +1,26 @@
+{
+  "title": "PIE ANVIL",
+  "oneLiner": "Dodge the falling anvils and catch as many pies as you can!",
+  "genre": "dodge",
+  "mechanics": [
+    "Move the baker left and right beneath the sky.",
+    "Catch pies to score points; falling anvils hurt.",
+    "Pies and anvils drop faster and more frequently over time.",
+    "Survive and build the highest score before getting crushed."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": null,
+    "down": null,
+    "a": "Dash briefly in your current direction",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "The player loses when hit by a falling anvil.",
+  "scoring": "Each caught pie scores 10 points.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0725-dodge-the-falling-anvils-and-cat"
+}

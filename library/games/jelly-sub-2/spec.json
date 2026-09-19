@@ -1,0 +1,26 @@
+{
+  "title": "JELLY SUB",
+  "oneLiner": "Pilot a tiny submarine through swaying jellyfish gates without getting stung.",
+  "genre": "flappy",
+  "mechanics": [
+    "Tap A to boost the submarine upward; release to dive.",
+    "Thread through gaps between jellyfish to score.",
+    "Jellyfish tentacles and the screen edges cost a life.",
+    "Gates arrive faster and sway more as your score rises."
+  ],
+  "controls": {
+    "left": null,
+    "right": null,
+    "up": null,
+    "down": null,
+    "a": "Boost upward",
+    "b": "Toggle sonar pulse for a brief visibility flash"
+  },
+  "palette": "arcade",
+  "lose": "The submarine loses when it touches a jellyfish, tentacle, or screen edge.",
+  "scoring": "Score one point for each jellyfish gate passed.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0717-flappy-bird-but-you-re-a-submari"
+}

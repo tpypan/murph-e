@@ -1,0 +1,26 @@
+{
+  "title": "SPIKE DASH",
+  "oneLiner": "Leap across tiny platforms, grab every coin, and dodge the spikes before the screen gets frantic.",
+  "genre": "platformer",
+  "mechanics": [
+    "Auto-run across one-screen platforms and steer left or right in midair.",
+    "Press A to jump; collect coins for points.",
+    "Touching spikes or falling off the platforms costs a life.",
+    "Platforms shift and spikes multiply as time passes."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": null,
+    "down": null,
+    "a": "Jump",
+    "b": "Quick dash forward"
+  },
+  "palette": "arcade",
+  "lose": "Lose when all three lives are gone after hitting spikes or falling.",
+  "scoring": "Each coin collected scores 100 points, with a bonus for collecting several in a row.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0718-a-platformer-where-you-collect-c"
+}

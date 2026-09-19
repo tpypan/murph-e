@@ -1,0 +1,26 @@
+{
+  "title": "SPEED PONG",
+  "oneLiner": "Outscore the computer before every rally becomes a blur!",
+  "genre": "pong",
+  "mechanics": [
+    "Move your paddle up and down to return the ball.",
+    "The computer guards the opposite side and improves as rallies continue.",
+    "Score when the ball passes the computer paddle.",
+    "The ball speeds up after every point."
+  ],
+  "controls": {
+    "left": null,
+    "right": null,
+    "up": "Move paddle up",
+    "down": "Move paddle down",
+    "a": "Serve or launch the ball",
+    "b": "Toggle paddle side position"
+  },
+  "palette": "arcade",
+  "lose": "Lose when the computer scores 7 points first.",
+  "scoring": "Earn 1 point whenever the ball passes the computer paddle.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0720-pong-against-the-computer-and-it"
+}

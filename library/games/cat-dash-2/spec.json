@@ -1,0 +1,26 @@
+{
+  "title": "CAT DASH",
+  "oneLiner": "Leap over charging dogs and keep your speedy cat running forever!",
+  "genre": "runner",
+  "mechanics": [
+    "The cat automatically runs across a scrolling street.",
+    "Press A to jump over dogs and other hazards.",
+    "Clear dogs to earn points; longer runs increase the score multiplier.",
+    "The game speeds up and hazards appear more often over time."
+  ],
+  "controls": {
+    "left": null,
+    "right": null,
+    "up": "Jump",
+    "down": "Duck",
+    "a": "Jump",
+    "b": "Pounce briefly; clears small obstacles but cannot defeat dogs"
+  },
+  "palette": "arcade",
+  "lose": "The cat loses when it hits a dog or obstacle.",
+  "scoring": "Score points for distance traveled and successful dog jumps.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0721-an-endless-runner-where-you-re-a"
+}
