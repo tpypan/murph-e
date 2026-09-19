@@ -43,7 +43,7 @@ const released = Date.now()
 try {
   await page.getByText('YOU SAID').waitFor({ timeout: 15000 })
 } catch {
-  console.log('page text at failure:\n' + (await page.locator('main').innerText()))
+  console.log(`page text at failure:\n${await page.locator('main').innerText()}`)
   await page.screenshot({ path: `${process.env.SHOT_DIR ?? '.'}/stt-fail.png` })
   process.exit(1)
 }
