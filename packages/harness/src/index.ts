@@ -4,12 +4,15 @@ export { MODELS, openai, ROOT } from './env.ts'
 export { type GenEvent, type GenOptions, type GenResult, gen } from './gen.ts'
 export { keepInLibrary, type LibraryGame, listLibrary, pickFallback } from './library.ts'
 export {
+  type CurrentGame,
   type PipelineEvent,
   type PipelineOptions,
   type PipelineResult,
   pipeline,
+  type Source,
 } from './pipeline.ts'
 export { buildPrompt, extractCode, loadTemplates, TWO_PLAYER_RULES } from './prompt.ts'
+export { applyBlocks, keptShare, parseBlocks, remix } from './remix.ts'
 export { repair } from './repair.ts'
 export { createRun, type Run } from './run-store.ts'
 export {

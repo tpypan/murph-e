@@ -7,7 +7,7 @@ import { readSse } from './sse'
 import { Stt } from './stt'
 
 type Phase = 'ATTRACT' | 'LISTENING' | 'BUILDING' | 'PLAYING' | 'GAMEOVER' | 'FALLBACK'
-type Status = 'BUILDING' | 'CHECKING' | 'REPAIRING' | 'READY'
+type Status = 'BUILDING' | 'REMIXING' | 'CHECKING' | 'REPAIRING' | 'READY'
 type Players = 1 | 2
 
 interface Spec {
@@ -23,7 +23,15 @@ interface LibraryGame {
   genre: string
   players: number
   code: string
+  spec: Record<string, unknown> | null
   source: 'library' | 'template'
+}
+/** The game on screen, as /api/generate needs it to remix. */
+interface CurrentGame {
+  code: string
+  spec: Record<string, unknown>
+  slug: string
+  title: string
 }
 interface Game {
   title: string
@@ -50,12 +58,14 @@ type PipelineEvent =
   | { type: 'built'; variant: number; ms: number; tokens: number; syntaxError: string | null }
   | { type: 'probe'; variant: number; ok: boolean; observations: string[]; ms: number }
   | { type: 'repair'; phase: 'start' | 'done'; ok?: boolean; observations?: string[] }
+  | { type: 'remix'; phase: 'start' | 'done'; changes: string[]; ok?: boolean }
   | { type: 'fallback'; reason: string; title: string; slug: string }
   | {
       type: 'ready'
       code: string
       title: string
       note: string
+      spec: Record<string, unknown> | null
       source: string
       players: Players
       slug: string
@@ -67,6 +77,8 @@ type PipelineEvent =
 interface View {
   phase: Phase
   mode: Players
+  /** LISTENING opened over a game that can be remixed. */
+  remixable: boolean
   transcript: string
   spec: Spec | null
   code: string
@@ -91,6 +103,7 @@ type Action =
   | { type: 'badges'; badges: BadgePlayer[] }
   | { type: 'session'; session: Array<SessionPlayer | null> }
   | { type: 'mode'; mode: Players }
+  | { type: 'remixable'; remixable: boolean }
   | { type: 'phase'; phase: Phase }
   | { type: 'transcript'; transcript: string }
   | { type: 'spec'; spec: Spec }
@@ -109,6 +122,7 @@ type Action =
 const initial: View = {
   phase: 'ATTRACT',
   mode: 1,
+  remixable: false,
   transcript: '',
   spec: null,
   code: '',
@@ -142,6 +156,8 @@ function reduce(v: View, a: Action): View {
       return { ...v, phase: a.phase }
     case 'mode':
       return { ...v, mode: a.mode }
+    case 'remixable':
+      return { ...v, remixable: a.remixable }
     case 'transcript':
       return { ...v, transcript: a.transcript }
     case 'spec':
@@ -203,6 +219,9 @@ export default function Cabinet() {
   const abort = useRef<AbortController | null>(null)
   const inputEl = useRef<HTMLInputElement>(null)
   const seedRef = useRef(1)
+  // The game on screen, when it has a spec (generated or from the library),
+  // so holding TALK over it can remix it instead of starting over.
+  const current = useRef<CurrentGame | null>(null)
   const stt = useRef<Stt | null>(null)
   const getStt = useCallback(() => {
     if (!stt.current) stt.current = new Stt()
@@ -284,6 +303,7 @@ export default function Cabinet() {
     if (pool.length === 0) return
     const g = pool[Math.floor(Math.random() * pool.length)]!
     const players: Players = g.players === 2 ? 2 : 1
+    current.current = g.spec ? { code: g.code, spec: g.spec, slug: g.slug, title: g.title } : null
     dispatch({ type: 'game', game: { title: g.title, source: g.source, slug: g.slug, players } })
     dispatch({ type: 'phase', phase: 'ATTRACT' })
     dispatch({ type: 'waiting2', waiting: false })
@@ -307,6 +327,7 @@ export default function Cabinet() {
       const g = pool[Math.floor(Math.random() * pool.length)]
       if (!g) return
       const players: Players = g.players === 2 ? 2 : 1
+      current.current = g.spec ? { code: g.code, spec: g.spec, slug: g.slug, title: g.title } : null
       dispatch({
         type: 'game',
         game: { title: g.title, source: g.source, slug: g.slug, players },
@@ -328,6 +349,7 @@ export default function Cabinet() {
       const ac = new AbortController()
       abort.current = ac
       const players = view.current.mode
+      const remixOf = view.current.remixable ? current.current : null
       dispatch({ type: 'resetBuild' })
       dispatch({ type: 'transcript', transcript })
       dispatch({ type: 'phase', phase: 'BUILDING' })
@@ -335,7 +357,7 @@ export default function Cabinet() {
         const res = await fetch('/api/generate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ transcript, players }),
+          body: JSON.stringify({ transcript, players, current: remixOf }),
           signal: ac.signal,
         })
         await readSse<PipelineEvent>(
@@ -362,6 +384,10 @@ export default function Cabinet() {
                   observations: ev.observations,
                 })
                 break
+              case 'remix':
+                if (ev.phase === 'start')
+                  dispatch({ type: 'status', status: 'REMIXING', observations: ev.changes })
+                break
               case 'fallback':
                 dispatch({
                   type: 'game',
@@ -374,15 +400,20 @@ export default function Cabinet() {
                 const fromLibrary = ev.source === 'library' || ev.source === 'template'
                 const banner = fromLibrary
                   ? `COULDN'T BUILD THAT ONE. HERE'S ${ev.title}`
-                  : ev.note
-                    ? ev.note
-                    : null
+                  : ev.source === 'remix'
+                    ? `REMIXED: ${ev.title}`
+                    : ev.note
+                      ? ev.note
+                      : null
                 const game: Game = {
                   title: ev.title,
                   source: ev.source,
                   slug: ev.slug,
                   players: ev.players,
                 }
+                current.current = ev.spec
+                  ? { code: ev.code, spec: ev.spec, slug: ev.slug, title: ev.title }
+                  : null
                 dispatch({ type: 'game', game, banner })
                 loadGame(ev.code, ev.title, ev.players)
                 lastInput.current = Date.now()
@@ -417,6 +448,9 @@ export default function Cabinet() {
 
   // ---- listening ---------------------------------------------------------
   const startListening = useCallback(() => {
+    const p = view.current.phase
+    const overGame = p === 'PLAYING' || p === 'GAMEOVER' || p === 'FALLBACK'
+    dispatch({ type: 'remixable', remixable: overGame && current.current !== null })
     stopAttract()
     abort.current?.abort()
     dispatch({ type: 'transcript', transcript: '' })
@@ -771,11 +805,19 @@ export default function Cabinet() {
               LISTENING
             </div>
             <div className="text-[14px] text-[#c2c3c7]">
-              {v.mode === 2 ? 'A GAME FOR TWO PLAYERS' : 'A GAME FOR ONE PLAYER'}
+              {v.remixable
+                ? `SAY A CHANGE TO ${v.game?.title ?? 'THIS GAME'}, OR A NEW GAME`
+                : v.mode === 2
+                  ? 'A GAME FOR TWO PLAYERS'
+                  : 'A GAME FOR ONE PLAYER'}
             </div>
             <div className="min-h-[3em] text-center text-[24px] leading-relaxed text-[#fff1e8]">
               {v.transcript || (
-                <span className="text-[#5f574f]">SAY A GAME. LET GO OF TALK WHEN DONE.</span>
+                <span className="text-[#5f574f]">
+                  {v.remixable
+                    ? '"MAKE IT FASTER", "ADD A BOSS"... LET GO OF TALK WHEN DONE.'
+                    : 'SAY A GAME. LET GO OF TALK WHEN DONE.'}
+                </span>
               )}
             </div>
             {v.error && <div className="text-center text-[14px] text-[#ff77a8]">{v.error}</div>}
@@ -836,6 +878,11 @@ export default function Cabinet() {
             {v.observations.length > 0 && v.status === 'REPAIRING' && (
               <div className="text-[12px] leading-relaxed text-[#ff77a8]">
                 FIXING: {v.observations.join(' / ').toUpperCase()}
+              </div>
+            )}
+            {v.observations.length > 0 && v.status === 'REMIXING' && (
+              <div className="text-[12px] leading-relaxed text-[#29adff]">
+                CHANGING: {v.observations.join(' / ').toUpperCase()}
               </div>
             )}
             <pre className="h-[34vh] overflow-hidden whitespace-pre-wrap break-all font-mono text-[12px] leading-[1.35] text-[#00e436]/80">

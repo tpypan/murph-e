@@ -1,4 +1,4 @@
-import { closeProbe, type PipelineEvent, pipeline } from '@htn/harness'
+import { type CurrentGame, closeProbe, type PipelineEvent, pipeline } from '@htn/harness'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -9,6 +9,7 @@ export async function POST(req: Request): Promise<Response> {
     transcript?: string
     race?: number
     players?: number
+    current?: CurrentGame | null
   }
   const transcript = String(body.transcript ?? '').trim()
   if (!transcript) return new Response('transcript required', { status: 400 })
@@ -27,6 +28,7 @@ export async function POST(req: Request): Promise<Response> {
       pipeline(transcript, {
         race: body.race ?? 2,
         players: body.players === 2 ? 2 : 1,
+        current: body.current?.code && body.current.spec ? body.current : null,
         onEvent: send,
         signal: req.signal,
       })

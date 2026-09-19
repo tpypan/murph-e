@@ -36,6 +36,8 @@ export const GameSpecSchema = z.object({
   scoring: z.string(),
   moderated: z.boolean(),
   note: z.string(),
+  remix: z.boolean(),
+  changes: z.array(z.string()),
 })
 export type GameSpec = z.infer<typeof GameSpecSchema> & { players: Players }
 
@@ -54,6 +56,8 @@ const jsonSchema = (genres: readonly string[]) => ({
     'scoring',
     'moderated',
     'note',
+    'remix',
+    'changes',
   ],
   properties: {
     title: { type: 'string', description: 'Uppercase, at most 14 characters, shown on screen.' },
@@ -89,6 +93,17 @@ const jsonSchema = (genres: readonly string[]) => ({
       description:
         'Empty, or one short uppercase line shown on screen when the request was changed, e.g. MADE IT ONE PLAYER.',
     },
+    remix: {
+      type: 'boolean',
+      description:
+        'True only when a game is already on screen and the person is asking to change that game rather than for a new one.',
+    },
+    changes: {
+      type: 'array',
+      items: { type: 'string' },
+      description:
+        'When remix is true: 1 to 4 short imperative lines a programmer can apply to the existing code. Otherwise empty.',
+    },
   },
 })
 
@@ -103,7 +118,8 @@ Rules:
 - title: at most 14 characters, uppercase, punchy. oneLiner: one sentence. mechanics: 3 to 5 short lines.
 - controls: describe what each input does or null if unused. Always use left/right or up/down, and A must do something.
 - palette is only a colour mood hint.
-- Moderation: if the request is hateful, sexual, about real people, about self-harm, about real-world violence such as shootings or attacks on people or places, or is not a game at all, do not make that game. Replace it with an unrelated, wholesome arcade game, set moderated to true, and set note to LET'S PLAY THIS INSTEAD. Cartoon action such as shooting asteroids, zapping aliens or bonking slimes is fine.`
+- Moderation: if the request is hateful, sexual, about real people, about self-harm, about real-world violence such as shootings or attacks on people or places, or is not a game at all, do not make that game. Replace it with an unrelated, wholesome arcade game, set moderated to true, and set note to LET'S PLAY THIS INSTEAD. Cartoon action such as shooting asteroids, zapping aliens or bonking slimes is fine.
+- Remix: when the input says a game is already on screen and the person is asking to change that game, set remix to true, keep the title and the genre, and put the concrete changes in changes (1 to 4 short imperative lines, e.g. "double the car speed ramp", "add a boss sprite at the top that fires every 2 seconds"). The rest of the spec then describes the game after the changes. A remix is a modification: speed, size, count, lives, difficulty, colours, one new enemy or item, or swapping one thing ("make the hero a cat"). Words that describe a game with its own premise (a different hero, setting and goal, e.g. "a game where a penguin slides on ice collecting fish") are a NEW game even if the genre is similar: remix false, changes empty, and the spec describes that new game. With no game on screen, remix is always false.`
 
 export const SPEC_INSTRUCTIONS_2P = `You turn what two people said into a spec for a tiny one-screen 8-bit arcade game for exactly two players that a second model will write in one go. The game runs at 256x224 with a 16-colour palette. Each player has their own d-pad and two buttons (A, B). Both players share the one screen and one arena: no split screen.
 
@@ -117,7 +133,8 @@ Rules:
 - title: at most 14 characters, uppercase, punchy. oneLiner: one sentence that mentions both players. mechanics: 3 to 5 short lines, and one of them must say what player one and player two each are.
 - controls: describe what each input does for a player (both players have the same controls) or null if unused. Always use left/right or up/down, and A must do something.
 - palette is only a colour mood hint.
-- Moderation: if the request is hateful, sexual, about real people, about self-harm, about real-world violence such as shootings or attacks on people or places, or is not a game at all, do not make that game. Replace it with an unrelated, wholesome two-player arcade game, set moderated to true, and set note to LET'S PLAY THIS INSTEAD. Cartoon action such as shooting asteroids, zapping aliens, sword duels or bonking slimes is fine.`
+- Moderation: if the request is hateful, sexual, about real people, about self-harm, about real-world violence such as shootings or attacks on people or places, or is not a game at all, do not make that game. Replace it with an unrelated, wholesome two-player arcade game, set moderated to true, and set note to LET'S PLAY THIS INSTEAD. Cartoon action such as shooting asteroids, zapping aliens, sword duels or bonking slimes is fine.
+- Remix: when the input says a game is already on screen and the players are asking to change that game, set remix to true, keep the title and the genre, and put the concrete changes in changes (1 to 4 short imperative lines). The rest of the spec then describes the game after the changes. A remix is a modification: speed, size, count, lives, difficulty, colours, one new enemy or item, or swapping one thing. Words that describe a game with its own premise (a different hero, setting and goal) are a NEW game even if the genre is similar: remix false, changes empty, and the spec describes that new game. With no game on screen, remix is always false.`
 
 export interface SpecResult {
   spec: GameSpec
@@ -130,6 +147,13 @@ export interface SpecOptions {
   effort?: string
   /** Set by the cabinet's 1P/2P menu, never inferred from the transcript. */
   players?: Players
+  /** The spec of the game on screen, if any; enables remix. */
+  current?: GameSpec | null
+}
+
+function describeCurrent(spec: GameSpec): string {
+  const { title, genre, oneLiner, mechanics, controls, lose, scoring } = spec
+  return JSON.stringify({ title, genre, oneLiner, mechanics, controls, lose, scoring })
 }
 
 export async function specify(transcript: string, opts: SpecOptions = {}): Promise<SpecResult> {
@@ -140,10 +164,14 @@ export async function specify(transcript: string, opts: SpecOptions = {}): Promi
     model: opts.model ?? MODELS.spec,
     reasoning: { effort: (opts.effort ?? MODELS.specEffort) as 'none' },
     instructions: players === 2 ? SPEC_INSTRUCTIONS_2P : SPEC_INSTRUCTIONS,
-    input:
+    input: [
       players === 2
         ? `The two players said: "${transcript.trim()}"`
         : `The person said: "${transcript.trim()}"`,
+      opts.current
+        ? `A game is already on screen: ${describeCurrent(opts.current)}. They may be asking to change it (remix) or for a different game.`
+        : 'No game is on screen.',
+    ].join('\n\n'),
     text: {
       format: { type: 'json_schema', name: 'game_spec', strict: true, schema: jsonSchema(genres) },
     },
@@ -155,6 +183,11 @@ export async function specify(transcript: string, opts: SpecOptions = {}): Promi
   parsed.oneLiner = parsed.oneLiner.slice(0, 120)
   parsed.mechanics = parsed.mechanics.slice(0, 6)
   if (!(genres as readonly string[]).includes(parsed.genre)) parsed.genre = genres[0]
+  if (!opts.current) {
+    parsed.remix = false
+    parsed.changes = []
+  }
+  parsed.changes = parsed.changes.slice(0, 4)
   return {
     spec: { ...parsed, players },
     ms: ms(t0),

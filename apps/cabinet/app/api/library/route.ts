@@ -11,6 +11,7 @@ export function GET(): Response {
     genre: g.genre,
     players: g.players,
     code: g.code,
+    spec: g.spec,
     source: 'library' as const,
   }))
   const templates = loadTemplates().map((t) => ({
@@ -19,6 +20,7 @@ export function GET(): Response {
     genre: t.genre,
     players: t.players,
     code: t.code,
+    spec: null,
     source: 'template' as const,
   }))
   return Response.json({ games: [...games, ...templates] })

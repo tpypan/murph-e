@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { parseArgs } from 'node:util'
 import { bench, readPrompts } from './bench.ts'
+import { benchRemix, readRemixes } from './bench-remix.ts'
 import { MODELS, ROOT } from './env.ts'
 import { gen } from './gen.ts'
 import { listLibrary } from './library.ts'
@@ -17,6 +18,7 @@ const USAGE = `usage:
   harness run "<transcript>" [--race 2] [--players 2]   full pipeline: spec, race, probe, repair, fallback
   harness seed <prompts.txt> [--n 2] [--players 2]      fill library/games with passing games
   harness bench <prompts.txt> [--model M] [--effort E] [--players 2] [--n 1] [--concurrency 4] [--label L] [--no-probe]
+  harness bench-remix <remixes.txt> [--concurrency 3] [--label L]   "<slug> | <words>" per line
 `
 
 function fmtS(msValue: number | null | undefined): string {
@@ -127,6 +129,13 @@ try {
       players: playersOf(values),
     })
     process.stderr.write(`library: +${added} games, ${listLibrary().length} total\n`)
+  } else if (cmd === 'bench-remix' && rest[0]) {
+    const { file } = await benchRemix(readRemixes(resolve(CWD, rest[0])), {
+      concurrency: values.concurrency ? Number(values.concurrency) : 3,
+      label: values.label,
+    })
+    process.stderr.write(`results: ${file}\n`)
+    process.stderr.write(`${readFileSync(file, 'utf8').split('\n').slice(0, 9).join('\n')}\n`)
   } else if (cmd === 'bench' && rest[0]) {
     const { file } = await bench(readPrompts(resolve(CWD, rest[0])), {
       model: values.model,

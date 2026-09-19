@@ -16,6 +16,10 @@ export const MODELS = {
   specEffort: process.env.HTN_SPEC_EFFORT ?? 'none',
   repair: process.env.HTN_REPAIR_MODEL ?? 'gpt-5.6-sol',
   repairEffort: process.env.HTN_REPAIR_EFFORT ?? 'low',
+  // Remix edits Sol's own code with search/replace blocks; effort none keeps
+  // it inside the half-of-a-build budget (docs/plans/tier-2.md M4).
+  remix: process.env.HTN_REMIX_MODEL ?? 'gpt-5.6-sol',
+  remixEffort: process.env.HTN_REMIX_EFFORT ?? 'none',
   sttLive: process.env.HTN_STT_LIVE_MODEL ?? 'gpt-live-transcribe',
   sttClip: process.env.HTN_STT_CLIP_MODEL ?? 'gpt-transcribe',
 } as const
