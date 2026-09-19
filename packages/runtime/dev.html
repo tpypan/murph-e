@@ -23,6 +23,7 @@
       <div><b>runtime dev</b> &middot; <span id="which"></span></div>
       <div>
         <kbd>&larr;&uarr;&darr;&rarr;</kbd> dpad &middot; <kbd>Z</kbd> A &middot; <kbd>X</kbd> B &middot; <kbd>Enter</kbd> START
+        <br />P2 (<code>?players=2</code>): <kbd>I</kbd><kbd>J</kbd><kbd>K</kbd><kbd>L</kbd> dpad &middot; <kbd>N</kbd> A &middot; <kbd>M</kbd> B
       </div>
       <div class="row">
         <button type="button" id="b-reload">reload game</button>
@@ -43,6 +44,7 @@
       const run = params.get('run')
       const gamePath = run ? `/runs/${run}/game.js` : params.get('game') || '/library/templates/dodge.js'
       const seed = Number(params.get('seed') || 1)
+      const players = params.get('players') === '2' ? 2 : 1
       const frame = document.getElementById('game')
       const logEl = document.getElementById('log')
       const stateEl = document.getElementById('state')
@@ -58,16 +60,18 @@
         ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right',
         KeyZ: 'a', KeyX: 'b', Enter: 'start', Space: 'a',
       }
+      const KEYS_P2 = { KeyI: 'up', KeyK: 'down', KeyJ: 'left', KeyL: 'right', KeyN: 'a', KeyM: 'b' }
+      const keyFor = (code) => (KEYS[code] ? { player: 0, button: KEYS[code] } : KEYS_P2[code] ? { player: 1, button: KEYS_P2[code] } : null)
       addEventListener('keydown', (e) => {
-        const b = KEYS[e.code]
-        if (!b || e.repeat) return
+        const k = keyFor(e.code)
+        if (!k || e.repeat) return
         e.preventDefault()
-        post({ type: 'input', player: 0, button: b, down: true })
+        post({ type: 'input', player: k.player, button: k.button, down: true })
       })
       addEventListener('keyup', (e) => {
-        const b = KEYS[e.code]
-        if (!b) return
-        post({ type: 'input', player: 0, button: b, down: false })
+        const k = keyFor(e.code)
+        if (!k) return
+        post({ type: 'input', player: k.player, button: k.button, down: false })
       })
       // Keep keyboard focus on the parent so the iframe never needs it.
       frame.addEventListener('load', () => window.focus())
@@ -75,7 +79,8 @@
       addEventListener('message', (ev) => {
         const m = ev.data
         if (!m || typeof m.type !== 'string') return
-        if (m.type === 'state') stateEl.textContent = `state: ${m.state}  score: ${m.score}  hi: ${m.hi}`
+        if (m.type === 'state')
+          stateEl.textContent = `state: ${m.state}  score: ${m.score}  hi: ${m.hi}${m.players === 2 ? `  P1 ${m.scores[0]} P2 ${m.scores[1]}${m.winner !== null ? `  winner P${m.winner + 1}` : ''}` : ''}`
         log(`<- ${JSON.stringify(m)}`)
       })
 
@@ -88,6 +93,8 @@
         }
         const code = await res.text()
         title = ''
+        const headerPlayers = Number((code.match(/^\/\/\s*PLAYERS:\s*(\d)/m) || [])[1] || 1)
+        const n = params.get('players') ? players : headerPlayers
         if (run) {
           try {
             const spec = await (await fetch(`/runs/${run}/spec.json`, { cache: 'no-store' })).json()
@@ -97,8 +104,8 @@
           const m = code.match(/^\/\/\s*TITLE:\s*(.+)$/m)
           if (m) title = m[1].trim()
         }
-        log(`-> load ${path} (${code.length} bytes, seed ${seed})`)
-        post({ type: 'load', code, seed, title })
+        log(`-> load ${path} (${code.length} bytes, seed ${seed}, players ${n})`)
+        post({ type: 'load', code, seed, title, players: n })
       }
 
       frame.addEventListener('load', () => loadGame(gamePath))

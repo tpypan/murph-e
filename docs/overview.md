@@ -67,6 +67,9 @@ badges and voice remixes. Tier 3 is wireless badges and take-home games.
 | Identity | USB-C serial hello from the arcade app, both modes | one gesture for identity and controls; badge NFC is a reader, not a tag; QR dropped 2026-09-19 | `badge-integration.md` §3 |
 | Multiplayer transport | USB-C serial | the only low-latency channel the badge exposes | `badge-integration.md` §2 |
 | Player count | chosen on the attract screen, 1P or 2P, before speaking | an explicit choice beats inferring it from speech; 2P means both players on badges | `badge-integration.md` §4 |
+| Remix | search/replace blocks against the game on screen, one call | a few hundred output tokens instead of a whole game, so a change lands in seconds | `plans/tier-2.md` M4 |
+| Leaderboard | one JSON file keyed by badge id, guests kept | nothing to deploy, survives restarts, the badge id is the only identity we have | `plans/tier-2.md` M2 |
+| Badge dev loop | an in-process fake badge that speaks the console protocol | the whole 2P flow runs on a laptop; the hardware checklist is what is left | `plans/tier-2.md` M0 |
 | Not doing | NFC reader, Wi-Fi from badges, custom firmware, Godot, 3D, split screen, judge scoring | | |
 
 ## Hardware on the cabinet

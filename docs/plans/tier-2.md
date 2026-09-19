@@ -314,6 +314,9 @@ hub, or the cabinet. Each is a few minutes with the hardware on the desk.
 ## 6. Status
 
 Filled in per milestone as they land; see the commit log for the detail.
+Every milestone was built and verified on 2026-09-19 without a badge in
+hand: the two real badges on the development Mac were held by another
+process the whole time, so the serial path itself is item H1.
 
 | milestone | state | verified by |
 |---|---|---|
@@ -323,4 +326,31 @@ Filled in per milestone as they land; see the commit log for the detail.
 | M3 cabinet flow | done | Playwright against `next dev` with two fake badges: 1P/2P menu on the stick, `P1 TONY PAN` / `P2 SAM RIVERA` from the hub hellos, a pulled cable shows `(UNPLUGGED)` and the game keeps running, F9 ends the round and the per-game board shows the named row, Escape returns to attract with the overall board. Screenshots in `bench/screenshots/` (gitignored); the full pass is `pnpm screenshots:cabinet` (M5) |
 | M4 remix | done | `bench/results/2026-09-19-0913-remix.md`: 10/10 remixes pass the probe, p50 5.6 s, p95 14.9 s (goal: under 18 s), median 98% of the original lines kept. The classifier first called a whole new premise a remix of the game on screen; the spec rule now says a new premise is a new game and the pipeline refuses a remix that changes genre |
 | M5 walkthrough | done | `pnpm screenshots:cabinet` against `next dev`: all sixteen shots from one run (tier 1 loop with a real build and the F8 crash, then 2P menu, two fake badges plugging in, a real two-player build titled SPELLSTACK, both players moving, badge 2 pulled mid-game, the game-over board with both names, a remix landing in 20 s including the spec call). The first run caught the remix classifier calling a new premise a remix; fixed in M4 |
-| M6 docs | pending | |
+| M6 docs | done | `AGENTS.md` (repo map, models, hard rule 1, verify steps, decisions), `docs/runbook.md` (dev keys, badges and 2P, leaderboard, remix), `docs/overview.md` decisions, `docs/badge-integration.md` (the fake, the prompt-glued log line, the slot-on-badge gap) |
+
+## 7. Tier 1 polish done alongside
+
+Small things from the tier 1 status table and from running its checks
+again, none needing hardware:
+
+- `pnpm lint` was failing at the root on `scripts/gallery.mjs` formatting;
+  fixed, and `apps/cabinet/tsconfig.tsbuildinfo` is no longer tracked.
+- `pnpm probe library/games/*/game.js` rewrote every committed thumbnail;
+  the probe CLI now leaves library games alone.
+- `pnpm screenshots:cabinet` wrote under `packages/probe/` when run
+  through pnpm; the default output is now `bench/screenshots/cabinet`
+  from the repo root, and the script takes the 2P transcript and the
+  remix words as its third and fourth arguments.
+- The runtime dev page reads `// PLAYERS: 2` from a template (or
+  `?players=2`), drives player two with I J K L, N and M, and shows both
+  scores and the winner, so the 2P templates can be played by hand.
+- The probe's A check sampled one frame after the press and failed games
+  whose action lasts a few frames (the DUEL BOTS failure in the tier 1
+  bench); it now samples five frames. The 1P bench re-run is 20/20.
+- The bench numbers in `AGENTS.md` now carry the re-run after tier 2.
+
+Still open from tier 1 and still needing hardware or people: the encoder
+keycodes and the TALK button (H8), the two-hour soak on the Mac mini, the
+ten-person dry run, and a human pass over the library for "I'd play that
+again"; the library now has 40 games including one two-player one.
+
