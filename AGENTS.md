@@ -118,8 +118,9 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   one run per prompt is noise): it playtests and judges every game and prints
   losability, distinct point values, agency and the six judge axes. The A/B
   that set the current numbers is `docs/bench-2026-09-19-game-design.md`.
-  `pnpm playtest <game.js>` prints the same measurements for one file. Two-player prompts:
-  `pnpm harness bench bench/prompts-2p.txt --players 2` (goal 8 of 10).
+  `pnpm playtest <game.js>` prints the same measurements for one file.
+  Two-player prompts: `pnpm harness bench bench/prompts-2p.txt --players 2`
+  (goal 8 of 10).
   Remix: `pnpm harness bench-remix bench/remixes.txt` (goal p50 under half
   the build p50, most of the original kept).
 - Probe change: run it on `library/` and confirm every library game still
