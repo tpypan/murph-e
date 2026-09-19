@@ -76,8 +76,11 @@ Until a package exists, its plan is in `docs/plans/tier-1.md`.
 
 ## How to verify
 
-- Runtime change: open `packages/runtime/dev.html`, play the hand-written
-  reference game, screenshot.
+- Runtime change: `pnpm exercise` (headless: every protocol message, the
+  probe hook, crash guard, determinism), then `pnpm serve` and play
+  `http://localhost:5173/packages/runtime/dev.html` with the keyboard, or
+  `pnpm screenshots` for a screenshot of every state. Rebuild `runtime.js`
+  with `pnpm runtime:build` first; it is gitignored.
 - Prompt or model change: `pnpm harness bench bench/prompts.txt` and compare
   p50, p95 and probe pass rate to the last result file.
 - Probe change: run it on `library/` and confirm every library game still

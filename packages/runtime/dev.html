@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>runtime dev</title>
+    <style>
+      html, body { margin: 0; height: 100%; background: #111; color: #ddd; font: 13px/1.4 ui-monospace, Menlo, monospace; }
+      body { display: grid; grid-template-columns: 1fr 340px; height: 100vh; }
+      #stage { background: #000; display: flex; align-items: center; justify-content: center; }
+      iframe { border: 0; width: 100%; height: 100%; }
+      #side { padding: 12px; overflow: auto; border-left: 1px solid #333; display: flex; flex-direction: column; gap: 8px; }
+      button { background: #222; color: #ddd; border: 1px solid #444; padding: 6px 10px; cursor: pointer; font: inherit; }
+      button:hover { background: #333; }
+      #log { flex: 1; overflow: auto; background: #000; padding: 8px; white-space: pre-wrap; font-size: 12px; }
+      .row { display: flex; gap: 6px; flex-wrap: wrap; }
+      kbd { background: #222; border: 1px solid #444; padding: 0 4px; border-radius: 3px; }
+      input { background: #000; color: #ddd; border: 1px solid #444; padding: 4px; font: inherit; width: 100%; }
+    </style>
+  </head>
+  <body>
+    <div id="stage"><iframe id="game" title="game" sandbox="allow-scripts" src="index.html"></iframe></div>
+    <div id="side">
+      <div><b>runtime dev</b> &middot; <span id="which"></span></div>
+      <div>
+        <kbd>&larr;&uarr;&darr;&rarr;</kbd> dpad &middot; <kbd>Z</kbd> A &middot; <kbd>X</kbd> B &middot; <kbd>Enter</kbd> START
+      </div>
+      <div class="row">
+        <button type="button" id="b-reload">reload game</button>
+        <button type="button" id="b-start">start</button>
+        <button type="button" id="b-reset">reset</button>
+        <button type="button" id="b-inject">inject demo</button>
+        <button type="button" id="b-crash">load crashing game</button>
+      </div>
+      <div class="row">
+        <input id="path" placeholder="/library/templates/dodge.js" />
+        <button type="button" id="b-open">open</button>
+      </div>
+      <div id="state">state: -</div>
+      <div id="log"></div>
+    </div>
+    <script>
+      const params = new URLSearchParams(location.search)
+      const run = params.get('run')
+      const gamePath = run ? `/runs/${run}/game.js` : params.get('game') || '/library/templates/dodge.js'
+      const seed = Number(params.get('seed') || 1)
+      const frame = document.getElementById('game')
+      const logEl = document.getElementById('log')
+      const stateEl = document.getElementById('state')
+      document.getElementById('which').textContent = gamePath
+      document.getElementById('path').value = gamePath
+
+      const log = (s) => {
+        logEl.textContent = `${new Date().toLocaleTimeString()} ${s}\n${logEl.textContent}`.slice(0, 20000)
+      }
+      const post = (msg) => frame.contentWindow.postMessage(msg, '*')
+
+      const KEYS = {
+        ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right',
+        KeyZ: 'a', KeyX: 'b', Enter: 'start', Space: 'a',
+      }
+      addEventListener('keydown', (e) => {
+        const b = KEYS[e.code]
+        if (!b || e.repeat) return
+        e.preventDefault()
+        post({ type: 'input', player: 0, button: b, down: true })
+      })
+      addEventListener('keyup', (e) => {
+        const b = KEYS[e.code]
+        if (!b) return
+        post({ type: 'input', player: 0, button: b, down: false })
+      })
+      // Keep keyboard focus on the parent so the iframe never needs it.
+      frame.addEventListener('load', () => window.focus())
+
+      addEventListener('message', (ev) => {
+        const m = ev.data
+        if (!m || typeof m.type !== 'string') return
+        if (m.type === 'state') stateEl.textContent = `state: ${m.state}  score: ${m.score}  hi: ${m.hi}`
+        log(`<- ${JSON.stringify(m)}`)
+      })
+
+      let title = ''
+      async function loadGame(path) {
+        const res = await fetch(path, { cache: 'no-store' })
+        if (!res.ok) {
+          log(`fetch ${path}: ${res.status}`)
+          return
+        }
+        const code = await res.text()
+        title = ''
+        if (run) {
+          try {
+            const spec = await (await fetch(`/runs/${run}/spec.json`, { cache: 'no-store' })).json()
+            title = spec.title || ''
+          } catch {}
+        } else {
+          const m = code.match(/^\/\/\s*TITLE:\s*(.+)$/m)
+          if (m) title = m[1].trim()
+        }
+        log(`-> load ${path} (${code.length} bytes, seed ${seed})`)
+        post({ type: 'load', code, seed, title })
+      }
+
+      frame.addEventListener('load', () => loadGame(gamePath))
+      document.getElementById('b-reload').onclick = () => loadGame(document.getElementById('path').value)
+      document.getElementById('b-open').onclick = () => {
+        location.search = `?game=${encodeURIComponent(document.getElementById('path').value)}`
+      }
+      document.getElementById('b-start').onclick = () => { log('-> start'); post({ type: 'start' }) }
+      document.getElementById('b-reset').onclick = () => { log('-> reset'); post({ type: 'reset' }) }
+      document.getElementById('b-inject').onclick = () => {
+        const frames = [
+          { at: 0, button: 'start', down: true }, { at: 2, button: 'start', down: false },
+          { at: 10, button: 'left', down: true }, { at: 70, button: 'left', down: false },
+          { at: 80, button: 'a', down: true }, { at: 84, button: 'a', down: false },
+          { at: 90, button: 'right', down: true }, { at: 160, button: 'right', down: false },
+        ]
+        log(`-> inject ${frames.length} frames`)
+        post({ type: 'inject', frames })
+      }
+      document.getElementById('b-crash').onclick = () => {
+        log('-> load (crashing game)')
+        post({
+          type: 'load', seed, title: 'CRASH TEST',
+          code: 'function init(api){}\nfunction update(api,dt){ if (api.frame > 30) throw new Error("boom at frame " + api.frame) }\nfunction draw(api){ api.cls(3); api.textCenter("WILL CRASH", 100, 7) }',
+        })
+      }
+      addEventListener('click', () => window.focus())
+    </script>
+  </body>
+</html>

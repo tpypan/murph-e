@@ -12,7 +12,12 @@
     "build": "pnpm -r --filter './packages/*' build",
     "dev": "pnpm --filter @htn/cabinet dev",
     "harness": "pnpm --filter @htn/harness exec tsx src/cli.ts",
-    "probe": "pnpm --filter @htn/probe exec tsx src/cli.ts"
+    "probe": "pnpm --filter @htn/probe exec tsx src/cli.ts",
+    "serve": "node scripts/serve.mjs",
+    "runtime:build": "pnpm --filter @htn/runtime build",
+    "runtime:watch": "pnpm --filter @htn/runtime watch",
+    "exercise": "pnpm --filter @htn/probe exec node scripts/exercise-runtime.mjs",
+    "screenshots": "pnpm --filter @htn/probe exec node scripts/screenshot-runtime.mjs"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.8",
