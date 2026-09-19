@@ -186,6 +186,15 @@ template set small.
 
 ## 5. The badge app
 
+Built and verified 2026-09-19: `packages/badge/app/main.lua` on the badge,
+`packages/badge/src/` on the Mac, `apps/cabinet/app/api/badges/route.ts`
+streaming hub events to the kiosk page. Two badges drove library games in
+the cabinet page from their d-pads and A. Two lessons from building it:
+the Lua sandbox has no `pcall`, so an app that guards with it dies in
+`on_enter`; and a hot reload of the kiosk page resets it to ATTRACT, where
+only START is accepted, which looks like dropped input if you are testing
+with a badge at the time.
+
 One Lua app, `arcade`, shared by both modes and small enough to travel by
 badge-to-badge Share:
 
