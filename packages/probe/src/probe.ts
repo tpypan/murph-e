@@ -43,7 +43,7 @@ export async function closeProbe(): Promise<void> {
   await b?.close()
 }
 
-async function openRuntime(): Promise<Page> {
+export async function openRuntime(): Promise<Page> {
   if (!existsSync(RUNTIME_JS)) {
     throw new Error('packages/runtime/runtime.js is missing. Run `pnpm runtime:build` first.')
   }

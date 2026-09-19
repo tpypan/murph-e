@@ -17,7 +17,7 @@ const USAGE = `usage:
   harness play <run-id>
   harness run "<transcript>" [--race 2] [--players 2]   full pipeline: spec, race, probe, repair, fallback
   harness seed <prompts.txt> [--n 2] [--players 2]      fill library/games with passing games
-  harness bench <prompts.txt> [--model M] [--effort E] [--players 2] [--n 1] [--concurrency 4] [--label L] [--no-probe]
+  harness bench <prompts.txt> [--model M] [--effort E] [--players 2] [--n 1] [--concurrency 4] [--label L] [--no-probe] [--fun]
   harness bench-remix <remixes.txt> [--concurrency 3] [--label L]   "<slug> | <words>" per line
 `
 
@@ -95,6 +95,7 @@ const { values, positionals } = parseArgs({
     concurrency: { type: 'string' },
     label: { type: 'string' },
     'no-probe': { type: 'boolean' },
+    fun: { type: 'boolean' },
     race: { type: 'string' },
     players: { type: 'string' },
   },
@@ -145,9 +146,10 @@ try {
       concurrency: values.concurrency ? Number(values.concurrency) : 4,
       label: values.label,
       noProbe: values['no-probe'],
+      fun: values.fun,
     })
     process.stderr.write(`results: ${file}\n`)
-    process.stderr.write(`${readFileSync(file, 'utf8').split('\n').slice(0, 12).join('\n')}\n`)
+    process.stderr.write(`${readFileSync(file, 'utf8').split('\n').slice(0, 24).join('\n')}\n`)
   } else {
     process.stderr.write(USAGE)
     process.stderr.write(

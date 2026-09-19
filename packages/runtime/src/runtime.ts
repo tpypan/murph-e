@@ -19,6 +19,24 @@ export type OutMessage =
   | { type: 'error'; message: string; stack: string; phase: string }
   | { type: 'frame'; hash: string; frame: number }
 
+/** What the game asked the console to do while it was playing. Counted so the
+ *  fun probe can see juice and scoring without reading the source. */
+export interface Telemetry {
+  sfx: Record<string, number>
+  tone: number
+  flash: number
+  shake: number
+  /** gameFrame of each score change, and the delta, while playing. */
+  scoreFrames: number[]
+  scoreDeltas: number[]
+}
+
+const TELEMETRY_CAP = 4000
+
+function emptyTelemetry(): Telemetry {
+  return { sfx: {}, tone: 0, flash: 0, shake: 0, scoreFrames: [], scoreDeltas: [] }
+}
+
 interface GameFns {
   init: ((api: Api) => void) | null
   update: ((api: Api, dt: number) => void) | null
@@ -104,6 +122,8 @@ export class Runtime {
   title = ''
   frame = 0 // frames since the runtime started
   gameFrame = 0 // frames since init()
+  /** Reset at the start of every round. Only meaningful under the probe. */
+  telemetry: Telemetry = emptyTelemetry()
   private game: GameFns | null = null
   private api: Api
   private rng: () => number = makeRng(1)
@@ -314,6 +334,7 @@ export class Runtime {
 
   private beginPlay(): void {
     if (!this.game) return
+    this.telemetry = emptyTelemetry()
     this.resetScores()
     this.lockout = 0
     this.pendingState = null
@@ -344,9 +365,19 @@ export class Runtime {
   private setScore(p: unknown, f: (old: number) => number): void {
     const n = typeof p === 'number' && Number.isFinite(p) ? p | 0 : null
     const targets = this.players === 2 ? (n === null ? [0, 1] : [Math.max(0, Math.min(1, n))]) : [0]
+    const before = this.scores[0]! + this.scores[1]!
     for (const i of targets) this.scores[i] = Math.max(0, Math.floor(f(this.scores[i] ?? 0)))
     this.score = this.scores[0] ?? 0
     this.hi = Math.max(this.hi, ...this.scores)
+    const delta = this.scores[0]! + this.scores[1]! - before
+    if (
+      delta !== 0 &&
+      this.state === 'playing' &&
+      this.telemetry.scoreFrames.length < TELEMETRY_CAP
+    ) {
+      this.telemetry.scoreFrames.push(this.gameFrame)
+      this.telemetry.scoreDeltas.push(delta)
+    }
   }
 
   private setState(s: State): void {
@@ -502,14 +533,23 @@ export class Runtime {
       textCenter: (str: unknown, y: number, c = 7, scale = 1) => s.textCenter(str, y, c, scale),
       textWidth: (str: unknown, scale = 1) => s.textWidth(str, scale),
       // sound
-      sfx: (name: SfxName) => this.synth.sfx(name),
-      tone: (freq: number, ms: number, wave = 'square') => this.synth.tone(freq, ms, wave),
+      sfx: (name: SfxName) => {
+        const t = this.telemetry.sfx
+        t[String(name)] = (t[String(name)] ?? 0) + 1
+        this.synth.sfx(name)
+      },
+      tone: (freq: number, ms: number, wave = 'square') => {
+        this.telemetry.tone++
+        this.synth.tone(freq, ms, wave)
+      },
       // juice
       flash: (c = 7, frames = 3) => {
+        this.telemetry.flash++
         this.flashColor = c
         this.flashFrames = Math.max(0, Math.min(10, frames | 0))
       },
       shake: (frames = 8) => {
+        this.telemetry.shake++
         this.shakeFrames = Math.max(0, Math.min(60, frames | 0))
       },
       // game flow
