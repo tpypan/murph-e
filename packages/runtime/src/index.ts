@@ -1,6 +1,6 @@
 import { H, W } from './gfx'
 import type { InjectFrame } from './input'
-import { type OutMessage, Runtime } from './runtime'
+import { type OutMessage, Runtime, type Telemetry } from './runtime'
 
 declare global {
   interface Window {
@@ -28,6 +28,7 @@ export interface ProbeHook {
   }
   frameHash: () => string
   frameStats: () => { colors: number; dominant: number; dominantShare: number }
+  telemetry: () => Telemetry
   state: () => string
   score: () => number
   inject: (frames: InjectFrame[]) => void
@@ -114,6 +115,7 @@ if (probe) {
     },
     frameHash: () => rt.frameHash(),
     frameStats: () => rt.screen.stats(),
+    telemetry: () => rt.telemetry,
     state: () => rt.state,
     score: () => rt.score,
     inject: (frames) => rt.inject(frames),

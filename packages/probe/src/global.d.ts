@@ -18,6 +18,14 @@ interface ProbeHook {
   }
   frameHash: () => string
   frameStats: () => { colors: number; dominant: number; dominantShare: number }
+  telemetry: () => {
+    sfx: Record<string, number>
+    tone: number
+    flash: number
+    shake: number
+    scoreFrames: number[]
+    scoreDeltas: number[]
+  }
   state: () => string
   score: () => number
   inject: (frames: Array<{ at: number; player?: number; button: string; down: boolean }>) => void

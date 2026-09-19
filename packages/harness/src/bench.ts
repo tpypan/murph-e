@@ -1,8 +1,9 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { closeProbe, controlsFromSpec, probe } from '@htn/probe'
+import { closeProbe, controlsFromSpec, funScore, playtest, probe } from '@htn/probe'
 import { MODELS, ROOT } from './env.ts'
 import { gen } from './gen.ts'
+import { JUDGE_AXES, judge, type Verdict } from './judge.ts'
 
 export interface BenchOptions {
   model?: string
@@ -12,6 +13,8 @@ export interface BenchOptions {
   concurrency?: number
   label?: string
   noProbe?: boolean
+  /** Also playtest and judge each game: the fun arm. Slow, costs tokens. */
+  fun?: boolean
   onLine?: (line: string) => void
 }
 
@@ -32,6 +35,10 @@ export interface BenchRow {
   probeOk: boolean | null
   observations: string[]
   error: string | null
+  /** Only with --fun. */
+  fun: number | null
+  metrics: Record<string, number | boolean | null> | null
+  verdict: Omit<Verdict, 'ms'> | null
 }
 
 function pct(values: number[], p: number): number {
@@ -84,6 +91,9 @@ export async function bench(
         probeOk: null,
         observations: [],
         error: null,
+        fun: null,
+        metrics: null,
+        verdict: null,
       }
       try {
         const r = await gen(job.prompt, { model, effort, variant: job.variant, players })
@@ -118,6 +128,32 @@ export async function bench(
           if (p.thumb) r.run.write('thumb.png', p.thumb)
           r.run.event('probe', { ok: p.ok, observations: p.observations, ms: p.ms })
         }
+        if (opts.fun) {
+          const m = await playtest(r.code, {
+            controls: controlsFromSpec(r.spec.controls),
+            title: r.spec.title,
+            players,
+          })
+          row.fun = funScore(m)
+          const { shots, ...rest } = m
+          row.metrics = rest as Record<string, number | boolean | null>
+          r.run.write('playtest.json', JSON.stringify({ fun: row.fun, ...rest }, null, 2))
+          if (m.ok) {
+            try {
+              const v = await judge(r.spec, r.code, m)
+              row.verdict = {
+                scores: v.scores,
+                mean: v.mean,
+                again: v.again,
+                best: v.best,
+                worst: v.worst,
+              }
+              r.run.write('verdict.json', JSON.stringify(v, null, 2))
+            } catch (e) {
+              log(`  judge failed: ${e instanceof Error ? e.message : String(e)}`)
+            }
+          }
+        }
       } catch (e) {
         row.error = e instanceof Error ? e.message : String(e)
       }
@@ -129,8 +165,10 @@ export async function bench(
           : row.probeOk
             ? 'PASS'
             : `FAIL ${row.observations.join('; ').slice(0, 80)}`
+      const funStatus =
+        row.fun === null ? '' : `  fun ${row.fun}${row.verdict ? ` judge ${row.verdict.mean}` : ''}`
       log(
-        `[${i + 1}/${jobs.length}] ${s(row.totalMs)} (${row.tokens} tok) ${row.title || '?'} <- "${job.prompt.slice(0, 40)}"  ${status}`,
+        `[${i + 1}/${jobs.length}] ${s(row.totalMs)} (${row.tokens} tok) ${row.title || '?'} <- "${job.prompt.slice(0, 40)}"  ${status}${funStatus}`,
       )
     }
   }
@@ -143,6 +181,34 @@ export async function bench(
   const ttfts = okRows.map((r) => r.ttftMs ?? 0)
   const probed = okRows.filter((r) => r.probeOk !== null)
   const passed = probed.filter((r) => r.probeOk).length
+  const funRows = okRows.filter((r) => r.fun !== null)
+  const judged = okRows.filter((r) => r.verdict)
+  const meanOf = (xs: number[]) =>
+    xs.length === 0 ? 0 : Math.round((xs.reduce((a, b) => a + b, 0) / xs.length) * 100) / 100
+  const shareOf = (f: (r: BenchRow) => boolean) =>
+    funRows.length === 0 ? '-' : `${funRows.filter(f).length}/${funRows.length}`
+  const metric = (k: string) => funRows.map((r) => Number(r.metrics?.[k] ?? 0))
+  const funLines =
+    funRows.length === 0
+      ? []
+      : [
+          '',
+          '## fun',
+          '',
+          `- fun score mean ${meanOf(funRows.map((r) => r.fun ?? 0))}  p50 ${pct(
+            funRows.map((r) => r.fun ?? 0),
+            50,
+          )}`,
+          `- grace ${shareOf((r) => !!r.metrics?.grace)}  losable ${shareOf((r) => !!r.metrics?.losable)}  agency>1 ${shareOf((r) => Number(r.metrics?.agency ?? 0) > 1)}  agency mean ${meanOf(metric('agency'))}`,
+          `- score tiers mean ${meanOf(metric('scoreTiers'))}  spread mean ${meanOf(metric('scoreSpread'))}  first point mean ${meanOf(funRows.map((r) => Number(r.metrics?.firstScoreS ?? 0)))}s`,
+          `- density ramp mean ${meanOf(metric('densityRamp'))}  colours mean ${meanOf(metric('colors'))}  sfx kinds mean ${meanOf(metric('sfxKinds'))}  flash+shake ${shareOf((r) => Number(r.metrics?.flash ?? 0) > 0 && Number(r.metrics?.shake ?? 0) > 0)}`,
+          ...(judged.length === 0
+            ? []
+            : [
+                `- judge mean ${meanOf(judged.map((r) => r.verdict!.mean))} over ${judged.length}, again ${meanOf(judged.map((r) => r.verdict!.again))}`,
+                `- judge axes: ${JUDGE_AXES.map((a) => `${a} ${meanOf(judged.map((r) => r.verdict!.scores[a]))}`).join(', ')}`,
+              ]),
+        ]
   const date = new Date().toISOString().slice(0, 10)
   const stamp = new Date().toISOString().slice(11, 16).replace(':', '')
   const file = resolve(ROOT, 'bench/results', `${date}-${stamp}-${label}.md`)
@@ -161,13 +227,22 @@ export async function bench(
       ? `- probe pass: ${passed}/${probed.length} (${Math.round((100 * passed) / probed.length)}%)`
       : '- probe: skipped',
     `- wall clock: ${s(Math.round(performance.now() - t0))}`,
+    ...funLines,
     '',
-    '| # | prompt | title | genre | spec | build | ttft | total | tok | reas | lines | probe | notes |',
-    '|---|---|---|---|---|---|---|---|---|---|---|---|---|',
-    ...rows.map(
-      (r, i) =>
-        `| ${i + 1} | ${r.prompt.slice(0, 40)} | ${r.title} | ${r.genre} | ${s(r.specMs)} | ${s(r.buildMs)} | ${s(r.ttftMs)} | ${s(r.totalMs)} | ${r.tokens} | ${r.reasoning} | ${r.lines} | ${r.error ? 'error' : r.probeOk === null ? '-' : r.probeOk ? 'pass' : 'FAIL'} | ${(r.error ?? [r.syntaxError, ...r.observations].filter(Boolean).join('; ')).replace(/\|/g, '/').slice(0, 120)} |`,
-    ),
+    funRows.length > 0
+      ? '| # | prompt | title | genre | total | tok | lines | probe | fun | judge | again | worst |'
+      : '| # | prompt | title | genre | spec | build | ttft | total | tok | reas | lines | probe | notes |',
+    funRows.length > 0
+      ? '|---|---|---|---|---|---|---|---|---|---|---|---|'
+      : '|---|---|---|---|---|---|---|---|---|---|---|---|---|',
+    ...rows.map((r, i) => {
+      const probeCell = r.error ? 'error' : r.probeOk === null ? '-' : r.probeOk ? 'pass' : 'FAIL'
+      const head = `| ${i + 1} | ${r.prompt.slice(0, 40)} | ${r.title} | ${r.genre} |`
+      if (funRows.length > 0) {
+        return `${head} ${s(r.totalMs)} | ${r.tokens} | ${r.lines} | ${probeCell} | ${r.fun ?? '-'} | ${r.verdict?.mean ?? '-'} | ${r.verdict?.again ?? '-'} | ${(r.verdict?.worst ?? r.error ?? r.observations.join('; ')).replace(/\|/g, '/').slice(0, 90)} |`
+      }
+      return `${head} ${s(r.specMs)} | ${s(r.buildMs)} | ${s(r.ttftMs)} | ${s(r.totalMs)} | ${r.tokens} | ${r.reasoning} | ${r.lines} | ${probeCell} | ${(r.error ?? [r.syntaxError, ...r.observations].filter(Boolean).join('; ')).replace(/\|/g, '/').slice(0, 120)} |`
+    }),
     '',
     '## runs',
     '',

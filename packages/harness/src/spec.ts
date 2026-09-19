@@ -22,6 +22,10 @@ export const GameSpecSchema = z.object({
   title: z.string().min(1),
   oneLiner: z.string().min(1),
   genre: z.enum(ALL_GENRES),
+  // Added after the fun bench (docs/research/arcade-game-design.md). Defaulted
+  // so spec.json files written before they existed still parse.
+  hook: z.string().default(''),
+  ramp: z.string().default(''),
   mechanics: z.array(z.string()).min(1),
   controls: z.object({
     left: z.string().nullable(),
@@ -49,6 +53,8 @@ const jsonSchema = (genres: readonly string[]) => ({
     'title',
     'oneLiner',
     'genre',
+    'hook',
+    'ramp',
     'mechanics',
     'controls',
     'palette',
@@ -63,6 +69,16 @@ const jsonSchema = (genres: readonly string[]) => ({
     title: { type: 'string', description: 'Uppercase, at most 14 characters, shown on screen.' },
     oneLiner: { type: 'string', description: 'One sentence a player would read on a cabinet.' },
     genre: { type: 'string', enum: [...genres] },
+    hook: {
+      type: 'string',
+      description:
+        'One line: the single interesting decision the player makes, and what they risk by making it. Empty when remix is true.',
+    },
+    ramp: {
+      type: 'string',
+      description:
+        'One line: the three stages of the first minute, naming the new kind of thing that arrives at each. Empty when remix is true.',
+    },
     mechanics: {
       type: 'array',
       items: { type: 'string' },
@@ -115,11 +131,13 @@ Rules:
 - If the request is for two or more players, make it one player against the computer and set note to MADE IT ONE PLAYER.
 - If the request is vague ("something with cats", "a relaxing game"), invent a concrete, charming game that fits.
 - The player must be able to lose within about 30 seconds and to score within 5. Difficulty ramps with time.
+- hook: the one interesting decision, and what it risks. Not "dodge the cars" — that is a reflex, not a decision. Put the points where the danger is: a coin that sits in the traffic, a big slow target worth triple, a charge shot that roots you, a streak that breaks when you are hit. Standing still must never be the best way to play.
+- ramp: three stages in the first minute, each adding a new KIND of thing, not just more speed. e.g. "cars only; at 20 s trucks that take the whole lane; at 45 s a bus that reverses".
 - title: at most 14 characters, uppercase, punchy. oneLiner: one sentence. mechanics: 3 to 5 short lines.
-- controls: describe what each input does or null if unused. Always use left/right or up/down, and A must do something.
+- controls: describe what each input does, or null if the game does not use it. Only name a control the game really uses: a control you describe here is tested, and one that does nothing on screen fails the game. Always use left/right or up/down, and A must do something.
 - palette is only a colour mood hint.
 - Moderation: if the request is hateful, sexual, about real people, about self-harm, about real-world violence such as shootings or attacks on people or places, or is not a game at all, do not make that game. Replace it with an unrelated, wholesome arcade game, set moderated to true, and set note to LET'S PLAY THIS INSTEAD. Cartoon action such as shooting asteroids, zapping aliens or bonking slimes is fine.
-- Remix: when the input says a game is already on screen and the person is asking to change that game, set remix to true, keep the title and the genre, and put the concrete changes in changes (1 to 4 short imperative lines, e.g. "double the car speed ramp", "add a boss sprite at the top that fires every 2 seconds"). The rest of the spec then describes the game after the changes. A remix is a modification: speed, size, count, lives, difficulty, colours, one new enemy or item, or swapping one thing ("make the hero a cat"). Words that describe a game with its own premise (a different hero, setting and goal, e.g. "a game where a penguin slides on ice collecting fish") are a NEW game even if the genre is similar: remix false, changes empty, and the spec describes that new game. With no game on screen, remix is always false.`
+- Remix: when the input says a game is already on screen and the person is asking to change that game, set remix to true, keep the title and the genre, and put the concrete changes in changes (1 to 4 short imperative lines, e.g. "double the car speed ramp", "add a boss sprite at the top that fires every 2 seconds"). The rest of the spec then describes the game after the changes. A remix is a modification: speed, size, count, lives, difficulty, colours, one new enemy or item, or swapping one thing ("make the hero a cat"). Words that describe a game with its own premise (a different hero, setting and goal, e.g. "a game where a penguin slides on ice collecting fish") are a NEW game even if the genre is similar: remix false, changes empty, and the spec describes that new game. With no game on screen, remix is always false. When remix is true, leave hook and ramp as empty strings: the game already exists and nothing reads them.`
 
 export const SPEC_INSTRUCTIONS_2P = `You turn what two people said into a spec for a tiny one-screen 8-bit arcade game for exactly two players that a second model will write in one go. The game runs at 256x224 with a 16-colour palette. Each player has their own d-pad and two buttons (A, B). Both players share the one screen and one arena: no split screen.
 
@@ -130,11 +148,13 @@ Rules:
 - If the request is for one player, or for more than two, make it two players and set note to MADE IT TWO PLAYERS.
 - If the request is vague ("something fun for us"), invent a concrete, charming two-player game that fits.
 - Versus: a round must be decidable within about a minute, and it must be impossible to stall forever (a closing arena, a timer, or points that keep coming). Coop: the pair must be able to score within 5 seconds and lose within 30 seconds if they stand still, ramping with time.
+- hook: the one interesting decision, and what it risks. Versus: the greedy move that can be punished, the position worth fighting over. Coop: the thing that pays more when the two of them take a risk together. Camping in a corner must never be the best way to play.
+- ramp: three stages in the first minute, each adding a new KIND of thing, not just more speed. In versus, the arena itself can be the ramp.
 - title: at most 14 characters, uppercase, punchy. oneLiner: one sentence that mentions both players. mechanics: 3 to 5 short lines, and one of them must say what player one and player two each are.
-- controls: describe what each input does for a player (both players have the same controls) or null if unused. Always use left/right or up/down, and A must do something.
+- controls: describe what each input does for a player (both players have the same controls), or null if the game does not use it. Only name a control the game really uses: a control you describe here is tested, and one that does nothing on screen fails the game. Always use left/right or up/down, and A must do something.
 - palette is only a colour mood hint.
 - Moderation: if the request is hateful, sexual, about real people, about self-harm, about real-world violence such as shootings or attacks on people or places, or is not a game at all, do not make that game. Replace it with an unrelated, wholesome two-player arcade game, set moderated to true, and set note to LET'S PLAY THIS INSTEAD. Cartoon action such as shooting asteroids, zapping aliens, sword duels or bonking slimes is fine.
-- Remix: when the input says a game is already on screen and the players are asking to change that game, set remix to true, keep the title and the genre, and put the concrete changes in changes (1 to 4 short imperative lines). The rest of the spec then describes the game after the changes. A remix is a modification: speed, size, count, lives, difficulty, colours, one new enemy or item, or swapping one thing. Words that describe a game with its own premise (a different hero, setting and goal) are a NEW game even if the genre is similar: remix false, changes empty, and the spec describes that new game. With no game on screen, remix is always false.`
+- Remix: when the input says a game is already on screen and the players are asking to change that game, set remix to true, keep the title and the genre, and put the concrete changes in changes (1 to 4 short imperative lines). The rest of the spec then describes the game after the changes. A remix is a modification: speed, size, count, lives, difficulty, colours, one new enemy or item, or swapping one thing. Words that describe a game with its own premise (a different hero, setting and goal) are a NEW game even if the genre is similar: remix false, changes empty, and the spec describes that new game. With no game on screen, remix is always false. When remix is true, leave hook and ramp as empty strings: the game already exists and nothing reads them.`
 
 export interface SpecResult {
   spec: GameSpec
@@ -152,8 +172,8 @@ export interface SpecOptions {
 }
 
 function describeCurrent(spec: GameSpec): string {
-  const { title, genre, oneLiner, mechanics, controls, lose, scoring } = spec
-  return JSON.stringify({ title, genre, oneLiner, mechanics, controls, lose, scoring })
+  const { title, genre, oneLiner, hook, mechanics, controls, lose, scoring } = spec
+  return JSON.stringify({ title, genre, oneLiner, hook, mechanics, controls, lose, scoring })
 }
 
 export async function specify(transcript: string, opts: SpecOptions = {}): Promise<SpecResult> {
@@ -175,12 +195,14 @@ export async function specify(transcript: string, opts: SpecOptions = {}): Promi
     text: {
       format: { type: 'json_schema', name: 'game_spec', strict: true, schema: jsonSchema(genres) },
     },
-    prompt_cache_key: players === 2 ? 'htn-spec-2p-v1' : 'htn-spec-v1',
+    prompt_cache_key: players === 2 ? 'htn-spec-2p-v3' : 'htn-spec-v3',
   })
   const parsed = GameSpecSchema.parse(JSON.parse(res.output_text))
   parsed.title = parsed.title.toUpperCase().slice(0, 14)
   parsed.note = parsed.note.toUpperCase().slice(0, 40)
   parsed.oneLiner = parsed.oneLiner.slice(0, 120)
+  parsed.hook = parsed.hook.slice(0, 160)
+  parsed.ramp = parsed.ramp.slice(0, 200)
   parsed.mechanics = parsed.mechanics.slice(0, 6)
   if (!(genres as readonly string[]).includes(parsed.genre)) parsed.genre = genres[0]
   if (!opts.current) {

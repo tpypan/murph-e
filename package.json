@@ -13,6 +13,7 @@
     "dev": "pnpm --filter @htn/cabinet dev",
     "harness": "pnpm --filter @htn/harness exec tsx src/cli.ts",
     "probe": "pnpm --filter @htn/probe exec tsx src/cli.ts",
+    "playtest": "pnpm --filter @htn/probe exec tsx src/playtest-cli.ts",
     "serve": "node scripts/serve.mjs",
     "runtime:build": "pnpm --filter @htn/runtime build",
     "runtime:watch": "pnpm --filter @htn/runtime watch",

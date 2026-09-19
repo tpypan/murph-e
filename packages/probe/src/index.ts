@@ -1,3 +1,4 @@
+export { funScore, type PlaytestMetrics, type PlaytestOptions, playtest } from './playtest.ts'
 export {
   closeProbe,
   controlsFromSpec,
