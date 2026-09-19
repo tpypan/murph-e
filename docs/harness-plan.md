@@ -316,10 +316,16 @@ Settled 2026-09-19:
   Spec: `gpt-5.6-luna`, effort `none`. Bench in `bench-2026-09-19-openai-models.md`.
   The day-one bench A/Bs Sol against `gpt-6-astra` on the real prompt, judged
   by playing the games, not by the clock.
-- **Badges.** Wired USB-C serial for badge-as-controller and for identity in
-  multiplayer; a USB QR scanner for single-player tap-in; no NFC reader on
-  the cabinet because the badge is itself the reader. Full analysis and the
-  day-one verification list in `badge-integration.md`.
+- **Badges.** Wired USB-C serial is the only identity path and the only
+  badge controller path: plugging in is tapping in, in both modes. No QR
+  scanner (dropped 2026-09-19, one identity path is enough), no NFC reader
+  because the badge is itself the reader. Full analysis and the day-one
+  verification list in `badge-integration.md`.
+- **Player count is a menu, not an inference.** The attract screen asks 1P
+  or 2P before LISTENING. The cabinet writes `players` into the spec
+  request and the spec model does not get to change it. 1P plays on the
+  cabinet stick; 2P plays on two plugged-in badges. Adds nothing to the
+  latency budget because it happens before speech.
 - **STT: `gpt-live-transcribe`**, streamed, push-to-talk commits the turn.
 - **Display: 256x224, 16-colour fixed palette**, integer-scaled. Every game
   looks like it belongs to the same cabinet.
@@ -333,7 +339,7 @@ Still to settle before the cabinet build, none of them blocking the harness:
 
 - **Encoder keycodes.** One stick and four buttons on the cabinet; the exact
   keycodes the encoder emits are read on setup day. The runtime API takes a
-  player index on every input call so badges plug in as players 1 to 4.
+  player index on every input call so badges plug in as players 1 and 2.
 - **Prompt moderation.** A public floor means someone will say something
   offensive or off-topic. The spec step gets a short rule: anything unsafe or
   not a game becomes the nearest safe arcade game, and the screen says what it

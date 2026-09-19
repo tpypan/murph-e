@@ -147,7 +147,9 @@ matches the code, every message in the protocol has been exercised from
     palette: 'arcade'|'gameboy'|'nes'|'cga'  // a hint for colour choice, not a different palette
     lose: string
     scoring: string
-    players: 1                // fixed in tier 1
+    players: 1                // fixed in tier 1. In tier 2 the cabinet's
+                              // 1P/2P menu sets it (1 or 2); the model
+                              // never infers it from the transcript
   }
   ```
 
@@ -342,7 +344,7 @@ a maze where a ghost chases you
 a game where you are a taco and you have to catch salsa
 something really hard
 a relaxing game
-a two-player fighting game            (tier 1 should turn this into one player and say so)
+a two-player fighting game            (players is 1, so this becomes one player and the title says so; same rule in tier 2 when 1P is chosen)
 an open world RPG with crafting       (should scope it down to one arcade loop)
 <one inappropriate prompt for the moderation rule>
 ```

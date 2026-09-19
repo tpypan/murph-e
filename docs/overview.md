@@ -42,9 +42,12 @@ code, the engine, or the judge.
   round if needed, a fallback library if that fails too.
 - **A kiosk shell.** Attract, listening, building (the code streams onto the
   screen), playing, game over, back to attract.
-- **Badges as identity and controllers.** Single players tap in by showing
-  their badge's QR code to a scanner. Multiplayer players plug their badge in
-  over USB-C and it becomes a numbered controller.
+- **Badges as identity and controllers, over one cable.** Plugging a badge
+  into the cabinet over USB-C is the only way to tap in. The cabinet pushes
+  the arcade Lua app to the badge if it is missing and reads the badge ID
+  and name back over the same wire. Single players play on the cabinet
+  stick and plug in only to put a name on their score. Two-player games are
+  played on two plugged-in badges, which become controllers 1 and 2.
 
 The scope in three tiers is in `docs/goals/`. Tier 1 is the cabinet working
 end to end for one player. Tier 2 adds identity, leaderboard, multiplayer on
@@ -61,8 +64,9 @@ badges and voice remixes. Tier 3 is wireless badges and take-home games.
 | Spec model | `gpt-5.6-luna`, effort none | 0.6 s to first token | same |
 | STT | `gpt-live-transcribe`, push-to-talk | words on screen while they talk, transcript final on release | `harness-plan.md` §4 |
 | Display | 256x224, 16 colours, integer scaled | every game looks like it belongs to the same cabinet | |
-| Identity | badge boot QR via USB scanner (single), USB serial hello (multi) | badge NFC is a reader, not a tag | `badge-integration.md` §3 |
+| Identity | USB-C serial hello from the arcade app, both modes | one gesture for identity and controls; badge NFC is a reader, not a tag; QR dropped 2026-09-19 | `badge-integration.md` §3 |
 | Multiplayer transport | USB-C serial | the only low-latency channel the badge exposes | `badge-integration.md` §2 |
+| Player count | chosen on the attract screen, 1P or 2P, before speaking | an explicit choice beats inferring it from speech; 2P means both players on badges | `badge-integration.md` §4 |
 | Not doing | NFC reader, Wi-Fi from badges, custom firmware, Godot, 3D, split screen, judge scoring | | |
 
 ## Hardware on the cabinet
@@ -70,11 +74,13 @@ badges and voice remixes. Tier 3 is wireless badges and take-home games.
 - Mac mini, monitor, microphone.
 - One joystick and four buttons on a USB encoder. Button roles: A, B, START,
   TALK (hold to speak). Exact keycodes read on setup day.
-- To buy: a USB hub and four USB-C cables (multiplayer), a USB barcode
-  scanner (tap-in). Not an NFC reader.
+- To buy: a USB hub and two or three USB-C data cables on the front of the
+  cabinet (one per badge, plus a spare). Not a barcode scanner, not an NFC
+  reader.
 
 ## People and parallel tracks
 
 Tier 1 splits into tracks that do not block each other: the runtime and
 kiosk page, the harness and bench, and STT plus hardware. Tier 2 badge
-plumbing touches the generator only through a `players` field in the spec.
+plumbing touches the generator only through a `players` field in the spec,
+which is set by the 1P/2P choice on the attract screen, not by the model.

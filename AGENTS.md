@@ -92,6 +92,7 @@ Until a package exists, its plan is in `docs/plans/tier-1.md`.
 
 - Engine, pipeline shape, latency budget: `docs/harness-plan.md`.
 - Model choice and the numbers behind it: `docs/bench-2026-09-19-openai-models.md`.
-- Badges, NFC, QR, multiplayer transport: `docs/badge-integration.md`.
+- Badges, plug-in identity, 1P/2P modes, multiplayer transport:
+  `docs/badge-integration.md`.
 - Scope per tier: `docs/goals/`.
 - Changing one of these is fine. Update the doc in the same change.
