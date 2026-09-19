@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useReducer, useRef, useState } from 'react'
 import { attachKeyboard, attractScript, type InputEvent } from './input'
 import { readSse } from './sse'
+import { Stt } from './stt'
 
 type Phase = 'ATTRACT' | 'LISTENING' | 'BUILDING' | 'PLAYING' | 'GAMEOVER' | 'FALLBACK'
 type Status = 'BUILDING' | 'CHECKING' | 'REPAIRING' | 'READY'
@@ -128,6 +129,11 @@ export default function Cabinet() {
   const abort = useRef<AbortController | null>(null)
   const inputEl = useRef<HTMLInputElement>(null)
   const seedRef = useRef(1)
+  const stt = useRef<Stt | null>(null)
+  const getStt = useCallback(() => {
+    if (!stt.current) stt.current = new Stt()
+    return stt.current
+  }, [])
 
   const post = useCallback((msg: unknown) => {
     frame.current?.contentWindow?.postMessage(msg, '*')
@@ -272,15 +278,47 @@ export default function Cabinet() {
     stopAttract()
     abort.current?.abort()
     dispatch({ type: 'transcript', transcript: '' })
+    dispatch({ type: 'error', error: null })
     dispatch({ type: 'phase', phase: 'LISTENING' })
-    setTimeout(() => inputEl.current?.focus(), 50)
-  }, [stopAttract])
+    const s = getStt()
+    if (s.hasMic()) {
+      dispatch({ type: 'mic', mic: 'on' })
+      void s.start({
+        onText: (committed, partial) => {
+          if (view.current.phase !== 'LISTENING') return
+          dispatch({ type: 'transcript', transcript: `${committed} ${partial}`.trim() })
+        },
+        onState: (state, detail) => {
+          if (state === 'error') {
+            dispatch({ type: 'mic', mic: 'unavailable' })
+            dispatch({ type: 'error', error: `MIC: ${detail ?? 'error'}` })
+            setTimeout(() => inputEl.current?.focus(), 50)
+          }
+        },
+      })
+    } else {
+      dispatch({ type: 'mic', mic: 'unavailable' })
+      setTimeout(() => inputEl.current?.focus(), 50)
+    }
+  }, [getStt, stopAttract])
 
-  const stopListening = useCallback(() => {
-    const t = view.current.transcript.trim()
+  const stopListening = useCallback(async () => {
+    const s = getStt()
+    let t = view.current.transcript.trim()
+    if (s.hasMic()) {
+      dispatch({ type: 'mic', mic: 'idle' })
+      const heard = await s.stop()
+      if (view.current.phase !== 'LISTENING') return
+      if (heard) t = heard
+      dispatch({ type: 'transcript', transcript: t })
+    }
     if (t) build(t)
-    // Nothing heard yet: stay in LISTENING so the typed fallback can be used.
-  }, [build])
+    else {
+      // Nothing heard: stay in LISTENING with the typed fallback visible.
+      dispatch({ type: 'error', error: "DIDN'T CATCH THAT. HOLD TALK AND TRY AGAIN, OR TYPE IT." })
+      setTimeout(() => inputEl.current?.focus(), 50)
+    }
+  }, [build, getStt])
 
   const cancelListening = useCallback(() => {
     if (view.current.game && view.current.phase === 'LISTENING') {
@@ -361,6 +399,15 @@ export default function Cabinet() {
     window.addEventListener('message', h)
     return () => window.removeEventListener('message', h)
   }, [crashFallback, post, startAttract])
+
+  // ---- mic warm-up -------------------------------------------------------
+  useEffect(() => {
+    const s = getStt()
+    void s.warmMic().then((ok) => dispatch({ type: 'mic', mic: ok ? 'idle' : 'unavailable' }))
+    void s.warmToken()
+    const t = setInterval(() => void s.warmToken(), 120_000)
+    return () => clearInterval(t)
+  }, [getStt])
 
   // ---- library + idle ----------------------------------------------------
   useEffect(() => {
@@ -447,6 +494,7 @@ export default function Cabinet() {
                 <span className="text-[#5f574f]">SAY A GAME. LET GO OF TALK WHEN DONE.</span>
               )}
             </div>
+            {v.error && <div className="text-center text-[14px] text-[#ff77a8]">{v.error}</div>}
             {v.mic !== 'on' && (
               <form
                 className="flex w-full gap-3"

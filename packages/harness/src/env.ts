@@ -11,11 +11,13 @@ dotenv.config({ path: resolve(ROOT, '.env'), quiet: true })
 
 export const MODELS = {
   build: process.env.HTN_BUILD_MODEL ?? 'gpt-5.6-sol',
-  buildEffort: process.env.HTN_BUILD_EFFORT ?? 'low',
+  buildEffort: process.env.HTN_BUILD_EFFORT ?? 'none',
   spec: process.env.HTN_SPEC_MODEL ?? 'gpt-5.6-luna',
   specEffort: process.env.HTN_SPEC_EFFORT ?? 'none',
   repair: process.env.HTN_REPAIR_MODEL ?? 'gpt-5.6-sol',
   repairEffort: process.env.HTN_REPAIR_EFFORT ?? 'low',
+  sttLive: process.env.HTN_STT_LIVE_MODEL ?? 'gpt-live-transcribe',
+  sttClip: process.env.HTN_STT_CLIP_MODEL ?? 'gpt-transcribe',
 } as const
 
 let client: OpenAI | null = null

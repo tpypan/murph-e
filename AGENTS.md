@@ -46,9 +46,15 @@ Until a package exists, its plan is in `docs/plans/tier-1.md`.
 
 - OpenAI only. `OPENAI_API_KEY` in `.env` (gitignored). `.env.example` is the
   template. Never commit a key; never print one in a log.
-- Build, repair, remix: `gpt-5.6-sol`, `reasoning.effort: "low"`, streamed.
+- Build: `gpt-5.6-sol`, `reasoning.effort: "none"`, streamed (bench
+  2026-09-19: p50 36 s, 90% probe pass; `low` was 46 s for the same pass
+  rate). Override with `HTN_BUILD_MODEL` / `HTN_BUILD_EFFORT`; `gpt-6-astra`
+  at `low` is the A/B (33 s, same pass rate, 2.5x the price).
+- Repair: `gpt-5.6-sol`, `reasoning.effort: "low"` (it has to reason about
+  the probe's observations).
 - Spec: `gpt-5.6-luna`, `reasoning.effort: "none"`, structured output.
-- STT: `gpt-live-transcribe`.
+- STT: `gpt-live-transcribe` over WebRTC from the kiosk page;
+  `gpt-transcribe` on a recorded clip as the fallback.
 - Do not change a model or effort setting without a bench run. The bench is
   `pnpm harness bench`; results go in `bench/results/`. Why these models:
   `docs/bench-2026-09-19-openai-models.md`.
@@ -85,8 +91,13 @@ Until a package exists, its plan is in `docs/plans/tier-1.md`.
   p50, p95 and probe pass rate to the last result file.
 - Probe change: run it on `library/` and confirm every library game still
   passes, then on `bench/known-bad/` and confirm every broken one still fails.
-- Cabinet change: `pnpm dev`, drive it with the keyboard (arrows, Z, X,
-  Enter, hold Space to talk), screenshot each state.
+- Cabinet change: `pnpm dev`, then `pnpm screenshots:cabinet` for a
+  screenshot of every state including one real generation and the F8 crash
+  injection, or drive it by hand (arrows, Z, X, Enter, hold Space to talk,
+  Esc cancels, F8 injects a crash).
+- STT change: `pnpm stt:test <clip.wav> "<expected words>"` feeds a 24 kHz
+  WAV through Chromium's fake microphone (make one with `say -o x.aiff ...`
+  and `afconvert -f WAVE -d LEI16@24000 -c 1 x.aiff x.wav`).
 
 ## Where decisions live
 

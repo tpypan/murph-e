@@ -43,3 +43,32 @@ Other findings:
   costs cents on any of them.
 
 Decision: see `harness-plan.md` section 9.
+
+
+## Addendum: full pipeline bench, 20 prompts, tuned prompt (2026-09-19, later)
+
+Run with `pnpm harness bench bench/prompts.txt` after the house rules were
+tightened (120 to 220 lines, grace period, A always does something) and all
+eight templates existed. Concurrency 4. Results in `bench/results/`.
+
+| build model / effort | total p50 | total p95 | ttft p50 | out tokens | lines | probe pass |
+|---|---|---|---|---|---|---|
+| gpt-5.6-sol low (baseline, one template, old rules) | 54.8 s | 84.3 s | 15.0 s | 3344 | 353 | 15/19 |
+| gpt-5.6-sol low | 45.6 s | 51.5 s | 11.8 s | 2815 | 279 | 18/20 |
+| **gpt-5.6-sol none** | **36.4 s** | **42.5 s** | **1.0 s** | 2414 | 270 | 18/20 |
+| gpt-6-astra low | 32.8 s | 38.5 s | 2.3 s | 2281 | 204 | 18/20 |
+
+Findings:
+
+- Effort `none` on Sol removes 10 to 40 s of pre-output reasoning and costs
+  nothing in probe pass rate. Thumbnails of the same prompts look as rich as
+  the `low` run. It is the default build setting.
+- Astra low is 4 s faster still and writes shorter games, at 2.5x the price
+  per token. Its games lean on on-screen control hints and night palettes.
+  Not enough of a difference to switch; kept as the A/B via
+  `HTN_BUILD_MODEL=gpt-6-astra HTN_BUILD_EFFORT=low`.
+- The two failures per run are the same two prompts: "a maze where a ghost
+  chases you" (grid movement that ignores a held direction for a second) and
+  "a two-player fighting game" (A does nothing until the fight starts). Both
+  are repair material, not model material.
+- The moderation prompt was replaced with a safe game in all runs.
