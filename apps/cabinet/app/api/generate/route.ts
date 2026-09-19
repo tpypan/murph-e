@@ -5,7 +5,11 @@ export const dynamic = 'force-dynamic'
 
 /** POST { transcript } -> server-sent pipeline events, ending with `ready`. */
 export async function POST(req: Request): Promise<Response> {
-  const body = (await req.json().catch(() => ({}))) as { transcript?: string; race?: number }
+  const body = (await req.json().catch(() => ({}))) as {
+    transcript?: string
+    race?: number
+    players?: number
+  }
   const transcript = String(body.transcript ?? '').trim()
   if (!transcript) return new Response('transcript required', { status: 400 })
   const encoder = new TextEncoder()
@@ -20,7 +24,12 @@ export async function POST(req: Request): Promise<Response> {
           closed = true
         }
       }
-      pipeline(transcript, { race: body.race ?? 2, onEvent: send, signal: req.signal })
+      pipeline(transcript, {
+        race: body.race ?? 2,
+        players: body.players === 2 ? 2 : 1,
+        onEvent: send,
+        signal: req.signal,
+      })
         .catch((e: unknown) =>
           send({ type: 'error', message: e instanceof Error ? e.message : String(e) }),
         )

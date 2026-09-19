@@ -9,7 +9,15 @@ export {
   type PipelineResult,
   pipeline,
 } from './pipeline.ts'
-export { buildPrompt, extractCode, loadTemplates } from './prompt.ts'
+export { buildPrompt, extractCode, loadTemplates, TWO_PLAYER_RULES } from './prompt.ts'
 export { repair } from './repair.ts'
 export { createRun, type Run } from './run-store.ts'
-export { type GameSpec, GENRES, type Genre, specify } from './spec.ts'
+export {
+  ALL_GENRES,
+  type GameSpec,
+  GENRES,
+  GENRES_2P,
+  type Genre,
+  type Players,
+  specify,
+} from './spec.ts'

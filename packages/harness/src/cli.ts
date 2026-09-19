@@ -12,20 +12,22 @@ import { seed } from './seed.ts'
 const CWD = process.env.INIT_CWD ?? process.cwd()
 
 const USAGE = `usage:
-  harness gen "<transcript>" [--model M] [--effort E] [--variant N]
+  harness gen "<transcript>" [--model M] [--effort E] [--variant N] [--players 2]
   harness play <run-id>
-  harness run "<transcript>" [--race 2]        full pipeline: spec, race, probe, repair, fallback
-  harness seed <prompts.txt> [--n 2]           fill library/games with passing games
-  harness bench <prompts.txt> [--model M] [--effort E] [--n 1] [--concurrency 4] [--label L] [--no-probe]
+  harness run "<transcript>" [--race 2] [--players 2]   full pipeline: spec, race, probe, repair, fallback
+  harness seed <prompts.txt> [--n 2] [--players 2]      fill library/games with passing games
+  harness bench <prompts.txt> [--model M] [--effort E] [--players 2] [--n 1] [--concurrency 4] [--label L] [--no-probe]
 `
 
 function fmtS(msValue: number | null | undefined): string {
   return msValue == null ? '-' : `${(msValue / 1000).toFixed(1)}s`
 }
 
+const playersOf = (v: { players?: string }): 1 | 2 => (v.players === '2' ? 2 : 1)
+
 async function cmdGen(
   transcript: string,
-  values: { model?: string; effort?: string; variant?: string },
+  values: { model?: string; effort?: string; variant?: string; players?: string },
 ) {
   const t0 = performance.now()
   let streamedChars = 0
@@ -33,6 +35,7 @@ async function cmdGen(
     model: values.model,
     effort: values.effort,
     variant: values.variant ? Number(values.variant) : 0,
+    players: playersOf(values),
     onEvent: (ev) => {
       if (ev.type === 'spec') {
         process.stderr.write(`spec ${fmtS(ev.ms)}  ${JSON.stringify(ev.spec)}\n\n`)
@@ -91,6 +94,7 @@ const { values, positionals } = parseArgs({
     label: { type: 'string' },
     'no-probe': { type: 'boolean' },
     race: { type: 'string' },
+    players: { type: 'string' },
   },
 })
 const [cmd, ...rest] = positionals
@@ -101,6 +105,7 @@ try {
     const { closeProbe } = await import('@htn/probe')
     const r = await pipeline(rest.join(' '), {
       race: values.race ? Number(values.race) : 2,
+      players: playersOf(values),
       model: values.model,
       effort: values.effort,
       onEvent: (ev) => {
@@ -119,12 +124,14 @@ try {
     const added = await seed(readPrompts(resolve(CWD, rest[0])), {
       n: values.n ? Number(values.n) : 1,
       concurrency: values.concurrency ? Number(values.concurrency) : 2,
+      players: playersOf(values),
     })
     process.stderr.write(`library: +${added} games, ${listLibrary().length} total\n`)
   } else if (cmd === 'bench' && rest[0]) {
     const { file } = await bench(readPrompts(resolve(CWD, rest[0])), {
       model: values.model,
       effort: values.effort,
+      players: playersOf(values),
       n: values.n ? Number(values.n) : 1,
       concurrency: values.concurrency ? Number(values.concurrency) : 4,
       label: values.label,

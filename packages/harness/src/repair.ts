@@ -34,7 +34,7 @@ export async function repair(
     'Fix every observation above. Keep the game, its theme and its structure; change as little as needed. Check the API reference for any function you call. Return the complete corrected game.js in one fenced js block, nothing else.',
   ].join('\n')
   return build(
-    { system: prompt.system, user, chosen: prompt.chosen },
+    { system: prompt.system, user, chosen: prompt.chosen, cacheKey: prompt.cacheKey },
     {
       model: opts.model ?? MODELS.repair,
       effort: opts.effort ?? MODELS.repairEffort,

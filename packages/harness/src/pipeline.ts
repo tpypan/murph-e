@@ -4,7 +4,7 @@ import { keepInLibrary, pickFallback } from './library.ts'
 import { buildPrompt, loadTemplates } from './prompt.ts'
 import { repair } from './repair.ts'
 import { createRun, type Run } from './run-store.ts'
-import { type GameSpec, specify } from './spec.ts'
+import { type GameSpec, type Players, specify } from './spec.ts'
 
 export type PipelineEvent =
   | { type: 'spec'; spec: GameSpec; ms: number }
@@ -19,6 +19,9 @@ export type PipelineEvent =
       title: string
       note: string
       spec: GameSpec | null
+      players: Players
+      /** Library slug when the game was kept, else the run id; keys the leaderboard. */
+      slug: string
       source: 'build' | 'repair' | 'library' | 'template'
       runId: string
       totalMs: number
@@ -27,6 +30,8 @@ export type PipelineEvent =
 
 export interface PipelineOptions {
   race?: number
+  /** From the cabinet's 1P/2P menu. Default 1. */
+  players?: Players
   model?: string
   effort?: string
   keep?: boolean
@@ -40,6 +45,8 @@ export interface PipelineResult {
   title: string
   note: string
   spec: GameSpec | null
+  players: Players
+  slug: string
   source: 'build' | 'repair' | 'library' | 'template'
   run: Run
   totalMs: number
@@ -69,6 +76,7 @@ export async function pipeline(
   const emit = opts.onEvent ?? (() => {})
   const run = opts.run ?? createRun(transcript)
   const race = Math.max(1, opts.race ?? 2)
+  const players: Players = opts.players === 2 ? 2 : 1
   const done = (r: Omit<PipelineResult, 'run' | 'totalMs'>): PipelineResult => {
     const totalMs = Math.round(performance.now() - t0)
     run.write('game.js', r.code)
@@ -80,13 +88,15 @@ export async function pipeline(
         2,
       ),
     )
-    run.event('ready', { source: r.source, title: r.title, totalMs })
+    run.event('ready', { source: r.source, title: r.title, slug: r.slug, totalMs })
     emit({
       type: 'ready',
       code: r.code,
       title: r.title,
       note: r.note,
       spec: r.spec,
+      players: r.players,
+      slug: r.slug,
       source: r.source,
       runId: run.id,
       totalMs,
@@ -97,7 +107,7 @@ export async function pipeline(
   // 1. spec
   let spec: GameSpec
   try {
-    const s = await specify(transcript)
+    const s = await specify(transcript, { players })
     spec = s.spec
     run.write('spec.json', JSON.stringify(spec, null, 2))
     run.event('spec', { ms: s.ms, usage: s.usage, spec })
@@ -106,13 +116,15 @@ export async function pipeline(
     const message = e instanceof Error ? e.message : String(e)
     run.event('error', { stage: 'spec', message })
     emit({ type: 'error', message })
-    const fb = pickFallback(undefined)
+    const fb = pickFallback(undefined, players)
     emit({ type: 'fallback', reason: `spec failed: ${message}`, title: fb.title, slug: fb.slug })
     return done({
       code: fb.code,
       title: fb.title,
       note: '',
       spec: fb.spec,
+      players,
+      slug: fb.slug,
       source: fb.source,
       observations: [message],
     })
@@ -156,7 +168,7 @@ export async function pipeline(
           checks: {},
         }
       } else {
-        a.probe = await probe(b.code, { controls, title: spec.title })
+        a.probe = await probe(b.code, { controls, title: spec.title, players })
       }
       run.event('probe', {
         variant,
@@ -220,7 +232,7 @@ export async function pipeline(
             ms: 0,
             checks: {},
           }
-        : await probe(r.code, { controls, title: spec.title })
+        : await probe(r.code, { controls, title: spec.title, players })
       run.event('repair', {
         phase: 'done',
         ms: r.ms,
@@ -241,7 +253,7 @@ export async function pipeline(
   const reason = best?.probe
     ? best.probe.observations.join('; ')
     : (best?.error ?? 'no build finished')
-  const fb = pickFallback(spec.genre)
+  const fb = pickFallback(spec.genre, players)
   run.event('fallback', { reason, slug: fb.slug, source: fb.source })
   emit({ type: 'fallback', reason, title: fb.title, slug: fb.slug })
   return done({
@@ -249,6 +261,8 @@ export async function pipeline(
     title: fb.title,
     note: spec.note,
     spec: fb.spec ?? spec,
+    players,
+    slug: fb.slug,
     source: fb.source,
     observations: [reason],
   })
@@ -264,8 +278,9 @@ export async function pipeline(
         2,
       ),
     )
+    let slug = run.id
     if (opts.keep !== false) {
-      const slug = keepInLibrary(spec, code, a.probe?.thumb ?? null, run.id)
+      slug = keepInLibrary(spec, code, a.probe?.thumb ?? null, run.id)
       run.event('library', { slug })
     }
     return done({
@@ -273,6 +288,8 @@ export async function pipeline(
       title: spec.title,
       note: spec.note,
       spec,
+      players,
+      slug,
       source,
       observations: a.probe!.observations,
     })

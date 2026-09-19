@@ -181,6 +181,82 @@ const mr = await page.evaluate(() => {
 })
 check('Math.random inside games is seeded', mr)
 
+// Two players: per-player input, shared and per-player scores, win(p).
+const two = await page.evaluate(() => {
+  const g = [
+    'let x = [40, 200]',
+    'function init(api){ x = [40, 200] }',
+    'function update(api,dt){',
+    '  for (let p = 0; p < 2; p++) { if (api.btn("right", p)) x[p] += 2; if (api.btn("left", p)) x[p] -= 2 }',
+    '  if (api.btnp("a", 1)) api.addScore(1, 1)',
+    '  if (api.frame === 5) api.addScore(5)',
+    '  if (api.frame === 40) api.win(1)',
+    '}',
+    'function draw(api){ api.cls(1); api.rectfill(x[0], 100, 8, 8, api.P1); api.rectfill(x[1], 100, 8, 8, api.P2) }',
+  ].join('\n')
+  window.__probe.load(g, 1, 'DUEL', 2)
+  window.__probe.start()
+  window.__probe.step(10)
+  const shared = window.__probe.step(1).scores.slice()
+  window.__probe.inject([
+    { at: 0, player: 1, button: 'a', down: true },
+    { at: 2, player: 1, button: 'a', down: false },
+  ])
+  window.__probe.step(5)
+  const after = window.__probe.step(1).scores.slice()
+  const base = window.__probe.frameHash()
+  window.__probe.input(1, 'right', true)
+  window.__probe.step(5)
+  window.__probe.input(1, 'right', false)
+  const p2moved = window.__probe.frameHash()
+  const end = window.__probe.step(60)
+  return { shared, after, moved: base !== p2moved, end }
+})
+check(
+  '2P: addScore without an index is shared',
+  two.shared[0] === 5 && two.shared[1] === 5,
+  JSON.stringify(two.shared),
+)
+check(
+  '2P: addScore(n, 1) only credits player two',
+  two.after[0] === 5 && two.after[1] === 6,
+  JSON.stringify(two.after),
+)
+check('2P: player two input moves only player two', two.moved)
+check(
+  '2P: win(1) ends the game with winner 1',
+  two.end.state === 'win' && two.end.winner === 1,
+  JSON.stringify(two.end),
+)
+const one = await page.evaluate(() => {
+  const g =
+    'function init(api){}\nfunction update(api){ if (api.frame === 1) api.addScore(3, 1); if (api.frame === 2) api.win(1) }\nfunction draw(api){ api.cls(0) }'
+  window.__probe.load(g, 1, 'SOLO', 1)
+  window.__probe.start()
+  return window.__probe.step(5)
+})
+check(
+  '1P: a player index is ignored',
+  one.score === 3 && one.state === 'win' && one.winner === null,
+  JSON.stringify(one),
+)
+
+// The shell can end a round on demand (walkthroughs); START restarts after the lockout.
+const ended = await page.evaluate(() => {
+  const g =
+    'function init(api){}\nfunction update(api){ api.addScore(1) }\nfunction draw(api){ api.cls(0) }'
+  window.__probe.load(g, 1, 'ENDME', 1)
+  window.__probe.start()
+  window.__probe.step(10)
+  window.postMessage({ type: 'end' }, '*')
+  return new Promise((resolve) => setTimeout(() => resolve(window.__probe.step(1)), 20))
+})
+check(
+  'end message forces game over',
+  ended.state === 'gameover' && ended.score === 10,
+  JSON.stringify(ended),
+)
+
 const snap = await page.evaluate(() => window.__probe.snapshot())
 check('snapshot is a PNG data url', snap.startsWith('data:image/png'), `${snap.length} chars`)
 console.log(

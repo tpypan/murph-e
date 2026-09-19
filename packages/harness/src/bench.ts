@@ -7,6 +7,7 @@ import { gen } from './gen.ts'
 export interface BenchOptions {
   model?: string
   effort?: string
+  players?: 1 | 2
   n?: number
   concurrency?: number
   label?: string
@@ -50,8 +51,10 @@ export async function bench(
   const model = opts.model ?? MODELS.build
   const effort = opts.effort ?? MODELS.buildEffort
   const n = opts.n ?? 1
+  const players = opts.players === 2 ? 2 : 1
   const concurrency = opts.concurrency ?? 4
-  const label = opts.label ?? `${model}-${effort}`.replace(/[^a-z0-9.-]+/gi, '-')
+  const label =
+    opts.label ?? `${model}-${effort}${players === 2 ? '-2p' : ''}`.replace(/[^a-z0-9.-]+/gi, '-')
   const log = opts.onLine ?? ((l: string) => process.stderr.write(`${l}\n`))
 
   const jobs: Array<{ prompt: string; variant: number }> = []
@@ -83,7 +86,7 @@ export async function bench(
         error: null,
       }
       try {
-        const r = await gen(job.prompt, { model, effort, variant: job.variant })
+        const r = await gen(job.prompt, { model, effort, variant: job.variant, players })
         row.title = r.spec.title
         row.genre = r.spec.genre
         row.runId = r.run.id
@@ -100,6 +103,7 @@ export async function bench(
           const p = await probe(r.code, {
             controls: controlsFromSpec(r.spec.controls),
             title: r.spec.title,
+            players,
           })
           row.probeOk = p.ok
           row.observations = p.observations
@@ -146,7 +150,7 @@ export async function bench(
   const md = [
     `# Bench ${date} ${label}`,
     '',
-    `- model: ${model}, effort: ${effort}, n: ${n}, concurrency: ${concurrency}`,
+    `- model: ${model}, effort: ${effort}, players: ${players}, n: ${n}, concurrency: ${concurrency}`,
     `- prompts: ${prompts.length}, runs: ${rows.length}, errors: ${rows.length - okRows.length}`,
     `- total  p50 ${s(pct(totals, 50))}  p95 ${s(pct(totals, 95))}  max ${s(Math.max(0, ...totals))}`,
     `- build  p50 ${s(pct(builds, 50))}  p95 ${s(pct(builds, 95))}`,
@@ -171,7 +175,10 @@ export async function bench(
     '',
   ].join('\n')
   writeFileSync(file, md)
-  writeFileSync(file.replace(/\.md$/, '.json'), JSON.stringify({ model, effort, n, rows }, null, 2))
+  writeFileSync(
+    file.replace(/\.md$/, '.json'),
+    JSON.stringify({ model, effort, players, n, rows }, null, 2),
+  )
   return { rows, file }
 }
 

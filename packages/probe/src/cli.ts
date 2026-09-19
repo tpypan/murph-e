@@ -21,7 +21,12 @@ for (const f of files) {
     ?.trim()
     .split(/\s+/)
   const title = spec?.title ?? code.match(/^\/\/\s*TITLE:\s*(.+)$/m)?.[1]?.trim()
-  const r = await probe(code, { controls: header ?? controlsFromSpec(spec?.controls), title })
+  const players = spec?.players ?? Number(code.match(/^\/\/\s*PLAYERS:\s*(\d)/m)?.[1] ?? 1)
+  const r = await probe(code, {
+    controls: header ?? controlsFromSpec(spec?.controls),
+    title,
+    players,
+  })
   // A run directory gets thumb.png; any other file gets a sidecar next to it.
   const isRun = basename(f) === 'game.js'
   if (r.thumb)

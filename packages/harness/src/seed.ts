@@ -5,7 +5,7 @@ import { pipeline } from './pipeline.ts'
 /** Run the full pipeline over prompts, keeping every passing game in the library. */
 export async function seed(
   prompts: string[],
-  opts: { n?: number; concurrency?: number } = {},
+  opts: { n?: number; concurrency?: number; players?: 1 | 2 } = {},
 ): Promise<number> {
   const n = opts.n ?? 1
   const jobs: string[] = []
@@ -17,7 +17,7 @@ export async function seed(
       const i = next++
       const prompt = jobs[i]!
       try {
-        const r = await pipeline(prompt, { keep: true })
+        const r = await pipeline(prompt, { keep: true, players: opts.players })
         process.stderr.write(
           `[${i + 1}/${jobs.length}] ${(r.totalMs / 1000).toFixed(1)}s ${r.source.padEnd(8)} ${r.title} <- "${prompt.slice(0, 40)}"\n`,
         )

@@ -1,0 +1,14 @@
+# Two-player bench prompts. Run with: pnpm harness bench bench/prompts-2p.txt --players 2
+# Five versus, five co-op, two vague. Goal: 8 of 10 pass the probe (docs/goals/tier-2.md).
+a two-player fighting game with wizards throwing fireballs
+tanks in an arena, last one standing wins
+sumo wrestling where you push each other off a platform
+a race to collect the most coins before the time runs out
+pong but both players are humans
+two knights defending a castle from goblins together
+we are two astronauts fixing a space station while meteors hit it
+co-op zombie survival with a shotgun
+two frogs catching flies and dodging cars together
+something fun for me and my friend
+a game about pizza
+snake but there are two snakes

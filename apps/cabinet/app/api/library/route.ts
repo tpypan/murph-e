@@ -9,6 +9,7 @@ export function GET(): Response {
     slug: g.slug,
     title: g.title,
     genre: g.genre,
+    players: g.players,
     code: g.code,
     source: 'library' as const,
   }))
@@ -16,6 +17,7 @@ export function GET(): Response {
     slug: `template-${t.file.replace(/\.js$/, '')}`,
     title: t.title,
     genre: t.genre,
+    players: t.players,
     code: t.code,
     source: 'template' as const,
   }))
