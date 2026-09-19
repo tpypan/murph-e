@@ -13,6 +13,14 @@ export { buildPrompt, extractCode, loadTemplates, TWO_PLAYER_RULES } from './pro
 export { repair } from './repair.ts'
 export { createRun, type Run } from './run-store.ts'
 export {
+  addScore,
+  allScores,
+  GUEST,
+  type ScoreEntry,
+  type ScoreInput,
+  topScores,
+} from './scores.ts'
+export {
   ALL_GENRES,
   type GameSpec,
   GENRES,

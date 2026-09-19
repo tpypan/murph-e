@@ -13,3 +13,4 @@ bench/screenshots/
 soak.log
 library/gallery.html
 tsconfig.tsbuildinfo
+data/

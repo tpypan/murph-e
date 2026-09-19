@@ -318,8 +318,8 @@ Filled in per milestone as they land; see the commit log for the detail.
 | milestone | state | verified by |
 |---|---|---|
 | M0 fake badge | done | `pnpm test:badge` 10/10 (protocol, paced push, hello/button/bye/detach per slot, uitree identity, ring overflow wedge); `pnpm badge fake` scenario; fake badge driven through the running cabinet server over `/api/badges/fake` and seen on `/api/badges`. Real serial path untested here: both badges on this Mac were held by another process (H1) |
-| M1 two players | done | `pnpm exercise` 26/26 (shared and per-player scores, `win(p)`, per-player input, the shell's `end` message); 10/10 templates and 37/37 library games pass the probe; `bench/known-bad/` 8/8 fail including the new `ignores-p2.js`; 2P bench `2026-09-19-0905-gpt-5.6-sol-none-2p.md` 11/12 pass, p50 27.9 s; 1P bench `2026-09-19-0859-gpt-5.6-sol-none.md` 20/20 pass, p50 26.2 s (was 18/20 and 36.4 s on the same prompts before the API grew, so no latency cost). The probe now samples five frames after an A tap: a 9-frame sword swing is visible |
-| M2 leaderboard | pending | |
+| M1 two players | done | `pnpm exercise` 26/26 (shared and per-player scores, `win(p)`, per-player input, the shell's `end` message); 10/10 templates and 37/37 library games pass the probe; `bench/known-bad/` 8/8 fail including the new `ignores-p2.js`; 2P bench `2026-09-19-0905-gpt-5.6-sol-none-2p.md` 11/12 pass, p50 29.5 s; 1P bench `2026-09-19-0859-gpt-5.6-sol-none.md` 20/20 pass, p50 26.2 s (was 18/20 and 36.4 s on the same prompts before the API grew, so no latency cost). The probe now samples five frames after an A tap: a 9-frame sword swing is visible |
+| M2 leaderboard | done | `pnpm test:scores` 4/4 (best per badge and game, guests kept, clamping, corrupt file survives, atomic write); `data/scores.json` is gitignored and outlives restarts; boards on the attract and game-over screens are in the M5 walkthrough |
 | M3 cabinet flow | pending | |
 | M4 remix | pending | |
 | M5 walkthrough | pending | |
