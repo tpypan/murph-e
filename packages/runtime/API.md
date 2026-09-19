@@ -36,7 +36,8 @@ api.btnp(name)   // true on the frame it was pressed
 ```
 
 The runtime handles START itself (title card, restart after game over).
-Player one is the only player.
+In a one-player game there is only player one. See "Two players" below for
+the second player.
 
 ## Drawing
 
@@ -100,6 +101,29 @@ api.win()          // same, with YOU WIN
 ```
 
 The runtime draws the score and the high score. Do not draw your own.
+
+## Two players
+
+`api.players` is 1 or 2 and never changes during a game. In a two-player
+game both players share one screen and one arena; there is no split
+screen. Player one is index 0 and player two is index 1:
+
+```js
+api.btn('left', 1)      // player two holding LEFT
+api.btnp('a', 1)        // player two pressed A this frame
+api.addScore(1, 0)      // one point to player one
+api.addScore(10)        // no index in a 2P game: both players get it (co-op)
+api.getScore(1)         // player two's score
+api.win(1)              // "PLAYER 2 WINS"; api.win() with no index is YOU WIN
+api.gameOver()          // both players lose; the end card shows both scores
+api.P1, api.P2          // the player colours, 12 (blue) and 8 (red)
+```
+
+Draw player one in `api.P1` and player two in `api.P2` so people know
+which one they are. The HUD shows `P1 <score>` and `P2 <score>` in those
+colours. Both players use the same controls (d-pad, A, B), each on their
+own pad. A versus game ends with `api.win(winner)`; a co-op game ends with
+`api.gameOver()` when the shared lives run out.
 
 ## Helpers
 

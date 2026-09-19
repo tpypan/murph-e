@@ -11,12 +11,17 @@ export const GENRES = [
   'pong',
   'flappy',
 ] as const
-export type Genre = (typeof GENRES)[number]
+// Two-player genres. The cabinet's 1P/2P choice picks the list; the model
+// never mixes them.
+export const GENRES_2P = ['versus', 'coop'] as const
+export const ALL_GENRES = [...GENRES, ...GENRES_2P] as const
+export type Genre = (typeof ALL_GENRES)[number]
+export type Players = 1 | 2
 
 export const GameSpecSchema = z.object({
   title: z.string().min(1),
   oneLiner: z.string().min(1),
-  genre: z.enum(GENRES),
+  genre: z.enum(ALL_GENRES),
   mechanics: z.array(z.string()).min(1),
   controls: z.object({
     left: z.string().nullable(),
@@ -31,11 +36,13 @@ export const GameSpecSchema = z.object({
   scoring: z.string(),
   moderated: z.boolean(),
   note: z.string(),
+  remix: z.boolean(),
+  changes: z.array(z.string()),
 })
-export type GameSpec = z.infer<typeof GameSpecSchema> & { players: 1 }
+export type GameSpec = z.infer<typeof GameSpecSchema> & { players: Players }
 
 // Hand-written so it is strict-mode valid: every property required, no extras.
-const JSON_SCHEMA = {
+const jsonSchema = (genres: readonly string[]) => ({
   type: 'object',
   additionalProperties: false,
   required: [
@@ -49,11 +56,13 @@ const JSON_SCHEMA = {
     'scoring',
     'moderated',
     'note',
+    'remix',
+    'changes',
   ],
   properties: {
     title: { type: 'string', description: 'Uppercase, at most 14 characters, shown on screen.' },
     oneLiner: { type: 'string', description: 'One sentence a player would read on a cabinet.' },
-    genre: { type: 'string', enum: [...GENRES] },
+    genre: { type: 'string', enum: [...genres] },
     mechanics: {
       type: 'array',
       items: { type: 'string' },
@@ -84,8 +93,19 @@ const JSON_SCHEMA = {
       description:
         'Empty, or one short uppercase line shown on screen when the request was changed, e.g. MADE IT ONE PLAYER.',
     },
+    remix: {
+      type: 'boolean',
+      description:
+        'True only when a game is already on screen and the person is asking to change that game rather than for a new one.',
+    },
+    changes: {
+      type: 'array',
+      items: { type: 'string' },
+      description:
+        'When remix is true: 1 to 4 short imperative lines a programmer can apply to the existing code. Otherwise empty.',
+    },
   },
-} as const
+})
 
 export const SPEC_INSTRUCTIONS = `You turn what a person said into a spec for a tiny one-screen 8-bit arcade game that a second model will write in one go. The game runs at 256x224 with a 16-colour palette, a d-pad and two buttons (A, B), single player.
 
@@ -98,7 +118,23 @@ Rules:
 - title: at most 14 characters, uppercase, punchy. oneLiner: one sentence. mechanics: 3 to 5 short lines.
 - controls: describe what each input does or null if unused. Always use left/right or up/down, and A must do something.
 - palette is only a colour mood hint.
-- Moderation: if the request is hateful, sexual, about real people, about self-harm, about real-world violence such as shootings or attacks on people or places, or is not a game at all, do not make that game. Replace it with an unrelated, wholesome arcade game, set moderated to true, and set note to LET'S PLAY THIS INSTEAD. Cartoon action such as shooting asteroids, zapping aliens or bonking slimes is fine.`
+- Moderation: if the request is hateful, sexual, about real people, about self-harm, about real-world violence such as shootings or attacks on people or places, or is not a game at all, do not make that game. Replace it with an unrelated, wholesome arcade game, set moderated to true, and set note to LET'S PLAY THIS INSTEAD. Cartoon action such as shooting asteroids, zapping aliens or bonking slimes is fine.
+- Remix: when the input says a game is already on screen and the person is asking to change that game, set remix to true, keep the title and the genre, and put the concrete changes in changes (1 to 4 short imperative lines, e.g. "double the car speed ramp", "add a boss sprite at the top that fires every 2 seconds"). The rest of the spec then describes the game after the changes. A remix is a modification: speed, size, count, lives, difficulty, colours, one new enemy or item, or swapping one thing ("make the hero a cat"). Words that describe a game with its own premise (a different hero, setting and goal, e.g. "a game where a penguin slides on ice collecting fish") are a NEW game even if the genre is similar: remix false, changes empty, and the spec describes that new game. With no game on screen, remix is always false.`
+
+export const SPEC_INSTRUCTIONS_2P = `You turn what two people said into a spec for a tiny one-screen 8-bit arcade game for exactly two players that a second model will write in one go. The game runs at 256x224 with a 16-colour palette. Each player has their own d-pad and two buttons (A, B). Both players share the one screen and one arena: no split screen.
+
+Rules:
+- Keep their idea. Their nouns become the sprites and the theme. Their verbs become the mechanics.
+- Pick the genre: "versus" when the two players compete and one wins, "coop" when they work together against the game and share a score and a loss. If they did not say, pick whichever fits the theme better; a fighting, racing or duelling idea is versus, a defending, surviving or collecting-together idea is coop.
+- If the request is bigger than one screen (open world, RPG, 3D, story, crafting, levels), keep the theme and shrink it to one arcade loop; say what you did in note.
+- If the request is for one player, or for more than two, make it two players and set note to MADE IT TWO PLAYERS.
+- If the request is vague ("something fun for us"), invent a concrete, charming two-player game that fits.
+- Versus: a round must be decidable within about a minute, and it must be impossible to stall forever (a closing arena, a timer, or points that keep coming). Coop: the pair must be able to score within 5 seconds and lose within 30 seconds if they stand still, ramping with time.
+- title: at most 14 characters, uppercase, punchy. oneLiner: one sentence that mentions both players. mechanics: 3 to 5 short lines, and one of them must say what player one and player two each are.
+- controls: describe what each input does for a player (both players have the same controls) or null if unused. Always use left/right or up/down, and A must do something.
+- palette is only a colour mood hint.
+- Moderation: if the request is hateful, sexual, about real people, about self-harm, about real-world violence such as shootings or attacks on people or places, or is not a game at all, do not make that game. Replace it with an unrelated, wholesome two-player arcade game, set moderated to true, and set note to LET'S PLAY THIS INSTEAD. Cartoon action such as shooting asteroids, zapping aliens, sword duels or bonking slimes is fine.
+- Remix: when the input says a game is already on screen and the players are asking to change that game, set remix to true, keep the title and the genre, and put the concrete changes in changes (1 to 4 short imperative lines). The rest of the spec then describes the game after the changes. A remix is a modification: speed, size, count, lives, difficulty, colours, one new enemy or item, or swapping one thing. Words that describe a game with its own premise (a different hero, setting and goal) are a NEW game even if the genre is similar: remix false, changes empty, and the spec describes that new game. With no game on screen, remix is always false.`
 
 export interface SpecResult {
   spec: GameSpec
@@ -106,26 +142,54 @@ export interface SpecResult {
   usage: { input: number; output: number; cached: number }
 }
 
-export async function specify(
-  transcript: string,
-  opts: { model?: string; effort?: string } = {},
-): Promise<SpecResult> {
+export interface SpecOptions {
+  model?: string
+  effort?: string
+  /** Set by the cabinet's 1P/2P menu, never inferred from the transcript. */
+  players?: Players
+  /** The spec of the game on screen, if any; enables remix. */
+  current?: GameSpec | null
+}
+
+function describeCurrent(spec: GameSpec): string {
+  const { title, genre, oneLiner, mechanics, controls, lose, scoring } = spec
+  return JSON.stringify({ title, genre, oneLiner, mechanics, controls, lose, scoring })
+}
+
+export async function specify(transcript: string, opts: SpecOptions = {}): Promise<SpecResult> {
   const t0 = now()
+  const players: Players = opts.players === 2 ? 2 : 1
+  const genres = players === 2 ? GENRES_2P : GENRES
   const res = await openai().responses.create({
     model: opts.model ?? MODELS.spec,
     reasoning: { effort: (opts.effort ?? MODELS.specEffort) as 'none' },
-    instructions: SPEC_INSTRUCTIONS,
-    input: `The person said: "${transcript.trim()}"`,
-    text: { format: { type: 'json_schema', name: 'game_spec', strict: true, schema: JSON_SCHEMA } },
-    prompt_cache_key: 'htn-spec-v1',
+    instructions: players === 2 ? SPEC_INSTRUCTIONS_2P : SPEC_INSTRUCTIONS,
+    input: [
+      players === 2
+        ? `The two players said: "${transcript.trim()}"`
+        : `The person said: "${transcript.trim()}"`,
+      opts.current
+        ? `A game is already on screen: ${describeCurrent(opts.current)}. They may be asking to change it (remix) or for a different game.`
+        : 'No game is on screen.',
+    ].join('\n\n'),
+    text: {
+      format: { type: 'json_schema', name: 'game_spec', strict: true, schema: jsonSchema(genres) },
+    },
+    prompt_cache_key: players === 2 ? 'htn-spec-2p-v1' : 'htn-spec-v1',
   })
   const parsed = GameSpecSchema.parse(JSON.parse(res.output_text))
   parsed.title = parsed.title.toUpperCase().slice(0, 14)
   parsed.note = parsed.note.toUpperCase().slice(0, 40)
   parsed.oneLiner = parsed.oneLiner.slice(0, 120)
   parsed.mechanics = parsed.mechanics.slice(0, 6)
+  if (!(genres as readonly string[]).includes(parsed.genre)) parsed.genre = genres[0]
+  if (!opts.current) {
+    parsed.remix = false
+    parsed.changes = []
+  }
+  parsed.changes = parsed.changes.slice(0, 4)
   return {
-    spec: { ...parsed, players: 1 },
+    spec: { ...parsed, players },
     ms: ms(t0),
     usage: {
       input: res.usage?.input_tokens ?? 0,

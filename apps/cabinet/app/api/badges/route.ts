@@ -1,18 +1,8 @@
-import { BadgeHub, type HubEvent } from '@htn/badge'
+import type { HubEvent } from '@htn/badge'
+import { getHub } from './hub'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
-
-// One hub per server process. globalThis survives Next's dev-mode module
-// reloads, so the serial ports are opened exactly once.
-const g = globalThis as typeof globalThis & { __badgeHub?: BadgeHub }
-function getHub(): BadgeHub {
-  if (!g.__badgeHub) {
-    g.__badgeHub = new BadgeHub()
-    g.__badgeHub.start()
-  }
-  return g.__badgeHub
-}
 
 /** GET -> server-sent events: a `roster` snapshot, then every hub event. */
 export async function GET(req: Request): Promise<Response> {

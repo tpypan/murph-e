@@ -53,7 +53,7 @@ export async function build(prompt: BuildPrompt, opts: BuildOptions = {}): Promi
           ? `${prompt.user}\n\n(Take ${variant + 1}: make a fresh attempt.)`
           : prompt.user,
       stream: true,
-      prompt_cache_key: 'htn-build-v1',
+      prompt_cache_key: prompt.cacheKey,
       max_output_tokens: 12000,
     },
     { signal: opts.signal },

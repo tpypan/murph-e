@@ -1,11 +1,16 @@
-import { closeProbe, type PipelineEvent, pipeline } from '@htn/harness'
+import { type CurrentGame, closeProbe, type PipelineEvent, pipeline } from '@htn/harness'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 /** POST { transcript } -> server-sent pipeline events, ending with `ready`. */
 export async function POST(req: Request): Promise<Response> {
-  const body = (await req.json().catch(() => ({}))) as { transcript?: string; race?: number }
+  const body = (await req.json().catch(() => ({}))) as {
+    transcript?: string
+    race?: number
+    players?: number
+    current?: CurrentGame | null
+  }
   const transcript = String(body.transcript ?? '').trim()
   if (!transcript) return new Response('transcript required', { status: 400 })
   const encoder = new TextEncoder()
@@ -20,7 +25,13 @@ export async function POST(req: Request): Promise<Response> {
           closed = true
         }
       }
-      pipeline(transcript, { race: body.race ?? 2, onEvent: send, signal: req.signal })
+      pipeline(transcript, {
+        race: body.race ?? 2,
+        players: body.players === 2 ? 2 : 1,
+        current: body.current?.code && body.current.spec ? body.current : null,
+        onEvent: send,
+        signal: req.signal,
+      })
         .catch((e: unknown) =>
           send({ type: 'error', message: e instanceof Error ? e.message : String(e) }),
         )

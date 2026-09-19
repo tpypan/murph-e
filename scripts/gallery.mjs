@@ -11,14 +11,27 @@ const games = readdirSync(dir)
   .map((slug) => {
     const specPath = resolve(dir, slug, 'spec.json')
     const spec = existsSync(specPath) ? JSON.parse(readFileSync(specPath, 'utf8')) : {}
-    const transcript = spec.runId && existsSync(resolve(root, 'runs', spec.runId, 'transcript.txt'))
-      ? readFileSync(resolve(root, 'runs', spec.runId, 'transcript.txt'), 'utf8').trim()
-      : ''
-    return { slug, spec, transcript, lines: readFileSync(resolve(dir, slug, 'game.js'), 'utf8').split('\n').length }
+    const transcript =
+      spec.runId && existsSync(resolve(root, 'runs', spec.runId, 'transcript.txt'))
+        ? readFileSync(resolve(root, 'runs', spec.runId, 'transcript.txt'), 'utf8').trim()
+        : ''
+    return {
+      slug,
+      spec,
+      transcript,
+      lines: readFileSync(resolve(dir, slug, 'game.js'), 'utf8').split('\n').length,
+    }
   })
-  .sort((a, b) => (a.spec.genre ?? '').localeCompare(b.spec.genre ?? '') || a.slug.localeCompare(b.slug))
+  .sort(
+    (a, b) =>
+      (a.spec.genre ?? '').localeCompare(b.spec.genre ?? '') || a.slug.localeCompare(b.slug),
+  )
 
-const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c])
+const esc = (s) =>
+  String(s ?? '').replace(
+    /[&<>"]/g,
+    (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c],
+  )
 const card = (g) => `
 <a class="card" href="/packages/runtime/dev.html?game=${encodeURIComponent(`/library/games/${g.slug}/game.js`)}">
   <img src="/library/games/${g.slug}/thumb.png" width="256" height="224" alt="" />

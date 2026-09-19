@@ -1,0 +1,28 @@
+{
+  "title": "SPELLSTACK",
+  "oneLiner": "Two wizards duel through a haunted library, hurling fireballs and outsmarting each other before the shelves collapse.",
+  "genre": "versus",
+  "mechanics": [
+    "Player one is the crimson wizard; player two is the azure wizard.",
+    "Move around the single library arena and launch bouncing fireballs at the rival.",
+    "Fireballs ignite book piles, creating temporary walls and dangerous flames.",
+    "A shrinking safe area and falling books prevent stalling; the last wizard standing wins."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": "Move up",
+    "down": "Move down",
+    "a": "Cast a fireball",
+    "b": "Blink a short distance"
+  },
+  "palette": "arcade",
+  "lose": "Lose all three hearts from enemy fireballs, flames, or falling books.",
+  "scoring": "Score for striking the rival, with bonus points for defeating them before the arena closes.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "players": 2,
+  "runId": "2026-09-19-0915-two-wizards-duelling-with-fireba"
+}

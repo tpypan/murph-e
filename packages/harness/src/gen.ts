@@ -2,7 +2,7 @@ import { build } from './build.ts'
 import { MODELS } from './env.ts'
 import { buildPrompt, loadTemplates } from './prompt.ts'
 import { createRun, type Run } from './run-store.ts'
-import { type GameSpec, specify } from './spec.ts'
+import { type GameSpec, type Players, specify } from './spec.ts'
 
 export type GenEvent =
   | { type: 'spec'; spec: GameSpec; ms: number }
@@ -15,6 +15,7 @@ export interface GenOptions {
   specModel?: string
   specEffort?: string
   variant?: number
+  players?: Players
   onEvent?: (ev: GenEvent) => void
   run?: Run
 }
@@ -34,7 +35,11 @@ export async function gen(transcript: string, opts: GenOptions = {}): Promise<Ge
   const run = opts.run ?? createRun(transcript)
   const emit = opts.onEvent ?? (() => {})
 
-  const s = await specify(transcript, { model: opts.specModel, effort: opts.specEffort })
+  const s = await specify(transcript, {
+    model: opts.specModel,
+    effort: opts.specEffort,
+    players: opts.players,
+  })
   run.write('spec.json', JSON.stringify(s.spec, null, 2))
   run.event('spec', { ms: s.ms, usage: s.usage, spec: s.spec })
   emit({ type: 'spec', spec: s.spec, ms: s.ms })

@@ -1,0 +1,28 @@
+{
+  "title": "ICE FISH RUN",
+  "oneLiner": "Slide a speedy penguin across the ice, collect fish, and dodge snapping seals!",
+  "genre": "dodge",
+  "mechanics": [
+    "Slide the penguin around a single icy screen while momentum carries it forward.",
+    "Collect fish to score points and build a streak.",
+    "Dodge seals; three collisions end the run.",
+    "Ice cracks and seals move faster as the score rises."
+  ],
+  "controls": {
+    "left": "Steer left",
+    "right": "Steer right",
+    "up": "Steer up",
+    "down": "Steer down",
+    "a": "Hop briefly over a seal",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "Three seal collisions end the run.",
+  "scoring": "Collect fish for points, with bonus points for consecutive pickups.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "players": 1,
+  "runId": "2026-09-19-0915-a-game-where-a-penguin-slides-on"
+}

@@ -11,6 +11,7 @@ export interface BadgePlayer {
   badgeId: string
   name: string
   color: [number, number, number]
+  /** The hub's controller index, in hello order. */
   slot: number
 }
 
@@ -19,8 +20,12 @@ type BadgeEvent = HubEvent | { type: 'roster'; badges: BadgeInfo[] }
 const GAME_BUTTONS = new Set<string>(['up', 'down', 'left', 'right', 'a', 'b', 'start'])
 
 export function attachBadges(h: {
+  /** Every button from a badge that has said hello, tagged with its hub slot. */
   onInput: (ev: InputEvent) => void
+  /** The badges that have said hello, sorted by slot, after every change. */
   onRoster: (players: BadgePlayer[]) => void
+  /** A badge that is plugged in but has not opened the app yet. */
+  onWaiting?: (path: string) => void
 }): () => void {
   const roster = new Map<string, BadgePlayer>()
   const publish = () => h.onRoster([...roster.values()].sort((a, b) => a.slot - b.slot))
@@ -44,6 +49,10 @@ export function attachBadges(h: {
       case 'hello':
         roster.set(ev.path, { path: ev.path, slot: ev.slot, ...ev.identity })
         publish()
+        break
+      case 'waiting':
+      case 'installing':
+        h.onWaiting?.(ev.path)
         break
       case 'bye':
       case 'detached':

@@ -36,9 +36,13 @@ export type BadgeLine =
 // "I (94604) lua: [arcade] ARCADE HELLO quiet-phoenix-noble-bold Tony Pan 76 175 80"
 const LUA_LINE = /^I \((\d+)\) lua: \[([\w-]+)\] (.*)$/
 
-/** Parse one serial line. Returns null for anything not from our app. */
+/**
+ * Parse one serial line. Returns null for anything not from our app. The
+ * console prompt has no trailing newline, so a log line can arrive as
+ * "badge> I (…) lua: …"; leading prompts are stripped first.
+ */
 export function parseLine(line: string, slug = APP_SLUG): BadgeLine | null {
-  const m = LUA_LINE.exec(line.trim())
+  const m = LUA_LINE.exec(line.replace(/^(\s*badge> )+/, '').trim())
   if (!m || m[2] !== slug) return null
   const at = Number(m[1])
   const text = m[3] ?? ''
@@ -88,7 +92,7 @@ export function identityFromUitree(dump: string): Identity | null {
   if (!meta) return null
   const labels = [...dump.matchAll(/text="([^"]*)"/g)].map((x) => x[1] ?? '')
   // Labels print in creation order: title, name, status, meta.
-  const i = labels.findIndex((t) => t === 'HTN ARCADE')
+  const i = labels.indexOf('HTN ARCADE')
   const name = i >= 0 ? (labels[i + 1] ?? '') : ''
   return {
     badgeId: meta[1]!,

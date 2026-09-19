@@ -1,11 +1,11 @@
-import { SerialPort } from 'serialport'
+import type { Wire } from './wire.ts'
 
-// One open serial port. Two views of the same byte stream: a line splitter
+// One open badge console. Two views of the same byte stream: a line splitter
 // for the app's log lines, and a raw buffer for command/response waits
 // during onboarding. Both stay live at all times, so a HELLO logged while a
-// `put` is in flight is not lost.
+// `put` is in flight is not lost. The bytes come from a Wire, which is a
+// serial port on the cabinet and a FakeBadge in tests.
 
-const BAUD = 115200
 const RAW_CAP = 32768
 // The badge's receive ring is 256 bytes. One unpaced write bigger than that
 // wedges `put` until the badge is taken back to the launcher by hand.
@@ -16,30 +16,22 @@ const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms))
 
 export class BadgeLink {
   readonly path: string
-  private port: SerialPort
+  private wire: Wire
   private raw = ''
   private partial = ''
   private lineHandlers = new Set<(line: string) => void>()
   private closeHandlers = new Set<() => void>()
   private closed = false
 
-  private constructor(path: string, port: SerialPort) {
-    this.path = path
-    this.port = port
-    port.on('data', (buf: Buffer) => this.onData(buf.toString('utf8')))
-    port.on('close', () => this.handleClose())
-    port.on('error', () => this.handleClose())
-  }
-
-  static open(path: string): Promise<BadgeLink> {
-    return new Promise((resolve, reject) => {
-      const port = new SerialPort({ path, baudRate: BAUD, autoOpen: false })
-      port.open((err) => (err ? reject(err) : resolve(new BadgeLink(path, port))))
-    })
+  constructor(wire: Wire) {
+    this.path = wire.path
+    this.wire = wire
+    wire.onData((text) => this.onData(text))
+    wire.onClose(() => this.handleClose())
   }
 
   get isOpen(): boolean {
-    return !this.closed && this.port.isOpen
+    return !this.closed && this.wire.isOpen
   }
 
   onLine(fn: (line: string) => void): () => void {
@@ -72,21 +64,15 @@ export class BadgeLink {
 
   /** Send one console command. The console wants a bare CR, not CRLF. */
   writeLine(s: string): Promise<void> {
-    return this.write(Buffer.from(`${s}\r`, 'utf8'))
+    return this.wire.write(Buffer.from(`${s}\r`, 'utf8'))
   }
 
   /** Send a file body for `put`, paced so the badge's ring never overflows. */
   async writeBytes(bytes: Uint8Array): Promise<void> {
     for (let i = 0; i < bytes.length; i += WRITE_CHUNK) {
-      await this.write(Buffer.from(bytes.subarray(i, i + WRITE_CHUNK)))
+      await this.wire.write(bytes.subarray(i, i + WRITE_CHUNK))
       if (i + WRITE_CHUNK < bytes.length) await sleep(WRITE_PAUSE_MS)
     }
-  }
-
-  private write(buf: Buffer): Promise<void> {
-    return new Promise((resolve, reject) => {
-      this.port.write(buf, (err) => (err ? reject(err) : this.port.drain(() => resolve())))
-    })
   }
 
   /** Forget everything received so far, so a waitFor cannot match stale output. */
@@ -116,10 +102,8 @@ export class BadgeLink {
     return this.waitFor('badge> ', timeoutMs)
   }
 
-  close(): Promise<void> {
-    return new Promise((resolve) => {
-      if (!this.port.isOpen) return resolve()
-      this.port.close(() => resolve())
-    })
+  async close(): Promise<void> {
+    await this.wire.close()
+    this.handleClose()
   }
 }

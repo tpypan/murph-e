@@ -10,10 +10,22 @@ declare global {
 }
 
 export interface ProbeHook {
-  load: (code: string, seed?: number, title?: string) => { ok: boolean; error?: string }
+  load: (
+    code: string,
+    seed?: number,
+    title?: string,
+    players?: number,
+  ) => { ok: boolean; error?: string }
   start: () => void
   reset: () => void
-  step: (n?: number) => { state: string; score: number; frame: number; error: string | null }
+  step: (n?: number) => {
+    state: string
+    score: number
+    scores: number[]
+    winner: number | null
+    frame: number
+    error: string | null
+  }
   frameHash: () => string
   frameStats: () => { colors: number; dominant: number; dominantShare: number }
   state: () => string
@@ -54,13 +66,22 @@ window.addEventListener('message', (ev: MessageEvent) => {
   if (!m || typeof m !== 'object' || typeof m.type !== 'string') return
   switch (m.type) {
     case 'load':
-      rt.load(String(m.code ?? ''), Number(m.seed ?? 1), String(m.title ?? ''), Number(m.hi ?? 0))
+      rt.load(
+        String(m.code ?? ''),
+        Number(m.seed ?? 1),
+        String(m.title ?? ''),
+        Number(m.hi ?? 0),
+        Number(m.players ?? 1),
+      )
       break
     case 'start':
       rt.start()
       break
     case 'reset':
       rt.reset()
+      break
+    case 'end':
+      rt.end()
       break
     case 'input':
       rt.setInput(m.player ?? 0, m.button, !!m.down)
@@ -73,9 +94,9 @@ window.addEventListener('message', (ev: MessageEvent) => {
 
 if (probe) {
   const hook: ProbeHook = {
-    load: (code, seed = 1, title = '') => {
+    load: (code, seed = 1, title = '', players = 1) => {
       errors.length = 0
-      return rt.load(code, seed, title)
+      return rt.load(code, seed, title, 0, players)
     },
     start: () => rt.start(),
     reset: () => rt.reset(),
@@ -85,6 +106,8 @@ if (probe) {
       return {
         state: rt.state,
         score: rt.score,
+        scores: rt.scores.slice(0, rt.players),
+        winner: rt.winner,
         frame: rt.frame,
         error: last ? `${last.phase}: ${last.message}` : null,
       }

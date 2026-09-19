@@ -8,6 +8,7 @@
   "files": {
     "includes": [
       "**",
+      "!**/.claude",
       "!**/node_modules",
       "!**/.next",
       "!**/dist",

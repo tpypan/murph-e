@@ -6,8 +6,16 @@ import { makeRng } from './rng'
 export type State = 'idle' | 'title' | 'playing' | 'gameover' | 'win' | 'error'
 
 export type OutMessage =
-  | { type: 'ready'; title: string }
-  | { type: 'state'; state: State; score: number; hi: number }
+  | { type: 'ready'; title: string; players: number }
+  | {
+      type: 'state'
+      state: State
+      score: number
+      hi: number
+      players: number
+      scores: number[]
+      winner: number | null
+    }
   | { type: 'error'; message: string; stack: string; phase: string }
   | { type: 'frame'; hash: string; frame: number }
 
@@ -29,6 +37,8 @@ const DT = 1 / 60
 const START_LOCKOUT_FRAMES = 45 // so mashing A/START does not skip GAME OVER
 const MAX_CATCHUP = 4
 const HUD_ROWS = 12
+// Player colours, fixed so every two-player game reads the same way.
+export const PLAYER_COLORS = [12, 8] as const
 
 function deny(name: string): () => never {
   return () => {
@@ -85,8 +95,12 @@ export class Runtime {
   private readonly pixels: Uint32Array | null
 
   state: State = 'idle'
+  /** Player one's score, or the shared score. `scores` has every player. */
   score = 0
+  scores = [0, 0]
   hi = 0
+  players = 1
+  winner: number | null = null
   title = ''
   frame = 0 // frames since the runtime started
   gameFrame = 0 // frames since init()
@@ -120,12 +134,13 @@ export class Runtime {
 
   // ---- shell-facing ------------------------------------------------------
 
-  load(code: string, seed = 1, title = '', hi = 0): { ok: boolean; error?: string } {
+  load(code: string, seed = 1, title = '', hi = 0, players = 1): { ok: boolean; error?: string } {
     this.seed = seed >>> 0 || 1
     this.rng = makeRng(this.seed)
     this.title = String(title || '').slice(0, 20)
     this.hi = Math.max(0, hi | 0)
-    this.score = 0
+    this.players = players === 2 ? 2 : 1
+    this.resetScores()
     this.game = null
     this.errorMessage = ''
     this.input.releaseAll()
@@ -146,7 +161,7 @@ export class Runtime {
     }
     this.setState('title')
     if (!this.runInit()) return { ok: false, error: this.errorMessage }
-    this.opts.post({ type: 'ready', title: this.title })
+    this.opts.post({ type: 'ready', title: this.title, players: this.players })
     return { ok: true }
   }
 
@@ -157,10 +172,20 @@ export class Runtime {
 
   reset(): void {
     if (!this.game) return
-    this.score = 0
+    this.resetScores()
     this.input.clearScheduled()
     this.setState('title')
     this.runInit()
+  }
+
+  /** End the current round now, as if the game had called gameOver(). A shell
+   *  tool for walkthroughs; games never see it. */
+  end(): void {
+    if (this.state !== 'playing') return
+    this.flashFrames = 0
+    this.drawHud()
+    this.setState('gameover')
+    this.lockout = START_LOCKOUT_FRAMES
   }
 
   setInput(player: unknown, button: unknown, down: boolean): void {
@@ -289,7 +314,7 @@ export class Runtime {
 
   private beginPlay(): void {
     if (!this.game) return
-    this.score = 0
+    this.resetScores()
     this.lockout = 0
     this.pendingState = null
     this.flashFrames = 0
@@ -309,10 +334,33 @@ export class Runtime {
     return this.guard('init', () => this.game?.init?.(this.api))
   }
 
+  private resetScores(): void {
+    this.score = 0
+    this.scores = [0, 0]
+    this.winner = null
+  }
+
+  /** Change one player's score, or every player's when p is omitted in 2P. */
+  private setScore(p: unknown, f: (old: number) => number): void {
+    const n = typeof p === 'number' && Number.isFinite(p) ? p | 0 : null
+    const targets = this.players === 2 ? (n === null ? [0, 1] : [Math.max(0, Math.min(1, n))]) : [0]
+    for (const i of targets) this.scores[i] = Math.max(0, Math.floor(f(this.scores[i] ?? 0)))
+    this.score = this.scores[0] ?? 0
+    this.hi = Math.max(this.hi, ...this.scores)
+  }
+
   private setState(s: State): void {
     this.state = s
-    this.hi = Math.max(this.hi, this.score)
-    this.opts.post({ type: 'state', state: s, score: this.score, hi: this.hi })
+    this.hi = Math.max(this.hi, ...this.scores)
+    this.opts.post({
+      type: 'state',
+      state: s,
+      score: this.score,
+      hi: this.hi,
+      players: this.players,
+      scores: this.scores.slice(0, this.players),
+      winner: this.winner,
+    })
   }
 
   private guard(phase: string, fn: () => void): boolean {
@@ -338,13 +386,31 @@ export class Runtime {
         .join('\n'),
       phase,
     })
-    this.opts.post({ type: 'state', state: 'error', score: this.score, hi: this.hi })
+    this.opts.post({
+      type: 'state',
+      state: 'error',
+      score: this.score,
+      hi: this.hi,
+      players: this.players,
+      scores: this.scores.slice(0, this.players),
+      winner: null,
+    })
   }
 
   // ---- overlays ----------------------------------------------------------
 
   private drawHud(): void {
     const s = this.screen
+    if (this.players === 2) {
+      const p1 = `P1 ${this.scores[0]}`
+      const p2 = `P2 ${this.scores[1]}`
+      s.text(p1, 3, 3, 0)
+      s.text(p1, 2, 2, PLAYER_COLORS[0])
+      const x2 = W - 2 - s.textWidth(p2)
+      s.text(p2, x2 + 1, 3, 0)
+      s.text(p2, x2, 2, PLAYER_COLORS[1])
+      return
+    }
     const scoreText = `SCORE ${this.score}`
     const hiText = `HI ${this.hi}`
     s.text(scoreText, 3, 3, 0)
@@ -366,6 +432,7 @@ export class Runtime {
     this.panel(72, 80)
     if (this.title) s.textCenter(this.title, 84, 10, 2)
     else s.textCenter('READY', 84, 10, 2)
+    if (this.players === 2) s.textCenter('2 PLAYERS', 106, 6)
     if (this.frame % 40 < 28) s.textCenter('PRESS START', 122, 7)
   }
 
@@ -373,9 +440,18 @@ export class Runtime {
     const s = this.screen
     const win = this.state === 'win'
     this.panel(64, 96)
-    s.textCenter(win ? 'YOU WIN' : 'GAME OVER', 74, win ? 11 : 8, 2)
-    s.textCenter(`SCORE ${this.score}`, 100, 7)
-    s.textCenter(`HI ${this.hi}`, 112, 6)
+    if (this.players === 2) {
+      const w = this.winner
+      if (win && w !== null) s.textCenter(`PLAYER ${w + 1} WINS`, 74, PLAYER_COLORS[w] ?? 11, 2)
+      else s.textCenter(win ? 'YOU WIN' : 'GAME OVER', 74, win ? 11 : 8, 2)
+      s.text(`P1 ${this.scores[0]}`, 40, 104, PLAYER_COLORS[0])
+      const p2 = `P2 ${this.scores[1]}`
+      s.text(p2, W - 40 - s.textWidth(p2), 104, PLAYER_COLORS[1])
+    } else {
+      s.textCenter(win ? 'YOU WIN' : 'GAME OVER', 74, win ? 11 : 8, 2)
+      s.textCenter(`SCORE ${this.score}`, 100, 7)
+      s.textCenter(`HI ${this.hi}`, 112, 6)
+    }
     if (this.lockout === 0 && this.frame % 40 < 28) s.textCenter('PRESS START', 136, 7)
   }
 
@@ -403,6 +479,9 @@ export class Runtime {
       H,
       t: 0,
       frame: 0,
+      players: this.players,
+      P1: PLAYER_COLORS[0],
+      P2: PLAYER_COLORS[1],
       // input
       btn: (name: Button, player = 0) => inp.btn(name, player),
       btnp: (name: Button, player = 0) => inp.btnp(name, player),
@@ -434,20 +513,22 @@ export class Runtime {
         this.shakeFrames = Math.max(0, Math.min(60, frames | 0))
       },
       // game flow
-      score: (n: number) => {
-        this.score = Math.max(0, Math.floor(Number(n) || 0))
-        if (this.score > this.hi) this.hi = this.score
+      score: (n: number, p?: number) => this.setScore(p, () => Number(n) || 0),
+      addScore: (n: number, p?: number) => this.setScore(p, (old) => old + (Number(n) || 0)),
+      getScore: (p?: number) => {
+        const i = this.players === 2 && typeof p === 'number' ? Math.max(0, Math.min(1, p | 0)) : 0
+        return this.scores[i] ?? 0
       },
-      addScore: (n: number) => {
-        this.score = Math.max(0, this.score + Math.floor(Number(n) || 0))
-        if (this.score > this.hi) this.hi = this.score
-      },
-      getScore: () => this.score,
       gameOver: () => {
         if (this.state === 'playing' && !this.pendingState) this.pendingState = 'gameover'
       },
-      win: () => {
-        if (this.state === 'playing' && !this.pendingState) this.pendingState = 'win'
+      win: (p?: number) => {
+        if (this.state !== 'playing' || this.pendingState) return
+        this.pendingState = 'win'
+        this.winner =
+          this.players === 2 && typeof p === 'number' && Number.isFinite(p)
+            ? Math.max(0, Math.min(1, p | 0))
+            : null
       },
       // helpers
       rnd: (n = 1) => this.rng() * (Number(n) || 0),

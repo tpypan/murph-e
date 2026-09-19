@@ -2,9 +2,10 @@ import { controlsFromSpec, type ProbeResult, probe } from '@htn/probe'
 import { type BuildResult, build } from './build.ts'
 import { keepInLibrary, pickFallback } from './library.ts'
 import { buildPrompt, loadTemplates } from './prompt.ts'
+import { remix } from './remix.ts'
 import { repair } from './repair.ts'
 import { createRun, type Run } from './run-store.ts'
-import { type GameSpec, specify } from './spec.ts'
+import { type GameSpec, type Players, specify } from './spec.ts'
 
 export type PipelineEvent =
   | { type: 'spec'; spec: GameSpec; ms: number }
@@ -12,6 +13,7 @@ export type PipelineEvent =
   | { type: 'built'; variant: number; ms: number; tokens: number; syntaxError: string | null }
   | { type: 'probe'; variant: number; ok: boolean; observations: string[]; ms: number }
   | { type: 'repair'; phase: 'start' | 'done'; ok?: boolean; ms?: number; observations?: string[] }
+  | { type: 'remix'; phase: 'start' | 'done'; changes: string[]; ok?: boolean; ms?: number }
   | { type: 'fallback'; reason: string; title: string; slug: string }
   | {
       type: 'ready'
@@ -19,14 +21,32 @@ export type PipelineEvent =
       title: string
       note: string
       spec: GameSpec | null
-      source: 'build' | 'repair' | 'library' | 'template'
+      players: Players
+      /** Library slug when the game was kept, else the run id; keys the leaderboard. */
+      slug: string
+      source: Source
       runId: string
       totalMs: number
     }
   | { type: 'error'; message: string }
 
+/** Where the code that is about to play came from. `kept` is a remix that
+ *  failed twice, so the original game stays on screen. */
+export type Source = 'build' | 'repair' | 'remix' | 'kept' | 'library' | 'template'
+
+export interface CurrentGame {
+  code: string
+  spec: GameSpec
+  slug: string
+  title: string
+}
+
 export interface PipelineOptions {
   race?: number
+  /** From the cabinet's 1P/2P menu. Default 1. */
+  players?: Players
+  /** The game on screen, so "make it faster" edits it instead of starting over. */
+  current?: CurrentGame | null
   model?: string
   effort?: string
   keep?: boolean
@@ -40,7 +60,9 @@ export interface PipelineResult {
   title: string
   note: string
   spec: GameSpec | null
-  source: 'build' | 'repair' | 'library' | 'template'
+  players: Players
+  slug: string
+  source: Source
   run: Run
   totalMs: number
   observations: string[]
@@ -69,6 +91,7 @@ export async function pipeline(
   const emit = opts.onEvent ?? (() => {})
   const run = opts.run ?? createRun(transcript)
   const race = Math.max(1, opts.race ?? 2)
+  const players: Players = opts.players === 2 ? 2 : 1
   const done = (r: Omit<PipelineResult, 'run' | 'totalMs'>): PipelineResult => {
     const totalMs = Math.round(performance.now() - t0)
     run.write('game.js', r.code)
@@ -80,13 +103,15 @@ export async function pipeline(
         2,
       ),
     )
-    run.event('ready', { source: r.source, title: r.title, totalMs })
+    run.event('ready', { source: r.source, title: r.title, slug: r.slug, totalMs })
     emit({
       type: 'ready',
       code: r.code,
       title: r.title,
       note: r.note,
       spec: r.spec,
+      players: r.players,
+      slug: r.slug,
       source: r.source,
       runId: run.id,
       totalMs,
@@ -97,7 +122,7 @@ export async function pipeline(
   // 1. spec
   let spec: GameSpec
   try {
-    const s = await specify(transcript)
+    const s = await specify(transcript, { players, current: opts.current?.spec ?? null })
     spec = s.spec
     run.write('spec.json', JSON.stringify(spec, null, 2))
     run.event('spec', { ms: s.ms, usage: s.usage, spec })
@@ -106,13 +131,15 @@ export async function pipeline(
     const message = e instanceof Error ? e.message : String(e)
     run.event('error', { stage: 'spec', message })
     emit({ type: 'error', message })
-    const fb = pickFallback(undefined)
+    const fb = pickFallback(undefined, players)
     emit({ type: 'fallback', reason: `spec failed: ${message}`, title: fb.title, slug: fb.slug })
     return done({
       code: fb.code,
       title: fb.title,
       note: '',
       spec: fb.spec,
+      players,
+      slug: fb.slug,
       source: fb.source,
       observations: [message],
     })
@@ -121,6 +148,129 @@ export async function pipeline(
   const prompt = buildPrompt(spec, transcript, loadTemplates())
   run.write('prompt.txt', `=== SYSTEM ===\n${prompt.system}\n\n=== USER ===\n${prompt.user}\n`)
   const controls = controlsFromSpec(spec.controls)
+
+  // 1b. remix: edit the game on screen instead of writing a new one. A real
+  // remix keeps the genre; a genre change means the words were a new game.
+  if (
+    spec.remix &&
+    opts.current &&
+    spec.changes.length > 0 &&
+    spec.genre === opts.current.spec.genre
+  ) {
+    const cur = opts.current
+    emit({ type: 'remix', phase: 'start', changes: spec.changes })
+    run.event('remix', { phase: 'start', slug: cur.slug, changes: spec.changes })
+    const keep = (why: string): PipelineResult => {
+      run.event('remix', { phase: 'kept', why })
+      return done({
+        code: cur.code,
+        title: cur.title,
+        note: "COULDN'T REMIX THAT. KEPT THE ORIGINAL",
+        spec: cur.spec,
+        players,
+        slug: cur.slug,
+        source: 'kept',
+        observations: [why],
+      })
+    }
+    try {
+      const r = await remix(prompt, spec, cur.code, spec.changes, {
+        signal: opts.signal,
+        onDelta: (text) => emit({ type: 'token', text, variant: 0 }),
+      })
+      run.write('remix.raw.txt', r.raw)
+      run.write('game.remix.js', r.code)
+      run.event('remix', {
+        phase: 'built',
+        ms: r.ms,
+        ttftMs: r.ttftMs,
+        usage: r.usage,
+        blocks: r.blocks,
+        applyError: r.applyError,
+        syntaxError: r.syntaxError,
+      })
+      let observations: string[] = []
+      let code = r.code
+      if (r.applyError) observations = [`the edit could not be applied: ${r.applyError}`]
+      else if (r.syntaxError) observations = [`the game failed to load: ${r.syntaxError}`]
+      else {
+        const p = await probe(code, { controls, title: spec.title, players })
+        run.event('probe', { stage: 'remix', ok: p.ok, observations: p.observations, ms: p.ms })
+        emit({ type: 'probe', variant: 0, ok: p.ok, observations: p.observations, ms: p.ms })
+        if (p.ok) {
+          emit({ type: 'remix', phase: 'done', changes: spec.changes, ok: true, ms: r.ms })
+          if (p.thumb) run.write('thumb.png', p.thumb)
+          return done({
+            code,
+            title: spec.title,
+            note: spec.note,
+            spec,
+            players,
+            slug: cur.slug,
+            source: 'remix',
+            observations: p.observations,
+          })
+        }
+        observations = p.observations
+      }
+      // One full-file repair round on whichever version got furthest.
+      if (r.applyError) code = cur.code
+      emit({ type: 'repair', phase: 'start', observations })
+      run.event('repair', { phase: 'start', stage: 'remix', observations })
+      const fixed = await repair(
+        prompt,
+        spec,
+        code,
+        [`apply these changes: ${spec.changes.join('; ')}`, ...observations],
+        { signal: opts.signal },
+      )
+      run.write('game.remix.repair.js', fixed.code)
+      const p2 = fixed.syntaxError
+        ? {
+            ok: false,
+            observations: [`the game failed to load: ${fixed.syntaxError}`],
+            thumb: null,
+            ms: 0,
+            checks: {},
+          }
+        : await probe(fixed.code, { controls, title: spec.title, players })
+      run.event('repair', {
+        phase: 'done',
+        stage: 'remix',
+        ms: fixed.ms,
+        ok: p2.ok,
+        observations: p2.observations,
+      })
+      emit({
+        type: 'repair',
+        phase: 'done',
+        ok: p2.ok,
+        ms: fixed.ms,
+        observations: p2.observations,
+      })
+      if (p2.ok) {
+        emit({ type: 'remix', phase: 'done', changes: spec.changes, ok: true, ms: r.ms + fixed.ms })
+        return done({
+          code: fixed.code,
+          title: spec.title,
+          note: spec.note,
+          spec,
+          players,
+          slug: cur.slug,
+          source: 'remix',
+          observations: p2.observations,
+        })
+      }
+      emit({ type: 'remix', phase: 'done', changes: spec.changes, ok: false })
+      return keep(p2.observations.join('; '))
+    } catch (e) {
+      if (isAbort(e)) throw e
+      const message = e instanceof Error ? e.message : String(e)
+      run.event('error', { stage: 'remix', message })
+      emit({ type: 'remix', phase: 'done', changes: spec.changes, ok: false })
+      return keep(message)
+    }
+  }
 
   // 2. race
   const controllers: AbortController[] = []
@@ -156,7 +306,7 @@ export async function pipeline(
           checks: {},
         }
       } else {
-        a.probe = await probe(b.code, { controls, title: spec.title })
+        a.probe = await probe(b.code, { controls, title: spec.title, players })
       }
       run.event('probe', {
         variant,
@@ -220,7 +370,7 @@ export async function pipeline(
             ms: 0,
             checks: {},
           }
-        : await probe(r.code, { controls, title: spec.title })
+        : await probe(r.code, { controls, title: spec.title, players })
       run.event('repair', {
         phase: 'done',
         ms: r.ms,
@@ -241,7 +391,7 @@ export async function pipeline(
   const reason = best?.probe
     ? best.probe.observations.join('; ')
     : (best?.error ?? 'no build finished')
-  const fb = pickFallback(spec.genre)
+  const fb = pickFallback(spec.genre, players)
   run.event('fallback', { reason, slug: fb.slug, source: fb.source })
   emit({ type: 'fallback', reason, title: fb.title, slug: fb.slug })
   return done({
@@ -249,6 +399,8 @@ export async function pipeline(
     title: fb.title,
     note: spec.note,
     spec: fb.spec ?? spec,
+    players,
+    slug: fb.slug,
     source: fb.source,
     observations: [reason],
   })
@@ -264,8 +416,9 @@ export async function pipeline(
         2,
       ),
     )
+    let slug = run.id
     if (opts.keep !== false) {
-      const slug = keepInLibrary(spec, code, a.probe?.thumb ?? null, run.id)
+      slug = keepInLibrary(spec, code, a.probe?.thumb ?? null, run.id)
       run.event('library', { slug })
     }
     return done({
@@ -273,6 +426,8 @@ export async function pipeline(
       title: spec.title,
       note: spec.note,
       spec,
+      players,
+      slug,
       source,
       observations: a.probe!.observations,
     })

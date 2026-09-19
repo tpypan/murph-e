@@ -17,6 +17,8 @@ const spec: GameSpec = {
   scoring: 'pies and survival',
   moderated: false,
   note: '',
+  remix: false,
+  changes: [],
   players: 1,
 }
 const good = readRepoFile('library/templates/dodge.js')

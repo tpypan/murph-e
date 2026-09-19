@@ -8,9 +8,10 @@ export interface Template {
   title: string
   file: string
   code: string
+  players: number
 }
 
-/** Templates ride in the prompt. Header lines `// TITLE:` and `// GENRE:` name them. */
+/** Templates ride in the prompt. Header lines `// TITLE:`, `// GENRE:` and `// PLAYERS:` name them. */
 export function loadTemplates(): Template[] {
   const dir = resolve(ROOT, 'library/templates')
   return readdirSync(dir)
@@ -20,13 +21,25 @@ export function loadTemplates(): Template[] {
       const code = readRepoFile(`library/templates/${file}`)
       const title = code.match(/^\/\/\s*TITLE:\s*(.+)$/m)?.[1]?.trim() ?? file
       const genre = code.match(/^\/\/\s*GENRE:\s*(.+)$/m)?.[1]?.trim() ?? file.replace('.js', '')
-      return { genre, title, file, code }
+      const players = Number(code.match(/^\/\/\s*PLAYERS:\s*(\d)/m)?.[1] ?? 1)
+      return { genre, title, file, code, players }
     })
 }
 
-// Two fixed exemplars so the system prefix is byte-identical across calls
-// and the prompt cache hits. The chosen genre's template goes in the user turn.
+// Fixed exemplars so each system prefix is byte-identical across calls and
+// the prompt cache hits. The chosen genre's template goes in the user turn.
 const EXEMPLAR_GENRES = ['dodge', 'shooter']
+const EXEMPLAR_GENRES_2P = ['versus', 'coop']
+
+export const TWO_PLAYER_RULES = `TWO PLAYERS
+
+This game is for exactly two players on one screen. api.players is 2.
+- Read player one's input with api.btn(name, 0) / api.btnp(name, 0) and player two's with api.btn(name, 1) / api.btnp(name, 1). Never read a button without the index; never let one player's buttons move the other player.
+- Keep the two players in one array and run the same movement code for both with a loop over 0 and 1, as in the example games.
+- Draw player one in api.P1 and player two in api.P2, and start them on opposite sides so they are easy to tell apart.
+- Versus: give a point with api.addScore(1, winnerIndex) and end with api.win(winnerIndex). Something must force the round to end: a closing arena, a timer, or a target score.
+- Coop: score with api.addScore(n) (no index, both players get it), share the lives, and end with api.gameOver().
+- Both players must be able to act from the first frame. Something must move on screen with no input at all.`
 
 export const HOUSE_RULES = `HOUSE RULES
 
@@ -64,6 +77,8 @@ export interface BuildPrompt {
   system: string
   user: string
   chosen: Template | null
+  /** OpenAI prompt cache key; one per system prefix. */
+  cacheKey: string
 }
 
 export function buildPrompt(
@@ -72,13 +87,16 @@ export function buildPrompt(
   templates: Template[],
 ): BuildPrompt {
   const apiRef = readRepoFile('packages/runtime/API.md')
-  const exemplars = EXEMPLAR_GENRES.map((g) => templates.find((t) => t.genre === g)).filter(
-    (t): t is Template => !!t,
-  )
+  const two = spec.players === 2
+  const exemplars = (two ? EXEMPLAR_GENRES_2P : EXEMPLAR_GENRES)
+    .map((g) => templates.find((t) => t.genre === g))
+    .filter((t): t is Template => !!t)
   const chosen = templates.find((t) => t.genre === spec.genre) ?? null
 
   const system = [
-    'You write complete, tiny 8-bit arcade games in one shot for a fantasy console. You are given the console API, house rules, example games and a spec. You output one game file.',
+    two
+      ? 'You write complete, tiny 8-bit two-player arcade games in one shot for a fantasy console. You are given the console API, house rules, example games and a spec. You output one game file.'
+      : 'You write complete, tiny 8-bit arcade games in one shot for a fantasy console. You are given the console API, house rules, example games and a spec. You output one game file.',
     '',
     '=== API REFERENCE ===',
     apiRef.trim(),
@@ -86,6 +104,7 @@ export function buildPrompt(
     '=== ' + 'HOUSE RULES' + ' ===',
     HOUSE_RULES.replace(/^HOUSE RULES\n\n/, ''),
     '',
+    ...(two ? ['=== TWO PLAYERS ===', TWO_PLAYER_RULES.replace(/^TWO PLAYERS\n\n/, ''), ''] : []),
     ...exemplars.flatMap((t) => [
       `=== EXAMPLE GAME (${t.genre}): ${t.title} ===`,
       '```js',
@@ -121,7 +140,12 @@ export function buildPrompt(
   userParts.push(
     `Write the complete game.js for "${spec.title}" now. One fenced js block, nothing else.`,
   )
-  return { system, user: userParts.join('\n'), chosen }
+  return {
+    system,
+    user: userParts.join('\n'),
+    chosen,
+    cacheKey: two ? 'htn-build-2p-v1' : 'htn-build-v1',
+  }
 }
 
 /** Pull the code out of the model's reply: first fenced block, else everything. */

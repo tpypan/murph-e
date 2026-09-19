@@ -12,3 +12,5 @@ bench/screenshots/
 *.thumb.png
 soak.log
 library/gallery.html
+tsconfig.tsbuildinfo
+data/

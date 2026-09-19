@@ -2,7 +2,6 @@ import { EventEmitter } from 'node:events'
 import { readFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { SerialPort } from 'serialport'
 import { BadgeLink } from './link.ts'
 import {
   APP_SLUG,
@@ -15,16 +14,18 @@ import {
   manifestVersion,
   parseLine,
 } from './protocol.ts'
+import { SerialTransport, type Transport } from './wire.ts'
 
-// Espressif's USB JTAG/serial debug unit, which is what an ESP32-C3 badge is.
-const VENDOR_ID = '303a'
-const PRODUCT_ID = '1001'
 const POLL_MS = 1000
+// A port that would not open (busy, or gone between list and open) is
+// retried after this long, and the error is reported once per streak.
+const RETRY_MS = 5000
 const APP_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'app')
 
 export interface BadgeInfo {
   path: string
   serial: string // the badge's MAC, from the USB descriptor
+  transport: string
   identity: Identity | null
   slot: number | null // controller index once the app has said hello
   state: 'attaching' | 'installing' | 'waiting' | 'ready' | 'error'
@@ -61,22 +62,28 @@ export interface HubOptions {
   forcePush?: boolean
   /** Poll interval for hot-plug, ms. */
   pollMs?: number
+  /** Where badges come from. Default: the real serial ports. */
+  transports?: Transport[]
 }
 
 /**
- * Watches USB for badges, installs the arcade app on any that lack it, and
- * turns their serial log lines into hello / button / bye events. One
- * instance per process; the cabinet keeps it on globalThis.
+ * Watches every transport for badges, installs the arcade app on any that
+ * lack it, and turns their serial log lines into hello / button / bye
+ * events. One instance per process; the cabinet keeps it on globalThis.
  */
 export class BadgeHub extends EventEmitter {
   private links = new Map<string, Attached>()
+  private pending = new Set<string>()
+  private retryAt = new Map<string, number>()
   private timer: ReturnType<typeof setInterval> | null = null
   private polling = false
   private opts: HubOptions
+  private transports: Transport[]
 
   constructor(opts: HubOptions = {}) {
     super()
     this.opts = opts
+    this.transports = opts.transports ?? [new SerialTransport()]
   }
 
   start(): void {
@@ -96,47 +103,78 @@ export class BadgeHub extends EventEmitter {
     return [...this.links.values()].map((a) => ({ ...a.info }))
   }
 
+  /** Look for new badges now instead of at the next tick. */
+  poll(): Promise<void> {
+    return this.doPoll()
+  }
+
   private send(ev: HubEvent): void {
     this.emit('event', ev)
   }
 
-  private async poll(): Promise<void> {
+  private async doPoll(): Promise<void> {
     if (this.polling) return
     this.polling = true
     try {
-      const ports = await SerialPort.list()
-      for (const p of ports) {
-        if ((p.vendorId ?? '').toLowerCase() !== VENDOR_ID) continue
-        if ((p.productId ?? '').toLowerCase() !== PRODUCT_ID) continue
-        // macOS lists tty.*; cu.* is the right one to open (no carrier wait).
-        const path = p.path.replace('/dev/tty.', '/dev/cu.')
-        if (this.links.has(path)) continue
-        void this.attach(path, p.serialNumber ?? '')
+      const seen = new Set<string>()
+      for (const t of this.transports) {
+        let ports: Awaited<ReturnType<Transport['list']>>
+        try {
+          ports = await t.list()
+        } catch (e) {
+          this.send({
+            type: 'error',
+            path: '',
+            message: `${t.name}: ${e instanceof Error ? e.message : String(e)}`,
+          })
+          continue
+        }
+        for (const p of ports) {
+          seen.add(p.path)
+          if (this.links.has(p.path) || this.pending.has(p.path)) continue
+          if ((this.retryAt.get(p.path) ?? 0) > Date.now()) continue
+          void this.attach(t, p.path, p.serial)
+        }
       }
-    } catch (e) {
-      this.send({ type: 'error', path: '', message: e instanceof Error ? e.message : String(e) })
+      // A port that went away can fail afresh when it comes back.
+      for (const path of this.retryAt.keys()) if (!seen.has(path)) this.retryAt.delete(path)
     } finally {
       this.polling = false
     }
   }
 
-  private async attach(path: string, serial: string): Promise<void> {
+  private async attach(transport: Transport, path: string, serial: string): Promise<void> {
+    this.pending.add(path)
     let link: BadgeLink
     try {
-      link = await BadgeLink.open(path)
+      link = new BadgeLink(await transport.open(path))
     } catch (e) {
-      this.send({ type: 'error', path, message: `open: ${e instanceof Error ? e.message : e}` })
+      this.pending.delete(path)
+      const first = !this.retryAt.has(path)
+      this.retryAt.set(path, Date.now() + RETRY_MS)
+      if (first)
+        this.send({ type: 'error', path, message: `open: ${e instanceof Error ? e.message : e}` })
       return
     }
+    this.retryAt.delete(path)
     const a: Attached = {
-      info: { path, serial, identity: null, slot: null, state: 'attaching' },
+      info: {
+        path,
+        serial,
+        transport: transport.name,
+        identity: null,
+        slot: null,
+        state: 'attaching',
+      },
       link,
       map: { ...DEFAULT_BUTTON_MAP },
     }
     this.links.set(path, a)
+    this.pending.delete(path)
     this.send({ type: 'attached', path, serial })
     link.onLine((line) => this.handleLine(a, line))
     link.onClose(() => {
+      if (this.links.get(path) !== a) return
       this.links.delete(path)
       this.send({ type: 'detached', path, slot: a.info.slot })
     })

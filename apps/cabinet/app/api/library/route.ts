@@ -9,14 +9,18 @@ export function GET(): Response {
     slug: g.slug,
     title: g.title,
     genre: g.genre,
+    players: g.players,
     code: g.code,
+    spec: g.spec,
     source: 'library' as const,
   }))
   const templates = loadTemplates().map((t) => ({
     slug: `template-${t.file.replace(/\.js$/, '')}`,
     title: t.title,
     genre: t.genre,
+    players: t.players,
     code: t.code,
+    spec: null,
     source: 'template' as const,
   }))
   return Response.json({ games: [...games, ...templates] })

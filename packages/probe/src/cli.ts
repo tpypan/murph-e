@@ -1,5 +1,5 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
-import { basename, dirname, resolve } from 'node:path'
+import { basename, dirname, resolve, sep } from 'node:path'
 import { closeProbe, controlsFromSpec, probe } from './probe.ts'
 
 // usage: pnpm probe <game.js> [more.js ...]   (reads spec.json beside each game if present)
@@ -21,10 +21,18 @@ for (const f of files) {
     ?.trim()
     .split(/\s+/)
   const title = spec?.title ?? code.match(/^\/\/\s*TITLE:\s*(.+)$/m)?.[1]?.trim()
-  const r = await probe(code, { controls: header ?? controlsFromSpec(spec?.controls), title })
-  // A run directory gets thumb.png; any other file gets a sidecar next to it.
+  const players = spec?.players ?? Number(code.match(/^\/\/\s*PLAYERS:\s*(\d)/m)?.[1] ?? 1)
+  const r = await probe(code, {
+    controls: header ?? controlsFromSpec(spec?.controls),
+    title,
+    players,
+  })
+  // A run directory gets thumb.png; a library game keeps the one it was
+  // kept with (a verification pass must not dirty the repo); anything else
+  // gets a gitignored sidecar next to it.
   const isRun = basename(f) === 'game.js'
-  if (r.thumb)
+  const inLibrary = f.includes(`${sep}library${sep}games${sep}`)
+  if (r.thumb && !inLibrary)
     writeFileSync(
       isRun ? resolve(dirname(f), 'thumb.png') : f.replace(/\.js$/, '.thumb.png'),
       r.thumb,

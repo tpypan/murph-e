@@ -234,6 +234,20 @@ Hot-plug: enumerate ports with the Espressif vendor ID, open new ones, drop
 closed ones. Only one process can hold a port, so the IDE and the cabinet
 cannot be connected to the same badge at once; that is fine on the floor.
 
+Built as `packages/badge` (2026-09-19). The hub sits on a `Transport`
+seam: `SerialTransport` is the real port, `FakeTransport` is an in-process
+badge that answers the same console commands and logs the same lines, so
+`pnpm test:badge` and the cabinet's F1/F2 keys exercise the whole path
+with no hardware. One fact from the fake that the real badge should be
+checked against: log lines can arrive glued to the `badge> ` prompt with
+no newline between, so the parser strips leading prompts.
+
+What the badge screen cannot show yet: its player number. The cabinet
+assigns slots in hello order and the README says serial input does not
+reach a running app, so the badge only knows its own colour. Whether a
+`put` of a small file while the app runs, read back from Lua, can carry
+the slot is item H4 on the tier 2 hardware checklist.
+
 ## 6. Verify with a real badge before building any of this
 
 **Results, 2026-09-19, one badge on a MacBook, firmware v0.1.2-392:**

@@ -9,6 +9,7 @@ export interface LibraryGame {
   slug: string
   title: string
   genre: string
+  players: number
   code: string
   spec: GameSpec | null
   source: 'library' | 'template'
@@ -31,6 +32,7 @@ export function listLibrary(): LibraryGame[] {
         slug,
         title: spec?.title ?? slug.toUpperCase(),
         genre: spec?.genre ?? '',
+        players: spec?.players ?? 1,
         code,
         spec,
         source: 'library',
@@ -38,22 +40,27 @@ export function listLibrary(): LibraryGame[] {
     })
 }
 
-/** Templates double as the fallback of last resort, so this never returns null. */
+/**
+ * Templates double as the fallback of last resort, so this never returns
+ * null. A two-player fallback is always a two-player game and vice versa.
+ */
 export function pickFallback(
   genre: string | undefined,
+  players = 1,
   rnd: () => number = Math.random,
 ): LibraryGame {
-  const lib = listLibrary()
+  const lib = listLibrary().filter((g) => g.players === players)
   const same = lib.filter((g) => g.genre === genre)
   const pool = same.length > 0 ? same : lib
   if (pool.length > 0) return pool[Math.floor(rnd() * pool.length)]!
-  const templates = loadTemplates()
+  const templates = loadTemplates().filter((t) => t.players === players)
   const t =
     templates.find((x) => x.genre === genre) ?? templates[Math.floor(rnd() * templates.length)]!
   return {
     slug: t.file.replace(/\.js$/, ''),
     title: t.title,
     genre: t.genre,
+    players: t.players,
     code: t.code,
     spec: null,
     source: 'template',

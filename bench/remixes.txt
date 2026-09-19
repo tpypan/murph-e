@@ -1,0 +1,16 @@
+# Remix bench: <library slug> | <what the player said while the game was on screen>
+# Run: pnpm harness bench-remix bench/remixes.txt
+# Goal: p50 under half the tier 1 build p50, 8 of 10 pass, most of the original kept.
+frogger-dash | make it faster
+pizza-invaders | add a boss that shoots back
+train-snake | make the snake longer at the start and slower
+big-ball-break | make the ball even bigger and give me more lives
+jelly-sub | make the jellyfish move up and down
+cat-dash | add coins to collect between the dogs
+speed-pong | make the computer paddle smaller
+ghost-maze | add a second ghost
+salsa-taco | make it harder
+dragon-keep | give the dragons more health and make them purple
+# Two new premises said over a running game: these must come back as new games, not remixes.
+jelly-sub | a game where a penguin slides on ice collecting fish and dodging seals
+frogger-dash | space invaders but the aliens are pizzas

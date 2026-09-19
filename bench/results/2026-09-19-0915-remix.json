@@ -1,0 +1,136 @@
+{
+  "rows": [
+    {
+      "slug": "frogger-dash",
+      "words": "make it faster",
+      "title": "FROGGER DASH",
+      "source": "remix",
+      "totalMs": 4557,
+      "kept": 0.9815668202764977,
+      "remix": true,
+      "observations": [],
+      "error": null
+    },
+    {
+      "slug": "pizza-invaders",
+      "words": "add a boss that shoots back",
+      "title": "PIZZA INVADERS",
+      "source": "remix",
+      "totalMs": 18318,
+      "kept": 0.996078431372549,
+      "remix": true,
+      "observations": [],
+      "error": null
+    },
+    {
+      "slug": "train-snake",
+      "words": "make the snake longer at the start and slower",
+      "title": "TRAIN SNAKE",
+      "source": "remix",
+      "totalMs": 4850,
+      "kept": 0.9855072463768116,
+      "remix": true,
+      "observations": [],
+      "error": null
+    },
+    {
+      "slug": "big-ball-break",
+      "words": "make the ball even bigger and give me more lives",
+      "title": "BIG BALL BREAK",
+      "source": "remix",
+      "totalMs": 4411,
+      "kept": 0.9916666666666667,
+      "remix": true,
+      "observations": [],
+      "error": null
+    },
+    {
+      "slug": "jelly-sub",
+      "words": "make the jellyfish move up and down",
+      "title": "JELLY SUB",
+      "source": "remix",
+      "totalMs": 8688,
+      "kept": 0.9726027397260274,
+      "remix": true,
+      "observations": [],
+      "error": null
+    },
+    {
+      "slug": "cat-dash",
+      "words": "add coins to collect between the dogs",
+      "title": "CAT DASH",
+      "source": "remix",
+      "totalMs": 11961,
+      "kept": 0.9126984126984127,
+      "remix": true,
+      "observations": [],
+      "error": null
+    },
+    {
+      "slug": "speed-pong",
+      "words": "make the computer paddle smaller",
+      "title": "SPEED PONG",
+      "source": "remix",
+      "totalMs": 6729,
+      "kept": 0.9815668202764977,
+      "remix": true,
+      "observations": [],
+      "error": null
+    },
+    {
+      "slug": "ghost-maze",
+      "words": "add a second ghost",
+      "title": "GHOST MAZE",
+      "source": "remix",
+      "totalMs": 10261,
+      "kept": 0.991701244813278,
+      "remix": true,
+      "observations": [],
+      "error": null
+    },
+    {
+      "slug": "salsa-taco",
+      "words": "make it harder",
+      "title": "SALSA TACO",
+      "source": "remix",
+      "totalMs": 4979,
+      "kept": 0.9801587301587301,
+      "remix": true,
+      "observations": [],
+      "error": null
+    },
+    {
+      "slug": "dragon-keep",
+      "words": "give the dragons more health and make them purple",
+      "title": "DRAGON KEEP",
+      "source": "remix",
+      "totalMs": 4257,
+      "kept": 0.9641434262948207,
+      "remix": true,
+      "observations": [],
+      "error": null
+    },
+    {
+      "slug": "jelly-sub",
+      "words": "a game where a penguin slides on ice collecting fish and dodging seals",
+      "title": "PENGUIN SLIDE",
+      "source": "build",
+      "totalMs": 28097,
+      "kept": 0.273972602739726,
+      "remix": false,
+      "observations": [],
+      "error": null
+    },
+    {
+      "slug": "frogger-dash",
+      "words": "space invaders but the aliens are pizzas",
+      "title": "PIZZA INVADERS",
+      "source": "build",
+      "totalMs": 28286,
+      "kept": 0.2534562211981567,
+      "remix": false,
+      "observations": [],
+      "error": null
+    }
+  ]
+}
