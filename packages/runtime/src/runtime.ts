@@ -28,6 +28,7 @@ export interface RuntimeOptions {
 const DT = 1 / 60
 const START_LOCKOUT_FRAMES = 45 // so mashing A/START does not skip GAME OVER
 const MAX_CATCHUP = 4
+const HUD_ROWS = 12
 
 function deny(name: string): () => never {
   return () => {
@@ -177,8 +178,10 @@ export class Runtime {
     for (let i = 0; i < n; i++) this.tick()
   }
 
+  /** Hash of the game area only: the runtime's own HUD strip is excluded so a
+   *  ticking score cannot pass for motion. */
   frameHash(): string {
-    return this.screen.hash()
+    return this.screen.hash(HUD_ROWS)
   }
 
   // ---- loop --------------------------------------------------------------

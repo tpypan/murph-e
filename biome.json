@@ -14,7 +14,8 @@
       "!runs",
       "!library/games",
       "!packages/runtime/runtime.js",
-      "!bench/results"
+      "!bench/results",
+      "!bench/known-bad"
     ]
   },
   "formatter": {
@@ -43,7 +44,7 @@
   },
   "overrides": [
     {
-      "includes": ["library/templates/*.js", "bench/known-bad/**"],
+      "includes": ["library/templates/*.js"],
       "linter": {
         "rules": {
           "correctness": {

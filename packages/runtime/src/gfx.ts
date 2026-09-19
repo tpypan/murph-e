@@ -259,11 +259,11 @@ export class Screen {
     this.text(str, ((W - w) / 2) | 0, y, c, scale)
   }
 
-  /** FNV-1a over the framebuffer, as 8 hex chars. */
-  hash(): string {
+  /** FNV-1a over the framebuffer from `fromRow` down, as 8 hex chars. */
+  hash(fromRow = 0): string {
     let h = 0x811c9dc5
     const fb = this.fb
-    for (let i = 0; i < fb.length; i++) {
+    for (let i = Math.max(0, fromRow | 0) * W; i < fb.length; i++) {
       h ^= fb[i]!
       h = Math.imul(h, 0x01000193)
     }

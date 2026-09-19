@@ -1,0 +1,26 @@
+{
+  "title": "PIE ANVIL DASH",
+  "oneLiner": "Dodge the falling anvils and catch every delicious pie you can!",
+  "genre": "dodge",
+  "mechanics": [
+    "Move the baker left and right beneath the dropping treats.",
+    "Falling anvils hurt; catching pies earns points.",
+    "Pies appear faster and anvils fall more often over time.",
+    "Grab golden pies for bonus points."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": null,
+    "down": null,
+    "a": "Dash briefly in your moving direction",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "Lose when an anvil hits the baker.",
+  "scoring": "Earn points for catching pies, with bonus points for golden pies.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0711-dodge-the-falling-anvils-and-cat"
+}

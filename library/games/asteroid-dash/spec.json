@@ -1,0 +1,26 @@
+{
+  "title": "ASTEROID DASH",
+  "oneLiner": "Pilot through a storm of tumbling asteroids and blast a path to the high score.",
+  "genre": "shooter",
+  "mechanics": [
+    "Your ship rotates and thrusts through a single-screen asteroid field.",
+    "Press A to fire lasers; large asteroids split into smaller, faster rocks.",
+    "Destroying asteroids scores points, with smaller fragments worth more.",
+    "The field grows denser and faster as your score rises."
+  ],
+  "controls": {
+    "left": "Rotate ship counterclockwise",
+    "right": "Rotate ship clockwise",
+    "up": "Thrust forward",
+    "down": null,
+    "a": "Fire laser",
+    "b": "Hypershift briefly to a random safe spot"
+  },
+  "palette": "arcade",
+  "lose": "Lose all three ships by colliding with an asteroid.",
+  "scoring": "Score points for destroying asteroids, earning more for smaller fragments.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0711-asteroids"
+}

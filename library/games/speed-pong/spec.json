@@ -1,0 +1,26 @@
+{
+  "title": "SPEED PONG",
+  "oneLiner": "Outlast the computer as every point makes the ball fly faster!",
+  "genre": "pong",
+  "mechanics": [
+    "Move your paddle up and down to return the ball.",
+    "The computer controls the opposite paddle.",
+    "Score when the ball passes the computer paddle.",
+    "The ball speeds up after every point."
+  ],
+  "controls": {
+    "left": null,
+    "right": null,
+    "up": "Move paddle up",
+    "down": "Move paddle down",
+    "a": "Serve or start the match",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "Lose when the computer scores 7 points first.",
+  "scoring": "Earn one point whenever the ball passes the computer paddle.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0711-pong-against-the-computer-and-it"
+}

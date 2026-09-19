@@ -1,0 +1,26 @@
+{
+  "title": "EXAM ESCAPE",
+  "oneLiner": "Dodge flying exam papers and grab lucky pencils before the bell rings.",
+  "genre": "dodge",
+  "mechanics": [
+    "Move the student around one screen while exam papers sweep in from the edges.",
+    "Collect golden pencils to score points and briefly boost your speed.",
+    "Avoid red-marked papers; each hit costs a heart.",
+    "The papers move faster and arrive in denser patterns over time."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": "Move up",
+    "down": "Move down",
+    "a": "Dash briefly in your facing direction",
+    "b": null
+  },
+  "palette": "nes",
+  "lose": "Lose all three hearts after colliding with exam papers.",
+  "scoring": "Each golden pencil collected scores 100 points.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0711-a-game-about-avoiding-my-exams"
+}

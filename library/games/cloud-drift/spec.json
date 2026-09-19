@@ -1,0 +1,26 @@
+{
+  "title": "CLOUD DRIFT",
+  "oneLiner": "Guide a sleepy cloud through a gentle sky, gathering stars and avoiding storm puffs.",
+  "genre": "dodge",
+  "mechanics": [
+    "Move the cloud smoothly around one screen.",
+    "Collect tiny stars to score points.",
+    "Avoid dark storm puffs that drift across the sky.",
+    "The wind and storm speed gradually increase over time."
+  ],
+  "controls": {
+    "left": "Drift left",
+    "right": "Drift right",
+    "up": "Drift up",
+    "down": "Drift down",
+    "a": "Release a soft breeze that nudges nearby storm puffs away",
+    "b": null
+  },
+  "palette": "gameboy",
+  "lose": "The cloud dissolves after touching three storm puffs.",
+  "scoring": "Each collected star scores 10 points, with occasional golden stars worth 50.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0712-a-relaxing-game"
+}

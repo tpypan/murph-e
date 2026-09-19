@@ -1,0 +1,26 @@
+{
+  "title": "CAT DASH",
+  "oneLiner": "Leap over chasing dogs and sprint as far as your tiny paws can carry you!",
+  "genre": "runner",
+  "mechanics": [
+    "The cat runs automatically across a scrolling street.",
+    "Press A to jump over dogs and low obstacles.",
+    "Clear obstacles to earn points and collect fish for bonus score.",
+    "The pace steadily increases and collisions end the run."
+  ],
+  "controls": {
+    "left": null,
+    "right": null,
+    "up": null,
+    "down": null,
+    "a": "Jump",
+    "b": "Dash briefly, if charged by collecting three fish"
+  },
+  "palette": "arcade",
+  "lose": "The cat loses when it hits a dog or obstacle.",
+  "scoring": "Score points for distance, with bonus points for collecting fish and clearing dogs.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0711-an-endless-runner-where-you-re-a"
+}

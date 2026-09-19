@@ -37,10 +37,14 @@ while (Date.now() < end) {
   } catch (e) {
     log(`ERROR ${e instanceof Error ? e.message : e} <- "${prompt}"`)
   }
-  const mem = await fetch(`${base}/api/library`)
-    .then((r) => r.headers.get('x-mem') ?? '')
-    .catch(() => '')
-  if (mem) log(`mem ${mem}`)
+  // Resident memory of the server process, in MB.
+  try {
+    const { execSync } = await import('node:child_process')
+    const rss = execSync("ps -o rss= -p $(pgrep -f 'next start' | head -1) 2>/dev/null || true")
+      .toString()
+      .trim()
+    if (rss) log(`server rss ${Math.round(Number(rss) / 1024)} MB`)
+  } catch {}
   await new Promise((r) => setTimeout(r, interval * 1000))
 }
 log('soak done')

@@ -1,0 +1,26 @@
+{
+  "title": "FROGGER RUSH",
+  "oneLiner": "Hop across the road while dodging cars that keep getting faster!",
+  "genre": "dodge",
+  "mechanics": [
+    "You guide a frog across lanes of moving traffic.",
+    "Cars hurt the frog on contact.",
+    "Reach the far side to score and return for another crossing.",
+    "Traffic speeds up after each successful crossing."
+  ],
+  "controls": {
+    "left": "Move frog left",
+    "right": "Move frog right",
+    "up": "Hop upward across lanes",
+    "down": "Hop downward",
+    "a": "Short hop forward",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "The frog loses when hit by a car.",
+  "scoring": "Each successful road crossing scores points, with bonus points for quick crossings.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0712-a-game-where-i-m-a-frog-dodging"
+}

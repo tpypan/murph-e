@@ -1,0 +1,26 @@
+{
+  "title": "SALSA TACO",
+  "oneLiner": "Catch falling salsa to build the tastiest taco before the kitchen gets too hot!",
+  "genre": "dodge",
+  "mechanics": [
+    "Move the taco left and right beneath falling salsa jars.",
+    "Catch salsa to score points and fill your flavor meter.",
+    "Avoid falling hot peppers, which cost a life.",
+    "Salsa falls faster and gaps tighten over time."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": null,
+    "down": null,
+    "a": "Dash briefly in your current direction",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "Lose all three taco lives after hitting too many hot peppers.",
+  "scoring": "Each salsa catch scores 10 points, with streak bonuses for consecutive catches.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0712-a-game-where-you-are-a-taco-and"
+}

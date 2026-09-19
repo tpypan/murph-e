@@ -1,0 +1,26 @@
+{
+  "title": "DRAGON KEEP",
+  "oneLiner": "Defend your castle walls by blasting waves of swooping dragons before they torch the keep.",
+  "genre": "shooter",
+  "mechanics": [
+    "Move the castle cannon left and right along the wall.",
+    "Press A to fire bolts at flying dragons; each dragon takes several hits.",
+    "Dragons dive toward the keep and drop fireballs that damage it.",
+    "Waves grow faster and dragons become tougher over time."
+  ],
+  "controls": {
+    "left": "Move cannon left",
+    "right": "Move cannon right",
+    "up": null,
+    "down": null,
+    "a": "Fire a bolt",
+    "b": "Activate a powerful fireball shot with a short cooldown"
+  },
+  "palette": "nes",
+  "lose": "The castle loses all of its keep health.",
+  "scoring": "Earn points for destroying dragons, with bonus points for stopping them near the top of the screen.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0712-a-shooter-where-you-defend-a-cas"
+}

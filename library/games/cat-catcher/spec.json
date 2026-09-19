@@ -1,0 +1,26 @@
+{
+  "title": "CAT CATCHER",
+  "oneLiner": "Dash through the moonlit rooftops and catch runaway yarn before the cats knock it away!",
+  "genre": "runner",
+  "mechanics": [
+    "A nimble cat runs automatically across rooftops.",
+    "Use left/right to dodge chimneys and leap between roof edges.",
+    "Catch glowing yarn balls to score points.",
+    "Missed yarn and obstacles cost a life; speed ramps up over time."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": "Jump",
+    "down": "Duck under signs",
+    "a": "Pounce forward",
+    "b": "Unused"
+  },
+  "palette": "arcade",
+  "lose": "Lose all three lives by hitting obstacles or falling from the rooftops.",
+  "scoring": "Catch yarn balls for points, with bonus points for collecting several in a row.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0711-something-with-cats"
+}

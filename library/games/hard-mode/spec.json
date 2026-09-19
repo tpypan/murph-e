@@ -1,0 +1,26 @@
+{
+  "title": "HARD MODE",
+  "oneLiner": "Survive a brutally fast gauntlet of shifting hazards and chase your high score.",
+  "genre": "dodge",
+  "mechanics": [
+    "Move the tiny square through a one-screen maze of sliding hazards.",
+    "Touching a hazard ends the run.",
+    "Survive to earn points, with bonus points for near misses.",
+    "Hazards speed up and patterns become denser over time."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": "Move up",
+    "down": "Move down",
+    "a": "Dash briefly in your movement direction",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "Lose when you collide with a hazard.",
+  "scoring": "Score points every second, with extra points for near misses.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0712-something-really-hard"
+}

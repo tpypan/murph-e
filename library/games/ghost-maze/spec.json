@@ -1,0 +1,26 @@
+{
+  "title": "GHOST MAZE",
+  "oneLiner": "Race through the haunted maze while a hungry ghost closes in!",
+  "genre": "dodge",
+  "mechanics": [
+    "Move through a single-screen maze collecting glowing keys.",
+    "The ghost relentlessly follows your path and touching it costs a life.",
+    "Collect all keys to score and open the exit.",
+    "The ghost speeds up and extra dead ends appear as time passes."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": "Move up",
+    "down": "Move down",
+    "a": "Drop a brief decoy at your position",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "You lose when the ghost catches you.",
+  "scoring": "Each key scores points, with a bonus for escaping the maze.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0712-a-maze-where-a-ghost-chases-you"
+}

@@ -1,0 +1,26 @@
+{
+  "title": "SPIKE DASH",
+  "oneLiner": "Leap across tiny platforms, grab every coin, and dodge the spikes before the screen gets wild.",
+  "genre": "platformer",
+  "mechanics": [
+    "Run and jump between platforms while collecting coins.",
+    "Spikes cost a life and knock the player back.",
+    "Each coin adds to the score; collect strings of coins for bonus points.",
+    "Platforms shift faster and spike patterns grow denser over time."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": "Aim jump / climb through a platform",
+    "down": "Crouch or drop through a platform",
+    "a": "Jump",
+    "b": "Dash briefly forward"
+  },
+  "palette": "arcade",
+  "lose": "Lose all three lives by touching spikes or falling off the screen.",
+  "scoring": "Coins score points, with consecutive pickups increasing the combo bonus.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0710-a-platformer-where-you-collect-c"
+}
