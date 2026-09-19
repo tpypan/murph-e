@@ -238,7 +238,8 @@ cannot be connected to the same badge at once; that is fine on the floor.
 | 5. BLE | not run, tier 3 only |
 | 6. Share timing | not run |
 | console under wake lock | 48 of 48 prompts answered over four minutes with the test app open |
-| idle QR screen | open. The console went silent once while the badge showed its idle QR screen, but that was right after the overflowed `put`, so the cause is not separated yet |
+| idle QR screen | console answers on every screen tried: a running app, the launcher, the Share/Sync menu and the idle QR screen. The one silence seen all day was the overflowed `put`, nothing else |
+| `uitree` as a shortcut | on the idle QR screen the widget dump contains `Tony Pan` and `Badge ID: quiet-phoenix-noble-bold` as label text. The cabinet can greet a badge by name the instant it is plugged in if it happens to be on that screen, before any app is opened. A nicety, not the identity path |
 
 Not yet run: two badges on one hub at once, and unplug and replug of the
 same badge. Both are expected to be routine and are on the setup-day list.
