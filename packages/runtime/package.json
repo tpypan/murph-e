@@ -1,0 +1,16 @@
+{
+  "name": "@htn/runtime",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./runtime.js",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --format=iife --target=es2020 --outfile=runtime.js --legal-comments=none",
+    "watch": "esbuild src/index.ts --bundle --format=iife --target=es2020 --outfile=runtime.js --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.9",
+    "typescript": "^5.9.2"
+  }
+}

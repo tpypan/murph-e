@@ -1,0 +1,21 @@
+{
+  "name": "htn-2026",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.21.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "build": "pnpm -r --filter './packages/*' build",
+    "dev": "pnpm --filter @htn/cabinet dev",
+    "harness": "pnpm --filter @htn/harness exec tsx src/cli.ts",
+    "probe": "pnpm --filter @htn/probe exec tsx src/cli.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.8",
+    "typescript": "^5.9.2"
+  }
+}
