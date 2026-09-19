@@ -1,0 +1,28 @@
+{
+  "title": "TURBO DASH",
+  "oneLiner": "Race through a neon tunnel, dodging barriers at blistering speed.",
+  "genre": "runner",
+  "mechanics": [
+    "The runner automatically sprints forward.",
+    "Steer left and right between three lanes.",
+    "Barriers hurt; collect stars to score.",
+    "The tunnel scrolls faster and obstacles tighten over time."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": null,
+    "down": null,
+    "a": "Dash briefly forward",
+    "b": "No effect"
+  },
+  "palette": "arcade",
+  "lose": "Crash into a barrier.",
+  "scoring": "Collect stars and survive longer for points.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "players": 1,
+  "runId": "2026-09-19-0911-make-it-faster"
+}
