@@ -1,0 +1,26 @@
+{
+  "title": "PIZZA INVADERS",
+  "oneLiner": "Blast the cheesy pizza invaders before they cover the sky!",
+  "genre": "shooter",
+  "mechanics": [
+    "Move the pizza pan left and right along the bottom.",
+    "Press A to fire sauce blasts at descending pizza aliens.",
+    "Pizza invaders drop toppings that hurt the pan.",
+    "Clear waves for points; each wave moves faster and fires more often."
+  ],
+  "controls": {
+    "left": "Move pan left",
+    "right": "Move pan right",
+    "up": null,
+    "down": null,
+    "a": "Fire sauce blast",
+    "b": "Hold for rapid fire"
+  },
+  "palette": "arcade",
+  "lose": "Lose when a pizza reaches the pan or a topping hits it.",
+  "scoring": "Score points for blasting pizza invaders, with bonus points for clearing a wave.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0713-space-invaders-but-the-aliens-ar"
+}

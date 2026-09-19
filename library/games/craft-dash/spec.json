@@ -1,0 +1,26 @@
+{
+  "title": "CRAFT DASH",
+  "oneLiner": "Gather glowing scraps, craft tools, and outrun the wilds in a tiny arcade adventure.",
+  "genre": "runner",
+  "mechanics": [
+    "The explorer runs across a scrolling one-screen wilderness automatically.",
+    "Steer left and right to collect wood, ore, and crystal scraps.",
+    "Press A to craft a tool that clears the next obstacle or B to dash briefly.",
+    "Rocks, brambles, and beasts slow you down; speed and obstacle density ramp over time."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": null,
+    "down": null,
+    "a": "Craft the best available tool and clear an obstacle",
+    "b": "Dash forward briefly"
+  },
+  "palette": "nes",
+  "lose": "Lose when an obstacle catches the explorer or the timer runs out of stamina.",
+  "scoring": "Score points for gathering resources, crafting tools, and surviving longer.",
+  "moderated": false,
+  "note": "SHRUNK THE OPEN WORLD RPG INTO ONE ARCAD",
+  "players": 1,
+  "runId": "2026-09-19-0713-an-open-world-rpg-with-crafting"
+}

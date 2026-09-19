@@ -1,0 +1,26 @@
+{
+  "title": "DUEL BYTE",
+  "oneLiner": "Outsmart the computer in a fast one-screen neon duel.",
+  "genre": "dodge",
+  "mechanics": [
+    "Move your fighter left and right across the arena.",
+    "Press A to strike the rival when nearby.",
+    "Press B to dash away or close the gap.",
+    "Hits score points and briefly stun the rival; the computer grows faster over time."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": null,
+    "down": null,
+    "a": "Strike",
+    "b": "Dash"
+  },
+  "palette": "arcade",
+  "lose": "Lose when your health reaches zero.",
+  "scoring": "Score one point for each successful strike.",
+  "moderated": false,
+  "note": "MADE IT ONE PLAYER",
+  "players": 1,
+  "runId": "2026-09-19-0713-a-two-player-fighting-game"
+}
