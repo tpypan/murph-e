@@ -26,8 +26,22 @@ const ENCODER_KEYS: Record<string, Button> = {
   // e.g. KeyW: 'up', KeyS: 'down', KeyA: 'left', KeyD: 'right', KeyJ: 'a', KeyK: 'b', Digit1: 'start', KeyL: 'talk'
 }
 
-export function buttonForCode(code: string): Button | null {
-  return ENCODER_KEYS[code] ?? DEV_KEYS[code] ?? null
+// Player 2 from the keyboard, for playing a two-player game alone while
+// developing. On the cabinet player 2 is a badge.
+const DEV_KEYS_P2: Record<string, Button> = {
+  KeyI: 'up',
+  KeyK: 'down',
+  KeyJ: 'left',
+  KeyL: 'right',
+  KeyN: 'a',
+  KeyM: 'b',
+}
+
+export function buttonForCode(code: string): { player: number; button: Button } | null {
+  const b = ENCODER_KEYS[code] ?? DEV_KEYS[code]
+  if (b) return { player: 0, button: b }
+  const p2 = DEV_KEYS_P2[code]
+  return p2 ? { player: 1, button: p2 } : null
 }
 
 /** Attach keyboard listeners; returns a detach function. */
@@ -41,13 +55,13 @@ export function attachKeyboard(onInput: (ev: InputEvent) => void): () => void {
     if (!b || typing()) return
     e.preventDefault()
     if (e.repeat) return
-    onInput({ player: 0, button: b, down: true })
+    onInput({ ...b, down: true })
   }
   const up = (e: KeyboardEvent) => {
     const b = buttonForCode(e.code)
     if (!b || typing()) return
     e.preventDefault()
-    onInput({ player: 0, button: b, down: false })
+    onInput({ ...b, down: false })
   }
   window.addEventListener('keydown', down)
   window.addEventListener('keyup', up)

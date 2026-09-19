@@ -317,7 +317,7 @@ Filled in per milestone as they land; see the commit log for the detail.
 
 | milestone | state | verified by |
 |---|---|---|
-| M0 fake badge | pending | |
+| M0 fake badge | done | `pnpm test:badge` 10/10 (protocol, paced push, hello/button/bye/detach per slot, uitree identity, ring overflow wedge); `pnpm badge fake` scenario; fake badge driven through the running cabinet server over `/api/badges/fake` and seen on `/api/badges`. Real serial path untested here: both badges on this Mac were held by another process (H1) |
 | M1 two players | pending | |
 | M2 leaderboard | pending | |
 | M3 cabinet flow | pending | |

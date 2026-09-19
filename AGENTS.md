@@ -18,6 +18,8 @@ you are working on.
 packages/runtime/   the 8-bit fantasy-console runtime games run on. No deps.
 packages/harness/   transcript -> spec -> game.js -> probe -> repair. CLI.
 packages/probe/     headless Playwright verifier for a game.js.
+packages/badge/     hacker badge over USB serial: hot-plug, app push, hello and
+                    button events. Ships the arcade Lua app in app/.
 apps/cabinet/       Next.js kiosk page + API routes (STT token, generate).
 library/            games that passed the probe: spec.json, game.js, thumb.png
 bench/              canned prompts and bench results.
@@ -91,6 +93,11 @@ Until a package exists, its plan is in `docs/plans/tier-1.md`.
   p50, p95 and probe pass rate to the last result file.
 - Probe change: run it on `library/` and confirm every library game still
   passes, then on `bench/known-bad/` and confirm every broken one still fails.
+- Badge change: `pnpm badge watch` with a badge plugged in prints every hub
+  event (attach, install, hello, buttons). `pnpm badge push` forces a
+  reinstall of `packages/badge/app`. Bump `version` in `manifest.cfg` and
+  `APP_VERSION` in `protocol.ts` together; the hub reinstalls on mismatch.
+  The badge's Lua sandbox has no `pcall`.
 - Cabinet change: `pnpm dev`, then `pnpm screenshots:cabinet` for a
   screenshot of every state including one real generation and the F8 crash
   injection, or drive it by hand (arrows, Z, X, Enter, hold Space to talk,

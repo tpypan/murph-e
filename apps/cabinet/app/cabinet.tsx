@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useReducer, useRef, useState } from 'react'
+import { attachBadges, type BadgePlayer, rgb } from './badges'
 import { attachKeyboard, attractScript, type InputEvent } from './input'
 import { readSse } from './sse'
 import { Stt } from './stt'
@@ -52,9 +53,11 @@ interface View {
   error: string | null
   libraryCount: number
   mic: 'idle' | 'on' | 'unavailable'
+  badges: BadgePlayer[]
 }
 
 type Action =
+  | { type: 'badges'; badges: BadgePlayer[] }
   | { type: 'phase'; phase: Phase }
   | { type: 'transcript'; transcript: string }
   | { type: 'spec'; spec: Spec }
@@ -81,12 +84,14 @@ const initial: View = {
   error: null,
   libraryCount: 0,
   mic: 'idle',
+  badges: [],
 }
 
 const MAX_CODE_CHARS = 20000
 const EXPECTED_CHARS = 6500
 const IDLE_MS = 60_000
 const ATTRACT_SCRIPT_S = 40
+const PLAYERS = 1 // set by the 1P/2P attract menu once it exists
 
 function reduce(v: View, a: Action): View {
   switch (a.type) {
@@ -110,6 +115,8 @@ function reduce(v: View, a: Action): View {
       return { ...v, libraryCount: a.count }
     case 'mic':
       return { ...v, mic: a.mic }
+    case 'badges':
+      return { ...v, badges: a.badges }
     case 'resetBuild':
       return { ...v, spec: null, code: '', status: 'BUILDING', observations: [], error: null }
   }
@@ -354,10 +361,34 @@ export default function Cabinet() {
   )
 
   useEffect(() => attachKeyboard(onInput), [onInput])
+  // Until the 1P/2P menu exists every game is one-player, so every badge
+  // drives player 0 (docs/badge-integration.md §4). In 2P the slot is the
+  // player index.
+  const onBadgeInput = useCallback(
+    (ev: InputEvent) => onInput(PLAYERS === 1 ? { ...ev, player: 0 } : ev),
+    [onInput],
+  )
+  useEffect(
+    () =>
+      attachBadges({
+        onInput: onBadgeInput,
+        onRoster: (badges) => dispatch({ type: 'badges', badges }),
+      }),
+    [onBadgeInput],
+  )
 
-  // Dev hooks: F8 injects a crashing game to exercise the fallback path.
+  // Dev hooks: F8 injects a crashing game to exercise the fallback path;
+  // F1 and F2 plug (or unplug) a fake badge through the real hub.
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
+      if (e.code === 'F1' || e.code === 'F2') {
+        e.preventDefault()
+        void fetch('/api/badges/fake', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ op: 'toggle', n: e.code === 'F1' ? 1 : 2 }),
+        }).catch(() => {})
+      }
       if (e.code === 'F8') {
         stopAttract()
         dispatch({ type: 'game', game: { title: 'CRASH TEST', source: 'build' } })
@@ -478,8 +509,27 @@ export default function Cabinet() {
             <div className="text-[14px] text-[#c2c3c7] drop-shadow-[2px_2px_0_#000]">
               OR PRESS START TO PLAY THIS ONE
             </div>
+            <div className="text-[12px] text-[#5f574f] drop-shadow-[2px_2px_0_#000]">
+              PLUG IN YOUR BADGE TO SAVE YOUR SCORE
+            </div>
           </div>
         </>
+      )}
+
+      {v.badges.length > 0 && (
+        <div className="absolute top-16 left-8 flex flex-col gap-2 text-[14px] drop-shadow-[2px_2px_0_#000]">
+          {v.badges.map((b) => (
+            <div key={b.path} className="flex items-center gap-3">
+              <span
+                className="inline-block h-4 w-4 border-2 border-black"
+                style={{ background: rgb(b.color) }}
+              />
+              <span style={{ color: rgb(b.color) }}>
+                P{b.slot + 1} {b.name.toUpperCase()}
+              </span>
+            </div>
+          ))}
+        </div>
       )}
 
       {v.phase === 'LISTENING' && (
