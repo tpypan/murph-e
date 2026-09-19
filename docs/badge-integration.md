@@ -2,9 +2,10 @@
 
 Researched 2026-09-19 from badge.hackthenorth.com, the IDE README
 (`badge.hackthenorth.com/ide/README.md`, the full Lua API reference), the
-IDE client script, the Notion manual and the badge rules. Nothing below has
-been tested on a physical badge yet; section 6 is the list of things to verify
-in the first ten minutes of having one in hand.
+IDE client script, the Notion manual and the badge rules. Later the same
+day the wired path was tested on one real badge from a MacBook; the results
+are in section 6 and the rows marked "verified" in section 1. BLE, Share
+timing and two badges on one hub are still untested.
 
 Revised 2026-09-19, later the same day: the QR scanner is gone. The USB-C
 cable is the only identity path, for single and two-player alike, and the
@@ -236,7 +237,8 @@ cannot be connected to the same badge at once; that is fine on the floor.
 | 4. console while app runs | yes. `reload` from the console does exit the running app |
 | 5. BLE | not run, tier 3 only |
 | 6. Share timing | not run |
-| idle screen | see below |
+| console under wake lock | 48 of 48 prompts answered over four minutes with the test app open |
+| idle QR screen | open. The console went silent once while the badge showed its idle QR screen, but that was right after the overflowed `put`, so the cause is not separated yet |
 
 Not yet run: two badges on one hub at once, and unplug and replug of the
 same badge. Both are expected to be routine and are on the setup-day list.
