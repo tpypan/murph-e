@@ -1,0 +1,183 @@
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { resolve } from 'node:path'
+import { closeProbe, controlsFromSpec, probe } from '@htn/probe'
+import { MODELS, ROOT } from './env.ts'
+import { gen } from './gen.ts'
+
+export interface BenchOptions {
+  model?: string
+  effort?: string
+  n?: number
+  concurrency?: number
+  label?: string
+  noProbe?: boolean
+  onLine?: (line: string) => void
+}
+
+export interface BenchRow {
+  prompt: string
+  title: string
+  genre: string
+  runId: string
+  specMs: number
+  buildMs: number
+  ttftMs: number | null
+  totalMs: number
+  tokens: number
+  reasoning: number
+  cached: number
+  lines: number
+  syntaxError: string | null
+  probeOk: boolean | null
+  observations: string[]
+  error: string | null
+}
+
+function pct(values: number[], p: number): number {
+  if (values.length === 0) return 0
+  const sorted = [...values].sort((a, b) => a - b)
+  const idx = Math.min(sorted.length - 1, Math.ceil((p / 100) * sorted.length) - 1)
+  return sorted[Math.max(0, idx)] ?? 0
+}
+
+const s = (msValue: number | null | undefined) =>
+  msValue == null ? '-' : `${(msValue / 1000).toFixed(1)}s`
+
+export async function bench(
+  prompts: string[],
+  opts: BenchOptions = {},
+): Promise<{ rows: BenchRow[]; file: string }> {
+  const model = opts.model ?? MODELS.build
+  const effort = opts.effort ?? MODELS.buildEffort
+  const n = opts.n ?? 1
+  const concurrency = opts.concurrency ?? 4
+  const label = opts.label ?? `${model}-${effort}`.replace(/[^a-z0-9.-]+/gi, '-')
+  const log = opts.onLine ?? ((l: string) => process.stderr.write(`${l}\n`))
+
+  const jobs: Array<{ prompt: string; variant: number }> = []
+  for (const prompt of prompts) for (let v = 0; v < n; v++) jobs.push({ prompt, variant: v })
+  const rows: BenchRow[] = new Array(jobs.length)
+  let next = 0
+  const t0 = performance.now()
+
+  async function worker() {
+    while (next < jobs.length) {
+      const i = next++
+      const job = jobs[i]!
+      const row: BenchRow = {
+        prompt: job.prompt,
+        title: '',
+        genre: '',
+        runId: '',
+        specMs: 0,
+        buildMs: 0,
+        ttftMs: null,
+        totalMs: 0,
+        tokens: 0,
+        reasoning: 0,
+        cached: 0,
+        lines: 0,
+        syntaxError: null,
+        probeOk: null,
+        observations: [],
+        error: null,
+      }
+      try {
+        const r = await gen(job.prompt, { model, effort, variant: job.variant })
+        row.title = r.spec.title
+        row.genre = r.spec.genre
+        row.runId = r.run.id
+        row.specMs = r.timings.specMs
+        row.buildMs = r.timings.buildMs
+        row.ttftMs = r.timings.ttftMs
+        row.totalMs = r.timings.totalMs
+        row.tokens = r.tokens.build
+        row.reasoning = r.tokens.reasoning
+        row.cached = r.tokens.cached
+        row.lines = r.code.split('\n').length
+        row.syntaxError = r.syntaxError
+        if (!opts.noProbe) {
+          const p = await probe(r.code, {
+            controls: controlsFromSpec(r.spec.controls),
+            title: r.spec.title,
+          })
+          row.probeOk = p.ok
+          row.observations = p.observations
+          r.run.write(
+            'probe.json',
+            JSON.stringify(
+              { ok: p.ok, observations: p.observations, checks: p.checks, ms: p.ms },
+              null,
+              2,
+            ),
+          )
+          if (p.thumb) r.run.write('thumb.png', p.thumb)
+          r.run.event('probe', { ok: p.ok, observations: p.observations, ms: p.ms })
+        }
+      } catch (e) {
+        row.error = e instanceof Error ? e.message : String(e)
+      }
+      rows[i] = row
+      const status = row.error
+        ? `ERROR ${row.error.slice(0, 80)}`
+        : row.probeOk === null
+          ? 'built'
+          : row.probeOk
+            ? 'PASS'
+            : `FAIL ${row.observations.join('; ').slice(0, 80)}`
+      log(
+        `[${i + 1}/${jobs.length}] ${s(row.totalMs)} (${row.tokens} tok) ${row.title || '?'} <- "${job.prompt.slice(0, 40)}"  ${status}`,
+      )
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(concurrency, jobs.length) }, worker))
+  if (!opts.noProbe) await closeProbe()
+
+  const okRows = rows.filter((r) => !r.error)
+  const totals = okRows.map((r) => r.totalMs)
+  const builds = okRows.map((r) => r.buildMs)
+  const ttfts = okRows.map((r) => r.ttftMs ?? 0)
+  const probed = okRows.filter((r) => r.probeOk !== null)
+  const passed = probed.filter((r) => r.probeOk).length
+  const date = new Date().toISOString().slice(0, 10)
+  const stamp = new Date().toISOString().slice(11, 16).replace(':', '')
+  const file = resolve(ROOT, 'bench/results', `${date}-${stamp}-${label}.md`)
+  mkdirSync(resolve(ROOT, 'bench/results'), { recursive: true })
+  const md = [
+    `# Bench ${date} ${label}`,
+    '',
+    `- model: ${model}, effort: ${effort}, n: ${n}, concurrency: ${concurrency}`,
+    `- prompts: ${prompts.length}, runs: ${rows.length}, errors: ${rows.length - okRows.length}`,
+    `- total  p50 ${s(pct(totals, 50))}  p95 ${s(pct(totals, 95))}  max ${s(Math.max(0, ...totals))}`,
+    `- build  p50 ${s(pct(builds, 50))}  p95 ${s(pct(builds, 95))}`,
+    `- ttft   p50 ${s(pct(ttfts, 50))}  p95 ${s(pct(ttfts, 95))}`,
+    `- tokens mean ${Math.round(okRows.reduce((a, r) => a + r.tokens, 0) / Math.max(1, okRows.length))}  reasoning mean ${Math.round(okRows.reduce((a, r) => a + r.reasoning, 0) / Math.max(1, okRows.length))}  lines mean ${Math.round(okRows.reduce((a, r) => a + r.lines, 0) / Math.max(1, okRows.length))}`,
+    `- syntax errors: ${okRows.filter((r) => r.syntaxError).length}`,
+    probed.length > 0
+      ? `- probe pass: ${passed}/${probed.length} (${Math.round((100 * passed) / probed.length)}%)`
+      : '- probe: skipped',
+    `- wall clock: ${s(Math.round(performance.now() - t0))}`,
+    '',
+    '| # | prompt | title | genre | spec | build | ttft | total | tok | reas | lines | probe | notes |',
+    '|---|---|---|---|---|---|---|---|---|---|---|---|---|',
+    ...rows.map(
+      (r, i) =>
+        `| ${i + 1} | ${r.prompt.slice(0, 40)} | ${r.title} | ${r.genre} | ${s(r.specMs)} | ${s(r.buildMs)} | ${s(r.ttftMs)} | ${s(r.totalMs)} | ${r.tokens} | ${r.reasoning} | ${r.lines} | ${r.error ? 'error' : r.probeOk === null ? '-' : r.probeOk ? 'pass' : 'FAIL'} | ${(r.error ?? [r.syntaxError, ...r.observations].filter(Boolean).join('; ')).replace(/\|/g, '/').slice(0, 120)} |`,
+    ),
+    '',
+    '## runs',
+    '',
+    ...rows.map((r) => `- ${r.runId || '(none)'}`),
+    '',
+  ].join('\n')
+  writeFileSync(file, md)
+  writeFileSync(file.replace(/\.md$/, '.json'), JSON.stringify({ model, effort, n, rows }, null, 2))
+  return { rows, file }
+}
+
+export function readPrompts(file: string): string[] {
+  return readFileSync(file, 'utf8')
+    .split('\n')
+    .map((l) => l.replace(/\s+\(.*\)\s*$/, '').trim())
+    .filter((l) => l.length > 0 && !l.startsWith('#'))
+}

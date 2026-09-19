@@ -1,19 +1,32 @@
 import { spawn } from 'node:child_process'
+import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { parseArgs } from 'node:util'
+import { bench, readPrompts } from './bench.ts'
 import { MODELS, ROOT } from './env.ts'
 import { gen } from './gen.ts'
+import { listLibrary } from './library.ts'
+import { pipeline } from './pipeline.ts'
+import { seed } from './seed.ts'
+
+const CWD = process.env.INIT_CWD ?? process.cwd()
 
 const USAGE = `usage:
   harness gen "<transcript>" [--model M] [--effort E] [--variant N]
   harness play <run-id>
+  harness run "<transcript>" [--race 2]        full pipeline: spec, race, probe, repair, fallback
+  harness seed <prompts.txt> [--n 2]           fill library/games with passing games
+  harness bench <prompts.txt> [--model M] [--effort E] [--n 1] [--concurrency 4] [--label L] [--no-probe]
 `
 
 function fmtS(msValue: number | null | undefined): string {
   return msValue == null ? '-' : `${(msValue / 1000).toFixed(1)}s`
 }
 
-async function cmdGen(transcript: string, values: Record<string, string | undefined>) {
+async function cmdGen(
+  transcript: string,
+  values: { model?: string; effort?: string; variant?: string },
+) {
   const t0 = performance.now()
   let streamedChars = 0
   const result = await gen(transcript, {
@@ -73,13 +86,53 @@ const { values, positionals } = parseArgs({
     model: { type: 'string' },
     effort: { type: 'string' },
     variant: { type: 'string' },
+    n: { type: 'string' },
+    concurrency: { type: 'string' },
+    label: { type: 'string' },
+    'no-probe': { type: 'boolean' },
+    race: { type: 'string' },
   },
 })
 const [cmd, ...rest] = positionals
 try {
   if (cmd === 'gen' && rest[0]) await cmdGen(rest.join(' '), values)
   else if (cmd === 'play' && rest[0]) await cmdPlay(rest[0])
-  else {
+  else if (cmd === 'run' && rest[0]) {
+    const { closeProbe } = await import('@htn/probe')
+    const r = await pipeline(rest.join(' '), {
+      race: values.race ? Number(values.race) : 2,
+      model: values.model,
+      effort: values.effort,
+      onEvent: (ev) => {
+        if (ev.type === 'token') {
+          if (ev.variant === 0) process.stdout.write(ev.text)
+        } else if (ev.type === 'ready') {
+          process.stderr.write(
+            `\nREADY ${ev.source} "${ev.title}" in ${fmtS(ev.totalMs)}  run: runs/${ev.runId}\n`,
+          )
+        } else process.stderr.write(`\n[${ev.type}] ${JSON.stringify(ev).slice(0, 300)}\n`)
+      },
+    })
+    await closeProbe()
+    process.stderr.write(`play: pnpm harness play ${r.run.id}\n`)
+  } else if (cmd === 'seed' && rest[0]) {
+    const added = await seed(readPrompts(resolve(CWD, rest[0])), {
+      n: values.n ? Number(values.n) : 1,
+      concurrency: values.concurrency ? Number(values.concurrency) : 2,
+    })
+    process.stderr.write(`library: +${added} games, ${listLibrary().length} total\n`)
+  } else if (cmd === 'bench' && rest[0]) {
+    const { file } = await bench(readPrompts(resolve(CWD, rest[0])), {
+      model: values.model,
+      effort: values.effort,
+      n: values.n ? Number(values.n) : 1,
+      concurrency: values.concurrency ? Number(values.concurrency) : 4,
+      label: values.label,
+      noProbe: values['no-probe'],
+    })
+    process.stderr.write(`results: ${file}\n`)
+    process.stderr.write(`${readFileSync(file, 'utf8').split('\n').slice(0, 12).join('\n')}\n`)
+  } else {
     process.stderr.write(USAGE)
     process.stderr.write(
       `models: build ${MODELS.build}/${MODELS.buildEffort}, spec ${MODELS.spec}/${MODELS.specEffort}\n`,

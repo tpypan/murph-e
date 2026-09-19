@@ -9,3 +9,4 @@ runs/
 *.local.md
 packages/runtime/runtime.js
 bench/screenshots/
+*.thumb.png

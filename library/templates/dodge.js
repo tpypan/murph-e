@@ -1,5 +1,6 @@
 // TITLE: SKY FALL
 // GENRE: dodge
+// CONTROLS: left right a
 // A player at the bottom of the screen moves left and right and can hop.
 // Hazards fall from the top (avoid), pickups fall too (catch for points).
 // Everything speeds up over time. Three hits and it is game over.
