@@ -241,8 +241,10 @@ cannot be connected to the same badge at once; that is fine on the floor.
 | idle QR screen | console answers on every screen tried: a running app, the launcher, the Share/Sync menu and the idle QR screen. The one silence seen all day was the overflowed `put`, nothing else |
 | `uitree` as a shortcut | on the idle QR screen the widget dump contains `Tony Pan` and `Badge ID: quiet-phoenix-noble-bold` as label text. The cabinet can greet a badge by name the instant it is plugged in if it happens to be on that screen, before any app is opened. A nicety, not the identity path |
 
-Not yet run: two badges on one hub at once, and unplug and replug of the
-same badge. Both are expected to be routine and are on the setup-day list.
+| unplug and replug | port disappears on unplug, reappears on replug, and `badge> ` answers on the first try with no reboot |
+
+Not yet run: two badges on one hub at once. Expected to be routine, on the
+setup-day list.
 
 The original checklist, kept for the next badge:
 
