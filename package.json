@@ -17,7 +17,8 @@
     "runtime:build": "pnpm --filter @htn/runtime build",
     "runtime:watch": "pnpm --filter @htn/runtime watch",
     "exercise": "pnpm --filter @htn/probe exec node scripts/exercise-runtime.mjs",
-    "screenshots": "pnpm --filter @htn/probe exec node scripts/screenshot-runtime.mjs"
+    "screenshots": "pnpm --filter @htn/probe exec node scripts/screenshot-runtime.mjs",
+    "screenshots:cabinet": "pnpm --filter @htn/probe exec node scripts/screenshot-cabinet.mjs"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.8",

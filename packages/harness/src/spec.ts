@@ -14,10 +14,10 @@ export const GENRES = [
 export type Genre = (typeof GENRES)[number]
 
 export const GameSpecSchema = z.object({
-  title: z.string().min(1).max(14),
-  oneLiner: z.string().min(1).max(120),
+  title: z.string().min(1),
+  oneLiner: z.string().min(1),
   genre: z.enum(GENRES),
-  mechanics: z.array(z.string()).min(2).max(6),
+  mechanics: z.array(z.string()).min(1),
   controls: z.object({
     left: z.string().nullable(),
     right: z.string().nullable(),
@@ -30,7 +30,7 @@ export const GameSpecSchema = z.object({
   lose: z.string(),
   scoring: z.string(),
   moderated: z.boolean(),
-  note: z.string().max(40),
+  note: z.string(),
 })
 export type GameSpec = z.infer<typeof GameSpecSchema> & { players: 1 }
 
@@ -122,6 +122,8 @@ export async function specify(
   const parsed = GameSpecSchema.parse(JSON.parse(res.output_text))
   parsed.title = parsed.title.toUpperCase().slice(0, 14)
   parsed.note = parsed.note.toUpperCase().slice(0, 40)
+  parsed.oneLiner = parsed.oneLiner.slice(0, 120)
+  parsed.mechanics = parsed.mechanics.slice(0, 6)
   return {
     spec: { ...parsed, players: 1 },
     ms: ms(t0),

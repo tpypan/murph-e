@@ -20,9 +20,18 @@ importers:
       '@htn/harness':
         specifier: workspace:*
         version: link:../../packages/harness
+      '@htn/probe':
+        specifier: workspace:*
+        version: link:../../packages/probe
       next:
         specifier: 16.3.5
         version: 16.3.5(@types/node@24.13.5)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
+      openai:
+        specifier: ^6.0.0
+        version: 6.49.0(zod@4.6.5)
+      playwright:
+        specifier: ^1.55.0
+        version: 1.63.0
       react:
         specifier: 19.2.8
         version: 19.2.8

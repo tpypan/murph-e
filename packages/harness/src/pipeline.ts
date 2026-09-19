@@ -1,6 +1,5 @@
 import { controlsFromSpec, type ProbeResult, probe } from '@htn/probe'
 import { type BuildResult, build } from './build.ts'
-import { MODELS } from './env.ts'
 import { keepInLibrary, pickFallback } from './library.ts'
 import { buildPrompt, loadTemplates } from './prompt.ts'
 import { repair } from './repair.ts'
@@ -183,11 +182,7 @@ export async function pipeline(
   }
 
   const pending = new Map<number, Promise<Attempt>>()
-  for (let v = 0; v < race; v++)
-    pending.set(
-      v,
-      attempt(v).then((a) => (((a as Attempt & { _v: number })._v = v), a)),
-    )
+  for (let v = 0; v < race; v++) pending.set(v, attempt(v))
   const finished: Attempt[] = []
   let winner: Attempt | null = null
   while (pending.size > 0 && !winner) {

@@ -35,7 +35,7 @@ Output: exactly one fenced code block (\`\`\`js ... \`\`\`) containing the whole
 Structure:
 - Define init, update and draw as top-level function declarations, exactly as in the API reference.
 - All state lives in top-level let/const variables and is rebuilt inside init(). Nothing runs outside those functions except constant definitions.
-- 150 to 300 lines. Write the game, not an engine. Small helper functions are fine.
+- 120 to 220 lines. Write the game, not an engine. One or two mechanics done well beat five done badly. Small helper functions are fine.
 - Plain JavaScript only. No DOM, window, document, canvas, timers, promises, async, fetch, imports, classes, or libraries. Everything goes through api.
 - Do not use api.btn('start'). START belongs to the runtime.
 
@@ -43,7 +43,8 @@ Feel:
 - Something must be moving on screen from the first frame even with no input: enemies, scrolling, spawning, a bobbing player.
 - Every control in the spec does something visible. A does something visible on the first press.
 - The player can score within 5 seconds and can lose within 30 seconds if they stand still. Difficulty ramps with api.t (faster, denser, more), with no cap that makes it easy.
-- Never call api.gameOver() before api.t > 1. Never end the game for no reason.
+- Grace period: with no input at all, the game must still be alive after 3 seconds. Put the first hazard at least 3 seconds away, hover a falling player until the first press, or start slow. Never call api.gameOver() before api.t > 2.
+- A must do something visible every time it is pressed during play (fire, jump, dash, boost, swing), not only in a waiting state. If A serves or launches, also give it an effect while the ball is in play.
 - Call api.sfx on every event: pickup, hit, shoot, jump, bounce, death. Call api.flash(8, 3) and api.shake(10) when the player is hurt, api.flash(10, 1) on a pickup.
 
 Look:

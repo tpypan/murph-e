@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
+import { Press_Start_2P } from 'next/font/google'
 import './globals.css'
+
+const pixel = Press_Start_2P({ weight: '400', subsets: ['latin'], variable: '--font-pixel' })
 
 export const metadata: Metadata = {
   title: 'HTN Arcade',
@@ -8,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="en" className="h-full bg-black">
+    <html lang="en" className={`h-full bg-black ${pixel.variable}`}>
       <body className="min-h-full bg-black text-white">{children}</body>
     </html>
   )

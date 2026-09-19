@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "sync-runtime": "mkdir -p public/runtime && cp ../../packages/runtime/runtime.js ../../packages/runtime/index.html public/runtime/",
+    "predev": "pnpm --filter @htn/runtime build && pnpm sync-runtime",
     "dev": "next dev",
+    "prebuild": "pnpm --filter @htn/runtime build && pnpm sync-runtime",
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit"
@@ -12,7 +15,10 @@
     "@htn/harness": "workspace:*",
     "next": "16.3.5",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "@htn/probe": "workspace:*",
+    "openai": "^6.0.0",
+    "playwright": "^1.55.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

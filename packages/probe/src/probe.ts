@@ -24,13 +24,6 @@ export interface ProbeResult {
   checks: Record<string, boolean>
 }
 
-interface Snapshot {
-  state: string
-  score: number
-  frame: number
-  error: string | null
-}
-
 let browser: Browser | null = null
 let launching: Promise<Browser> | null = null
 

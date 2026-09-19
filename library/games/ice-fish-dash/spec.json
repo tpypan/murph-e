@@ -1,0 +1,26 @@
+{
+  "title": "ICE FISH DASH",
+  "oneLiner": "Slide a speedy penguin across the ice, grab fish, and dodge the hungry seals!",
+  "genre": "runner",
+  "mechanics": [
+    "The penguin automatically slides forward while left and right steer across icy lanes.",
+    "Collect fish for points and chain pickups for a higher score.",
+    "Avoid seals popping onto the ice; collisions cost a life.",
+    "The scrolling speed and seal frequency increase over time."
+  ],
+  "controls": {
+    "left": "Steer penguin left",
+    "right": "Steer penguin right",
+    "up": null,
+    "down": null,
+    "a": "Hop briefly over a seal",
+    "b": "Brake and slide backward slightly"
+  },
+  "palette": "arcade",
+  "lose": "Lose all three lives by hitting seals or falling into an ice crack.",
+  "scoring": "Each fish collected scores points, with bonus points for consecutive fish.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0658-a-game-where-a-penguin-slides-on"
+}

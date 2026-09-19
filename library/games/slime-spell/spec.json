@@ -1,0 +1,26 @@
+{
+  "title": "SLIME SPELL",
+  "oneLiner": "Blast bouncing dungeon slimes before they swarm the wizard!",
+  "genre": "shooter",
+  "mechanics": [
+    "Move the wizard around one dungeon screen.",
+    "Press A to fire magical bolts at slimes.",
+    "Slimes split into smaller blobs when blasted.",
+    "Survive and destroy slimes to score; more appear over time."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": "Move up",
+    "down": "Move down",
+    "a": "Cast a magic bolt",
+    "b": "Cast a short-range panic spell"
+  },
+  "palette": "arcade",
+  "lose": "The wizard loses all hearts after touching slimes.",
+  "scoring": "Earn points for blasting slimes, with bonus points for smaller blobs.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0659-a-wizard-blasting-slimes-in-a-du"
+}
