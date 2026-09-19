@@ -1,0 +1,26 @@
+{
+  "title": "STAR ZAPPER",
+  "oneLiner": "Zap mischievous space bugs before they swarm your tiny star station.",
+  "genre": "shooter",
+  "mechanics": [
+    "Move the starship left and right along the bottom.",
+    "Press A to fire bright bolts at descending alien bugs.",
+    "Aliens and falling sparks hurt; clear waves to score.",
+    "The swarm speeds up and formations tighten over time."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": null,
+    "down": null,
+    "a": "Fire",
+    "b": "Activate a brief shield"
+  },
+  "palette": "arcade",
+  "lose": "Lose when the starship is hit three times or aliens reach the station.",
+  "scoring": "Earn points for zapping alien bugs, with bonus points for clearing a wave.",
+  "moderated": true,
+  "note": "LET'S PLAY THIS INSTEAD",
+  "players": 1,
+  "runId": "2026-09-19-0713-a-game-where-you-shoot-up-a-scho"
+}

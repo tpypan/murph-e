@@ -365,3 +365,24 @@ an open world RPG with crafting       (should scope it down to one arcade loop)
 Anything in the badge doc, remix, a `players` field that does anything,
 game quality scoring, an admin dashboard, deploys anywhere but the Mac mini,
 tests beyond the probe and the bench.
+
+## 5. Status (2026-09-19)
+
+Every milestone through M7 is built and verified in the repo; M8 needs
+people and the real cabinet.
+
+| milestone | state | verified by |
+|---|---|---|
+| M0 scaffold | done | `pnpm install`, `pnpm lint`, `pnpm -r build` |
+| M1 runtime | done | `pnpm exercise` 20/20; `pnpm screenshots` every state |
+| M2 gen | done | 5 transcripts → 5 distinct playable games, timings in `runs/` |
+| M3 bench + templates | done | 8 templates all pass `pnpm probe`; bench results in `bench/results/`; build effort `none` chosen (p50 36 s, 90% pass) |
+| M4 probe, repair, race, library | done | `bench/known-bad/` all fail with the right observation; `repair-test` fixes a broken template in one round; forced build failure falls back in 7 s; `pnpm harness seed` filled `library/games/` |
+| M5 cabinet page | done | `pnpm screenshots:cabinet` walks attract → play → listen → build → play → crash → fallback, on `next dev` and on `next build && next start` |
+| M6 STT | done | `pnpm stt:test` with two synthesised clips: live words while holding, 7/7 words, build starts 0.8 s after release; clip fallback and typed fallback in place |
+| M7 kiosk + encoder | scripts done, hardware pending | `scripts/kiosk.sh` (production path exercised on port 3100, kiosk Chrome not launched here); `packages/runtime/keys.html` and `ENCODER_KEYS` await the board; short soak run against `next start` |
+| M8 dry run | pending | ten people on the real cabinet, then tag `tier-1` |
+
+Open items that need the hardware or people: encoder keycodes and which
+button is TALK, the two-hour soak on the Mac mini itself, the ten-person
+dry run, and a human pass over the library for "I'd play that again".
