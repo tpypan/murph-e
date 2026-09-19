@@ -39,30 +39,39 @@ This game is for exactly two players on one screen. api.players is 2.
 - Draw player one in api.P1 and player two in api.P2, and start them on opposite sides so they are easy to tell apart.
 - Versus: give a point with api.addScore(1, winnerIndex) and end with api.win(winnerIndex). Something must force the round to end: a closing arena, a timer, or a target score.
 - Coop: score with api.addScore(n) (no index, both players get it), share the lives, and end with api.gameOver().
-- Both players must be able to act from the first frame. Something must move on screen with no input at all.`
+- Both players must be able to act from the first frame, and every button the spec lists must do something visible for BOTH of them.
+- Something must be moving with no input at all, from the first frame. Two players facing each other is a still screen, so the arena has to supply the motion: a ball already in play, hazards already drifting, a ring that is already closing, a scrolling floor, a spawner that is already running.
+- Two players, an arena and a round that ends need more room than one player: write 170 to 230 lines here, not the one-player budget above.`
 
 export const HOUSE_RULES = `HOUSE RULES
+
+Design (the spec's hook is the point of the game; its ramp is the shape of the first minute):
+- Playing must beat standing still: someone who never touches the controls scores slowly and is dead inside 45 seconds. Put the points where the danger is, so there is a reason to move toward what can kill you.
+- Keep a combo variable: it climbs with each success, resets to 1 when the player is hit, multiplies what they score, and is drawn on screen below y = 12. Use at least two point values and make the risky thing worth more.
+- Three stages in the first minute, driven by api.t: a second KIND of hazard at about 20 s, a third one or a new pattern at about 45 s, so there is visibly more on screen at 45 s than at 5. Never cap the difficulty.
+- One bonus that rewrites the rules for a few seconds (shield, spread shot, magnet, double points), shown on screen while it is active. Telegraph anything lethal about half a second before it can reach the player, and never spawn it on top of them.
+- None of the above counts if the screen is still: from the first frame, with nobody touching the controls, something must already be moving.
 
 Output: exactly one fenced code block (\`\`\`js ... \`\`\`) containing the whole game. No prose before or after it.
 
 Structure:
 - Define init, update and draw as top-level function declarations, exactly as in the API reference.
 - All state lives in top-level let/const variables and is rebuilt inside init(). Nothing runs outside those functions except constant definitions.
-- 120 to 220 lines. Write the game, not an engine. One or two mechanics done well beat five done badly. Small helper functions are fine.
+- 140 to 200 lines. This is a hard budget and the person is waiting: if you are running long, cut decoration and extra entity types, never the design rules. Keep one array of things with a kind field rather than one array per kind, and one update loop over it.
 - Plain JavaScript only. No DOM, window, document, canvas, timers, promises, async, fetch, imports, classes, or libraries. Everything goes through api.
 - Do not use api.btn('start'). START belongs to the runtime.
 
 Feel:
-- Something must be moving on screen from the first frame even with no input: enemies, scrolling, spawning, a bobbing player.
-- Every control in the spec does something visible. A does something visible on the first press.
-- The player can score within 5 seconds and can lose within 30 seconds if they stand still. Difficulty ramps with api.t (faster, denser, more), with no cap that makes it easy.
-- Grace period: with no input at all, the game must still be alive after 3 seconds. Put the first hazard at least 3 seconds away, hover a falling player until the first press, or start slow. Never call api.gameOver() before api.t > 2.
-- A must do something visible every time it is pressed during play (fire, jump, dash, boost, swing), not only in a waiting state. If A serves or launches, also give it an effect while the ball is in play.
+- Something must be moving from the very first frame with no input at all: a scrolling backdrop, drifting enemies, a spawner that is already running, a bobbing player. Three still seconds at the start is a failed game.
+- Every control the spec lists must visibly change the screen every time it is used, from the first frame of play. If the theme means a direction would otherwise do nothing (LEFT and RIGHT in an auto-runner, UP in a side view), still make it nudge, lean or shift lanes. A listed control that does nothing is a failed game.
+- The player can score within 5 seconds of the first press.
+- Grace period: with no input at all, the game must still be alive after 3 seconds and dead well before 45. Put the first hazard at least 3 seconds away, hover a falling player until the first press, or start slow. Never call api.gameOver() before api.t > 2.
+- A must do something visible every single time it is pressed during play (fire, jump, dash, boost, swing), not only in a waiting state and not only when it is useful. If A only works next to something, pressing it anywhere else must still show a swing, a puff or a spark. If A serves or launches, also give it an effect while the ball is in play.
 - Call api.sfx on every event: pickup, hit, shoot, jump, bounce, death. Call api.flash(8, 3) and api.shake(10) when the player is hurt, api.flash(10, 1) on a pickup.
 
 Look:
 - Start draw with api.cls(c) using a non-black background colour that suits the theme, then a backdrop with some detail (ground, stars, water, walls, a border) and then the objects.
-- Draw the player and the main enemies or pickups as sprites (string arrays, 6x6 to 12x12) defined as top-level constants. Use at least five colours across the screen.
+- Draw the player and the main enemies or pickups as sprites (string arrays) defined as top-level constants, at least 8 pixels wide: a 6-pixel blob is unreadable across an arcade cabinet. Use at least five colours across the screen, and never give a hazard the same colour as the backdrop or as a pickup.
 - Keep the top 12 pixels clear for the runtime HUD. Do not draw a score, a title, lives text longer than a few characters, or "press start"; the runtime does that.
 - Text is uppercase, 8 px per character, so keep any text under 30 characters.
 
@@ -144,7 +153,7 @@ export function buildPrompt(
     system,
     user: userParts.join('\n'),
     chosen,
-    cacheKey: two ? 'htn-build-2p-v1' : 'htn-build-v1',
+    cacheKey: two ? 'htn-build-2p-v8' : 'htn-build-v8',
   }
 }
 

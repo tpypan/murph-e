@@ -10,6 +10,8 @@ const spec: GameSpec = {
   title: 'SKY FALL',
   oneLiner: 'Dodge anvils, catch pies.',
   genre: 'dodge',
+  hook: 'Pies fall through the anvil lanes, so catching them means standing under danger.',
+  ramp: 'anvils; at 20 s two at a time; at 45 s a fast one that splits',
   mechanics: ['move left and right', 'hop with A', 'anvils hurt, pies score'],
   controls: { left: 'move left', right: 'move right', up: null, down: null, a: 'hop', b: null },
   palette: 'arcade',
