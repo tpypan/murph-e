@@ -72,12 +72,12 @@ const jsonSchema = (genres: readonly string[]) => ({
     hook: {
       type: 'string',
       description:
-        'One line: the single interesting decision the player makes, and what they risk by making it.',
+        'One line: the single interesting decision the player makes, and what they risk by making it. Empty when remix is true.',
     },
     ramp: {
       type: 'string',
       description:
-        'One line: the three stages of the first minute, naming the new kind of thing that arrives at each.',
+        'One line: the three stages of the first minute, naming the new kind of thing that arrives at each. Empty when remix is true.',
     },
     mechanics: {
       type: 'array',
@@ -137,7 +137,7 @@ Rules:
 - controls: describe what each input does, or null if the game does not use it. Only name a control the game really uses: a control you describe here is tested, and one that does nothing on screen fails the game. Always use left/right or up/down, and A must do something.
 - palette is only a colour mood hint.
 - Moderation: if the request is hateful, sexual, about real people, about self-harm, about real-world violence such as shootings or attacks on people or places, or is not a game at all, do not make that game. Replace it with an unrelated, wholesome arcade game, set moderated to true, and set note to LET'S PLAY THIS INSTEAD. Cartoon action such as shooting asteroids, zapping aliens or bonking slimes is fine.
-- Remix: when the input says a game is already on screen and the person is asking to change that game, set remix to true, keep the title and the genre, and put the concrete changes in changes (1 to 4 short imperative lines, e.g. "double the car speed ramp", "add a boss sprite at the top that fires every 2 seconds"). The rest of the spec then describes the game after the changes. A remix is a modification: speed, size, count, lives, difficulty, colours, one new enemy or item, or swapping one thing ("make the hero a cat"). Words that describe a game with its own premise (a different hero, setting and goal, e.g. "a game where a penguin slides on ice collecting fish") are a NEW game even if the genre is similar: remix false, changes empty, and the spec describes that new game. With no game on screen, remix is always false.`
+- Remix: when the input says a game is already on screen and the person is asking to change that game, set remix to true, keep the title and the genre, and put the concrete changes in changes (1 to 4 short imperative lines, e.g. "double the car speed ramp", "add a boss sprite at the top that fires every 2 seconds"). The rest of the spec then describes the game after the changes. A remix is a modification: speed, size, count, lives, difficulty, colours, one new enemy or item, or swapping one thing ("make the hero a cat"). Words that describe a game with its own premise (a different hero, setting and goal, e.g. "a game where a penguin slides on ice collecting fish") are a NEW game even if the genre is similar: remix false, changes empty, and the spec describes that new game. With no game on screen, remix is always false. When remix is true, leave hook and ramp as empty strings: the game already exists and nothing reads them.`
 
 export const SPEC_INSTRUCTIONS_2P = `You turn what two people said into a spec for a tiny one-screen 8-bit arcade game for exactly two players that a second model will write in one go. The game runs at 256x224 with a 16-colour palette. Each player has their own d-pad and two buttons (A, B). Both players share the one screen and one arena: no split screen.
 
@@ -154,7 +154,7 @@ Rules:
 - controls: describe what each input does for a player (both players have the same controls), or null if the game does not use it. Only name a control the game really uses: a control you describe here is tested, and one that does nothing on screen fails the game. Always use left/right or up/down, and A must do something.
 - palette is only a colour mood hint.
 - Moderation: if the request is hateful, sexual, about real people, about self-harm, about real-world violence such as shootings or attacks on people or places, or is not a game at all, do not make that game. Replace it with an unrelated, wholesome two-player arcade game, set moderated to true, and set note to LET'S PLAY THIS INSTEAD. Cartoon action such as shooting asteroids, zapping aliens, sword duels or bonking slimes is fine.
-- Remix: when the input says a game is already on screen and the players are asking to change that game, set remix to true, keep the title and the genre, and put the concrete changes in changes (1 to 4 short imperative lines). The rest of the spec then describes the game after the changes. A remix is a modification: speed, size, count, lives, difficulty, colours, one new enemy or item, or swapping one thing. Words that describe a game with its own premise (a different hero, setting and goal) are a NEW game even if the genre is similar: remix false, changes empty, and the spec describes that new game. With no game on screen, remix is always false.`
+- Remix: when the input says a game is already on screen and the players are asking to change that game, set remix to true, keep the title and the genre, and put the concrete changes in changes (1 to 4 short imperative lines). The rest of the spec then describes the game after the changes. A remix is a modification: speed, size, count, lives, difficulty, colours, one new enemy or item, or swapping one thing. Words that describe a game with its own premise (a different hero, setting and goal) are a NEW game even if the genre is similar: remix false, changes empty, and the spec describes that new game. With no game on screen, remix is always false. When remix is true, leave hook and ramp as empty strings: the game already exists and nothing reads them.`
 
 export interface SpecResult {
   spec: GameSpec
@@ -195,7 +195,7 @@ export async function specify(transcript: string, opts: SpecOptions = {}): Promi
     text: {
       format: { type: 'json_schema', name: 'game_spec', strict: true, schema: jsonSchema(genres) },
     },
-    prompt_cache_key: players === 2 ? 'htn-spec-2p-v2' : 'htn-spec-v2',
+    prompt_cache_key: players === 2 ? 'htn-spec-2p-v3' : 'htn-spec-v3',
   })
   const parsed = GameSpecSchema.parse(JSON.parse(res.output_text))
   parsed.title = parsed.title.toUpperCase().slice(0, 14)

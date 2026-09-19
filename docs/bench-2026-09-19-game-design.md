@@ -114,8 +114,31 @@ Files: `bench/results/2026-09-19-1700-AB-control-2p.md` and
 control prompt scored 11/12 in the morning run and 9/12 here, so read 12/12 as
 "no regression", not as a win.
 
+## Remix
+
+The remix path runs through `specify()`, so it needed checking:
+`bench/results/2026-09-19-1859-design-v3-remix.md` is 10/12 remixed, 2 correctly
+reclassified as new games, 98% of the original kept — identical correctness to
+the pre-change run.
+
+Remix p50 read 11.8 s against 6.7 s in the morning run
+(`2026-09-19-0915-remix.md`), which looked like a regression. It is not ours:
+re-running the bench with `main`'s `spec.ts` swapped back in, minutes later,
+gives 11.5 s (`2026-09-19-1906-control-remix-now.md`). The API was simply
+slower in the evening — the same drift shows up in the build arms, where
+today's control p50 is 29.9 s against 26 s in the morning. Every comparison in
+this document is between arms run within the same hour for that reason.
+
+The spec is now told to leave `hook` and `ramp` empty when `remix` is true,
+since nothing on the remix path reads them. That was tried as a latency fix and
+did not measurably help; it is kept because asking a model for fields nobody
+reads on the one path where the person is watching a game change is wrong on
+principle, not because the bench moved.
+
 ## What did not work
 
+- **Skipping `hook` and `ramp` on remixes** did nothing for remix p50 (13.3 s
+  against 11.8 s with them, inside the noise of this 12-job bench).
 - **The design rules on their own** (`2026-09-19-1600-design-rules.md`) bought
   most of the judge improvement but pushed games from 274 to 340 lines and p50
   from 28.9 s to 46.2 s. Unusable at that price.
