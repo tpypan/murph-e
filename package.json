@@ -19,7 +19,8 @@
     "exercise": "pnpm --filter @htn/probe exec node scripts/exercise-runtime.mjs",
     "screenshots": "pnpm --filter @htn/probe exec node scripts/screenshot-runtime.mjs",
     "screenshots:cabinet": "pnpm --filter @htn/probe exec node scripts/screenshot-cabinet.mjs",
-    "stt:test": "pnpm --filter @htn/probe exec node scripts/stt-test.mjs"
+    "stt:test": "pnpm --filter @htn/probe exec node scripts/stt-test.mjs",
+    "gallery": "node scripts/gallery.mjs && node scripts/serve.mjs & sleep 1; open http://localhost:5173/library/gallery.html"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.8",

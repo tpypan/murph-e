@@ -22,8 +22,8 @@ and 4 carry the reasoning.
 | Sensors | accelerometer: tilt, shake, tap | README `badge.sensor` |
 | NFC | **a reader**, not a tag. `badge.nfc.card()` returns the UID of a card held to the badge; there is no tag-emulation or tag-writing API | site ("NFC Reader"), README `badge.nfc` |
 | Radio | `badge.radio.send(payload)` broadcasts 1 to 44 bytes over BLE to every badge in range with a `LUA1` prefix; `on_recv(mac, rssi, payload)` receives. No Wi-Fi, HTTP, GATT or sockets from Lua | README `badge.radio` |
-| USB | USB-C, enumerates as "USB JTAG/serial debug unit" (Espressif). 115200 baud console with a `badge> ` prompt. `badge.sys.log("...")` writes one line to that serial port | IDE `app.js`, README `badge.sys` |
-| Identity | `badge.me.badge_id()`, `badge.me.name()`, `badge.me.role_name()`, `badge.me.color()`. No email or socials | README `badge.me` |
+| USB | USB-C, enumerates as "USB JTAG/serial debug unit", vendor `0x303A` product `0x1001`, macOS device `/dev/cu.usbmodem*`. The USB serial number is the badge's MAC (`E8:F6:0A:...`), a stable per-badge key visible before any app runs. 115200 baud console with a `badge> ` prompt. `badge.sys.log("...")` writes one line to that serial port | verified 2026-09-19 |
+| Identity | `badge.me.badge_id()` is a word slug like `quiet-phoenix-noble-bold`; `badge.me.name()`, `badge.me.role_name()`, `badge.me.color()` (three ints). No email or socials | verified 2026-09-19 |
 | Apps | Lua, sandboxed, one `main.lua` plus `manifest.cfg`, 48 KiB heap, 64 KiB source. Installed by USB push from the IDE or badge-to-badge over Bluetooth with the built-in Share app | README |
 | Power | 2x AA. Manual says switch the battery OFF before plugging into USB; the badge then runs on USB power | manual |
 | Rules | software interaction is explicitly allowed; hardware modification and unsupported accessories are not. Custom firmware would wipe the event firmware the badge needs as their ID, so it is out | rules page |
@@ -36,11 +36,23 @@ in an afternoon. Lines end in a bare CR, not CRLF; the console is
 ```
 <CR>                      -> wait for "badge> "   (fail fast if it never comes)
 mkdir /littlefs/apps/<slug>          -> wait "badge> "
-put /littlefs/apps/<slug>/main.lua <bytes>   -> wait "READY", send bytes,
+put /littlefs/apps/<slug>/main.lua <bytes>   -> wait "READY", send bytes in
+                                               128-byte chunks 20 ms apart,
                                                wait "OK <bytes>"
 put ... manifest.cfg <bytes>         -> same
 reload                    -> wait "reload:"   (launcher rescans apps)
 ```
+
+Verified 2026-09-19 with `scripts/badge-probe/probe.py` (run with `uv run --with pyserial python scripts/badge-probe/probe.py apps|push|listen`): the
+whole push plus reload for a 700-byte app takes under one second. The
+chunking is not optional. One unpaced 666-byte write overflowed the badge's
+256-byte receive ring, the `put` never acknowledged, and the console stayed
+silent until the badge was taken back to the launcher with HOME; the IDE's
+"send pad bytes" resync did not recover it. Two more facts from the same
+session: `reload` exits whatever app is running and returns the badge to
+the launcher, so never send it to a badge that is already in the arcade
+app; and the console keeps answering (`apps`, `uitree`) while a Lua app is
+running, so a second badge can be installed while the first is playing.
 
 The console also answers `apps` (lists installed apps, so the cabinet can
 skip the push for a badge that already has ours), `cat`, `rm`, `heap` and
@@ -180,7 +192,21 @@ badge-to-badge Share:
   `ARCADE HELLO <badge_id> <name> <r> <g> <b>`.
 - `on_button`: log `B <button> <1|0>` on every press and release. Keep it to
   one short log line per event; the tick budget is generous but the serial
-  ring on the badge is 256 bytes.
+  ring on the badge is 256 bytes. Button codes on firmware v0.1.2-392:
+  `A=0 B=1 HOME=2 DOWN=3 LEFT=4 RIGHT=5 UP=6 AUX1=7 START=8`. Log the map
+  from `on_enter` anyway rather than hard-coding it on the Mac.
+- What the Mac actually reads, one line per event, firmware-prefixed:
+
+  ```
+  I (94604) lua: [arcadetest] ARCADE HELLO quiet-phoenix-noble-bold Tony Pan 76 175 80
+  I (253154) lua: [arcadetest] B 5 1
+  I (253334) lua: [arcadetest] B 5 0
+  ```
+
+  Parse with `^I \(\d+\) lua: \[(\w+)\] (.*)$` and ignore everything else
+  (the firmware also logs `app_reg` heap lines on every app switch). The
+  number in parentheses is the badge's millisecond uptime, usable as an
+  event timestamp.
 - Set `wake_lock=1` so the badge does not sleep mid-game, `home_button=0` so
   HOME still exits, `confirm_home=1` so a stray HOME asks first.
 - The cabinet writes nothing back. The README states serial input does not
@@ -199,6 +225,23 @@ closed ones. Only one process can hold a port, so the IDE and the cabinet
 cannot be connected to the same badge at once; that is fine on the floor.
 
 ## 6. Verify with a real badge before building any of this
+
+**Results, 2026-09-19, one badge on a MacBook, firmware v0.1.2-392:**
+
+| check | result |
+|---|---|
+| 1. push protocol | passes, with 128-byte chunks. Push plus reload under 1 s |
+| 2. log line format | `I (<ms>) lua: [<slug>] <text>`; identity, colour and every press and release arrive |
+| 3. hot-plug | badge on and in the launcher, cable in: port appears and `badge> ` answers with no power cycle |
+| 4. console while app runs | yes. `reload` from the console does exit the running app |
+| 5. BLE | not run, tier 3 only |
+| 6. Share timing | not run |
+| idle screen | see below |
+
+Not yet run: two badges on one hub at once, and unplug and replug of the
+same badge. Both are expected to be routine and are on the setup-day list.
+
+The original checklist, kept for the next badge:
 
 In order, each takes a minute:
 
