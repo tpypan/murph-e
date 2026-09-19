@@ -1,0 +1,26 @@
+{
+  "title": "FROGGER DASH",
+  "oneLiner": "Hop across the road, dodge speeding cars, and survive as long as you can!",
+  "genre": "dodge",
+  "mechanics": [
+    "Move the frog across a single busy road and back to score.",
+    "Cars stream across the screen and hurt the frog on contact.",
+    "Each successful crossing earns points and cars gradually accelerate.",
+    "The playfield wraps vertically so every hop stays on-screen."
+  ],
+  "controls": {
+    "left": "Move frog left",
+    "right": "Move frog right",
+    "up": "Hop upward",
+    "down": "Hop downward",
+    "a": "Quick hop forward",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "The frog loses when hit by a car.",
+  "scoring": "Score points for reaching the opposite side of the road and returning.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0709-a-game-where-i-m-a-frog-dodging"
+}

@@ -1,0 +1,26 @@
+{
+  "title": "POLLEN DASH",
+  "oneLiner": "Guide a busy bee through the garden, gather pollen, and dodge angry wasps.",
+  "genre": "dodge",
+  "mechanics": [
+    "Move the bee around one screen to collect golden pollen blooms.",
+    "Wasps chase and sting the bee, costing a life on contact.",
+    "Each bloom scores points; collecting several quickly builds a combo.",
+    "More wasps appear and move faster as time passes."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": "Move up",
+    "down": "Move down",
+    "a": "Dart forward briefly",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "The bee loses all three lives after being stung three times.",
+  "scoring": "Collect pollen blooms for points, with bonus points for quick consecutive pickups.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0710-a-bee-collecting-pollen-while-do"
+}

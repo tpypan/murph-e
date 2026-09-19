@@ -1,0 +1,26 @@
+{
+  "title": "PIZZA INVADERS",
+  "oneLiner": "Blast the falling pizza aliens before they cover the sky!",
+  "genre": "shooter",
+  "mechanics": [
+    "Slide the pizza fighter left and right along the bottom.",
+    "Press A to fire zesty shots upward at invading pizzas.",
+    "Destroy rows of pizzas for points before they descend too far.",
+    "Alien waves speed up and their shots become more frequent over time."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": null,
+    "down": null,
+    "a": "Fire",
+    "b": "Drop a short-lived pepperoni shield"
+  },
+  "palette": "arcade",
+  "lose": "You lose when a pizza alien reaches the ground or your fighter is hit too many times.",
+  "scoring": "Earn points for every pizza alien destroyed, with bonus points for clearing a wave.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0709-space-invaders-but-the-aliens-ar"
+}

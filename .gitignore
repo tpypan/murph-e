@@ -10,3 +10,4 @@ runs/
 packages/runtime/runtime.js
 bench/screenshots/
 *.thumb.png
+soak.log

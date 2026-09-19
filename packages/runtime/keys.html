@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>encoder keycodes</title>
+    <style>
+      body { background: #000; color: #0f0; font: 28px ui-monospace, monospace; padding: 40px; }
+      #log { white-space: pre; }
+    </style>
+  </head>
+  <body>
+    <div>Press each joystick direction and button on the encoder. Copy the codes into apps/cabinet/app/input.ts (ENCODER_KEYS).</div>
+    <div id="log"></div>
+    <script>
+      const seen = new Map()
+      addEventListener('keydown', (e) => {
+        e.preventDefault()
+        if (e.repeat) return
+        seen.set(e.code, (seen.get(e.code) || 0) + 1)
+        document.getElementById('log').textContent = [...seen]
+          .map(([code, n]) => `${code.padEnd(16)} key=${JSON.stringify(e.key)} x${n}`)
+          .join('\n')
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "title": "SEAL SLIDE",
+  "oneLiner": "Slide a speedy penguin across the ice, grab fish, and dodge hungry seals.",
+  "genre": "dodge",
+  "mechanics": [
+    "The penguin slides left and right across a one-screen icy course.",
+    "Collect falling fish to score points and extend your streak.",
+    "Avoid waddling seals; a collision costs a life.",
+    "Seals and fish arrive faster as time passes."
+  ],
+  "controls": {
+    "left": "Steer the penguin left",
+    "right": "Steer the penguin right",
+    "up": null,
+    "down": null,
+    "a": "Short speed burst",
+    "b": "Brake the slide"
+  },
+  "palette": "arcade",
+  "lose": "Lose all three lives by colliding with seals.",
+  "scoring": "Each fish collected scores points, with bonus points for consecutive fish.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0709-dodging-seals-a-game-where-a-pen"
+}

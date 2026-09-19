@@ -1,0 +1,26 @@
+{
+  "title": "TRAIN SNAKE",
+  "oneLiner": "Grow a mighty train by collecting cargo while avoiding your own winding cars!",
+  "genre": "snake",
+  "mechanics": [
+    "Steer the locomotive around one screen and collect cargo crates.",
+    "Each crate adds a train car to your tail and scores points.",
+    "Avoid walls and colliding with your own train cars.",
+    "The train moves faster and cargo appears more often over time."
+  ],
+  "controls": {
+    "left": "Turn the train left",
+    "right": "Turn the train right",
+    "up": null,
+    "down": null,
+    "a": "Boost speed briefly",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "You lose when the locomotive hits the border or any train car.",
+  "scoring": "Collecting each cargo crate scores points and lengthens the train.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0709-a-snake-game-but-the-snake-is-a"
+}

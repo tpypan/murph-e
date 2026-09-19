@@ -1,0 +1,26 @@
+{
+  "title": "BIG BALL BREAK",
+  "oneLiner": "Smash every brick with a giant bouncing ball before it overwhelms the screen!",
+  "genre": "breakout",
+  "mechanics": [
+    "Slide the paddle left and right to keep the huge ball in play.",
+    "The ball breaks bricks on contact and rebounds off walls and the paddle.",
+    "Clear bricks to score, with tougher brick patterns appearing as you advance.",
+    "The ball speeds up over time, making misses harder to recover from."
+  ],
+  "controls": {
+    "left": "Move paddle left",
+    "right": "Move paddle right",
+    "up": null,
+    "down": null,
+    "a": "Launch the ball or serve again",
+    "b": "Nudge the paddle wider briefly"
+  },
+  "palette": "arcade",
+  "lose": "Lose a life when the ball falls below the paddle; the game ends after the last life.",
+  "scoring": "Earn points for every brick smashed, with bonus points for clearing a row.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0710-breakout-with-a-really-big-ball"
+}

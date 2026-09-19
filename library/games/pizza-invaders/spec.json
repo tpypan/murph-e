@@ -1,0 +1,26 @@
+{
+  "title": "PIZZA INVADERS",
+  "oneLiner": "Defend the galaxy from a delicious falling pizza invasion!",
+  "genre": "shooter",
+  "mechanics": [
+    "Move the chef ship left and right along the bottom.",
+    "Press A to launch tomato-sauce lasers at descending pizza aliens.",
+    "Destroy pizzas before they reach the crust line; each hit scores points.",
+    "Alien waves move sideways, speed up, and fire toppings as time passes."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": null,
+    "down": null,
+    "a": "Fire sauce laser",
+    "b": "Activate a brief cheese shield"
+  },
+  "palette": "arcade",
+  "lose": "You lose when a pizza reaches the crust line or hits your ship.",
+  "scoring": "Earn points for every pizza alien destroyed, with bonus points for clearing a wave.",
+  "moderated": false,
+  "note": "",
+  "players": 1,
+  "runId": "2026-09-19-0709-pizzas-space-invaders-but-the-al"
+}
