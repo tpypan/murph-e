@@ -164,6 +164,25 @@ export default function Cabinet() {
   }, [loadGame, post, stopAttract])
 
   // ---- build -------------------------------------------------------------
+  const crashFallback = useCallback(
+    (why: string) => {
+      const pool = library.current
+      if (pool.length === 0) return
+      const g = pool[Math.floor(Math.random() * pool.length)]!
+      dispatch({
+        type: 'game',
+        game: { title: g.title, source: g.source },
+        banner: `${why}. HERE'S ${g.title}`,
+      })
+      dispatch({ type: 'phase', phase: 'FALLBACK' })
+      loadGame(g.code, g.title)
+      setTimeout(() => {
+        if (view.current.phase === 'FALLBACK') dispatch({ type: 'phase', phase: 'PLAYING' })
+      }, 2500)
+    },
+    [loadGame],
+  )
+
   const build = useCallback(
     async (transcript: string) => {
       stopAttract()
@@ -245,26 +264,7 @@ export default function Cabinet() {
         crashFallback("COULDN'T REACH THE BUILDER")
       }
     },
-    [loadGame, stopAttract],
-  )
-
-  const crashFallback = useCallback(
-    (why: string) => {
-      const pool = library.current
-      if (pool.length === 0) return
-      const g = pool[Math.floor(Math.random() * pool.length)]!
-      dispatch({
-        type: 'game',
-        game: { title: g.title, source: g.source },
-        banner: `${why}. HERE'S ${g.title}`,
-      })
-      dispatch({ type: 'phase', phase: 'FALLBACK' })
-      loadGame(g.code, g.title)
-      setTimeout(() => {
-        if (view.current.phase === 'FALLBACK') dispatch({ type: 'phase', phase: 'PLAYING' })
-      }, 2500)
-    },
-    [loadGame],
+    [crashFallback, loadGame, stopAttract],
   )
 
   // ---- listening ---------------------------------------------------------
