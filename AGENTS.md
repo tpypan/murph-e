@@ -17,7 +17,9 @@ you are working on.
 ```
 packages/runtime/   the 8-bit fantasy-console runtime games run on. No deps.
 packages/harness/   transcript -> spec -> game.js -> probe -> repair. CLI.
-packages/probe/     headless Playwright verifier for a game.js.
+packages/probe/     headless Playwright verifier for a game.js, plus the fun
+                    probe: a bot plays the game and reports whether it is
+                    worth playing.
 packages/badge/     hacker badge over USB serial: hot-plug, app push, hello and
                     button events. Ships the arcade Lua app in app/.
 apps/cabinet/       Next.js kiosk page + API routes (STT token, generate).
@@ -63,6 +65,9 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   against the game on screen, so a few hundred output tokens instead of a
   whole game. Override with `HTN_REMIX_MODEL` / `HTN_REMIX_EFFORT`. The
   bench is `pnpm harness bench-remix bench/remixes.txt`.
+- Judge: `gpt-5.6-sol`, `reasoning.effort: "low"`, over the source and three
+  screenshots. Bench only, never on the cabinet's path. Override with
+  `HTN_JUDGE_MODEL` / `HTN_JUDGE_EFFORT`.
 - Spec: `gpt-5.6-luna`, `reasoning.effort: "none"`, structured output. The
   same call decides whether words spoken over a running game are a remix
   of it or a new game. `players` (1 or 2) comes from the cabinet's menu,
@@ -80,18 +85,23 @@ hardware is the checklist in `docs/plans/tier-2.md`.
    harness take 40 minutes. Repair is one bounded round, then the fallback
    library. Remix is the same shape: one call, one repair, then the game
    that was already on screen.
-2. **The runtime API is the contract.** Games are written against it by a
+2. **A game that passes the probe is not yet a game.** The probe answers
+   "does this run"; `docs/research/arcade-game-design.md` is what separates
+   that from "is this worth playing", and the Design block at the top of the
+   house rules is that research compressed. Changing it needs a `--fun` bench,
+   not just a probe pass.
+3. **The runtime API is the contract.** Games are written against it by a
    model that only sees the API reference and the templates in the prompt.
    If you change the API, change all three in the same commit: the runtime,
    the reference in the prompt, and every template in `library/templates/`.
    Then run the bench.
-3. **Latency is a test.** A change that moves p50 for the bench prompts by
+4. **Latency is a test.** A change that moves p50 for the bench prompts by
    more than a few seconds needs a reason in the commit message.
-4. **Games are single-file `game.js`** implementing `init`, `update`, `draw`
+5. **Games are single-file `game.js`** implementing `init`, `update`, `draw`
    against the runtime. No assets, no imports, no network.
-5. **The cabinet never dead-ends.** Every failure path ends in a playable
+6. **The cabinet never dead-ends.** Every failure path ends in a playable
    game from the library and a message on screen.
-6. **Input is owned by the shell, not the game.** Keyboard, encoder and badge
+7. **Input is owned by the shell, not the game.** Keyboard, encoder and badge
    serial all become the same `{player, button, down}` events posted into the
    game iframe. Games never read keycodes.
 
@@ -103,7 +113,12 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   `pnpm screenshots` for a screenshot of every state. Rebuild `runtime.js`
   with `pnpm runtime:build` first; it is gitignored.
 - Prompt or model change: `pnpm harness bench bench/prompts.txt` and compare
-  p50, p95 and probe pass rate to the last result file. Two-player prompts:
+  p50, p95 and probe pass rate to the last result file. If the change is meant
+  to make the games better rather than faster, add `--fun` (and `--n 2`, since
+  one run per prompt is noise): it playtests and judges every game and prints
+  losability, distinct point values, agency and the six judge axes. The A/B
+  that set the current numbers is `docs/bench-2026-09-19-game-design.md`.
+  `pnpm playtest <game.js>` prints the same measurements for one file. Two-player prompts:
   `pnpm harness bench bench/prompts-2p.txt --players 2` (goal 8 of 10).
   Remix: `pnpm harness bench-remix bench/remixes.txt` (goal p50 under half
   the build p50, most of the original kept).
@@ -139,5 +154,8 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   `docs/badge-integration.md`.
 - Tier 2 build order, interfaces, remix format and the hardware checklist:
   `docs/plans/tier-2.md`.
+- What makes a game fun, and how the Design rules were derived and measured:
+  `docs/research/arcade-game-design.md` and
+  `docs/bench-2026-09-19-game-design.md`.
 - Scope per tier: `docs/goals/`.
 - Changing one of these is fine. Update the doc in the same change.
