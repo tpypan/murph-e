@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useReducer, useRef, useState } from 'react'
 import { attachBadges, type BadgePlayer } from './badges'
 import { BuildConsole, type BuildStatus } from './build-console'
+import { ControlsStrip } from './controls-strip'
 import { GameControls } from './game-controls'
 import { classifyGenerationError } from './generation-error'
 import { type DemoGame, type HomeHandle, HomeScreen } from './home-screen'
@@ -1116,16 +1117,6 @@ export default function Cabinet() {
               </button>
             ))}
           </nav>
-          {cabinet ? (
-            <p className="support">
-              PANEL: A B X Y<br />X START · Y TALK
-            </p>
-          ) : (
-            <p className="support">
-              KEYBOARD: ARROWS · Z / X<br />
-              ENTER START · SPACE TALK
-            </p>
-          )}
           <p className="support">
             {v.badges.length} BADGES CONNECTED
             <br />
@@ -1231,6 +1222,20 @@ export default function Cabinet() {
       )}
       {v.phase === 'PLAYING' && (
         <GameControls controls={controls} players={v.game?.players ?? 1} cabinet={cabinet} />
+      )}
+      {(v.phase === 'ATTRACT' ||
+        v.phase === 'OPTIONS' ||
+        v.phase === 'LISTENING' ||
+        v.phase === 'BUILDING' ||
+        v.phase === 'READY' ||
+        v.phase === 'GAMEOVER') && (
+        <ControlsStrip
+          phase={v.phase}
+          cabinet={cabinet}
+          players={v.mode}
+          reviewing={v.voiceStage === 'review'}
+          pages={controlPages > 1}
+        />
       )}
       {showPanel && <Panel />}
     </main>

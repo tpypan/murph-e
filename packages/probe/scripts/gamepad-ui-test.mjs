@@ -74,6 +74,7 @@ try {
       buttons: Array.from({ length: 32 }, () => ({ pressed: false, touched: false, value: 0 })),
     }
     window.__pad = pad
+    window.__gamepadTest = true // opt this automated page into reading the pad
     navigator.getGamepads = () => [pad, null, null, null]
   })
   const set = (axes, pressed = []) =>

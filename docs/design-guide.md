@@ -59,9 +59,15 @@ F3 toggles the simulated panel. The kiosk opens `/?cabinet=1`, which makes the
 play legend's keycaps the panel letters (A, B) instead of the keyboard hints
 (A / Z, B / X) and hides the player-two keyboard hint.
 Player-two development keys remain I/J/K/L/N/M; M is not a global mute key.
-Sound and fullscreen are available in Options. Player count is the first choice,
-not an option buried in settings. Keep the development input bindings working,
-but do not advertise STICK, START: OK or B: BACK before the cabinet controls exist.
+Sound and fullscreen are available in Options. Keep the development input
+bindings working. Every shell screen carries one grey line saying what the
+controls do there (`controls-strip.tsx`), in the words of the device that
+plays in the current mode: in 1P the cabinet panel (CABINET · STICK: CHOOSE ·
+A: SELECT, HOLD Y: TALK, A: PLAY · B: MENU, and CABINET PLAYS · X: PAUSE in the
+play legend), in 2P the badges (BADGES · D-PAD: CHOOSE · A: SELECT, START:
+PAUSE; talking is HOLD Y ON THE CABINET, since a badge has no TALK). Off the
+cabinet it names the keyboard (ARROWS, Z, X, ENTER, SPACE) and never a button
+the machine does not have.
 Shell buttons use plain labels such as CANCEL, MAKE GAME and PLAY; the actual
 game's movement and action legend stays visible during play.
 

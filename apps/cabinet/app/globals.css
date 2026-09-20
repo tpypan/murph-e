@@ -639,3 +639,23 @@ h2 {
   text-align: center;
   white-space: nowrap;
 }
+
+/* What the controls do on this screen: one grey line inside the CRT margin.
+   The home screen keeps its bottom row, so there it sits top right. */
+.controls-strip {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: 9%;
+  margin: 0;
+  text-align: center;
+  font-size: 1.8cqw;
+  line-height: 1.4;
+  color: #aaa;
+  pointer-events: none;
+}
+.controls-strip[data-top="true"] {
+  top: 8%;
+  bottom: auto;
+  text-align: right;
+}

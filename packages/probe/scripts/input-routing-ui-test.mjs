@@ -38,7 +38,6 @@ const KEY = {
   y: 'Numpad9',
 }
 const BADGE = ['FA:KE:00:00:00:01', 'FA:KE:00:00:00:02']
-const forbiddenHints = /\bSTICK\b|START:\s*OK|B:\s*(?:BACK|CANCEL|MENU)/i
 const browser = await chromium.launch({
   args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'],
 })
@@ -138,7 +137,13 @@ try {
   const heading = (name) => page.getByRole('heading', { name, exact: true })
   const step = async (name, fn) => {
     await fn()
-    assert.doesNotMatch(await screen.innerText(), forbiddenHints, `${name}: no shell hints`)
+    // Every shell screen names what the panel does (cabinet mode advertises it).
+    if ((await page.locator('.game-controls').count()) === 0)
+      assert.match(
+        await page.locator('.controls-strip').innerText(),
+        /SELECT|PLAY|CANCEL|MENU|TALK/,
+        `${name}: strip`,
+      )
     results.steps.push(name)
     console.log(`ok ${name}`)
   }
@@ -216,6 +221,7 @@ try {
   })
   await step('1P: the panel moves and scores', async () => {
     await play()
+    assert.match(await page.locator('.game-hints').innerText(), /CABINET PLAYS[\s\S]*X: PAUSE/)
     await page.keyboard.down(KEY.right)
     await runtime().waitForFunction(() => window.__runtime.input.btn('right', 0))
     await page.keyboard.up(KEY.right)
@@ -269,6 +275,8 @@ try {
     await waitVersion('2 PLAYERS · BADGES')
     await waitBadges('Tony Pan', 'Sam Rivera')
     await runtime().waitForFunction(() => window.__runtime.players === 2)
+    // In 2P the instructions speak badge: d-pad, A, B, START.
+    assert.match(await page.locator('.controls-strip').innerText(), /BADGES · A: PLAY/)
     await shot('2p-ready-two-badges')
     await api({ op: 'unplug', serial: BADGE[1] })
     await waitVersion('1 PLAYER · CABINET')
@@ -322,6 +330,7 @@ try {
     const before = await score(1)
     await tapBadge(2, 'a')
     await runtime().waitForFunction((n) => window.__runtime.scores[1] > n, before)
+    assert.match(await page.locator('.game-hints').innerText(), /BADGES PLAY[\s\S]*START: PAUSE/)
     await shot('2p-playing-two-badges')
   })
   await step('2P: pulling a badge keeps the game and the name', async () => {

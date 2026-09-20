@@ -219,6 +219,10 @@ export function gamepadInputs(
  */
 export function attachGamepad(map: GamepadMap = GAMEPAD): () => void {
   if (typeof navigator === 'undefined' || !navigator.getGamepads) return () => {}
+  // Headless browsers on the cabinet Mac see the real board too, so a press
+  // during a test run would land in every test page. Automation only reads
+  // a pad when the test says so (gamepad-ui-test.mjs sets this flag).
+  if (navigator.webdriver && !(window as { __gamepadTest?: boolean }).__gamepadTest) return () => {}
   let held = new Set<PanelInput>()
   let frame = 0
   const fire = (type: 'keydown' | 'keyup', p: PanelInput) =>

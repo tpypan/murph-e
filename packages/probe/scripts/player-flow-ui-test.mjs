@@ -132,6 +132,8 @@ try {
     await page.getByRole('button', { name: '1 PLAYER', exact: true }).waitFor()
     await page.getByRole('button', { name: '2 PLAYERS', exact: true }).waitFor()
     await assertHintsRemoved()
+    // Off the cabinet the strip names the keyboard, never the panel.
+    assert.match(await page.locator('.controls-strip').innerText(), /ARROWS: CHOOSE · Z: SELECT/)
     assert.equal(await page.getByRole('button', { name: /HOLD.*TALK/ }).count(), 0)
     await page.keyboard.press('Space')
     await page.keyboard.press('KeyV')
