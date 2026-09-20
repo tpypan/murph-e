@@ -1,7 +1,17 @@
 #include <Arduino.h>
 #include "USB.h"
+#include "USBCDC.h"
 #include "USBHIDGamepad.h"
 
+#if ARDUINO_USB_MODE
+#error "Select Tools > USB Mode > USB-OTG (TinyUSB); Hardware CDC/JTAG conflicts with the HID device"
+#endif
+
+#if ARDUINO_USB_CDC_ON_BOOT
+#error "Set Tools > USB CDC On Boot > Disabled; this firmware adds TinyUSB CDC to the composite device itself"
+#endif
+
+USBCDC DebugSerial;
 USBHIDGamepad Gamepad;
 
 // ----------------------------------------------------
@@ -145,10 +155,10 @@ void calibrateJoystick() {
   centerX = sumX / samples;
   centerY = sumY / samples;
 
-  Serial.print("Joystick center: X=");
-  Serial.print(centerX);
-  Serial.print(" Y=");
-  Serial.println(centerY);
+  DebugSerial.print("Joystick center: X=");
+  DebugSerial.print(centerX);
+  DebugSerial.print(" Y=");
+  DebugSerial.println(centerY);
 }
 
 
@@ -171,11 +181,11 @@ void setup() {
   // USB device name shown by the computer
   USB.productName("ESP32-S3 Arcade Controller");
 
-  // Register HID gamepad before starting USB
+  // Register every interface before starting USB. Keeping HID and CDC under
+  // TinyUSB avoids switching the USB pins between two incompatible stacks.
+  DebugSerial.begin(115200);
   Gamepad.begin();
   USB.begin();
-
-  Serial.begin(115200);
 
   delay(500);
 
@@ -183,7 +193,7 @@ void setup() {
   // Leave the joystick centered while the controller powers up.
   calibrateJoystick();
 
-  Serial.println("Gamepad ready");
+  DebugSerial.println("Gamepad ready");
 }
 
 
@@ -248,16 +258,20 @@ void loop() {
   // button bitmask
   // --------------------------------------------------
 
-  Gamepad.send(
-    x,
-    y,
-    0,
-    0,
-    0,
-    0,
-    HAT_CENTER,
-    buttons
-  );
+  // Do not queue reports until the host has configured the composite device.
+  // TinyUSB resumes reporting automatically after a cable reconnect or wake.
+  if (USB) {
+    Gamepad.send(
+      x,
+      y,
+      0,
+      0,
+      0,
+      0,
+      HAT_CENTER,
+      buttons
+    );
+  }
 
 
   // ~250 Hz controller update rate
