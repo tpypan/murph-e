@@ -8,7 +8,7 @@ A racing game with ridiculous rules, a platformer built around an inside joke, o
 
 We built both the software that generates the games and the physical machine you play them on, starting with an old CRT, salvaged joystick parts, and a steel tire rack.
 
-![Our initial whiteboard sketch of the arcade machine](https://raw.githubusercontent.com/tpypan/murph-e/main/docs/images/murphe/initial-design.png)
+![Our initial whiteboard sketch of the arcade machine](images/murphe/initial-design.png)
 
 ## What it does
 
@@ -38,9 +38,9 @@ Our Lua app turns the badges into controllers. It reads button presses and sends
 - We designed the circuitry in KiCad and wrote ESP32 firmware to calibrate the joystick, debounce buttons, and report inputs as a USB gamepad.
 - We implemented the badge’s USB application transfer protocol so the machine can install our Lua app when a player connects their badge.
 
-![Our custom joystick and four button controller](https://raw.githubusercontent.com/tpypan/murph-e/main/docs/images/murphe/controller.png)
+![Our custom joystick and four button controller](images/murphe/controller.png)
 
-![Joystick circuit schematic showing the X and Y potentiometers and filtering components](https://raw.githubusercontent.com/tpypan/murph-e/main/docs/images/murphe/joystick-circuit.png)
+![Joystick circuit schematic showing the X and Y potentiometers and filtering components](images/murphe/joystick-circuit.png)
 
 ## Challenges we ran into
 
