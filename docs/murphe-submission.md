@@ -1,6 +1,6 @@
 # murphe
 
-![Assembling murphe with its CRT, microphone, and custom arcade controls](images/murphe/machine-assembly.png)
+![The finished murphe arcade machine with its game library on screen](images/murphe/finished-machine.png)
 
 ## Inspiration
 
@@ -21,6 +21,8 @@ We built both the software that generates the games and the physical machine you
 
 Our Lua app turns the badges into controllers. It reads button presses and sends badge profile information, including the player’s name and badge ID, to the machine. This lets us keep scores associated with players across sessions. The badge screen also shows their player number and the controls for the current game.
 
+![Playing a fighting game on murphe using the custom joystick and buttons](images/murphe/playing-murphe.png)
+
 ## How we built it
 
 **The software**
@@ -39,6 +41,8 @@ Our Lua app turns the badges into controllers. It reads button presses and sends
 - We desoldered an analog joystick from an existing controller, designed a larger assembly in SolidWorks, and 3D printed the joystick parts and buttons.
 - We designed the circuitry in KiCad and wrote ESP32 firmware to calibrate the joystick, debounce buttons, and report inputs as a USB gamepad.
 - We implemented the badge’s USB application transfer protocol so the machine can install our Lua app when a player connects their badge.
+
+![Assembling murphe with its CRT, microphone, and custom arcade controls](images/murphe/machine-assembly.png)
 
 ![The CRT running on our workbench during hardware development](images/murphe/crt-workbench.png)
 
