@@ -71,10 +71,10 @@ TALK release, with the microphone stopped. See [speech setup](plans/speech-trans
   references now also supply maze topology/ghost lifecycle and combat timing code,
   including two reusable ghost sprite frames. These are tested components, not
   complete game engines or a downloaded sprite library.
-- **A live code stream.** A large green terminal shows code as the game is written, with separate writing, testing and repair feedback.
-  The display keeps the CRT safe area and waits for START after verification;
-  a separate muted draft preview shows streamed sprite rows and procedural scenes
-  in a disposable worker. It never advances the playable game.
+- **A live code stream.** The build screen shows what was said, the title and
+  one-liner once the spec lands, a status line (THINKING, WRITING, TESTING,
+  FIXING, READY) with a progress bar, and the tail of the code as it is written.
+  The display keeps the CRT safe area and waits for START after verification.
 - **Push-to-talk microphone.** Player count is never asked: both versions are built.
   Microphone access is requested only on TALK-down after that choice opens the
   listening screen; in-game voice changes are

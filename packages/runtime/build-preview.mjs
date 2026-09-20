@@ -11,7 +11,9 @@ const bundle = await build({
 })
 const worker = JSON.stringify(bundle.outputFiles[0].text).replaceAll('<', '\\u003c')
 // The iframe has no same-origin permission. CSP is inherited by its blob worker;
-// network and nested frames are disabled. A window timer kills stalled workers.
+// network and nested frames are disabled. A window timer kills stalled workers:
+// one second for a streamed draft, longer for a verified catalog demo, whose
+// first frame can take several seconds on the cabinet's Mac mini.
 // This limit includes linked catalog pixels. Streamed customization alone keeps
 // its separate 150k parser limit in the cabinet's draftScene function.
 const maxAssembledCharacters = 1_000_000
@@ -34,6 +36,7 @@ addEventListener('message',event=>{
  if(event.data?.type!=='preview-code')return;
  stop();
  const {code,players,motion,mode,genre}=event.data;
+ const grace=mode==='demo'?8000:1000;
  if(typeof code!=='string'||code.length>${maxAssembledCharacters}){stalled();return}
  const url=URL.createObjectURL(new Blob([${worker}],{type:'text/javascript'}));
  worker=new Worker(url);URL.revokeObjectURL(url);
@@ -45,9 +48,9 @@ addEventListener('message',event=>{
   const image=ctx.createImageData(256,224);
   image.data.set(data.pixels);
   ctx.putImageData(image,0,0);parent.postMessage({type:'preview-frame'},'*');
-  if(motion)watchdog=setTimeout(stalled,1000);
+  if(motion)watchdog=setTimeout(stalled,grace);
  };
- watchdog=setTimeout(stalled,1000);
+ watchdog=setTimeout(stalled,grace);
  worker.postMessage({code,players:players===2?2:1,motion:!!motion,mode:mode==='demo'?'demo':'draft',genre:typeof genre==='string'?genre.slice(0,64):''});
 });
 addEventListener('pagehide',stop);

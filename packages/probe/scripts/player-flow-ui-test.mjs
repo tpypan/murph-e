@@ -124,11 +124,13 @@ try {
     }
     const runtime = () => page.frames().find((frame) => frame.url().includes('/runtime/index.html'))
 
-    await page.goto(process.env.BASE ?? 'http://localhost:3000')
+    await page.goto(`${process.env.BASE ?? 'http://localhost:3000'}/?keyboard=1`)
     await page.getByRole('button', { name: '1 PLAYER', exact: true }).waitFor()
     await page.getByRole('button', { name: '2 PLAYERS', exact: true }).waitFor()
+    // On a laptop (?keyboard=1) the strip names the keyboard, never the panel;
+    // the flag is read after mount, so wait for it before checking the text.
+    await page.getByText('ARROWS: CHOOSE · Z: SELECT').waitFor()
     await assertHintsRemoved()
-    // Off the cabinet the strip names the keyboard, never the panel.
     assert.match(await page.locator('.controls-strip').innerText(), /ARROWS: CHOOSE · Z: SELECT/)
     assert.equal(await page.getByRole('button', { name: /HOLD.*TALK/ }).count(), 0)
     await page.keyboard.press('Space')

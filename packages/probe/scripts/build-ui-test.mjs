@@ -32,8 +32,8 @@ try {
   const errors = []
   page.on('pageerror', (e) => errors.push(e.message))
   await page.addInitScript(() => {
-    // Playwright also injects into opaque preview iframes, which intentionally
-    // have no microphone API. These test hooks belong to the cabinet only.
+    // Playwright also injects into the runtime iframe, which intentionally has
+    // no microphone API. These test hooks belong to the cabinet only.
     if (window !== window.top) return
     const original = window.fetch.bind(window)
     window.buildTest = { cancelled: 0, micStarts: 0, requests: [], push: () => false }
@@ -96,24 +96,53 @@ try {
     )
     return page.screenshot({ path: resolve(out, `${name}.png`), animations: 'disabled' })
   }
+  const bar = () =>
+    page.locator('.build-bar').evaluate((el) => Number(el.getAttribute('aria-valuenow')))
+  // Every text box on the build screen must stay inside the CRT safe area and
+  // clear of the controls line at the bottom.
+  const layoutSafe = () =>
+    page.evaluate(() => {
+      const screen = document.querySelector('.arcade-screen').getBoundingClientRect()
+      const strip = document.querySelector('.controls-strip').getBoundingClientRect()
+      return [
+        ...document.querySelectorAll(
+          '.build-stage > *, .build-progress > *, .build-code pre, .arcade-footer',
+        ),
+      ].map((el) => {
+        const b = el.getBoundingClientRect()
+        return {
+          text: el.textContent?.slice(0, 25),
+          safe:
+            b.left >= screen.left + screen.width * 0.08 - 1 &&
+            b.right <= screen.right - screen.width * 0.08 + 1 &&
+            b.top >= screen.top + screen.height * 0.08 - 1 &&
+            b.bottom <= strip.top + 1,
+        }
+      })
+    })
   await begin()
   assert.equal(await page.getByText('LIVE BUILD', { exact: true }).count(), 0)
+  assert.match(await page.locator('.build-said').innerText(), /YOU SAID: A MONKEY SWINGING/)
+  await page.getByRole('heading', { name: 'THINKING...' }).waitFor()
+  await page.getByText('FOR THE CABINET CONTROLS · 2 PLAYER MODE ON THE BADGES TOO').waitFor()
   await shot('01-waiting')
   await send({
     type: 'spec',
-    spec: { title: 'ROOFTOP SWING', oneLiner: 'SWING ACROSS THE SKY', note: '' },
+    spec: { title: 'ROOFTOP SWING', oneLiner: 'Swing across the sky', note: '' },
     ms: 1000,
   })
+  await page.getByRole('heading', { name: 'ROOFTOP SWING' }).waitFor()
+  await page.getByText('SWING ACROSS THE SKY', { exact: true }).waitFor()
+  const before = await bar()
   await send({
     type: 'token',
     variant: 1,
     text: "const MONKEY = [\n  '....4444....',\n  '..44ffff44..',\n",
   })
   await page.getByText('const MONKEY = [', { exact: false }).waitFor()
+  await page.getByText('WRITING...', { exact: true }).waitFor()
   const partial = await page.locator('.build-code').innerText()
-  await page.getByRole('img', { name: 'Sprite taking shape: MONKEY' }).waitFor()
-  const partialPixels = await page.locator('.build-sprite').evaluate((c) => c.toDataURL())
-  await shot('01-partial-sprite')
+  await shot('01-partial')
   await send({ type: 'token', variant: 0, text: 'const WRONG_CANDIDATE = ["8888","ffff"];' })
   await send({
     type: 'token',
@@ -124,16 +153,21 @@ try {
     document.querySelector('.build-code').textContent.includes('catchRope'),
   )
   assert.notEqual(await page.locator('.build-code').innerText(), partial)
-  assert.notEqual(
-    await page
-      .locator('.build-sprite')
-      .first()
-      .evaluate((c) => c.toDataURL()),
-    partialPixels,
-  )
-  assert.equal(await page.locator('.build-sprite').count(), 3)
   assert.doesNotMatch(await page.locator('.build-code').innerText(), /WRONG_CANDIDATE/)
   assert.match(await page.locator('.build-code').innerText(), /catchRope/)
+  // A real game is thousands of characters; the bar follows the streamed size.
+  await send({
+    type: 'token',
+    variant: 1,
+    text: `${Array.from(
+      { length: 40 },
+      (_, i) => `function helper${i}(api) { return api.btn('a'); }`,
+    ).join('\n')}\n`,
+  })
+  await page.waitForFunction(() =>
+    document.querySelector('.build-code').textContent.includes('helper39'),
+  )
+  assert.ok((await bar()) > before, 'the bar advances with the streamed code')
   for (const viewport of [
     { width: 640, height: 480 },
     { width: 320, height: 240 },
@@ -143,35 +177,13 @@ try {
     assert.ok(
       await page.locator('.build-code').evaluate((el) => el.scrollHeight <= el.clientHeight + 1),
     )
-    const layout = await page.evaluate(() => {
-      const screen = document.querySelector('.arcade-screen').getBoundingClientRect()
-      return [
-        ...document.querySelectorAll(
-          '.build-stage h1,.build-workbench,.build-stage button,.arcade-footer',
-        ),
-      ].map((el) => {
-        const b = el.getBoundingClientRect()
-        return {
-          text: el.textContent?.slice(0, 25),
-          safe:
-            b.left >= screen.left + screen.width * 0.08 - 1 &&
-            b.right <= screen.right - screen.width * 0.08 + 1 &&
-            b.top >= screen.top + screen.height * 0.08 - 1 &&
-            b.bottom <= screen.bottom - screen.height * 0.08 + 1,
-        }
-      })
-    })
+    const layout = await layoutSafe()
     assert.ok(
       layout.every((x) => x.safe),
       JSON.stringify(layout),
     )
     await shot(`02-streaming-${viewport.width}`)
   }
-  const positions = await page.evaluate(() => ({
-    code: document.querySelector('.build-code').getBoundingClientRect().right,
-    art: document.querySelector('.build-preview').getBoundingClientRect().left,
-  }))
-  assert.ok(positions.art > positions.code, 'art belongs beside the streamed code')
   await page.setViewportSize({ width: 640, height: 480 })
   await page.emulateMedia({ reducedMotion: 'reduce' })
   assert.equal(
@@ -179,7 +191,8 @@ try {
     'none',
   )
   await send({ type: 'built', variant: 1, ms: 10000, tokens: 1000, syntaxError: null })
-  await page.getByText('TESTING THE CONTROLS', { exact: true }).waitFor()
+  await page.getByText('TESTING...', { exact: true }).waitFor()
+  assert.equal(await bar(), 85)
   await shot('03-checking')
   await send({ type: 'repair', phase: 'start', observations: ['A did not jump'] })
   await send({
@@ -188,123 +201,11 @@ try {
     stage: 'repair',
     text: 'function update(api, dt) {\n  if (api.btnp("a")) jump();\n}\n',
   })
-  await page.getByText('FIXING A GLITCH', { exact: true }).waitFor()
-  assert.equal(await page.locator('.build-sprite').count(), 0)
+  await page.getByText('FIXING...', { exact: true }).waitFor()
+  assert.equal(await bar(), 90)
   assert.doesNotMatch(await page.locator('.build-code').innerText(), /catchRope/)
   await shot('04-repair')
-  // Procedural drawing arrives before the closing function brace. It renders
-  // in the isolated draft worker; incomplete expressions leave the prior frame.
-  await send({ type: 'repair', phase: 'start', observations: [] })
-  await send({
-    type: 'token',
-    variant: 1,
-    stage: 'repair',
-    text: `
-let tick = 0;
-function init(api) { tick = 0; }
-function update(api) { tick++; }
-function draw(api) {
- api.cls(1);
- api.rectfill(0,170,256,54,3);
- api.circfill(175,48,18,10);
- api.rectfill(98,85,35,48,8);
- api.rectfill(100,65,30,26,15);
- api.pset(107,75,0);
- api.pset(122,75,0);
- api.rectfill(98,133,12,26,12);
- api.rectfill(121,133,12,26,12);
- api.rectfill(133,90,12+Math.sin(tick/5)*6,8,15);
- api.rectfill(`,
-  })
-  await page.locator('.build-scene.is-visible').waitFor()
-  const preview = page.frames().find((f) => f.url().includes('/runtime/build-preview.html'))
-  const firstFrame = await preview.locator('canvas').evaluate((c) => c.toDataURL())
-  await page.waitForTimeout(300)
-  assert.equal(
-    await preview.locator('canvas').evaluate((c) => c.toDataURL()),
-    firstFrame,
-    'reduced motion freezes the draft',
-  )
-  await shot('04-procedural-draft')
   await page.emulateMedia({ reducedMotion: 'no-preference' })
-  await page.waitForTimeout(400)
-  assert.notEqual(
-    await preview.locator('canvas').evaluate((c) => c.toDataURL()),
-    firstFrame,
-    'actual update/draw code animates procedural art',
-  )
-  if (process.env.ARCADE_PREVIEW_SAMPLE) {
-    const sample = readFileSync(process.env.ARCADE_PREVIEW_SAMPLE, 'utf8')
-    const artStart = sample.indexOf('function draw(')
-    await send({ type: 'repair', phase: 'start', observations: [] })
-    await send({ type: 'token', variant: 1, stage: 'repair', text: sample.slice(0, artStart) })
-    await send({ type: 'token', variant: 1, stage: 'repair', text: sample.slice(artStart) })
-    await page.waitForTimeout(1200)
-    await shot('04-generated-game-draft')
-  }
-  // A real linked fighter includes >150k of art/controller data, even though the
-  // generated customization is tiny. Exercise the iframe, not just its worker.
-  const fighter = readFileSync(resolve(root, 'library/catalog/fighter/module.js'), 'utf8')
-    .trim()
-    .replace(/;\s*$/, '')
-  const largeDraft =
-    `const ARCADE={fighter:(${fighter})};\n` +
-    readFileSync(resolve(root, 'library/catalog/fighter/demo.js'), 'utf8')
-  assert(largeDraft.length > 150_000)
-  const previewResult = (code) =>
-    page.evaluate(
-      (code) =>
-        new Promise((resolve, reject) => {
-          const target = document.querySelector('.build-scene').contentWindow
-          const timer = setTimeout(() => {
-            window.removeEventListener('message', receive)
-            reject(Error('preview response timed out'))
-          }, 5000)
-          function receive(event) {
-            if (
-              event.source !== target ||
-              !['preview-frame', 'preview-unavailable'].includes(event.data?.type)
-            )
-              return
-            clearTimeout(timer)
-            window.removeEventListener('message', receive)
-            resolve(event.data.type)
-          }
-          window.addEventListener('message', receive)
-          target.postMessage({ type: 'preview-code', code, players: 2, motion: false }, '*')
-        }),
-      code,
-    )
-  assert.equal(await previewResult(largeDraft), 'preview-frame')
-  await shot('04-large-catalog-preview')
-  assert.equal(await previewResult(' '.repeat(1_000_001)), 'preview-unavailable')
-  assert.equal(
-    await previewResult(largeDraft),
-    'preview-frame',
-    'valid preview recovers after rejected oversized payload',
-  )
-  // A non-terminating large draft must not block CANCEL or the page.
-  await page.evaluate(() => {
-    window.previewFailed = false
-    const previewWindow = document.querySelector('.build-scene').contentWindow
-    window.addEventListener('message', (e) => {
-      if (e.source === previewWindow && e.data?.type === 'preview-unavailable')
-        window.previewFailed = true
-    })
-    document.querySelector('.build-scene').contentWindow.postMessage(
-      {
-        type: 'preview-code',
-        code:
-          '/*' +
-          'x'.repeat(200_000) +
-          '*/function init(){while(true){}} function update(){} function draw(){}',
-        players: 1,
-        motion: true,
-      },
-      '*',
-    )
-  })
-  await page.waitForFunction(() => window.previewFailed)
   assert.equal(await page.getByRole('button', { name: 'CANCEL', exact: true }).isEnabled(), true)
   await send({
     type: 'ready',
@@ -329,22 +230,11 @@ function draw(api) {
     },
   })
   await page.getByRole('heading', { name: 'READY!' }).waitFor()
-  await page.waitForFunction(() => !document.querySelector('.build-scene'))
-  // Worker close notifications can arrive after the iframe's DOM removal.
-  for (let tries = 0; page.workers().length && tries < 60; tries++) await page.waitForTimeout(50)
-  assert.equal(
-    page.workers().length,
-    0,
-    `leaving the build screen destroys the preview worker: ${page
-      .workers()
-      .map((w) => w.url())
-      .join(',')}`,
-  )
   const frame = page.frames().find((f) => f.url().includes('/runtime/index.html'))
   assert.equal(
     await frame.evaluate(() => window.__runtime.gameFrame),
     0,
-    'draft code and READY must never autoplay',
+    'READY must never autoplay',
   )
   await shot('05-ready')
   const micStarts = await page.evaluate(() => window.buildTest.micStarts)
@@ -413,7 +303,7 @@ function draw(api) {
     stage: 'build',
     text: 'function init(api) {}\nfunction update(api) {}\nfunction draw(api) {',
   })
-  await page.getByText('WRITING YOUR GAME', { exact: true }).waitFor()
+  await page.getByText('WRITING...', { exact: true }).waitFor()
   await shot('07-new-game-from-menu')
   await page.keyboard.press('KeyX')
   await page.getByRole('button', { name: /CURRENT GAME|RESUME GAME/ }).waitFor()
@@ -421,7 +311,7 @@ function draw(api) {
   assert.equal(await page.getByRole('region', { name: 'Live game build', exact: true }).count(), 0)
   assert.equal(errors.length, 0, errors.join('\n'))
   console.log(
-    'PASS: live preview, worker cleanup, CRT layout, no autoplay, menu-only voice creation, no in-game mic or remix context, cancellation',
+    'PASS: progress bar build screen, CRT layout, no autoplay, menu-only voice creation, no in-game mic or remix context, cancellation',
   )
 } finally {
   await browser.close()

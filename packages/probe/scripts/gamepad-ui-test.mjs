@@ -102,6 +102,7 @@ try {
     await page.waitForTimeout(80)
   }
   const DOWN = [0, -1, 0, 0, 0, 0]
+  const UP = [0, 1, 0, 0, 0, 0]
   const RIGHT = [1, 0, 0, 0, 0, 0]
   const A = 0
   const B = 1
@@ -122,10 +123,10 @@ try {
     await page.keyboard.press('F3')
     const panel = page.getByRole('region', { name: 'Cabinet panel' })
     await panel.waitFor()
-    // RIGHT and Y are harmless on the home screen (browse, and TALK is ignored there).
-    await set(RIGHT, [Y])
+    // UP only moves the cursor a row (PLAY -> players); TALK is ignored on the home screen.
+    await set(UP, [Y])
     await panel
-      .getByRole('button', { name: 'Panel RIGHT', exact: true })
+      .getByRole('button', { name: 'Panel UP', exact: true })
       .and(page.locator('[data-lit="true"]'))
       .waitFor()
     await panel
@@ -135,13 +136,14 @@ try {
     await shot('overlay-right-y')
     await set(centre, [])
     await panel
-      .getByRole('button', { name: 'Panel RIGHT', exact: true })
+      .getByRole('button', { name: 'Panel UP', exact: true })
       .and(page.locator('[data-lit="false"]'))
       .waitFor()
     await page.keyboard.press('F3')
   })
-  await step('stick down and A open MAKE A GAME; Y talks; A builds', async () => {
-    await flick(DOWN) // PLAY -> MAKE A GAME
+  await step('stick right and A open MAKE A GAME; Y talks; A builds', async () => {
+    await flick(DOWN) // players -> PLAY
+    await flick(RIGHT) // PLAY -> MAKE A GAME, beside it
     await tap(A)
     await heading('DESCRIBE YOUR GAME').waitFor()
     await set(centre, [Y])
@@ -155,8 +157,7 @@ try {
   await step('B is back, A plays, the stick and A reach the game', async () => {
     await tap(B)
     await page.getByRole('button', { name: /RESUME GAME/ }).waitFor()
-    await flick(DOWN)
-    await flick(DOWN)
+    await flick(DOWN) // PLAY -> RESUME GAME, the row below
     await tap(A) // RESUME -> READY
     await heading('READY!').waitFor()
     await tap(A)

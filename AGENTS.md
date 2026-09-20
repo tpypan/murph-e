@@ -252,7 +252,7 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   loop only through the physical panel's encoder codes (numpad placeholders in
   `apps/cabinet/app/input.ts`: 8 2 4 6 stick, 1 3 7 9 for A B X Y; X is START,
   Y is TALK), presses the F3 simulated panel with the mouse, and checks the
-  `?cabinet=1` keycaps. The real board is a USB HID gamepad mapped in `GAMEPAD`
+  panel keycaps (the default; `?keyboard=1` shows keyboard hints instead). The real board is a USB HID gamepad mapped in `GAMEPAD`
   (`apps/cabinet/app/input.ts`; `docs/encoder-bringup.md`). `pnpm test:probe`
   covers its decoder; `scripts/gamepad-ui-test.mjs` verifies the page with a fake
   pad. Shared-game generation and mode switching are tested offline in `pipeline-history.test.ts`

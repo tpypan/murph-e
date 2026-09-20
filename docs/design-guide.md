@@ -38,9 +38,9 @@ one-player game is played on the cabinet controls; a plugged-in badge only
 names the score and its buttons are ignored during play. A two-player game
 is played on the two badges (hub slot 1 and 2); the cabinet controls are
 ignored during play except START, which pauses from anywhere. On every other
-screen the panel and any badge both work the menus. Off the cabinet (no
-`?cabinet=1`) the keyboard stands in for the badges in a two-player game so
-it can be developed on a laptop.
+screen the panel and any badge both work the menus. With `?keyboard=1` the
+keyboard stands in for the badges in a two-player game so it can be developed
+on a laptop.
 
 | Control | Menu / voice / ready | During 1P play | During 2P play |
 | --- | --- | --- | --- |
@@ -55,9 +55,9 @@ it can be developed on a laptop.
 
 Development keyboard: arrows, Z=A, X=B, Enter=START, Space or V=TALK.
 Escape cancels or opens menu, P pauses, R opens Ready to restart, F fullscreen,
-F3 toggles the simulated panel. The kiosk opens `/?cabinet=1`, which makes the
-play legend's keycaps the panel letters (A, B) instead of the keyboard hints
-(A / Z, B / X) and hides the player-two keyboard hint.
+F3 toggles the simulated panel. The page names the panel letters (A, B) and the
+badges by default; `?keyboard=1` shows the keyboard hints (A / Z, B / X) and the
+player-two keyboard hint instead.
 Player-two development keys remain I/J/K/L/N/M; M is not a global mute key.
 Sound and fullscreen are available in Options. Keep the development input
 bindings working. Every shell screen carries one grey line saying what the
@@ -78,8 +78,10 @@ still previews of the previous and next games peek in beside the animated center
 game. Swipe the center, click a side preview, or move the stick left/right to browse.
 There are no arrow glyphs, ARCADE heading, demo label or position counter. Only
 the selected game and its two neighbors are prefetched, with a bounded local cache.
-Up/down moves
-between the game, player count, PLAY, MAKE A GAME, Resume and Options. The
+The stick walks four rows (revised 2026-09-20): the game carousel on top
+(left/right browses), the player count below it (left/right toggles), then
+PLAY beside MAKE A GAME, then RESUME GAME beside OPTIONS (left/right picks the
+column; up/down wraps). Home opens on PLAY. The
 1 PLAYER / 2 PLAYERS row applies to the demos only and follows the badges (two
 in: 2P) unless overridden. MAKE A GAME never asks: both versions are built.
 
@@ -114,30 +116,19 @@ timer. A centered 160×40 pixel waveform reacts to microphone volume and speech
 frequencies, with tapered edges and a quick attack / gentle decay. Audio is transcribed on this Mac by
 faster-whisper tiny.en after release. Cancellation releases audio resources.
 
-The build screen adapts the original main-branch code stream to the CRT layout:
-one yellow heading for the actual writing/testing/repair status. A green code
-stream sits beside a visual preview within the same cyan horizontal rules.
-Up to three literal sprites take shape row by row. Once enough initialization
-and drawing code arrives, the preview shows the actual scene, including characters
-drawn with procedural helpers. The small gray DRAFT label distinguishes it from
-the verified game. Until art arrives, the panel says WAITING FOR ART.
-Before code arrives, four yellow pixels pulse (static with reduced motion).
-No telemetry counters, estimated percentage, or LIVE BUILD header. One candidate is shown coherently when builders race;
-the final winning game can differ from that draft. Repairs start a new code feed.
-The preview never executes code in the
-cabinet window: a completed statement prefix of draw is tried in a disposable
-worker inside an opaque-origin iframe, with network access disabled by CSP.
-Syntax/missing-dependency errors keep the last good image. A one-second watchdog
-terminates stuck drafts; cleanup stops the worker, with a two-second heartbeat
-expiry if the iframe disappears before cleanup is delivered. The preview
-is muted, has no player input, and does not advance the actual playable game.
-
-Code uses a monospace face at 2% of screen width and preserves case;
-labels retain the uppercase pixel font. Eleven lines wrap at 30 characters within
-a fixed window. The preview preserves runtime sprite palettes and pixelated aspect-preserving
-scaling. The cursor stops during testing; reduced-motion removes blinking and
-renders a still draft instead of its animation. CANCEL stops generation, and PLAY
-starts the ready game. The build header does not advertise TALK while recording is
+The build screen is the original one, fitted to the CRT layout (restored
+2026-09-20; the draft art preview and WAITING FOR ART panel were removed
+because their text collided with the controls line). Top to bottom: YOU SAID
+and the transcript (two lines at most), the title in yellow with the one-liner
+once the spec lands (THINKING... blinks until then), which mode the console
+follows (the cabinet controls or the two badges; the one game plays both), a status word (THINKING, DESIGNING, WRITING, TESTING, FIXING,
+READY) beside a yellow progress bar, then the last nine lines of code in a
+green monospace face at 1.6% of screen width, clipped to its box so it never
+grows into the controls line. The bar follows the streamed size (capped at
+80% while writing), 85% while testing, 90% while fixing, full at READY. A 2P
+build asks for the second badge while it builds. CANCEL stops generation, and
+PLAY starts the ready game. Reduced motion stops the cursor and the bar
+transition. The build header does not advertise TALK while recording is
 unavailable.
 
 Generation failures return to transcript review with the idea and player count

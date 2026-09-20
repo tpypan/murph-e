@@ -269,6 +269,15 @@ h2 {
   color: #ffff55;
   font-size: 2.5cqw;
 }
+/* Only the row the stick is on is yellow. PLAY stands out in white, like the
+   game title and the chosen player count, until the cursor reaches it. */
+.home-actions .primary {
+  color: #fff;
+}
+.home-actions .primary:hover,
+.home-actions .primary[data-selected="true"] {
+  color: #ffff55;
+}
 .menu-list {
   display: flex;
   flex-direction: column;
@@ -335,13 +344,31 @@ h2 {
 .control-list {
   width: 100%;
   font-size: 2cqw;
-  line-height: 1.8;
+  line-height: 1.6;
   text-align: left;
 }
 .control-list > div {
   display: grid;
   grid-template-columns: 40% 60%;
-  padding: 0.4cqw 0;
+  padding: 0.3cqw 0;
+}
+/* The fullest screen: title, two version lines, a fallback banner, three
+   control rows, MORE, PLAY and MENU all have to fit above the controls line. */
+.ready-stage {
+  inset: 16% 8% 17%;
+  gap: 0.9cqw;
+}
+.ready-stage h1 {
+  line-height: 1.2;
+}
+.ready-stage h2 {
+  line-height: 1.3;
+}
+.ready-stage .support,
+.ready-stage .objective,
+.ready-stage .notice,
+.ready-stage .primary {
+  line-height: 1.5;
 }
 .control-list dt {
   color: #55ffff;
@@ -407,136 +434,84 @@ h2 {
   font-size: 1.6cqw;
   text-align: center;
 }
+/* The build screen: what was said, the spec, a status line with a progress
+   bar, and the tail of the streaming code. Everything sits above the controls
+   strip; the code box is clipped so it never grows into it. */
 .build-stage {
-  inset: 17% 8% 17%;
+  inset: 15% 8% 17%;
   justify-content: flex-start;
   gap: 1cqw;
 }
 .build-stage h1 {
-  font-size: 3.5cqw;
+  font-size: 3cqw;
   overflow-wrap: anywhere;
 }
-/* Like the original main-branch stream, code gets its own readable monospace face. */
-.build-workbench {
+.build-said,
+.build-version {
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+/* The full transcript was already read on the review screen: one line here,
+   and the one-liner gets two, so the code box keeps at least six lines. */
+.build-said,
+.build-liner {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.build-said {
+  -webkit-line-clamp: 1;
+}
+.build-liner {
+  -webkit-line-clamp: 2;
+  font-size: 2cqw;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.build-progress {
   width: 100%;
-  height: 36cqw;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  align-items: center;
   gap: 2cqw;
+  font-size: 2cqw;
+  color: #ffff55;
+}
+.build-status {
   flex-shrink: 0;
-  border-block: 0.3cqw solid #55ffff;
-  padding: 1.5cqw 0;
+  text-align: left;
+  white-space: nowrap;
+}
+.build-bar {
+  flex: 1;
+  height: 2.6cqw;
+  border: 0.3cqw solid #ffff55;
+  padding: 0.3cqw;
+}
+.build-bar > div {
+  height: 100%;
+  background: #ffff55;
+  transition: width 0.2s;
 }
 .build-code {
-  min-width: 0;
+  width: 100%;
+  flex: 1;
+  min-height: 14cqw;
   padding: 0.5cqw 0;
   text-align: left;
   overflow: hidden;
   color: #55ff55;
   font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 2cqw;
-  line-height: 1.3;
+  font-size: 1.6cqw;
+  line-height: 1.35;
   text-transform: none;
+  border-block: 0.2cqw solid #555;
 }
+/* Long lines are cut at the right edge rather than wrapped, so six lines are
+   always six lines and the box never scrolls. */
 .build-code pre {
   margin: 0;
   font: inherit;
   white-space: pre;
-}
-.build-sprite {
-  width: 12cqw;
-  height: 12cqw;
-  flex-shrink: 0;
-  align-self: center;
-  image-rendering: pixelated;
-}
-.build-preview {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  border-left: 0.2cqw solid #555;
-  padding-left: 2cqw;
-}
-.build-preview-label {
-  color: #aaa;
-  font-size: 1.6cqw;
-  text-align: right;
-  line-height: 2;
-}
-.build-preview-art {
-  position: relative;
-  flex: 1;
-  min-height: 0;
-  display: grid;
-  place-items: center;
-}
-.build-scene {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-.build-scene.is-visible {
-  visibility: visible;
-}
-.build-sprites {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-.build-sprites .build-sprite:first-child {
-  width: 21cqw;
-  height: 21cqw;
-  margin-inline: 7cqw;
-}
-.build-sprites:has(.build-sprite:nth-child(2)) .build-sprite:first-child {
-  width: 17cqw;
-  height: 17cqw;
-}
-.build-preview-pending {
-  display: flex;
-  flex-direction: column;
-  gap: 3cqw;
-  align-items: center;
-  color: #aaa;
-  font-size: 1.6cqw;
-  line-height: 1.6;
-}
-.build-waiting {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5cqw;
-}
-.build-waiting i {
-  width: 2cqw;
-  height: 2cqw;
-  background: #ffff55;
-  animation: build-pixels 1.6s steps(1) infinite;
-}
-.build-waiting i:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.build-waiting i:nth-child(3) {
-  animation-delay: 0.4s;
-}
-.build-waiting i:nth-child(4) {
-  animation-delay: 0.6s;
-}
-@keyframes build-pixels {
-  0%,
-  50% {
-    opacity: 1;
-  }
-  25%,
-  75% {
-    opacity: 0.25;
-  }
 }
 .build-cursor {
   display: inline-block;
@@ -551,12 +526,15 @@ h2 {
     opacity: 0;
   }
 }
+.blink {
+  animation: build-cursor 1s steps(1) infinite;
+}
 @media (prefers-reduced-motion: reduce) {
   .build-cursor {
     animation: none;
   }
-  .build-waiting i {
-    animation: none;
+  .build-bar > div {
+    transition: none;
   }
 }
 

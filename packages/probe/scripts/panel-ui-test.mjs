@@ -117,10 +117,10 @@ try {
     await page.getByRole('button', { name: '1 PLAYER', exact: true }).waitFor()
     await page.getByRole('button', { name: 'MAKE A GAME', exact: true }).waitFor()
   }
-  // Home opens on PLAY; MAKE A GAME is one row down.
+  // Home opens on PLAY; MAKE A GAME is right of it on the same row.
   const describe = async () => {
     await home()
-    await press(KEY.down)
+    await press(KEY.right)
     await press(KEY.a)
     await heading('DESCRIBE YOUR GAME').waitFor()
   }
@@ -178,8 +178,7 @@ try {
   await step('X is START: pause to the menu, RESUME continues', async () => {
     await press(KEY.x)
     await page.getByRole('button', { name: /RESUME GAME/ }).waitFor()
-    await press(KEY.down)
-    await press(KEY.down)
+    await press(KEY.down) // PLAY -> RESUME GAME, the row below
     await press(KEY.a)
     await page.getByRole('region', { name: 'Game controls', exact: true }).waitFor()
     assert.equal(counts.generate, 1, 'resume does not regenerate')
@@ -192,7 +191,6 @@ try {
     await home()
   })
   await step('F3 overlay: a mouse press takes the encoder path', async () => {
-    await press(KEY.down)
     await press(KEY.down)
     await press(KEY.a) // RESUME after a game over lands on READY
     await heading('READY!').waitFor()
@@ -233,7 +231,7 @@ try {
     await page.keyboard.press('F3')
     await page.locator('.panel-sim').waitFor({ state: 'detached' })
   })
-  await step('?cabinet=1: keycaps are the panel letters', async () => {
+  await step('default page: keycaps are the panel letters', async () => {
     await page.goto(`${base}/?cabinet=1`)
     await describe()
     await talkAndReview()
@@ -248,9 +246,8 @@ try {
     await shot('cabinet-playing-640')
     await press(KEY.x)
     await home()
-    await press(KEY.up) // from PLAY up past players and the title wraps to OPTIONS
-    await press(KEY.up)
-    await press(KEY.up)
+    await press(KEY.down) // PLAY -> RESUME GAME
+    await press(KEY.right) // -> OPTIONS beside it
     await press(KEY.a)
     await heading('OPTIONS').waitFor()
     assert.match(

@@ -13,10 +13,10 @@ mapping exercise, not a build.
 | piece | where | what it does |
 |---|---|---|
 | Panel model | `apps/cabinet/app/input.ts` | `ENCODER_KEYS` maps a `KeyboardEvent.code` to a panel input (`up down left right a b x y`); `PANEL_ROLES` says X is START and Y is TALK; `buttonForCode` turns codes into shell buttons, encoder table first |
-| Routing | `apps/cabinet/app/cabinet.tsx`, `onKeyboardInput` and `onBadgeInput` | 1P: the panel plays, badges only name the score. 2P: badges play, the panel is ignored except START. Menus from either. `?cabinet=1` makes this strict; without it the keyboard stands in for the badges in 2P |
+| Routing | `apps/cabinet/app/cabinet.tsx`, `onKeyboardInput` and `onBadgeInput` | 1P: the panel plays, badges only name the score. 2P: badges play, the panel is ignored except START. Menus from either. this is the default; `?keyboard=1` lets a laptop keyboard stand in for the badges in 2P |
 | Simulator | `apps/cabinet/app/panel.tsx`, F3 | lights on every player-one press, names the last code it received, and its buttons dispatch the encoder codes as synthetic key events |
-| Keycaps | `apps/cabinet/app/game-controls.tsx` | with `?cabinet=1` the play legend says A and B, not A / Z and B / X |
-| Kiosk | `scripts/kiosk.sh` | opens `/?cabinet=1` |
+| Keycaps | `apps/cabinet/app/game-controls.tsx` | the play legend says A and B by default; only `?keyboard=1` shows A / Z and B / X |
+| Kiosk | `scripts/kiosk.sh` | opens `/` |
 | Code reader | `packages/runtime/keys.html` (`pnpm serve`, port 5173) | prints the code of every key pressed |
 | Tests | `packages/probe/scripts/panel-ui-test.mjs`, `input-routing-ui-test.mjs` | the whole loop on the encoder codes; who plays in 1P and 2P with two fake badges |
 | Docs that name the placeholders | `docs/design-guide.md` (Physical input), `docs/runbook.md` (Encoder mapping, Keyboard), `docs/overview.md` (Hardware), `AGENTS.md` (Cabinet change), `docs/plans/tier-2.md` (H8) | say "numpad placeholders" until this procedure is done |
@@ -89,7 +89,7 @@ repo; its failure on missing batman/sonic/spider packs is not yours.
 
 ## Step 4: verify on the cabinet, by hand
 
-`scripts/kiosk.sh --dev` (opens `/?cabinet=1`). Press F3 once so the
+`scripts/kiosk.sh --dev`. Press F3 once so the
 overlay shows what the shell receives. Go through every row; each is a
 minute.
 

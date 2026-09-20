@@ -1,9 +1,10 @@
 // One line on every shell screen saying what the controls do right now, in
 // the words of the device that plays in this mode: a one-player game is
 // played on the cabinet panel (stick, A B X Y), a two-player game on the
-// badges (d-pad, A, B, START; only the cabinet's Y can talk). Off the cabinet
-// (no ?cabinet=1) it names the keyboard, so nobody reads a button they do not
-// have. During play the game legend (game-controls.tsx) carries this instead.
+// badges (d-pad, A, B, START; only the cabinet's Y can talk). Only with
+// ?keyboard=1 (a developer's laptop) does it name the keyboard, so nobody at
+// the cabinet reads a key they do not have. During play the game legend
+// (game-controls.tsx) carries this instead.
 
 export type StripPhase = 'ATTRACT' | 'OPTIONS' | 'LISTENING' | 'BUILDING' | 'READY' | 'GAMEOVER'
 
@@ -54,7 +55,7 @@ export function controlsHint(phase: StripPhase, ctx: StripContext): string {
 /** The absolute strip for the stage screens; the home screen renders its hint in flow. */
 export function ControlsStrip({ phase, ...ctx }: { phase: StripPhase } & StripContext) {
   return (
-    <p className="support controls-strip" aria-label="Controls">
+    <p className="support controls-strip" role="note" aria-label="Controls">
       {controlsHint(phase, ctx)}
     </p>
   )

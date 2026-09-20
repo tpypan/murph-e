@@ -84,8 +84,8 @@ listening or returns to the menu from a game, F8 injects a crash (exercises
 the fallback path), F9 ends the round on screen. The numpad is the encoder's
 placeholder codes (8 2 4 6 stick, 1 3 7 9 for A B X Y) and F3 shows the
 simulated panel, which can be clicked. Player two from the keyboard: I J K L
-move, N = A, M = B. The kiosk script opens `/?cabinet=1`, which swaps the
-keyboard hints on screen (A / Z) for the panel's own letters.
+move, N = A, M = B. The page names the panel's own letters and the badges by
+default; open `/?keyboard=1` on a laptop to see keyboard hints (A / Z) instead.
 
 ## Badges and two players
 
@@ -104,8 +104,8 @@ keyboard hints on screen (A / Z) for the panel's own letters.
   the game. 2 PLAYERS: badge slot 1 is player one, slot 2 is player two, in
   the order they opened the app; the cabinet controls do not play, but START
   still pauses and the panel works the menus. With one badge the game still
-  starts (player two idles) so the cabinet never dead-ends. Off the cabinet
-  (no `?cabinet=1`) the keyboard stands in for the badges in 2P: arrows and
+  starts (player two idles) so the cabinet never dead-ends. On a laptop
+  (`?keyboard=1`) the keyboard stands in for the badges in 2P: arrows and
   Z X for player one, I J K L N M for player two.
 - The scenario test for all of this is
   `pnpm --filter @htn/probe exec node scripts/input-routing-ui-test.mjs`

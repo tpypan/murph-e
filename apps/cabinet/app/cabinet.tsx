@@ -254,12 +254,13 @@ export default function Cabinet({
   const [sound, setSound] = useState(true)
   // F3 shows the simulated cabinet panel (docs/design-guide.md, Physical input).
   const [showPanel, setShowPanel] = useState(false)
-  // ?cabinet=1 (set by scripts/kiosk.sh): the keycaps on screen are the panel's
-  // own letters instead of the keyboard hints a developer sees.
-  const [cabinet, setCabinet] = useState(false)
-  const cabinetRef = useRef(false)
+  // This page runs on the cabinet: the keycaps on screen are the panel's own
+  // letters (stick, A B X Y) and the badges'. Only ?keyboard=1 (a developer on
+  // a laptop) names the keyboard instead and lets it stand in for the badges.
+  const [cabinet, setCabinet] = useState(true)
+  const cabinetRef = useRef(true)
   useEffect(() => {
-    const on = new URLSearchParams(window.location.search).get('cabinet') === '1'
+    const on = new URLSearchParams(window.location.search).get('keyboard') !== '1'
     cabinetRef.current = on
     setCabinet(on)
   }, [])
@@ -1160,16 +1161,13 @@ export default function Cabinet({
       )}
       {v.phase === 'BUILDING' && (
         <BuildConsole
+          transcript={v.transcript}
+          spec={v.spec}
           code={v.code}
-          foundation={v.foundation}
-          title={v.spec?.title}
           status={v.status}
           players={v.mode}
-          note={
-            v.mode === 2
-              ? 'FOR 2 BADGES · A 1 PLAYER VERSION IS BUILDING TOO'
-              : 'FOR THE CABINET CONTROLS · A 2 PLAYER VERSION IS BUILDING TOO'
-          }
+          badgesReady={readyBadges}
+          error={v.error}
           onCancel={startAttract}
         />
       )}
@@ -1178,7 +1176,13 @@ export default function Cabinet({
           <h1 className="cyan">READY!</h1>
           <h2>{v.game?.title}</h2>
           <p className="support version-line">
-            {v.mode === 2 ? '2 PLAYERS · BADGES' : '1 PLAYER · CABINET CONTROLS'}
+            {v.mode === 2
+              ? readyBadges < 2
+                ? '2 PLAYERS · BADGES · PLUG IN BOTH BADGES'
+                : '2 PLAYERS · BADGES'
+              : v.session[0]
+                ? '1 PLAYER · CABINET CONTROLS · BADGE KEEPS SCORE'
+                : '1 PLAYER · CABINET CONTROLS'}
             {otherVersion && (
               <>
                 <br />
@@ -1205,16 +1209,6 @@ export default function Cabinet({
             <button type="button" className="support" onClick={() => setPage((n) => n + 1)}>
               MORE · {readyPage + 1}/{controlPages}
             </button>
-          )}
-          {v.game?.players === 2 && (
-            <p className="support">
-              {readyBadges < 2
-                ? 'PLUG IN BOTH BADGES. THEY ARE THE CONTROLS'
-                : 'THE BADGES ARE THE CONTROLS'}
-            </p>
-          )}
-          {v.game?.players === 1 && v.session[0] && (
-            <p className="support">PLAY ON THE CABINET CONTROLS. THE BADGE KEEPS THE SCORE</p>
           )}
           <button type="button" className="primary" onClick={start}>
             &gt; PLAY

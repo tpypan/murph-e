@@ -132,7 +132,16 @@ export const HomeScreen = forwardRef<
   }, [badgesReady])
   const cache = useRef(new Map<string, DemoGame>())
   const [loaded, setLoaded] = useState(new Map<string, DemoGame>())
-  const [selection, setSelection] = useState(2)
+  // The stick walks a grid: row 0 the game carousel (left/right browses),
+  // row 1 the player count (left/right toggles), row 2 PLAY | MAKE A GAME and
+  // row 3 RESUME GAME | OPTIONS (left/right picks the column). Opens on PLAY.
+  const [cursor, setCursor] = useState<{ row: number; col: number }>({ row: 2, col: 0 })
+  const selection = cursor.row
+  const at = (row: number, col = 0) => cursor.row === row && cursor.col === col
+  const focus =
+    (row: number, col = 0) =>
+    () =>
+      setCursor({ row, col })
   const [loadError, setLoadError] = useState<string | null>(null)
   const [loadingList, setLoadingList] = useState(true)
   const swipe = useRef<{ x: number; y: number } | null>(null)
@@ -242,18 +251,29 @@ export const HomeScreen = forwardRef<
   const play = () => {
     if (loadedGame) onPlay(loadedGame, players)
   }
-  const count = onResume ? 6 : 5
+  const ROWS = 4
+  const columns = (row: number) => (row === 2 ? 2 : row === 3 && onResume ? 2 : 1)
   useImperativeHandle(ref, () => ({
     input(button) {
+      const { row, col } = cursor
       if (button === 'left' || button === 'right') {
-        if (selection === 1 && selected?.players.length === 2) setPlayers((p) => (p === 1 ? 2 : 1))
-        else browse(button === 'left' ? -1 : 1)
-      } else if (button === 'up' || button === 'down')
-        setSelection((n) => (n + (button === 'up' ? -1 : 1) + count) % count)
-      else if (button === 'a' || button === 'start') {
-        if (selection <= 2) play()
-        else if (selection === 3) onCreate()
-        else if (selection === 4 && onResume) onResume()
+        const step = button === 'left' ? -1 : 1
+        if (row === 0) browse(step)
+        else if (row === 1) {
+          if (selected?.players.length === 2) setPlayers((p) => (p === 1 ? 2 : 1))
+        } else {
+          const n = columns(row)
+          setCursor({ row, col: (col + step + n) % n })
+        }
+      } else if (button === 'up' || button === 'down') {
+        const next = (row + (button === 'up' ? -1 : 1) + ROWS) % ROWS
+        setCursor({ row: next, col: Math.min(col, columns(next) - 1) })
+      } else if (button === 'a' || button === 'start') {
+        if (row <= 1) play()
+        else if (row === 2) {
+          if (col === 0) play()
+          else onCreate()
+        } else if (onResume && col === 0) onResume()
         else onOptions()
       }
     },
@@ -285,7 +305,7 @@ export const HomeScreen = forwardRef<
           type="button"
           className="home-peek is-previous"
           aria-label="Previous game"
-          onFocus={() => setSelection(0)}
+          onFocus={focus(0)}
           onClick={() => browse(-1)}
           disabled={games.length < 2}
         >
@@ -319,7 +339,7 @@ export const HomeScreen = forwardRef<
           type="button"
           className="home-peek is-next"
           aria-label="Next game"
-          onFocus={() => setSelection(0)}
+          onFocus={focus(0)}
           onClick={() => browse(1)}
           disabled={games.length < 2}
         >
@@ -347,7 +367,7 @@ export const HomeScreen = forwardRef<
             aria-pressed={players === n}
             disabled={!!selected && !selected.players.includes(n)}
             data-selected={selection === 1 && players === n}
-            onFocus={() => setSelection(1)}
+            onFocus={focus(1)}
             onClick={() => setPlayers(n)}
           >
             {players === n ? '■ ' : ''}
@@ -363,18 +383,13 @@ export const HomeScreen = forwardRef<
           type="button"
           className="primary"
           disabled={!loadedGame}
-          data-selected={selection === 2}
-          onFocus={() => setSelection(2)}
+          data-selected={at(2, 0)}
+          onFocus={focus(2, 0)}
           onClick={play}
         >
-          &gt; PLAY
+          {at(2, 0) ? '> ' : ''}PLAY
         </button>
-        <button
-          type="button"
-          data-selected={selection === 3}
-          onFocus={() => setSelection(3)}
-          onClick={onCreate}
-        >
+        <button type="button" data-selected={at(2, 1)} onFocus={focus(2, 1)} onClick={onCreate}>
           MAKE A GAME
         </button>
       </div>
@@ -385,26 +400,21 @@ export const HomeScreen = forwardRef<
       )}
       <div className="home-footer">
         {onResume && (
-          <button
-            type="button"
-            data-selected={selection === 4}
-            onFocus={() => setSelection(4)}
-            onClick={onResume}
-          >
+          <button type="button" data-selected={at(3, 0)} onFocus={focus(3, 0)} onClick={onResume}>
             RESUME GAME
           </button>
         )}
         <button
           type="button"
-          data-selected={selection === count - 1}
-          onFocus={() => setSelection(count - 1)}
+          data-selected={at(3, onResume ? 1 : 0)}
+          onFocus={focus(3, onResume ? 1 : 0)}
           onClick={onOptions}
         >
           OPTIONS
         </button>
       </div>
       {hint && (
-        <p className="support controls-strip home-hint" aria-label="Controls">
+        <p className="support controls-strip home-hint" role="note" aria-label="Controls">
           {hint}
         </p>
       )}

@@ -61,7 +61,7 @@ try {
   const preview = () => page.locator('.home-current .home-preview[data-ready="true"]')
   const currentId = () => preview().getAttribute('data-game-id')
   const adjacent = (side) => page.locator(`.home-peek.is-${side} .home-preview[data-ready="true"]`)
-  const play = () => page.getByRole('button', { name: /^> PLAY$/ })
+  const play = () => page.getByRole('button', { name: /^(?:> )?PLAY$/ })
   const screenshot = (name) => page.screenshot({ path: resolve(output, `${name}.png`) })
   const games = (await (await page.request.get(`${base}/api/demos`)).json()).games
   assert.ok(games.length >= 3, 'the local catalog provides distinct adjacent games')
@@ -158,6 +158,11 @@ try {
   assert.notEqual(await title.innerText(), second)
   await checkNeighbors()
   await page.locator('.arcade-screen').focus()
+  // The carousel is the top row (the title turns yellow); left/right browses there.
+  for (let i = 0; i < 4; i++) {
+    if ((await page.locator('.home-caption h2').getAttribute('data-selected')) === 'true') break
+    await page.keyboard.press('ArrowUp')
+  }
   await page.keyboard.press('ArrowLeft')
   await preview().waitFor()
   assert.equal(await title.innerText(), second)

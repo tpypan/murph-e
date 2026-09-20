@@ -169,11 +169,12 @@ try {
       (w) => document.querySelector('.version-line')?.textContent?.includes(w),
       want,
     )
-  // Home opens on PLAY; MAKE A GAME is one row down. Nobody is asked how many
-  // players: both versions are built and the badges decide which one opens.
+  // Home opens on PLAY; MAKE A GAME is right of it on the same row. Nobody is
+  // asked how many players: both versions are built and the badges decide which
+  // one opens.
   const makeGame = async (players) => {
     await home()
-    await press(KEY.down)
+    await press(KEY.right)
     await press(KEY.a)
     await heading('DESCRIBE YOUR GAME').waitFor()
     await page.keyboard.down(KEY.y)
@@ -216,7 +217,7 @@ try {
         (el) => el.textContent?.trim() === 'Tony Pan',
       ),
     )
-    assert.match(await screen.innerText(), /PLAY ON THE CABINET CONTROLS/)
+    assert.match(await screen.innerText(), /CABINET CONTROLS · BADGE KEEPS SCORE/)
     await shot('1p-ready-with-badge')
   })
   await step('1P: the panel moves and scores', async () => {
@@ -256,7 +257,7 @@ try {
   await step('1P: a badge works the menus', async () => {
     await tapBadge(1, 'b') // back to home from the game over card
     await home()
-    await tapBadge(1, 'down') // PLAY -> MAKE A GAME
+    await tapBadge(1, 'right') // PLAY -> MAKE A GAME
     await tapBadge(1, 'a')
     await heading('DESCRIBE YOUR GAME').waitFor()
     await tapBadge(1, 'b')
@@ -311,8 +312,7 @@ try {
   await step('2P: the panel START still pauses; RESUME continues', async () => {
     await press(KEY.x)
     await page.getByRole('button', { name: /RESUME GAME/ }).waitFor()
-    await press(KEY.down)
-    await press(KEY.down)
+    await press(KEY.down) // PLAY -> RESUME GAME, the row below
     await press(KEY.a)
     await page.getByRole('region', { name: 'Game controls', exact: true }).waitFor()
   })
@@ -358,10 +358,10 @@ try {
     await home()
   })
 
-  // ---- off the cabinet the keyboard stands in for the badges in 2P
+  // ---- on a laptop (?keyboard=1) the keyboard stands in for the badges in 2P
   await step('laptop 2P: arrows and I J K L stand in for the badges', async () => {
     await unplugAll()
-    await page.goto(base)
+    await page.goto(`${base}/?keyboard=1`)
     await makeGame(1)
     await press(KEY.down)
     await waitVersion('2 PLAYERS · BADGES')
