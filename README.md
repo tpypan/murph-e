@@ -1,8 +1,4 @@
-# murph-e: the talking arcade cabinet
-
-A Mac mini in an arcade cabinet. You hold the mic button, say a game, watch
-it get written on the screen, and play it on the joystick about a minute
-later. Then the next person in line does the same.
+# murph-e
 
 Hack the North 2026.
 
