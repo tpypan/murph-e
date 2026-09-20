@@ -29,16 +29,28 @@ test('cabinet generates one shared game and ignores legacy client race values', 
       {
         name: 'offline-harness',
         setup(builder: {
-          onResolve: (options: { filter: RegExp }, callback: () => unknown) => void
-          onLoad: (options: { filter: RegExp; namespace: string }, callback: () => unknown) => void
+          onResolve: (
+            options: { filter: RegExp },
+            callback: (args: { path: string }) => unknown,
+          ) => void
+          onLoad: (
+            options: { filter: RegExp; namespace: string },
+            callback: (args: { path: string }) => unknown,
+          ) => void
         }) {
-          builder.onResolve({ filter: /^@htn\/harness$/ }, () => ({
-            path: 'harness',
-            namespace: 'fixture',
-          }))
-          builder.onLoad({ filter: /.*/, namespace: 'fixture' }, () => ({
-            contents:
-              'export const pipeline=(...args)=>fixture.pipeline(...args); export const withAppGeneration=fn=>fn(); export const closeProbe=async()=>{};',
+          const stubs: Record<string, string> = {
+            '../cloud-sync': 'export const startCloudSync=()=>{};',
+            '@htn/harness':
+              'export const pipeline=(...args)=>fixture.pipeline(...args); export const withAppGeneration=fn=>fn(); export const closeProbe=async()=>{}; export const queueCloudItem=()=>{};',
+            '../badges/hub': 'export const getHub=()=>({badges:()=>[]});',
+            './supabase-games': 'export const createGameCloudSave=()=>async()=>{};',
+            './reuse-registry': 'export const createReuseSearch=()=>async()=>[];',
+          }
+          builder.onResolve({ filter: /.*/ }, (args: { path: string }) =>
+            stubs[args.path] ? { path: args.path, namespace: 'fixture' } : undefined,
+          )
+          builder.onLoad({ filter: /.*/, namespace: 'fixture' }, (args: { path: string }) => ({
+            contents: stubs[args.path],
             loader: 'js',
           }))
         },

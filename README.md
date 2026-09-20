@@ -9,6 +9,13 @@ Hack the North 2026.
 - `docs/badge-integration.md`: hacker badges as controllers and identity.
 - `AGENTS.md`: conventions for anyone, human or agent, working in this repo.
 
+## Community website
+
+The separate gallery and global leaderboard live in [`apps/web`](apps/web/README.md).
+Run `pnpm dev:web` for http://localhost:3020. Deploy it as a new Vercel project with
+root directory `apps/web`; it uses only the public Supabase URL and publishable key.
+See [the data flow](docs/plans/community-arcade.md) for score saving and migrations.
+
 ## Run locally
 
 Use Node 24+ and pnpm 11. Run from the repository root:

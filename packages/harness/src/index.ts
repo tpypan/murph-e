@@ -1,4 +1,14 @@
 export { closeProbe, controlsFromSpec, probe } from '@htn/probe'
+export {
+  acknowledgeCloudItem,
+  beginPlaySession,
+  type CloudItem,
+  completePlaySession,
+  type DeliveredGame,
+  type PublicGame,
+  pendingCloudItems,
+  queueCloudItem,
+} from './arcade-store.ts'
 export { build, syntaxCheck } from './build.ts'
 export { withDeadline } from './deadline.ts'
 export { type DemoGame, type DemoSummary, listDemos, loadDemo } from './demos.ts'

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { mkdtempSync, rmSync } from 'node:fs'
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { tmpdir } from 'node:os'
 import { resolve } from 'node:path'
@@ -736,5 +736,84 @@ test('shared hybrid game selects Jev and builds once, then validates the same co
     }
   } finally {
     rmSync(root, { recursive: true, force: true })
+  }
+})
+
+test('publication queues the delivered game and creator after both mode checks and before ready', async (t) => {
+  t.mock.method(globalThis, 'fetch', () => {
+    throw Error('NETWORK FORBIDDEN')
+  })
+  for (const repair of [false, true]) {
+    const root = mkdtempSync(resolve(tmpdir(), 'arcade-publish-'))
+    const folder = resolve(root, 'data/arcade/outbox')
+    const pending = () =>
+      existsSync(folder)
+        ? readdirSync(folder).map((name) => JSON.parse(readFileSync(resolve(folder, name), 'utf8')))
+        : []
+    const checked: number[] = []
+    let ready = false
+    const thumbnail = Buffer.from('offline-thumbnail')
+    const fixture = {
+      root,
+      spec: {
+        title: 'PUBLICATION FIXTURE',
+        multiplayer: {
+          mode: 'versus',
+          solo: 'CPU opponent',
+          playerOne: 'Paddle one',
+          playerTwo: 'Paddle two',
+          camera: 'shared',
+          scoring: 'Separate',
+          endConditions: 'First to five',
+        },
+        oneLiner: 'One shared game',
+        genre: 'paddle',
+        players: 1,
+        note: '',
+        controls: [],
+      },
+      build: async () => output('function init() {}', repair ? 'syntax fixture' : null),
+      repair: async () => output('function init() { return 1 }'),
+      probe: async (_code: string, options: { players: number }) => {
+        assert.equal(pending().length, 0, 'unverified games must not be published')
+        checked.push(options.players)
+        return { ...probeResult(true), thumb: thumbnail }
+      },
+    }
+    try {
+      const pipeline = await pipelineFor(fixture)
+      const result = await pipeline('offline game idea', {
+        publish: true,
+        keep: false,
+        creator: { badgeId: 'offline-badge', name: 'Fixture Creator' },
+        run: {
+          id: 'publication-run',
+          dir: root,
+          write: (name) => resolve(root, name),
+          event: () => {},
+        },
+        onEvent: (event) => {
+          if (event.type === 'ready') {
+            assert.equal(pending().length, 1, 'ready requires a durable delivery record')
+            ready = true
+          }
+        },
+      })
+      assert.equal(ready, true)
+      assert.deepEqual(checked, [1, 2])
+      const item = pending()[0]
+      assert.equal(item.game.slug, result.slug)
+      assert.equal(item.game.creator_name, 'Fixture Creator')
+      assert.deepEqual(item.game.supported_players, [1, 2])
+      assert.equal(item.thumbnail, thumbnail.toString('base64'))
+      assert.equal(item.delivered.code, result.code)
+      assert.equal(item.delivered.transcript, 'offline game idea')
+      assert.equal(item.delivered.creator.badgeId, 'offline-badge')
+      assert.equal(item.delivered.model, repair ? 'fixture-repair' : 'fixture-build')
+      assert.equal(item.delivered.source, repair ? 'repair' : 'build')
+      assert.ok(Array.isArray(item.delivered.parts) && Array.isArray(item.delivered.sprites))
+    } finally {
+      rmSync(root, { recursive: true, force: true })
+    }
   }
 })

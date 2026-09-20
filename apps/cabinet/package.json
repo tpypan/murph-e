@@ -19,7 +19,9 @@
     "@htn/probe": "workspace:*",
     "openai": "^6.0.0",
     "playwright": "^1.55.0",
-    "@htn/badge": "workspace:*"
+    "@htn/badge": "workspace:*",
+    "@supabase/supabase-js": "2.116.0",
+    "server-only": "0.0.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

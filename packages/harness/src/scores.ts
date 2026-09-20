@@ -18,6 +18,8 @@ export interface ScoreEntry {
 }
 
 export interface ScoreInput {
+  id?: string
+  at?: string
   badgeId?: string | null
   name?: string | null
   score: number
@@ -26,7 +28,7 @@ export interface ScoreInput {
 }
 
 export const GUEST = 'GUEST'
-const DEFAULT_FILE = resolve(ROOT, 'data/scores.json')
+const DEFAULT_FILE = process.env.HTN_SCORE_FILE || resolve(ROOT, 'data/scores.json')
 
 interface Store {
   entries: ScoreEntry[]
@@ -53,14 +55,16 @@ function save(file: string, store: Store): void {
 /** Record one player's result. Returns the stored entry. */
 export function addScore(input: ScoreInput, file = DEFAULT_FILE): ScoreEntry {
   const store = load(file)
+  const previous = input.id ? store.entries.find((e) => e.id === input.id) : undefined
+  if (previous) return previous
   const entry: ScoreEntry = {
-    id: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
+    id: input.id ?? `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
     badgeId: input.badgeId || null,
     name: (input.badgeId && input.name?.trim()) || GUEST,
     score: Math.max(0, Math.floor(Number(input.score) || 0)),
     players: input.players === 2 ? 2 : 1,
     game: { slug: String(input.game.slug), title: String(input.game.title) },
-    at: new Date().toISOString(),
+    at: input.at ?? new Date().toISOString(),
   }
   store.entries.push(entry)
   save(file, store)

@@ -9,6 +9,7 @@ import { classifyGenerationError } from './generation-error'
 import { type DemoGame, type HomeHandle, HomeScreen } from './home-screen'
 import { attachGamepad, attachKeyboard, type InputEvent } from './input'
 import { Panel } from './panel'
+import { flushResults, retainResult } from './score-delivery'
 import { readSse } from './sse'
 import { Stt } from './stt'
 import { textPages, VoiceInput, type VoiceStage } from './voice-input'
@@ -273,6 +274,9 @@ export default function Cabinet({
       dispatch({ type: 'error', error: 'Fullscreen unavailable. Use browser kiosk mode.' }),
     )
   }, [])
+  const roundSession = useRef<string | null>(null)
+  const startingRound = useRef(false)
+  const completedRounds = useRef(new Set<string>())
   const seedRef = useRef(1)
   // Preserve the current game for its controls, replay and resume.
   const current = useRef<CurrentGame | null>(null)
@@ -315,32 +319,65 @@ export default function Cabinet({
     } catch {}
   }, [])
 
+  useEffect(() => {
+    const retry = () => {
+      void flushResults(localStorage)
+    }
+    retry()
+    const timer = setInterval(retry, 15000)
+    window.addEventListener('online', retry)
+    return () => {
+      clearInterval(timer)
+      window.removeEventListener('online', retry)
+    }
+  }, [])
+
   const postScores = useCallback(
-    async (game: Game, scores: number[]) => {
-      if (!game.slug) return
-      const { session, mode } = view.current
-      const posts: Promise<unknown>[] = []
-      for (let i = 0; i < game.players; i++) {
-        const who = session[i]
-        posts.push(
-          fetch('/api/scores', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              badgeId: who?.badgeId ?? null,
-              name: who?.name ?? null,
-              score: scores[i] ?? 0,
-              players: mode,
-              game: { slug: game.slug, title: game.title },
-            }),
-          }).catch(() => {}),
-        )
+    async (game: Game, scores: number[], state: 'win' | 'gameover', winner: number | null) => {
+      const sessionId = roundSession.current
+      if (!sessionId || completedRounds.current.has(sessionId)) return
+      completedRounds.current.add(sessionId)
+      const result = { sessionId, scores: scores.slice(0, game.players), state, winner }
+      try {
+        retainResult(result, localStorage)
+        await flushResults(localStorage)
+      } catch {
+        // A browser that disables local storage can still deliver to the durable cabinet queue.
+        await fetch('/api/scores', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(result),
+        }).catch(() => {})
       }
-      await Promise.all(posts)
       await fetchBoard(game.slug)
     },
     [fetchBoard],
   )
+
+  const beginRound = useCallback(async () => {
+    if (startingRound.current || view.current.phase !== 'READY' || !view.current.game) return
+    startingRound.current = true
+    const game = view.current.game
+    try {
+      const response = await fetch('/api/play-sessions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug: game.slug, players: game.players }),
+        signal: AbortSignal.timeout(10000),
+      })
+      if (!response.ok) throw new Error('Session unavailable')
+      const { sessionId } = await response.json()
+      if (view.current.phase !== 'READY' || view.current.game !== game) return
+      roundSession.current = sessionId
+      dispatch({ type: 'error', error: null })
+      post({ type: 'start' })
+      dispatch({ type: 'phase', phase: 'PLAYING' })
+    } catch {
+      dispatch({ type: 'error', error: 'COULD NOT START. PRESS PLAY TO RETRY.' })
+    } finally {
+      startingRound.current = false
+    }
+  }, [post])
 
   // ---- session: who is playing -------------------------------------------
   // In ATTRACT the session mirrors the badges that have said hello. From
@@ -775,8 +812,7 @@ export default function Cabinet({
         else if (ev.button === 'start' || ev.button === 'a') {
           if (phase === 'GAMEOVER') dispatch({ type: 'phase', phase: 'READY' })
           else {
-            post({ type: 'start' })
-            dispatch({ type: 'phase', phase: 'PLAYING' })
+            void beginRound()
           }
         } else if (ev.button === 'left' || ev.button === 'right')
           setPage((n) => Math.max(0, n + (ev.button === 'left' ? -1 : 1)))
@@ -804,6 +840,7 @@ export default function Cabinet({
       cancelListening,
       build,
       showVersion,
+      beginRound,
     ],
   )
 
@@ -926,7 +963,8 @@ export default function Cabinet({
         })
         if (phase === 'PLAYING' && (m.state === 'gameover' || m.state === 'win')) {
           dispatch({ type: 'phase', phase: 'GAMEOVER' })
-          if (game) void postScores(game, scores)
+          if (game)
+            void postScores(game, scores, m.state, Number.isInteger(m.winner) ? m.winner : null)
         }
         if (phase === 'GAMEOVER' && m.state === 'playing')
           dispatch({ type: 'phase', phase: 'PLAYING' })

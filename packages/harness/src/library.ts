@@ -79,16 +79,25 @@ export function keepInLibrary(
   code: string,
   thumb: Buffer | null,
   runId: string,
+  creator?: GameCreator | null,
+  uniqueSuffix?: string,
 ): string {
-  // The cabinet keeps a 1P and a 2P version of every idea; the suffix keeps
-  // their slugs (and so their leaderboards) apart.
-  const base = `${slugify(spec.title)}${spec.players === 2 ? '-2p' : ''}`
+  // Newly published games use the run ID so separate cabinets cannot collide.
+  // Historical single-mode entries retain their player-count suffix.
+  const base = `${slugify(spec.title)}${uniqueSuffix ? `-${uniqueSuffix}` : spec.players === 2 ? '-2p' : ''}`
   let slug = base
   for (let i = 2; existsSync(resolve(GAMES_DIR, slug)); i++) slug = `${base}-${i}`
   const dir = resolve(GAMES_DIR, slug)
   mkdirSync(dir, { recursive: true })
   writeFileSync(resolve(dir, 'game.js'), code)
-  writeFileSync(resolve(dir, 'spec.json'), JSON.stringify({ ...spec, runId }, null, 2))
+  writeFileSync(
+    resolve(dir, 'spec.json'),
+    JSON.stringify(
+      { ...spec, runId, creator, supportedPlayers: uniqueSuffix ? [1, 2] : [spec.players] },
+      null,
+      2,
+    ),
+  )
   if (thumb) writeFileSync(resolve(dir, 'thumb.png'), thumb)
   queueComponentIndex(
     {

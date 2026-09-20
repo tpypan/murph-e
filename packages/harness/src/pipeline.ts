@@ -1,9 +1,11 @@
 import { controlsFromSpec, type ProbeResult } from '@htn/probe'
+import { queueCloudItem } from './arcade-store.ts'
 import { BUILD_MAX_OUTPUT_TOKENS, type BuildResult, build } from './build.ts'
 import { validateCandidate } from './candidate-history.ts'
 import { type CandidateStage, catalogPreview, catalogSnapshot } from './catalog.ts'
 import { recordDesignContext } from './design-context.ts'
 import { MODELS } from './env.ts'
+import type { GameCreator } from './game-attribution.ts'
 import { assertJevConfigured, jevEnabled, selectWithJev } from './jev.ts'
 import { keepInLibrary, pickFallback } from './library.ts'
 import { probeGameModes } from './multiplayer-probe.ts'
@@ -54,6 +56,8 @@ export interface CurrentGame {
 }
 
 export interface PipelineOptions {
+  creator?: GameCreator | null
+  publish?: boolean
   race?: number
   /** Initial session mode; new games must support and pass checks in both modes. */
   players?: Players
@@ -642,8 +646,50 @@ export async function pipeline(
     )
     let slug = run.id
     if (opts.keep !== false) {
-      slug = keepInLibrary(spec, code, a.probe?.thumb ?? null, run.id)
+      slug = keepInLibrary(
+        spec,
+        code,
+        a.probe?.thumb ?? null,
+        run.id,
+        opts.creator,
+        opts.publish ? run.id : undefined,
+      )
       run.event('library', { slug })
+    }
+    if (opts.publish) {
+      const createdAt = new Date().toISOString()
+      const thumbnail = a.probe?.thumb?.toString('base64') ?? null
+      const snapshot = prompt.catalog ? catalogSnapshot(prompt.catalog) : { parts: [], sprites: [] }
+      queueCloudItem({
+        kind: 'game',
+        thumbnail,
+        game: {
+          slug,
+          title: spec.title,
+          description: spec.oneLiner,
+          genre: spec.genre,
+          creator_name: opts.creator?.name || 'GUEST',
+          supported_players: [1, 2],
+          source: 'generated',
+          created_at: createdAt,
+        },
+        delivered: {
+          runId: run.id,
+          slug,
+          code,
+          sourceCode: a.build!.sourceCode,
+          spec,
+          transcript,
+          creator: opts.creator ?? null,
+          source,
+          model: source === 'repair' ? MODELS.repair : (opts.model ?? MODELS.build),
+          effort: source === 'repair' ? MODELS.repairEffort : (opts.effort ?? MODELS.buildEffort),
+          parts: snapshot.parts,
+          sprites: snapshot.sprites,
+          thumbnail,
+          createdAt,
+        },
+      })
     }
     return done({
       code,

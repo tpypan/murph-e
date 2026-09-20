@@ -29,7 +29,9 @@
     "test:scores": "pnpm --filter @htn/harness exec node --import tsx --test \"test/*.test.ts\"",
     "test:probe": "pnpm --filter @htn/probe exec node --import tsx --test scripts/input-probe.test.mjs scripts/palette-probe.test.mjs scripts/playtest.test.mjs scripts/gamepad.test.mjs",
     "test": "pnpm test:badge && pnpm test:scores",
-    "catalog:rebuild": "pnpm --filter @htn/harness exec node --import tsx ../../scripts/rebuild-catalog-db.ts"
+    "catalog:rebuild": "pnpm --filter @htn/harness exec node --import tsx ../../scripts/rebuild-catalog-db.ts",
+    "dev:web": "pnpm --filter @htn/web dev",
+    "build:web": "pnpm --filter @htn/web build"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.8",
