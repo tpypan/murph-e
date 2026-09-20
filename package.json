@@ -27,7 +27,7 @@
     "badge": "pnpm --filter @htn/badge exec tsx src/cli.ts",
     "test:badge": "pnpm --filter @htn/badge exec node --import tsx --test \"test/*.test.ts\"",
     "test:scores": "pnpm --filter @htn/harness exec node --import tsx --test \"test/*.test.ts\"",
-    "test:probe": "pnpm --filter @htn/probe exec node --import tsx --test scripts/input-probe.test.mjs scripts/palette-probe.test.mjs scripts/playtest.test.mjs",
+    "test:probe": "pnpm --filter @htn/probe exec node --import tsx --test scripts/input-probe.test.mjs scripts/palette-probe.test.mjs scripts/playtest.test.mjs scripts/gamepad.test.mjs",
     "test": "pnpm test:badge && pnpm test:scores"
   },
   "devDependencies": {

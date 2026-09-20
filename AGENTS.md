@@ -196,7 +196,11 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   loop only through the physical panel's encoder codes (numpad placeholders in
   `apps/cabinet/app/input.ts`: 8 2 4 6 stick, 1 3 7 9 for A B X Y; X is START,
   Y is TALK), presses the F3 simulated panel with the mouse, and checks the
-  `?cabinet=1` keycaps. Fill `ENCODER_KEYS` from the real board on setup day.
+  `?cabinet=1` keycaps. The real board is a USB HID gamepad mapped in `GAMEPAD`
+  (`apps/cabinet/app/input.ts`, read 2026-09-20; `docs/encoder-bringup.md`);
+  `pnpm test:probe` covers the decoder and
+  `pnpm --filter @htn/probe exec node scripts/gamepad-ui-test.mjs` drives the
+  page with a fake pad of that shape.
   `pnpm --filter @htn/probe exec node scripts/input-routing-ui-test.mjs` (server
   started with `HTN_BADGES=off`) proves who plays: 1P on the cabinet controls
   with a badge only naming the score, 2P on the two fake badges with the panel

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>gamepad capture</title>
+    <style>
+      body { background: #000; color: #0f0; font: 22px ui-monospace, monospace; padding: 32px; }
+      #log { white-space: pre; margin-top: 16px; }
+      #state { color: #ff0; white-space: pre; }
+    </style>
+  </head>
+  <body>
+    <div>Click this page once, then move the stick up, down, left, right, and press A, B, X, Y one at a time. Each change is logged with the Gamepad API index.</div>
+    <div id="state">no gamepad yet</div>
+    <div id="log"></div>
+    <script>
+      const log = document.getElementById('log')
+      const state = document.getElementById('state')
+      const lines = []
+      const prev = { buttons: [], axes: [] }
+      const add = (s) => { lines.push(`${lines.length + 1}. ${s}`); log.textContent = lines.join('\n') }
+      addEventListener('gamepadconnected', (e) => add(`connected: "${e.gamepad.id}" mapping="${e.gamepad.mapping}" buttons=${e.gamepad.buttons.length} axes=${e.gamepad.axes.length}`))
+      function tick() {
+        const pad = [...navigator.getGamepads()].find((p) => p)
+        if (pad) {
+          state.textContent = `id="${pad.id}" mapping="${pad.mapping}"\nbuttons: ${pad.buttons.map((b, i) => (b.pressed ? i : '.')).join(' ')}\naxes: ${pad.axes.map((a) => a.toFixed(2)).join(' ')}`
+          pad.buttons.forEach((b, i) => { if (b.pressed !== !!prev.buttons[i]) add(`button ${i} ${b.pressed ? 'down' : 'up'}`); prev.buttons[i] = b.pressed })
+          pad.axes.forEach((a, i) => { const q = Math.abs(a) < 0.3 ? 0 : Math.sign(a); if (q !== (prev.axes[i] ?? 0)) add(`axis ${i} = ${a.toFixed(2)}`); prev.axes[i] = q })
+        }
+        requestAnimationFrame(tick)
+      }
+      tick()
+    </script>
+  </body>
+</html>

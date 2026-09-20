@@ -18,9 +18,12 @@ Quit the kiosk with Cmd+Q on a keyboard, or `pkill -f "Google Chrome"`.
 
 ## Encoder mapping (M7)
 
-The full setup-day procedure, including what to do if the board turns out
-to be a gamepad rather than a keyboard, is `docs/encoder-bringup.md`. In
-short: the panel is a joystick and four buttons, A B X Y in a diamond. A is confirm
+Done 2026-09-20: the board is an "ESP32-S3 Arcade Controller", a USB HID
+gamepad (analog stick on axes 0/1 with up as +Y, A B X Y on buttons 0 to 3),
+mapped in `GAMEPAD` in `apps/cabinet/app/input.ts` and replayed as the
+numpad codes below. `docs/encoder-bringup.md` has the capture procedure and
+the on-cabinet checklist. Historical notes for a keyboard encoder follow: the
+panel is a joystick and four buttons, A B X Y in a diamond. A is confirm
 and B is back on every shell screen; X is START and Y is TALK. Until the board
 arrives the codes in `ENCODER_KEYS` are numpad placeholders (8 2 4 6 for the
 stick, 1 3 7 9 for A B X Y) and F3 on the cabinet page shows a simulated panel

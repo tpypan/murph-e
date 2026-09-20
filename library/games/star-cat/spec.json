@@ -1,0 +1,48 @@
+{
+  "title": "STAR CAT",
+  "oneLiner": "Bounce across enchanted clouds and snatch falling stars before they vanish below.",
+  "genre": "vertical catch platformer",
+  "hook": "Choose safe cloud landings for reliable stars or take fast, risky leaps toward valuable star chains while missing a landing costs a life.",
+  "ramp": "The opening cloud layout teaches one bounce and one falling star with generous spacing. Later stages alternate calm recovery clouds with denser star showers, moving clouds, and brief gaps; cap cloud H",
+  "mechanics": [
+    "The cat automatically bounces when landing on a cloud; left and right steer horizontal movement in the air, with gentle acceleration and capped speed.",
+    "Clouds are solid only from above. A landing gives a readable squash flash and launches the cat upward; falling below the bottom without touching a cloud loses a life.",
+    "Stars fall vertically in marked lanes. Touching a star collects it once, awards 100 points, and produces a gold sparkle; missed stars disappear at the bottom and are not collectible later.",
+    "A star chain is available when the next star is collected within 1.5 seconds of the previous one, awarding 100, 200, then 300 points, capped at 3x; the chain resets on timeout or life loss.",
+    "Each stage scrolls upward as the cat climbs. New clouds enter from above while old clouds leave below, with a safe recovery cloud always visible after each authored hazard section.",
+    "Stage 1 uses wide stationary clouds and one star at a time. Later stages add limited horizontal cloud motion, offset cloud routes, and pairs of stars that reward choosing a risky route.",
+    "A short landing grace window prevents a fair edge landing from being lost, but the cat cannot steer through cloud undersides or land on a cloud from below.",
+    "Clear a stage by reaching its glowing moon gate after collecting enough stars; complete five compact stages to win, with a bonus for remaining lives.",
+    "The first attempt begins with a wide cloud directly beneath the cat and a slow star dropping nearby, teaching steering and bounce without an intro lock.",
+    "After a miss, respawn the cat on the last safe cloud with brief 1-second protection; reset the current chain but keep score and remaining stage progress."
+  ],
+  "artDirection": "256x224 NES-style vertical playfield with the top 12 pixels reserved for HUD. Use a readable 24x28 pixel wizard cat built from the supplied cat asset when its wait or rescued clip fits, adding a purple pointed hat, bright eyes, and a small wand silhouette through aligned pixel details. Show distinct crouched bounce, airborne, and hurt poses using simple manual overlays if needed. Clouds are 32-48 pixels wide, white and pale blue with dark-blue undersides; stars are 8x8 gold five-point pickups with a bright twinkle frame. Layer a dark indigo sky, soft moonlit cloud bands, and sparse stars behind the active playfield, keeping hazards and pickups high contrast. Reserve red-violet flashes for missed landings and gold sparkles for catches.",
+  "referenceIntent": {
+    "reference": "",
+    "preserve": [],
+    "change": []
+  },
+  "controls": {
+    "left": "Steer the airborne cat left; active during play and while bouncing.",
+    "right": "Steer the airborne cat right; active during play and while bouncing.",
+    "up": null,
+    "down": null,
+    "a": "Magically nudge the cat upward once per bounce, shortening horizontal control time but giving a higher arc; active only during ascent and once per bounce.",
+    "b": null
+  },
+  "palette": "nes",
+  "lose": "Lose a life when the cat falls below the playfield after missing every reachable cloud; the game ends at zero lives.",
+  "scoring": "Collect stars for 100 points each, with a timed chain capped at 3x and a 1,000-point stage-clear bonus.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "platforming",
+    "collision",
+    "scoring",
+    "onboarding"
+  ],
+  "players": 1,
+  "runId": "2026-09-20-083713001-a-wizard-cat-bouncing-on-clouds-RFa9MY"
+}

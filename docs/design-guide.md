@@ -22,13 +22,15 @@ physical-control requirements take precedence over its desktop typing examples.
 
 ## Physical input
 
-All keyboard, encoder and badge input passes through the same shell handler.
+All keyboard, panel and badge input passes through the same shell handler.
 The panel is a joystick and four buttons, A B X Y in a diamond. X is START and
 Y is TALK (`PANEL_ROLES` in `apps/cabinet/app/input.ts`; sticker the buttons to
-match). The encoder keycodes are numpad placeholders (8 2 4 6, then 1 3 7 9 for
-A B X Y) until the actual hardware is read on setup day; F3 shows a simulated
-panel whose buttons send those codes, lights on every player-one press and
-names the last code it received. It sits in the gutter beside the game.
+match). The board is a USB HID gamepad ("ESP32-S3 Arcade Controller"), read
+through the Gamepad API by `attachGamepad` and replayed as the numpad codes
+(8 2 4 6 for the stick, 1 3 7 9 for A B X Y), which are also what the keyboard
+and the tests press; F3 shows a simulated panel whose buttons send those codes,
+lights on every player-one press and names the last code it received. It sits
+in the gutter beside the game.
 `docs/encoder-bringup.md` is the procedure for mapping the real board.
 
 Who plays is fixed by the player count, never decided per press. A

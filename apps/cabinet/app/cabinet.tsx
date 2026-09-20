@@ -6,7 +6,7 @@ import { BuildConsole, type BuildStatus } from './build-console'
 import { GameControls } from './game-controls'
 import { classifyGenerationError } from './generation-error'
 import { type DemoGame, type HomeHandle, HomeScreen } from './home-screen'
-import { attachKeyboard, type InputEvent } from './input'
+import { attachGamepad, attachKeyboard, type InputEvent } from './input'
 import { Panel } from './panel'
 import { readSse } from './sse'
 import { Stt } from './stt'
@@ -805,6 +805,8 @@ export default function Cabinet() {
     [onInput],
   )
   useEffect(() => attachKeyboard(onKeyboardInput), [onKeyboardInput])
+  // The real panel is a HID gamepad; it replays its changes as the encoder codes.
+  useEffect(() => attachGamepad(), [])
 
   // Badges: during play a badge drives its hub slot in a two-player game and
   // nothing at all in a one-player game, where it only names the score. On
