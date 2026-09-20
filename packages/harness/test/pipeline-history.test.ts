@@ -19,6 +19,8 @@ import type {
 // No environment credentials, provider transport or model request is imported.
 const require = createRequire(resolve(import.meta.dirname, '../../runtime/package.json'))
 const stubs: Record<string, string> = {
+  './jev.ts':
+    'export const jevEnabled=()=>Boolean(fixture.hybrid);export const assertJevConfigured=()=>{};export const selectWithJev=(...args)=>fixture.selectWithJev(...args);',
   '@htn/probe':
     'export const controlsFromSpec=()=>[];export const probe=(...args)=>fixture.probe(...args);',
   './env.ts': `export const ROOT=fixture.root;export const MODELS={build:'fixture-build',buildEffort:'medium',repair:'fixture-repair',repairEffort:'medium',remix:'fixture-remix',remixEffort:'low'};`,
@@ -28,7 +30,7 @@ const stubs: Record<string, string> = {
   './spec.ts':
     'export const specify=async(t,o)=>({spec:{...fixture.spec,players:o?.players??1},context:{},prompt:{system:"",user:""},ms:0,usage:{}});',
   './prompt.ts':
-    'export const loadTemplates=()=>[];export const buildPrompt=()=>({system:"",user:"",designContext:{},referenceContext:{}});',
+    'export const loadTemplates=()=>[];export const buildPrompt=(...args)=>{fixture.capturePrompt?.(...args);return {system:"",user:"",designContext:{},referenceContext:{}}};',
   './remix.ts':
     'export const remix=(...args)=>fixture.remix(...args);export const remixSystemPrompt=()=>"";export const remixUserTurn=()=>"";',
   './library.ts':
@@ -484,6 +486,291 @@ test('pipelineBoth keeps the 1P version when the 2P version falls back', async (
       events.some((ev) => ev.type === 'fallback' && ev.players === 2),
       'the fallback is tagged with its version',
     )
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+test('hybrid pipeline selects once before both Astra builds, archives advice, and stops on router failure', async (t) => {
+  t.mock.method(globalThis, 'fetch', () => {
+    throw Error('NETWORK FORBIDDEN')
+  })
+  for (const fails of [false, true]) {
+    const root = mkdtempSync(resolve(tmpdir(), 'jev-pipeline-'))
+    const order: string[] = []
+    const saved: Record<string, string | Buffer> = {}
+    const hybrid = {
+      catalog: { parts: [], text: '', hash: '' },
+      guidance: 'Jev advice',
+      audit: { model: 'fixture-jev', selectedId: null },
+    }
+    const fixture = {
+      root,
+      hybrid: true,
+      spec: { title: 'HYBRID', genre: 'novel', players: 1, note: '', controls: [], remix: false },
+      selectWithJev: async () => {
+        order.push('jev')
+        if (fails) throw Error('Jev fixture failure')
+        return hybrid
+      },
+      capturePrompt: (
+        _spec: unknown,
+        _transcript: string,
+        _templates: unknown,
+        actual: unknown,
+      ) => {
+        assert.equal(actual, hybrid)
+        order.push('prompt')
+      },
+      build: async () => {
+        order.push('astra')
+        return output()
+      },
+      probe: async () => probeResult(true),
+    }
+    try {
+      const pipeline = await pipelineFor(fixture)
+      const pending = pipeline('hybrid fixture', {
+        race: 2,
+        keep: false,
+        run: {
+          id: 'hybrid',
+          dir: root,
+          event: () => {},
+          write: (name, content) => {
+            saved[name] = content
+            return resolve(root, name)
+          },
+        },
+      })
+      if (fails) {
+        await assert.rejects(pending, /Jev fixture failure/)
+        assert.deepEqual(order, ['jev'])
+      } else {
+        assert.equal((await pending).source, 'build')
+        assert.deepEqual(order, ['jev', 'prompt', 'astra', 'astra'])
+        assert.deepEqual(JSON.parse(String(saved['jev-routing.json'])), hybrid.audit)
+      }
+    } finally {
+      rmSync(root, { recursive: true, force: true })
+    }
+  }
+})
+
+test('new-game pipeline checks both modes and repairs a broken multiplayer mode even in a solo session', async (t) => {
+  t.mock.method(globalThis, 'fetch', () => {
+    throw Error('NETWORK FORBIDDEN')
+  })
+  for (const repairedP2Works of [false, true]) {
+    const root = mkdtempSync(resolve(tmpdir(), 'dual-mode-history-'))
+    const calls: Array<{ code: string; players: number }> = []
+    const capturedChecks: Record<string, unknown>[] = []
+    let repairs = 0
+    const fixture = {
+      root,
+      spec: {
+        title: 'DUAL',
+        genre: 'paddle',
+        players: 1,
+        note: '',
+        controls: [],
+        remix: false,
+        multiplayer: {
+          mode: 'versus',
+          solo: 'CPU opponent',
+          playerOne: 'Paddle one',
+          playerTwo: 'Paddle two',
+          camera: 'shared',
+          scoring: 'Separate scores',
+          endConditions: 'First to five',
+        },
+      },
+      build: async () => output('first'),
+      repair: async (_prompt: unknown, _spec: unknown, _code: string, observations: string[]) => {
+        repairs++
+        assert.ok(observations.some((o) => o.startsWith('2P mode:')))
+        return output('repaired')
+      },
+      probe: async (
+        code: string,
+        options: { players: number; thumb: boolean; requireIndependentPlayers: boolean },
+      ) => {
+        calls.push({ code, players: options.players })
+        assert.equal(options.thumb, options.players === 1)
+        assert.equal(options.requireIndependentPlayers, options.players === 2)
+        return probeResult(options.players === 1 || (code === 'repaired' && repairedP2Works))
+      },
+    }
+    try {
+      const pipeline = await pipelineFor(fixture)
+      const result = await pipeline('dual-mode fixture', {
+        race: 1,
+        keep: false,
+        players: 1,
+        run: {
+          id: 'dual',
+          dir: root,
+          event: () => {},
+          write: (name, content) => {
+            if (name === 'probe.json') capturedChecks.push(JSON.parse(String(content)))
+            return resolve(root, name)
+          },
+        },
+      })
+      assert.equal(repairs, 1)
+      assert.deepEqual(calls, [
+        { code: 'first', players: 1 },
+        { code: 'first', players: 2 },
+        { code: 'repaired', players: 1 },
+        { code: 'repaired', players: 2 },
+      ])
+      assert.equal(result.source, repairedP2Works ? 'repair' : 'library')
+      assert.equal(capturedChecks.length, repairedP2Works ? 1 : 0)
+      if (repairedP2Works) {
+        assert.equal((capturedChecks[0]!.checks as Record<string, boolean>)['1p:passed'], true)
+        assert.equal((capturedChecks[0]!.checks as Record<string, boolean>)['2p:passed'], true)
+      }
+    } finally {
+      rmSync(root, { recursive: true, force: true })
+    }
+  }
+})
+
+test('cancellation between player-mode checks archives cancellation and never repairs or publishes', async () => {
+  const root = mkdtempSync(resolve(tmpdir(), 'cancel-dual-mode-'))
+  const controller = new AbortController()
+  let probes = 0
+  let repairs = 0
+  const fixture = {
+    root,
+    spec: {
+      title: 'CANCEL DUAL',
+      genre: 'paddle',
+      players: 1,
+      note: '',
+      controls: [],
+      remix: false,
+      multiplayer: {
+        mode: 'versus',
+        solo: 'CPU',
+        playerOne: 'P1',
+        playerTwo: 'P2',
+        camera: 'shared',
+        scoring: 'Separate',
+        endConditions: 'First to five',
+      },
+    },
+    build: async () => output(),
+    repair: async () => {
+      repairs++
+      return output()
+    },
+    probe: async () => {
+      probes++
+      controller.abort('user stopped')
+      return probeResult(true)
+    },
+  }
+  try {
+    const pipeline = await pipelineFor(fixture)
+    await assert.rejects(
+      pipeline('cancel between modes', {
+        race: 1,
+        signal: controller.signal,
+        keep: false,
+        run: {
+          id: 'cancel-dual',
+          dir: root,
+          write: (name) => resolve(root, name),
+          event: () => {},
+        },
+      }),
+      { name: 'AbortError' },
+    )
+    assert.equal(probes, 1)
+    assert.equal(repairs, 0)
+    const db = new DatabaseSync(resolve(root, 'data/catalog.sqlite'))
+    try {
+      const row = db.prepare('SELECT validation_json FROM candidate_attempts').get()!
+      assert.equal(JSON.parse(String(row.validation_json)).outcome, 'cancelled')
+    } finally {
+      db.close()
+    }
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+test('pipelineBoth preserves tagged versions while Jev selection and both-mode checks run per version', async (t) => {
+  t.mock.method(globalThis, 'fetch', () => {
+    throw Error('NETWORK FORBIDDEN')
+  })
+  const root = mkdtempSync(resolve(tmpdir(), 'hybrid-both-'))
+  const selected: number[] = [],
+    checked: number[] = [],
+    events: PipelineEvent[] = []
+  const fixture = {
+    root,
+    hybrid: true,
+    spec: {
+      title: 'HYBRID BOTH',
+      genre: 'novel',
+      players: 1,
+      note: '',
+      controls: [],
+      remix: false,
+      multiplayer: {
+        mode: 'coop',
+        solo: 'One human',
+        playerOne: 'Independent P1',
+        playerTwo: 'Independent P2',
+        camera: 'shared',
+        scoring: 'Separate',
+        endConditions: 'Clear the stage',
+      },
+    },
+    selectWithJev: async (_words: string, spec: { players: number }) => {
+      selected.push(spec.players)
+      return {
+        catalog: { parts: [], text: '', hash: '' },
+        guidance: '',
+        audit: { selectedId: null },
+      }
+    },
+    build: async () => output(),
+    probe: async (_code: string, opts: { players: number }) => {
+      checked.push(opts.players)
+      return probeResult(true)
+    },
+  }
+  try {
+    const { pipelineBoth } = await moduleFor(fixture)
+    const result = await pipelineBoth('hybrid both', {
+      race: 1,
+      keep: false,
+      onEvent: (e) => events.push(e),
+      runFor: (players) => ({
+        id: `hybrid-${players}`,
+        dir: resolve(root, String(players)),
+        event: () => {},
+        write: (name) => resolve(root, String(players), name),
+      }),
+    })
+    assert.deepEqual(selected.sort(), [1, 2])
+    assert.deepEqual(checked.sort(), [1, 1, 2, 2])
+    assert.deepEqual(
+      events
+        .filter((e) => e.type === 'ready')
+        .map((e) => e.players)
+        .sort(),
+      [1, 2],
+    )
+    for (const n of [1, 2] as const) {
+      const r = result.results[n]
+      assert.ok(!(r instanceof Error))
+      assert.equal(r.source, 'build')
+      assert.equal(r.players, n)
+    }
   } finally {
     rmSync(root, { recursive: true, force: true })
   }

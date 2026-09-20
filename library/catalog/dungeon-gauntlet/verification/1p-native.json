@@ -1,0 +1,375 @@
+{
+  "contentHash": "41d84f2ce5b85799c46e8cbdaff182a06c0d93d4a5fa1ae567c64611feffdc42",
+  "passed": true,
+  "players": 1,
+  "frames": 2799,
+  "elapsedMs": 387,
+  "captures": [
+    {
+      "file": "1p-start.png",
+      "sha256": "12a3db8325dfcbb3ab14f92c920d2dee7b2fd3296a1e3977976498400baa960d",
+      "frame": 120,
+      "runtime": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 120,
+        "error": null
+      },
+      "phase": "play",
+      "stage": 1
+    },
+    {
+      "file": "1p-combat.png",
+      "sha256": "4176aecb9838f45cff05a92d8313de6a04daf866e6cebf778864d1f5463dee4d",
+      "frame": 420,
+      "runtime": {
+        "state": "playing",
+        "score": 85,
+        "scores": [
+          85
+        ],
+        "winner": null,
+        "frame": 420,
+        "error": null
+      },
+      "phase": "play",
+      "stage": 1
+    },
+    {
+      "file": "1p-door.png",
+      "sha256": "f8a680cf01db13b3fafcc725b4390f9a41f3c18820bd0d25d6fd13ec80d84876",
+      "frame": 632,
+      "runtime": {
+        "state": "playing",
+        "score": 115,
+        "scores": [
+          115
+        ],
+        "winner": null,
+        "frame": 632,
+        "error": null
+      },
+      "phase": "play",
+      "stage": 1
+    },
+    {
+      "file": "1p-boss.png",
+      "sha256": "f7a2d93c0b424abcf60db4629c6d0a2425bb9f89790053a0579b3b7a53ca7666",
+      "frame": 1720,
+      "runtime": {
+        "state": "playing",
+        "score": 460,
+        "scores": [
+          460
+        ],
+        "winner": null,
+        "frame": 1720,
+        "error": null
+      },
+      "phase": "play",
+      "stage": 3
+    },
+    {
+      "file": "1p-victory.png",
+      "sha256": "ebdb233964fd9189c33cc41b93c8cb1274488e81194ecca6b708d73c3c013e49",
+      "frame": 2800,
+      "runtime": {
+        "state": "win",
+        "score": 1465,
+        "scores": [
+          1465
+        ],
+        "winner": null,
+        "frame": 2800,
+        "error": null
+      },
+      "phase": "won",
+      "stage": 3
+    }
+  ],
+  "final": {
+    "runtime": {
+      "state": "win",
+      "score": 1465,
+      "scores": [
+        1465
+      ],
+      "winner": null,
+      "frame": 2801,
+      "error": null
+    },
+    "game": {
+      "phase": "won",
+      "phaseTime": 19.183333333333525,
+      "stage": 3,
+      "stageTime": 19.183333333333525,
+      "totalTime": 46.649999999998634,
+      "id": 38,
+      "map": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ],
+      "enemies": [],
+      "bullets": [],
+      "loot": [
+        {
+          "id": 38,
+          "type": "gem",
+          "x": 40,
+          "y": 72,
+          "life": 36.61666666666686
+        }
+      ],
+      "particles": [],
+      "spawns": [],
+      "people": [
+        {
+          "id": 0,
+          "x": 126.5610479427585,
+          "y": 54.91213378652794,
+          "r": 5,
+          "hp": 5,
+          "maxHp": 6,
+          "power": 0,
+          "haste": 0,
+          "vitality": 0,
+          "shield": 0,
+          "fire": 0.38,
+          "cast": 0.14,
+          "dash": 0,
+          "cooldown": 0,
+          "dx": 0,
+          "dy": -1,
+          "down": false,
+          "revive": 0,
+          "choice": 0,
+          "ready": false,
+          "steps": 24.84999999999987
+        }
+      ],
+      "inventory": {
+        "keys": 0,
+        "gems": 0
+      },
+      "xp": 130,
+      "level": 1,
+      "events": {
+        "stage-start": 3,
+        "shot": 113,
+        "enemy-defeated": 15,
+        "pickup": 17,
+        "room-cleared": 3,
+        "key-collected": 3,
+        "door-unlocked": 3,
+        "stage-clear": 3,
+        "enemy-shot": 7,
+        "player-hit": 3,
+        "dash": 1,
+        "victory": 1
+      },
+      "exitOpen": true,
+      "keyDropped": true,
+      "message": "GO THROUGH NORTH DOOR",
+      "messageTime": 2.6500000000000012,
+      "kind": "dungeon",
+      "stages": 3,
+      "rngState": 2460896646
+    }
+  },
+  "reset": {
+    "state": "playing",
+    "scores": [
+      0
+    ],
+    "stage": 1
+  }
+}

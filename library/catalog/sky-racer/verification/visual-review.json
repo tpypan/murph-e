@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "reviewedScreenshots": [
+    "default-2s.png",
+    "default-40s.png",
+    "custom-2s.png"
+  ],
+  "observations": [
+    "Player and rival planes are visibly distinct.",
+    "Altitude, boost and race HUDs are readable.",
+    "Race-complete panel shows placement and cup points.",
+    "Custom palette changes the player plane to magenta."
+  ],
+  "limitations": [
+    "Overhead single-player racing only; boundaries remain an arcade course.",
+    "Generic bot scores are not an enjoyment measure."
+  ]
+}

@@ -14,7 +14,9 @@ import { DatabaseSync } from 'node:sqlite'
 import { Script } from 'node:vm'
 import { z } from 'zod'
 import { ensureAudioTables, indexSoundBank } from './audio-catalog.ts'
+import { queueComponentIndex } from './component-queue.ts'
 import { ROOT } from './env.ts'
+import { REQUIRED_PLAYER_MODES } from './multiplayer.ts'
 import { normalized, requestClauses } from './request-text.ts'
 import { loadSpriteCatalog, type SpriteRecord } from './sprite-catalog.ts'
 import { linkSpriteAssets, selectSpriteAssets, spriteContract } from './sprite-link.ts'
@@ -231,8 +233,23 @@ function mechanicSignals(text: string): Record<string, string[]> {
     breakout: [],
     speedPlatformer: [],
     kart: [],
+    skyRacer: [],
+    arenaSurvivor: [],
+    dungeonGauntlet: [],
   }
+  if (
+    /\brooms?\b/.test(text) &&
+    /\bkeys?\b/.test(text) &&
+    /\b(?:doors?|exits?)\b/.test(text) &&
+    /\b(?:monsters?|enemies|shoot(?:ing)?|spells?|combat)\b/.test(text)
+  )
+    signals.dungeonGauntlet!.push('mechanics:room combat with keys and exits')
   for (const clause of text.split(' ; ')) {
+    if (
+      /\b(?:waves?|hordes?)\b/.test(clause) &&
+      /\b(?:surviv(?:e|ing|al)|shoot(?:ing)?|spells?|wizards?|monsters?|zombies?)\b/.test(clause)
+    )
+      signals.arenaSurvivor!.push('mechanics:survive monster waves')
     if (
       /\b(?:race|races|racing|ride|rides|riding|drive|drives|driving)\b.{0,32}\b(?:karts?|go karts?)\b/.test(
         clause,
@@ -278,6 +295,13 @@ function mechanicSignals(text: string): Record<string, string[]> {
     )
       signals.breakout!.push('mechanics:paddle ball breaks bricks')
   }
+  if (
+    /\b(?:planes?|airplanes?|aircraft|aerial|flight)\b/.test(text) &&
+    /\b(?:races?|racing|(?:mario|maria) (?:kart|cart))\b/.test(text)
+  ) {
+    signals.skyRacer!.push('mechanics:airplane racing')
+    signals.kart = []
+  }
   return signals
 }
 
@@ -288,9 +312,20 @@ function incompatibleMechanics(family: string, positive: string, negative: strin
     pong: /\b(?:paddles?|balls?|rall(?:y|ies))\b/,
     breakout: /\b(?:paddles?|balls?|bricks?|blocks?)\b/,
     speedPlatformer: /\b(?:momentum|platforms?|jumping|rolling)\b/,
+    skyRacer: /\b(?:planes?|flight|flying|racing|laps)\b/,
+    arenaSurvivor: /\b(?:shoot(?:ing)?|combat|enemies|waves)\b/,
+    dungeonGauntlet: /\b(?:shoot(?:ing)?|combat|enemies|keys|doors|rooms)\b/,
   }
   if (excludesCore[family]?.test(negative)) reasons.push('request removes a required core mechanic')
   const unsupported: Record<string, RegExp> = {
+    arenaSurvivor:
+      /\b(?:3d|scrolling|platform(?:er|ing)|melee|swords?|crafting|mining|tower (?:building|defense)|persistent progression|quests?)\b/,
+    dungeonGauntlet:
+      /\b(?:3d|scrolling|open world|platform(?:er|ing)|melee|swords?|crafting|mining|equipment|quests?|dialogue|turn based)\b/,
+
+    skyRacer:
+      /\b(?:3d|three dimensional|free flight|dogfights?|dogfighting|guns?|shooting|flight simulator)\b/,
+    kart: /\b(?:planes?|airplanes?|flight|flying|weapons?|items?|jumps?|jumping|free driving)\b/,
     crossing:
       /\b(?:tongues?|catch(?:es|ing)?\s+(?:the\s+)?flies|eat(?:s|ing)?\s+(?:the\s+)?flies|maze|endless runner|drive|driving|shoot(?:s|ing)?|guns?|bullets?)\b/,
     pong: /\b(?:boats?|rivers?|bricks?|block breaking|shoot(?:s|ing)?|guns?|bullets?|co op|cooperative|same side)\b/,
@@ -314,7 +349,13 @@ export interface CatalogMatchEvidence {
 /** Deterministic retrieval evidence. No engine, spec, or request mutation and no network. */
 export function catalogMatchEvidence(
   transcript: string,
-  spec: { genre?: string; players?: number; moderated?: boolean },
+  spec: {
+    genre?: string
+    players?: number
+    moderated?: boolean
+    multiplayer?: unknown
+    requireMultiplayer?: boolean
+  },
   parts: CatalogPart[],
 ): CatalogMatchEvidence[] {
   // A moderated request can still use its sanitized genre; never recover its original words.
@@ -328,7 +369,10 @@ export function catalogMatchEvidence(
   const rows = parts.map((part): CatalogMatchEvidence => {
     const family = part.manifest.entry
     const phrases = part.manifest.match?.phrases ?? part.manifest.tags
-    const matched = phrases.filter((phrase) => text.includes(normalized(phrase)))
+    const matched = phrases.filter(
+      (phrase) =>
+        text.includes(normalized(phrase)) && !(family === 'kart' && mechanics.skyRacer?.length),
+    )
     const phraseScore = matched.reduce(
       (best, phrase) => Math.max(best, 10 + normalized(phrase).trim().split(' ').length),
       0,
@@ -351,6 +395,11 @@ export function catalogMatchEvidence(
       ...(mechanics[family] ?? []),
     ]
     const excluded = incompatibleMechanics(family, clauses.positive, clauses.negative)
+    if (
+      (spec.requireMultiplayer || spec.multiplayer) &&
+      !REQUIRED_PLAYER_MODES.every((mode) => part.manifest.supportsPlayers.includes(mode))
+    )
+      excluded.push('new games require a foundation supporting both 1P and 2P')
     if (part.status !== 'verified') excluded.push('foundation is not verified')
     if (!part.manifest.supportsPlayers.includes(spec.players === 2 ? 2 : 1))
       excluded.push('unsupported player count')
@@ -397,12 +446,27 @@ export function catalogMatchEvidence(
 /** Select one compatible foundation, never force unrelated prompts into a genre. */
 export function catalogContext(
   transcript: string,
-  spec: { genre?: string; players?: number; moderated?: boolean },
+  spec: {
+    genre?: string
+    players?: number
+    moderated?: boolean
+    multiplayer?: unknown
+    requireMultiplayer?: boolean
+  },
   parts = loadCatalog(),
+  selection?: { id: string | null },
 ): CatalogContext {
   if (process.env.HTN_CATALOG === '0') return { parts: [], text: '', hash: '' }
-  const ranked = catalogMatchEvidence(transcript, spec, parts).filter((row) => row.score > 0)
-  const chosen = ranked.slice(0, 1).map((row) => row.part)
+  const ranked = catalogMatchEvidence(transcript, spec, parts)
+  // Semantic selection may recover a zero-keyword match, but never bypass
+  // verification, player count, explicit exclusions or mechanic conflicts.
+  const chosen = (
+    selection
+      ? ranked.filter((row) => row.part.manifest.id === selection.id && !row.excluded.length)
+      : ranked.filter((row) => row.score > 0)
+  )
+    .slice(0, 1)
+    .map((row) => row.part)
   const sprites = selectSpriteAssets(
     transcript,
     spec,
@@ -772,5 +836,20 @@ export function archiveCandidate(
     db.close()
   }
   recordCandidateValidation(input.code, input.validation, dbPath, attemptId, storage)
+  if (dbPath === CATALOG_DB && storage === resolve(ROOT, 'data/catalog/candidates'))
+    queueComponentIndex(
+      {
+        code: input.code,
+        sourcePath: resolve(dir, 'game.js'),
+        metadata: {
+          spec: input.spec,
+          runId: input.runId,
+          stage: input.stage,
+          collection: 'data/catalog/candidates',
+        },
+      },
+      dbPath,
+      resolve(ROOT, 'data/components'),
+    )
   return hash
 }

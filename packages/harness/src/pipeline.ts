@@ -1,9 +1,11 @@
-import { controlsFromSpec, type ProbeResult, probe } from '@htn/probe'
+import { controlsFromSpec, type ProbeResult } from '@htn/probe'
 import { BUILD_MAX_OUTPUT_TOKENS, type BuildResult, build } from './build.ts'
 import { validateCandidate } from './candidate-history.ts'
 import { type CandidateStage, catalogPreview, catalogSnapshot } from './catalog.ts'
 import { recordDesignContext } from './design-context.ts'
 import { MODELS } from './env.ts'
+import { assertJevConfigured, jevEnabled, selectWithJev } from './jev.ts'
+import { probeGameModes } from './multiplayer-probe.ts'
 import { keepInLibrary, pickFallback } from './library.ts'
 import { buildPrompt, loadTemplates } from './prompt.ts'
 import { remix, remixSystemPrompt, remixUserTurn } from './remix.ts'
@@ -153,6 +155,9 @@ export async function pipeline(
   opts: PipelineOptions = {},
 ): Promise<PipelineResult> {
   checkCancelled(opts.signal)
+  // Fail before paying for the spec if the experiment is enabled but not configured.
+  const hybridEnabled = jevEnabled()
+  if (hybridEnabled) assertJevConfigured()
   const t0 = performance.now()
   const emit = opts.onEvent ?? (() => {})
   const run = opts.run ?? createRun(transcript)
@@ -230,7 +235,15 @@ export async function pipeline(
     })
   }
 
-  const prompt = buildPrompt(spec, transcript, loadTemplates())
+  const hybrid = hybridEnabled
+    ? await selectWithJev(transcript, spec, { signal: opts.signal })
+    : undefined
+  checkCancelled(opts.signal)
+  if (hybrid) {
+    run.write('jev-routing.json', JSON.stringify(hybrid.audit, null, 2))
+    run.event('jev-routing', hybrid.audit)
+  }
+  const prompt = buildPrompt(spec, transcript, loadTemplates(), hybrid)
   recordDesignContext(run, 'build', prompt.designContext)
   run.write('implementation-context.json', JSON.stringify(prompt.referenceContext, null, 2))
   if (prompt.catalog)
@@ -355,7 +368,13 @@ export async function pipeline(
               : null
           return error
             ? { ok: false, observations: [error], thumb: null, ms: 0, checks: {} }
-            : probe(code, { controls, title: spec.title, players })
+            : probeGameModes(code, {
+                controls,
+                title: spec.title,
+                players,
+                multiplayer: spec.multiplayer,
+                signal: opts.signal,
+              })
         },
         r,
       )
@@ -405,7 +424,13 @@ export async function pipeline(
                 ms: 0,
                 checks: {},
               }
-            : probe(fixed.code, { controls, title: spec.title, players }),
+            : probeGameModes(fixed.code, {
+                controls,
+                title: spec.title,
+                players,
+                multiplayer: spec.multiplayer,
+                signal: opts.signal,
+              }),
         fixed,
       )
       run.event('repair', {
@@ -489,7 +514,13 @@ export async function pipeline(
                 ms: 0,
                 checks: {},
               }
-            : probe(b.code, { controls, title: spec.title, players }),
+            : probeGameModes(b.code, {
+                controls,
+                title: spec.title,
+                players,
+                multiplayer: spec.multiplayer,
+                signal: ac.signal,
+              }),
         b,
         ac.signal,
       )
@@ -567,7 +598,13 @@ export async function pipeline(
                 ms: 0,
                 checks: {},
               }
-            : probe(r.code, { controls, title: spec.title, players }),
+            : probeGameModes(r.code, {
+                controls,
+                title: spec.title,
+                players,
+                multiplayer: spec.multiplayer,
+                signal: opts.signal,
+              }),
         r,
       )
       run.event('repair', {

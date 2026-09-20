@@ -1,0 +1,45 @@
+{
+  "title": "EMBER WATCH",
+  "oneLiner": "Single-screen arcade wave shooter with aimed spell bolts, dash, slime/bat/mage enemies, pickups, three bounded powerups and a final guardian.",
+  "genre": "arena shooter",
+  "hook": "Collect dangerous drops to upgrade between waves; dash through trouble.",
+  "ramp": "More monsters each stage, with fast bats, telegraphed mage bolts and a final guardian.",
+  "mechanics": [
+    "Stick moves; hold A fires at the nearest enemy; B dashes on a cooldown.",
+    "Each player has independent movement, health, shots, upgrades and kill/treasure scores. No friendly fire.",
+    "A nearby living teammate revives a downed player after 1.6 seconds. All down or the 180-second clock ends the run.",
+    "Four waves, XP pickups and quick POWER/HASTE/VITALITY choices."
+  ],
+  "artDirection": "256x224 overhead arcade room. Original cyan and orange wizard sprites with walking, cast, hurt and down poses; green slimes, purple bats and mages, red horned guardian. Readable gold key and door; quiet tile floor, warning rings before spawns, contrasting bolts, separate HP and dash meters.",
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": "Move up",
+    "down": "Move down",
+    "a": "Hold to fire; confirm a wave upgrade",
+    "b": "Dash with brief protection"
+  },
+  "palette": "arcade",
+  "lose": "All players down, or 180 seconds elapsed.",
+  "scoring": "25 per monster, 250 guardian, 5 XP pickup, 50 treasure to its owner; 100 stage-clear and 500 victory to each player.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "readability",
+    "pacing",
+    "onboarding",
+    "scoring"
+  ],
+  "players": 1,
+  "multiplayer": {
+    "mode": "coop",
+    "solo": "One human faces a smaller enemy count; objectives never need an absent partner.",
+    "playerOne": "Cyan wizard moves, fires, dashes, collects loot and revives their teammate independently.",
+    "playerTwo": "Orange wizard has their own indexed controls, HP, cooldowns, shots and pickup/kill scores.",
+    "camera": "shared",
+    "scoring": "Health and combat/pickup scores belong to each human. Keys, wave/room progress and XP level are shared; stage and victory points reward both.",
+    "endConditions": "Both win at the final exit/wave. All down or the shared clock expiring loses. A living partner can revive; a new stage restores downed partners. Init resets the entire deterministic match."
+  }
+}

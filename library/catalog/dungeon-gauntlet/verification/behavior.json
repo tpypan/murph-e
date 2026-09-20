@@ -1,0 +1,198 @@
+{
+  "passed": true,
+  "moduleHash": "89c124e944e48951034f9180244d10c58408b1bcba0b2ae3bc7e1c57b642ef0d",
+  "checks": [
+    {
+      "name": "rejects invalid configuration",
+      "passed": true
+    },
+    {
+      "name": "independent and simultaneous controls, fire and dash ownership",
+      "passed": true
+    },
+    {
+      "name": "snapshot is detached and draw cannot consume simulation randomness",
+      "passed": true
+    },
+    {
+      "name": "default full 1P match seed 17, scoring, terminal and reset",
+      "passed": true
+    },
+    {
+      "name": "default full 1P match seed 7, scoring, terminal and reset",
+      "passed": true
+    },
+    {
+      "name": "default full 1P match seed 29, scoring, terminal and reset",
+      "passed": true
+    },
+    {
+      "name": "default full 2P match seed 17, scoring, terminal and reset",
+      "passed": true
+    },
+    {
+      "name": "default full 2P match seed 7, scoring, terminal and reset",
+      "passed": true
+    },
+    {
+      "name": "default full 2P match seed 29, scoring, terminal and reset",
+      "passed": true
+    },
+    {
+      "name": "idle 1P loss and terminal reset",
+      "passed": true
+    },
+    {
+      "name": "idle 2P loss and terminal reset",
+      "passed": true
+    },
+    {
+      "name": "deterministic replay with different draw counts",
+      "passed": true
+    },
+    {
+      "name": "downed teammate is revived through proximity with independent human control",
+      "passed": true
+    },
+    {
+      "name": "locked exit cannot be skipped and objective key survives 55 seconds",
+      "passed": true
+    },
+    {
+      "name": "largest allowed match stays bounded and terminates with normal controls",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "players": 1,
+      "seed": 17,
+      "seconds": 46.65,
+      "scores": [
+        1465
+      ],
+      "events": {
+        "stage-start": 3,
+        "shot": 113,
+        "enemy-defeated": 15,
+        "pickup": 17,
+        "room-cleared": 3,
+        "key-collected": 3,
+        "door-unlocked": 3,
+        "stage-clear": 3,
+        "enemy-shot": 7,
+        "player-hit": 3,
+        "dash": 1,
+        "victory": 1
+      }
+    },
+    {
+      "players": 1,
+      "seed": 7,
+      "seconds": 45.45,
+      "scores": [
+        1465
+      ],
+      "events": {
+        "stage-start": 3,
+        "shot": 109,
+        "enemy-defeated": 15,
+        "pickup": 17,
+        "room-cleared": 3,
+        "key-collected": 3,
+        "door-unlocked": 3,
+        "stage-clear": 3,
+        "enemy-shot": 7,
+        "player-hit": 3,
+        "victory": 1
+      }
+    },
+    {
+      "players": 1,
+      "seed": 29,
+      "seconds": 45.15,
+      "scores": [
+        1460
+      ],
+      "events": {
+        "stage-start": 3,
+        "shot": 109,
+        "enemy-defeated": 15,
+        "pickup": 16,
+        "room-cleared": 3,
+        "key-collected": 3,
+        "door-unlocked": 3,
+        "stage-clear": 3,
+        "enemy-shot": 8,
+        "player-hit": 4,
+        "victory": 1
+      }
+    },
+    {
+      "players": 2,
+      "seed": 17,
+      "seconds": 41.92,
+      "scores": [
+        1455,
+        1225
+      ],
+      "events": {
+        "stage-start": 3,
+        "shot": 200,
+        "enemy-defeated": 30,
+        "pickup": 27,
+        "room-cleared": 3,
+        "key-collected": 3,
+        "door-unlocked": 3,
+        "stage-clear": 3,
+        "enemy-shot": 8,
+        "player-hit": 3,
+        "victory": 1
+      }
+    },
+    {
+      "players": 2,
+      "seed": 7,
+      "seconds": 38.87,
+      "scores": [
+        1205,
+        1480
+      ],
+      "events": {
+        "stage-start": 3,
+        "shot": 184,
+        "enemy-defeated": 30,
+        "pickup": 29,
+        "room-cleared": 3,
+        "key-collected": 3,
+        "door-unlocked": 3,
+        "stage-clear": 3,
+        "enemy-shot": 6,
+        "player-hit": 4,
+        "victory": 1
+      }
+    },
+    {
+      "players": 2,
+      "seed": 29,
+      "seconds": 41.47,
+      "scores": [
+        1210,
+        1470
+      ],
+      "events": {
+        "stage-start": 3,
+        "shot": 198,
+        "enemy-defeated": 30,
+        "pickup": 27,
+        "room-cleared": 3,
+        "key-collected": 3,
+        "door-unlocked": 3,
+        "stage-clear": 3,
+        "enemy-shot": 7,
+        "player-hit": 3,
+        "victory": 1
+      }
+    }
+  ]
+}

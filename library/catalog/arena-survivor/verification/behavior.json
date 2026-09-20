@@ -1,0 +1,194 @@
+{
+  "passed": true,
+  "moduleHash": "79666db7545348c26bdda43d2961e34b2b915ec8da7b3c5e360b7cc9139888e4",
+  "checks": [
+    {
+      "name": "rejects invalid configuration",
+      "passed": true
+    },
+    {
+      "name": "independent and simultaneous controls, fire and dash ownership",
+      "passed": true
+    },
+    {
+      "name": "snapshot is detached and draw cannot consume simulation randomness",
+      "passed": true
+    },
+    {
+      "name": "default full 1P match seed 17, scoring, terminal and reset",
+      "passed": true
+    },
+    {
+      "name": "default full 1P match seed 7, scoring, terminal and reset",
+      "passed": true
+    },
+    {
+      "name": "default full 1P match seed 29, scoring, terminal and reset",
+      "passed": true
+    },
+    {
+      "name": "default full 2P match seed 17, scoring, terminal and reset",
+      "passed": true
+    },
+    {
+      "name": "default full 2P match seed 7, scoring, terminal and reset",
+      "passed": true
+    },
+    {
+      "name": "default full 2P match seed 29, scoring, terminal and reset",
+      "passed": true
+    },
+    {
+      "name": "idle 1P loss and terminal reset",
+      "passed": true
+    },
+    {
+      "name": "idle 2P loss and terminal reset",
+      "passed": true
+    },
+    {
+      "name": "deterministic replay with different draw counts",
+      "passed": true
+    },
+    {
+      "name": "downed teammate is revived through proximity with independent human control",
+      "passed": true
+    },
+    {
+      "name": "two humans choose different upgrades and unconfirmed choice times out",
+      "passed": true
+    },
+    {
+      "name": "largest allowed match stays bounded and terminates with normal controls",
+      "passed": true
+    }
+  ],
+  "runs": [
+    {
+      "players": 1,
+      "seed": 17,
+      "seconds": 52.62,
+      "scores": [
+        2165
+      ],
+      "events": {
+        "stage-start": 4,
+        "shot": 131,
+        "enemy-defeated": 36,
+        "pickup": 33,
+        "enemy-shot": 13,
+        "player-hit": 4,
+        "stage-clear": 4,
+        "upgrade-offer": 4,
+        "upgrade": 4,
+        "victory": 1
+      }
+    },
+    {
+      "players": 1,
+      "seed": 7,
+      "seconds": 51.77,
+      "scores": [
+        2160
+      ],
+      "events": {
+        "stage-start": 4,
+        "shot": 128,
+        "enemy-defeated": 36,
+        "pickup": 32,
+        "enemy-shot": 12,
+        "player-hit": 4,
+        "stage-clear": 4,
+        "upgrade-offer": 4,
+        "upgrade": 4,
+        "victory": 1
+      }
+    },
+    {
+      "players": 1,
+      "seed": 29,
+      "seconds": 52.32,
+      "scores": [
+        2165
+      ],
+      "events": {
+        "stage-start": 4,
+        "shot": 130,
+        "enemy-defeated": 36,
+        "pickup": 33,
+        "enemy-shot": 13,
+        "stage-clear": 4,
+        "upgrade-offer": 4,
+        "upgrade": 4,
+        "player-hit": 3,
+        "victory": 1
+      }
+    },
+    {
+      "players": 2,
+      "seed": 17,
+      "seconds": 65.67,
+      "scores": [
+        2020,
+        2120
+      ],
+      "events": {
+        "stage-start": 4,
+        "shot": 338,
+        "enemy-defeated": 72,
+        "pickup": 73,
+        "enemy-shot": 5,
+        "player-hit": 2,
+        "stage-clear": 4,
+        "upgrade-offer": 5,
+        "upgrade": 10,
+        "dash": 2,
+        "victory": 1
+      }
+    },
+    {
+      "players": 2,
+      "seed": 7,
+      "seconds": 65.98,
+      "scores": [
+        1920,
+        2215
+      ],
+      "events": {
+        "stage-start": 4,
+        "shot": 344,
+        "enemy-defeated": 72,
+        "pickup": 71,
+        "stage-clear": 4,
+        "upgrade-offer": 5,
+        "upgrade": 10,
+        "enemy-shot": 3,
+        "dash": 1,
+        "player-hit": 1,
+        "victory": 1
+      }
+    },
+    {
+      "players": 2,
+      "seed": 29,
+      "seconds": 64.57,
+      "scores": [
+        2070,
+        2055
+      ],
+      "events": {
+        "stage-start": 4,
+        "shot": 332,
+        "enemy-defeated": 72,
+        "pickup": 68,
+        "enemy-shot": 5,
+        "stage-clear": 4,
+        "upgrade-offer": 5,
+        "upgrade": 10,
+        "dash": 2,
+        "player-hit": 1,
+        "victory": 1
+      }
+    }
+  ]
+}

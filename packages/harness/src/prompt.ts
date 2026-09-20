@@ -3,6 +3,7 @@ import { resolve } from 'node:path'
 import { type CatalogContext, catalogContext } from './catalog.ts'
 import { type DesignContext, designCore, selectDesignContext } from './design-context.ts'
 import { ROOT, readRepoFile } from './env.ts'
+import { MULTIPLAYER_DESIGN_RULES } from './multiplayer.ts'
 import { type ReferenceContext, referenceContext } from './reference-context.ts'
 import type { GameSpec, Genre } from './spec.ts'
 
@@ -31,7 +32,7 @@ export function loadTemplates(): Template[] {
 
 export const TWO_PLAYER_RULES = `TWO PLAYERS
 
-This game is for exactly two players on one screen. api.players is 2.
+When api.players is 2, this mode has two humans on the cabinet display; use the specified shared arena or split views. The same game file must also implement its solo plan when api.players is 1.
 - Read player one's input with api.btn(name, 0) / api.btnp(name, 0) and player two's with api.btn(name, 1) / api.btnp(name, 1). Never read a button without the index; never let one player's buttons move the other player.
 - Use independent input/state for each player. When delegating to a supplied foundation, its controller already handles this; do not wrap or reimplement it unnecessarily.
 - Keep both players visually distinct with api.P1 / api.P2 accents or costume palettes that preserve character identity. Start them in appropriate positions for the game.
@@ -100,18 +101,18 @@ export function buildPrompt(
   spec: GameSpec,
   transcript: string,
   templates: Template[],
+  hybrid?: { catalog: CatalogContext; guidance: string },
 ): BuildPrompt {
   const apiRef = readRepoFile('packages/runtime/API.md')
   const designContext = selectDesignContext(transcript, spec)
   const references = referenceContext(transcript, spec)
-  const catalog = catalogContext(transcript, spec)
+  const catalog =
+    hybrid?.catalog ?? catalogContext(transcript, { ...spec, requireMultiplayer: true })
   const two = spec.players === 2
   const chosen = templates.find((t) => t.genre === spec.genre && t.players === spec.players) ?? null
 
   const system = [
-    two
-      ? 'You write complete, polished 2D two-player arcade games in one shot for a fantasy console. You are given the console API, house rules and a spec. You output one game file.'
-      : 'You write complete, polished 2D arcade games in one shot for a fantasy console. You are given the console API, house rules and a spec. You output one game file.',
+    'You write complete, polished 2D arcade games supporting both solo and two-player play in one shot for a fantasy console. You are given the console API, house rules and a spec. You output one game file.',
     '',
     '=== API REFERENCE ===',
     apiRef.trim(),
@@ -121,7 +122,10 @@ export function buildPrompt(
     '',
     designCore(),
     '',
-    ...(two ? ['=== TWO PLAYERS ===', TWO_PLAYER_RULES.replace(/^TWO PLAYERS\n\n/, ''), ''] : []),
+    MULTIPLAYER_DESIGN_RULES,
+    '=== TWO-PLAYER MODE ===',
+    TWO_PLAYER_RULES.replace(/^TWO PLAYERS\n\n/, ''),
+    '',
   ].join('\n')
 
   const userParts = [
@@ -136,12 +140,13 @@ export function buildPrompt(
     references.text,
     '',
     catalog.text,
+    ...(hybrid?.guidance ? [hybrid.guidance] : []),
     '',
   ]
   if (chosen) {
     userParts.push(
       `=== OPTIONAL MATCHING EXAMPLE (${chosen.genre}): ${chosen.title} ===`,
-      'This example demonstrates working API usage only. Borrow mechanics only if they match the request; its art, size, complexity and game loop are not quality ceilings. The user request and spec take precedence. Do not reskin it when the requested game needs a different structure.',
+      'This historical example may support only its original player count. The new game must implement both modes regardless. This example demonstrates working API usage only. Borrow mechanics only if they match the request; its art, size, complexity and game loop are not quality ceilings. The user request and spec take precedence. Do not reskin it when the requested game needs a different structure.',
       '```js',
       chosen.code.trim(),
       '```',
@@ -163,7 +168,7 @@ export function buildPrompt(
     user: userParts.join('\n'),
     transcript: transcript.trim(),
     chosen,
-    cacheKey: two ? 'htn-build-2p-v9' : 'htn-build-v9',
+    cacheKey: two ? 'htn-build-2p-v10' : 'htn-build-v10',
     designContext,
     referenceContext: references,
     catalog,

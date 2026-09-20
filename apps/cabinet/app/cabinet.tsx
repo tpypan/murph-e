@@ -228,7 +228,11 @@ function badgeForPlayer(badges: BadgePlayer[], mode: Players, i: number): BadgeP
   return badges.find((b) => b.slot === i) ?? null
 }
 
-export default function Cabinet() {
+export default function Cabinet({
+  speechProvider = 'openai',
+}: {
+  speechProvider?: 'openai' | 'local'
+}) {
   const [v, dispatch] = useReducer(reduce, initial)
   const view = useRef(v)
   view.current = v
@@ -926,7 +930,7 @@ export default function Cabinet() {
     return () => window.removeEventListener('message', h)
   }, [crashFallback, postScores, startAttract])
 
-  // The microphone and local transcription request belong to this mounted cabinet.
+  // The microphone and transcription request belong to this mounted cabinet.
   useEffect(() => {
     const s = getStt()
     const release = () => {
@@ -1121,7 +1125,7 @@ export default function Cabinet() {
           <p className="support">
             {v.badges.length} BADGES CONNECTED
             <br />
-            VOICE: LOCAL · GAME: OPENAI
+            VOICE: {speechProvider === 'local' ? 'LOCAL' : 'OPENAI'} · GAME: OPENAI
           </p>
         </section>
       )}

@@ -1,0 +1,21 @@
+{
+  "contentHash": "a20db7a7d21b20fd5e8ed7cd70b0401ad8f46c19042120a5f8d5bf1921775fad",
+  "ok": true,
+  "observations": [],
+  "ms": 403,
+  "checks": {
+    "loads": true,
+    "survives": true,
+    "notInstantDeath": true,
+    "draws": true,
+    "moves": true,
+    "survivesInput": true,
+    "soft:responds:left": true,
+    "soft:responds:right": true,
+    "soft:responds:up": true,
+    "soft:responds:down": true,
+    "respondsToDirection": true,
+    "responds:a": true,
+    "soft:responds:b": true
+  }
+}

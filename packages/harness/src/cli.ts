@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { parseArgs } from 'node:util'
 import { bench, readPrompts } from './bench.ts'
@@ -25,6 +25,9 @@ import { indexSprites, loadSpriteCatalog } from './sprite-catalog.ts'
 const CWD = process.env.INIT_CWD ?? process.cwd()
 
 const USAGE = `usage:
+  harness components index [repo-root]              collect saved games/components offline
+  harness components find "<query>"                 inspect source/dependency inventory
+  harness components export <id> <output.js>        export a closed component for review
   harness gen "<transcript>" [--model M] [--effort E] [--variant N] [--players 2]
   harness play <run-id>
   harness run "<transcript>" [--race 2] [--players 2|both]   full pipeline: spec, race, probe, repair, fallback; both = a 1P and a 2P version, as the cabinet does
@@ -191,6 +194,46 @@ try {
         'Use catalog candidates, candidate <hash>, review <hash> --file review.json, or findings',
       )
     process.stdout.write(`${JSON.stringify(result, null, 2)}\n`)
+  } else if (cmd === 'components') {
+    const { harvestComponents, findComponents, exportComponent, componentStats } = await import(
+      './components.ts'
+    )
+    const db = resolve(ROOT, 'data/catalog.sqlite')
+    if (rest[0] === 'index') {
+      const report = harvestComponents(
+        rest[1] ? resolve(CWD, rest[1]) : ROOT,
+        db,
+        resolve(ROOT, 'data/components'),
+      )
+      writeFileSync(
+        resolve(ROOT, 'data/components/inventory.json'),
+        JSON.stringify(report, null, 2),
+      )
+      process.stdout.write(`${JSON.stringify(report, null, 2)}\n`)
+      if (report.results.some((r) => r.errors.length)) process.exitCode = 1
+    } else if (rest[0] === 'find') {
+      process.stdout.write(
+        `${JSON.stringify(findComponents(db, rest.slice(1).join(' '), Number(values.limit ?? 40)), null, 2)}\n`,
+      )
+    } else if (rest[0] === 'export' && rest[1] && rest[2]) {
+      const component = exportComponent(db, rest[1])
+      const output = resolve(CWD, rest[2])
+      if (existsSync(output) || existsSync(`${output}.json`))
+        throw new Error('Component export destination already exists')
+      writeFileSync(
+        output,
+        `// Needs behavior/contract review before runtime catalog admission.\n${component.source}\n`,
+        { flag: 'wx' },
+      )
+      writeFileSync(
+        `${output}.json`,
+        JSON.stringify({ ...component, source: undefined }, null, 2),
+        { flag: 'wx' },
+      )
+      process.stdout.write(
+        `${JSON.stringify({ name: component.name, dependencies: component.dependencies, status: component.status, output, provenance: `${output}.json` })}\n`,
+      )
+    } else process.stdout.write(`${JSON.stringify(componentStats(db), null, 2)}\n`)
   } else if (cmd === 'catalog') {
     const issues: { id: string; message: string }[] = []
     const parts = loadCatalog(undefined, issues)

@@ -194,7 +194,7 @@ test('two-player prompts retain their input contract and relevant guidance', () 
   )
   assert.match(p.system, /api\.btn\(name, 0\)/)
   assert.ok(p.designContext.cards.some((c) => c.id === 'ball-paddle'))
-  assert.match(specPrompt('pong', { players: 2 }).system, /exactly two players/)
+  assert.match(specPrompt('pong', { players: 2 }).system, /currently starting with two humans/)
 })
 
 test('repair and remix preserve the selected guidance without widening edit scope', () => {
