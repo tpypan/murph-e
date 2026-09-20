@@ -74,7 +74,9 @@ export function keepInLibrary(
   thumb: Buffer | null,
   runId: string,
 ): string {
-  const base = slugify(spec.title)
+  // The cabinet keeps a 1P and a 2P version of every idea; the suffix keeps
+  // their slugs (and so their leaderboards) apart.
+  const base = `${slugify(spec.title)}${spec.players === 2 ? '-2p' : ''}`
   let slug = base
   for (let i = 2; existsSync(resolve(GAMES_DIR, slug)); i++) slug = `${base}-${i}`
   const dir = resolve(GAMES_DIR, slug)

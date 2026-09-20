@@ -4,22 +4,6 @@ Read this before touching the repo. It is short on purpose. The long-form
 reasoning lives in `docs/`, and this file tells you which doc answers which
 question.
 
-## User billing rule — takes precedence over historical benchmark instructions
-
-- Assistant development, base games, iteration and testing use the user's
-  **Codex subscription, gpt-6-astra, medium effort**. Use this Codex task/agents
-  and offline tools; no paid model API calls or API-key fallback for that work.
-- Real people using the cabinet ARE allowed to generate games through the API.
-  Preserve this path. Do not drive its UI/endpoint to bypass the testing restriction.
-- Development generation, spec, repair, remix, evaluation, benchmarks and
-  screenshot scripts that generate games are covered by this rule. A stored key,
-  automated goal or historical bench requirement is not permission to spend.
-- `packages/harness/src/env.ts` allows API calls only inside `withAppGeneration`,
-  entered by the cabinet route for app requests. Developer CLIs fail closed.
-  Do not enter that scope or bypass the guard for live tests without a NEW explicit
-  user instruction authorizing paid API tests. Mocks must prevent all network calls.
-- Never print keys or auth tokens. See the parent workspace `AGENTS.md`.
-
 ## What this is
 
 A voice-to-arcade-game cabinet for Hack the North 2026. A person speaks a
@@ -67,10 +51,11 @@ hardware is the checklist in `docs/plans/tier-2.md`.
 
 ## Models and keys
 
-- The cabinet's customer generation uses the OpenAI API and the gitignored
-  `OPENAI_API_KEY` in `.env`; assistant development/testing uses Codex subscription
-  and offline tools. Speech uses local faster-whisper tiny.en.
-  `.env.example` is the template. Never commit or print a key.
+- OpenAI only, with the gitignored `OPENAI_API_KEY` in `.env`; `.env.example`
+  is the template. Never commit or print a key. Development, benches and live
+  tests may call the API (rule removed 2026-09-20); prefer the offline tests
+  for anything they cover, because a live run costs about two game builds.
+  Speech uses local faster-whisper tiny.en.
 - Build: `gpt-6-astra`, `reasoning.effort: "medium"`, streamed, as requested.
   Override with `HTN_BUILD_MODEL` / `HTN_BUILD_EFFORT`. Current validation:
   `docs/bench-2026-09-19-astra-medium.md`; earlier context and Sol results are historical.
@@ -83,12 +68,16 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   during play/Ready/results, and only records after MAKE A GAME opens voice with the selected 1P/2P mode.
 - Judge: `gpt-5.6-sol`, `reasoning.effort: "low"`, over the source and three
   screenshots. Historical bench only, never on the cabinet's path. Override with
-  `HTN_JUDGE_MODEL` / `HTN_JUDGE_EFFORT`. Paid developer evaluation remains
-  blocked by the billing rule above; use offline saved-game playtests.
+  `HTN_JUDGE_MODEL` / `HTN_JUDGE_EFFORT`.
 - Spec: `gpt-5.6-luna`, `reasoning.effort: "none"`, structured output. The
   same call decides whether words spoken over a running game are a remix
-  of it or a new game. `players` (1 or 2) comes from the cabinet's menu,
-  never from the model.
+  of it or a new game. `players` (1 or 2) is never inferred from speech and
+  nobody is asked: every cabinet request runs `pipelineBoth`, a 1P pipeline
+  (the cabinet controls) and a 2P pipeline (the two badges) in parallel, each
+  with its own spec, race, probe, run and library slot (`-2p` slug). Every
+  event carries `players`. The kiosk opens READY as soon as the version the
+  badges call for lands and shows the other when it arrives; up/down on READY
+  switches. Spend per request is about double a single build.
 - Genre is open-ended metadata, independent of player count. New specs include
   art direction; do not remap unsupported requests to dodge or impose line/sprite
   size ceilings. Examples are optional and must match genre and player count.
@@ -98,18 +87,18 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   `HTN_REFERENCE_CONTEXT=0` disables this layer for comparisons.
 - STT: `/api/stt` sends the clip to the OpenAI transcription API by default
   (`HTN_STT_MODEL`, default `gpt-4o-mini-transcribe`). That is for real people
-  at the cabinet and runs inside the same app-generation scope as generate.
+  at the cabinet.
   `HTN_STT=local` switches to local `faster-whisper` with `tiny.en`, English,
   CPU int8, over stdin to a resident Python worker: run `pnpm stt:setup` once.
   Model files and the Python venv are local and gitignored.
-- Historical model validation used a bench run. Paid API benches are prohibited
-  for assistant development; use offline regressions and Codex-authored games. The old bench is
+- Do not change a model or effort setting without a bench run. The bench is
   `pnpm harness bench`; results go in `bench/results/`. Why these models:
   `docs/bench-2026-09-19-openai-models.md`.
 
 ## Hard rules
 
-1. **The build path is one streamed call.** No agent loops, no tool use, no
+1. **The build path is one streamed call per version.** Two versions run in
+   parallel, never in sequence. No agent loops, no tool use, no
    "let the model run the game and iterate." That is what made the previous
    harness take 40 minutes. Repair is one bounded round, then the fallback
    library. Remix is the same shape: one call, one repair, then the game
@@ -123,7 +112,7 @@ hardware is the checklist in `docs/plans/tier-2.md`.
    model that only sees the API reference and the templates in the prompt.
    If you change the API, change all three in the same commit: the runtime,
    the reference in the prompt, and every template in `library/templates/`.
-   Then run offline runtime/probe tests; no paid API bench.
+   Then run the offline runtime and probe tests, and the bench.
 4. **Latency is a test.** A change that moves p50 for the bench prompts by
    more than a few seconds needs a reason in the commit message.
 5. **Games are single-file `game.js`** implementing `init`, `update`, `draw`
@@ -152,8 +141,8 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   `pnpm playtest <game.js>` measures an existing saved game locally without model
   calls. Treat these bot metrics as genre-dependent diagnostics, not catalog admission.
   The historical A/B is `docs/bench-2026-09-19-game-design.md`.
-  The following historical paid bench commands (including `--fun` and its model
-  judge) are blocked for development: `pnpm harness bench bench/prompts.txt` and
+  The bench commands (including `--fun` and its model judge):
+  `pnpm harness bench bench/prompts.txt` and
   `pnpm harness bench bench/prompts-2p.txt --players 2` (goal 8 of 10).
   Remix: `pnpm harness bench-remix bench/remixes.txt` (goal p50 under half
   the build p50, most of the original kept).
@@ -180,8 +169,11 @@ hardware is the checklist in `docs/plans/tier-2.md`.
 - Leaderboard change: `pnpm test:scores`. `pnpm test` runs badge and harness
   tests; `pnpm test:probe` separately runs browser-based probe regressions
   after `pnpm runtime:build`.
-- Cabinet change: `pnpm dev`, then the controlled offline UI tests below.
-  Do not run `pnpm screenshots:cabinet` against a live generation provider; historically it captured sixteen
+- Cabinet change: `pnpm dev`, then the offline UI tests below. The one live
+  check is `pnpm --filter @htn/probe exec node scripts/live-generation-ui-test.mjs`
+  (server with `HTN_BADGES=off`): a real two-version build through the page,
+  both versions switchable and playable; it costs about two game builds.
+  `pnpm screenshots:cabinet` is stale against the current UI; historically it captured sixteen
   screenshots: the tier 1 loop with one real generation and the F8 crash
   injection, then the tier 2 pass with two fake badges: the 1P/2P menu,
   plug-in, a real two-player generation, a cable pull mid-game, the
@@ -210,6 +202,10 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   with a badge only naming the score, 2P on the two fake badges with the panel
   ignored except START, menus from either, and the laptop keyboard stand-in.
   `docs/encoder-bringup.md` is the setup-day procedure for the real encoder.
+  Two-version generation is covered offline by `pnpm test:scores`
+  (`pipeline-history.test.ts`: both versions in isolated runs, tagged events,
+  one version falling back) and by the UI tests' `/api/generate` stubs, which
+  emit a tagged `ready` per version.
 - STT change: `pnpm stt:test <clip.wav> "<expected words>"` feeds a 24 kHz
   WAV through Chromium's fake microphone (make one with `say -o x.aiff ...`
   and `afconvert -f WAVE -d LEI16@24000 -c 1 x.aiff x.wav`).

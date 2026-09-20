@@ -64,26 +64,32 @@ try {
   await page.route('**/api/generate', async (route) => {
     counts.generate++
     const request = route.request().postDataJSON()
+    assert.equal(request.players, undefined, 'nobody is asked how many players')
     const spec = {
       title: 'PANEL TEST',
-      players: request.players,
       oneLiner: 'CATCH FISH. DODGE SEALS.',
       controls: { left: 'MOVE LEFT', right: 'MOVE RIGHT', a: 'JUMP' },
     }
     await route.fulfill({
       contentType: 'text/event-stream',
-      body: `data: ${JSON.stringify({
-        type: 'ready',
-        title: spec.title,
-        code,
-        note: '',
-        source: 'build',
-        players: request.players,
-        slug: 'panel-test',
-        spec,
-        runId: 'panel-test',
-        totalMs: 1,
-      })}\n\n`,
+      // The server builds both versions; the page picks by the badges.
+      body: [1, 2]
+        .map(
+          (players) =>
+            `data: ${JSON.stringify({
+              type: 'ready',
+              players,
+              title: 'PANEL TEST',
+              code: code,
+              note: '',
+              source: 'build',
+              slug: players === 2 ? 'panel-test-2p' : 'panel-test',
+              spec: { ...spec, players },
+              runId: `panel-test-${players}p`,
+              totalMs: 1,
+            })}\n\n`,
+        )
+        .join(''),
     })
   })
 

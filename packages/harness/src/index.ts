@@ -6,10 +6,13 @@ export { type GenEvent, type GenOptions, type GenResult, gen } from './gen.ts'
 export { keepInLibrary, type LibraryGame, listLibrary, pickFallback } from './library.ts'
 export {
   type CurrentGame,
+  type PipelineBothOptions,
+  type PipelineBothResult,
   type PipelineEvent,
   type PipelineOptions,
   type PipelineResult,
   pipeline,
+  pipelineBoth,
   type Source,
 } from './pipeline.ts'
 export { buildPrompt, extractCode, loadTemplates, TWO_PLAYER_RULES } from './prompt.ts'

@@ -107,20 +107,27 @@ export const HomeScreen = forwardRef<
   HomeHandle,
   {
     onPlay: (game: DemoGame, players: 1 | 2) => void
-    onCreate: (players: 1 | 2) => void
+    /** MAKE A GAME never asks how many players: both versions get built. */
+    onCreate: () => void
     onOptions: () => void
     onResume?: () => void
     remembered: { id?: string; players: 1 | 2 }
     onRemember: (id: string, players: 1 | 2) => void
+    /** Badges that have said hello; two of them make the demos default to 2P. */
+    badgesReady?: number
     error: string | null
   }
 >(function HomeScreen(
-  { onPlay, onCreate, onOptions, onResume, remembered, onRemember, error },
+  { onPlay, onCreate, onOptions, onResume, remembered, onRemember, badgesReady = 0, error },
   ref,
 ) {
   const [games, setGames] = useState<DemoSummary[]>([])
   const [index, setIndex] = useState(0)
-  const [players, setPlayers] = useState<1 | 2>(remembered.players)
+  const [players, setPlayers] = useState<1 | 2>(badgesReady >= 2 ? 2 : remembered.players)
+  // The row follows the badges (two in: 2P) and can still be overridden for a demo.
+  useEffect(() => {
+    setPlayers(badgesReady >= 2 ? 2 : 1)
+  }, [badgesReady])
   const cache = useRef(new Map<string, DemoGame>())
   const [loaded, setLoaded] = useState(new Map<string, DemoGame>())
   const [selection, setSelection] = useState(2)
@@ -243,7 +250,7 @@ export const HomeScreen = forwardRef<
         setSelection((n) => (n + (button === 'up' ? -1 : 1) + count) % count)
       else if (button === 'a' || button === 'start') {
         if (selection <= 2) play()
-        else if (selection === 3) onCreate(players)
+        else if (selection === 3) onCreate()
         else if (selection === 4 && onResume) onResume()
         else onOptions()
       }
@@ -346,6 +353,9 @@ export const HomeScreen = forwardRef<
           </button>
         ))}
       </fieldset>
+      <p className="support home-badges">
+        {badgesReady >= 2 ? '2 BADGES IN: PLAYING AS 2' : 'PLUG IN 2 BADGES TO PLAY TOGETHER'}
+      </p>
       <div className="home-actions">
         <button
           type="button"
@@ -361,7 +371,7 @@ export const HomeScreen = forwardRef<
           type="button"
           data-selected={selection === 3}
           onFocus={() => setSelection(3)}
-          onClick={() => onCreate(players)}
+          onClick={onCreate}
         >
           MAKE A GAME
         </button>

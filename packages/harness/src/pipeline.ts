@@ -11,7 +11,10 @@ import { repair } from './repair.ts'
 import { createRun, type Run } from './run-store.ts'
 import { type GameSpec, type Players, specify } from './spec.ts'
 
-export type PipelineEvent =
+// Every event may carry the player count of the pipeline that produced it.
+// A single pipeline() leaves it unset except on `ready`; pipelineBoth() stamps
+// it on everything so the two streams can be told apart.
+export type PipelineEvent = (
   | { type: 'spec'; spec: GameSpec; ms: number }
   | { type: 'foundation'; prefix: string; demo: string }
   | { type: 'token'; text: string; variant: number; stage?: 'build' | 'remix' | 'repair' }
@@ -34,6 +37,7 @@ export type PipelineEvent =
       totalMs: number
     }
   | { type: 'error'; message: string; terminal?: boolean }
+) & { players?: Players }
 
 /** Where the code that is about to play came from. `kept` is a remix that
  *  failed twice, so the original game stays on screen. */
@@ -48,7 +52,7 @@ export interface CurrentGame {
 
 export interface PipelineOptions {
   race?: number
-  /** From the cabinet's 1P/2P menu. Default 1. */
+  /** Which version this pipeline builds. Default 1. The cabinet builds both: pipelineBoth(). */
   players?: Players
   /** The game on screen, so "make it faster" edits it instead of starting over. */
   current?: CurrentGame | null
@@ -71,6 +75,55 @@ export interface PipelineResult {
   run: Run
   totalMs: number
   observations: string[]
+}
+
+export interface PipelineBothOptions extends Omit<PipelineOptions, 'players' | 'run'> {
+  /** One isolated run per version; defaults to createRun for each. */
+  runFor?: (players: Players) => Run
+}
+
+export interface PipelineBothResult {
+  /** One entry per version: the result, or the error that ended that pipeline. */
+  results: Record<Players, PipelineResult | Error>
+  totalMs: number
+}
+
+/**
+ * Nobody is asked how many players: every idea is built twice, in parallel,
+ * as a one-player game for the cabinet controls and a two-player game for the
+ * two badges. Each version is an ordinary pipeline() with its own run, spec,
+ * race, probe and library slot; every event it emits is tagged with its
+ * player count. One version failing never touches the other.
+ */
+export async function pipelineBoth(
+  transcript: string,
+  opts: PipelineBothOptions = {},
+): Promise<PipelineBothResult> {
+  const t0 = performance.now()
+  const emit = opts.onEvent ?? (() => {})
+  const runFor = opts.runFor ?? (() => createRun(transcript))
+  const modes: Players[] = [1, 2]
+  const settled = await Promise.allSettled(
+    modes.map((players) =>
+      pipeline(transcript, {
+        ...opts,
+        players,
+        run: runFor(players),
+        onEvent: (ev) => emit({ ...ev, players }),
+      }),
+    ),
+  )
+  const results = {} as Record<Players, PipelineResult | Error>
+  modes.forEach((players, i) => {
+    const s = settled[i]!
+    results[players] =
+      s.status === 'fulfilled'
+        ? s.value
+        : s.reason instanceof Error
+          ? s.reason
+          : new Error(String(s.reason))
+  })
+  return { results, totalMs: Math.round(performance.now() - t0) }
 }
 
 interface Attempt {

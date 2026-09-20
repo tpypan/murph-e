@@ -1,9 +1,20 @@
-import { closeProbe, type PipelineEvent, pipeline, withAppGeneration } from '@htn/harness'
+import {
+  closeProbe,
+  type PipelineEvent,
+  pipeline,
+  pipelineBoth,
+  withAppGeneration,
+} from '@htn/harness'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-/** POST { transcript } -> server-sent pipeline events, ending with `ready`. */
+/**
+ * POST { transcript } -> server-sent pipeline events. Without `players` the
+ * cabinet's default applies: a one-player and a two-player version are built
+ * in parallel and every event carries its `players`, so the stream ends after
+ * two `ready`s (or a version's fallback/error). `players: 1 | 2` builds one.
+ */
 export async function POST(req: Request): Promise<Response> {
   const body = (await req.json().catch(() => ({}))) as {
     transcript?: string
@@ -24,15 +35,18 @@ export async function POST(req: Request): Promise<Response> {
           closed = true
         }
       }
+      const players = body.players === 1 || body.players === 2 ? body.players : null
+      const common = {
+        race: body.race ?? 2,
+        // The cabinet only creates new games. Ignore legacy clients' remix context.
+        current: null,
+        onEvent: send,
+        signal: req.signal,
+      }
       withAppGeneration(() =>
-        pipeline(transcript, {
-          race: body.race ?? 2,
-          players: body.players === 2 ? 2 : 1,
-          // The cabinet only creates new games. Ignore legacy clients' remix context.
-          current: null,
-          onEvent: send,
-          signal: req.signal,
-        }),
+        players
+          ? pipeline(transcript, { ...common, players })
+          : pipelineBoth(transcript, common).then(() => undefined),
       )
         .catch((e: unknown) =>
           send({

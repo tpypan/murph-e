@@ -34,10 +34,26 @@ try {
         ? route.abort()
         : route.fallback()
     })
+    // Two badges that already said hello make the 2P version the one shown.
+    const roster =
+      players === 2
+        ? [
+            {
+              path: 'fake-a',
+              slot: 0,
+              identity: { badgeId: 'one', name: 'One', color: [1, 2, 3] },
+            },
+            {
+              path: 'fake-b',
+              slot: 1,
+              identity: { badgeId: 'two', name: 'Two', color: [4, 5, 6] },
+            },
+          ]
+        : []
     await page.route('**/api/badges', (route) =>
       route.fulfill({
         contentType: 'text/event-stream',
-        body: 'data: {"type":"roster","badges":[]}\n\n',
+        body: `data: ${JSON.stringify({ type: 'roster', badges: roster })}\n\n`,
       }),
     )
     const errors = []
@@ -62,24 +78,29 @@ try {
       builds.push(request)
       const spec = {
         title: 'PLAYER FLOW TEST',
-        players: request.players,
         oneLiner: 'CATCH FISH. DODGE SEALS.',
         controls: { left: 'MOVE LEFT', right: 'MOVE RIGHT', a: 'JUMP' },
       }
       await route.fulfill({
         contentType: 'text/event-stream',
-        body: `data: ${JSON.stringify({
-          type: 'ready',
-          title: spec.title,
-          code,
-          note: '',
-          source: 'build',
-          players: request.players,
-          slug: 'player-flow-test',
-          spec,
-          runId: 'player-flow-test',
-          totalMs: 1,
-        })}\n\n`,
+        // The server builds both versions; the page picks by the badges.
+        body: [1, 2]
+          .map(
+            (players) =>
+              `data: ${JSON.stringify({
+                type: 'ready',
+                players,
+                title: 'PLAYER FLOW TEST',
+                code: code,
+                note: '',
+                source: 'build',
+                slug: players === 2 ? 'player-flow-test-2p' : 'player-flow-test',
+                spec: { ...spec, players },
+                runId: `player-flow-test-${players}p`,
+                totalMs: 1,
+              })}\n\n`,
+          )
+          .join(''),
       })
     })
     const shot = (name) => page.screenshot({ path: resolve(output, `${players}p-${name}.png`) })
@@ -164,7 +185,7 @@ try {
     await page.getByRole('button', { name: /MAKE GAME/ }).click()
     await page.getByRole('heading', { name: 'READY!', exact: true }).waitFor()
     assert.equal(builds.length, 1)
-    assert.equal(builds[0].players, players)
+    assert.equal(builds[0].players, undefined, 'nobody is asked how many players')
     assert.match(builds[0].transcript, /penguin/)
     await assertHintsRemoved()
     await page.waitForFunction(() => {
@@ -178,7 +199,27 @@ try {
       'ready must not autoplay',
     )
     assert.equal(await runtime().evaluate(() => window.__runtime.players), players)
+    // Both versions exist; the badges decide which one opens, up/down switches.
+    const versionLine = () => page.locator('.version-line').innerText()
+    assert.match(await versionLine(), players === 2 ? /2 PLAYERS · BADGES/ : /1 PLAYER · CABINET/)
+    assert.match(await versionLine(), players === 2 ? /1 PLAYER VERSION/ : /2 PLAYER VERSION/)
     await shot('ready')
+    await page.keyboard.press('ArrowDown')
+    await page.waitForFunction(
+      (want) => document.querySelector('.version-line')?.textContent?.includes(want),
+      players === 2 ? '1 PLAYER · CABINET' : '2 PLAYERS · BADGES',
+    )
+    await runtime().waitForFunction(
+      (want) => window.__runtime.players === want,
+      players === 2 ? 1 : 2,
+    )
+    await page.keyboard.press('ArrowUp')
+    await page.waitForFunction(
+      (want) => document.querySelector('.version-line')?.textContent?.includes(want),
+      players === 2 ? '2 PLAYERS · BADGES' : '1 PLAYER · CABINET',
+    )
+    await runtime().waitForFunction((want) => window.__runtime.players === want, players)
+    assert.equal(builds.length, 1, 'switching versions never regenerates')
 
     if (players === 1) {
       await page.getByRole('button', { name: /^(?:>\s*)?PLAY$/ }).click()

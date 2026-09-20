@@ -1,4 +1,3 @@
-import { AsyncLocalStorage } from 'node:async_hooks'
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -22,23 +21,17 @@ export const MODELS = {
   remixEffort: process.env.HTN_REMIX_EFFORT ?? 'low',
 } as const
 
-const appGeneration = new AsyncLocalStorage<true>()
-export const APP_API_ONLY_MESSAGE =
-  'APP_API_ONLY: Paid model requests are reserved for people using the app. Development, base games and tests must use the Codex Astra subscription or offline fixtures.'
-
-/** The cabinet route scopes a real player's request; developer CLIs never enter this scope. */
+/**
+ * Kept for callers that wrap a request in it; it no longer gates anything.
+ * The 2026-09-20 rule that reserved model calls for cabinet users was removed:
+ * development, benches and live tests may call the API with the key in .env.
+ */
 export function withAppGeneration<T>(operation: () => T): T {
-  return appGeneration.run(true, operation)
-}
-
-function assertAppGeneration(): void {
-  if (!appGeneration.getStore()) throw new Error(APP_API_ONLY_MESSAGE)
+  return operation()
 }
 
 let client: OpenAI | null = null
 export function openai(): OpenAI {
-  // Check on every access, including after a client was cached by an app request.
-  assertAppGeneration()
   if (client) return client
   const apiKey = process.env.OPENAI_API_KEY
   if (!apiKey)
@@ -47,11 +40,7 @@ export function openai(): OpenAI {
     apiKey,
     timeout: 300_000,
     maxRetries: 1,
-    fetch: (input, init) => {
-      // A client retained beyond the request scope must not bypass the policy.
-      assertAppGeneration()
-      return globalThis.fetch(input, init)
-    },
+    fetch: (input, init) => globalThis.fetch(input, init),
   })
   return client
 }

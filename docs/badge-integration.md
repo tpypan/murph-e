@@ -128,16 +128,18 @@ before the game-over screen, including while the build is streaming, which
 is 30 seconds they are already waiting anyway. This keeps hard rule 5: the
 cabinet never waits on a badge.
 
-## 4. The two modes, chosen up front
+## 4. The two modes, both built every time
 
-Before anyone speaks, the attract screen asks **1 PLAYER or 2 PLAYERS**,
-picked with the stick and A. The choice sets the spec's `players` field
-directly. The model does not infer player count from the transcript any
-more; "a two-player game" said in 1P mode gets built as a one-player game
-and the title card says so. An explicit choice is more reliable than
-inference and lets the spec step pick the multiplayer templates
-deterministically. It adds nothing to the latency budget because it happens
-before speech.
+Revised 2026-09-20: nobody is asked. Every spoken idea is built twice, in
+parallel, as a one-player game for the cabinet controls and a two-player
+game for the two badges (`pipelineBoth` in the harness; each version has its
+own spec, race, probe, run and library slug). The model never infers the
+player count from the transcript: the 1P spec makes "a two-player game" a
+one-player game and says so, and the 2P spec does the mirror. The cabinet
+opens READY on the version the plugged-in badges call for (two badges: 2P),
+shows the other when it lands, and up/down switches. It adds nothing to the
+latency budget because the two versions run side by side; it roughly doubles
+the model spend per request.
 
 **1P: the cabinet controls.** Joystick plus A B X Y on the USB encoder (X is
 START, Y is TALK). A plugged-in badge does not play: during the game its

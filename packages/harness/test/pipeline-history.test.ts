@@ -6,7 +6,13 @@ import { resolve } from 'node:path'
 import { DatabaseSync } from 'node:sqlite'
 import { test } from 'node:test'
 import type { BuildResult } from '../src/build.ts'
-import type { PipelineOptions, PipelineResult } from '../src/pipeline.ts'
+import type {
+  PipelineBothOptions,
+  PipelineBothResult,
+  PipelineEvent,
+  PipelineOptions,
+  PipelineResult,
+} from '../src/pipeline.ts'
 
 // Execute the real pipeline/history/storage modules. Only model producers, the
 // browser probe and unrelated shell/file helpers are replaced at bundle time.
@@ -20,7 +26,7 @@ const stubs: Record<string, string> = {
     'export const BUILD_MAX_OUTPUT_TOKENS=20000;export const build=(...args)=>fixture.build(...args);',
   './repair.ts': 'export const repair=(...args)=>fixture.repair(...args);',
   './spec.ts':
-    'export const specify=async()=>({spec:fixture.spec,context:{},prompt:{system:"",user:""},ms:0,usage:{}});',
+    'export const specify=async(t,o)=>({spec:{...fixture.spec,players:o?.players??1},context:{},prompt:{system:"",user:""},ms:0,usage:{}});',
   './prompt.ts':
     'export const loadTemplates=()=>[];export const buildPrompt=()=>({system:"",user:"",designContext:{},referenceContext:{}});',
   './remix.ts':
@@ -31,7 +37,14 @@ const stubs: Record<string, string> = {
   './run-store.ts': 'export const createRun=()=>{throw Error("test must supply an isolated run")};',
 }
 let bundled: string | undefined
+interface PipelineModule {
+  pipeline: (words: string, opts: PipelineOptions) => Promise<PipelineResult>
+  pipelineBoth: (words: string, opts: PipelineBothOptions) => Promise<PipelineBothResult>
+}
 async function pipelineFor(fixture: Record<string, unknown>) {
+  return (await moduleFor(fixture)).pipeline
+}
+async function moduleFor(fixture: Record<string, unknown>): Promise<PipelineModule> {
   if (!bundled) {
     const built = await require('esbuild').build({
       entryPoints: [resolve(import.meta.dirname, '../src/pipeline.ts')],
@@ -65,9 +78,7 @@ async function pipelineFor(fixture: Record<string, unknown>) {
     })
     bundled = built.outputFiles[0].text
   }
-  const module = {
-    exports: {} as { pipeline: (words: string, opts: PipelineOptions) => Promise<PipelineResult> },
-  }
+  const module = { exports: {} as PipelineModule }
   Function(
     'module',
     'exports',
@@ -75,7 +86,7 @@ async function pipelineFor(fixture: Record<string, unknown>) {
     'fixture',
     bundled!,
   )(module, module.exports, require, fixture)
-  return module.exports.pipeline
+  return module.exports
 }
 
 function output(code = 'function init() {}', syntaxError: string | null = null): BuildResult {
@@ -348,6 +359,131 @@ test('race keeps winner and archives a completed loser returned after cancellati
     } finally {
       db.close()
     }
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+test('pipelineBoth builds a 1P and a 2P version in isolated runs and tags every event', async (t) => {
+  t.mock.method(globalThis, 'fetch', () => {
+    throw Error('NETWORK FORBIDDEN IN OFFLINE TEST')
+  })
+  const root = mkdtempSync(resolve(tmpdir(), 'pipeline-both-'))
+  const events: PipelineEvent[] = []
+  const probes: number[] = []
+  const fixture = {
+    root,
+    spec: {
+      title: 'FIXTURE',
+      genre: 'paddle',
+      players: 1,
+      note: '',
+      controls: [],
+      remix: false,
+      changes: [],
+    },
+    build: async () => output('function init() {}'),
+    repair: async () => output('function init() {return 1}'),
+    remix: async () => ({ ...output(), blocks: 0, applyError: null }),
+    probe: async (_code: string, o: { players: number }) => {
+      probes.push(o.players)
+      return probeResult(true)
+    },
+  }
+  const { pipelineBoth } = await moduleFor(fixture)
+  const runFor = (players: 1 | 2) => ({
+    id: `run-${players}p`,
+    dir: resolve(root, `run-${players}p`),
+    write: (name: string) => resolve(root, `run-${players}p`, name),
+    event: () => {},
+  })
+  try {
+    const r = await pipelineBoth('a fixture game', {
+      race: 1,
+      keep: false,
+      runFor,
+      onEvent: (ev) => events.push(ev),
+    })
+    for (const players of [1, 2] as const) {
+      const v = r.results[players]
+      assert.ok(!(v instanceof Error), `${players}P: ${v instanceof Error ? v.message : ''}`)
+      assert.equal(v.players, players)
+      assert.equal(v.run.id, `run-${players}p`)
+      assert.equal(v.source, 'build')
+    }
+    assert.ok(events.length > 0)
+    assert.ok(
+      events.every((ev) => ev.players === 1 || ev.players === 2),
+      'every event names its version',
+    )
+    const ready = events.filter((ev) => ev.type === 'ready')
+    assert.deepEqual(ready.map((ev) => ev.players).sort(), [1, 2])
+    assert.deepEqual(ready.map((ev) => (ev.type === 'ready' ? ev.runId : '')).sort(), [
+      'run-1p',
+      'run-2p',
+    ])
+    const specs = events.filter((ev) => ev.type === 'spec')
+    assert.deepEqual(
+      specs.map((ev) => (ev.type === 'spec' ? ev.spec.players : 0)).sort(),
+      [1, 2],
+      'each version gets its own spec',
+    )
+    assert.deepEqual(probes.sort(), [1, 2], 'each version is probed as itself')
+  } finally {
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+test('pipelineBoth keeps the 1P version when the 2P version falls back', async (t) => {
+  t.mock.method(globalThis, 'fetch', () => {
+    throw Error('NETWORK FORBIDDEN IN OFFLINE TEST')
+  })
+  const root = mkdtempSync(resolve(tmpdir(), 'pipeline-both-fallback-'))
+  const events: PipelineEvent[] = []
+  const fixture = {
+    root,
+    spec: {
+      title: 'FIXTURE',
+      genre: 'paddle',
+      players: 1,
+      note: '',
+      controls: [],
+      remix: false,
+      changes: [],
+    },
+    build: async () => output('function init() {}'),
+    repair: async () => output('function init() {return 1}'),
+    remix: async () => ({ ...output(), blocks: 0, applyError: null }),
+    // The two-player probe never passes, so that version repairs and falls back.
+    probe: async (_code: string, o: { players: number }) => probeResult(o.players === 1),
+  }
+  const { pipelineBoth } = await moduleFor(fixture)
+  const runFor = (players: 1 | 2) => ({
+    id: `run-${players}p`,
+    dir: resolve(root, `run-${players}p`),
+    write: (name: string) => resolve(root, `run-${players}p`, name),
+    event: () => {},
+  })
+  try {
+    const r = await pipelineBoth('a fixture game', {
+      race: 1,
+      keep: false,
+      runFor,
+      onEvent: (ev) => events.push(ev),
+    })
+    const one = r.results[1]
+    const two = r.results[2]
+    assert.ok(!(one instanceof Error) && one.source === 'build')
+    assert.ok(!(two instanceof Error) && two.source === 'library')
+    const ready = events.filter((ev) => ev.type === 'ready')
+    assert.deepEqual(
+      ready.map((ev) => (ev.type === 'ready' ? `${ev.players}:${ev.source}` : '')).sort(),
+      ['1:build', '2:library'],
+    )
+    assert.ok(
+      events.some((ev) => ev.type === 'fallback' && ev.players === 2),
+      'the fallback is tagged with its version',
+    )
   } finally {
     rmSync(root, { recursive: true, force: true })
   }

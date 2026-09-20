@@ -103,6 +103,11 @@ button:focus-visible {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+/* A badge that was pulled mid-session keeps its name for the score, greyed. */
+.player-label.player-detached {
+  opacity: 0.45;
+  text-decoration: line-through;
+}
 .stage {
   position: absolute;
   inset: 19% 8% 17%;

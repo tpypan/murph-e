@@ -71,8 +71,9 @@ game. Swipe the center, click a side preview, or move the stick left/right to br
 There are no arrow glyphs, ARCADE heading, demo label or position counter. Only
 the selected game and its two neighbors are prefetched, with a bounded local cache.
 Up/down moves
-between the game, player count, PLAY, MAKE A GAME, Resume and Options. The selected
-1 PLAYER / 2 PLAYERS mode applies to both playing and creating a game.
+between the game, player count, PLAY, MAKE A GAME, Resume and Options. The
+1 PLAYER / 2 PLAYERS row applies to the demos only and follows the badges (two
+in: 2P) unless overridden. MAKE A GAME never asks: both versions are built.
 
 PLAY opens the selected game's instructions; a second PLAY starts the real run.
 The home preview uses synthetic inputs in a separate sandbox and never starts the
@@ -85,7 +86,13 @@ preview/detail caches replace changed code; a temporary refresh failure keeps
 the current menu usable.
 
 MAKE A GAME → hold to talk → transcribing → read-only review → building → ready →
-playing → results. MAKE A GAME opens voice with the microphone off; only holding
+playing → results. Building makes two versions at once, a one-player game for
+the cabinet controls and a two-player game for the badges; the build screen
+follows the one the badges call for and says the other is building too. READY
+opens as soon as that version lands, with a line naming it (1 PLAYER · CABINET
+CONTROLS or 2 PLAYERS · BADGES) and whether the other version is switchable,
+still building or could not be made. Up/down switches; until someone does,
+the version on screen follows the badges (plug both in for 2P). MAKE A GAME opens voice with the microphone off; only holding
 TALK starts recording. MAKE GAME confirms the transcript; PLAY separately starts
 the finished game. Real gameplay never autoplays.
 No text-entry fallback, step bar, or promotional tagline. Voice changes/remixes

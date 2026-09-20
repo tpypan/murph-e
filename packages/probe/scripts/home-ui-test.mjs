@@ -167,6 +167,16 @@ try {
   const ids = []
   const total = games.length
   const namedScreenshots = {}
+  // The Sonic, Batman and Spider-Man packs are private (data/local-catalog,
+  // gitignored, built from downloaded sheets). Expect their screenshots only
+  // on a checkout that has them; everything else is checked regardless.
+  const privatePacks = ['batman', 'sonic', 'spider'].filter((name) =>
+    games.some((game) => String(game.id).includes(name)),
+  )
+  if (privatePacks.length < 3)
+    console.log(
+      `private packs absent on this checkout: ${['batman', 'sonic', 'spider'].filter((n) => !privatePacks.includes(n)).join(', ')}`,
+    )
   for (let i = 0; i < total; i++) {
     await preview().waitFor()
     await checkNeighbors()
@@ -184,7 +194,7 @@ try {
   }
   await preview().waitFor()
   assert.equal(new Set(ids).size, total, JSON.stringify({ titles, ids }))
-  assert.deepEqual(Object.keys(namedScreenshots).sort(), ['batman', 'sonic', 'spider'])
+  assert.deepEqual(Object.keys(namedScreenshots).sort(), privatePacks)
   assert.equal(await runtime().evaluate(() => window.__runtime.gameFrame), 0)
   assert.equal(scores, 0, 'preview must never submit scores')
   await page.keyboard.press('KeyV')

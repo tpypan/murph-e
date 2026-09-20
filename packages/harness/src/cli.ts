@@ -16,7 +16,7 @@ import { assembleCatalog, indexCatalog, loadCatalog } from './catalog.ts'
 import { MODELS, ROOT } from './env.ts'
 import { gen } from './gen.ts'
 import { listLibrary } from './library.ts'
-import { pipeline } from './pipeline.ts'
+import { type PipelineEvent, pipeline, pipelineBoth } from './pipeline.ts'
 import { createRun } from './run-store.ts'
 import { seed } from './seed.ts'
 import { findSourceReferences, indexSources } from './source-catalog.ts'
@@ -27,7 +27,7 @@ const CWD = process.env.INIT_CWD ?? process.cwd()
 const USAGE = `usage:
   harness gen "<transcript>" [--model M] [--effort E] [--variant N] [--players 2]
   harness play <run-id>
-  harness run "<transcript>" [--race 2] [--players 2]   full pipeline: spec, race, probe, repair, fallback
+  harness run "<transcript>" [--race 2] [--players 2|both]   full pipeline: spec, race, probe, repair, fallback; both = a 1P and a 2P version, as the cabinet does
   harness seed <prompts.txt> [--n 2] [--players 2]      fill library/games with passing games
   harness bench <prompts.txt> [--model M] [--effort E] [--players 2] [--n 1] [--concurrency 4] [--label L] [--no-probe] [--fun]
   harness bench-remix <remixes.txt> [--concurrency 3] [--label L]   "<slug> | <words>" per line
@@ -247,23 +247,40 @@ try {
   else if (cmd === 'play' && rest[0]) await cmdPlay(rest[0])
   else if (cmd === 'run' && rest[0]) {
     const { closeProbe } = await import('@htn/probe')
-    const r = await pipeline(rest.join(' '), {
+    const both = values.players === 'both'
+    const onEvent = (ev: PipelineEvent) => {
+      const tag = ev.players ? `${ev.players}P ` : ''
+      if (ev.type === 'token') {
+        // With both versions streaming, only the one-player stream goes to stdout.
+        if (ev.variant === 0 && (ev.players ?? 1) === 1) process.stdout.write(ev.text)
+      } else if (ev.type === 'ready') {
+        process.stderr.write(
+          `\nREADY ${tag}${ev.source} "${ev.title}" in ${fmtS(ev.totalMs)}  run: runs/${ev.runId}\n`,
+        )
+      } else process.stderr.write(`\n[${tag}${ev.type}] ${JSON.stringify(ev).slice(0, 300)}\n`)
+    }
+    const common = {
       race: values.race ? Number(values.race) : 2,
-      players: playersOf(values),
       model: values.model,
       effort: values.effort,
-      onEvent: (ev) => {
-        if (ev.type === 'token') {
-          if (ev.variant === 0) process.stdout.write(ev.text)
-        } else if (ev.type === 'ready') {
-          process.stderr.write(
-            `\nREADY ${ev.source} "${ev.title}" in ${fmtS(ev.totalMs)}  run: runs/${ev.runId}\n`,
-          )
-        } else process.stderr.write(`\n[${ev.type}] ${JSON.stringify(ev).slice(0, 300)}\n`)
-      },
-    })
-    await closeProbe()
-    process.stderr.write(`play: pnpm harness play ${r.run.id}\n`)
+      onEvent,
+    }
+    if (both) {
+      const r = await pipelineBoth(rest.join(' '), common)
+      await closeProbe()
+      for (const players of [1, 2] as const) {
+        const v = r.results[players]
+        process.stderr.write(
+          v instanceof Error
+            ? `${players}P failed: ${v.message}\n`
+            : `play ${players}P: pnpm harness play ${v.run.id}\n`,
+        )
+      }
+    } else {
+      const r = await pipeline(rest.join(' '), { ...common, players: playersOf(values) })
+      await closeProbe()
+      process.stderr.write(`play: pnpm harness play ${r.run.id}\n`)
+    }
   } else if (cmd === 'seed' && rest[0]) {
     const added = await seed(readPrompts(resolve(CWD, rest[0])), {
       n: values.n ? Number(values.n) : 1,

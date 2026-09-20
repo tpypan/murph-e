@@ -81,6 +81,9 @@ keyboard hints on screen (A / Z) for the panel's own letters.
 - Fake badges, for rehearsing without hardware: F1 plugs (or unplugs) a
   badge that already has the app, F2 one that needs it pushed; both open
   the app by themselves. `POST /api/badges/fake` drives more of them.
+- MAKE A GAME never asks how many players: both a 1P and a 2P version are
+  built. READY opens on the one the badges call for; up/down switches. The
+  1 PLAYER / 2 PLAYERS row on the home screen only applies to the demos.
 - Who plays is fixed by the mode. 1 PLAYER: the cabinet controls play; a
   plugged-in badge only names the score and its buttons are ignored during
   the game. 2 PLAYERS: badge slot 1 is player one, slot 2 is player two, in

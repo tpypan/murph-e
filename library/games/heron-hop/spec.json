@@ -1,0 +1,46 @@
+{
+  "title": "HERON HOP",
+  "oneLiner": "Guide a brave frog across drifting lily pads while diving herons turn every landing into a split-second choice.",
+  "genre": "platforming survival",
+  "hook": "Choose whether to make a short safe hop or a longer leap for faster progress: distant pads advance you more quickly but leave less time to dodge a swooping her，",
+  "ramp": "The opening presents wide, stationary pads and one slow heron as a safe lesson. Later sections alternate calm stretches with pressure bursts, adding moving pads, narrower gaps, and herons with clearer",
+  "mechanics": [
+    "The frog automatically faces right and can move horizontally while grounded or airborne; LEFT/RIGHT accelerate toward a capped 72 px/s drift.",
+    "A press of A starts a hop from a pad or while standing at the water edge. Each hop follows a fixed arc of about 32 px height and 0.64 seconds total; releasing A early shortens the ascent, while holding it gives the full arc.",
+    "Landing on the top surface of a lily pad is safe and immediately permits the next hop; landing near an edge slides the frog toward the water, creating a brief recovery window.",
+    "The camera scrolls right as the frog reaches the forward half of the screen. New pad arrangements are authored in short chunks with every required gap reachable by a full hop.",
+    "Herons enter from either side, pause briefly with a visible wing-fold telegraph, then swoop diagonally across a pad lane. A heron crossing the frog's body or a frog touching its beak causes a hit; each heron event can damage the frog only once.",
+    "After a hit, the frog flashes for 0.9 seconds and is knocked backward; falling into the water or taking a second hit loses a life and restarts at the last checkpoint pad.",
+    "Reach the riverbank goal after six scrolling sections to win. Each section contains a recovery stretch after its peak threat pattern, and difficulty caps at three simultaneous herons and 48 px/s heron swoop speed.",
+    "The first section teaches wide-pad landings, then adds alternating pad heights, moving pads, and synchronized heron dives one pattern at a time."
+  ],
+  "artDirection": "256x224 horizontal playfield with the frog as a readable 16x18 pixel sprite: bright green body, pale belly, red-orange throat, large eyes, and distinct crouched, airborne, landing, and flattened hurt poses. Lily pads are 26–38 pixels wide with dark green rims and vein highlights; herons are 28x22 pixels, white and blue-gray with a long pointed beak, folded idle wings, wide swoop wings, and an unmistakable red warning eye. Use a deep blue-green water background, two quiet parallax reed layers, and high-contrast silhouettes around active pads and herons. Keep the frog and threats brighter than the water; use small splash and feather effects for landings and hits.",
+  "referenceIntent": {
+    "reference": "",
+    "preserve": [],
+    "change": []
+  },
+  "controls": {
+    "left": "Steer the frog left during play and while airborne.",
+    "right": "Steer the frog right during play and while airborne.",
+    "up": null,
+    "down": null,
+    "a": "Hop when standing on a lily pad or during the brief landing recovery window.",
+    "b": "Hold B to brake horizontal drift while airborne or on a pad."
+  },
+  "palette": "arcade",
+  "lose": "Lose a life by falling into the water or being hit again after the frog's brief damage protection; lose all lives to end the run.",
+  "scoring": "Score 100 for each new lily pad reached, 300 for passing beneath a swooping heron without being hit, and 1000 for reaching the riverbank; each event scores once.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "platforming",
+    "collision",
+    "pacing",
+    "readability"
+  ],
+  "players": 1,
+  "runId": "2026-09-20-062416094-a-frog-hopping-across-lily-pads-L916PS"
+}
