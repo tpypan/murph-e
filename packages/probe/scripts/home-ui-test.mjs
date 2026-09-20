@@ -70,6 +70,13 @@ try {
     const id = await currentId()
     const selected = games.findIndex((game) => game.id === id)
     assert.ok(selected >= 0, `selected game ${id} is in the catalog`)
+    assert.equal(await title.innerText(), games[selected].title)
+    if (games[selected].creator) {
+      assert.equal(
+        (await page.locator('.home-creator').innerText()).toUpperCase(),
+        `BY ${games[selected].creator.name}`.toUpperCase(),
+      )
+    }
     for (const [side, offset] of [
       ['previous', -1],
       ['next', 1],
@@ -110,7 +117,7 @@ try {
     const height = width === 1280 ? 720 : width * 0.75
     await page.setViewportSize({ width, height })
     const bounds = await page.locator('.arcade-screen').boundingBox()
-    for (const item of await home.locator('button,h1,h2').all()) {
+    for (const item of await home.locator('button,h1,h2,.home-creator').all()) {
       const box = await item.boundingBox()
       assert.ok(
         box &&

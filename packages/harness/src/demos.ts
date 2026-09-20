@@ -2,6 +2,12 @@ import { readFileSync, realpathSync, statSync } from 'node:fs'
 import { resolve, sep } from 'node:path'
 import { Script } from 'node:vm'
 import { assembleCatalog, type CatalogPart, loadCatalog } from './catalog.ts'
+import {
+  assignedCreator,
+  assignedTitle,
+  type GameCreator,
+  loadGameAttributions,
+} from './game-attribution.ts'
 import { type GameSpec, GameSpecSchema, type Players } from './spec.ts'
 
 export interface DemoSummary {
@@ -11,6 +17,7 @@ export interface DemoSummary {
   description: string
   players: Players[]
   genre: string
+  creator: GameCreator
 }
 export interface DemoGame extends DemoSummary {
   code: string
@@ -44,9 +51,11 @@ function metadata(part: CatalogPart): { summary: DemoSummary; spec: GameSpec } |
     // Listing reads metadata only. Code is assembled only for the selected game.
     file(part, 'demo')
     const raw = JSON.parse(readFileSync(file(part, 'spec'), 'utf8'))
+    const assignments = loadGameAttributions()
     // Older authored specs omit unused buttons; preserve their meaning as null.
     const spec = GameSpecSchema.parse({
       ...raw,
+      title: assignedTitle('catalog', part.manifest.id, raw.title, assignments),
       controls: {
         left: null,
         right: null,
@@ -65,6 +74,10 @@ function metadata(part: CatalogPart): { summary: DemoSummary; spec: GameSpec } |
         description: spec.oneLiner,
         players: [...new Set(part.manifest.supportsPlayers)],
         genre: spec.genre,
+        creator: assignedCreator('catalog', part.manifest.id, assignments) ?? {
+          name: 'GUEST',
+          badgeId: null,
+        },
       },
       spec: { ...spec, players: part.manifest.supportsPlayers[0]! },
     }

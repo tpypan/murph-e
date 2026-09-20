@@ -80,6 +80,7 @@ button:focus-visible {
 }
 .player-name {
   display: flex;
+  font-size: 1.6cqw;
   align-items: center;
   gap: 1cqw;
   min-width: 0;
@@ -216,6 +217,11 @@ h2 {
 }
 .home-caption h2[data-selected="true"] {
   color: #ffff55;
+}
+.home-creator {
+  margin: 0.6cqw 0 0;
+  color: #aaa;
+  font-size: 1.6cqw;
 }
 .home-players,
 .home-actions,

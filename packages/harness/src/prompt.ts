@@ -3,6 +3,7 @@ import { resolve } from 'node:path'
 import { type CatalogContext, catalogContext } from './catalog.ts'
 import { type DesignContext, designCore, selectDesignContext } from './design-context.ts'
 import { ROOT, readRepoFile } from './env.ts'
+import { type GameCreator, gameCreator } from './game-attribution.ts'
 import { MULTIPLAYER_DESIGN_RULES } from './multiplayer.ts'
 import { type ReferenceContext, referenceContext } from './reference-context.ts'
 import type { GameSpec, Genre } from './spec.ts'
@@ -13,6 +14,7 @@ export interface Template {
   file: string
   code: string
   players: number
+  creator: GameCreator
 }
 
 /** Templates ride in the prompt. Header lines `// TITLE:`, `// GENRE:` and `// PLAYERS:` name them. */
@@ -26,7 +28,14 @@ export function loadTemplates(): Template[] {
       const title = code.match(/^\/\/\s*TITLE:\s*(.+)$/m)?.[1]?.trim() ?? file
       const genre = code.match(/^\/\/\s*GENRE:\s*(.+)$/m)?.[1]?.trim() ?? file.replace('.js', '')
       const players = Number(code.match(/^\/\/\s*PLAYERS:\s*(\d)/m)?.[1] ?? 1)
-      return { genre, title, file, code, players }
+      return {
+        genre,
+        title,
+        file,
+        code,
+        players,
+        creator: gameCreator('library', `template-${file.replace(/\.js$/, '')}`),
+      }
     })
 }
 

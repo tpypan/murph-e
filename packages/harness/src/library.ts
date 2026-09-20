@@ -2,6 +2,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { resolve } from 'node:path'
 import { queueComponentIndex } from './component-queue.ts'
 import { ROOT, readRepoFile } from './env.ts'
+import { assignedTitle, type GameCreator, gameCreator } from './game-attribution.ts'
 import { loadTemplates } from './prompt.ts'
 import { slugify } from './run-store.ts'
 import type { GameSpec } from './spec.ts'
@@ -13,6 +14,7 @@ export interface LibraryGame {
   players: number
   code: string
   spec: GameSpec | null
+  creator: GameCreator
   source: 'library' | 'template'
 }
 
@@ -26,16 +28,18 @@ export function listLibrary(): LibraryGame[] {
     .map((slug) => {
       const code = readRepoFile(`library/games/${slug}/game.js`)
       const specPath = resolve(GAMES_DIR, slug, 'spec.json')
-      const spec: GameSpec | null = existsSync(specPath)
+      const spec: (GameSpec & { creator?: GameCreator }) | null = existsSync(specPath)
         ? JSON.parse(readFileSync(specPath, 'utf8'))
         : null
+      const title = assignedTitle('library', slug, spec?.title ?? slug.toUpperCase())
       return {
         slug,
-        title: spec?.title ?? slug.toUpperCase(),
+        title,
         genre: spec?.genre ?? '',
         players: spec?.players ?? 1,
         code,
-        spec,
+        spec: spec ? { ...spec, title } : null,
+        creator: gameCreator('library', slug, spec?.creator),
         source: 'library',
       }
     })
@@ -64,6 +68,7 @@ export function pickFallback(
     players: t.players,
     code: t.code,
     spec: null,
+    creator: t.creator,
     source: 'template',
   }
 }

@@ -10,6 +10,7 @@ export interface DemoSummary {
   description: string
   genre: string
   players: Array<1 | 2>
+  creator?: { name: string; badgeId: string | null; attribution?: 'manual' | 'badge' } | null
 }
 
 const demoKey = (game: DemoSummary, players: 1 | 2) =>
@@ -357,6 +358,7 @@ export const HomeScreen = forwardRef<
       </div>
       <div className="home-caption" aria-live="polite">
         <h2 data-selected={selection === 0}>{selected?.title ?? 'YOUR NEXT HIGH SCORE'}</h2>
+        {selected?.creator && <p className="home-creator">BY {selected.creator.name}</p>}
       </div>
       <fieldset className="home-players" aria-label="Players">
         {([1, 2] as const).map((n) => (

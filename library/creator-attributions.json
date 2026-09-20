@@ -1,0 +1,660 @@
+{
+  "version": 1,
+  "attribution": "manual",
+  "assignments": [
+    {
+      "kind": "catalog",
+      "id": "kart",
+      "title": "SUNSET SLIPSTREAM",
+      "creatorName": "Kaibo Huang"
+    },
+    {
+      "kind": "catalog",
+      "id": "fighter",
+      "title": "ROOFTOP RIVALS",
+      "creatorName": "Arjun Virk"
+    },
+    {
+      "kind": "catalog",
+      "id": "sonic-speed-reference",
+      "title": "SONIC: COAST DASH",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "catalog",
+      "id": "batman-atari-fighter-reference",
+      "title": "BATMAN ATARI: ROOFTOP DUEL",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "catalog",
+      "id": "spider-man-fighter-reference",
+      "title": "SPIDER-MAN: ROOFTOP WEB DUEL",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "catalog",
+      "id": "dk-climber-reference",
+      "title": "DONKEY KONG CLIMB",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "catalog",
+      "id": "pac-man-maze-reference",
+      "title": "PAC-MAN MAZE",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "catalog",
+      "id": "pole-position-racer-reference",
+      "title": "POLE POSITION CIRCUIT",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "catalog",
+      "id": "speed-platformer",
+      "title": "LOOP RUSH",
+      "creatorName": "Rohanth Marem"
+    },
+    {
+      "kind": "catalog",
+      "id": "bomber",
+      "title": "FUSE FRENZY",
+      "creatorName": "Chinmay Jindal"
+    },
+    {
+      "kind": "catalog",
+      "id": "climber",
+      "title": "CRANE RESCUE",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "catalog",
+      "id": "maze",
+      "title": "GOOSE GHOSTS",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "catalog",
+      "id": "breakout",
+      "title": "PRISM BREAK",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "catalog",
+      "id": "formation-shooter",
+      "title": "PRISM SQUADRON",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "catalog",
+      "id": "crossing",
+      "title": "TRAFFIC & TIDES",
+      "creatorName": "Srinikesh Singarapu"
+    },
+    {
+      "kind": "catalog",
+      "id": "missile-defense",
+      "title": "SKY SHIELD",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "catalog",
+      "id": "falling-blocks",
+      "title": "STACK CIRCUIT",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "catalog",
+      "id": "asteroids",
+      "title": "VECTOR DRIFT",
+      "creatorName": "Daniel Ching"
+    },
+    {
+      "kind": "catalog",
+      "id": "pong",
+      "title": "VOLT RALLY",
+      "creatorName": "Eddie Bian"
+    },
+    {
+      "kind": "library",
+      "id": "asteroid-blast",
+      "title": "ASTEROID BLAST",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "asteroid-dash",
+      "title": "ASTEROID DASH",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "bada-beat",
+      "title": "BADA BEAT",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "banana-gotham",
+      "title": "BANANA GOTHAM",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "big-ball-break",
+      "title": "BIG BALL BREAK",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "big-ball-break-2",
+      "title": "BIG BALL BREAK",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "casper-climb",
+      "title": "HAUNTED HIGHRISE",
+      "creatorName": "Casper Dong"
+    },
+    {
+      "kind": "library",
+      "id": "cat-catcher",
+      "title": "CAT CATCHER",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "cat-catcher-2",
+      "title": "CAT CATCHER",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "cat-dash",
+      "title": "CAT DASH",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "cat-dash-2",
+      "title": "CAT DASH",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "cloud-drift",
+      "title": "CLOUD DRIFT",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "craft-dash",
+      "title": "CRAFT DASH",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "dc-duel",
+      "title": "DC DUEL",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "donkey-climb",
+      "title": "DONKEY CLIMB",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "dragon-keep",
+      "title": "DRAGON KEEP",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "duel-byte",
+      "title": "DUEL BYTE",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "exam-escape",
+      "title": "EXAM ESCAPE",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "exam-escape-2",
+      "title": "EXAM ESCAPE",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "fairy-pie-drop",
+      "title": "FAIRY PIE DROP",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "frogger-dash",
+      "title": "FROGGER DASH",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "frogger-rush",
+      "title": "FROGGER RUSH",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "ghost-maze",
+      "title": "GHOST MAZE",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "goose-chase",
+      "title": "GOOSE CHASE",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "goose-kong",
+      "title": "GOOSE KONG",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "gotham-gadgets",
+      "title": "GOTHAM GADGETS",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "hard-mode",
+      "title": "HARD MODE",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "hero-duel",
+      "title": "HERO DUEL",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "ice-fish-dash",
+      "title": "ICE FISH DASH",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "ice-fish-run",
+      "title": "ICE FISH RUN",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "jelly-sub",
+      "title": "JELLY SUB",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "jelly-sub-2",
+      "title": "JELLY SUB",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "pac-mates",
+      "title": "PAC-MATES",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "pack-that",
+      "title": "PACK THAT!",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "pie-anvil",
+      "title": "PIE ANVIL",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "pie-anvil-dash",
+      "title": "PIE ANVIL DASH",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "pixel-fight",
+      "title": "PIXEL FIGHT",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "pizza-invaders",
+      "title": "PIZZA INVADERS",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "pizza-invaders-2",
+      "title": "PIZZA INVADERS",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "pizza-invaders-3",
+      "title": "PIZZA INVADERS",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "pollen-dash",
+      "title": "POLLEN DASH",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "salsa-taco",
+      "title": "SALSA TACO",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "seal-slide",
+      "title": "SEAL SLIDE",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "sky-karts",
+      "title": "SKY KARTS",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "slime-spell",
+      "title": "SLIME SPELL",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "speed-pong",
+      "title": "SPEED PONG",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "speed-pong-2",
+      "title": "SPEED PONG",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "spellstack",
+      "title": "SPELLSTACK",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "spike-dash",
+      "title": "SPIKE DASH",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "spike-dash-2",
+      "title": "SPIKE DASH",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "star-catch",
+      "title": "STAR CATCH",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "star-zapper",
+      "title": "STAR ZAPPER",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "train-snake",
+      "title": "TRAIN SNAKE",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "train-snake-2",
+      "title": "TRAIN SNAKE",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "turbo-dash",
+      "title": "TURBO DASH",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "twin-tug",
+      "title": "TWIN TUG",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "web-cowl",
+      "title": "WEB & COWL",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "bug-barrage-2p",
+      "title": "BUG BARRAGE",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "candy-break",
+      "title": "CANDY BREAK",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "castle-blast",
+      "title": "CASTLE BLAST",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "frog-dash",
+      "title": "FROG DASH",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "frog-dash-2p",
+      "title": "FROG DASH",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "goal-bonk",
+      "title": "GOAL BONK",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "heron-hop",
+      "title": "HERON HOP",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "ice-fish-2p",
+      "title": "ICE FISH",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "icefish-dash",
+      "title": "ICEFISH DASH",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "lily-leap-2p",
+      "title": "LILY LEAP",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "neon-bumpers",
+      "title": "NEON BUMPERS",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "robo-bonk",
+      "title": "ROBO BONK",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "robo-bonk-2p",
+      "title": "ROBO BONK",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "rooftop-rush",
+      "title": "ROOFTOP RUSH",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "sky-dash-2p",
+      "title": "SKY DASH",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "sky-kart",
+      "title": "SKY KART",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "sky-raiders",
+      "title": "SKY RAIDERS",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "sky-sprint",
+      "title": "SKY SPRINT",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "star-cat",
+      "title": "STAR CAT",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "star-cat-2p",
+      "title": "STAR CAT",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "template-breakout",
+      "title": "BRICK BUST",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "template-coop",
+      "title": "SWARM",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "template-dodge",
+      "title": "SKY FALL",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "template-flappy",
+      "title": "FLAP",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "template-platformer",
+      "title": "COIN HOP",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "template-pong",
+      "title": "PONG",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "library",
+      "id": "template-runner",
+      "title": "DASH DOG",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "library",
+      "id": "template-shooter",
+      "title": "STAR BLAST",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "library",
+      "id": "template-snake",
+      "title": "SNAKE",
+      "creatorName": "Zane Beeai"
+    },
+    {
+      "kind": "library",
+      "id": "template-versus",
+      "title": "LASER DUEL",
+      "creatorName": "Shayaan Azeem"
+    },
+    {
+      "kind": "catalog",
+      "id": "arena-survivor",
+      "title": "EMBER WATCH",
+      "creatorName": "Sahiti Dasari"
+    },
+    {
+      "kind": "catalog",
+      "id": "dungeon-gauntlet",
+      "title": "KEYSTONE KEEP",
+      "creatorName": "Tony Pan"
+    },
+    {
+      "kind": "catalog",
+      "id": "sky-racer",
+      "title": "SKY RACER",
+      "creatorName": "Zane Beeai"
+    }
+  ]
+}

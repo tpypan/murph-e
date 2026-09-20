@@ -23,6 +23,7 @@ test('demo list is metadata only and every admitted mode assembles and runs loca
     )
   for (const game of games) {
     assert.deepEqual(Object.keys(game).sort(), [
+      'creator',
       'description',
       'genre',
       'id',

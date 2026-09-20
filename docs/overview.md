@@ -87,7 +87,8 @@ TALK release, with the microphone stopped. See [speech setup](plans/speech-trans
 - **A CRT-first kiosk shell.** A flat 4:3 frame, 8% safe margins and plain action
   labels while the physical cabinet controls are pending. Player selection, voice, transcript review, building,
   ready, playing and results are separate stages. The home carousel previews verified
-  local games with synthetic input in a separate muted sandbox; the real game waits
+  local games with synthetic input in a separate muted sandbox, with a creator credit
+  beneath the selected title from `library/creator-attributions.json`; the real game waits
   for PLAY. START
   starts a prepared game or pauses a running one; menus and voice preserve the
   paused run. See `design-guide.md` for the cabinet layout and controls.
@@ -143,3 +144,16 @@ Tier 1 splits into tracks that do not block each other: the runtime and
 kiosk page, the harness and bench, and STT plus hardware. Tier 2 badge
 plumbing touches the generator only through a `players` field in the spec,
 which is set by the 1P/2P choice on the attract screen, not by the model.
+
+## Local author credits and player names
+
+The carousel and library API expose creator credits from
+`library/creator-attributions.json`. Saved badge creator metadata takes priority
+for library games. Fallback templates use their `template-<file>` library IDs;
+all current games have explicit author assignments. Unidentified future games
+use GUEST until assigned. These display credits do not alter source/asset provenance.
+During play, the header shows P1 (name) and P2 (name) from the session badges.
+Solo uses the first connected badge; two-player uses each controller slot.
+Unplugging retains the session name with its disconnected styling.
+The offline `creator-player-ui-test.mjs` checks author coverage, both modes,
+guest/second-slot solo behavior, unplug/reconnect, and 320/640px screenshots.

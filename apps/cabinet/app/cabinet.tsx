@@ -1089,7 +1089,7 @@ export default function Cabinet({
             <span
               className="player-name"
               key={i}
-              title={`P${i + 1} ${name}${player?.detached ? ' (unplugged)' : ''}`}
+              title={`P${i + 1} (${name})${player?.detached ? ' (unplugged)' : ''}`}
             >
               <span
                 className="player-marker"
@@ -1098,7 +1098,7 @@ export default function Cabinet({
               />
               <span className="player-number">P{i + 1}</span>
               <span className={`player-label${player?.detached ? ' player-detached' : ''}`}>
-                {name}
+                ({name})
               </span>
             </span>
           )
