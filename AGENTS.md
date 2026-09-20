@@ -38,7 +38,7 @@ packages/probe/     headless Playwright verifier for a game.js, plus the fun
                     worth playing.
 packages/badge/     hacker badge over USB serial: hot-plug, app push, hello and
                     button events. Ships the arcade Lua app in app/.
-apps/cabinet/       Next.js kiosk page + API routes (local STT, generate).
+apps/cabinet/       Next.js kiosk page + API routes (STT, generate).
 library/            games that passed the probe: spec.json, game.js, thumb.png
 bench/              canned prompts and bench results.
 runs/               every generation attempt, gitignored.
@@ -96,9 +96,11 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   and combat helpers, selected independently of exact genre names. Planner gets the
   contracts; build/repair get code and available pixel sprite data. See its README.
   `HTN_REFERENCE_CONTEXT=0` disables this layer for comparisons.
-- STT: local `faster-whisper` with `tiny.en`, English, CPU int8.
-  Run `pnpm stt:setup` once. On release, `/api/stt` sends the clip to a
-  resident Python worker over stdin; no cloud STT, token, or API key.
+- STT: `/api/stt` sends the clip to the OpenAI transcription API by default
+  (`HTN_STT_MODEL`, default `gpt-4o-mini-transcribe`). That is for real people
+  at the cabinet and runs inside the same app-generation scope as generate.
+  `HTN_STT=local` switches to local `faster-whisper` with `tiny.en`, English,
+  CPU int8, over stdin to a resident Python worker: run `pnpm stt:setup` once.
   Model files and the Python venv are local and gitignored.
 - Historical model validation used a bench run. Paid API benches are prohibited
   for assistant development; use offline regressions and Codex-authored games. The old bench is
