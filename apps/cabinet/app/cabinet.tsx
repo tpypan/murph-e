@@ -49,7 +49,6 @@ interface CurrentGame {
 }
 interface Game {
   title: string
-  source: string
   slug: string | null
   players: Players
 }
@@ -96,19 +95,15 @@ interface View {
   code: string
   foundation: { prefix: string; demo: string } | null
   status: Status
-  observations: string[]
   game: Game | null
   banner: string | null
   score: number
   scores: number[]
-  hi: number
   rtState: string
   error: string | null
-  libraryCount: number
   voiceStage: VoiceStage
   badges: BadgePlayer[]
   session: Array<SessionPlayer | null>
-  waitingFor2: boolean
   board: { overall: ScoreEntry[]; game: ScoreEntry[] }
 }
 
@@ -122,14 +117,12 @@ type Action =
   | { type: 'token'; text: string }
   | { type: 'foundation'; prefix: string; demo: string }
   | { type: 'clearDraft' }
-  | { type: 'status'; status: Status; observations?: string[] }
+  | { type: 'status'; status: Status }
   | { type: 'game'; game: Game | null; banner?: string | null }
   | { type: 'banner'; banner: string | null }
-  | { type: 'score'; score: number; scores: number[]; hi: number; rtState: string }
+  | { type: 'score'; score: number; scores: number[]; rtState: string }
   | { type: 'error'; error: string | null }
-  | { type: 'library'; count: number }
   | { type: 'voice'; stage: VoiceStage }
-  | { type: 'waiting2'; waiting: boolean }
   | { type: 'board'; board: Partial<View['board']> }
   | { type: 'resetBuild' }
 
@@ -141,19 +134,15 @@ const initial: View = {
   code: '',
   foundation: null,
   status: 'BUILDING',
-  observations: [],
   game: null,
   banner: null,
   score: 0,
   scores: [0],
-  hi: 0,
   rtState: 'idle',
   error: null,
-  libraryCount: 0,
   voiceStage: 'ready',
   badges: [],
   session: [null, null],
-  waitingFor2: false,
   board: { overall: [], game: [] },
 }
 
@@ -181,25 +170,21 @@ function reduce(v: View, a: Action): View {
     case 'foundation':
       return { ...v, foundation: { prefix: a.prefix, demo: a.demo } }
     case 'status':
-      return { ...v, status: a.status, observations: a.observations ?? v.observations }
+      return { ...v, status: a.status }
     case 'game':
       return { ...v, game: a.game, banner: a.banner ?? null }
     case 'banner':
       return { ...v, banner: a.banner }
     case 'score':
-      return { ...v, score: a.score, scores: a.scores, hi: a.hi, rtState: a.rtState }
+      return { ...v, score: a.score, scores: a.scores, rtState: a.rtState }
     case 'error':
       return { ...v, error: a.error }
-    case 'library':
-      return { ...v, libraryCount: a.count }
     case 'voice':
       return { ...v, voiceStage: a.stage }
     case 'badges':
       return { ...v, badges: a.badges }
     case 'session':
       return { ...v, session: a.session }
-    case 'waiting2':
-      return { ...v, waitingFor2: a.waiting }
     case 'board':
       return { ...v, board: { ...v.board, ...a.board } }
     case 'resetBuild':
@@ -209,9 +194,7 @@ function reduce(v: View, a: Action): View {
         code: '',
         foundation: null,
         status: 'CONNECTING',
-        observations: [],
         error: null,
-        waitingFor2: false,
       }
   }
 }
@@ -348,11 +331,10 @@ export default function Cabinet() {
       syncSession(view.current.badges, players, 'ATTRACT')
       dispatch({
         type: 'game',
-        game: { title: game.title, source: 'demo', slug, players },
+        game: { title: game.title, slug, players },
         banner: null,
       })
       dispatch({ type: 'error', error: null })
-      dispatch({ type: 'waiting2', waiting: false })
       loadGame(game.code, game.title, players)
       dispatch({ type: 'phase', phase: 'READY' })
     },
@@ -363,7 +345,6 @@ export default function Cabinet() {
     abort.current?.abort()
     post({ type: 'pause', paused: true })
     dispatch({ type: 'phase', phase: 'ATTRACT' })
-    dispatch({ type: 'waiting2', waiting: false })
     setSelection(0)
     void fetchBoard(null)
   }, [fetchBoard, post])
@@ -389,7 +370,7 @@ export default function Cabinet() {
       }
       dispatch({
         type: 'game',
-        game: { title: g.title, source: g.source, slug: g.slug, players },
+        game: { title: g.title, slug: g.slug, players },
         banner: `${why}. HERE'S ${g.title}`,
       })
       dispatch({ type: 'phase', phase: 'READY' })
@@ -458,8 +439,7 @@ export default function Cabinet() {
                 if (ev.variant === previewVariant) dispatch({ type: 'status', status: 'CHECKING' })
                 break
               case 'probe':
-                if (!ev.ok)
-                  dispatch({ type: 'status', status: 'CHECKING', observations: ev.observations })
+                if (!ev.ok) dispatch({ type: 'status', status: 'CHECKING' })
                 break
               case 'repair':
                 if (ev.phase === 'start') {
@@ -469,7 +449,6 @@ export default function Cabinet() {
                 dispatch({
                   type: 'status',
                   status: ev.phase === 'start' ? 'REPAIRING' : 'CHECKING',
-                  observations: ev.observations,
                 })
                 break
               case 'fallback':
@@ -486,7 +465,6 @@ export default function Cabinet() {
                 const banner = ev.note || null
                 const game: Game = {
                   title: ev.title,
-                  source: ev.source,
                   slug: ev.slug,
                   players: ev.players,
                 }
@@ -496,9 +474,6 @@ export default function Cabinet() {
                 dispatch({ type: 'game', game, banner })
                 loadGame(ev.code, ev.title, ev.players)
                 lastInput.current = Date.now()
-                // Two players, but only one badge has said hello: offer 1P on the stick.
-                const ready = view.current.session.filter((p) => p && !p.detached).length
-                dispatch({ type: 'waiting2', waiting: ev.players === 2 && ready < 2 })
                 dispatch({ type: 'phase', phase: 'READY' })
                 break
               }
@@ -688,7 +663,6 @@ export default function Cabinet() {
           else {
             post({ type: 'start' })
             dispatch({ type: 'phase', phase: 'PLAYING' })
-            dispatch({ type: 'waiting2', waiting: false })
           }
         } else if (ev.button === 'left' || ev.button === 'right')
           setPage((n) => Math.max(0, n + (ev.button === 'left' ? -1 : 1)))
@@ -742,8 +716,6 @@ export default function Cabinet() {
         onRoster: (badges) => {
           dispatch({ type: 'badges', badges })
           syncSession(badges, view.current.mode, view.current.phase)
-          if (view.current.waitingFor2 && badges.filter((b) => b.slot < 2).length >= 2)
-            dispatch({ type: 'waiting2', waiting: false })
         },
       }),
     [onBadgeInput, syncSession],
@@ -764,7 +736,7 @@ export default function Cabinet() {
       if (e.code === 'F8') {
         dispatch({
           type: 'game',
-          game: { title: 'CRASH TEST', source: 'build', slug: null, players: 1 },
+          game: { title: 'CRASH TEST', slug: null, players: 1 },
         })
         dispatch({ type: 'phase', phase: 'PLAYING' })
         loadGame(CRASH_GAME, 'CRASH TEST', 1)
@@ -807,7 +779,6 @@ export default function Cabinet() {
           type: 'score',
           score: m.score ?? 0,
           scores,
-          hi: m.hi ?? 0,
           rtState: String(m.state),
         })
         if (phase === 'PLAYING' && (m.state === 'gameover' || m.state === 'win')) {
@@ -865,7 +836,6 @@ export default function Cabinet() {
       .then((j: { games: LibraryGame[] }) => {
         if (cancelled) return
         library.current = j.games
-        dispatch({ type: 'library', count: j.games.filter((g) => g.source === 'library').length })
       })
       .catch(() => {})
     return () => {

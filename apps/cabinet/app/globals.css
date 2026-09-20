@@ -134,12 +134,6 @@ h2 {
   color: #ffff55;
   overflow-wrap: anywhere;
 }
-.logo {
-  font-size: 6cqw;
-  line-height: 1.4;
-  color: #55ffff;
-  margin-bottom: 1cqw;
-}
 /* One cabinet screen: a real muted demo above its selection and play controls. */
 .home-stage {
   position: absolute;
@@ -282,19 +276,6 @@ h2 {
   white-space: pre;
   padding: 0.1cqw 0;
 }
-.player-menu {
-  gap: 1cqw;
-}
-.player-choice {
-  font-size: 3.5cqw;
-}
-.menu-secondary {
-  font-size: 2cqw;
-  color: #aaa;
-}
-.player-choice + .menu-secondary {
-  margin-top: 2cqw;
-}
 .back,
 .support {
   color: #aaa;
@@ -337,7 +318,6 @@ h2 {
   font-size: 2cqw;
   line-height: 1.8;
 }
-.prompt,
 .objective,
 .notice {
   font-size: 2cqw;

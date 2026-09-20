@@ -10,6 +10,8 @@ runs/
 packages/runtime/runtime.js
 packages/runtime/build-preview.html
 bench/screenshots/
+bench/audits/
+bench/results/
 *.thumb.png
 soak.log
 library/gallery.html

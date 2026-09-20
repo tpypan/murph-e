@@ -1,12 +1,8 @@
 # Voice Arcade: specific games, reliable mechanics, bounded generation
 
-Proposal, 2026-09-19. Implementation update: local context is now connected to
-spec/build/repair/remix, sprites may use larger readable silhouettes, and build,
-repair and remix use Astra at low effort. Input-triggered crashes now fail the
-probe; conditional steering is checked against an A-only baseline. See
-[current benchmarks](../bench-2026-09-19-astra-context.md). The component engine,
-live reference/image lookup, asset approval and richer gameplay validation below
-remain proposals. The original-state description is preserved for comparison.
+Historical proposal, 2026-09-19. The constraints and model settings below describe
+the original system. For the implemented architecture and remaining limits, see
+the [curated library](curated-arcade-library.md) and [current overview](../overview.md).
 
 Supporting research and reusable model context: [arcade design context library](../research/arcade-context/README.md), including source provenance, mechanic cards and a retrieval recipe.
 
@@ -31,7 +27,7 @@ The cabinet uses a fixed pipeline, not an autonomous agent team:
 
 That is normally three model calls for a new game, or four including repair, using two distinct model IDs. Transport retries can add requests. Remix normally uses a spec call and one edit call, with at most one repair. Models are configurable in `packages/harness/src/env.ts`.
 
-There are separate spec and builder system prompts. The builder prompt combines the runtime API, house rules, and two complete examples. The spec, transcript, and nearest genre template form its user message. See `packages/harness/src/spec.ts`, `packages/harness/src/prompt.ts`, and the exact single-player snapshots in `docs/reference/`.
+The original pipeline had separate spec and builder prompts, with the runtime API, house rules and examples in the builder context. For the current authoritative prompts, see [spec.ts](../../packages/harness/src/spec.ts), [prompt.ts](../../packages/harness/src/prompt.ts) and the [runtime API](../../packages/runtime/API.md). Exact request-specific inputs are saved as `spec-prompt.txt` and `prompt.txt` inside each local run; static “current prompt” copies are not maintained.
 
 Current constraints include eight single-player genre labels, 256×224 resolution, a fixed 16-colour palette, a requested 120–220 lines of JavaScript, and sprites restricted by the prompt to 6×6–12×12 pixels. The sprite renderer itself supports larger dimensions. The game model rewrites most movement, collisions, spawning, scoring, and difficulty logic each time. It has no reference-search or image-input stage.
 
