@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "id": "pong",
+  "version": "1.0.0",
+  "title": "VOLT RALLY",
+  "description": "A paddle duel with placement-driven rebounds, moving-paddle spin, charge shots, readable serves and a beatable reaction-limited CPU.",
+  "tags": [
+    "pong",
+    "paddle duel",
+    "rally",
+    "ball",
+    "competitive",
+    "two-player"
+  ],
+  "supportsPlayers": [
+    1,
+    2
+  ],
+  "module": "module.js",
+  "entry": "pong",
+  "apiVersion": 1,
+  "license": {
+    "spdx": "LicenseRef-Project-Original",
+    "notes": "Original project code and pixel artwork. No third-party source or ripped commercial assets."
+  },
+  "provenance": {
+    "kind": "original",
+    "authors": [
+      "Arcade project"
+    ],
+    "sources": [],
+    "createdAt": "2026-09-19"
+  },
+  "quality": {
+    "status": "draft"
+  },
+  "assets": [
+    "assets.json"
+  ],
+  "api": "api.md",
+  "demo": "demo.js",
+  "spec": "spec.json",
+  "files": [
+    "assets.json",
+    "demo.js",
+    "spec.json"
+  ],
+  "match": {
+    "phrases": [
+      "pong",
+      "table tennis",
+      "paddle duel",
+      "paddle tennis"
+    ],
+    "genres": [
+      "pong",
+      "paddle duel",
+      "paddle"
+    ]
+  }
+}

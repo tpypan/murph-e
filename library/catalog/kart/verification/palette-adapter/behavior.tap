@@ -1,0 +1,14 @@
+✔ validates every rectangle, palette index, anchor and required pose before rendering (2.663ms)
+✔ custom colors remain exact and shared pose pixels use a stable source scale and ground anchor (3.470458ms)
+✔ destination sampling produces exact nearest pixels and reuses cached raster and palette identities (1.647584ms)
+✔ tall custom art is clipped to each 2P viewport, preserving split line and top cabinet HUD (2.287833ms)
+✔ roadside asset slots forward their own palettes through projected depth-ordered sprites (1.045083ms)
+✔ art changes never alter independent controls, full race gates, scoring or reset state (28.57425ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 88.152166

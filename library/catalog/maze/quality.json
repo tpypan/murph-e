@@ -1,0 +1,36 @@
+{
+  "contentHash": "e33a1e7d03d98d7110b8f848ec9f0f44a5cf183407719f5b9f44f9debb8e755d",
+  "reviewedAt": "2026-09-19T23:00:45.638Z",
+  "checks": [
+    {
+      "name": "behavior",
+      "passed": true,
+      "artifact": "evidence/behavior.json",
+      "artifactHash": "79a41f7be6f613261472db0189f1e96fc93c02f62f5bba816083263d8ce50970"
+    },
+    {
+      "name": "visual",
+      "passed": true,
+      "artifact": "verification/visual-review.json",
+      "artifactHash": "c6a6b968cdc227136588adeeb9412bc0beed650b6de33a07c90f6721c0de5f07"
+    },
+    {
+      "name": "runtime-1p",
+      "passed": true,
+      "artifact": "verification/runtime.json",
+      "artifactHash": "538aae9285fec9dea486f80f3b7e362dccf56b9254e053a0bd8ee8d804cfe8b1"
+    },
+    {
+      "name": "runtime-2p",
+      "passed": true,
+      "artifact": "verification/runtime.json",
+      "artifactHash": "538aae9285fec9dea486f80f3b7e362dccf56b9254e053a0bd8ee8d804cfe8b1"
+    },
+    {
+      "name": "legacy-rendering",
+      "passed": true,
+      "artifact": "evidence/adapter-baseline.json",
+      "artifactHash": "49b71e4e6962c572c1251bdbe2daefa2e7c64934a0422a5a1961945db37afd97"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "checks": [
+    {
+      "players": 1,
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 1,
+        "error": null
+      }
+    },
+    {
+      "players": 2,
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0,
+          0
+        ],
+        "winner": null,
+        "frame": 212,
+        "error": null
+      }
+    },
+    {
+      "scenario": "solo complete route",
+      "players": 1,
+      "state": {
+        "state": "win",
+        "score": 2352,
+        "scores": [
+          2352
+        ],
+        "winner": null,
+        "frame": 1520,
+        "error": null
+      },
+      "errors": [],
+      "frames": 1098
+    },
+    {
+      "scenario": "coop complete route",
+      "players": 2,
+      "state": {
+        "state": "playing",
+        "score": 1413,
+        "scores": [
+          1413,
+          945
+        ],
+        "winner": null,
+        "frame": 2618,
+        "error": null
+      },
+      "errors": [],
+      "frames": 1098
+    },
+    {
+      "scenario": "timer loss",
+      "state": {
+        "state": "gameover",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 3228,
+        "error": null
+      }
+    }
+  ]
+}

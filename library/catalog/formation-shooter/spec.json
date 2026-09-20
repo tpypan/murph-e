@@ -1,0 +1,28 @@
+{
+  "title": "PRISM SQUADRON",
+  "oneLiner": "Original fixed-screen formation shooter with marching ranks, telegraphed divers, destructible shields, bonus UFOs and cooperative play.",
+  "genre": "formation shooter",
+  "mechanics": [
+    "Marching alien ranks accelerate as the wave thins and gradually descend.",
+    "Divers visibly warn before following a bounded dive and returning to their slot.",
+    "Both sides chip permanent holes through four optional defensive bunkers.",
+    "Shoot the bonus UFO, clear all waves and earn a wave bonus.",
+    "Each player has independent movement, lives, fire and a timed energy shield."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": null,
+    "down": null,
+    "a": "Fire (hold)",
+    "b": "Energy shield; recharges in 6 seconds"
+  },
+  "palette": "arcade",
+  "lose": "The team loses all lives to bullets, divers or advancing invaders.",
+  "scoring": "50\u201380 for marching enemies, 200 for divers, 500 for the UFO and 500 per completed wave.",
+  "moderated": false,
+  "note": "Original reusable catalog foundation.",
+  "remix": false,
+  "changes": [],
+  "players": 1
+}

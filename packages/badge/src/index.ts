@@ -1,3 +1,4 @@
+export type { BadgeDisplay } from './display.ts'
 export { FAKE_PRESETS, FakeBadge, type FakeBadgeOptions, FakeTransport } from './fake.ts'
 export { BadgeHub, type BadgeInfo, type HubEvent, type HubOptions } from './hub.ts'
 export { BadgeLink } from './link.ts'

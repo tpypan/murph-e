@@ -1,6 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { closeProbe, controlsFromSpec, funScore, playtest, probe } from '@htn/probe'
+import { candidateAttemptId, recordCandidateValidation } from './catalog.ts'
 import { MODELS, ROOT } from './env.ts'
 import { gen } from './gen.ts'
 import { JUDGE_AXES, judge, type Verdict } from './judge.ts'
@@ -110,13 +111,64 @@ export async function bench(
         row.lines = r.code.split('\n').length
         row.syntaxError = r.syntaxError
         if (!opts.noProbe) {
-          const p = await probe(r.code, {
-            controls: controlsFromSpec(r.spec.controls),
-            title: r.spec.title,
-            players,
-          })
+          const p = r.syntaxError
+            ? {
+                ok: false,
+                observations: [r.syntaxError],
+                checks: { loads: false },
+                ms: 0,
+                thumb: null,
+              }
+            : await probe(r.code, {
+                controls: controlsFromSpec(r.spec.controls),
+                title: r.spec.title,
+                players,
+              }).catch((error: unknown) => {
+                try {
+                  recordCandidateValidation(
+                    r.code,
+                    {
+                      runtimePassed: null,
+                      observations: [error instanceof Error ? error.message : String(error)],
+                      outcome: 'error',
+                    },
+                    undefined,
+                    candidateAttemptId({
+                      runId: r.run.id,
+                      attemptId: `build:${job.variant}`,
+                      code: r.code,
+                    }),
+                  )
+                } catch (archiveError) {
+                  r.run.event('catalog-error', {
+                    message:
+                      archiveError instanceof Error ? archiveError.message : String(archiveError),
+                  })
+                }
+                throw error
+              })
           row.probeOk = p.ok
           row.observations = p.observations
+          try {
+            recordCandidateValidation(
+              r.code,
+              {
+                runtimePassed: p.ok,
+                observations: p.observations,
+                outcome: p.ok ? 'passed' : 'failed',
+              },
+              undefined,
+              candidateAttemptId({
+                runId: r.run.id,
+                attemptId: `build:${job.variant}`,
+                code: r.code,
+              }),
+            )
+          } catch (error) {
+            r.run.event('catalog-error', {
+              message: error instanceof Error ? error.message : String(error),
+            })
+          }
           r.run.write(
             'probe.json',
             JSON.stringify(

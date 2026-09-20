@@ -1,0 +1,90 @@
+{
+  "date": "2026-09-20T00:52:40.704Z",
+  "passed": true,
+  "nativeSize": [
+    256,
+    224
+  ],
+  "moduleHash": "92eb8e2a91fff522b6c008999fcfa6d0d77e84023eb0f157014d2f8f2317061c",
+  "demoHash": "462cd2d2d0c6bfe175ce7036fb9cb537e8e86345ff547011d78a70ea035e4c41",
+  "runtimeHash": "057ae1d8271580c901ff3c05ff1d40dcd14f73e0dc551f5e35e746b9f7d8f1d5",
+  "checks": [
+    {
+      "players": 1,
+      "selected": [
+        "flash",
+        "batman"
+      ],
+      "allConfirmed": [
+        true,
+        true
+      ],
+      "phase": "fight",
+      "errors": []
+    },
+    {
+      "players": 2,
+      "selected": [
+        "flash",
+        "batman"
+      ],
+      "allConfirmed": [
+        true,
+        true
+      ],
+      "phase": "fight",
+      "errors": []
+    },
+    {
+      "players": 2,
+      "scenario": "same identity, independent input",
+      "before": [
+        69,
+        187
+      ],
+      "after": [
+        84.99999999999994,
+        187
+      ],
+      "errors": []
+    }
+  ],
+  "shots": [
+    {
+      "file": "1p-select.png",
+      "sha256": "ea3659ff961e423946f0067278f39b73b31747dc568e6e1807ded864ff8d9b76"
+    },
+    {
+      "file": "1p-versus.png",
+      "sha256": "9f3cb1c57330bad2e70d154fd96196e81edd4f102224b2c2283e7e1e48ebb2b1"
+    },
+    {
+      "file": "1p-selected-fight.png",
+      "sha256": "21258393a735389fe5239adfa188902d3ec56a2614f2c4ef9d419a2a705c5f3a"
+    },
+    {
+      "file": "2p-select.png",
+      "sha256": "66020d4de765a1ffcac7651268aabed35dbb1bb4b12beb294676fff76acd9d38"
+    },
+    {
+      "file": "2p-select-p1-locked.png",
+      "sha256": "c9ab72d62be5956fbdee36787b585d1d1a33f97bbe7612529620d70bd4930cd7"
+    },
+    {
+      "file": "2p-versus.png",
+      "sha256": "2c63760bcd9f962710f76db8d2f096d674aa58462853b38cd6a0397b9dbc08b7"
+    },
+    {
+      "file": "2p-selected-fight.png",
+      "sha256": "8ef4443d131d75a4f05d3ac74a5ff8575370be666cd6e25805ea923ad690217c"
+    },
+    {
+      "file": "2p-select-same-character.png",
+      "sha256": "8fc20f4d43bbd7479304f2d81a1555a4c36bf52e59a278221511b9d96a2e2cad"
+    },
+    {
+      "file": "2p-same-character-fight.png",
+      "sha256": "a8bd161b728ceccd8ee0ab07a63d992fdbbc0a8a615a1f274221872a864659a9"
+    }
+  ]
+}

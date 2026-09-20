@@ -1,0 +1,50 @@
+{
+  "reviewedAt": "2026-09-19T21:42:26.199Z",
+  "reviewer": "Codex visual inspection and gameplay evidence review",
+  "contentHash": "3a83210f283af15d2d1658a926fd13e0601be3a7f36cde8c49e3b2bff9719499",
+  "inspected": [
+    "screenshots/1p-stack.png",
+    "screenshots/2p-race.png",
+    "screenshots/2p-finished.png"
+  ],
+  "imageHashes": {
+    "screenshots/1p-stack.png": "7d018e24f1750a6901b0e0da9ddb07155fa10e370954ea958bcbf64a14a19c5f",
+    "screenshots/2p-race.png": "631a5765fc78070ea0757a0439bb8cc42031cc122090ded8aa1b67d7f69e9854",
+    "screenshots/2p-finished.png": "987a88468b38d638dafff2d58b1e2feca7c911bd72dff050c9b0d0bf97885655"
+  },
+  "findings": [
+    "Beveled block colors, ghost outline, level/line count and next-piece queue remain readable in the single well.",
+    "Two distinct wells, separate score/line counts and next columns fit inside the native frame.",
+    "Real control policies clear the default line target in native 1P/2P browser runs; equal simultaneous policies produce equal boards and a shared win.",
+    "Behavior evidence separately exercises seven-bag fairness, wall kicks, bounded lock resets, soft drop, real stacking topout, independent P2 input and P2 victory when P1 tops out."
+  ],
+  "limits": [
+    "Fixed original kicks are not exact SRS/Guideline compatibility; no hold, counterclockwise rotation or T-spin scoring is implemented.",
+    "The 2P next-piece previews are compact and need physical CRT review before claiming cabinet-distance readability.",
+    "The placement policy runs faster than a human; its roughly ten-second clear proves reachability, not calibrated pacing.",
+    "No human balance study, physical CRT overscan/calibration or badge/controller hardware validation."
+  ],
+  "gameplayEvidence": {
+    "behaviorChecks": 7,
+    "behaviorArtifact": "behavior-results.json",
+    "nativeRuns": [
+      {
+        "players": 1,
+        "state": "win",
+        "scores": [
+          3386
+        ]
+      },
+      {
+        "players": 2,
+        "state": "win",
+        "scores": [
+          3908,
+          3908
+        ]
+      }
+    ],
+    "renderArtifact": "render-results.json",
+    "renderArtifactHash": "07251f9eb81ca2df47581fa7d69be420b3b299b45c962f7e23b900641150a3d9"
+  }
+}

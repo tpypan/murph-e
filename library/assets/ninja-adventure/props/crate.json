@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "crate",
+  "packId": "ninja-adventure",
+  "camera": "top-down",
+  "width": 14,
+  "height": 15,
+  "source": {
+    "path": "original/content/destroyable/crate.png",
+    "url": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/destroyable/crate.png",
+    "sha256": "ff1465852d5ee375341a2a68a97cd086103fe3856142a247cb39f4050366fcda",
+    "sourceRevision": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a"
+  },
+  "pixels": [
+    "..0000000000..",
+    ".0aaaaaaaaaa0.",
+    "0aa44444444aa0",
+    "0a44a4a4a4a4a0",
+    "0a44a4a4a4a4a0",
+    "0a44a4a4a4a4a0",
+    "0a44a4a4a4a4a0",
+    "0aa44444444aa0",
+    "04aaaaaaaaaa40",
+    "04444444444440",
+    "04444444444440",
+    "04444444444440",
+    "04444444444440",
+    "44444444444444",
+    ".444444444444."
+  ],
+  "anchor": {
+    "x": 7,
+    "y": 15
+  },
+  "normalization": {
+    "palette": "pico-8",
+    "reviewedOverrides": {}
+  },
+  "anchorOrigin": "Authored bottom-center placement; source attachment pivots have not been reconstructed.",
+  "hitboxes": [],
+  "hurtboxes": [],
+  "animations": {},
+  "tags": [
+    "prop",
+    "static"
+  ],
+  "notes": "Static source image only. No implied attack animation, damage volume or destruction sequence."
+}

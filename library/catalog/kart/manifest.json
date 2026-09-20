@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "kart",
+  "version": "1.0.0",
+  "title": "Coast Circuit",
+  "description": "Original pseudo-3D kart circuit with drift-release mini-turbos, braking, rivals, boost strips, ordered checkpoints and independent simultaneous 2P views.",
+  "tags": [
+    "kart",
+    "racing",
+    "driving",
+    "circuit",
+    "drift",
+    "pseudo-3d",
+    "split-screen",
+    "multiplayer",
+    "arcade"
+  ],
+  "supportsPlayers": [
+    1,
+    2
+  ],
+  "module": "module.js",
+  "entry": "kart",
+  "apiVersion": 1,
+  "license": {
+    "spdx": "LicenseRef-Project-Original",
+    "notes": "Original project code and original pixel artwork; no ripped assets or copied commercial source."
+  },
+  "provenance": {
+    "kind": "original",
+    "authors": [
+      "Arcade project"
+    ],
+    "sources": [],
+    "createdAt": "2026-09-19"
+  },
+  "quality": {
+    "status": "draft"
+  },
+  "assets": [
+    "assets.json"
+  ],
+  "api": "api.md",
+  "demo": "demo.js",
+  "spec": "spec.json",
+  "match": {
+    "phrases": [
+      "kart",
+      "kart racing",
+      "mario kart",
+      "kart racer"
+    ],
+    "genres": [
+      "racing",
+      "kart racing"
+    ]
+  }
+}

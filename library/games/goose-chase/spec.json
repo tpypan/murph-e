@@ -1,0 +1,41 @@
+{
+  "title": "GOOSE CHASE",
+  "oneLiner": "Guide a little goose through the hedge maze to catch every ghost before they corner you.",
+  "genre": "maze chase",
+  "mechanics": [
+    "The goose moves continuously on a tile maze at one tile every 7 frames; buffer the requested turn until the next legal junction, while allowing an immediate reversal.",
+    "Collect 72 seed pellets to clear the maze; each seed scores 10 points and visibly disappears once.",
+    "Four ghosts pursue with different bounded roles: red directly chases, pink targets the next junction ahead of the goose, blue patrols the far side, and orange guards the bottom region.",
+    "After 12 seconds of play, ghosts alternate between 8-second chase and 4-second scatter phases; their eye color and a small maze arrow signal the phase change.",
+    "Four bread power crumbs are placed in corners. Eating one gives 6 seconds of frightened mode: ghosts turn blue, flee toward the farthest corner, and can be caught once for 200 points, with 400 and 800 for consecutive catches.",
+    "A caught ghost returns to the center pen for 2 seconds, then respawns in its assigned role; frightened ghosts cannot hurt the goose.",
+    "The goose starts with 3 lives and receives a brief 2-second protected grace period after spawning. Contact with a non-frightened ghost causes a flap hurt pose, freezes movement for 45 frames, and costs one life.",
+    "Clearing all seeds advances to a new maze layout with ghosts 8% faster, capped at 20% above starting speed; reset pellets, crumbs, ghost states, and grace timers each round.",
+    "The first seed sits directly ahead of the spawn and the first corner bread crumb is reachable within 5 seconds, teaching movement and the chase-versus-power decision immediately.",
+    "The round ends when all lives are lost; show a distinct life-loss flap and ghost collision spark, and award a 1000-point maze-clear bonus before the next layout."
+  ],
+  "artDirection": "256x224 maze playfield below the HUD, with bold navy hedge walls and four distinct open lanes. The goose is a 12x12 pixel cream-and-white sprite with orange beak and feet, rounded body, and a clearly bobbing head; use separate idle, four-direction walk, frightened dash, and hurt-flap poses. Ghosts are 12x12 colored sheet-like sprites with expressive eyes and distinctive trail colors. Pellets are tiny yellow seeds, power crumbs are large white bread pieces, and the background is dark purple with sparse grass marks so moving characters remain high contrast.",
+  "controls": {
+    "left": "Turn or move left at the next legal maze tile while alive.",
+    "right": "Turn or move right at the next legal maze tile while alive.",
+    "up": "Turn or move up at the next legal maze tile while alive.",
+    "down": "Turn or move down at the next legal maze tile while alive.",
+    "a": "Use the goose's honk burst while alive; 3 charges per maze, briefly pauses nearby non-frightened ghosts for 0.7 seconds, then recharges one charge after collecting 12 seeds.",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "Lose all three lives after colliding with a non-frightened ghost.",
+  "scoring": "Seeds score 10, frightened ghosts score escalating 200/400/800, and clearing a maze scores 1000.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "grid-movement",
+    "enemy-roles",
+    "scoring",
+    "readability"
+  ],
+  "players": 1,
+  "runId": "2026-09-19-2006-can-we-generate-a-game-like-pac"
+}

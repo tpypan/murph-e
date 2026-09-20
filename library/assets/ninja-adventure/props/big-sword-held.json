@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "big-sword-held",
+  "packId": "ninja-adventure",
+  "camera": "top-down",
+  "width": 7,
+  "height": 12,
+  "source": {
+    "path": "original/content/weapon/big_sword/in_hand.png",
+    "url": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/weapon/big_sword/in_hand.png",
+    "sha256": "78febb995750fcf1066332b3b552a009ed2ed474a7dab1c20476b0283583a061",
+    "sourceRevision": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a"
+  },
+  "pixels": [
+    "0777770",
+    "0aaaaa0",
+    ".0ddd0.",
+    ".07660.",
+    ".07760.",
+    ".06770.",
+    ".07670.",
+    ".07760.",
+    ".06770.",
+    ".06670.",
+    "..060..",
+    "...0..."
+  ],
+  "anchor": {
+    "x": 3,
+    "y": 12
+  },
+  "normalization": {
+    "palette": "pico-8",
+    "reviewedOverrides": {}
+  },
+  "anchorOrigin": "Authored bottom-center placement; source attachment pivots have not been reconstructed.",
+  "hitboxes": [],
+  "hurtboxes": [],
+  "animations": {},
+  "tags": [
+    "weapon",
+    "static"
+  ],
+  "notes": "Static source image only. No implied attack animation, damage volume or destruction sequence."
+}

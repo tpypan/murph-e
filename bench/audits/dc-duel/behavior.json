@@ -1,0 +1,103 @@
+{
+  "source": "runs/2026-09-19-1951-basically-i-want-to-create-a-gam/game.js",
+  "method": "Original generated code in a timeout-bounded VM with recorded API calls. Controlled internal states test specific transitions; not a full playability benchmark.",
+  "idleAfter300": {
+    "mode": "select",
+    "fighters": 0
+  },
+  "directionFromInitialScreen": {
+    "mode": "select",
+    "choice": 1
+  },
+  "firstAPress": {
+    "mode": "fight",
+    "hp": [
+      100,
+      100
+    ],
+    "actions": [
+      "",
+      ""
+    ]
+  },
+  "attackFrames": [
+    {
+      "age": 5,
+      "damage": 6,
+      "action": "quick",
+      "hand": [
+        127,
+        150.36332392183175,
+        7,
+        7,
+        0
+      ]
+    },
+    {
+      "age": 8,
+      "damage": 6,
+      "action": "quick",
+      "hand": [
+        127,
+        150.36332392183175,
+        7,
+        7,
+        0
+      ]
+    },
+    {
+      "age": 9,
+      "damage": 0,
+      "action": "quick",
+      "hand": [
+        127,
+        150.36332392183175,
+        7,
+        7,
+        0
+      ]
+    },
+    {
+      "age": 12,
+      "damage": 0,
+      "action": "quick",
+      "hand": [
+        127,
+        150.36332392183175,
+        7,
+        7,
+        0
+      ]
+    },
+    {
+      "age": 16,
+      "damage": 0,
+      "action": "",
+      "hand": [
+        111,
+        158.36332392183175,
+        7,
+        7,
+        0
+      ]
+    }
+  ],
+  "loss": {
+    "internalMode": "defeat",
+    "shellEndCalls": []
+  },
+  "win": {
+    "internalMode": "victory",
+    "shellEndCalls": []
+  },
+  "healthRegenerationAfterTenSeconds": 50.016666666666666,
+  "groundShadow": {
+    "name": "circfill",
+    "args": [
+      78,
+      189,
+      15,
+      0
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "reviewedAt": "2026-09-19T22:57:33.076Z",
+  "passed": true,
+  "contentHash": "6c8190fb5a881568348eb47aca34694a90a226f26d5ee0420aa9b9566754fe12",
+  "sourceHash": "b388608f1de882f3298b3d5e5298f1fe0f2ee38f6838709c3af9342b2b66ef2c",
+  "method": "Native 256x224 framebuffer captures visually inspected. Paired input replays compare every pixel; presentation differences must stay within declared notice slots or exact well-border pixels.",
+  "findings": [
+    "HOME is readable in the earning player’s bottom slot in 1P/2P.",
+    "Center TIME digits, lives, frogs, hazards and home bays remain unobscured.",
+    "Notice expires and resets; two players have independent slots."
+  ],
+  "screenshots": [
+    {
+      "path": "verification/presentation/1p-customized-p1-home.png",
+      "sha256": "7d9b5d58ad498f2a1ac08fff94d578d16694f7df946e863eca99d2f1c4db41b9"
+    },
+    {
+      "path": "verification/presentation/2p-customized-p2-home.png",
+      "sha256": "e2bff2496dc2d3d0c9e835bd5f522793dd7e7595cbaf7a8b91db620bc8a58027"
+    }
+  ],
+  "presentationProof": {
+    "path": "verification/presentation/proof.json",
+    "sha256": "d3a3acdbd71bf9f785f198a749690cd1e5ef939313f8ffea26543b410d1e3030"
+  },
+  "limitations": [
+    "Frozen historical generated cartridges are unchanged; this contract improves future compositions.",
+    "Arbitrary custom wrapper drawing can still obscure the HUD.",
+    "No physical CRT calibration or new model-generation benchmark is claimed."
+  ]
+}

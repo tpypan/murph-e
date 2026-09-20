@@ -1,0 +1,3315 @@
+{
+  "capturedAt": "2026-09-20T00:57:18.182Z",
+  "database": "data/catalog.sqlite",
+  "bytes": 2756608,
+  "integrity": "ok",
+  "tables": [
+    {
+      "name": "candidate_attempts",
+      "rows": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "primaryKey": true
+        },
+        {
+          "name": "code_hash",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "run_id",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "stage",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "variant",
+          "type": "INTEGER",
+          "primaryKey": false
+        },
+        {
+          "name": "metadata_json",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "validation_json",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "created_at",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "updated_at",
+          "type": "TEXT",
+          "primaryKey": false
+        }
+      ]
+    },
+    {
+      "name": "candidate_reviews",
+      "rows": 4,
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "primaryKey": true
+        },
+        {
+          "name": "code_hash",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "attempt_id",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "verdict",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "review_json",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "review_hash",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "source_path",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "created_at",
+          "type": "TEXT",
+          "primaryKey": false
+        }
+      ]
+    },
+    {
+      "name": "candidate_runs",
+      "rows": 64,
+      "columns": [
+        {
+          "name": "run_id",
+          "type": "TEXT",
+          "primaryKey": true
+        },
+        {
+          "name": "code_hash",
+          "type": "TEXT",
+          "primaryKey": true
+        },
+        {
+          "name": "created_at",
+          "type": "TEXT",
+          "primaryKey": false
+        }
+      ]
+    },
+    {
+      "name": "candidate_validation_events",
+      "rows": 0,
+      "columns": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "primaryKey": true
+        },
+        {
+          "name": "code_hash",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "attempt_id",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "validation_json",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "created_at",
+          "type": "TEXT",
+          "primaryKey": false
+        }
+      ]
+    },
+    {
+      "name": "catalog_parts",
+      "rows": 19,
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "primaryKey": true
+        },
+        {
+          "name": "version",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "content_hash",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "manifest_json",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "source_path",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "indexed_at",
+          "type": "TEXT",
+          "primaryKey": false
+        }
+      ]
+    },
+    {
+      "name": "game_audio_checks",
+      "rows": 123,
+      "columns": [
+        {
+          "name": "source",
+          "type": "TEXT",
+          "primaryKey": true
+        },
+        {
+          "name": "game_id",
+          "type": "TEXT",
+          "primaryKey": true
+        },
+        {
+          "name": "players",
+          "type": "INTEGER",
+          "primaryKey": true
+        },
+        {
+          "name": "code_hash",
+          "type": "TEXT",
+          "primaryKey": true
+        },
+        {
+          "name": "runtime_hash",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "bank_hash",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "passed",
+          "type": "INTEGER",
+          "primaryKey": false
+        },
+        {
+          "name": "observed_cues_json",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "tone_count",
+          "type": "INTEGER",
+          "primaryKey": false
+        },
+        {
+          "name": "evidence_json",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "checked_at",
+          "type": "TEXT",
+          "primaryKey": false
+        }
+      ]
+    },
+    {
+      "name": "generated_candidates",
+      "rows": 63,
+      "columns": [
+        {
+          "name": "code_hash",
+          "type": "TEXT",
+          "primaryKey": true
+        },
+        {
+          "name": "first_run_id",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "latest_run_id",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "title",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "genre",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "players",
+          "type": "INTEGER",
+          "primaryKey": false
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "source_path",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "spec_json",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "provenance_json",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "validation_json",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "occurrences",
+          "type": "INTEGER",
+          "primaryKey": false
+        },
+        {
+          "name": "created_at",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "updated_at",
+          "type": "TEXT",
+          "primaryKey": false
+        }
+      ]
+    },
+    {
+      "name": "reference_games",
+      "rows": 19,
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "primaryKey": true
+        },
+        {
+          "name": "title",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "source_url",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "families_json",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "metadata_json",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "verified_at",
+          "type": "TEXT",
+          "primaryKey": false
+        }
+      ]
+    },
+    {
+      "name": "reference_sheets",
+      "rows": 92,
+      "columns": [
+        {
+          "name": "asset_id",
+          "type": "TEXT",
+          "primaryKey": true
+        },
+        {
+          "name": "game_id",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "title",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "kind",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "source_url",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "runtime_ready",
+          "type": "INTEGER",
+          "primaryKey": false
+        },
+        {
+          "name": "metadata_json",
+          "type": "TEXT",
+          "primaryKey": false
+        }
+      ]
+    },
+    {
+      "name": "sound_effects",
+      "rows": 8,
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "primaryKey": true
+        },
+        {
+          "name": "format",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "recipe_json",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "content_hash",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "event_hint",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "source_path",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "provenance",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "indexed_at",
+          "type": "TEXT",
+          "primaryKey": false
+        }
+      ]
+    },
+    {
+      "name": "sprite_sets",
+      "rows": 67,
+      "columns": [
+        {
+          "name": "id",
+          "type": "TEXT",
+          "primaryKey": true
+        },
+        {
+          "name": "pack_id",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "content_hash",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "status",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "source_path",
+          "type": "TEXT",
+          "primaryKey": false
+        },
+        {
+          "name": "metadata_json",
+          "type": "TEXT",
+          "primaryKey": false
+        }
+      ]
+    }
+  ],
+  "games": [
+    {
+      "id": "asteroids",
+      "title": "VECTOR DRIFT",
+      "family": "asteroids",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.0.0",
+      "status": "verified",
+      "hash": "18afe6dd56c82e9501178a18592980b1f97e306fb431b54c2789ccd768621284",
+      "sourcePath": "library/catalog/asteroids",
+      "provenance": "original"
+    },
+    {
+      "id": "batman-atari-fighter-reference",
+      "title": "Batman Atari — Rooftop Duel",
+      "family": "fighter",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.0.0",
+      "status": "verified",
+      "hash": "801c4a4df0e25b9acbe72638a55fe0086559d6cdfeb03801396d09ddd2bef3ad",
+      "sourcePath": "data/local-catalog/batman-atari-fighter-reference",
+      "provenance": "derived"
+    },
+    {
+      "id": "bomber",
+      "title": "Grid Bomb Arena",
+      "family": "bomber",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.0.0",
+      "status": "verified",
+      "hash": "80897734c13045d38a405a548bfcc5d92e31d9eb5a42c0f88f995c31c462ac12",
+      "sourcePath": "library/catalog/bomber",
+      "provenance": "original"
+    },
+    {
+      "id": "breakout",
+      "title": "PRISM BREAK",
+      "family": "breakout",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.0.0",
+      "status": "verified",
+      "hash": "3cd357daf1ed2445140d74135164fe3e2c17e76f1419e67908a7e7fdcaa56e13",
+      "sourcePath": "library/catalog/breakout",
+      "provenance": "original"
+    },
+    {
+      "id": "climber",
+      "title": "Crane Rescue",
+      "family": "climber",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.0.0",
+      "status": "verified",
+      "hash": "f8e4cd2dbf7c8d0c2fd061ef1d633956798ae2ffd54cccb9a665232d23eec438",
+      "sourcePath": "library/catalog/climber",
+      "provenance": "original"
+    },
+    {
+      "id": "crossing",
+      "title": "Road and River Crossing",
+      "family": "crossing",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.1.0",
+      "status": "verified",
+      "hash": "6c8190fb5a881568348eb47aca34694a90a226f26d5ee0420aa9b9566754fe12",
+      "sourcePath": "library/catalog/crossing",
+      "provenance": "original"
+    },
+    {
+      "id": "dk-climber-reference",
+      "title": "Donkey Kong — local source-art climber",
+      "family": "climber",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.0.0",
+      "status": "verified",
+      "hash": "b30a039e6d600ef3386a1d4ddcde00a17f7843ee9ebddc6d080db3192a423a22",
+      "sourcePath": "data/local-catalog/dk-climber-reference",
+      "provenance": "derived"
+    },
+    {
+      "id": "falling-blocks",
+      "title": "STACK CIRCUIT",
+      "family": "fallingBlocks",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.1.0",
+      "status": "verified",
+      "hash": "3e73dfc26df55237d05f616a80a8fd90c587ed8406030777932693db4cbd6a41",
+      "sourcePath": "library/catalog/falling-blocks",
+      "provenance": "original"
+    },
+    {
+      "id": "fighter",
+      "title": "Rooftop Fighting Foundation",
+      "family": "fighter",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.4.0",
+      "status": "verified",
+      "hash": "71c243636c5f38a49582b5da13eedd0df1603c828625ead7524b673ad8c4dc30",
+      "sourcePath": "library/catalog/fighter",
+      "provenance": "original"
+    },
+    {
+      "id": "formation-shooter",
+      "title": "PRISM SQUADRON",
+      "family": "formationShooter",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.0.0",
+      "status": "verified",
+      "hash": "84738713fcf3f122257bfee17552f7ce7cd9756a45e7444c746f4c8761608e97",
+      "sourcePath": "library/catalog/formation-shooter",
+      "provenance": "original"
+    },
+    {
+      "id": "kart",
+      "title": "Coast Circuit",
+      "family": "kart",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.0.0",
+      "status": "verified",
+      "hash": "656b9abef8dfe90156d78d5c09cc16ae9e17472df906c62d5c712c9ab69430e0",
+      "sourcePath": "library/catalog/kart",
+      "provenance": "original"
+    },
+    {
+      "id": "maze",
+      "title": "Maze Chase and Goose Hunt",
+      "family": "maze",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.1.0",
+      "status": "verified",
+      "hash": "e33a1e7d03d98d7110b8f848ec9f0f44a5cf183407719f5b9f44f9debb8e755d",
+      "sourcePath": "library/catalog/maze",
+      "provenance": "original"
+    },
+    {
+      "id": "missile-defense",
+      "title": "SKY SHIELD",
+      "family": "missileDefense",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.0.0",
+      "status": "verified",
+      "hash": "2534e5ad85673aa70c2e43c33f06d69ff7dfefed9ef8c3200cd5e0824d02f937",
+      "sourcePath": "library/catalog/missile-defense",
+      "provenance": "original"
+    },
+    {
+      "id": "pac-man-maze-reference",
+      "title": "Pac-Man — local source-art maze",
+      "family": "maze",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.0.0",
+      "status": "verified",
+      "hash": "c1342720cce87f3789c6e652a769e7116ebd1a72c5157ef488700756fe52c1fb",
+      "sourcePath": "data/local-catalog/pac-man-maze-reference",
+      "provenance": "derived"
+    },
+    {
+      "id": "pole-position-racer-reference",
+      "title": "Pole Position — local source-art racer",
+      "family": "kart",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.0.0",
+      "status": "verified",
+      "hash": "04de380e457cd43970f181e17202b081e144e1c6c01fae1b0ff5914ebd3cff2f",
+      "sourcePath": "data/local-catalog/pole-position-racer-reference",
+      "provenance": "derived"
+    },
+    {
+      "id": "pong",
+      "title": "VOLT RALLY",
+      "family": "pong",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.0.0",
+      "status": "verified",
+      "hash": "70c6e3118b2e9f61b483cab5df2f22f14cc27baa83b31965841018a896dc601a",
+      "sourcePath": "library/catalog/pong",
+      "provenance": "original"
+    },
+    {
+      "id": "sonic-speed-reference",
+      "title": "Sonic — Coast Dash",
+      "family": "speedPlatformer",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.0.0",
+      "status": "verified",
+      "hash": "d3fd2583b5c6ad52953e8127a0165627489e5b988269dc297eb022c44a302a87",
+      "sourcePath": "data/local-catalog/sonic-speed-reference",
+      "provenance": "derived"
+    },
+    {
+      "id": "speed-platformer",
+      "title": "Azure Dash",
+      "family": "speedPlatformer",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.0.0",
+      "status": "verified",
+      "hash": "633c4ca13e6fa5d5da90ca6bda5310250e42b8093f69f281dbd922cbe40e7838",
+      "sourcePath": "library/catalog/speed-platformer",
+      "provenance": "original"
+    },
+    {
+      "id": "spider-man-fighter-reference",
+      "title": "Spider-Man — Rooftop Web Duel",
+      "family": "fighter",
+      "players": [
+        1,
+        2
+      ],
+      "version": "1.0.0",
+      "status": "verified",
+      "hash": "9dbacd7b66958b785b5751e82e1c609f2debee8b0cd695ad4fcb0c8c2bd94f47",
+      "sourcePath": "data/local-catalog/spider-man-fighter-reference",
+      "provenance": "derived"
+    }
+  ],
+  "sprites": [
+    {
+      "id": "asteroids/burst",
+      "packId": "asteroids",
+      "status": "verified",
+      "subject": "burst",
+      "camera": "unspecified",
+      "frames": 5,
+      "animations": 1,
+      "unsupportedStates": []
+    },
+    {
+      "id": "asteroids/rock1",
+      "packId": "asteroids",
+      "status": "verified",
+      "subject": "rock1",
+      "camera": "unspecified",
+      "frames": 8,
+      "animations": 1,
+      "unsupportedStates": []
+    },
+    {
+      "id": "asteroids/rock2",
+      "packId": "asteroids",
+      "status": "verified",
+      "subject": "rock2",
+      "camera": "unspecified",
+      "frames": 8,
+      "animations": 1,
+      "unsupportedStates": []
+    },
+    {
+      "id": "asteroids/rock3",
+      "packId": "asteroids",
+      "status": "verified",
+      "subject": "rock3",
+      "camera": "unspecified",
+      "frames": 8,
+      "animations": 1,
+      "unsupportedStates": []
+    },
+    {
+      "id": "asteroids/saucer",
+      "packId": "asteroids",
+      "status": "verified",
+      "subject": "saucer",
+      "camera": "unspecified",
+      "frames": 2,
+      "animations": 1,
+      "unsupportedStates": []
+    },
+    {
+      "id": "asteroids/ship",
+      "packId": "asteroids",
+      "status": "verified",
+      "subject": "ship",
+      "camera": "unspecified",
+      "frames": 48,
+      "animations": 32,
+      "unsupportedStates": []
+    },
+    {
+      "id": "bomber/bomber",
+      "packId": "bomber",
+      "status": "verified",
+      "subject": "bomber",
+      "camera": "unspecified",
+      "frames": 50,
+      "animations": 28,
+      "unsupportedStates": []
+    },
+    {
+      "id": "breakout/breakout-art",
+      "packId": "breakout",
+      "status": "verified",
+      "subject": "breakout-art",
+      "camera": "unspecified",
+      "frames": 44,
+      "animations": 6,
+      "unsupportedStates": []
+    },
+    {
+      "id": "climber/barrel",
+      "packId": "climber",
+      "status": "verified",
+      "subject": "barrel",
+      "camera": "unspecified",
+      "frames": 6,
+      "animations": 2,
+      "unsupportedStates": []
+    },
+    {
+      "id": "climber/cat",
+      "packId": "climber",
+      "status": "verified",
+      "subject": "cat",
+      "camera": "unspecified",
+      "frames": 3,
+      "animations": 2,
+      "unsupportedStates": []
+    },
+    {
+      "id": "climber/fire",
+      "packId": "climber",
+      "status": "verified",
+      "subject": "fire",
+      "camera": "unspecified",
+      "frames": 6,
+      "animations": 2,
+      "unsupportedStates": []
+    },
+    {
+      "id": "climber/gorilla",
+      "packId": "climber",
+      "status": "verified",
+      "subject": "gorilla",
+      "camera": "unspecified",
+      "frames": 5,
+      "animations": 2,
+      "unsupportedStates": []
+    },
+    {
+      "id": "climber/worker",
+      "packId": "climber",
+      "status": "verified",
+      "subject": "worker",
+      "camera": "unspecified",
+      "frames": 13,
+      "animations": 6,
+      "unsupportedStates": []
+    },
+    {
+      "id": "crossing/crossing",
+      "packId": "crossing",
+      "status": "verified",
+      "subject": "crossing",
+      "camera": "unspecified",
+      "frames": 39,
+      "animations": 24,
+      "unsupportedStates": []
+    },
+    {
+      "id": "dc-batman-arcade/batman",
+      "packId": "dc-batman-arcade",
+      "status": "source-checked",
+      "subject": "Batman — Batman (Atari, 1991)",
+      "camera": "side-view",
+      "frames": 22,
+      "animations": 5,
+      "unsupportedStates": [
+        "complete fighter contract",
+        "original collision geometry",
+        "original timing",
+        "all unmapped source poses"
+      ]
+    },
+    {
+      "id": "dc-batman-atari-fighter/batman",
+      "packId": "dc-batman-atari-fighter",
+      "status": "source-checked",
+      "subject": "Batman (Atari1991 arcade) — authored fighter adaptation",
+      "camera": "side-view",
+      "frames": 33,
+      "animations": 17,
+      "unsupportedStates": [
+        "original game timing/physics",
+        "original victory animation",
+        "aerial punch",
+        "grapple/climb/throws"
+      ]
+    },
+    {
+      "id": "dc-joker-arcade/joker",
+      "packId": "dc-joker-arcade",
+      "status": "source-checked",
+      "subject": "Joker — Batman (Atari, 1991)",
+      "camera": "side-view",
+      "frames": 23,
+      "animations": 5,
+      "unsupportedStates": [
+        "complete fighter contract",
+        "original collision geometry",
+        "original timing",
+        "all unmapped source poses"
+      ]
+    },
+    {
+      "id": "dc-superman-arcade/superman",
+      "packId": "dc-superman-arcade",
+      "status": "source-checked",
+      "subject": "Superman — Superman (Taito arcade)",
+      "camera": "side-view",
+      "frames": 16,
+      "animations": 5,
+      "unsupportedStates": [
+        "complete fighter contract",
+        "original collision geometry",
+        "original timing",
+        "all unmapped source poses"
+      ]
+    },
+    {
+      "id": "dk-climber-reference/barrel",
+      "packId": "dk-climber-reference",
+      "status": "verified",
+      "subject": "barrel",
+      "camera": "unspecified",
+      "frames": 6,
+      "animations": 2,
+      "unsupportedStates": []
+    },
+    {
+      "id": "dk-climber-reference/fire",
+      "packId": "dk-climber-reference",
+      "status": "verified",
+      "subject": "fire",
+      "camera": "unspecified",
+      "frames": 8,
+      "animations": 2,
+      "unsupportedStates": []
+    },
+    {
+      "id": "dk-climber-reference/gorilla",
+      "packId": "dk-climber-reference",
+      "status": "verified",
+      "subject": "gorilla",
+      "camera": "unspecified",
+      "frames": 5,
+      "animations": 2,
+      "unsupportedStates": []
+    },
+    {
+      "id": "dk-climber-reference/props",
+      "packId": "dk-climber-reference",
+      "status": "verified",
+      "subject": "props",
+      "camera": "unspecified",
+      "frames": 4,
+      "animations": 4,
+      "unsupportedStates": []
+    },
+    {
+      "id": "dk-climber-reference/target",
+      "packId": "dk-climber-reference",
+      "status": "verified",
+      "subject": "target",
+      "camera": "unspecified",
+      "frames": 4,
+      "animations": 2,
+      "unsupportedStates": []
+    },
+    {
+      "id": "dk-climber-reference/tiles",
+      "packId": "dk-climber-reference",
+      "status": "verified",
+      "subject": "tiles",
+      "camera": "unspecified",
+      "frames": 4,
+      "animations": 4,
+      "unsupportedStates": []
+    },
+    {
+      "id": "dk-climber-reference/worker",
+      "packId": "dk-climber-reference",
+      "status": "verified",
+      "subject": "worker",
+      "camera": "unspecified",
+      "frames": 11,
+      "animations": 6,
+      "unsupportedStates": []
+    },
+    {
+      "id": "falling-blocks/falling-blocks-art",
+      "packId": "falling-blocks",
+      "status": "verified",
+      "subject": "falling-blocks-art",
+      "camera": "unspecified",
+      "frames": 20,
+      "animations": 2,
+      "unsupportedStates": []
+    },
+    {
+      "id": "fighter/batman",
+      "packId": "fighter",
+      "status": "verified",
+      "subject": "Batman (DC character fan-art)",
+      "camera": "side-view",
+      "frames": 30,
+      "animations": 16,
+      "unsupportedStates": []
+    },
+    {
+      "id": "fighter/flash",
+      "packId": "fighter",
+      "status": "verified",
+      "subject": "The Flash (DC character fan-art)",
+      "camera": "side-view",
+      "frames": 30,
+      "animations": 16,
+      "unsupportedStates": []
+    },
+    {
+      "id": "formation-shooter/alien0",
+      "packId": "formation-shooter",
+      "status": "verified",
+      "subject": "alien0",
+      "camera": "unspecified",
+      "frames": 6,
+      "animations": 3,
+      "unsupportedStates": []
+    },
+    {
+      "id": "formation-shooter/alien1",
+      "packId": "formation-shooter",
+      "status": "verified",
+      "subject": "alien1",
+      "camera": "unspecified",
+      "frames": 6,
+      "animations": 3,
+      "unsupportedStates": []
+    },
+    {
+      "id": "formation-shooter/alien2",
+      "packId": "formation-shooter",
+      "status": "verified",
+      "subject": "alien2",
+      "camera": "unspecified",
+      "frames": 6,
+      "animations": 3,
+      "unsupportedStates": []
+    },
+    {
+      "id": "formation-shooter/burst",
+      "packId": "formation-shooter",
+      "status": "verified",
+      "subject": "burst",
+      "camera": "unspecified",
+      "frames": 4,
+      "animations": 1,
+      "unsupportedStates": []
+    },
+    {
+      "id": "formation-shooter/ship",
+      "packId": "formation-shooter",
+      "status": "verified",
+      "subject": "ship",
+      "camera": "unspecified",
+      "frames": 6,
+      "animations": 3,
+      "unsupportedStates": []
+    },
+    {
+      "id": "formation-shooter/ufo",
+      "packId": "formation-shooter",
+      "status": "verified",
+      "subject": "ufo",
+      "camera": "unspecified",
+      "frames": 2,
+      "animations": 1,
+      "unsupportedStates": []
+    },
+    {
+      "id": "kart/coast-kart",
+      "packId": "kart",
+      "status": "verified",
+      "subject": "coast-kart",
+      "camera": "unspecified",
+      "frames": 18,
+      "animations": 8,
+      "unsupportedStates": []
+    },
+    {
+      "id": "maze/maze",
+      "packId": "maze",
+      "status": "verified",
+      "subject": "maze",
+      "camera": "unspecified",
+      "frames": 156,
+      "animations": 54,
+      "unsupportedStates": []
+    },
+    {
+      "id": "missile-defense/missile-defense-art",
+      "packId": "missile-defense",
+      "status": "verified",
+      "subject": "missile-defense-art",
+      "camera": "unspecified",
+      "frames": 42,
+      "animations": 6,
+      "unsupportedStates": []
+    },
+    {
+      "id": "ninja-adventure/axe-held",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "axe-held",
+      "camera": "top-down",
+      "frames": 1,
+      "animations": 1,
+      "unsupportedStates": [
+        "animated-motion",
+        "attack-cycle",
+        "destruction-cycle"
+      ]
+    },
+    {
+      "id": "ninja-adventure/axe-item",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "axe-item",
+      "camera": "top-down",
+      "frames": 1,
+      "animations": 1,
+      "unsupportedStates": [
+        "animated-motion",
+        "attack-cycle",
+        "destruction-cycle"
+      ]
+    },
+    {
+      "id": "ninja-adventure/big-sword-held",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "big-sword-held",
+      "camera": "top-down",
+      "frames": 1,
+      "animations": 1,
+      "unsupportedStates": [
+        "animated-motion",
+        "attack-cycle",
+        "destruction-cycle"
+      ]
+    },
+    {
+      "id": "ninja-adventure/big-sword-item",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "big-sword-item",
+      "camera": "top-down",
+      "frames": 1,
+      "animations": 1,
+      "unsupportedStates": [
+        "animated-motion",
+        "attack-cycle",
+        "destruction-cycle"
+      ]
+    },
+    {
+      "id": "ninja-adventure/bone-held",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "bone-held",
+      "camera": "top-down",
+      "frames": 1,
+      "animations": 1,
+      "unsupportedStates": [
+        "animated-motion",
+        "attack-cycle",
+        "destruction-cycle"
+      ]
+    },
+    {
+      "id": "ninja-adventure/bone-item",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "bone-item",
+      "camera": "top-down",
+      "frames": 1,
+      "animations": 1,
+      "unsupportedStates": [
+        "animated-motion",
+        "attack-cycle",
+        "destruction-cycle"
+      ]
+    },
+    {
+      "id": "ninja-adventure/book-held",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "book-held",
+      "camera": "top-down",
+      "frames": 1,
+      "animations": 1,
+      "unsupportedStates": [
+        "animated-motion",
+        "attack-cycle",
+        "destruction-cycle"
+      ]
+    },
+    {
+      "id": "ninja-adventure/book-item",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "book-item",
+      "camera": "top-down",
+      "frames": 1,
+      "animations": 1,
+      "unsupportedStates": [
+        "animated-motion",
+        "attack-cycle",
+        "destruction-cycle"
+      ]
+    },
+    {
+      "id": "ninja-adventure/club-held",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "club-held",
+      "camera": "top-down",
+      "frames": 1,
+      "animations": 1,
+      "unsupportedStates": [
+        "animated-motion",
+        "attack-cycle",
+        "destruction-cycle"
+      ]
+    },
+    {
+      "id": "ninja-adventure/club-item",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "club-item",
+      "camera": "top-down",
+      "frames": 1,
+      "animations": 1,
+      "unsupportedStates": [
+        "animated-motion",
+        "attack-cycle",
+        "destruction-cycle"
+      ]
+    },
+    {
+      "id": "ninja-adventure/crate",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "crate",
+      "camera": "top-down",
+      "frames": 1,
+      "animations": 1,
+      "unsupportedStates": [
+        "animated-motion",
+        "attack-cycle",
+        "destruction-cycle"
+      ]
+    },
+    {
+      "id": "ninja-adventure/grass",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "grass",
+      "camera": "top-down",
+      "frames": 1,
+      "animations": 1,
+      "unsupportedStates": [
+        "animated-motion",
+        "attack-cycle",
+        "destruction-cycle"
+      ]
+    },
+    {
+      "id": "ninja-adventure/ninja-blue",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "ninja-blue",
+      "camera": "top-down",
+      "frames": 28,
+      "animations": 20,
+      "unsupportedStates": [
+        "hurt-animation",
+        "guard-animation",
+        "multi-frame-attack",
+        "side-view-fighting",
+        "directional-death-animation"
+      ]
+    },
+    {
+      "id": "ninja-adventure/pig",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "pig",
+      "camera": "top-down",
+      "frames": 2,
+      "animations": 4,
+      "unsupportedStates": [
+        "walk-up",
+        "walk-down",
+        "attack",
+        "hurt-animation",
+        "death-animation"
+      ]
+    },
+    {
+      "id": "ninja-adventure/pot",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "pot",
+      "camera": "top-down",
+      "frames": 1,
+      "animations": 1,
+      "unsupportedStates": [
+        "animated-motion",
+        "attack-cycle",
+        "destruction-cycle"
+      ]
+    },
+    {
+      "id": "ninja-adventure/samurai-blue",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "samurai-blue",
+      "camera": "top-down",
+      "frames": 28,
+      "animations": 20,
+      "unsupportedStates": [
+        "hurt-animation",
+        "guard-animation",
+        "multi-frame-attack",
+        "side-view-fighting",
+        "directional-death-animation"
+      ]
+    },
+    {
+      "id": "ninja-adventure/samurai-green",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "samurai-green",
+      "camera": "top-down",
+      "frames": 28,
+      "animations": 20,
+      "unsupportedStates": [
+        "hurt-animation",
+        "guard-animation",
+        "multi-frame-attack",
+        "side-view-fighting",
+        "directional-death-animation"
+      ]
+    },
+    {
+      "id": "ninja-adventure/shadow",
+      "packId": "ninja-adventure",
+      "status": "source-checked",
+      "subject": "shadow",
+      "camera": "top-down",
+      "frames": 1,
+      "animations": 1,
+      "unsupportedStates": [
+        "animated-motion",
+        "attack-cycle",
+        "destruction-cycle"
+      ]
+    },
+    {
+      "id": "pac-man-maze-reference/pac-man-actors",
+      "packId": "pac-man-maze-reference",
+      "status": "verified",
+      "subject": "Pac-Man and Blinky, Pinky, Inky, Clyde",
+      "camera": "top-down",
+      "frames": 64,
+      "animations": 36,
+      "unsupportedStates": [
+        "Original intermissions and oversized player poses",
+        "Unique source reform tween (project reuses eyes and body poses)",
+        "Original ROM timing, collision, maze topology and ghost targeting",
+        "Original alternate-turn two-player rules; project uses simultaneous cooperative actors"
+      ]
+    },
+    {
+      "id": "pole-position-racer-reference/pole-position-green",
+      "packId": "pole-position-racer-reference",
+      "status": "verified",
+      "subject": "pole-position-green",
+      "camera": "unspecified",
+      "frames": 16,
+      "animations": 8,
+      "unsupportedStates": [
+        "Original physics/timing not recovered",
+        "No dedicated boost artwork",
+        "Drift maps to stronger source yaw",
+        "Alternate palettes share unchanged red wreck/explosion frames"
+      ]
+    },
+    {
+      "id": "pole-position-racer-reference/pole-position-orange",
+      "packId": "pole-position-racer-reference",
+      "status": "verified",
+      "subject": "pole-position-orange",
+      "camera": "unspecified",
+      "frames": 16,
+      "animations": 8,
+      "unsupportedStates": [
+        "Original physics/timing not recovered",
+        "No dedicated boost artwork",
+        "Drift maps to stronger source yaw",
+        "Alternate palettes share unchanged red wreck/explosion frames"
+      ]
+    },
+    {
+      "id": "pole-position-racer-reference/pole-position-red",
+      "packId": "pole-position-racer-reference",
+      "status": "verified",
+      "subject": "pole-position-red",
+      "camera": "unspecified",
+      "frames": 16,
+      "animations": 8,
+      "unsupportedStates": [
+        "Original physics/timing not recovered",
+        "No dedicated boost artwork",
+        "Drift maps to stronger source yaw",
+        "Alternate palettes share unchanged red wreck/explosion frames"
+      ]
+    },
+    {
+      "id": "pole-position-racer-reference/pole-position-white",
+      "packId": "pole-position-racer-reference",
+      "status": "verified",
+      "subject": "pole-position-white",
+      "camera": "unspecified",
+      "frames": 16,
+      "animations": 8,
+      "unsupportedStates": [
+        "Original physics/timing not recovered",
+        "No dedicated boost artwork",
+        "Drift maps to stronger source yaw",
+        "Alternate palettes share unchanged red wreck/explosion frames"
+      ]
+    },
+    {
+      "id": "pong/pong-art",
+      "packId": "pong",
+      "status": "verified",
+      "subject": "pong-art",
+      "camera": "unspecified",
+      "frames": 9,
+      "animations": 4,
+      "unsupportedStates": []
+    },
+    {
+      "id": "sonic-two-reference/checkpoint",
+      "packId": "sonic-two-reference",
+      "status": "source-checked",
+      "subject": "Sonic 2 checkpoint",
+      "camera": "side-view",
+      "frames": 3,
+      "animations": 1,
+      "unsupportedStates": []
+    },
+    {
+      "id": "sonic-two-reference/goal",
+      "packId": "sonic-two-reference",
+      "status": "source-checked",
+      "subject": "Sonic 2 goal",
+      "camera": "side-view",
+      "frames": 1,
+      "animations": 1,
+      "unsupportedStates": []
+    },
+    {
+      "id": "sonic-two-reference/ring",
+      "packId": "sonic-two-reference",
+      "status": "source-checked",
+      "subject": "Sonic 2 ring",
+      "camera": "side-view",
+      "frames": 4,
+      "animations": 1,
+      "unsupportedStates": []
+    },
+    {
+      "id": "sonic-two-reference/sonic",
+      "packId": "sonic-two-reference",
+      "status": "source-checked",
+      "subject": "Sonic the Hedgehog (Sonic 2, Sega Genesis)",
+      "camera": "side-view",
+      "frames": 38,
+      "animations": 12,
+      "unsupportedStates": [
+        "flight",
+        "wall-climb",
+        "combat combo set",
+        "original game physics and timing"
+      ]
+    },
+    {
+      "id": "speed-platformer/azure-hare",
+      "packId": "speed-platformer",
+      "status": "verified",
+      "subject": "Original Azure Hare",
+      "camera": "unspecified",
+      "frames": 24,
+      "animations": 8,
+      "unsupportedStates": []
+    },
+    {
+      "id": "spider-man-reference/spider-man",
+      "packId": "spider-man-reference",
+      "status": "source-checked",
+      "subject": "Spider-Man — authored side-view fighter adaptation",
+      "camera": "side-view",
+      "frames": 84,
+      "animations": 19,
+      "unsupportedStates": [
+        "throws",
+        "wall-climb",
+        "air-web-swing",
+        "original-game combo tree"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "id": "arkanoid",
+      "title": "Arkanoid",
+      "source_url": "https://www.spriters-resource.com/arcade/arkanoid/"
+    },
+    {
+      "id": "batman",
+      "title": "Batman (Atari, 1991)",
+      "source_url": "https://www.spriters-resource.com/arcade/batman/"
+    },
+    {
+      "id": "bombermanworld",
+      "title": "Bomberman World",
+      "source_url": "https://www.spriters-resource.com/arcade/bombermanworld/"
+    },
+    {
+      "id": "dk",
+      "title": "Donkey Kong",
+      "source_url": "https://www.spriters-resource.com/arcade/dk/"
+    },
+    {
+      "id": "finalfight",
+      "title": "Final Fight",
+      "source_url": "https://www.spriters-resource.com/arcade/finalfight/"
+    },
+    {
+      "id": "frogger",
+      "title": "Frogger",
+      "source_url": "https://www.spriters-resource.com/arcade/frogger/"
+    },
+    {
+      "id": "galaga",
+      "title": "Galaga",
+      "source_url": "https://www.spriters-resource.com/arcade/galaga/"
+    },
+    {
+      "id": "mariokartarcadegp2",
+      "title": "Mario Kart Arcade GP 2",
+      "source_url": "https://www.spriters-resource.com/arcade/mariokartarcadegp2/"
+    },
+    {
+      "id": "marvelvscapcom",
+      "title": "Marvel vs. Capcom",
+      "source_url": "https://www.spriters-resource.com/arcade/marvelvscapcom/"
+    },
+    {
+      "id": "ms6",
+      "title": "Metal Slug 6",
+      "source_url": "https://www.spriters-resource.com/arcade/ms6/"
+    },
+    {
+      "id": "outrun",
+      "title": "Out Run",
+      "source_url": "https://www.spriters-resource.com/arcade/outrun/"
+    },
+    {
+      "id": "pacman",
+      "title": "Pac-Man",
+      "source_url": "https://www.spriters-resource.com/arcade/pacman/"
+    },
+    {
+      "id": "poleposition",
+      "title": "Pole Position",
+      "source_url": "https://www.spriters-resource.com/arcade/poleposition/"
+    },
+    {
+      "id": "sonicth2",
+      "title": "Sonic the Hedgehog 2",
+      "source_url": "https://www.spriters-resource.com/sega_genesis/sonicth2/"
+    },
+    {
+      "id": "streetfighter2",
+      "title": "Street Fighter 2 / Super Street Fighter 2",
+      "source_url": "https://www.spriters-resource.com/arcade/streetfighter2/"
+    },
+    {
+      "id": "streetfighteralpha3",
+      "title": "Street Fighter Alpha 3",
+      "source_url": "https://www.spriters-resource.com/arcade/streetfighteralpha3/"
+    },
+    {
+      "id": "superman",
+      "title": "Superman (Taito arcade)",
+      "source_url": "https://www.spriters-resource.com/arcade/superman/"
+    },
+    {
+      "id": "tmnt",
+      "title": "Teenage Mutant Ninja Turtles",
+      "source_url": "https://www.spriters-resource.com/arcade/tmnt/"
+    },
+    {
+      "id": "tetrisatari",
+      "title": "Tetris (Atari)",
+      "source_url": "https://www.spriters-resource.com/arcade/tetrisatari/"
+    }
+  ],
+  "effects": [
+    {
+      "id": "coin",
+      "format": "arcade-synth-v1",
+      "event_hint": "pickup, point, lap or reward",
+      "content_hash": "cc74d2fee3787b953cda47b7345cb73316293c1f09c0bd7824e72e6cc2fd8aec",
+      "provenance": "Original locally synthesized effect; no downloaded audio.",
+      "recipe": [
+        {
+          "wave": "square",
+          "f": 988,
+          "ms": 70
+        },
+        {
+          "wave": "square",
+          "f": 1319,
+          "ms": 220,
+          "delay": 70
+        }
+      ]
+    },
+    {
+      "id": "die",
+      "format": "arcade-synth-v1",
+      "event_hint": "life lost or defeat",
+      "content_hash": "243b04dc0aafad4d19db13a8ae2140777002ba25d27abe415849732f38497307",
+      "provenance": "Original locally synthesized effect; no downloaded audio.",
+      "recipe": [
+        {
+          "wave": "saw",
+          "f": 440,
+          "to": 40,
+          "ms": 600
+        },
+        {
+          "wave": "noise",
+          "ms": 300,
+          "delay": 120,
+          "vol": 0.5
+        }
+      ]
+    },
+    {
+      "id": "explode",
+      "format": "arcade-synth-v1",
+      "event_hint": "explosion or enemy destruction",
+      "content_hash": "d2161b2f7288d65c7317449c42c3a35e29b2a3130cb4951e12ce9fc23bfd4b8a",
+      "provenance": "Original locally synthesized effect; no downloaded audio.",
+      "recipe": [
+        {
+          "wave": "noise",
+          "ms": 450
+        },
+        {
+          "wave": "saw",
+          "f": 120,
+          "to": 30,
+          "ms": 400,
+          "vol": 0.5
+        }
+      ]
+    },
+    {
+      "id": "hit",
+      "format": "arcade-synth-v1",
+      "event_hint": "impact, damage, paddle or brick contact",
+      "content_hash": "106763929a95f824e2fbc4fd2b54977a9f9dbfd807b847755db1bbcbd5389557",
+      "provenance": "Original locally synthesized effect; no downloaded audio.",
+      "recipe": [
+        {
+          "wave": "saw",
+          "f": 220,
+          "to": 60,
+          "ms": 150
+        },
+        {
+          "wave": "noise",
+          "ms": 80,
+          "vol": 0.4
+        }
+      ]
+    },
+    {
+      "id": "jump",
+      "format": "arcade-synth-v1",
+      "event_hint": "jump, hop or movement burst",
+      "content_hash": "ed1325b70e0654da4da02208ec691bc4da478df2722fdb25257341f2323e9d9b",
+      "provenance": "Original locally synthesized effect; no downloaded audio.",
+      "recipe": [
+        {
+          "wave": "square",
+          "f": 260,
+          "to": 720,
+          "ms": 120
+        }
+      ]
+    },
+    {
+      "id": "powerup",
+      "format": "arcade-synth-v1",
+      "event_hint": "power-up, boost or major success",
+      "content_hash": "0ab86b45ce155f1dc1e78ed3c64c096d3504a2f7a5847b4361c8d702e8d015a7",
+      "provenance": "Original locally synthesized effect; no downloaded audio.",
+      "recipe": [
+        {
+          "wave": "triangle",
+          "f": 440,
+          "to": 880,
+          "ms": 120
+        },
+        {
+          "wave": "triangle",
+          "f": 880,
+          "to": 1760,
+          "ms": 220,
+          "delay": 120
+        }
+      ]
+    },
+    {
+      "id": "select",
+      "format": "arcade-synth-v1",
+      "event_hint": "selection, placement or rotation",
+      "content_hash": "0554a222f24e26ae22006e3323ab458979b5114696724184c02402b50fe8a4aa",
+      "provenance": "Original locally synthesized effect; no downloaded audio.",
+      "recipe": [
+        {
+          "wave": "square",
+          "f": 660,
+          "ms": 50
+        }
+      ]
+    },
+    {
+      "id": "shoot",
+      "format": "arcade-synth-v1",
+      "event_hint": "shot, launch or hard drop",
+      "content_hash": "a0b2a9980d758db866a5ac1db2bbd1b118671c5b12aae762410be1c22760205b",
+      "provenance": "Original locally synthesized effect; no downloaded audio.",
+      "recipe": [
+        {
+          "wave": "square",
+          "f": 900,
+          "to": 200,
+          "ms": 90
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "gameStatus": [
+      {
+        "value": "verified",
+        "count": 19
+      }
+    ],
+    "spriteStatus": [
+      {
+        "value": "source-checked",
+        "count": 27
+      },
+      {
+        "value": "verified",
+        "count": 40
+      }
+    ],
+    "referenceStatus": [
+      {
+        "value": "discovered",
+        "count": 79
+      },
+      {
+        "value": "downloaded",
+        "count": 13
+      }
+    ],
+    "candidateStatus": [
+      {
+        "value": "quarantined",
+        "count": 63
+      }
+    ],
+    "families": 13
+  },
+  "audioAudit": {
+    "file": "bench/audits/audio/gameplay-audit.json",
+    "recordedAt": "2026-09-20T00:57:11.364Z",
+    "summary": {
+      "games": 103,
+      "passed": 103,
+      "failed": 0
+    },
+    "excludedCatalog": [],
+    "runtimeHash": "7200ea716c8c72c20cfb7b8372da3b853404b0920dc51741857cf7fd69173b46",
+    "seeds": [
+      7,
+      41
+    ],
+    "framesPerSeed": 1200,
+    "method": "Actual Runtime.load/start/update/draw with muted synth interception after START; deterministic directional cycles and A/B taps. Coverage proves reachable audio, not every branch or audible device output.",
+    "games": [
+      {
+        "source": "catalog",
+        "id": "kart",
+        "players": 1,
+        "codeHash": "1f4d14e45cdb29bd34319654c122ce1a2e9e7cd3309295751476f0405abd6102",
+        "cues": {
+          "hit": 2,
+          "powerup": 1
+        },
+        "tones": 21,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "kart",
+        "players": 2,
+        "codeHash": "1f4d14e45cdb29bd34319654c122ce1a2e9e7cd3309295751476f0405abd6102",
+        "cues": {
+          "hit": 6,
+          "powerup": 2
+        },
+        "tones": 36,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "fighter",
+        "players": 1,
+        "codeHash": "1a87bce65a82a1f49a7a9926ee2a2412d0fba825eb067185d3129b50fa44ddf5",
+        "cues": {
+          "select": 13,
+          "powerup": 6,
+          "jump": 3,
+          "hit": 23
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "fighter",
+        "players": 2,
+        "codeHash": "1a87bce65a82a1f49a7a9926ee2a2412d0fba825eb067185d3129b50fa44ddf5",
+        "cues": {
+          "select": 16,
+          "powerup": 12,
+          "jump": 3,
+          "hit": 14
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "sonic-speed-reference",
+        "players": 1,
+        "codeHash": "077ee9493c4ef9a90755ad8a7cbb9d0657c1d0a688449bff9c19669e6d7dc8c5",
+        "cues": {
+          "shoot": 1,
+          "coin": 59,
+          "jump": 49,
+          "select": 1,
+          "hit": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "sonic-speed-reference",
+        "players": 2,
+        "codeHash": "077ee9493c4ef9a90755ad8a7cbb9d0657c1d0a688449bff9c19669e6d7dc8c5",
+        "cues": {
+          "jump": 99,
+          "shoot": 1,
+          "coin": 87,
+          "select": 1,
+          "hit": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "batman-atari-fighter-reference",
+        "players": 1,
+        "codeHash": "00246f08ccffb424e6edf2d48dd270d9c06c345d556f9f70d5b2533078186aa9",
+        "cues": {
+          "select": 12,
+          "powerup": 7,
+          "jump": 5,
+          "hit": 27,
+          "shoot": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "batman-atari-fighter-reference",
+        "players": 2,
+        "codeHash": "00246f08ccffb424e6edf2d48dd270d9c06c345d556f9f70d5b2533078186aa9",
+        "cues": {
+          "select": 16,
+          "powerup": 12,
+          "jump": 3,
+          "hit": 14
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "spider-man-fighter-reference",
+        "players": 1,
+        "codeHash": "120cab5a5c1b7b094da9b4f59baf5022b09d48e708827b85e4f83ca9c8597e6b",
+        "cues": {
+          "select": 16,
+          "powerup": 6,
+          "jump": 4,
+          "hit": 28,
+          "shoot": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "spider-man-fighter-reference",
+        "players": 2,
+        "codeHash": "120cab5a5c1b7b094da9b4f59baf5022b09d48e708827b85e4f83ca9c8597e6b",
+        "cues": {
+          "select": 16,
+          "powerup": 12,
+          "jump": 3,
+          "hit": 14
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "dk-climber-reference",
+        "players": 1,
+        "codeHash": "5c71ec78b76e8d068666a314eb779451366c40d7fb5ca0a8f7bd5ea594fc2efa",
+        "cues": {
+          "jump": 49,
+          "select": 14,
+          "hit": 3
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "dk-climber-reference",
+        "players": 2,
+        "codeHash": "5c71ec78b76e8d068666a314eb779451366c40d7fb5ca0a8f7bd5ea594fc2efa",
+        "cues": {
+          "jump": 98,
+          "select": 14,
+          "hit": 4
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "pac-man-maze-reference",
+        "players": 1,
+        "codeHash": "b65bbfdb4201fd4fc7dbc5f01958a25c271ae575c5c7cccc1ac3ab78d34f81d7",
+        "cues": {
+          "coin": 19,
+          "die": 3
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "pac-man-maze-reference",
+        "players": 2,
+        "codeHash": "b65bbfdb4201fd4fc7dbc5f01958a25c271ae575c5c7cccc1ac3ab78d34f81d7",
+        "cues": {
+          "coin": 28,
+          "die": 4
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "pole-position-racer-reference",
+        "players": 1,
+        "codeHash": "4237b918cc1412b7f431fb5ddc848b9606ff3dddce066b2408f1dbbec1841f2d",
+        "cues": {
+          "hit": 2,
+          "powerup": 1
+        },
+        "tones": 21,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "pole-position-racer-reference",
+        "players": 2,
+        "codeHash": "4237b918cc1412b7f431fb5ddc848b9606ff3dddce066b2408f1dbbec1841f2d",
+        "cues": {
+          "hit": 6,
+          "powerup": 2
+        },
+        "tones": 36,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "speed-platformer",
+        "players": 1,
+        "codeHash": "26f4c98edcf85958527ce4de7326c4c7b791a11e226573025cc7a29836f61679",
+        "cues": {
+          "shoot": 1,
+          "coin": 59,
+          "jump": 49,
+          "select": 1,
+          "hit": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "speed-platformer",
+        "players": 2,
+        "codeHash": "26f4c98edcf85958527ce4de7326c4c7b791a11e226573025cc7a29836f61679",
+        "cues": {
+          "jump": 99,
+          "shoot": 1,
+          "coin": 87,
+          "select": 1,
+          "hit": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "bomber",
+        "players": 1,
+        "codeHash": "52d7ced169390d5b4b2d421e1de798dd9c5891bc3bcd20f8327bb20e3fd28197",
+        "cues": {
+          "select": 8,
+          "explode": 7,
+          "die": 7,
+          "powerup": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "bomber",
+        "players": 2,
+        "codeHash": "52d7ced169390d5b4b2d421e1de798dd9c5891bc3bcd20f8327bb20e3fd28197",
+        "cues": {
+          "select": 6,
+          "explode": 6,
+          "die": 5
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "climber",
+        "players": 1,
+        "codeHash": "1fb872813516e5991a4d4c52bcd6a954c79889e50645fa3065fdc68deaa3d618",
+        "cues": {
+          "jump": 49,
+          "select": 14,
+          "hit": 3
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "climber",
+        "players": 2,
+        "codeHash": "1fb872813516e5991a4d4c52bcd6a954c79889e50645fa3065fdc68deaa3d618",
+        "cues": {
+          "jump": 98,
+          "select": 14,
+          "hit": 4
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "maze",
+        "players": 1,
+        "codeHash": "e62cd69d39fc44f6f20f2abca3f984b4b16f113b79d51f039b578f214059317f",
+        "cues": {
+          "select": 14,
+          "coin": 20,
+          "hit": 1,
+          "powerup": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "maze",
+        "players": 2,
+        "codeHash": "e62cd69d39fc44f6f20f2abca3f984b4b16f113b79d51f039b578f214059317f",
+        "cues": {
+          "select": 28,
+          "coin": 21,
+          "hit": 2,
+          "powerup": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "breakout",
+        "players": 1,
+        "codeHash": "c2826ee212a5aa10b3ebccada710f3e1df99a9cf851d369437d99255bdefcb28",
+        "cues": {
+          "shoot": 6,
+          "select": 11,
+          "hit": 3,
+          "die": 6
+        },
+        "tones": 7,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "breakout",
+        "players": 2,
+        "codeHash": "c2826ee212a5aa10b3ebccada710f3e1df99a9cf851d369437d99255bdefcb28",
+        "cues": {
+          "shoot": 6,
+          "select": 34,
+          "die": 6,
+          "powerup": 2,
+          "hit": 6
+        },
+        "tones": 23,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "formation-shooter",
+        "players": 1,
+        "codeHash": "172a01b86510e141079ce019ac08483eecbee4ce0c2ef085c90886e999dbf538",
+        "cues": {
+          "powerup": 9,
+          "shoot": 192,
+          "explode": 42,
+          "die": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "formation-shooter",
+        "players": 2,
+        "codeHash": "172a01b86510e141079ce019ac08483eecbee4ce0c2ef085c90886e999dbf538",
+        "cues": {
+          "powerup": 16,
+          "shoot": 392,
+          "explode": 55,
+          "die": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "crossing",
+        "players": 1,
+        "codeHash": "89a565be28152ecdd53321c75eea2a0c3f8dc90f6ad37d98861d37f13f406952",
+        "cues": {
+          "jump": 55,
+          "die": 6
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "crossing",
+        "players": 2,
+        "codeHash": "89a565be28152ecdd53321c75eea2a0c3f8dc90f6ad37d98861d37f13f406952",
+        "cues": {
+          "jump": 161,
+          "die": 12
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "missile-defense",
+        "players": 1,
+        "codeHash": "e23cbf5f0d56569e32f3b4851eb7202362e59e517dd83e99ea86cf9b0d356157",
+        "cues": {
+          "select": 34,
+          "shoot": 68,
+          "hit": 68,
+          "coin": 10,
+          "explode": 6,
+          "powerup": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "missile-defense",
+        "players": 2,
+        "codeHash": "e23cbf5f0d56569e32f3b4851eb7202362e59e517dd83e99ea86cf9b0d356157",
+        "cues": {
+          "select": 67,
+          "shoot": 76,
+          "hit": 75,
+          "coin": 8,
+          "explode": 8,
+          "powerup": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "falling-blocks",
+        "players": 1,
+        "codeHash": "dae1b94e61c423fc2a188a95eacaf12aeb546ce482945e31bb5ee90be1af213f",
+        "cues": {
+          "select": 85,
+          "hit": 35,
+          "shoot": 32
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "falling-blocks",
+        "players": 2,
+        "codeHash": "dae1b94e61c423fc2a188a95eacaf12aeb546ce482945e31bb5ee90be1af213f",
+        "cues": {
+          "select": 168,
+          "hit": 68,
+          "shoot": 64
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "asteroids",
+        "players": 1,
+        "codeHash": "be9d13f0ccac93a1cc4e4cd7b43cdc3f2022aec039853920f6fe13f3eb2202b0",
+        "cues": {
+          "powerup": 8,
+          "shoot": 183,
+          "explode": 39,
+          "die": 4
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "asteroids",
+        "players": 2,
+        "codeHash": "be9d13f0ccac93a1cc4e4cd7b43cdc3f2022aec039853920f6fe13f3eb2202b0",
+        "cues": {
+          "powerup": 18,
+          "shoot": 383,
+          "explode": 63,
+          "die": 4
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "pong",
+        "players": 1,
+        "codeHash": "238cfb8df8efe8f1a5bf09054a1c6372055019825b55617d0da642ea3ec5645a",
+        "cues": {
+          "shoot": 6,
+          "hit": 13,
+          "coin": 4
+        },
+        "tones": 18,
+        "passed": true
+      },
+      {
+        "source": "catalog",
+        "id": "pong",
+        "players": 2,
+        "codeHash": "238cfb8df8efe8f1a5bf09054a1c6372055019825b55617d0da642ea3ec5645a",
+        "cues": {
+          "shoot": 16,
+          "coin": 14
+        },
+        "tones": 14,
+        "passed": true
+      },
+      {
+        "source": "template",
+        "id": "breakout",
+        "players": 1,
+        "codeHash": "e336eba09729fab45c32f069ff3e4cc7966ffc495e8c8c482d3bc87991aad2ab",
+        "cues": {
+          "select": 6,
+          "hit": 10,
+          "jump": 5,
+          "die": 6
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "template",
+        "id": "coop",
+        "players": 2,
+        "codeHash": "c253aaf6d0e9f1f14cb187202b567ef22c3a7b7a560babb26b39d6a5a31555ae",
+        "cues": {
+          "shoot": 390,
+          "explode": 8,
+          "hit": 12,
+          "die": 8
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "template",
+        "id": "dodge",
+        "players": 1,
+        "codeHash": "8250e2847bad25c3b96f52b58b1106462a5967d7f8b40f9763b80a3ef4e816d3",
+        "cues": {
+          "jump": 50,
+          "coin": 3
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "template",
+        "id": "flappy",
+        "players": 1,
+        "codeHash": "abd462d6be1b11aa6b9fdde486c93afd725db3f5cf1f445a4ad047da1c9e5496",
+        "cues": {
+          "jump": 8,
+          "die": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "template",
+        "id": "platformer",
+        "players": 1,
+        "codeHash": "767045e8f7969c579a75bc02247dbe738bfb3d186595c7ab81681742cf21a899",
+        "cues": {
+          "jump": 27,
+          "hit": 6,
+          "die": 2,
+          "coin": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "template",
+        "id": "pong",
+        "players": 1,
+        "codeHash": "a7b4fe16b9fbb7791a825c67171fcef5304b62bf04371ab8b498cd200f0c3fda",
+        "cues": {
+          "select": 11,
+          "hit": 10,
+          "jump": 11,
+          "die": 2,
+          "coin": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "template",
+        "id": "runner",
+        "players": 1,
+        "codeHash": "3ebf182b581252293fedadcd50b4b4a17270f35672469909f573efc8e69a4151",
+        "cues": {
+          "jump": 14,
+          "die": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "template",
+        "id": "shooter",
+        "players": 1,
+        "codeHash": "02cf6ee5612900b94d49cd51bed972d8f90eec4af6cb4ef3d4f8a329b8ed638d",
+        "cues": {
+          "shoot": 89,
+          "explode": 23,
+          "hit": 5,
+          "powerup": 3,
+          "die": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "template",
+        "id": "snake",
+        "players": 1,
+        "codeHash": "5c78f58c5be7448cce1e04541dcb7f8489c090f99b9784aba936af607af27b88",
+        "cues": {
+          "select": 6,
+          "die": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "template",
+        "id": "versus",
+        "players": 2,
+        "codeHash": "0789cf42202fae679715053c3e18b1fe4082fbc51ba615ee62834defb6579840",
+        "cues": {
+          "jump": 64,
+          "shoot": 204,
+          "coin": 1,
+          "hit": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "asteroid-blast",
+        "players": 1,
+        "codeHash": "00755c3ebc23017e1dbeaf2eca79b74fdbf30c4ca285041d599dbc3b5490421d",
+        "cues": {
+          "shoot": 98,
+          "powerup": 16,
+          "select": 15,
+          "explode": 4,
+          "hit": 3,
+          "die": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "asteroid-dash",
+        "players": 1,
+        "codeHash": "08cd21eae48e491efaa631d412ca62a6b85d613e2d0de883ab2f82786bc9a5b1",
+        "cues": {
+          "powerup": 12,
+          "shoot": 100,
+          "explode": 7,
+          "hit": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "bada-beat",
+        "players": 1,
+        "codeHash": "7178d851d91360e0ae6cb5fda38dc56fe0872a7e0b4410123a4707988fc27985",
+        "cues": {
+          "shoot": 28,
+          "hit": 15,
+          "die": 2
+        },
+        "tones": 22,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "banana-gotham",
+        "players": 1,
+        "codeHash": "e957755cd3cbc560a083c0eb2e6f19c47c3776ebcf1064c4f9f2f38d8f7145b8",
+        "cues": {
+          "shoot": 14,
+          "select": 6,
+          "hit": 6,
+          "jump": 5,
+          "die": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "big-ball-break",
+        "players": 1,
+        "codeHash": "02b3ce2e96239c4527c264160ff5745c5728a543ec74d07ba7a8fa721b12bfb3",
+        "cues": {
+          "powerup": 16,
+          "shoot": 51,
+          "explode": 11,
+          "die": 6,
+          "jump": 12
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "big-ball-break-2",
+        "players": 1,
+        "codeHash": "c28c2308d7a5336fa61bbf13b2b54d46274a65b3908759f695ce34bcc091be14",
+        "cues": {
+          "shoot": 6,
+          "powerup": 39,
+          "explode": 7,
+          "die": 6,
+          "jump": 4
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "casper-climb",
+        "players": 1,
+        "codeHash": "724d5b4464113c789b386b69f5a3c2dce525cd830b17490b952bca6963151699",
+        "cues": {
+          "jump": 50,
+          "coin": 5,
+          "shoot": 7,
+          "die": 4
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "cat-catcher",
+        "players": 1,
+        "codeHash": "0bd105bf501ad329c1ee5aa524084e69d79ba26c8689c53d6f2ac2ed457d06a3",
+        "cues": {
+          "shoot": 51,
+          "jump": 7,
+          "hit": 6,
+          "die": 2,
+          "coin": 1,
+          "explode": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "cat-catcher-2",
+        "players": 1,
+        "codeHash": "a176393d5512d50b2e152d6b159b28de421bb910315c6e3450fdb26aadc68044",
+        "cues": {
+          "jump": 94,
+          "select": 30,
+          "coin": 3,
+          "hit": 3,
+          "die": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "cat-dash",
+        "players": 1,
+        "codeHash": "7c1c70e6f0942d9096dfc2a3d98acc3521c4e3649e97b1f94b71f4512d5785e5",
+        "cues": {
+          "jump": 26,
+          "select": 8,
+          "hit": 2,
+          "die": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "cat-dash-2",
+        "players": 1,
+        "codeHash": "8718ce1cfdc381b47d1d40e5d1087aaee0e4424f593a961e3bc4e4c03073bf55",
+        "cues": {
+          "jump": 25,
+          "shoot": 17,
+          "powerup": 6,
+          "hit": 2,
+          "die": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "cloud-drift",
+        "players": 1,
+        "codeHash": "bdd43bfc28ae7729e700ca8a19302666850247e5462fcf96f5627c0f34697017",
+        "cues": {
+          "shoot": 100,
+          "hit": 3,
+          "coin": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "craft-dash",
+        "players": 1,
+        "codeHash": "2fa17f28ff9392dd7ffc1a57f74ed9f771abef5ea5e411f123fdb6dcf4050580",
+        "cues": {
+          "shoot": 85,
+          "jump": 32,
+          "coin": 15,
+          "powerup": 15,
+          "explode": 7,
+          "hit": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "dc-duel",
+        "players": 1,
+        "codeHash": "887b7d815d2722cc44a70a1c3d117b658c12b6838da05d136e8e2880cdb6bc23",
+        "cues": {
+          "select": 7,
+          "powerup": 8,
+          "shoot": 96,
+          "hit": 15,
+          "jump": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "donkey-climb",
+        "players": 2,
+        "codeHash": "89728f86b94d12c0bbc347ed37975097139a00ceeddad6cf4db909828b65ebfa",
+        "cues": {
+          "jump": 98,
+          "select": 14,
+          "hit": 4
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "dragon-keep",
+        "players": 1,
+        "codeHash": "a35221f0f409ed660f612aeb2b857c2c07f1d50e5cb79ce40c9feff395316f67",
+        "cues": {
+          "shoot": 146,
+          "powerup": 13,
+          "select": 11,
+          "hit": 18,
+          "explode": 5,
+          "die": 2,
+          "coin": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "duel-byte",
+        "players": 1,
+        "codeHash": "0cfabc21d5a1164cd33b33170fd6bd31753732569b8ac9c905af5d4dc54df4e6",
+        "cues": {
+          "shoot": 93,
+          "jump": 26,
+          "hit": 22,
+          "die": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "exam-escape",
+        "players": 1,
+        "codeHash": "9549d475c0419abd7fa87cdd86b5f05ff970c58b06f7166989a4c371689e6315",
+        "cues": {
+          "jump": 100,
+          "hit": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "exam-escape-2",
+        "players": 1,
+        "codeHash": "bd0198ca1a39de927da28c7bba9d31a0a73d2e30af22d433b35c1eaa36466a25",
+        "cues": {
+          "jump": 78,
+          "coin": 3,
+          "hit": 3,
+          "die": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "fairy-pie-drop",
+        "players": 1,
+        "codeHash": "9dda67f18813593bd33552e013d1048f6430ae9a04f59504e441f29f50e947c6",
+        "cues": {
+          "jump": 44,
+          "coin": 6,
+          "select": 42,
+          "hit": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "frogger-dash",
+        "players": 1,
+        "codeHash": "8ca977c3f502ebbca8f9ae35c8184d17d85f0de704e06147a07debc544fe9451",
+        "cues": {
+          "jump": 58,
+          "coin": 2,
+          "hit": 2,
+          "die": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "frogger-rush",
+        "players": 1,
+        "codeHash": "30b49da9b36317bdd1d22289d45f7bd2b731f575a7207bf2c9337ebf4e29c32b",
+        "cues": {
+          "jump": 12,
+          "hit": 2,
+          "die": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "ghost-maze",
+        "players": 1,
+        "codeHash": "f0bf129aa4677a768bc8bee45ebf370a04901a52a4ff88686e1ed1ce3784bffc",
+        "cues": {
+          "shoot": 100,
+          "coin": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "goose-chase",
+        "players": 1,
+        "codeHash": "b577645e33a0ae97ef8f61ee0c4f42a9588b44350644772dfd7f0695aa599a09",
+        "cues": {
+          "shoot": 12,
+          "coin": 85,
+          "powerup": 8,
+          "select": 6,
+          "explode": 4,
+          "die": 3
+        },
+        "tones": 2,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "goose-kong",
+        "players": 1,
+        "codeHash": "f285197484dde918a457a4d9bc703a1e40266074c6391f188a65b67924690ba6",
+        "cues": {
+          "jump": 49,
+          "select": 14,
+          "hit": 3
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "gotham-gadgets",
+        "players": 1,
+        "codeHash": "a856685c79d6b08228b79e0e936138b08b8045dad199df9189576a9d5b01093c",
+        "cues": {
+          "jump": 74,
+          "shoot": 10,
+          "coin": 8,
+          "hit": 4,
+          "die": 1,
+          "select": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "hard-mode",
+        "players": 1,
+        "codeHash": "117a9e11eee82d0c8fcefc6e94a8b2c39358027416c44fce5d8a7be1a624fe00",
+        "cues": {
+          "shoot": 82,
+          "coin": 4,
+          "hit": 1,
+          "die": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "hero-duel",
+        "players": 2,
+        "codeHash": "f456f4c9b29dc1fef6784526a3d08b02ca2f4a4d22e2d72472f100c9bcb4dc64",
+        "cues": {
+          "shoot": 156,
+          "jump": 24,
+          "select": 10,
+          "hit": 15,
+          "explode": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "ice-fish-dash",
+        "players": 1,
+        "codeHash": "cd7fcf8cfe27af59711130e94a9f029fb0e9eb85643841239fc187b38f37221d",
+        "cues": {
+          "jump": 100,
+          "select": 49,
+          "coin": 4,
+          "hit": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "ice-fish-run",
+        "players": 1,
+        "codeHash": "dc97463d67e381a22f72f8af92b311f3b6922490ee14a060082088602e039b30",
+        "cues": {
+          "jump": 100,
+          "select": 37,
+          "coin": 6
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "jelly-sub",
+        "players": 1,
+        "codeHash": "e650a8bbc8eb519012219609e50d0675377d27efc5b8997ca983bdea70c41b49",
+        "cues": {
+          "jump": 12,
+          "select": 4,
+          "hit": 2,
+          "die": 2
+        },
+        "tones": 2,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "jelly-sub-2",
+        "players": 1,
+        "codeHash": "2323351b4283d395b313e0bafac658c48ee4f144ab3dfcdbb1cf01a1811900a0",
+        "cues": {
+          "jump": 12,
+          "select": 4,
+          "hit": 2,
+          "die": 2
+        },
+        "tones": 4,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "pac-mates",
+        "players": 2,
+        "codeHash": "17a139e9471401f101d1f7e702568d45b33295edd7baf75ebe66c814e67725e4",
+        "cues": {
+          "powerup": 12,
+          "select": 18,
+          "coin": 39,
+          "die": 5,
+          "hit": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "pack-that",
+        "players": 1,
+        "codeHash": "6ec754e2d44e143cfa2ef594c891667ffc0633e6f046ca1e62e36a7e7bcb83da",
+        "cues": {
+          "powerup": 6,
+          "select": 86,
+          "coin": 2,
+          "hit": 18,
+          "die": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "pie-anvil",
+        "players": 1,
+        "codeHash": "ca1c0ded86542530031d80704943fc346b8b1088e860d4cfc49ce3514bbc8291",
+        "cues": {
+          "jump": 56,
+          "hit": 2,
+          "die": 2,
+          "coin": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "pie-anvil-dash",
+        "players": 1,
+        "codeHash": "4e02cc63c4a110bded8f2739785ea287bdb9f3e1c756cb80a88f7a8eed95ffd3",
+        "cues": {
+          "jump": 70,
+          "hit": 1,
+          "die": 1,
+          "coin": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "pixel-fight",
+        "players": 1,
+        "codeHash": "61a3e1afc1a9c68213338589c8de77224e4b1ad0e9dab17d0c6572ea4296d959",
+        "cues": {
+          "select": 17,
+          "shoot": 55,
+          "hit": 24,
+          "powerup": 9
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "pizza-invaders",
+        "players": 1,
+        "codeHash": "4375018c6d0afd0f120121b3985e53f41e0ecc5a9c8be746d7f30ea773cecac5",
+        "cues": {
+          "shoot": 227,
+          "powerup": 34,
+          "explode": 20,
+          "select": 5,
+          "hit": 2,
+          "coin": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "pizza-invaders-2",
+        "players": 1,
+        "codeHash": "ee6ef1d52cb34d4dfc27bbb78004f9ff836a9fe7f5f0e9bf521b37dab64f7915",
+        "cues": {
+          "shoot": 200,
+          "powerup": 34,
+          "explode": 8,
+          "hit": 3
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "pizza-invaders-3",
+        "players": 1,
+        "codeHash": "3cc96f87a60a8c0f6e772c464e1648b7e51c9df1b3bd74cfd0fe91fa0b65c341",
+        "cues": {
+          "shoot": 136,
+          "explode": 18,
+          "hit": 2,
+          "powerup": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "pollen-dash",
+        "players": 1,
+        "codeHash": "98ac4f91ab45ff3a39ddea37c9f1353b44fbe5d07c4e5b9580c7984b5d16d424",
+        "cues": {
+          "jump": 100,
+          "hit": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "salsa-taco",
+        "players": 1,
+        "codeHash": "16b74a5247ab87bc2b38dccb6afb42000bc3f8556832dd753e093f690d13341b",
+        "cues": {
+          "jump": 100,
+          "coin": 7,
+          "hit": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "seal-slide",
+        "players": 1,
+        "codeHash": "d1e4684d6189b9b6d959b6a3fc49996823263ecbcc44a69a1e2fde3d5891d6f7",
+        "cues": {
+          "powerup": 100,
+          "jump": 71,
+          "hit": 3,
+          "coin": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "slime-spell",
+        "players": 1,
+        "codeHash": "9f0bd0e9561bbb1b10dd6757501ff1b6b1b3ab269b176168e953ed8b1ccef318",
+        "cues": {
+          "shoot": 69,
+          "powerup": 22,
+          "jump": 86,
+          "explode": 61,
+          "hit": 6,
+          "die": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "speed-pong",
+        "players": 1,
+        "codeHash": "614c23452b322a71525c228db675a9b898b9ebfc3e4b953cbbc75d77d77f35f8",
+        "cues": {
+          "shoot": 66,
+          "hit": 14,
+          "jump": 18,
+          "die": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "speed-pong-2",
+        "players": 1,
+        "codeHash": "4f132f00ca4f8b242bdee36e77871a95816ab8433087f83f6ba755e0b0ce3a6e",
+        "cues": {
+          "select": 15,
+          "shoot": 45,
+          "hit": 14,
+          "jump": 9,
+          "die": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "spellstack",
+        "players": 2,
+        "codeHash": "7a177ff1a3148771d0b1410db2c820f3fa0101ee758eb08dd0fd6a5c54ef8452",
+        "cues": {
+          "jump": 52,
+          "shoot": 162,
+          "select": 999,
+          "hit": 10,
+          "die": 2,
+          "explode": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "spike-dash",
+        "players": 1,
+        "codeHash": "1395965585f7e0836a1c822c43dc6fae6c2e57f69f866f03ad536804cd2598f2",
+        "cues": {
+          "jump": 29,
+          "shoot": 9,
+          "coin": 16,
+          "powerup": 2,
+          "hit": 6,
+          "die": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "spike-dash-2",
+        "players": 1,
+        "codeHash": "75746656e37803b414e87db26c12e5c93a3479cb51631b27bcd4810a7df3d9ce",
+        "cues": {
+          "powerup": 32,
+          "jump": 100,
+          "hit": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "star-catch",
+        "players": 1,
+        "codeHash": "954069248b027b3fdff54cba32ce5b48784bfab09015c8c892b6ecd4501823c8",
+        "cues": {
+          "powerup": 4,
+          "hit": 2,
+          "coin": 6,
+          "select": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "star-zapper",
+        "players": 1,
+        "codeHash": "9ed7b9032bbe910efa88739e844fd66617b946132277844e9d33e44b23312af9",
+        "cues": {
+          "shoot": 200,
+          "powerup": 12,
+          "explode": 29,
+          "select": 22,
+          "hit": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "train-snake",
+        "players": 1,
+        "codeHash": "e273d3be1abf91856b377027f40b181d8fb0913b51642d57efc2697ca2c7b14d",
+        "cues": {
+          "powerup": 16,
+          "select": 2,
+          "hit": 2,
+          "die": 2
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "train-snake-2",
+        "players": 1,
+        "codeHash": "f81556eb617addb74ac5070cb82a4f5a9415d24d448d49e4aad94b106c046782",
+        "cues": {
+          "select": 2,
+          "hit": 2,
+          "die": 2
+        },
+        "tones": 32,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "turbo-dash",
+        "players": 1,
+        "codeHash": "e6bf6b9c84d9746c671d2a10b96387ee1a258a9bcce0ea08c6c8c9320f375396",
+        "cues": {
+          "shoot": 71,
+          "coin": 42,
+          "explode": 39,
+          "select": 10,
+          "hit": 1,
+          "die": 1
+        },
+        "tones": 0,
+        "passed": true
+      },
+      {
+        "source": "saved",
+        "id": "twin-tug",
+        "players": 2,
+        "codeHash": "469c881fc0f25c7b451dc2a937e9b7830a4118d73ddcbd5d73381dc43ba952d4",
+        "cues": {
+          "shoot": 66,
+          "jump": 22,
+          "hit": 153,
+          "die": 2,
+          "coin": 2
+        },
+        "tones": 0,
+        "passed": true
+      }
+    ]
+  }
+}

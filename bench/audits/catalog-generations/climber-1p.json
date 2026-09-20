@@ -1,0 +1,3709 @@
+{
+  "name": "climber-1p",
+  "id": "2026-09-19-212228451-donkey-kong-style-climb-a-constr-Ifg12N",
+  "players": 1,
+  "type": "climber",
+  "spec": {
+    "title": "KITTY KONG",
+    "oneLiner": "Climb three perilous construction towers, leap rolling barrels, and rescue the kitten at the top.",
+    "genre": "arcade platforming",
+    "mechanics": [
+      "The player controls one worker across five sloped girders; LEFT/RIGHT walks and UP/DOWN climbs only when aligned with a usable ladder.",
+      "Press A to jump. A full hold reaches about 32 pixels of height over roughly 0.64 seconds; releasing early shortens ascent. A 0.10-second grounded coyote/buffer window makes ladder exits and girder edges forgiving.",
+      "A gorilla telegraphs each throw, then releases barrels that roll downhill, bounce at edges, and occasionally descend a usable ladder. Barrels remain dangerous until they leave the playfield or enter the oil drum.",
+      "Jumping completely over each barrel scores 100 once per barrel and player, with a bright jump-over flash; landing, walking, and climbing remain possible after the jump.",
+      "Reaching a previously unreached floor awards 100 once per stage. The kitten cage on the top-right girder is the rescue goal; touching it completes the stage and awards the remaining time bonus plus 1000 points.",
+      "Each stage has a 100-second timer, three lives, and a brief protected respawn at the highest floor reached after a barrel, fire, fall, or timeout hit. The player loses a life and the current life restarts; zero lives ends the game.",
+      "Stage 1 teaches steady barrels, stage 2 increases barrel cadence and adds limited fire hazards, and stage 3 combines faster barrels, more ladder drops, and bounded fire placement while preserving recovery gaps.",
+      "After the third kitten rescue, show the final score and win state. Reset the stage timer, hazard schedule, floor progress, and one-time scoring IDs on each new stage or life restart; use a fixed seed for repeatable barrel paths."
+    ],
+    "artDirection": "256x224 construction-site arcade scene with a 44-pixel-tall worker in bright overalls and a distinct hard hat, readable idle, walking, climbing, jumping, hurt, and death poses. Five thick sloped girders fill the playfield, with contrasting ladders, dark gaps, orange barrel highlights, warning lights, and a large animated gorilla silhouette at upper-left. The kitten is a small but high-contrast white-and-pink sprite in a cage at the top-right, changing to an excited rescued pose. Keep the background muted steel-blue and charcoal so the worker, barrels, ladders, and kitten read clearly on the fixed 16-colour palette.",
+    "referenceIntent": {
+      "reference": "Donkey Kong",
+      "preserve": [
+        "Construction-tower climbing with sloped girders and ladders",
+        "A gorilla at the upper-left throwing rolling barrels",
+        "Jumping over barrels for points",
+        "A kitten trapped in a cage at the top",
+        "Three progressively harder stages",
+        "Lives, timer pressure, stage progression, and rescue completion"
+      ],
+      "change": [
+        "Use the requested single-player version against computer-controlled hazards; do not include cooperative two-player play"
+      ]
+    },
+    "controls": {
+      "left": "Walk left while grounded; steer in air.",
+      "right": "Walk right while grounded; steer in air.",
+      "up": "Climb upward when centered at a ladder; otherwise no effect.",
+      "down": "Climb downward when centered at a ladder; otherwise no effect.",
+      "a": "Jump while grounded or within the brief coyote window; holding gives full height, releasing early shortens it.",
+      "b": null
+    },
+    "palette": "arcade",
+    "lose": "Lose one life from a barrel, fire hazard, fall, or timer expiry; game over when all three lives are exhausted.",
+    "scoring": "Score 100 for each unique barrel jumped, 100 for each newly reached floor, 1000 per kitten rescue, plus the remaining timer bonus; stage-clear scoring cannot repeat.",
+    "moderated": false,
+    "note": "",
+    "remix": false,
+    "changes": [],
+    "designCards": [
+      "platforming",
+      "collision",
+      "readability",
+      "pacing"
+    ],
+    "players": 1
+  },
+  "sourceHash": "8bfe3151361ca09cf4792a2f3a75e109dc20cd4a2940ede65cfc03e9242a98b3",
+  "inputs": [
+    {
+      "at": 0,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 141,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 141,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 194,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 194,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 329,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 329,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 383,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 383,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 409,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 410,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 411,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 412,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 413,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 414,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 415,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 416,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 418,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 419,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 420,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 421,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 422,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 423,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 424,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 425,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 426,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 427,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 428,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 429,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 430,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 431,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 432,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 433,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 434,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 435,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 436,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 437,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 438,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 439,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 440,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 441,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 442,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 443,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 444,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 445,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 446,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 447,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 448,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 449,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 450,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 451,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 452,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 453,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 455,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 456,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 457,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 458,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 459,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 460,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 461,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 462,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 463,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 464,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 465,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 466,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 467,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 468,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 469,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 470,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 471,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 472,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 473,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 474,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 475,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 476,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 477,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 478,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 479,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 480,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 481,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 482,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 483,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 484,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 485,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 486,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 487,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 488,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 490,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 491,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 492,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 493,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 494,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 495,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 496,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 497,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 498,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 499,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 500,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 501,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 502,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 503,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 504,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 505,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 506,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 507,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 508,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 509,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 510,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 511,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 512,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 513,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 514,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 515,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 516,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 517,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 518,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 519,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 520,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 521,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 522,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 523,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 524,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 525,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 527,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 528,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 529,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 530,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 531,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 532,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 533,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 534,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 535,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 536,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 537,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 538,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 539,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 540,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 541,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 542,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 543,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 544,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 545,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 546,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 547,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 548,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 549,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 550,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 551,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 552,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 553,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 554,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 555,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 556,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 557,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 558,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 559,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 560,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 562,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 563,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 564,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 565,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 566,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 567,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 568,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 569,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 570,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 571,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 572,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 573,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 574,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 575,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 576,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 577,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 578,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 579,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 580,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 581,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 582,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 583,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 584,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 585,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 586,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 587,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 588,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 589,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 590,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 591,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 592,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 593,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 594,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 595,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 597,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 598,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 599,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 600,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 601,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 602,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 603,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 604,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 605,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 606,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 607,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 608,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 609,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 610,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 611,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 612,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 613,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 614,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 615,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 616,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 617,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 618,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 619,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 620,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 621,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 621,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 645,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 675,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 704,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 704,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 727,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 728,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 729,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 730,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 731,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 732,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 733,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 734,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 735,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 736,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 737,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 738,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 739,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 740,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 741,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 742,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 743,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 744,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 745,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 746,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 747,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 748,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 749,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 750,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 751,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 752,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 753,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 754,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 755,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 756,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 758,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 759,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 760,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 761,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 762,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 763,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 764,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 764,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 812,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 812,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 843,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 844,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 845,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 846,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 848,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 849,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 850,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 851,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 852,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 853,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 854,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 855,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 856,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 857,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 858,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 859,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 860,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 861,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 862,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 863,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 864,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 865,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 866,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 867,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 868,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 869,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 870,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 871,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 872,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 873,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 874,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 875,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 876,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 877,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 878,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 879,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 880,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 881,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 883,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 884,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 885,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 963,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1085,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1085,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1138,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1138,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1239,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1239,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1295,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1295,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1398,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1398,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1422,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1484,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1569,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1569,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1622,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1622,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1658,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1658,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1705,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1705,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1994,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1994,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2051,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2051,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2188,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2188,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2245,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2245,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2366,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2366,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2419,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2419,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2455,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2455,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2502,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2502,
+      "player": 0,
+      "button": "right",
+      "down": true
+    }
+  ],
+  "shots": [
+    {
+      "name": "idle",
+      "frame": 1,
+      "state": {
+        "phase": "playing",
+        "stage": 1,
+        "stages": 3,
+        "time": 0.016666666666666666,
+        "totalTime": 0.016666666666666666,
+        "goal": {
+          "x": 226,
+          "floor": 4
+        },
+        "stats": {
+          "spawned": 0,
+          "ladderDrops": 0,
+          "edgeDrops": 0,
+          "jumps": 0,
+          "jumpAwards": 0,
+          "hits": 0,
+          "rescues": 0
+        },
+        "floors": [
+          {
+            "id": 0,
+            "y": 202,
+            "slope": 0.025,
+            "left": 12,
+            "right": 244,
+            "dir": 1
+          },
+          {
+            "id": 1,
+            "y": 168,
+            "slope": -0.025,
+            "left": 12,
+            "right": 244,
+            "dir": -1
+          },
+          {
+            "id": 2,
+            "y": 134,
+            "slope": 0.025,
+            "left": 12,
+            "right": 244,
+            "dir": 1
+          },
+          {
+            "id": 3,
+            "y": 100,
+            "slope": -0.025,
+            "left": 12,
+            "right": 244,
+            "dir": -1
+          },
+          {
+            "id": 4,
+            "y": 65,
+            "slope": 0.025,
+            "left": 12,
+            "right": 244,
+            "dir": 1
+          }
+        ],
+        "ladders": [
+          {
+            "id": 0,
+            "x": 204,
+            "bottom": 0,
+            "top": 1,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 1,
+            "x": 70,
+            "bottom": 0,
+            "top": 1,
+            "main": false,
+            "broken": false
+          },
+          {
+            "id": 2,
+            "x": 40,
+            "bottom": 1,
+            "top": 2,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 3,
+            "x": 171,
+            "bottom": 1,
+            "top": 2,
+            "main": false,
+            "broken": false
+          },
+          {
+            "id": 4,
+            "x": 204,
+            "bottom": 2,
+            "top": 3,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 5,
+            "x": 111,
+            "bottom": 2,
+            "top": 3,
+            "main": false,
+            "broken": false
+          },
+          {
+            "id": 6,
+            "x": 151,
+            "bottom": 3,
+            "top": 4,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 7,
+            "x": 77,
+            "bottom": 3,
+            "top": 4,
+            "main": false,
+            "broken": false
+          }
+        ],
+        "people": [
+          {
+            "id": 0,
+            "x": 33.2,
+            "y": 199.63,
+            "vy": 0,
+            "floor": 0,
+            "checkpoint": 0,
+            "grounded": true,
+            "ladder": null,
+            "lives": 3,
+            "score": 0,
+            "dead": 0,
+            "invulnerable": 0.9833333333333333,
+            "pose": "walk"
+          }
+        ],
+        "barrels": [],
+        "fires": []
+      },
+      "scores": [
+        0
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 1,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "e078a023",
+      "file": "climber-1p-idle.png"
+    },
+    {
+      "name": "ladder",
+      "frame": 142,
+      "state": {
+        "phase": "playing",
+        "stage": 1,
+        "stages": 3,
+        "time": 2.366666666666663,
+        "totalTime": 2.366666666666663,
+        "goal": {
+          "x": 226,
+          "floor": 4
+        },
+        "stats": {
+          "spawned": 1,
+          "ladderDrops": 1,
+          "edgeDrops": 0,
+          "jumps": 0,
+          "jumpAwards": 0,
+          "hits": 0,
+          "rescues": 0
+        },
+        "floors": [
+          {
+            "id": 0,
+            "y": 202,
+            "slope": 0.025,
+            "left": 12,
+            "right": 244,
+            "dir": 1
+          },
+          {
+            "id": 1,
+            "y": 168,
+            "slope": -0.025,
+            "left": 12,
+            "right": 244,
+            "dir": -1
+          },
+          {
+            "id": 2,
+            "y": 134,
+            "slope": 0.025,
+            "left": 12,
+            "right": 244,
+            "dir": 1
+          },
+          {
+            "id": 3,
+            "y": 100,
+            "slope": -0.025,
+            "left": 12,
+            "right": 244,
+            "dir": -1
+          },
+          {
+            "id": 4,
+            "y": 65,
+            "slope": 0.025,
+            "left": 12,
+            "right": 244,
+            "dir": 1
+          }
+        ],
+        "ladders": [
+          {
+            "id": 0,
+            "x": 204,
+            "bottom": 0,
+            "top": 1,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 1,
+            "x": 70,
+            "bottom": 0,
+            "top": 1,
+            "main": false,
+            "broken": false
+          },
+          {
+            "id": 2,
+            "x": 40,
+            "bottom": 1,
+            "top": 2,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 3,
+            "x": 171,
+            "bottom": 1,
+            "top": 2,
+            "main": false,
+            "broken": false
+          },
+          {
+            "id": 4,
+            "x": 204,
+            "bottom": 2,
+            "top": 3,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 5,
+            "x": 111,
+            "bottom": 2,
+            "top": 3,
+            "main": false,
+            "broken": false
+          },
+          {
+            "id": 6,
+            "x": 151,
+            "bottom": 3,
+            "top": 4,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 7,
+            "x": 77,
+            "bottom": 3,
+            "top": 4,
+            "main": false,
+            "broken": false
+          }
+        ],
+        "people": [
+          {
+            "id": 0,
+            "x": 204,
+            "y": 203.11333333333332,
+            "vy": 0,
+            "floor": 0,
+            "checkpoint": 0,
+            "grounded": false,
+            "ladder": 0,
+            "lives": 3,
+            "score": 0,
+            "dead": 0,
+            "invulnerable": 0,
+            "pose": "climb"
+          }
+        ],
+        "barrels": [
+          {
+            "id": 1,
+            "x": 77,
+            "y": 70.43708333333333,
+            "floor": 4,
+            "mode": "fall",
+            "dir": 1,
+            "jumped": 0,
+            "speed": 37
+          }
+        ],
+        "fires": []
+      },
+      "scores": [
+        0
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 142,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "1230a2c9",
+      "file": "climber-1p-ladder.png"
+    },
+    {
+      "name": "barrels",
+      "frame": 441,
+      "state": {
+        "phase": "playing",
+        "stage": 1,
+        "stages": 3,
+        "time": 7.349999999999979,
+        "totalTime": 7.349999999999979,
+        "goal": {
+          "x": 226,
+          "floor": 4
+        },
+        "stats": {
+          "spawned": 3,
+          "ladderDrops": 1,
+          "edgeDrops": 1,
+          "jumps": 0,
+          "jumpAwards": 0,
+          "hits": 0,
+          "rescues": 0
+        },
+        "floors": [
+          {
+            "id": 0,
+            "y": 202,
+            "slope": 0.025,
+            "left": 12,
+            "right": 244,
+            "dir": 1
+          },
+          {
+            "id": 1,
+            "y": 168,
+            "slope": -0.025,
+            "left": 12,
+            "right": 244,
+            "dir": -1
+          },
+          {
+            "id": 2,
+            "y": 134,
+            "slope": 0.025,
+            "left": 12,
+            "right": 244,
+            "dir": 1
+          },
+          {
+            "id": 3,
+            "y": 100,
+            "slope": -0.025,
+            "left": 12,
+            "right": 244,
+            "dir": -1
+          },
+          {
+            "id": 4,
+            "y": 65,
+            "slope": 0.025,
+            "left": 12,
+            "right": 244,
+            "dir": 1
+          }
+        ],
+        "ladders": [
+          {
+            "id": 0,
+            "x": 204,
+            "bottom": 0,
+            "top": 1,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 1,
+            "x": 70,
+            "bottom": 0,
+            "top": 1,
+            "main": false,
+            "broken": false
+          },
+          {
+            "id": 2,
+            "x": 40,
+            "bottom": 1,
+            "top": 2,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 3,
+            "x": 171,
+            "bottom": 1,
+            "top": 2,
+            "main": false,
+            "broken": false
+          },
+          {
+            "id": 4,
+            "x": 204,
+            "bottom": 2,
+            "top": 3,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 5,
+            "x": 111,
+            "bottom": 2,
+            "top": 3,
+            "main": false,
+            "broken": false
+          },
+          {
+            "id": 6,
+            "x": 151,
+            "bottom": 3,
+            "top": 4,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 7,
+            "x": 77,
+            "bottom": 3,
+            "top": 4,
+            "main": false,
+            "broken": false
+          }
+        ],
+        "people": [
+          {
+            "id": 0,
+            "x": 90.40000000000012,
+            "y": 133.06,
+            "vy": 0,
+            "floor": 2,
+            "checkpoint": 2,
+            "grounded": true,
+            "ladder": null,
+            "lives": 3,
+            "score": 200,
+            "dead": 0,
+            "invulnerable": 0,
+            "pose": "idle"
+          }
+        ],
+        "barrels": [
+          {
+            "id": 1,
+            "x": 113.81666666666617,
+            "y": 127.64541666666665,
+            "floor": 2,
+            "mode": "roll",
+            "dir": 1,
+            "jumped": 0,
+            "speed": 37
+          },
+          {
+            "id": 2,
+            "x": 167.98333333333315,
+            "y": 59.999583333333334,
+            "floor": 4,
+            "mode": "roll",
+            "dir": 1,
+            "jumped": 0,
+            "speed": 37
+          },
+          {
+            "id": 3,
+            "x": 65.61666666666666,
+            "y": 57.440416666666664,
+            "floor": 4,
+            "mode": "roll",
+            "dir": 1,
+            "jumped": 0,
+            "speed": 37
+          }
+        ],
+        "fires": []
+      },
+      "scores": [
+        200
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 200,
+        "scores": [
+          200
+        ],
+        "winner": null,
+        "frame": 441,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "8641703d",
+      "file": "climber-1p-barrels.png"
+    },
+    {
+      "name": "stage-two",
+      "frame": 963,
+      "state": {
+        "phase": "playing",
+        "stage": 2,
+        "stages": 3,
+        "time": 0,
+        "totalTime": 14.750000000000313,
+        "goal": {
+          "x": 226,
+          "floor": 4
+        },
+        "stats": {
+          "spawned": 5,
+          "ladderDrops": 1,
+          "edgeDrops": 4,
+          "jumps": 0,
+          "jumpAwards": 0,
+          "hits": 0,
+          "rescues": 1
+        },
+        "floors": [
+          {
+            "id": 0,
+            "y": 202,
+            "slope": 0.035,
+            "left": 12,
+            "right": 244,
+            "dir": 1
+          },
+          {
+            "id": 1,
+            "y": 168,
+            "slope": -0.035,
+            "left": 12,
+            "right": 244,
+            "dir": -1
+          },
+          {
+            "id": 2,
+            "y": 133,
+            "slope": 0.03,
+            "left": 12,
+            "right": 244,
+            "dir": 1
+          },
+          {
+            "id": 3,
+            "y": 99,
+            "slope": -0.035,
+            "left": 12,
+            "right": 244,
+            "dir": -1
+          },
+          {
+            "id": 4,
+            "y": 65,
+            "slope": 0.025,
+            "left": 12,
+            "right": 244,
+            "dir": 1
+          }
+        ],
+        "ladders": [
+          {
+            "id": 0,
+            "x": 181,
+            "bottom": 0,
+            "top": 1,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 1,
+            "x": 61,
+            "bottom": 0,
+            "top": 1,
+            "main": false,
+            "broken": false
+          },
+          {
+            "id": 2,
+            "x": 58,
+            "bottom": 1,
+            "top": 2,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 3,
+            "x": 197,
+            "bottom": 1,
+            "top": 2,
+            "main": false,
+            "broken": false
+          },
+          {
+            "id": 4,
+            "x": 184,
+            "bottom": 2,
+            "top": 3,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 5,
+            "x": 96,
+            "bottom": 2,
+            "top": 3,
+            "main": false,
+            "broken": true
+          },
+          {
+            "id": 6,
+            "x": 139,
+            "bottom": 3,
+            "top": 4,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 7,
+            "x": 67,
+            "bottom": 3,
+            "top": 4,
+            "main": false,
+            "broken": false
+          }
+        ],
+        "people": [
+          {
+            "id": 0,
+            "x": 32,
+            "y": 198.64,
+            "vy": 0,
+            "floor": 0,
+            "checkpoint": 0,
+            "grounded": true,
+            "ladder": null,
+            "lives": 3,
+            "score": 5900,
+            "dead": 0,
+            "invulnerable": 1.4,
+            "pose": "idle"
+          }
+        ],
+        "barrels": [],
+        "fires": []
+      },
+      "scores": [
+        5900
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 5900,
+        "scores": [
+          5900
+        ],
+        "winner": null,
+        "frame": 963,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "4b074208",
+      "file": "climber-1p-stage-two.png"
+    },
+    {
+      "name": "terminal",
+      "frame": 2636,
+      "state": {
+        "phase": "won",
+        "stage": 4,
+        "stages": 3,
+        "time": 11.866666666666836,
+        "totalTime": 40.033333333332344,
+        "goal": {
+          "x": 226,
+          "floor": 4
+        },
+        "stats": {
+          "spawned": 16,
+          "ladderDrops": 9,
+          "edgeDrops": 15,
+          "jumps": 0,
+          "jumpAwards": 0,
+          "hits": 1,
+          "rescues": 3
+        },
+        "floors": [
+          {
+            "id": 0,
+            "y": 204,
+            "slope": 0.018,
+            "left": 12,
+            "right": 244,
+            "dir": 1
+          },
+          {
+            "id": 1,
+            "y": 168,
+            "slope": -0.032,
+            "left": 12,
+            "right": 244,
+            "dir": -1
+          },
+          {
+            "id": 2,
+            "y": 133,
+            "slope": 0.036,
+            "left": 12,
+            "right": 244,
+            "dir": 1
+          },
+          {
+            "id": 3,
+            "y": 99,
+            "slope": -0.023,
+            "left": 12,
+            "right": 244,
+            "dir": -1
+          },
+          {
+            "id": 4,
+            "y": 65,
+            "slope": 0.025,
+            "left": 12,
+            "right": 244,
+            "dir": 1
+          }
+        ],
+        "ladders": [
+          {
+            "id": 0,
+            "x": 212,
+            "bottom": 0,
+            "top": 1,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 1,
+            "x": 83,
+            "bottom": 0,
+            "top": 1,
+            "main": false,
+            "broken": false
+          },
+          {
+            "id": 2,
+            "x": 45,
+            "bottom": 1,
+            "top": 2,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 3,
+            "x": 161,
+            "bottom": 1,
+            "top": 2,
+            "main": false,
+            "broken": true
+          },
+          {
+            "id": 4,
+            "x": 193,
+            "bottom": 2,
+            "top": 3,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 5,
+            "x": 104,
+            "bottom": 2,
+            "top": 3,
+            "main": false,
+            "broken": false
+          },
+          {
+            "id": 6,
+            "x": 147,
+            "bottom": 3,
+            "top": 4,
+            "main": true,
+            "broken": false
+          },
+          {
+            "id": 7,
+            "x": 64,
+            "bottom": 3,
+            "top": 4,
+            "main": false,
+            "broken": false
+          }
+        ],
+        "people": [
+          {
+            "id": 0,
+            "x": 214.19999999999936,
+            "y": 67.15499999999999,
+            "vy": 0,
+            "floor": 4,
+            "checkpoint": 4,
+            "grounded": true,
+            "ladder": null,
+            "lives": 2,
+            "score": 17800,
+            "dead": 0,
+            "invulnerable": 0,
+            "pose": "walk"
+          }
+        ],
+        "barrels": [
+          {
+            "id": 12,
+            "x": 163.19999999999942,
+            "y": 198.6336,
+            "floor": 0,
+            "mode": "roll",
+            "dir": 1,
+            "jumped": 0,
+            "speed": 51
+          },
+          {
+            "id": 13,
+            "x": 25.6500000000011,
+            "y": 95.35404999999997,
+            "floor": 3,
+            "mode": "roll",
+            "dir": -1,
+            "jumped": 0,
+            "speed": 51
+          },
+          {
+            "id": 14,
+            "x": 239,
+            "y": 132.37379999999996,
+            "floor": 2,
+            "mode": "fall",
+            "dir": 1,
+            "jumped": 0,
+            "speed": 51
+          },
+          {
+            "id": 15,
+            "x": 226.25000000000009,
+            "y": 90.74025,
+            "floor": 3,
+            "mode": "roll",
+            "dir": -1,
+            "jumped": 0,
+            "speed": 51
+          },
+          {
+            "id": 16,
+            "x": 177.19999999999925,
+            "y": 60.229999999999976,
+            "floor": 4,
+            "mode": "roll",
+            "dir": 1,
+            "jumped": 0,
+            "speed": 51
+          },
+          {
+            "id": 17,
+            "x": 76.89999999999992,
+            "y": 57.7225,
+            "floor": 4,
+            "mode": "roll",
+            "dir": 1,
+            "jumped": 0,
+            "speed": 51
+          }
+        ],
+        "fires": []
+      },
+      "scores": [
+        17800
+      ],
+      "runtime": {
+        "state": "win",
+        "score": 17800,
+        "scores": [
+          17800
+        ],
+        "winner": null,
+        "frame": 2636,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "d9bec152",
+      "file": "climber-1p-terminal.png"
+    }
+  ],
+  "final": {
+    "phase": "won",
+    "stage": 4,
+    "stages": 3,
+    "time": 11.866666666666836,
+    "totalTime": 40.033333333332344,
+    "goal": {
+      "x": 226,
+      "floor": 4
+    },
+    "stats": {
+      "spawned": 16,
+      "ladderDrops": 9,
+      "edgeDrops": 15,
+      "jumps": 0,
+      "jumpAwards": 0,
+      "hits": 1,
+      "rescues": 3
+    },
+    "floors": [
+      {
+        "id": 0,
+        "y": 204,
+        "slope": 0.018,
+        "left": 12,
+        "right": 244,
+        "dir": 1
+      },
+      {
+        "id": 1,
+        "y": 168,
+        "slope": -0.032,
+        "left": 12,
+        "right": 244,
+        "dir": -1
+      },
+      {
+        "id": 2,
+        "y": 133,
+        "slope": 0.036,
+        "left": 12,
+        "right": 244,
+        "dir": 1
+      },
+      {
+        "id": 3,
+        "y": 99,
+        "slope": -0.023,
+        "left": 12,
+        "right": 244,
+        "dir": -1
+      },
+      {
+        "id": 4,
+        "y": 65,
+        "slope": 0.025,
+        "left": 12,
+        "right": 244,
+        "dir": 1
+      }
+    ],
+    "ladders": [
+      {
+        "id": 0,
+        "x": 212,
+        "bottom": 0,
+        "top": 1,
+        "main": true,
+        "broken": false
+      },
+      {
+        "id": 1,
+        "x": 83,
+        "bottom": 0,
+        "top": 1,
+        "main": false,
+        "broken": false
+      },
+      {
+        "id": 2,
+        "x": 45,
+        "bottom": 1,
+        "top": 2,
+        "main": true,
+        "broken": false
+      },
+      {
+        "id": 3,
+        "x": 161,
+        "bottom": 1,
+        "top": 2,
+        "main": false,
+        "broken": true
+      },
+      {
+        "id": 4,
+        "x": 193,
+        "bottom": 2,
+        "top": 3,
+        "main": true,
+        "broken": false
+      },
+      {
+        "id": 5,
+        "x": 104,
+        "bottom": 2,
+        "top": 3,
+        "main": false,
+        "broken": false
+      },
+      {
+        "id": 6,
+        "x": 147,
+        "bottom": 3,
+        "top": 4,
+        "main": true,
+        "broken": false
+      },
+      {
+        "id": 7,
+        "x": 64,
+        "bottom": 3,
+        "top": 4,
+        "main": false,
+        "broken": false
+      }
+    ],
+    "people": [
+      {
+        "id": 0,
+        "x": 214.19999999999936,
+        "y": 67.15499999999999,
+        "vy": 0,
+        "floor": 4,
+        "checkpoint": 4,
+        "grounded": true,
+        "ladder": null,
+        "lives": 2,
+        "score": 17800,
+        "dead": 0,
+        "invulnerable": 0,
+        "pose": "walk"
+      }
+    ],
+    "barrels": [
+      {
+        "id": 12,
+        "x": 163.19999999999942,
+        "y": 198.6336,
+        "floor": 0,
+        "mode": "roll",
+        "dir": 1,
+        "jumped": 0,
+        "speed": 51
+      },
+      {
+        "id": 13,
+        "x": 25.6500000000011,
+        "y": 95.35404999999997,
+        "floor": 3,
+        "mode": "roll",
+        "dir": -1,
+        "jumped": 0,
+        "speed": 51
+      },
+      {
+        "id": 14,
+        "x": 239,
+        "y": 132.37379999999996,
+        "floor": 2,
+        "mode": "fall",
+        "dir": 1,
+        "jumped": 0,
+        "speed": 51
+      },
+      {
+        "id": 15,
+        "x": 226.25000000000009,
+        "y": 90.74025,
+        "floor": 3,
+        "mode": "roll",
+        "dir": -1,
+        "jumped": 0,
+        "speed": 51
+      },
+      {
+        "id": 16,
+        "x": 177.19999999999925,
+        "y": 60.229999999999976,
+        "floor": 4,
+        "mode": "roll",
+        "dir": 1,
+        "jumped": 0,
+        "speed": 51
+      },
+      {
+        "id": 17,
+        "x": 76.89999999999992,
+        "y": 57.7225,
+        "floor": 4,
+        "mode": "roll",
+        "dir": 1,
+        "jumped": 0,
+        "speed": 51
+      }
+    ],
+    "fires": []
+  },
+  "initial": {
+    "phase": "playing",
+    "stage": 1,
+    "stages": 3,
+    "time": 0,
+    "totalTime": 0,
+    "goal": {
+      "x": 226,
+      "floor": 4
+    },
+    "stats": {
+      "spawned": 0,
+      "ladderDrops": 0,
+      "edgeDrops": 0,
+      "jumps": 0,
+      "jumpAwards": 0,
+      "hits": 0,
+      "rescues": 0
+    },
+    "floors": [
+      {
+        "id": 0,
+        "y": 202,
+        "slope": 0.025,
+        "left": 12,
+        "right": 244,
+        "dir": 1
+      },
+      {
+        "id": 1,
+        "y": 168,
+        "slope": -0.025,
+        "left": 12,
+        "right": 244,
+        "dir": -1
+      },
+      {
+        "id": 2,
+        "y": 134,
+        "slope": 0.025,
+        "left": 12,
+        "right": 244,
+        "dir": 1
+      },
+      {
+        "id": 3,
+        "y": 100,
+        "slope": -0.025,
+        "left": 12,
+        "right": 244,
+        "dir": -1
+      },
+      {
+        "id": 4,
+        "y": 65,
+        "slope": 0.025,
+        "left": 12,
+        "right": 244,
+        "dir": 1
+      }
+    ],
+    "ladders": [
+      {
+        "id": 0,
+        "x": 204,
+        "bottom": 0,
+        "top": 1,
+        "main": true,
+        "broken": false
+      },
+      {
+        "id": 1,
+        "x": 70,
+        "bottom": 0,
+        "top": 1,
+        "main": false,
+        "broken": false
+      },
+      {
+        "id": 2,
+        "x": 40,
+        "bottom": 1,
+        "top": 2,
+        "main": true,
+        "broken": false
+      },
+      {
+        "id": 3,
+        "x": 171,
+        "bottom": 1,
+        "top": 2,
+        "main": false,
+        "broken": false
+      },
+      {
+        "id": 4,
+        "x": 204,
+        "bottom": 2,
+        "top": 3,
+        "main": true,
+        "broken": false
+      },
+      {
+        "id": 5,
+        "x": 111,
+        "bottom": 2,
+        "top": 3,
+        "main": false,
+        "broken": false
+      },
+      {
+        "id": 6,
+        "x": 151,
+        "bottom": 3,
+        "top": 4,
+        "main": true,
+        "broken": false
+      },
+      {
+        "id": 7,
+        "x": 77,
+        "bottom": 3,
+        "top": 4,
+        "main": false,
+        "broken": false
+      }
+    ],
+    "people": [
+      {
+        "id": 0,
+        "x": 32,
+        "y": 199.6,
+        "vy": 0,
+        "floor": 0,
+        "checkpoint": 0,
+        "grounded": true,
+        "ladder": null,
+        "lives": 3,
+        "score": 0,
+        "dead": 0,
+        "invulnerable": 1,
+        "pose": "idle"
+      }
+    ],
+    "barrels": [],
+    "fires": []
+  },
+  "reset": {
+    "phase": "playing",
+    "stage": 1,
+    "stages": 3,
+    "time": 0,
+    "totalTime": 0,
+    "goal": {
+      "x": 226,
+      "floor": 4
+    },
+    "stats": {
+      "spawned": 0,
+      "ladderDrops": 0,
+      "edgeDrops": 0,
+      "jumps": 0,
+      "jumpAwards": 0,
+      "hits": 0,
+      "rescues": 0
+    },
+    "floors": [
+      {
+        "id": 0,
+        "y": 202,
+        "slope": 0.025,
+        "left": 12,
+        "right": 244,
+        "dir": 1
+      },
+      {
+        "id": 1,
+        "y": 168,
+        "slope": -0.025,
+        "left": 12,
+        "right": 244,
+        "dir": -1
+      },
+      {
+        "id": 2,
+        "y": 134,
+        "slope": 0.025,
+        "left": 12,
+        "right": 244,
+        "dir": 1
+      },
+      {
+        "id": 3,
+        "y": 100,
+        "slope": -0.025,
+        "left": 12,
+        "right": 244,
+        "dir": -1
+      },
+      {
+        "id": 4,
+        "y": 65,
+        "slope": 0.025,
+        "left": 12,
+        "right": 244,
+        "dir": 1
+      }
+    ],
+    "ladders": [
+      {
+        "id": 0,
+        "x": 204,
+        "bottom": 0,
+        "top": 1,
+        "main": true,
+        "broken": false
+      },
+      {
+        "id": 1,
+        "x": 70,
+        "bottom": 0,
+        "top": 1,
+        "main": false,
+        "broken": false
+      },
+      {
+        "id": 2,
+        "x": 40,
+        "bottom": 1,
+        "top": 2,
+        "main": true,
+        "broken": false
+      },
+      {
+        "id": 3,
+        "x": 171,
+        "bottom": 1,
+        "top": 2,
+        "main": false,
+        "broken": false
+      },
+      {
+        "id": 4,
+        "x": 204,
+        "bottom": 2,
+        "top": 3,
+        "main": true,
+        "broken": false
+      },
+      {
+        "id": 5,
+        "x": 111,
+        "bottom": 2,
+        "top": 3,
+        "main": false,
+        "broken": false
+      },
+      {
+        "id": 6,
+        "x": 151,
+        "bottom": 3,
+        "top": 4,
+        "main": true,
+        "broken": false
+      },
+      {
+        "id": 7,
+        "x": 77,
+        "bottom": 3,
+        "top": 4,
+        "main": false,
+        "broken": false
+      }
+    ],
+    "people": [
+      {
+        "id": 0,
+        "x": 32,
+        "y": 199.6,
+        "vy": 0,
+        "floor": 0,
+        "checkpoint": 0,
+        "grounded": true,
+        "ladder": null,
+        "lives": 3,
+        "score": 0,
+        "dead": 0,
+        "invulnerable": 1,
+        "pose": "idle"
+      }
+    ],
+    "barrels": [],
+    "fires": []
+  },
+  "terminal": {
+    "state": "win",
+    "winner": null,
+    "frame": 2635
+  },
+  "failure": null,
+  "invalidScoreTargets": 0,
+  "audio": [
+    "select",
+    "coin",
+    "powerup",
+    "hit"
+  ],
+  "scoreEvents": [
+    {
+      "frame": 0,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 0,
+      "old": 0,
+      "new": 0
+    },
+    {
+      "frame": 193,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 100,
+      "old": 0,
+      "new": 100
+    },
+    {
+      "frame": 382,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 200,
+      "old": 100,
+      "new": 200
+    },
+    {
+      "frame": 703,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 300,
+      "old": 200,
+      "new": 300
+    },
+    {
+      "frame": 811,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 400,
+      "old": 300,
+      "new": 400
+    },
+    {
+      "frame": 884,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 5900,
+      "old": 400,
+      "new": 5900
+    },
+    {
+      "frame": 1137,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 6000,
+      "old": 5900,
+      "new": 6000
+    },
+    {
+      "frame": 1294,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 6100,
+      "old": 6000,
+      "new": 6100
+    },
+    {
+      "frame": 1621,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 6200,
+      "old": 6100,
+      "new": 6200
+    },
+    {
+      "frame": 1704,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 6300,
+      "old": 6200,
+      "new": 6300
+    },
+    {
+      "frame": 1767,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 11800,
+      "old": 6300,
+      "new": 11800
+    },
+    {
+      "frame": 2050,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 11900,
+      "old": 11800,
+      "new": 11900
+    },
+    {
+      "frame": 2244,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 12000,
+      "old": 11900,
+      "new": 12000
+    },
+    {
+      "frame": 2418,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 12100,
+      "old": 12000,
+      "new": 12100
+    },
+    {
+      "frame": 2501,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 12200,
+      "old": 12100,
+      "new": 12200
+    },
+    {
+      "frame": 2557,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 17800,
+      "old": 12200,
+      "new": 17800
+    },
+    {
+      "frame": 2636,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 0,
+      "old": 17800,
+      "new": 0
+    }
+  ],
+  "load": {
+    "ok": true
+  },
+  "errors": []
+}

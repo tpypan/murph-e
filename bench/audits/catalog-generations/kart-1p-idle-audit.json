@@ -1,0 +1,1599 @@
+{
+  "name": "kart-1p-idle-audit",
+  "id": "2026-09-19-211144675-a-kart-racing-game-around-a-coas-XuHLfP",
+  "players": 1,
+  "type": "kart-idle",
+  "spec": {
+    "title": "NIGHT COAST",
+    "oneLiner": "Drift through a moonlit coastal circuit, release turbo boosts, and beat five rivals across three laps.",
+    "genre": "kart racing",
+    "mechanics": [
+      "Race one player kart against five computer rivals on a scrolling pseudo-3D coastal circuit with ordered checkpoints and three laps.",
+      "Use A or UP to accelerate, LEFT/RIGHT to steer, and DOWN to brake; hold B while turning to enter a drift, then release B to cash the stored drift into a short turbo boost.",
+      "Drifting charges only while the kart is turning with B held; release timing determines the turbo burst, rewarding controlled corner exits rather than simply holding boost.",
+      "The first straight teaches steering and includes an early boost strip; the first broad corner gives a safe drift opportunity, while later corners and off-road edges demand braking and line choice.",
+      "Road boost strips provide immediate speed bursts, while leaving the road causes strong slowdown; kart-to-kart collisions cause a brief wobble and positional loss without stopping the race.",
+      "AI rivals follow the same acceleration, lateral movement, collision, and off-road rules, with bounded pace and corner caution that increase modestly across the race.",
+      "Checkpoint gates must be crossed in order on every lap; missed or reverse crossings do not advance progress. Each valid gate awards a small score bonus once per lap and gives a bright gate flash.",
+      "The race uses pressure and recovery phases: an easy opening, alternating straights and corners, a tighter harbor/cliff peak near the final lap, then a final recovery straight toward the finish.",
+      "The first human finisher ends the race after a short finish window; in one-player mode the player wins only by finishing ahead of all rivals. Completing three laps shows position and time results.",
+      "Resetting after a loss or restart clears lap, checkpoint, drift charge, score bonuses, rival positions, and deterministic track state."
+    ],
+    "artDirection": "256x224 pseudo-3D arcade view with large readable karts in the lower-center roadway: the player kart has a bright cyan body, white headlights, and a yellow helmet, while five rivals use distinct red, orange, green, purple, and blue body colors with contrasting helmets. Use a dark navy sky, moonlit ocean, pale surf, black cliffs, warm harbor lights, palms, and reflective road markings; keep the road and active karts high-contrast against the quiet background. Show clear steering, left/right drift, boost flame, and four-frame crash-spin poses using the bundled kart art, with cyan exhaust and gold turbo flashes as event feedback. Track scenery alternates between beach, cliffs, palms, and harbor around one continuous night circuit.",
+    "referenceIntent": {
+      "reference": "",
+      "preserve": [],
+      "change": []
+    },
+    "controls": {
+      "left": "Steer left while racing; also shapes a left drift when B is held.",
+      "right": "Steer right while racing; also shapes a right drift when B is held.",
+      "up": "Accelerate while racing.",
+      "down": "Brake while racing; reduces speed before tight corners.",
+      "a": "Accelerate while racing, as an alternative to UP.",
+      "b": "Hold during a turn to charge and maintain a drift; release during the drift to trigger its turbo."
+    },
+    "palette": "arcade",
+    "lose": "The player loses by running out of the 180-second race timer without finishing, or finishes behind every rival.",
+    "scoring": "Score comes from valid checkpoint crossings, finishing position, and successful drift-release turbos; each checkpoint is awarded once per lap and turbo feedback is shown immediately.",
+    "moderated": false,
+    "note": "",
+    "remix": false,
+    "changes": [],
+    "designCards": [
+      "readability",
+      "scoring",
+      "pacing",
+      "onboarding"
+    ],
+    "players": 1
+  },
+  "sourceHash": "083afb32489ae470c297694558312b9d570af4acbc264d2ba1503ceafe27381e",
+  "inputs": [],
+  "shots": [
+    {
+      "name": "idle",
+      "frame": 1,
+      "state": {
+        "phase": "countdown",
+        "countdown": 2.9833333333333334,
+        "time": 0,
+        "trackLength": 15520,
+        "laps": 3,
+        "timeLimit": 180,
+        "winner": null,
+        "stats": {
+          "collisions": 0,
+          "driftBoosts": 0,
+          "padBoosts": 0,
+          "checkpointPasses": 0
+        },
+        "checkpoints": [
+          3880,
+          7760,
+          11640,
+          15520
+        ],
+        "racers": [
+          {
+            "id": 0,
+            "human": true,
+            "x": -0.28,
+            "speed": 0,
+            "distance": 0,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 1,
+            "human": false,
+            "x": 0.28,
+            "speed": 0,
+            "distance": 0,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 2,
+            "human": false,
+            "x": -0.28,
+            "speed": 0,
+            "distance": -90,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 3,
+            "human": false,
+            "x": 0.28,
+            "speed": 0,
+            "distance": -90,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 4,
+            "human": false,
+            "x": -0.28,
+            "speed": 0,
+            "distance": -180,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 5,
+            "human": false,
+            "x": 0.28,
+            "speed": 0,
+            "distance": -180,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "idle",
+            "curve": 0
+          }
+        ],
+        "positions": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "scores": [
+        0
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 1,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "3a245ae1",
+      "file": "kart-1p-idle-audit-idle.png"
+    },
+    {
+      "name": "rival-score",
+      "frame": 445,
+      "state": {
+        "phase": "racing",
+        "countdown": 0,
+        "time": 4.39999999999999,
+        "trackLength": 15520,
+        "laps": 3,
+        "timeLimit": 180,
+        "winner": null,
+        "stats": {
+          "collisions": 3,
+          "driftBoosts": 0,
+          "padBoosts": 5,
+          "checkpointPasses": 1
+        },
+        "checkpoints": [
+          3880,
+          7760,
+          11640,
+          15520
+        ],
+        "racers": [
+          {
+            "id": 0,
+            "human": true,
+            "x": -0.54,
+            "speed": 0,
+            "distance": 0,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 1,
+            "human": false,
+            "x": -0.1502225452938815,
+            "speed": 1160.5833333333424,
+            "distance": 3888.2013888888982,
+            "lap": 0,
+            "checkpoint": 1,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0.3688046647230321
+          },
+          {
+            "id": 2,
+            "human": false,
+            "x": -0.5477566912936805,
+            "speed": 1077.1020000000085,
+            "distance": 3461.0969555555644,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "steerRight",
+            "curve": 0.46
+          },
+          {
+            "id": 3,
+            "human": false,
+            "x": -0.20956951400621016,
+            "speed": 1005.9100000000061,
+            "distance": 3505.993944444455,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "steerRight",
+            "curve": 0.46
+          },
+          {
+            "id": 4,
+            "human": false,
+            "x": 0.2790631495133595,
+            "speed": 1089.1366666666722,
+            "distance": 2576.5040000000045,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "steerRight",
+            "curve": 0.46
+          },
+          {
+            "id": 5,
+            "human": false,
+            "x": 0.023003912601353586,
+            "speed": 1124.3333333333426,
+            "distance": 3678.104166666677,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0.46
+          }
+        ],
+        "positions": [
+          1,
+          5,
+          3,
+          2,
+          4,
+          0
+        ]
+      },
+      "scores": [
+        50
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 50,
+        "scores": [
+          50
+        ],
+        "winner": null,
+        "frame": 445,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "6c1f38f9",
+      "file": "kart-1p-idle-audit-rival-score.png"
+    },
+    {
+      "name": "rival-finish",
+      "frame": 2675,
+      "state": {
+        "phase": "racing",
+        "countdown": 0,
+        "time": 41.56666666666559,
+        "trackLength": 15520,
+        "laps": 3,
+        "timeLimit": 180,
+        "winner": null,
+        "stats": {
+          "collisions": 3,
+          "driftBoosts": 25,
+          "padBoosts": 25,
+          "checkpointPasses": 54
+        },
+        "checkpoints": [
+          3880,
+          7760,
+          11640,
+          15520
+        ],
+        "racers": [
+          {
+            "id": 0,
+            "human": true,
+            "x": -0.54,
+            "speed": 0,
+            "distance": 0,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 1,
+            "human": false,
+            "x": -0.2676883596156727,
+            "speed": 1162.2500000000034,
+            "distance": 46578.091666667264,
+            "lap": 3,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": 41.56666666666559,
+            "pose": "drive",
+            "curve": 0
+          },
+          {
+            "id": 2,
+            "human": false,
+            "x": -0.2475253816313949,
+            "speed": 1187.5186666668014,
+            "distance": 44882.98517778043,
+            "lap": 2,
+            "checkpoint": 3,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0
+          },
+          {
+            "id": 3,
+            "human": false,
+            "x": 0.27996872697933206,
+            "speed": 1066.7433333334166,
+            "distance": 42400.128111112754,
+            "lap": 2,
+            "checkpoint": 2,
+            "boost": 0.7710028231292518,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": 0
+          },
+          {
+            "id": 4,
+            "human": false,
+            "x": 0.34791578776498877,
+            "speed": 1071.2200000000853,
+            "distance": 42020.8056666684,
+            "lap": 2,
+            "checkpoint": 2,
+            "boost": 1.4224198639455785,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": 0.5093877551020407
+          },
+          {
+            "id": 5,
+            "human": false,
+            "x": -0.11488502758261439,
+            "speed": 1183.000000000001,
+            "distance": 45823.80138888994,
+            "lap": 2,
+            "checkpoint": 3,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0
+          }
+        ],
+        "positions": [
+          1,
+          5,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      "scores": [
+        2700
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 2700,
+        "scores": [
+          2700
+        ],
+        "winner": null,
+        "frame": 2675,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "5fc986c7",
+      "file": "kart-1p-idle-audit-rival-finish.png"
+    },
+    {
+      "name": "terminal",
+      "frame": 10981,
+      "state": {
+        "phase": "finished",
+        "countdown": 0,
+        "time": 180.00000000003539,
+        "trackLength": 15520,
+        "laps": 3,
+        "timeLimit": 180,
+        "winner": null,
+        "stats": {
+          "collisions": 8,
+          "driftBoosts": 26,
+          "padBoosts": 27,
+          "checkpointPasses": 60
+        },
+        "checkpoints": [
+          3880,
+          7760,
+          11640,
+          15520
+        ],
+        "racers": [
+          {
+            "id": 0,
+            "human": true,
+            "x": -0.54,
+            "speed": 0,
+            "distance": 0,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 1,
+            "human": false,
+            "x": 0.020058781213569174,
+            "speed": 0,
+            "distance": 47115.341666667264,
+            "lap": 3,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": 41.56666666666559,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 2,
+            "human": false,
+            "x": 0.398073887956754,
+            "speed": 0,
+            "distance": 46983.29415778072,
+            "lap": 3,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": 43.066666666665505,
+            "pose": "steerLeft",
+            "curve": 0
+          },
+          {
+            "id": 3,
+            "human": false,
+            "x": -0.04314039523796099,
+            "speed": 0,
+            "distance": 46925.059677779835,
+            "lap": 3,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": 45.43333333333204,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 4,
+            "human": false,
+            "x": -0.15997699380913202,
+            "speed": 0,
+            "distance": 46970.25588444668,
+            "lap": 3,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": 45.68333333333202,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 5,
+            "human": false,
+            "x": -0.499319178214855,
+            "speed": 0,
+            "distance": 47042.13716666772,
+            "lap": 3,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": 42.21666666666555,
+            "pose": "steerRight",
+            "curve": 0
+          }
+        ],
+        "positions": [
+          1,
+          5,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      "scores": [
+        3000
+      ],
+      "runtime": {
+        "state": "gameover",
+        "score": 3000,
+        "scores": [
+          3000
+        ],
+        "winner": null,
+        "frame": 10981,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "6f8c3bb2",
+      "file": "kart-1p-idle-audit-terminal.png"
+    }
+  ],
+  "final": {
+    "phase": "finished",
+    "countdown": 0,
+    "time": 180.00000000003539,
+    "trackLength": 15520,
+    "laps": 3,
+    "timeLimit": 180,
+    "winner": null,
+    "stats": {
+      "collisions": 8,
+      "driftBoosts": 26,
+      "padBoosts": 27,
+      "checkpointPasses": 60
+    },
+    "checkpoints": [
+      3880,
+      7760,
+      11640,
+      15520
+    ],
+    "racers": [
+      {
+        "id": 0,
+        "human": true,
+        "x": -0.54,
+        "speed": 0,
+        "distance": 0,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 1,
+        "human": false,
+        "x": 0.020058781213569174,
+        "speed": 0,
+        "distance": 47115.341666667264,
+        "lap": 3,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": 41.56666666666559,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 2,
+        "human": false,
+        "x": 0.398073887956754,
+        "speed": 0,
+        "distance": 46983.29415778072,
+        "lap": 3,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": 43.066666666665505,
+        "pose": "steerLeft",
+        "curve": 0
+      },
+      {
+        "id": 3,
+        "human": false,
+        "x": -0.04314039523796099,
+        "speed": 0,
+        "distance": 46925.059677779835,
+        "lap": 3,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": 45.43333333333204,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 4,
+        "human": false,
+        "x": -0.15997699380913202,
+        "speed": 0,
+        "distance": 46970.25588444668,
+        "lap": 3,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": 45.68333333333202,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 5,
+        "human": false,
+        "x": -0.499319178214855,
+        "speed": 0,
+        "distance": 47042.13716666772,
+        "lap": 3,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": 42.21666666666555,
+        "pose": "steerRight",
+        "curve": 0
+      }
+    ],
+    "positions": [
+      1,
+      5,
+      2,
+      3,
+      4,
+      0
+    ]
+  },
+  "initial": {
+    "phase": "countdown",
+    "countdown": 3,
+    "time": 0,
+    "trackLength": 15520,
+    "laps": 3,
+    "timeLimit": 180,
+    "winner": null,
+    "stats": {
+      "collisions": 0,
+      "driftBoosts": 0,
+      "padBoosts": 0,
+      "checkpointPasses": 0
+    },
+    "checkpoints": [
+      3880,
+      7760,
+      11640,
+      15520
+    ],
+    "racers": [
+      {
+        "id": 0,
+        "human": true,
+        "x": -0.28,
+        "speed": 0,
+        "distance": 0,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 1,
+        "human": false,
+        "x": 0.28,
+        "speed": 0,
+        "distance": 0,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 2,
+        "human": false,
+        "x": -0.28,
+        "speed": 0,
+        "distance": -90,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 3,
+        "human": false,
+        "x": 0.28,
+        "speed": 0,
+        "distance": -90,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 4,
+        "human": false,
+        "x": -0.28,
+        "speed": 0,
+        "distance": -180,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 5,
+        "human": false,
+        "x": 0.28,
+        "speed": 0,
+        "distance": -180,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      }
+    ],
+    "positions": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "reset": {
+    "phase": "countdown",
+    "countdown": 3,
+    "time": 0,
+    "trackLength": 15520,
+    "laps": 3,
+    "timeLimit": 180,
+    "winner": null,
+    "stats": {
+      "collisions": 0,
+      "driftBoosts": 0,
+      "padBoosts": 0,
+      "checkpointPasses": 0
+    },
+    "checkpoints": [
+      3880,
+      7760,
+      11640,
+      15520
+    ],
+    "racers": [
+      {
+        "id": 0,
+        "human": true,
+        "x": -0.28,
+        "speed": 0,
+        "distance": 0,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 1,
+        "human": false,
+        "x": 0.28,
+        "speed": 0,
+        "distance": 0,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 2,
+        "human": false,
+        "x": -0.28,
+        "speed": 0,
+        "distance": -90,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 3,
+        "human": false,
+        "x": 0.28,
+        "speed": 0,
+        "distance": -90,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 4,
+        "human": false,
+        "x": -0.28,
+        "speed": 0,
+        "distance": -180,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 5,
+        "human": false,
+        "x": 0.28,
+        "speed": 0,
+        "distance": -180,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      }
+    ],
+    "positions": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "terminal": {
+    "state": "gameover",
+    "frame": 10980
+  },
+  "failure": null,
+  "invalidScoreTargets": 60,
+  "audio": [
+    "hit",
+    "coin",
+    "powerup"
+  ],
+  "scoreEvents": [
+    {
+      "frame": 0,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 0,
+      "old": 0,
+      "new": 0
+    },
+    {
+      "frame": 444,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 0,
+      "new": 50
+    },
+    {
+      "frame": 455,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 50,
+      "new": 100
+    },
+    {
+      "frame": 466,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 100,
+      "new": 150
+    },
+    {
+      "frame": 467,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 150,
+      "new": 200
+    },
+    {
+      "frame": 520,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 200,
+      "new": 250
+    },
+    {
+      "frame": 649,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 250,
+      "new": 300
+    },
+    {
+      "frame": 664,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 300,
+      "new": 350
+    },
+    {
+      "frame": 680,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 350,
+      "new": 400
+    },
+    {
+      "frame": 694,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 400,
+      "new": 450
+    },
+    {
+      "frame": 742,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 450,
+      "new": 500
+    },
+    {
+      "frame": 855,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 500,
+      "new": 550
+    },
+    {
+      "frame": 875,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 550,
+      "new": 600
+    },
+    {
+      "frame": 888,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 600,
+      "new": 650
+    },
+    {
+      "frame": 919,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 650,
+      "new": 700
+    },
+    {
+      "frame": 962,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 700,
+      "new": 750
+    },
+    {
+      "frame": 1052,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 750,
+      "new": 800
+    },
+    {
+      "frame": 1074,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 800,
+      "new": 850
+    },
+    {
+      "frame": 1090,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 850,
+      "new": 900
+    },
+    {
+      "frame": 1139,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 900,
+      "new": 950
+    },
+    {
+      "frame": 1175,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 950,
+      "new": 1000
+    },
+    {
+      "frame": 1252,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 1000,
+      "new": 1050
+    },
+    {
+      "frame": 1276,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 1050,
+      "new": 1100
+    },
+    {
+      "frame": 1297,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 1100,
+      "new": 1150
+    },
+    {
+      "frame": 1359,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 1150,
+      "new": 1200
+    },
+    {
+      "frame": 1391,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 1200,
+      "new": 1250
+    },
+    {
+      "frame": 1457,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 1250,
+      "new": 1300
+    },
+    {
+      "frame": 1482,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 1300,
+      "new": 1350
+    },
+    {
+      "frame": 1511,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 1350,
+      "new": 1400
+    },
+    {
+      "frame": 1585,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 1400,
+      "new": 1450
+    },
+    {
+      "frame": 1615,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 1450,
+      "new": 1500
+    },
+    {
+      "frame": 1660,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 1500,
+      "new": 1550
+    },
+    {
+      "frame": 1689,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 1550,
+      "new": 1600
+    },
+    {
+      "frame": 1727,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 1600,
+      "new": 1650
+    },
+    {
+      "frame": 1808,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 1650,
+      "new": 1700
+    },
+    {
+      "frame": 1840,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 1700,
+      "new": 1750
+    },
+    {
+      "frame": 1861,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 1750,
+      "new": 1800
+    },
+    {
+      "frame": 1891,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 1800,
+      "new": 1850
+    },
+    {
+      "frame": 1931,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 1850,
+      "new": 1900
+    },
+    {
+      "frame": 2024,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 1900,
+      "new": 1950
+    },
+    {
+      "frame": 2053,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 1950,
+      "new": 2000
+    },
+    {
+      "frame": 2061,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 2000,
+      "new": 2050
+    },
+    {
+      "frame": 2094,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 2050,
+      "new": 2100
+    },
+    {
+      "frame": 2138,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 2100,
+      "new": 2150
+    },
+    {
+      "frame": 2244,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 2150,
+      "new": 2200
+    },
+    {
+      "frame": 2267,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 2200,
+      "new": 2250
+    },
+    {
+      "frame": 2269,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 2250,
+      "new": 2300
+    },
+    {
+      "frame": 2303,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 2300,
+      "new": 2350
+    },
+    {
+      "frame": 2350,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 2350,
+      "new": 2400
+    },
+    {
+      "frame": 2470,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 2400,
+      "new": 2450
+    },
+    {
+      "frame": 2476,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 2450,
+      "new": 2500
+    },
+    {
+      "frame": 2488,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 2500,
+      "new": 2550
+    },
+    {
+      "frame": 2513,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 2550,
+      "new": 2600
+    },
+    {
+      "frame": 2561,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 2600,
+      "new": 2650
+    },
+    {
+      "frame": 2674,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 2650,
+      "new": 2700
+    },
+    {
+      "frame": 2691,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 2700,
+      "new": 2750
+    },
+    {
+      "frame": 2711,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 2750,
+      "new": 2800
+    },
+    {
+      "frame": 2713,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 2800,
+      "new": 2850
+    },
+    {
+      "frame": 2764,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 2850,
+      "new": 2900
+    },
+    {
+      "frame": 2906,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 2900,
+      "new": 2950
+    },
+    {
+      "frame": 2921,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 2950,
+      "new": 3000
+    },
+    {
+      "frame": 10981,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 0,
+      "old": 3000,
+      "new": 0
+    }
+  ],
+  "load": {
+    "ok": true
+  },
+  "errors": []
+}

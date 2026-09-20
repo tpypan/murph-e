@@ -1,0 +1,350 @@
+{
+  "passed": true,
+  "fixtureCodeHash": "e74dcdaaf694f8bb6219ea2fa727368eeb1246c1513244f81c2e40a212b01e89",
+  "results": [
+    {
+      "width": 640,
+      "screen": {
+        "x": 0,
+        "y": 0,
+        "width": 639.984375,
+        "height": 479.984375,
+        "top": 0,
+        "right": 639.984375,
+        "bottom": 479.984375,
+        "left": 0
+      },
+      "game": {
+        "x": 51.1875,
+        "y": 76.796875,
+        "width": 537.578125,
+        "height": 264.140625,
+        "top": 76.796875,
+        "right": 588.765625,
+        "bottom": 340.9375,
+        "left": 51.1875
+      },
+      "legend": {
+        "x": 51.1875,
+        "y": 353.75,
+        "width": 537.609375,
+        "height": 87.84375,
+        "top": 353.75,
+        "right": 588.796875,
+        "bottom": 441.59375,
+        "left": 51.1875
+      },
+      "rows": [
+        {
+          "text": "L / RCHOOSE / MOVE /…",
+          "box": {
+            "x": 51.1875,
+            "y": 353.75,
+            "width": 102.40625,
+            "height": 68.15625,
+            "top": 353.75,
+            "right": 153.59375,
+            "bottom": 421.90625,
+            "left": 51.1875
+          },
+          "overflow": false
+        },
+        {
+          "text": "upJUMP",
+          "box": {
+            "x": 159.984375,
+            "y": 353.75,
+            "width": 102.40625,
+            "height": 68.15625,
+            "top": 353.75,
+            "right": 262.390625,
+            "bottom": 421.90625,
+            "left": 159.984375
+          },
+          "overflow": false
+        },
+        {
+          "text": "downCROUCH / MODIFY…",
+          "box": {
+            "x": 268.78125,
+            "y": 353.75,
+            "width": 102.40625,
+            "height": 68.15625,
+            "top": 353.75,
+            "right": 371.1875,
+            "bottom": 421.90625,
+            "left": 268.78125
+          },
+          "overflow": false
+        },
+        {
+          "text": "A / ZLOCK / PUNCHDOWN+A: SWEEP",
+          "box": {
+            "x": 377.578125,
+            "y": 353.75,
+            "width": 102.40625,
+            "height": 68.15625,
+            "top": 353.75,
+            "right": 479.984375,
+            "bottom": 421.90625,
+            "left": 377.578125
+          },
+          "overflow": false
+        },
+        {
+          "text": "B / XUNLOCK / KICKDOWN+B: SPECIAL",
+          "box": {
+            "x": 486.375,
+            "y": 353.75,
+            "width": 102.421875,
+            "height": 68.15625,
+            "top": 353.75,
+            "right": 588.796875,
+            "bottom": 421.90625,
+            "left": 486.375
+          },
+          "overflow": false
+        }
+      ],
+      "canvas": {
+        "x": 169.328125,
+        "y": 76.796875,
+        "width": 301.703125,
+        "height": 264
+      },
+      "nativeScale": 1.17852783203125
+    },
+    {
+      "width": 320,
+      "screen": {
+        "x": 0,
+        "y": 0,
+        "width": 319.984375,
+        "height": 239.984375,
+        "top": 0,
+        "right": 319.984375,
+        "bottom": 239.984375,
+        "left": 0
+      },
+      "game": {
+        "x": 25.59375,
+        "y": 38.390625,
+        "width": 268.78125,
+        "height": 132.03125,
+        "top": 38.390625,
+        "right": 294.375,
+        "bottom": 170.421875,
+        "left": 25.59375
+      },
+      "legend": {
+        "x": 25.59375,
+        "y": 176.84375,
+        "width": 268.796875,
+        "height": 43.953125,
+        "top": 176.84375,
+        "right": 294.390625,
+        "bottom": 220.796875,
+        "left": 25.59375
+      },
+      "rows": [
+        {
+          "text": "L / RCHOOSE / MOVE /…",
+          "box": {
+            "x": 25.59375,
+            "y": 176.84375,
+            "width": 51.203125,
+            "height": 34.109375,
+            "top": 176.84375,
+            "right": 76.796875,
+            "bottom": 210.953125,
+            "left": 25.59375
+          },
+          "overflow": false
+        },
+        {
+          "text": "upJUMP",
+          "box": {
+            "x": 79.984375,
+            "y": 176.84375,
+            "width": 51.203125,
+            "height": 34.109375,
+            "top": 176.84375,
+            "right": 131.1875,
+            "bottom": 210.953125,
+            "left": 79.984375
+          },
+          "overflow": false
+        },
+        {
+          "text": "downCROUCH / MODIFY…",
+          "box": {
+            "x": 134.375,
+            "y": 176.84375,
+            "width": 51.21875,
+            "height": 34.109375,
+            "top": 176.84375,
+            "right": 185.59375,
+            "bottom": 210.953125,
+            "left": 134.375
+          },
+          "overflow": false
+        },
+        {
+          "text": "A / ZLOCK / PUNCHDOWN+A: SWEEP",
+          "box": {
+            "x": 188.78125,
+            "y": 176.84375,
+            "width": 51.203125,
+            "height": 34.109375,
+            "top": 176.84375,
+            "right": 239.984375,
+            "bottom": 210.953125,
+            "left": 188.78125
+          },
+          "overflow": false
+        },
+        {
+          "text": "B / XUNLOCK / KICKDOWN+B: SPECIAL",
+          "box": {
+            "x": 243.171875,
+            "y": 176.84375,
+            "width": 51.203125,
+            "height": 34.109375,
+            "top": 176.84375,
+            "right": 294.375,
+            "bottom": 210.953125,
+            "left": 243.171875
+          },
+          "overflow": false
+        }
+      ],
+      "canvas": {
+        "x": 84.671875,
+        "y": 38.390625,
+        "width": 150.84375,
+        "height": 132
+      },
+      "nativeScale": 0.5892333984375
+    },
+    {
+      "width": 1280,
+      "screen": {
+        "x": 160,
+        "y": 0,
+        "width": 959.984375,
+        "height": 719.984375,
+        "top": 0,
+        "right": 1119.984375,
+        "bottom": 719.984375,
+        "left": 160
+      },
+      "game": {
+        "x": 236.796875,
+        "y": 115.1875,
+        "width": 806.375,
+        "height": 396.171875,
+        "top": 115.1875,
+        "right": 1043.171875,
+        "bottom": 511.359375,
+        "left": 236.796875
+      },
+      "legend": {
+        "x": 236.796875,
+        "y": 530.578125,
+        "width": 806.390625,
+        "height": 131.8125,
+        "top": 530.578125,
+        "right": 1043.1875,
+        "bottom": 662.390625,
+        "left": 236.796875
+      },
+      "rows": [
+        {
+          "text": "L / RCHOOSE / MOVE /…",
+          "box": {
+            "x": 236.796875,
+            "y": 530.578125,
+            "width": 153.59375,
+            "height": 102.265625,
+            "top": 530.578125,
+            "right": 390.390625,
+            "bottom": 632.84375,
+            "left": 236.796875
+          },
+          "overflow": false
+        },
+        {
+          "text": "upJUMP",
+          "box": {
+            "x": 399.984375,
+            "y": 530.578125,
+            "width": 153.609375,
+            "height": 102.265625,
+            "top": 530.578125,
+            "right": 553.59375,
+            "bottom": 632.84375,
+            "left": 399.984375
+          },
+          "overflow": false
+        },
+        {
+          "text": "downCROUCH / MODIFY…",
+          "box": {
+            "x": 563.1875,
+            "y": 530.578125,
+            "width": 153.59375,
+            "height": 102.265625,
+            "top": 530.578125,
+            "right": 716.78125,
+            "bottom": 632.84375,
+            "left": 563.1875
+          },
+          "overflow": false
+        },
+        {
+          "text": "A / ZLOCK / PUNCHDOWN+A: SWEEP",
+          "box": {
+            "x": 726.375,
+            "y": 530.578125,
+            "width": 153.609375,
+            "height": 102.265625,
+            "top": 530.578125,
+            "right": 879.984375,
+            "bottom": 632.84375,
+            "left": 726.375
+          },
+          "overflow": false
+        },
+        {
+          "text": "B / XUNLOCK / KICKDOWN+B: SPECIAL",
+          "box": {
+            "x": 889.578125,
+            "y": 530.578125,
+            "width": 153.59375,
+            "height": 102.265625,
+            "top": 530.578125,
+            "right": 1043.171875,
+            "bottom": 632.84375,
+            "left": 889.578125
+          },
+          "overflow": false
+        }
+      ],
+      "canvas": {
+        "x": 413.515625,
+        "y": 115.1875,
+        "width": 452.5625,
+        "height": 396
+      },
+      "nativeScale": 1.767822265625
+    }
+  ],
+  "errors": [],
+  "blocked": {
+    "generation": 0,
+    "speech": 0,
+    "external": 0,
+    "score": 0
+  },
+  "limitation": "320x240 cannot fit 224 native game rows, the existing 8% safe margin, and a persistent legend; do not claim native legibility."
+}

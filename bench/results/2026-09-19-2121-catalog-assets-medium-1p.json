@@ -1,0 +1,26 @@
+{
+  "model": "gpt-6-astra",
+  "effort": "medium",
+  "players": 1,
+  "n": 1,
+  "rows": [
+    {
+      "prompt": "A top-down blue ninja in a moonlit bamboo garden collecting golden scrolls and dodging patrolling beetles. Smooth four-direction walking, a short dash, three lives, and win when I collect ten scrolls.",
+      "title": "",
+      "genre": "",
+      "runId": "",
+      "specMs": 0,
+      "buildMs": 0,
+      "ttftMs": null,
+      "totalMs": 0,
+      "tokens": 0,
+      "reasoning": 0,
+      "cached": 0,
+      "lines": 0,
+      "syntaxError": null,
+      "probeOk": null,
+      "observations": [],
+      "error": "manifest is not defined"
+    }
+  ]
+}

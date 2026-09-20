@@ -1,5 +1,5 @@
-import { appendFileSync, mkdirSync, writeFileSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { appendFileSync, mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
+import { basename, resolve } from 'node:path'
 import { ROOT } from './env.ts'
 
 export interface Run {
@@ -22,10 +22,12 @@ export function slugify(s: string): string {
 
 /** runs/<timestamp>-<slug>/ with transcript.txt and an events.jsonl log. */
 export function createRun(transcript: string, root = resolve(ROOT, 'runs')): Run {
-  const stamp = new Date().toISOString().replace(/[:.]/g, '').replace('T', '-').slice(0, 15)
-  const id = `${stamp}-${slugify(transcript)}`
-  const dir = resolve(root, id)
-  mkdirSync(dir, { recursive: true })
+  const stamp = new Date().toISOString().replace(/[:.]/g, '').replace('T', '-').replace('Z', '')
+  mkdirSync(root, { recursive: true })
+  // Atomic uniqueness: simultaneous 1P/2P or repeated prompts must never overwrite
+  // each other's specification, code, evidence or catalog provenance.
+  const dir = mkdtempSync(resolve(root, `${stamp}-${slugify(transcript)}-`))
+  const id = basename(dir)
   const t0 = performance.now()
   const run: Run = {
     id,

@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "id": "speed-platformer",
+  "version": "1.0.0",
+  "title": "Azure Dash",
+  "description": "Original two-act momentum platformer with slope acceleration, variable jumps, rolling and charged dashes, a physical momentum loop, rings, springs, enemies, checkpoints and independent split-screen racing.",
+  "tags": [
+    "speed platformer",
+    "momentum",
+    "sonic style",
+    "rings",
+    "slopes",
+    "race"
+  ],
+  "match": {
+    "phrases": [
+      "sonic style",
+      "momentum platformer",
+      "speed platformer"
+    ],
+    "genres": [
+      "speed platformer",
+      "platformer"
+    ]
+  },
+  "supportsPlayers": [
+    1,
+    2
+  ],
+  "module": "module.js",
+  "entry": "speedPlatformer",
+  "apiVersion": 1,
+  "license": {
+    "spdx": "LicenseRef-Project-Original",
+    "notes": "Original authored code, level layouts and Azure Hare pixel art. No copied commercial game art or code."
+  },
+  "provenance": {
+    "kind": "original",
+    "authors": [
+      "Arcade project"
+    ],
+    "sources": [],
+    "createdAt": "2026-09-19"
+  },
+  "quality": {
+    "status": "draft"
+  },
+  "assets": [
+    "assets.json"
+  ],
+  "files": [
+    "core.js",
+    "demo.js",
+    "spec.json",
+    "test.mjs",
+    "harness.mjs",
+    "build.mjs",
+    "screenshots.mjs",
+    "verify.mjs",
+    "scenery.mjs"
+  ],
+  "api": "api.md",
+  "demo": "demo.js",
+  "spec": "spec.json"
+}

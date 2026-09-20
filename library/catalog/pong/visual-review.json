@@ -1,0 +1,35 @@
+{
+  "at": "2026-09-19",
+  "method": "Native runtime frames opened with view_image; full-round output validated by screenshots.mjs.",
+  "passed": true,
+  "checks": [
+    "HUD and game field do not overlap.",
+    "Both player paddles remain distinct and readable.",
+    "Ball contrast and motion trails remain visible at native resolution.",
+    "Serve instructions and terminal overlay are readable.",
+    "No image filtering, placeholder asset URLs or clipped default control legends."
+  ],
+  "inspected": [
+    {
+      "file": "screenshots/1p-rally.png",
+      "sha256": "d03ceb5eeab00a707cb7d6a71d0bb6d0041326dc19e09a5910bccbf37a36c3cc"
+    },
+    {
+      "file": "screenshots/2p-serve.png",
+      "sha256": "0cddd43400574a09f3891d8bfbe47fe9c2f55d375825fb1455c5f85601487874"
+    },
+    {
+      "file": "screenshots/2p-rally.png",
+      "sha256": "227565ad672638ffe31ee5373315dc687974ceb715b3dda243dd7b0af09dcc89"
+    },
+    {
+      "file": "screenshots/1p-match-end.png",
+      "sha256": "22d8a69744bcb0222fa57999c9edf93dd20d1039320fc6925da0af93f6049d14"
+    }
+  ],
+  "limitations": [
+    "Paddle-game primitives are intentionally geometric; these packs do not solve humanoid fighter art or unrelated genres.",
+    "Visual inspection used the native 256\u00d7224 framebuffer, not a physical CRT or cabinet controls.",
+    "Generic B-only probes report no visual change because B is a movement modifier; behavioral tests verify its slower motion. P2 A has no serve effect until P2 owns the serve, and its power-return role is verified in a complete P2-winning match."
+  ]
+}

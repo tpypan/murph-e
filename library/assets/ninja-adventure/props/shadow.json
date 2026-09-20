@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "shadow",
+  "packId": "ninja-adventure",
+  "camera": "top-down",
+  "width": 12,
+  "height": 8,
+  "source": {
+    "path": "original/content/character/Shadow.png",
+    "url": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/character/Shadow.png",
+    "sha256": "b0ba84bf6132d1f2b361fb87a62a8362f9e04639f7a649431c6b297ceec46ec2",
+    "sourceRevision": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a"
+  },
+  "pixels": [
+    "............",
+    "....0000....",
+    ".0000000000.",
+    "000000000000",
+    "000000000000",
+    "000000000000",
+    ".0000000000.",
+    "....0000...."
+  ],
+  "anchor": {
+    "x": 6,
+    "y": 8
+  },
+  "normalization": {
+    "palette": "pico-8",
+    "reviewedOverrides": {}
+  },
+  "anchorOrigin": "Authored bottom-center placement; source attachment pivots have not been reconstructed.",
+  "hitboxes": [],
+  "hurtboxes": [],
+  "animations": {},
+  "tags": [
+    "prop",
+    "static"
+  ],
+  "notes": "Static source image only. No implied attack animation, damage volume or destruction sequence."
+}

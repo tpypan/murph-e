@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "id": "asteroids",
+  "version": "1.0.0",
+  "title": "VECTOR DRIFT",
+  "description": "Original inertial wraparound space shooter with rotating thrust-driven ships, three rock split sizes, bounded projectiles, warned saucers, hyperspace and cooperative sector clears.",
+  "tags": [
+    "asteroids",
+    "inertia",
+    "thrust",
+    "rocks",
+    "wraparound",
+    "vector",
+    "cooperative"
+  ],
+  "match": {
+    "phrases": [
+      "asteroids",
+      "space rocks",
+      "inertial space shooter",
+      "vector space shooter"
+    ],
+    "genres": [
+      "asteroids",
+      "inertial shooter",
+      "wraparound shooter"
+    ]
+  },
+  "supportsPlayers": [
+    1,
+    2
+  ],
+  "module": "module.js",
+  "entry": "asteroids",
+  "apiVersion": 1,
+  "license": {
+    "spdx": "LicenseRef-Project-Original",
+    "notes": "Original authored implementation and artwork; no commercial sprites, ROM data or source copied."
+  },
+  "provenance": {
+    "kind": "original",
+    "authors": [
+      "Arcade project"
+    ],
+    "sources": [],
+    "createdAt": "2026-09-19"
+  },
+  "quality": {
+    "status": "draft"
+  },
+  "assets": [
+    "assets.json"
+  ],
+  "files": [
+    "module.base.js",
+    "build.mjs",
+    "create-assets.mjs",
+    "demo.js",
+    "spec.json"
+  ],
+  "api": "api.md",
+  "demo": "demo.js",
+  "spec": "spec.json"
+}

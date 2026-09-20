@@ -1,0 +1,5783 @@
+{
+  "name": "pong-1p",
+  "id": "2026-09-19-212228482-classic-pong-with-satisfying-spi-ViM0GJ",
+  "players": 1,
+  "type": "pong",
+  "spec": {
+    "title": "SPIN PONG",
+    "oneLiner": "Bend every return, charge the perfect shot, and reach seven points first.",
+    "genre": "competitive paddle sports",
+    "mechanics": [
+      "Use ARCADE.pong with winScore 7 and one-player CPU play; the player controls the left paddle and the CPU controls the right paddle.",
+      "UP/DOWN move the paddle; LEFT/RIGHT are movement aliases. Hold B for slower precision movement when lining up a contact.",
+      "Press A during the serve pause to launch the ball. During an active rally, holding A charges the next paddle return, reducing movement speed while held; release or contact converts it into a charged return.",
+      "Paddle contact position controls rebound angle, while paddle velocity adds decaying spin, making a moving edge hit the primary skillful action.",
+      "Normal returns gain 7 velocity; charged returns gain 25 velocity, with total ball speed capped at 255. Each paddle contact affects the ball once and uses swept collision substeps.",
+      "The ball bounces from the top and bottom court boundaries. Missing the ball awards one point to the opponent, resets to a readable serve pause, and flashes the scoring side.",
+      "The CPU serves automatically after its pause and uses finite reaction speed, observation delay, and aim error; begin at moderate difficulty so early rallies teach placement and charging.",
+      "Award 100 points per point, with no farming from repeated contacts. Display a bright charge/impact effect and a short camera-free court flash for charged hits.",
+      "At seven points, end the match and call the runtime win/game-over result; reset all points, ball state, charge state, and presentation effects on a new init."
+    ],
+    "artDirection": "256x224 arcade court with a dark navy background, crisp cyan center line, bright white ball, and contrasting player-blue and CPU-orange paddles. Use the foundation's readable paddle and impact frames; show a subtle trailing arc and two-stage charge glow around the ball only during a charged return. Keep the ball and paddle silhouettes high contrast, with compact score markers in the runtime HUD and a brief full-court flash on a scored point. Reserve the playfield below the top 12-pixel HUD and never obscure the ball path.",
+    "referenceIntent": {
+      "reference": "Classic Pong",
+      "preserve": [
+        "Two opposing paddles and one ball in a bounded court",
+        "Placement-driven rebounds and wall bounces",
+        "Points awarded when the opponent misses",
+        "First player to seven points"
+      ],
+      "change": [
+        "Add satisfying spin from paddle movement and contact position",
+        "Add charged returns using the A button"
+      ]
+    },
+    "controls": {
+      "left": "Move the paddle left/right as aliases for vertical movement; eligible during serve pause and rallies.",
+      "right": "Move the paddle left/right as aliases for vertical movement; eligible during serve pause and rallies.",
+      "up": "Move the player's paddle upward during serve pause and rallies.",
+      "down": "Move the player's paddle downward during serve pause and rallies.",
+      "a": "Press during the serve pause to serve; hold during a rally to charge the next return, with reduced paddle movement while held.",
+      "b": "Hold for precision paddle movement during serve pause or rallies."
+    },
+    "palette": "arcade",
+    "lose": "The player loses the match when the CPU reaches seven points first, or when the time limit expires with the CPU ahead.",
+    "scoring": "Score 100 points whenever the player wins a rally point; first to seven points wins.",
+    "moderated": false,
+    "note": "",
+    "remix": false,
+    "changes": [],
+    "designCards": [
+      "ball-paddle",
+      "scoring",
+      "readability",
+      "onboarding"
+    ],
+    "players": 1
+  },
+  "sourceHash": "f21b7503635221724bdd6a3b1cd33018ce6ee6f3bce7b80395258f7f458860d3",
+  "inputs": [
+    {
+      "at": 0,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 12,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 13,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 24,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 25,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 36,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 37,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 52,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 53,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 60,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 61,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 67,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 68,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 74,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 75,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 82,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 83,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 89,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 90,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 96,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 97,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 104,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 105,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 111,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 112,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 119,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 120,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 126,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 127,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 133,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 134,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 141,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 142,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 148,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 149,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 156,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 157,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 158,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 178,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 180,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 181,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 216,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 314,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 314,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 316,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 319,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 320,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 325,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 326,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 330,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 331,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 335,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 336,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 340,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 341,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 345,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 346,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 350,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 351,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 355,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 356,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 360,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 361,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 365,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 366,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 370,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 371,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 375,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 376,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 381,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 382,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 386,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 387,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 391,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 392,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 396,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 397,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 401,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 402,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 406,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 429,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 450,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 523,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 523,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 526,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 529,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 530,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 532,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 533,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 535,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 560,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 563,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 564,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 566,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 567,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 570,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 571,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 573,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 574,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 576,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 577,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 579,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 580,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 583,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 584,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 586,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 587,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 589,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 590,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 592,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 593,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 596,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 597,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 599,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 600,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 602,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 603,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 605,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 606,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 608,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 612,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 613,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 614,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 618,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 620,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 621,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 623,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 624,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 624,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 625,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 626,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 636,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 637,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 647,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 653,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 687,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 757,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 757,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 759,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 763,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 764,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 768,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 769,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 773,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 774,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 779,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 780,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 784,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 785,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 790,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 791,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 795,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 796,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 800,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 801,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 806,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 807,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 811,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 812,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 817,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 818,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 822,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 823,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 828,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 829,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 833,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 834,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 838,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 839,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 844,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 845,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 849,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 850,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 853,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 864,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 886,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 942,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 942,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 944,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 945,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 946,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 949,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 950,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 953,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 954,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 957,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 958,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 961,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 962,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 964,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 965,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 968,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 969,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 972,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 973,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 976,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 977,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 980,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 981,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 984,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 985,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 987,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 988,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 991,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 992,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 995,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 996,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 999,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1022,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1022,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1050,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1055,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1109,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1109,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1111,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1113,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1114,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1115,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1143,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1147,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1148,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1150,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1151,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1154,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1155,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1158,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1159,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1161,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1162,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1165,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1166,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1169,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1170,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1172,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1173,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1176,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1177,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1180,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1181,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1181,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1184,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1185,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1187,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1188,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1189,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1191,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1193,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1194,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1196,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1197,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1198,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1200,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1201,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1212,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1213,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1220,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1227,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1260,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1330,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1330,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1333,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1335,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1336,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1339,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1340,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1343,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1344,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1347,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1348,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1351,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1352,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1355,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1356,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1359,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1360,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1363,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1364,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1367,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1368,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1370,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1371,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1374,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1375,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1378,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1379,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1382,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1383,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1386,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1387,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1390,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1391,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1394,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1395,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1398,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1399,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1402,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1403,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1405,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1406,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1409,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1410,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1413,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1414,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1416,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1440,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1440,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1441,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1443,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1445,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1446,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1448,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1449,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1451,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1452,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1452,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1453,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1455,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1456,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1458,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1459,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1461,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1462,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1464,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1464,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1465,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1476,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1477,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1519,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1589,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1589,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1591,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1592,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1593,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1596,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1597,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1601,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1602,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1605,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1606,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1610,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1611,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1614,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1615,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1618,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1619,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1623,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1624,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1627,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1628,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1632,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1633,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1636,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1637,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1640,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1641,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1645,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1646,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1649,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1650,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1654,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1687,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1688,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1712,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1733,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1809,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1809,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1812,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1814,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1815,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1817,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1818,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1820,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1821,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1824,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1825,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1826,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1850,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1853,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1854,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1856,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1857,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1859,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1860,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1863,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1864,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1866,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1867,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1869,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1870,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1872,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1873,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1875,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1876,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1879,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1880,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1882,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1883,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1885,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1886,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1888,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1889,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1891,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1892,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1892,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1934,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2005,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2005,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2007,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2038,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2042,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2043,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2047,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2048,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2051,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2052,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2055,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2056,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2059,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2060,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2064,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2065,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2068,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2069,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2071,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2076,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2094,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2132,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2132,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2135,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2137,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2138,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2139,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2140,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2142,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2143,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2145,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2146,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2147,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2148,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2150,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2151,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2153,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2154,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2155,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2156,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2158,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2159,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2161,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2181,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2183,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2184,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2186,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2187,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2189,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2190,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2191,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2204,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2218,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2262,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2262,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2264,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2265,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2266,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2268,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2269,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2271,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2272,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2273,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2274,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2276,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2277,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2278,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2279,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2281,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2282,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2284,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2285,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2286,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2287,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2289,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2290,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2292,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2293,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2294,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2295,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2297,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2298,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2299,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2316,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2316,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2323,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2347,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2399,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2399,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2401,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2402,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2403,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2404,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2405,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2406,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2407,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2409,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2410,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2411,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2412,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2414,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2415,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2416,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2417,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2418,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2419,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2421,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2422,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2423,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2424,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2426,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2427,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2428,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2429,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2431,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2432,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2433,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2434,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2435,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2436,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2438,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2439,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2440,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2441,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2443,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2444,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2445,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2446,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2447,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2448,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2450,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2451,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2452,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2453,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2454,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2470,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2482,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2530,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2530,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2533,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2534,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2535,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2537,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2538,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2539,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2540,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2541,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2542,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2543,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2544,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2546,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2547,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2548,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2549,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2550,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2551,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2552,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2553,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2554,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2555,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2557,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2558,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2559,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2560,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2561,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2577,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2579,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2580,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2582,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2583,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2584,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2585,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2586,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2609,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2646,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2653,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2654,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2657,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2658,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2662,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2663,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2666,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2667,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2671,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2672,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2675,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2676,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2680,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2681,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2684,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2685,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2689,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2690,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2703,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2704,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2706,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2707,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2710,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2711,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2715,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2716,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2719,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2720,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2724,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2725,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2728,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2728,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2736,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2736,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2737,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2738,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2740,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2741,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2742,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2748,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2749,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2760,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2761,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2767,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2780,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2807,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2877,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2877,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2880,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2882,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2883,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2886,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2887,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2890,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2891,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2894,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2895,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2898,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2899,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2902,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2903,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2906,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2907,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2910,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2911,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2914,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2915,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2917,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2918,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2921,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2922,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2925,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2926,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2929,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2930,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2933,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2934,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2937,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2938,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2941,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2942,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2945,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2946,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2949,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2950,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2952,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2953,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2956,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2957,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2960,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2961,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2964,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2965,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2968,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2969,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2972,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2973,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2976,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2987,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2987,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2988,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2988,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2988,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2989,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2989,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2995,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2997,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2998,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3000,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3000,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 3001,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3001,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 3003,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3004,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3006,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3007,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3009,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3010,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3012,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3012,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 3013,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3013,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 3015,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3024,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 3025,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 3026,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3031,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3066,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 3136,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3136,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 3138,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3142,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3143,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3147,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3148,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3153,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3154,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3158,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3159,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3163,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3164,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3169,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3170,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3174,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3175,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3180,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3181,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3185,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3186,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3191,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3192,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3196,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3197,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3202,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3203,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3207,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3208,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3213,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3214,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3218,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3219,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3224,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3225,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3229,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3230,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3232,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3233,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3266,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 3323,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3323,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 3326,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3329,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3330,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3333,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3334,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3336,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3337,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3340,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3341,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3344,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3345,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3347,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3348,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3351,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3352,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3354,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3355,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3358,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3359,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3362,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3363,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3365,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3366,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3369,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3370,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3373,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3374,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3376,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3377,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3380,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3381,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3384,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3385,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3387,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3388,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3391,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3392,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3395,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3396,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3398,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3399,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3402,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3403,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3406,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3407,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3409,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3410,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3410,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3420,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 3421,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 3423,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3432,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 3433,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 3444,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 3445,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 3449,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3454,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3489,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 3559,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3559,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 3561,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3565,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3566,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3570,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3571,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3576,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3577,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3581,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3582,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3587,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3588,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3592,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3593,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3598,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3599,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3603,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3604,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3609,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3610,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3614,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3615,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3620,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3621,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3625,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3626,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3631,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3632,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3637,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3638,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3642,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3643,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3648,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3649,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3653,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3654,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3659,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3660,
+      "player": 0,
+      "button": "up",
+      "down": false
+    }
+  ],
+  "shots": [
+    {
+      "name": "idle",
+      "frame": 1,
+      "state": {
+        "phase": "serve",
+        "clock": 0.016666666666666666,
+        "players": 1,
+        "server": 0,
+        "points": [
+          0,
+          0
+        ],
+        "winner": null,
+        "sudden": false,
+        "paddles": [
+          {
+            "y": 116,
+            "vy": 0,
+            "charge": 0,
+            "flash": 0,
+            "target": 116,
+            "think": 0
+          },
+          {
+            "y": 116,
+            "vy": 0,
+            "charge": 0,
+            "flash": 0,
+            "target": 116,
+            "think": 0.013333333333333332
+          }
+        ],
+        "ball": {
+          "x": 24,
+          "y": 116,
+          "vx": 0,
+          "vy": 0,
+          "speed": 116,
+          "spin": 0,
+          "powered": 0
+        },
+        "stats": {
+          "hits": [
+            0,
+            0
+          ],
+          "powerHits": [
+            0,
+            0
+          ],
+          "serves": 0,
+          "longestRally": 0,
+          "rally": 0,
+          "wallHits": 0,
+          "points": 0
+        }
+      },
+      "scores": [
+        0
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 1,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "bf266db9",
+      "file": "pong-1p-idle.png"
+    },
+    {
+      "name": "charged-return",
+      "frame": 314,
+      "state": {
+        "phase": "rally",
+        "clock": 5.23333333333332,
+        "players": 1,
+        "server": 0,
+        "points": [
+          0,
+          0
+        ],
+        "winner": null,
+        "sudden": false,
+        "paddles": [
+          {
+            "y": 91.80000000000001,
+            "vy": 0,
+            "charge": 0,
+            "flash": 0.18,
+            "target": 116,
+            "think": 0
+          },
+          {
+            "y": 118.65416666666667,
+            "vy": 0,
+            "charge": 0,
+            "flash": 0,
+            "target": 116,
+            "think": 0.10383333333333333
+          }
+        ],
+        "ball": {
+          "x": 21.1,
+          "y": 97.92214358883562,
+          "vx": 140.16348236360926,
+          "vy": 47.52050306663637,
+          "speed": 148,
+          "spin": 0,
+          "powered": 0.5
+        },
+        "stats": {
+          "hits": [
+            1,
+            1
+          ],
+          "powerHits": [
+            1,
+            0
+          ],
+          "serves": 1,
+          "longestRally": 2,
+          "rally": 2,
+          "wallHits": 2,
+          "points": 0
+        }
+      },
+      "scores": [
+        0
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 314,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "40f1f3d9",
+      "file": "pong-1p-charged-return.png"
+    },
+    {
+      "name": "rally",
+      "frame": 523,
+      "state": {
+        "phase": "rally",
+        "clock": 8.71666666666668,
+        "players": 1,
+        "server": 0,
+        "points": [
+          0,
+          0
+        ],
+        "winner": null,
+        "sudden": false,
+        "paddles": [
+          {
+            "y": 75.66666666666669,
+            "vy": 0,
+            "charge": 0,
+            "flash": 0.18,
+            "target": 116,
+            "think": 0
+          },
+          {
+            "y": 118.65416666666667,
+            "vy": 0,
+            "charge": 0,
+            "flash": 0,
+            "target": 116,
+            "think": 0.10383333333333333
+          }
+        ],
+        "ball": {
+          "x": 21.1,
+          "y": 68.02003153701848,
+          "vx": 163.91752553992612,
+          "vy": -74.37099448620859,
+          "speed": 180,
+          "spin": 0,
+          "powered": 0.5
+        },
+        "stats": {
+          "hits": [
+            2,
+            2
+          ],
+          "powerHits": [
+            2,
+            0
+          ],
+          "serves": 1,
+          "longestRally": 4,
+          "rally": 4,
+          "wallHits": 4,
+          "points": 0
+        }
+      },
+      "scores": [
+        0
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 523,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "b5e580b0",
+      "file": "pong-1p-rally.png"
+    },
+    {
+      "name": "point",
+      "frame": 608,
+      "state": {
+        "phase": "serve",
+        "clock": 10.133333333333416,
+        "players": 1,
+        "server": 1,
+        "points": [
+          1,
+          0
+        ],
+        "winner": null,
+        "sudden": false,
+        "paddles": [
+          {
+            "y": 111.46666666666664,
+            "vy": 0,
+            "charge": 0,
+            "flash": 0,
+            "target": 116,
+            "think": 0
+          },
+          {
+            "y": 78.88750000000002,
+            "vy": 159.25,
+            "charge": 0,
+            "flash": 0,
+            "target": 94.3672444546517,
+            "think": 0.15383333333333332
+          }
+        ],
+        "ball": {
+          "x": 232,
+          "y": 78.88750000000002,
+          "vx": 0,
+          "vy": 0,
+          "speed": 116,
+          "spin": 0,
+          "powered": 0
+        },
+        "stats": {
+          "hits": [
+            2,
+            2
+          ],
+          "powerHits": [
+            2,
+            0
+          ],
+          "serves": 1,
+          "longestRally": 4,
+          "rally": 0,
+          "wallHits": 5,
+          "points": 1
+        }
+      },
+      "scores": [
+        100
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 100,
+        "scores": [
+          100
+        ],
+        "winner": null,
+        "frame": 608,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "327f7e2d",
+      "file": "pong-1p-point.png"
+    },
+    {
+      "name": "terminal",
+      "frame": 3663,
+      "state": {
+        "phase": "finished",
+        "clock": 61.049999999997816,
+        "players": 1,
+        "server": 1,
+        "points": [
+          7,
+          0
+        ],
+        "winner": 0,
+        "sudden": false,
+        "paddles": [
+          {
+            "y": 62.03333333333339,
+            "vy": 0,
+            "charge": 0,
+            "flash": 0,
+            "target": 116,
+            "think": 0
+          },
+          {
+            "y": 94.0666666666666,
+            "vy": 0,
+            "charge": 0,
+            "flash": 0,
+            "target": 89.6238194261029,
+            "think": 0.020500000000000015
+          }
+        ],
+        "ball": {
+          "x": 253.38231496643758,
+          "y": 60.84445947458294,
+          "vx": 134.0090278652521,
+          "vy": -43.847239942898184,
+          "speed": 141,
+          "spin": 0,
+          "powered": 0
+        },
+        "stats": {
+          "hits": [
+            18,
+            12
+          ],
+          "powerHits": [
+            18,
+            0
+          ],
+          "serves": 7,
+          "longestRally": 15,
+          "rally": 0,
+          "wallHits": 28,
+          "points": 7
+        }
+      },
+      "scores": [
+        700
+      ],
+      "runtime": {
+        "state": "win",
+        "score": 700,
+        "scores": [
+          700
+        ],
+        "winner": null,
+        "frame": 3663,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "40ca00e5",
+      "file": "pong-1p-terminal.png"
+    }
+  ],
+  "final": {
+    "phase": "finished",
+    "clock": 61.049999999997816,
+    "players": 1,
+    "server": 1,
+    "points": [
+      7,
+      0
+    ],
+    "winner": 0,
+    "sudden": false,
+    "paddles": [
+      {
+        "y": 62.03333333333339,
+        "vy": 0,
+        "charge": 0,
+        "flash": 0,
+        "target": 116,
+        "think": 0
+      },
+      {
+        "y": 94.0666666666666,
+        "vy": 0,
+        "charge": 0,
+        "flash": 0,
+        "target": 89.6238194261029,
+        "think": 0.020500000000000015
+      }
+    ],
+    "ball": {
+      "x": 253.38231496643758,
+      "y": 60.84445947458294,
+      "vx": 134.0090278652521,
+      "vy": -43.847239942898184,
+      "speed": 141,
+      "spin": 0,
+      "powered": 0
+    },
+    "stats": {
+      "hits": [
+        18,
+        12
+      ],
+      "powerHits": [
+        18,
+        0
+      ],
+      "serves": 7,
+      "longestRally": 15,
+      "rally": 0,
+      "wallHits": 28,
+      "points": 7
+    }
+  },
+  "initial": {
+    "phase": "serve",
+    "clock": 0,
+    "players": 1,
+    "server": 0,
+    "points": [
+      0,
+      0
+    ],
+    "winner": null,
+    "sudden": false,
+    "paddles": [
+      {
+        "y": 116,
+        "vy": 0,
+        "charge": 0,
+        "flash": 0,
+        "target": 116,
+        "think": 0
+      },
+      {
+        "y": 116,
+        "vy": 0,
+        "charge": 0,
+        "flash": 0,
+        "target": 116,
+        "think": 0.03
+      }
+    ],
+    "ball": {
+      "x": 24,
+      "y": 116,
+      "vx": 0,
+      "vy": 0,
+      "speed": 116,
+      "spin": 0,
+      "powered": 0
+    },
+    "stats": {
+      "hits": [
+        0,
+        0
+      ],
+      "powerHits": [
+        0,
+        0
+      ],
+      "serves": 0,
+      "longestRally": 0,
+      "rally": 0,
+      "wallHits": 0,
+      "points": 0
+    }
+  },
+  "reset": {
+    "phase": "serve",
+    "clock": 0,
+    "players": 1,
+    "server": 0,
+    "points": [
+      0,
+      0
+    ],
+    "winner": null,
+    "sudden": false,
+    "paddles": [
+      {
+        "y": 116,
+        "vy": 0,
+        "charge": 0,
+        "flash": 0,
+        "target": 116,
+        "think": 0
+      },
+      {
+        "y": 116,
+        "vy": 0,
+        "charge": 0,
+        "flash": 0,
+        "target": 116,
+        "think": 0.03
+      }
+    ],
+    "ball": {
+      "x": 24,
+      "y": 116,
+      "vx": 0,
+      "vy": 0,
+      "speed": 116,
+      "spin": 0,
+      "powered": 0
+    },
+    "stats": {
+      "hits": [
+        0,
+        0
+      ],
+      "powerHits": [
+        0,
+        0
+      ],
+      "serves": 0,
+      "longestRally": 0,
+      "rally": 0,
+      "wallHits": 0,
+      "points": 0
+    }
+  },
+  "terminal": {
+    "state": "win",
+    "winner": null,
+    "frame": 3662
+  },
+  "failure": null,
+  "invalidScoreTargets": 0,
+  "audio": [
+    "shoot",
+    "hit",
+    "powerup",
+    "coin"
+  ],
+  "scoreEvents": [
+    {
+      "frame": 0,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 0,
+      "old": 0,
+      "new": 0
+    },
+    {
+      "frame": 607,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 100,
+      "old": 0,
+      "new": 100
+    },
+    {
+      "frame": 1180,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 100,
+      "old": 100,
+      "new": 200
+    },
+    {
+      "frame": 1439,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 100,
+      "old": 200,
+      "new": 300
+    },
+    {
+      "frame": 2727,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 100,
+      "old": 300,
+      "new": 400
+    },
+    {
+      "frame": 2986,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 100,
+      "old": 400,
+      "new": 500
+    },
+    {
+      "frame": 3409,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 100,
+      "old": 500,
+      "new": 600
+    },
+    {
+      "frame": 3662,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 100,
+      "old": 600,
+      "new": 700
+    },
+    {
+      "frame": 3663,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 0,
+      "old": 700,
+      "new": 0
+    }
+  ],
+  "load": {
+    "ok": true
+  },
+  "errors": []
+}

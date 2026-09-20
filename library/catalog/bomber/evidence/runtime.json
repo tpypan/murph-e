@@ -1,0 +1,98 @@
+{
+  "checks": [
+    {
+      "scenario": "native default start",
+      "players": 1,
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 1,
+        "error": null
+      }
+    },
+    {
+      "scenario": "native default start",
+      "players": 2,
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0,
+          0
+        ],
+        "winner": null,
+        "frame": 2,
+        "error": null
+      }
+    },
+    {
+      "scenario": "solo complete input replay",
+      "players": 1,
+      "frames": 3548,
+      "state": {
+        "state": "win",
+        "score": 1360,
+        "scores": [
+          1360
+        ],
+        "winner": null,
+        "frame": 3650,
+        "error": null
+      },
+      "errors": []
+    },
+    {
+      "scenario": "versus complete input replay",
+      "players": 2,
+      "frames": 891,
+      "state": {
+        "state": "win",
+        "score": 1000,
+        "scores": [
+          1000,
+          500
+        ],
+        "winner": 0,
+        "frame": 4541,
+        "error": null
+      },
+      "errors": []
+    },
+    {
+      "scenario": "coop complete input replay",
+      "players": 2,
+      "frames": 2642,
+      "state": {
+        "state": "win",
+        "score": 1400,
+        "scores": [
+          1400,
+          1000
+        ],
+        "winner": null,
+        "frame": 7183,
+        "error": null
+      },
+      "errors": []
+    },
+    {
+      "scenario": "versus tied timeout",
+      "players": 2,
+      "state": {
+        "state": "gameover",
+        "score": 0,
+        "scores": [
+          0,
+          0
+        ],
+        "winner": null,
+        "frame": 8463,
+        "error": null
+      }
+    }
+  ]
+}

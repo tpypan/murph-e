@@ -1,0 +1,28 @@
+{
+  "title": "BANANA GOTHAM",
+  "oneLiner": "Leap Benji Banana across Gotham rooftops and grab glowing fruit before the night catches you.",
+  "genre": "platformer",
+  "mechanics": [
+    "Benji Banana runs left and right across one-screen rooftops.",
+    "Press A to jump gaps, over bats, and onto higher ledges.",
+    "Collect bananas and spotlight gems to score points.",
+    "The rooftops scroll faster and hazards multiply over time."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": null,
+    "down": null,
+    "a": "Jump",
+    "b": "Drop through thin platforms"
+  },
+  "palette": "arcade",
+  "lose": "Lose a life by falling off Gotham or touching a bat; the game ends after three lives.",
+  "scoring": "Collect bananas for 100 points and spotlight gems for 500 points.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "players": 1,
+  "runId": "2026-09-19-1726-yo-basically-i-want-you-to-creat"
+}

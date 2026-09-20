@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  devIndicators: false,
   // The harness and probe are workspace TypeScript sources; bundle them.
   transpilePackages: ['@htn/harness', '@htn/probe', '@htn/badge'],
   // Playwright and the OpenAI SDK stay as real node_modules at runtime.

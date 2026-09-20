@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "pot",
+  "packId": "ninja-adventure",
+  "camera": "top-down",
+  "width": 14,
+  "height": 16,
+  "source": {
+    "path": "original/content/destroyable/pot.png",
+    "url": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/destroyable/pot.png",
+    "sha256": "9e23e3809522c9e2c447fa1f413bdbee67a0e3407e4144cb25298bb88ea5c762",
+    "sourceRevision": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a"
+  },
+  "pixels": [
+    "....000000....",
+    "..00aaaaaa00..",
+    ".0aaaaaaaaaa0.",
+    "0aaa444444aaa0",
+    "0aa44444444aa0",
+    "0aa44444444aa0",
+    "0aaa444444aaa0",
+    "0aaaaaaaaaaaa0",
+    ".0aaaaaaaaaa0.",
+    "044aaaaaaaa440",
+    "04444444444440",
+    "04aa4444444440",
+    "04aa4444444440",
+    ".444444444444.",
+    "..4444444444..",
+    "....444444...."
+  ],
+  "anchor": {
+    "x": 7,
+    "y": 16
+  },
+  "normalization": {
+    "palette": "pico-8",
+    "reviewedOverrides": {}
+  },
+  "anchorOrigin": "Authored bottom-center placement; source attachment pivots have not been reconstructed.",
+  "hitboxes": [],
+  "hurtboxes": [],
+  "animations": {},
+  "tags": [
+    "prop",
+    "static"
+  ],
+  "notes": "Static source image only. No implied attack animation, damage volume or destruction sequence."
+}

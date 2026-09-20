@@ -1,0 +1,57 @@
+{
+  "at": "2026-09-20T00:31:17.720Z",
+  "results": [
+    {
+      "name": "18 complete original sprite poses have valid pixels, anchors and clips",
+      "ok": true
+    },
+    {
+      "name": "countdown freezes all racers, then throttle accelerates smoothly",
+      "ok": true
+    },
+    {
+      "name": "braking and off-road slowdown reduce speed without teleporting",
+      "ok": true
+    },
+    {
+      "name": "2P input acts independently; neither camera borrows the other car",
+      "ok": true
+    },
+    {
+      "name": "cabinet player count is authoritative and custom gate bonuses persist",
+      "ok": true
+    },
+    {
+      "name": "charged drift release grants finite turbo; holding alone never fires it",
+      "ok": true
+    },
+    {
+      "name": "whole race visits four gates in order each lap and reaches a terminal state",
+      "ok": true
+    },
+    {
+      "name": "2P first human finish resolves winner and both can drive all course sections",
+      "ok": true
+    },
+    {
+      "name": "no-input timer loss never awards a lap or checkpoint",
+      "ok": true
+    },
+    {
+      "name": "AI gate and finish events never invoke human reward hooks",
+      "ok": true
+    },
+    {
+      "name": "replay deterministic and inspect returns copies",
+      "ok": true
+    },
+    {
+      "name": "default three-lap race keeps all ordered checkpoints and readable lap HUD",
+      "ok": true
+    },
+    {
+      "name": "upcoming bend cue is absent on grid and previews actual driving without changing state",
+      "ok": true
+    }
+  ]
+}

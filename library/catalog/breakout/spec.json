@@ -1,0 +1,26 @@
+{
+  "title": "PRISM BREAK",
+  "oneLiner": "Aim your returns, catch powerups and clear three prismatic brick formations.",
+  "genre": "breakout",
+  "mechanics": [
+    "Clear three authored stages. Bricks require one, two or three accepted collisions.",
+    "Aim the return with paddle placement; a timed A pulse accelerates the ball.",
+    "Every sixth broken brick drops a wide-paddle, slow-ball or multiball pickup.",
+    "Three shared lives; lose a life only when the last active ball falls.",
+    "Two players cover independent left and right court halves and share the stage objective."
+  ],
+  "controls": {
+    "left": "Move paddle left",
+    "right": "Move paddle right",
+    "a": "Launch; press just before a return for a power pulse",
+    "b": "Hold for precision movement"
+  },
+  "palette": "arcade",
+  "lose": "Exhaust the shared lives or reach the six-minute time limit.",
+  "scoring": "20 times original brick durability plus a consecutive-hit bonus; 50 per pickup; 250 per stage for each player.",
+  "moderated": false,
+  "note": "Original catalogue foundation; no commercial game assets.",
+  "remix": false,
+  "changes": [],
+  "players": 1
+}

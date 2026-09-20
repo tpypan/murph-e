@@ -1,0 +1,41 @@
+# Kart foundation: ARCADE.kart(config)
+
+Returns `{ init(api), update(api, dt), draw(api), inspect() }`. Forward the three lifecycle functions from your game. Uses only the cabinet runtime API; all 18 original 32×32 vehicle frames and scenery logic are bundled. No imports/assets/network required by the generated game.
+
+## Complete default game
+
+One player races five physical AI karts. Two players race one another and four AI karts using simultaneous stacked 256×105 camera views inside the 256×224 game. The existing cabinet HUD remains untouched. The current goal authorizes appropriate two-player mechanics, so this foundation deliberately supports split-screen despite the old overview's historical exclusion. Three laps, ordered checkpoints, countdown, timer, position, collisions, off-road slowdown, braking, drift charge/release boost and road boost pads are implemented. Accelerate with A or UP, steer LEFT/RIGHT, brake DOWN, hold B in a turn and release to cash a drift turbo. No steering input changes the other human's kart.
+
+## Config
+
+- `laps`: integer 1–5, default 3.
+- `difficulty`: 0–1, default 0.45, changes AI target pace/corner caution. AI drives through the same acceleration, lateral force, collision, and off-road physics; it never teleports.
+- `timeLimit`: seconds 30–600, default 180.
+- `theme`: `"coast"` (default) or `"night"`.
+- `players`: 1 or 2 as a standalone fallback. Cabinet `api.players` always wins (including explicit 1P); normally omit this config property and use the chosen cabinet player count.
+- `drivers`: up to 6 `{name, body, helmet, asset?}` objects. Name is ≤9 characters; body/helmet are default-palette indices 0–15. `asset` selects a supplied vehicle art ID (see below); omit it for the original kart. First `api.players` entries are the humans. Cosmetics do not silently change driving physics.
+- `track`: 4–24 sections, each `{length, curve, scenery}`. `length` is 12–60 segments (80 track units each), `curve` is −1.2…1.2 (negative left, positive right), `scenery` is `"palms"`, `"beach"`, `"cliffs"` or `"harbor"`. Each section eases curvature in and out over seven segments. Keep a mix of straights and left/right corners. Boost strips appear on selected straight/approach sections. Four ordered checkpoint gates are derived from track length.
+- `onCheckpoint(event, api)`: optional synchronous hook after a HUMAN crosses a forward gate. Event `{player, lap, gate}`; player is 0 in 1P, 0 or 1 in 2P; gate is 1–4. AI racers never emit this hook. The base 100-point reward is already applied. Only add extra points when the user explicitly requested a new bonus; otherwise omit the hook or use it for presentation. Do not mutate private state.
+- `onFinish(event, api)`: optional synchronous hook `{player, time, score}` after a HUMAN crosses the last required gate. Called once per finished human after the base 1000-point finish award. AI racers never emit this hook. The race finishes two seconds after the first human finishes; 2P winner is that first human, and 1P wins only if first overall.
+
+Default scoring is already implemented: 100 per ordered gate (four per lap), 40 per released charged drift turbo, 25 per road boost pad and 1000 for finishing. Preserve these values in the spec; do not invent a second checkpoint/lap scoring system. Custom driver names, colors, night theme and track curves need no scoring wrappers.
+
+`inspect()` returns copies of public telemetry for deterministic tests (phase, time, checkpoints, racers, positions, stats); it does not expose mutable internals or bypass race rules. This module is a complete approachable arcade kart base, not a simulation or a reproduction of any commercial game's track/art.
+
+## Art contract
+
+`assets.json` stores actual palette-index rows, frame duration, bottom-center anchors, driver/exhaust sockets, pixel hurtboxes, track-space collision dimensions, provenance and state clips for idle, drive, left/right steer, left/right drift, boost and four-frame crash spin. The module embeds the same rows; run `node library/catalog/kart/build.mjs` after changing assets or `module.base.js`. `create-assets.mjs` is the original deterministic pixel authoring source. Don't edit generated `module.js` alone.
+
+Optional `config.assets = {vehicles: [set, ...], roadside: {palm?, sign?, billboard?}}` supplies already bundled pixel data. This does not fetch images. Omitted vehicles/roadside slots retain the original rendering. An explicitly selected unknown vehicle ID throws instead of silently using the wrong art.
+
+A vehicle set has `{id, sourceWidth?, displayWidth?, frames, animations}`. Each `frames[key]` is `{pixels: string[], anchor: {x,y}, palette?: string[], durationMs?: number}`. Rows must be rectangular hexadecimal indexes (`0`–`f`, case insensitive) plus `.` for transparency, 1–256 pixels wide and 1–224 high. Different frames may have different native dimensions. Anchors are integer coordinates inside or at the canvas boundary; use the source car's ground contact point, normally bottom center, consistently across poses. Opaque palette index `0` remains opaque. Optional `palette` contains 1–16 exact `#RRGGBB` colors and must cover every used index. Without it, indexes use the runtime's default palette. Source palettes bypass the original body/helmet recoloring, shadow, and hardcoded brake-lamp pixels. Body/helmet still set the original HUD/map color markers.
+
+`animations` must contain all eight names: `idle`, `drive`, `steerLeft`, `steerRight`, `driftLeft`, `driftRight`, `boost`, `crash`. Each is `{frames: [key, ...], frameMs: number}`. Timings are 1–10000 ms; a frame's optional `durationMs` overrides `frameMs` wherever that frame is reused, so omit it when different clips need different rates. Non-crash clips loop on the race animation clock. The custom crash clip starts at impact, advances for the existing 650 ms crash duration, and holds its last frame rather than looping. Supply a full 650 ms sequence for that effect. If the source has no drift or boost frames, explicitly map those clips to reviewed steer/drive frames; those are visual proxies, not newly discovered source animations.
+
+`sourceWidth` is the reference width in source pixels (default: widest frame). `displayWidth` is its projected width at scale 1 (default 32, range 1–64). Every pose uses the same ratio `displayWidth/sourceWidth`, preserving relative crop sizes and ground anchors. The existing camera then scales the foreground by 1.55 in 1P and 0.87 in 2P; rivals use distance-dependent projection. For example, `sourceWidth:52, displayWidth:42` gives a roughly 65-pixel foreground reference width in 1P and 37 pixels in 2P. Each destination pixel uses nearest-neighbor sampling with no color reduction. All projected frames must fit at most 256×224 at scale 1.6; oversized art is rejected with an instruction to reduce `displayWidth`. Road/HUD layout and the original physical collision footprint remain unchanged. Large silhouettes do not imply larger collision boxes.
+
+A roadside slot uses the same frame/anchor/palette format, requires only an `idle` clip, and does not need an ID. Its default display width is 34 for `palm`, 29 for `sign`, 62 for `billboard`; maximum is 160. Slots replace existing depth-sorted placements and remain clipped to their own player's viewport. They do not add obstacles or replace the procedural road/background. Explicit source distance/LOD frame selection is not implemented: native pose frames receive nearest-neighbor projection. At most six vehicle sets and 128 frames per set are accepted. A bounded 128-raster cache avoids unbounded accumulation of scaled copies. Asset provenance, source mappings, and authored timing should remain in the importing pack's metadata; the original default pack contains no third-party pixels.
+
+## Changing the game meaningfully
+
+Use the tested physics and replace the theme/track/driver presentation. Named character requests require distinctive complete driver/vehicle art, not only a palette swap. If a request requires weapons, flight, items, jumps or arbitrary free driving, this version does not implement those; write and test that extension or choose a more suitable foundation. Do not claim unsupported mechanics in the game's controls/spec.

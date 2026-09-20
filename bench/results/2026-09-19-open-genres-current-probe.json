@@ -1,0 +1,2412 @@
+{
+  "note": "Rechecks saved output with current probe and normalized legacy unused control labels. No new model calls.",
+  "rows": [
+    {
+      "group": "library",
+      "id": "asteroid-blast",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "asteroid-dash",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "bada-beat",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "banana-gotham",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "big-ball-break",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "big-ball-break-2",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "cat-catcher",
+      "ok": true,
+      "observations": [
+        "pressing B changed nothing on screen"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": false
+      }
+    },
+    {
+      "group": "library",
+      "id": "cat-catcher-2",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "cat-dash",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "cat-dash-2",
+      "ok": true,
+      "observations": [
+        "holding UP changed nothing on screen, including after A when available"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:up": false,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "cloud-drift",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "craft-dash",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "dragon-keep",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "duel-byte",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "exam-escape",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "exam-escape-2",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "fairy-pie-drop",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "frogger-dash",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "frogger-rush",
+      "ok": true,
+      "observations": [
+        "holding DOWN changed nothing on screen, including after A when available"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": false,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "ghost-maze",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "gotham-gadgets",
+      "ok": true,
+      "observations": [
+        "pressing B changed nothing on screen"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": false
+      }
+    },
+    {
+      "group": "library",
+      "id": "hard-mode",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "hero-duel",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "ice-fish-dash",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "ice-fish-run",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "jelly-sub",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "jelly-sub-2",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "pac-mates",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "pack-that",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "pie-anvil",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "pie-anvil-dash",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "pixel-fight",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "pizza-invaders",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "pizza-invaders-2",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "pizza-invaders-3",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "pollen-dash",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "salsa-taco",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "seal-slide",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "slime-spell",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "speed-pong",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "speed-pong-2",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "spellstack",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "spike-dash",
+      "ok": true,
+      "observations": [
+        "holding UP changed nothing on screen, including after A when available"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": false,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "spike-dash-2",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "star-catch",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "star-zapper",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "train-snake",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "train-snake-2",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "library",
+      "id": "turbo-dash",
+      "ok": true,
+      "observations": [
+        "pressing B changed nothing on screen"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": false
+      }
+    },
+    {
+      "group": "library",
+      "id": "twin-tug",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      }
+    },
+    {
+      "group": "template",
+      "id": "breakout.js",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      },
+      "players": 1,
+      "controls": [
+        "left",
+        "right",
+        "a"
+      ]
+    },
+    {
+      "group": "template",
+      "id": "coop.js",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      },
+      "players": 2,
+      "controls": [
+        "left",
+        "right",
+        "up",
+        "down",
+        "a",
+        "b"
+      ]
+    },
+    {
+      "group": "template",
+      "id": "dodge.js",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      },
+      "players": 1,
+      "controls": [
+        "left",
+        "right",
+        "a",
+        "b"
+      ]
+    },
+    {
+      "group": "template",
+      "id": "flappy.js",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      },
+      "players": 1,
+      "controls": [
+        "a"
+      ]
+    },
+    {
+      "group": "template",
+      "id": "platformer.js",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      },
+      "players": 1,
+      "controls": [
+        "left",
+        "right",
+        "a"
+      ]
+    },
+    {
+      "group": "template",
+      "id": "pong.js",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      },
+      "players": 1,
+      "controls": [
+        "up",
+        "down",
+        "a"
+      ]
+    },
+    {
+      "group": "template",
+      "id": "runner.js",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      },
+      "players": 1,
+      "controls": [
+        "down",
+        "a"
+      ]
+    },
+    {
+      "group": "template",
+      "id": "shooter.js",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      },
+      "players": 1,
+      "controls": [
+        "left",
+        "right",
+        "a"
+      ]
+    },
+    {
+      "group": "template",
+      "id": "snake.js",
+      "ok": true,
+      "observations": [
+        "holding LEFT changed nothing on screen, including after A when available",
+        "holding RIGHT changed nothing on screen, including after A when available"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": false,
+        "soft:responds:right": false,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      },
+      "players": 1,
+      "controls": [
+        "up",
+        "down",
+        "left",
+        "right",
+        "a"
+      ]
+    },
+    {
+      "group": "template",
+      "id": "versus.js",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      },
+      "players": 2,
+      "controls": [
+        "left",
+        "right",
+        "up",
+        "down",
+        "b",
+        "a"
+      ]
+    },
+    {
+      "group": "known-bad",
+      "id": "crashes-on-a.js",
+      "ok": false,
+      "observations": [
+        "the game crashed when player 1 pressed A: update: action crash",
+        "pressing A changed nothing on screen"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": false,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": false
+      }
+    },
+    {
+      "group": "known-bad",
+      "id": "crashes-on-direction.js",
+      "ok": false,
+      "observations": [
+        "the game crashed when player 1 held LEFT: update: direction crash",
+        "holding LEFT changed nothing on screen, including after A when available"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": false,
+        "soft:responds:left": false,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "known-bad",
+      "id": "crashes.js",
+      "ok": false,
+      "observations": [
+        "the game crashed with no input: update: Cannot read properties of undefined (reading 'push')",
+        "nothing on screen changed over three seconds with no input",
+        "the game crashed when player 1 held LEFT: update: Cannot read properties of undefined (reading 'push')",
+        "holding LEFT changed nothing on screen, including after A when available",
+        "the game crashed when player 1 held RIGHT: update: Cannot read properties of undefined (reading 'push')",
+        "holding RIGHT changed nothing on screen, including after A when available",
+        "none of the direction buttons changed anything on screen",
+        "the game crashed when player 1 pressed A: update: Cannot read properties of undefined (reading 'push')",
+        "pressing A changed nothing on screen"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": false,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": false,
+        "survivesInput": false,
+        "soft:responds:left": false,
+        "soft:responds:right": false,
+        "respondsToDirection": false,
+        "responds:a": false
+      }
+    },
+    {
+      "group": "known-bad",
+      "id": "dies-at-frame-0.js",
+      "ok": false,
+      "observations": [
+        "the game ended by itself within two seconds of starting, with no input (state gameover)"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": false,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "known-bad",
+      "id": "ignores-input.js",
+      "ok": false,
+      "observations": [
+        "holding LEFT changed nothing on screen, including after A when available",
+        "holding RIGHT changed nothing on screen, including after A when available",
+        "none of the direction buttons changed anything on screen",
+        "pressing A changed nothing on screen"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": false,
+        "soft:responds:right": false,
+        "respondsToDirection": false,
+        "responds:a": false
+      }
+    },
+    {
+      "group": "known-bad",
+      "id": "ignores-p2.js",
+      "ok": false,
+      "observations": [
+        "player two holding LEFT changed nothing on screen, including after A when available",
+        "player two holding RIGHT changed nothing on screen, including after A when available",
+        "none of player two's direction buttons changed anything"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "respondsToP2": false,
+        "soft:responds:p2:a": true
+      }
+    },
+    {
+      "group": "known-bad",
+      "id": "missing-init.js",
+      "ok": false,
+      "observations": [
+        "the game failed to load: load: game.js must define init as top-level functions"
+      ],
+      "checks": {
+        "loads": false
+      }
+    },
+    {
+      "group": "known-bad",
+      "id": "no-draw.js",
+      "ok": false,
+      "observations": [
+        "the screen was almost one flat colour after one second",
+        "nothing on screen changed over three seconds with no input",
+        "holding LEFT changed nothing on screen, including after A when available",
+        "holding RIGHT changed nothing on screen, including after A when available",
+        "none of the direction buttons changed anything on screen",
+        "pressing A changed nothing on screen"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": false,
+        "moves": false,
+        "survivesInput": true,
+        "soft:responds:left": false,
+        "soft:responds:right": false,
+        "respondsToDirection": false,
+        "responds:a": false
+      }
+    },
+    {
+      "group": "known-bad",
+      "id": "static-screen.js",
+      "ok": false,
+      "observations": [
+        "nothing on screen changed over three seconds with no input",
+        "holding LEFT changed nothing on screen, including after A when available",
+        "holding RIGHT changed nothing on screen, including after A when available",
+        "none of the direction buttons changed anything on screen",
+        "pressing A changed nothing on screen"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": false,
+        "survivesInput": true,
+        "soft:responds:left": false,
+        "soft:responds:right": false,
+        "respondsToDirection": false,
+        "responds:a": false
+      }
+    },
+    {
+      "group": "known-bad",
+      "id": "syntax-error.js",
+      "ok": false,
+      "observations": [
+        "the game failed to load: load: Unexpected token ')'"
+      ],
+      "checks": {
+        "loads": false
+      }
+    },
+    {
+      "group": "2026-09-19-1929-open-genres-focused.json",
+      "id": "2026-09-19-1924-i-want-to-create-a-game-which-is",
+      "ok": true,
+      "observations": [
+        "holding UP changed nothing on screen, including after A when available"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": false,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1929-open-genres-focused.json",
+      "id": "2026-09-19-1926-a-rhythm-game-where-i-hit-a-or-b",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1931-open-genres-final-2p-followup.json",
+      "id": "2026-09-19-1929-sumo-wrestling-where-you-push-ea",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      },
+      "players": 2,
+      "controls": [
+        "left",
+        "right",
+        "a",
+        "b"
+      ]
+    },
+    {
+      "group": "2026-09-19-1931-open-genres-final-2p-followup.json",
+      "id": "2026-09-19-1929-a-race-to-collect-the-most-coins",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "respondsToP2": true
+      },
+      "players": 2,
+      "controls": [
+        "left",
+        "right",
+        "up",
+        "down"
+      ]
+    },
+    {
+      "group": "2026-09-19-1934-open-genres-final-focused.json",
+      "id": "2026-09-19-1929-i-want-to-create-a-game-which-is",
+      "ok": true,
+      "observations": [
+        "holding UP changed nothing on screen, including after A when available"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": false,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1934-open-genres-final-focused.json",
+      "id": "2026-09-19-1929-a-side-scrolling-beat-em-up-wher",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1934-open-genres-final-focused.json",
+      "id": "2026-09-19-1932-a-rhythm-game-where-i-hit-a-or-b",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1934-open-genres-final-focused.json",
+      "id": "2026-09-19-1932-a-top-down-racing-game-with-corn",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-2p.json",
+      "id": "2026-09-19-1925-a-two-player-fighting-game-with",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      },
+      "players": 2,
+      "controls": [
+        "left",
+        "right",
+        "up",
+        "a",
+        "b"
+      ]
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-2p.json",
+      "id": "2026-09-19-1925-tanks-in-an-arena-last-one-stand",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      },
+      "players": 2,
+      "controls": [
+        "left",
+        "right",
+        "up",
+        "down",
+        "a",
+        "b"
+      ]
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-2p.json",
+      "id": "2026-09-19-1926-sumo-wrestling-where-you-push-ea",
+      "ok": false,
+      "observations": [
+        "holding LEFT changed nothing on screen, including after A when available",
+        "holding RIGHT changed nothing on screen, including after A when available",
+        "holding UP changed nothing on screen, including after A when available",
+        "holding DOWN changed nothing on screen, including after A when available",
+        "none of the direction buttons changed anything on screen",
+        "pressing A changed nothing on screen",
+        "pressing B changed nothing on screen",
+        "player two holding LEFT changed nothing on screen, including after A when available",
+        "player two holding RIGHT changed nothing on screen, including after A when available",
+        "player two holding UP changed nothing on screen, including after A when available",
+        "player two holding DOWN changed nothing on screen, including after A when available",
+        "none of player two's direction buttons changed anything",
+        "player two pressing A changed nothing on screen"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": false,
+        "soft:responds:right": false,
+        "soft:responds:up": false,
+        "soft:responds:down": false,
+        "respondsToDirection": false,
+        "responds:a": false,
+        "soft:responds:b": false,
+        "respondsToP2": false,
+        "soft:responds:p2:a": false
+      },
+      "players": 2,
+      "controls": [
+        "left",
+        "right",
+        "up",
+        "down",
+        "a",
+        "b"
+      ]
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-2p.json",
+      "id": "2026-09-19-1926-a-race-to-collect-the-most-coins",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "respondsToP2": true
+      },
+      "players": 2,
+      "controls": [
+        "left",
+        "right",
+        "up",
+        "down"
+      ]
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-2p.json",
+      "id": "2026-09-19-1928-pong-but-both-players-are-humans",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      },
+      "players": 2,
+      "controls": [
+        "left",
+        "right",
+        "a",
+        "b"
+      ]
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-2p.json",
+      "id": "2026-09-19-1928-two-knights-defending-a-castle-f",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      },
+      "players": 2,
+      "controls": [
+        "left",
+        "right",
+        "a",
+        "b"
+      ]
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-2p.json",
+      "id": "2026-09-19-1929-we-are-two-astronauts-fixing-a-s",
+      "ok": true,
+      "observations": [
+        "holding DOWN changed nothing on screen, including after A when available",
+        "player two holding DOWN changed nothing on screen, including after A when available"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": false,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      },
+      "players": 2,
+      "controls": [
+        "left",
+        "right",
+        "up",
+        "down",
+        "a",
+        "b"
+      ]
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-2p.json",
+      "id": "2026-09-19-1930-co-op-zombie-survival-with-a-sho",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      },
+      "players": 2,
+      "controls": [
+        "left",
+        "right",
+        "up",
+        "down",
+        "a",
+        "b"
+      ]
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-2p.json",
+      "id": "2026-09-19-1931-two-frogs-catching-flies-and-dod",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      },
+      "players": 2,
+      "controls": [
+        "left",
+        "right",
+        "up",
+        "down",
+        "a",
+        "b"
+      ]
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-2p.json",
+      "id": "2026-09-19-1932-something-fun-for-me-and-my-frie",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      },
+      "players": 2,
+      "controls": [
+        "left",
+        "right",
+        "up",
+        "down",
+        "a",
+        "b"
+      ]
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-2p.json",
+      "id": "2026-09-19-1932-a-game-about-pizza",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      },
+      "players": 2,
+      "controls": [
+        "left",
+        "right",
+        "up",
+        "down",
+        "a",
+        "b"
+      ]
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-2p.json",
+      "id": "2026-09-19-1934-snake-but-there-are-two-snakes",
+      "ok": true,
+      "observations": [
+        "holding LEFT changed nothing on screen, including after A when available",
+        "holding RIGHT changed nothing on screen, including after A when available",
+        "player two holding LEFT changed nothing on screen, including after A when available",
+        "player two holding RIGHT changed nothing on screen, including after A when available"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": false,
+        "soft:responds:right": false,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      },
+      "players": 2,
+      "controls": [
+        "left",
+        "right",
+        "up",
+        "down",
+        "a"
+      ]
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1924-a-game-where-i-m-a-frog-dodging",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1924-space-invaders-but-the-aliens-ar",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1924-a-snake-game-but-the-snake-is-a",
+      "ok": true,
+      "observations": [
+        "holding LEFT changed nothing on screen, including after A when available",
+        "holding RIGHT changed nothing on screen, including after A when available"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": false,
+        "soft:responds:right": false,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1926-breakout-with-a-really-big-ball",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1926-flappy-bird-but-you-re-a-submari",
+      "ok": true,
+      "observations": [
+        "pressing B changed nothing on screen"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": false
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1926-a-platformer-where-you-collect-c",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1927-pong-against-the-computer-and-it",
+      "ok": true,
+      "observations": [
+        "pressing B changed nothing on screen"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": false
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1927-an-endless-runner-where-you-re-a",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1927-something-with-cats",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1928-a-game-about-avoiding-my-exams",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1929-dodge-the-falling-anvils-and-cat",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1929-asteroids",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1929-a-shooter-where-you-defend-a-cas",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1930-a-maze-where-a-ghost-chases-you",
+      "ok": false,
+      "observations": [
+        "holding RIGHT changed nothing on screen, including after A when available",
+        "pressing A changed nothing on screen"
+      ],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": false,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": false
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1930-a-game-where-you-are-a-taco-and",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1931-something-really-hard",
+      "ok": false,
+      "observations": [
+        "the game failed to load: load: Cannot access 'seventyBase' before initialization"
+      ],
+      "checks": {
+        "loads": false
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1931-a-relaxing-game",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1931-a-two-player-fighting-game",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1932-an-open-world-rpg-with-crafting",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "group": "2026-09-19-1935-open-genres-regression.json",
+      "id": "2026-09-19-1933-a-game-where-you-shoot-up-a-scho",
+      "ok": true,
+      "observations": [],
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    }
+  ]
+}

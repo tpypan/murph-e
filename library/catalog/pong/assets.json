@@ -1,0 +1,368 @@
+{
+  "schemaVersion": 1,
+  "id": "pong-art",
+  "palette": "pico-8",
+  "provenance": {
+    "kind": "original",
+    "authors": [
+      "Arcade project"
+    ],
+    "sources": [],
+    "license": "LicenseRef-Project-Original"
+  },
+  "coordinateSystem": "Frame-local pixels; subtract anchor for world placement. Collision planes also include the ball radius.",
+  "frames": {
+    "paddle-0-idle": {
+      "width": 6,
+      "height": 34,
+      "pixels": [
+        ".7777.",
+        "777777",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "7cccc1",
+        "155551",
+        ".7777."
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 3,
+        "y": 17
+      },
+      "hitboxes": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 6,
+          "h": 34
+        }
+      ],
+      "hurtboxes": [],
+      "provenance": "Original pixel artwork authored for this project."
+    },
+    "paddle-0-hit": {
+      "width": 6,
+      "height": 34,
+      "pixels": [
+        ".7777.",
+        "777777",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "155551",
+        ".7777."
+      ],
+      "durationTicks": 11,
+      "anchor": {
+        "x": 3,
+        "y": 17
+      },
+      "hitboxes": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 6,
+          "h": 34
+        }
+      ],
+      "hurtboxes": [],
+      "provenance": "Original pixel artwork authored for this project."
+    },
+    "paddle-1-idle": {
+      "width": 6,
+      "height": 34,
+      "pixels": [
+        ".7777.",
+        "777777",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "788881",
+        "155551",
+        ".7777."
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 3,
+        "y": 17
+      },
+      "hitboxes": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 6,
+          "h": 34
+        }
+      ],
+      "hurtboxes": [],
+      "provenance": "Original pixel artwork authored for this project."
+    },
+    "paddle-1-hit": {
+      "width": 6,
+      "height": 34,
+      "pixels": [
+        ".7777.",
+        "777777",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "7aaaa1",
+        "155551",
+        ".7777."
+      ],
+      "durationTicks": 11,
+      "anchor": {
+        "x": 3,
+        "y": 17
+      },
+      "hitboxes": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 6,
+          "h": 34
+        }
+      ],
+      "hurtboxes": [],
+      "provenance": "Original pixel artwork authored for this project."
+    },
+    "ball-0": {
+      "width": 5,
+      "height": 5,
+      "pixels": [
+        ".777.",
+        "777a7",
+        "77aa7",
+        "7aaa7",
+        ".777."
+      ],
+      "durationTicks": 5,
+      "anchor": {
+        "x": 2,
+        "y": 2
+      },
+      "hitboxes": [
+        {
+          "shape": "circle",
+          "x": 2,
+          "y": 2,
+          "radius": 2
+        }
+      ],
+      "hurtboxes": [],
+      "provenance": "Original pixel artwork authored for this project."
+    },
+    "ball-1": {
+      "width": 5,
+      "height": 5,
+      "pixels": [
+        ".777.",
+        "7aa77",
+        "7a777",
+        "77777",
+        ".777."
+      ],
+      "durationTicks": 5,
+      "anchor": {
+        "x": 2,
+        "y": 2
+      },
+      "hitboxes": [
+        {
+          "shape": "circle",
+          "x": 2,
+          "y": 2,
+          "radius": 2
+        }
+      ],
+      "hurtboxes": [],
+      "provenance": "Original pixel artwork authored for this project."
+    },
+    "spark-0": {
+      "width": 3,
+      "height": 3,
+      "pixels": [
+        ".7.",
+        "777",
+        ".7."
+      ],
+      "durationTicks": 3,
+      "anchor": {
+        "x": 1,
+        "y": 1
+      },
+      "hitboxes": [],
+      "hurtboxes": [],
+      "provenance": "Original pixel artwork authored for this project."
+    },
+    "spark-1": {
+      "width": 3,
+      "height": 3,
+      "pixels": [
+        "7.7",
+        "...",
+        "7.7"
+      ],
+      "durationTicks": 4,
+      "anchor": {
+        "x": 1,
+        "y": 1
+      },
+      "hitboxes": [],
+      "hurtboxes": [],
+      "provenance": "Original pixel artwork authored for this project."
+    },
+    "spark-2": {
+      "width": 3,
+      "height": 3,
+      "pixels": [
+        "...",
+        ".7.",
+        "..."
+      ],
+      "durationTicks": 8,
+      "anchor": {
+        "x": 1,
+        "y": 1
+      },
+      "hitboxes": [],
+      "hurtboxes": [],
+      "provenance": "Original pixel artwork authored for this project."
+    }
+  },
+  "animations": {
+    "ball": {
+      "frames": [
+        "ball-0",
+        "ball-1"
+      ],
+      "loop": true
+    },
+    "impact": {
+      "frames": [
+        "spark-0",
+        "spark-1",
+        "spark-2"
+      ],
+      "loop": false
+    },
+    "paddleIdle": {
+      "frames": [
+        "paddle-0-idle"
+      ],
+      "loop": true
+    },
+    "paddleHit": {
+      "frames": [
+        "paddle-0-hit"
+      ],
+      "loop": false
+    }
+  }
+}

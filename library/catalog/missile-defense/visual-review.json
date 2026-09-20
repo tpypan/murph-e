@@ -1,0 +1,50 @@
+{
+  "reviewedAt": "2026-09-19T21:42:26.199Z",
+  "reviewer": "Codex visual inspection and gameplay evidence review",
+  "contentHash": "2534e5ad85673aa70c2e43c33f06d69ff7dfefed9ef8c3200cd5e0824d02f937",
+  "inspected": [
+    "screenshots/1p-blast.png",
+    "screenshots/2p-wave-3.png",
+    "screenshots/1p-finished.png"
+  ],
+  "imageHashes": {
+    "screenshots/1p-blast.png": "da6f41a53830b847f83f28d8e80bd53a410d92ef31a3da5d82367ab8cf35e227",
+    "screenshots/2p-wave-3.png": "ea023b0fa7181223851375f77ba54f813f72dd499b40029bfc185b5edbcaf574",
+    "screenshots/1p-finished.png": "47bf6f3e43802f6183bb0af738160fb0bd324597ce686544f80d93e9ab5f2e57"
+  },
+  "findings": [
+    "Incoming missile trails contrast with the sky; owned defensive blast rings and cursor centers are distinguishable.",
+    "Six city silhouettes, three batteries and finite ammo counts remain visible below the battle area; score/wave status stays above it.",
+    "Independent 2P cursors and shot ownership are distinguishable by color and player number.",
+    "Native 1P/2P browser policies complete all four waves. Behavior evidence includes exact ammo consumption, direct/chain scoring, expanding/contracting blast collision, city loss, split missiles, recovery and reset."
+  ],
+  "limits": [
+    "The successful default policy intercepts splitting missiles before their split; split/rebuild behavior is evidenced by the separate no-defense loss scenario.",
+    "The four-wave seed is deliberately approachable; perfect automated survival of six cities does not establish human difficulty.",
+    "Aiming uses only directional arcade input, without mouse/touch input or hidden aim assistance.",
+    "No human balance study, physical CRT overscan/calibration or badge/controller hardware validation."
+  ],
+  "gameplayEvidence": {
+    "behaviorChecks": 7,
+    "behaviorArtifact": "behavior-results.json",
+    "nativeRuns": [
+      {
+        "players": 1,
+        "state": "win",
+        "scores": [
+          2961
+        ]
+      },
+      {
+        "players": 2,
+        "state": "win",
+        "scores": [
+          2095,
+          2195
+        ]
+      }
+    ],
+    "renderArtifact": "render-results.json",
+    "renderArtifactHash": "1d115a7afe7057c0d8a7638284d022d6f386bc8c0a51effa064d846e7e910f5e"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "contentHash": "6c8190fb5a881568348eb47aca34694a90a226f26d5ee0420aa9b9566754fe12",
+  "results": [
+    {
+      "players": 1,
+      "ok": true,
+      "observations": [
+        "holding DOWN changed nothing on screen, including after A when available"
+      ],
+      "ms": 576,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": false,
+        "respondsToDirection": true
+      }
+    },
+    {
+      "players": 2,
+      "ok": true,
+      "observations": [
+        "holding DOWN changed nothing on screen, including after A when available",
+        "player two holding DOWN changed nothing on screen, including after A when available"
+      ],
+      "ms": 285,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": false,
+        "respondsToDirection": true,
+        "respondsToP2": true
+      }
+    }
+  ]
+}

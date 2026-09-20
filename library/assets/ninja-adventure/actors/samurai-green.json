@@ -1,0 +1,1778 @@
+{
+  "schemaVersion": 1,
+  "id": "samurai-green",
+  "packId": "ninja-adventure",
+  "width": 16,
+  "height": 16,
+  "camera": "top-down",
+  "tags": [
+    "humanoid",
+    "top-down",
+    "samurai"
+  ],
+  "anchor": {
+    "x": 8,
+    "y": 14
+  },
+  "source": {
+    "path": "original/content/character/samurai_green/samurai_green.png",
+    "url": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/character/samurai_green/samurai_green.png",
+    "sha256": "552e1af74a8d565408519ced8c5bb309d291a9d3002e4e37c881d2181f413e96",
+    "sourceRevision": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a"
+  },
+  "license": {
+    "spdx": "CC0-1.0",
+    "authors": [
+      "Pixel-Boy",
+      "AAA"
+    ],
+    "sourceUrl": "https://pixel-boy.itch.io/ninja-adventure-asset-pack"
+  },
+  "timing": {
+    "simulationHz": 60,
+    "sourceFramesPerSecond": 6,
+    "origin": "Source Godot IMAGE_SPEED = 6; 60/6 = 10 simulation ticks per frame."
+  },
+  "geometry": {
+    "coordinates": "frame-local pixels; subtract anchor to obtain world-relative offsets",
+    "anchorOrigin": "Source centered Sprite2D dimensions and its vertical offset.",
+    "collisionOrigin": "Authored conservative body/foot rectangles for this catalogue; not recovered from PNG or copied from the Godot collision circles.",
+    "attackOrigin": "No attack hitboxes or combat windows provided. A one-frame attack pose is not a complete combat animation.",
+    "mirroring": "For a local rectangle mirror x to width - x - w; mirror anchor.x to width - anchor.x. Do not flip only the pixels."
+  },
+  "normalization": {
+    "palette": "pico-8",
+    "paletteHex": [
+      "#000000",
+      "#1d2b53",
+      "#7e2553",
+      "#008751",
+      "#ab5236",
+      "#5f574f",
+      "#c2c3c7",
+      "#fff1e8",
+      "#ff004d",
+      "#ffa300",
+      "#ffec27",
+      "#00e436",
+      "#29adff",
+      "#83769c",
+      "#ff77a8",
+      "#ffccaa"
+    ],
+    "reviewedOverrides": {
+      "#56864c": 3,
+      "#a8a129": 11,
+      "#f1c471": 10,
+      "#d78b4a": 9,
+      "#5f7160": 3,
+      "#8d977f": 6
+    },
+    "method": "Reviewed palette-map.json overrides retain characteristic clothing hue; remaining colors use nearest squared RGB distance with lowest-index tie break. Alpha 0 is '.', alpha 255 is an opaque hex digit. No scaling, cropping, dithering or drawing new pixels."
+  },
+  "layoutSource": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/system/character/sprite_character.gd",
+  "anchorSource": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/system/character/character.tscn",
+  "frames": [
+    {
+      "id": "down-0",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "09aaaaaaaaaaaa90",
+        ".0999aaaaaa9990.",
+        "..000999999000..",
+        "..033070070330..",
+        ".0bbb300003bbb0.",
+        ".0bbbbbbbbbbbb0.",
+        "..03bb3bb3bb30..",
+        ".03333333333330.",
+        ".03333000033330.",
+        "..003330033300.."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "down-1",
+      "sourceRect": {
+        "x": 0,
+        "y": 16,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "09aaaaaaaaaaaa90",
+        ".0999aaaaaa9990.",
+        "..000999999000..",
+        "..033070070330..",
+        ".003b300003bbb0.",
+        "0333bbbbbbbbbb0.",
+        "03333b3bb3bbb0..",
+        ".0033333333bbb0.",
+        "...0330033bbbb0.",
+        "....0330000000.."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "down-2",
+      "sourceRect": {
+        "x": 0,
+        "y": 32,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "09aaaaaaaaaaaa90",
+        ".0999aaaaaa9990.",
+        "..000999999000..",
+        "..033070070330..",
+        ".0bbb300003bbb0.",
+        ".0bbbbbbbbbbbb0.",
+        "..03bb3bb3bb30..",
+        ".03333333333330.",
+        ".03333000033330.",
+        "..003330033300.."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "down-3",
+      "sourceRect": {
+        "x": 0,
+        "y": 48,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "09aaaaaaaaaaaa90",
+        ".0999aaaaaa9990.",
+        "..000999999000..",
+        "..033070070330..",
+        ".0bbb300003b300.",
+        ".0bbbbbbbbbb3330",
+        "..0bbb3bb3b33330",
+        ".0bbb3333333300.",
+        ".0bbbb3300330...",
+        "..0000000330...."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "down-4",
+      "sourceRect": {
+        "x": 0,
+        "y": 64,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "09aaaaaaaaaaaa90",
+        ".0999aaaaaa9990.",
+        "..000999999000..",
+        "..0330700703330.",
+        ".0bbb300003bb330",
+        ".0bbbbbbbbbbb330",
+        "..0bbb00b3bb330.",
+        "..00b333033330..",
+        ".03306660333330."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 2,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "down-5",
+      "sourceRect": {
+        "x": 0,
+        "y": 80,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "....00000000....",
+        "..00aaaaaaaa00..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        ".099a999999aa90.",
+        "..009070070900..",
+        "..03300bb00330..",
+        "..033bbbbbb330..",
+        ".0bb3b3bb3b3bb0.",
+        "033bbbbbbbb0bb0.",
+        "033333bbbb3300..",
+        ".00033333333330.",
+        "...033333303330.",
+        "...03333300000..",
+        "....03300.......",
+        ".....00........."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "up-0",
+      "sourceRect": {
+        "x": 16,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "09aaaaaaaaaaaa90",
+        ".099aaaaaaaa990.",
+        "..009999999900..",
+        "..0b33333333b0..",
+        ".0b3333333333b0.",
+        ".0b3333333333b0.",
+        "..0b33333333b0..",
+        ".0b3333333333b0.",
+        ".03333333333330.",
+        "..003333333300.."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "up-1",
+      "sourceRect": {
+        "x": 16,
+        "y": 16,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "09aaaaaaaaaaaa90",
+        ".099aaaaaaaa990.",
+        "..009999999900..",
+        ".0b3333333333b0.",
+        ".0b3333333333b0.",
+        "..0b33333333b330",
+        "..03b33333333330",
+        "..0333333333330.",
+        "...03333033330..",
+        "....003330330..."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "up-2",
+      "sourceRect": {
+        "x": 16,
+        "y": 32,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "09aaaaaaaaaaaa90",
+        ".099aaaaaaaa990.",
+        "..009999999900..",
+        "..0b33333333b0..",
+        ".0b3333333333b0.",
+        ".0b3333333333b0.",
+        "..0b33333333b0..",
+        ".0b3333333333b0.",
+        ".03333333333330.",
+        "..003333333300.."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "up-3",
+      "sourceRect": {
+        "x": 16,
+        "y": 48,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "09aaaaaaaaaaaa90",
+        ".099aaaaaaaa990.",
+        "..009999999900..",
+        ".0b3333333333b0.",
+        ".0b3333333333b0.",
+        "033b33333333b0..",
+        "03333333333b30..",
+        ".0333333333330..",
+        "..03333033330...",
+        "...033033300...."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "up-4",
+      "sourceRect": {
+        "x": 16,
+        "y": 64,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "..0330..........",
+        "..033000000.....",
+        "..000aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "09aaaaaaaaaaaa90",
+        ".099aaaaaaaa990.",
+        "..009999999900..",
+        ".0b3333333333b0.",
+        ".0b3333333333b0.",
+        "..0b33333333b0..",
+        ".0b33333333330..",
+        ".03333333333330.",
+        "..0033003333330.",
+        "........0333000."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "up-5",
+      "sourceRect": {
+        "x": 16,
+        "y": 80,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "09aaaaaaaaaaaa90",
+        ".09aaaaaaaaaa90.",
+        ".0099aaaaaa9900.",
+        ".0bb39999993bb0.",
+        "..03333333333330",
+        ".0b3333333333330",
+        "0b3333333333300.",
+        "0333033303330...",
+        "0330000033330...",
+        ".00....03330....",
+        ".......0000....."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "left-0",
+      "sourceRect": {
+        "x": 32,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "099aaaaaaaaaa990",
+        ".00999aaaaa9900.",
+        "..0070999993330.",
+        ".0b000333333330.",
+        ".0bbbb3bb333330.",
+        "..03b33bb33330..",
+        "...0333333330...",
+        "....033333330...",
+        "....033033030...",
+        ".....0300030...."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "left-1",
+      "sourceRect": {
+        "x": 32,
+        "y": 16,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "099aaaaaaaaaa990",
+        ".00999aaaaa9900.",
+        "..0070999993330.",
+        ".0b000333333330.",
+        ".0bbbb3bb333330.",
+        "..03b33bb33330..",
+        "...0333333330...",
+        "..0bbb3333330...",
+        "..0bbb00333330..",
+        "...00033303330.."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "left-2",
+      "sourceRect": {
+        "x": 32,
+        "y": 32,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "099aaaaaaaaaa990",
+        ".00999aaaaa9900.",
+        "..0070999993330.",
+        ".0b000333333330.",
+        ".0bbbb3bb333330.",
+        "..03b33bb33330..",
+        "...0333333330...",
+        "....033333330...",
+        "....033033030...",
+        ".....0300030...."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "left-3",
+      "sourceRect": {
+        "x": 32,
+        "y": 48,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "099aaaaaaaaaa990",
+        ".00999aaaaa9900.",
+        "..0070999993330.",
+        ".0b000333333330.",
+        ".0bbbb3bb333330.",
+        "..03bb3bb33330..",
+        "...03333333330..",
+        "....03bb333030..",
+        "....03bb330330..",
+        "...0333330330..."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "left-4",
+      "sourceRect": {
+        "x": 32,
+        "y": 64,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "099aaaaaaaaaa990",
+        ".00999aaaaa9900.",
+        "..0070999993330.",
+        ".0b000333333330.",
+        "000bbb3bb333330.",
+        "63bbbb3bb33330..",
+        "633b333333330...",
+        "0000033333330...",
+        "...03330033330..",
+        ".........033330."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "left-5",
+      "sourceRect": {
+        "x": 32,
+        "y": 80,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "......00000.....",
+        "....00aaaaa00...",
+        "..00aaaaaaaaa00.",
+        ".0aaaaaaaaaaaaa0",
+        ".0999aaaaaaaa990",
+        "..0079999999900.",
+        ".00000333333330.",
+        ".0bbbb3bb333330.",
+        "..0bb000b3333330",
+        "...00bb333333330",
+        "..0b0bb333333330",
+        "..0bb0333333330.",
+        "..0333003333330.",
+        "...0000.0333330.",
+        ".........033330.",
+        "..........00000."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 1,
+        "top": 0,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "right-0",
+      "sourceRect": {
+        "x": 48,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "099aaaaaaaaaa990",
+        ".0099aaaaa99900.",
+        ".0333999990700..",
+        ".033333333000b0.",
+        ".033333bb3bbbb0.",
+        "..03333bb33b30..",
+        "...0333333330...",
+        "...033333330....",
+        "...030330330....",
+        "....0300030....."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "right-1",
+      "sourceRect": {
+        "x": 48,
+        "y": 16,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "099aaaaaaaaaa990",
+        ".0099aaaaa99900.",
+        ".0333999990700..",
+        ".033333333000b0.",
+        ".033333bb3bbbb0.",
+        "..03333bb33b30..",
+        "...0333333330...",
+        "...0333333bbb0..",
+        "..03333300bbb0..",
+        "..03330333000..."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "right-2",
+      "sourceRect": {
+        "x": 48,
+        "y": 32,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "099aaaaaaaaaa990",
+        ".0099aaaaa99900.",
+        ".0333999990700..",
+        ".033333333000b0.",
+        ".033333bb3bbbb0.",
+        "..03333bb33b30..",
+        "...0333333330...",
+        "...033333330....",
+        "...030330330....",
+        "....0300030....."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "right-3",
+      "sourceRect": {
+        "x": 48,
+        "y": 48,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "099aaaaaaaaaa990",
+        ".0099aaaaa99900.",
+        ".0333999990700..",
+        ".033333333000b0.",
+        ".033333bb3bbbb0.",
+        "..03333bb3bb30..",
+        "..03333333330...",
+        "..030333bb30....",
+        "..033033bb30....",
+        "...0330333330..."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "right-4",
+      "sourceRect": {
+        "x": 48,
+        "y": 64,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "099aaaaaaaaaa990",
+        ".0099aaaaa99900.",
+        ".0333999990700..",
+        ".033333333000b0.",
+        ".033333bb3bbb000",
+        "..03333bb3bbbb36",
+        "...033333333b336",
+        "...0333333300000",
+        "..03333003330...",
+        ".033330........."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "right-5",
+      "sourceRect": {
+        "x": 48,
+        "y": 80,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        ".....00000......",
+        "...00aaaaa00....",
+        ".00aaaaaaaaa00..",
+        "0aaaaaaaaaaaaa0.",
+        "099aaaaaaaa9990.",
+        ".0099999999700..",
+        ".03333333300000.",
+        ".033333bb3bbbb0.",
+        "0333333b000bb0..",
+        "033333333bb00...",
+        "033333333bb0b0..",
+        ".0333333330bb0..",
+        ".0333333003330..",
+        ".0333330.00000..",
+        ".033330.........",
+        ".00000.........."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 15,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "death-pose",
+      "sourceRect": {
+        "x": 0,
+        "y": 96,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "................",
+        "................",
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "09aaaaaaaaaaaa90",
+        "0099aaaaaaaa9900",
+        "0300999999990030",
+        "0b330000000033b0",
+        "0bbb30700703bbb0",
+        ".0bb33333333bb0.",
+        "..333......333.."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 4,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "item-pose",
+      "sourceRect": {
+        "x": 16,
+        "y": 96,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "......0000......",
+        "....00aaaa00....",
+        "...0aa9999aa0...",
+        ".00a99000099a000",
+        "0669007007009660",
+        "0333000bb0003330",
+        "0bb33b3bb3b33bb0",
+        "0bbb33bbbb33bbb0",
+        ".0bb33333333bb0.",
+        ".0bbb333333bbb0.",
+        "..0b33333333b0..",
+        "..0b33333333b0..",
+        "...0b333333b0...",
+        "...0b300003b0...",
+        "...0333003330...",
+        "..033330033330.."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "ability-pose",
+      "sourceRect": {
+        "x": 32,
+        "y": 96,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "09aaaaaaaaaaaa90",
+        ".0999aaaaaa9990.",
+        "..000999999000..",
+        "..033070070330..",
+        ".0bbb300003bbb00",
+        ".0bbbbbbbbbbbb30",
+        "..0b3b3bb3b3b030",
+        "..0bb333333bb00.",
+        ".0bb33330033330.",
+        "0bb0333033333330"
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "ability-2-pose",
+      "sourceRect": {
+        "x": 48,
+        "y": 96,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        ".....000000.....",
+        "...00aaaaaa00...",
+        "..0aaaaaaaaaa0..",
+        ".0aaaaaaaaaaaa0.",
+        "0aaaaaaaaaaaaaa0",
+        "09aaaaaaaaaaaa90",
+        ".09aaaaaaaa9990.",
+        "00009999999000..",
+        "03b37007003330..",
+        "03bb00000333bb0.",
+        "003b3bb3bbbbbb0.",
+        "..033306000bb0..",
+        "..0033063bbb330.",
+        ".03b33063bb3330.",
+        "03333330003330.."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    }
+  ],
+  "animations": {
+    "idle-down": {
+      "frameIds": [
+        "down-0"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "walk-down": {
+      "frameIds": [
+        "down-0",
+        "down-1",
+        "down-2",
+        "down-3"
+      ],
+      "loop": true,
+      "kind": "cycle",
+      "flipX": false
+    },
+    "attack-pose-down": {
+      "frameIds": [
+        "down-4"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "jump-pose-down": {
+      "frameIds": [
+        "down-5"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "idle-up": {
+      "frameIds": [
+        "up-0"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "walk-up": {
+      "frameIds": [
+        "up-0",
+        "up-1",
+        "up-2",
+        "up-3"
+      ],
+      "loop": true,
+      "kind": "cycle",
+      "flipX": false
+    },
+    "attack-pose-up": {
+      "frameIds": [
+        "up-4"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "jump-pose-up": {
+      "frameIds": [
+        "up-5"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "idle-left": {
+      "frameIds": [
+        "left-0"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "walk-left": {
+      "frameIds": [
+        "left-0",
+        "left-1",
+        "left-2",
+        "left-3"
+      ],
+      "loop": true,
+      "kind": "cycle",
+      "flipX": false
+    },
+    "attack-pose-left": {
+      "frameIds": [
+        "left-4"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "jump-pose-left": {
+      "frameIds": [
+        "left-5"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "idle-right": {
+      "frameIds": [
+        "right-0"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "walk-right": {
+      "frameIds": [
+        "right-0",
+        "right-1",
+        "right-2",
+        "right-3"
+      ],
+      "loop": true,
+      "kind": "cycle",
+      "flipX": false
+    },
+    "attack-pose-right": {
+      "frameIds": [
+        "right-4"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "jump-pose-right": {
+      "frameIds": [
+        "right-5"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "death-pose": {
+      "frameIds": [
+        "death-pose"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "item-pose": {
+      "frameIds": [
+        "item-pose"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "ability-pose": {
+      "frameIds": [
+        "ability-pose"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "ability-2-pose": {
+      "frameIds": [
+        "ability-2-pose"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    }
+  },
+  "supportedStates": [
+    "idle",
+    "walk",
+    "attack-pose",
+    "jump-pose",
+    "death-pose",
+    "item-pose",
+    "ability-pose",
+    "ability-2-pose"
+  ],
+  "unsupportedStates": [
+    "hurt-animation",
+    "guard-animation",
+    "multi-frame-attack",
+    "side-view-fighting",
+    "directional-death-animation"
+  ],
+  "notes": [
+    "28 source frames. Only walking has a multi-frame motion cycle. Attack/jump/death/abilities are static source poses.",
+    "Source damage response flashes and shakes the sprite rather than selecting hurt artwork; this pack does not fabricate a hurt animation.",
+    "Last sheet row encodes four distinct action poses, not four directions of the same action."
+  ]
+}

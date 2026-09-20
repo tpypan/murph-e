@@ -1,0 +1,11 @@
+{
+  "title": "COAST CIRCUIT",
+  "oneLiner": "A sunset kart sprint: carve corners, charge drifts and slingshot past five rivals.",
+  "genre": "kart racing",
+  "mechanics": ["Three laps with four ordered checkpoints per lap.", "A or UP accelerates; DOWN brakes; stick left/right steers.", "Hold B through a turn to charge drift sparks, then release B for a mini turbo.", "Yellow boost strips accelerate karts. Grass slows you and kart contact bumps both racers.", "One player races five AI; two players race each other and four AI with independent stacked cameras."],
+  "controls": {"left":"Steer left", "right":"Steer right", "up":"Accelerate", "down":"Brake", "a":"Accelerate", "b":"Hold to drift; release for turbo"},
+  "palette":"arcade", "lose":"Fail to finish before the timer, or finish behind a rival in single player.",
+  "scoring":"100 per checkpoint, 40 per charged drift turbo, 25 per boost strip and 1000 on finishing.",
+  "moderated":false, "note":"Original catalog foundation, no commercial game assets.",
+  "remix":false, "changes":[], "players":1
+}

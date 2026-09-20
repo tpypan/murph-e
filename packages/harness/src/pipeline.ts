@@ -1,15 +1,20 @@
 import { controlsFromSpec, type ProbeResult, probe } from '@htn/probe'
-import { type BuildResult, build } from './build.ts'
+import { BUILD_MAX_OUTPUT_TOKENS, type BuildResult, build } from './build.ts'
+import { validateCandidate } from './candidate-history.ts'
+import { type CandidateStage, catalogPreview, catalogSnapshot } from './catalog.ts'
+import { recordDesignContext } from './design-context.ts'
+import { MODELS } from './env.ts'
 import { keepInLibrary, pickFallback } from './library.ts'
 import { buildPrompt, loadTemplates } from './prompt.ts'
-import { remix } from './remix.ts'
+import { remix, remixSystemPrompt, remixUserTurn } from './remix.ts'
 import { repair } from './repair.ts'
 import { createRun, type Run } from './run-store.ts'
 import { type GameSpec, type Players, specify } from './spec.ts'
 
 export type PipelineEvent =
   | { type: 'spec'; spec: GameSpec; ms: number }
-  | { type: 'token'; text: string; variant: number }
+  | { type: 'foundation'; prefix: string; demo: string }
+  | { type: 'token'; text: string; variant: number; stage?: 'build' | 'remix' | 'repair' }
   | { type: 'built'; variant: number; ms: number; tokens: number; syntaxError: string | null }
   | { type: 'probe'; variant: number; ok: boolean; observations: string[]; ms: number }
   | { type: 'repair'; phase: 'start' | 'done'; ok?: boolean; ms?: number; observations?: string[] }
@@ -28,7 +33,7 @@ export type PipelineEvent =
       runId: string
       totalMs: number
     }
-  | { type: 'error'; message: string }
+  | { type: 'error'; message: string; terminal?: boolean }
 
 /** Where the code that is about to play came from. `kept` is a remix that
  *  failed twice, so the original game stays on screen. */
@@ -79,6 +84,13 @@ function isAbort(e: unknown): boolean {
   return e instanceof Error && (e.name === 'AbortError' || /abort/i.test(e.message))
 }
 
+function checkCancelled(signal?: AbortSignal): void {
+  if (!signal?.aborted) return
+  const error = new Error('Generation cancelled', { cause: signal.reason })
+  error.name = 'AbortError'
+  throw error
+}
+
 /**
  * spec -> race N builds -> first to pass the probe wins -> else repair the
  * best loser once -> else a library game. Always ends with something playable.
@@ -87,12 +99,20 @@ export async function pipeline(
   transcript: string,
   opts: PipelineOptions = {},
 ): Promise<PipelineResult> {
+  checkCancelled(opts.signal)
   const t0 = performance.now()
   const emit = opts.onEvent ?? (() => {})
   const run = opts.run ?? createRun(transcript)
+  run.event('models', {
+    ...MODELS,
+    build: opts.model ?? MODELS.build,
+    buildEffort: opts.effort ?? MODELS.buildEffort,
+    buildMaxOutputTokens: BUILD_MAX_OUTPUT_TOKENS,
+  })
   const race = Math.max(1, opts.race ?? 2)
   const players: Players = opts.players === 2 ? 2 : 1
   const done = (r: Omit<PipelineResult, 'run' | 'totalMs'>): PipelineResult => {
+    checkCancelled(opts.signal)
     const totalMs = Math.round(performance.now() - t0)
     run.write('game.js', r.code)
     run.write(
@@ -122,15 +142,27 @@ export async function pipeline(
   // 1. spec
   let spec: GameSpec
   try {
-    const s = await specify(transcript, { players, current: opts.current?.spec ?? null })
+    const s = await specify(transcript, {
+      players,
+      current: opts.current?.spec ?? null,
+      signal: opts.signal,
+    })
+    checkCancelled(opts.signal)
+    recordDesignContext(run, 'spec', s.context)
+    run.write(
+      'spec-prompt.txt',
+      `=== SYSTEM ===\n${s.prompt.system}\n\n=== USER ===\n${s.prompt.user}\n`,
+    )
     spec = s.spec
     run.write('spec.json', JSON.stringify(spec, null, 2))
     run.event('spec', { ms: s.ms, usage: s.usage, spec })
     emit({ type: 'spec', spec, ms: s.ms })
   } catch (e) {
+    checkCancelled(opts.signal)
+    if (isAbort(e)) throw e
     const message = e instanceof Error ? e.message : String(e)
     run.event('error', { stage: 'spec', message })
-    emit({ type: 'error', message })
+    emit({ type: 'error', message, terminal: true })
     const fb = pickFallback(undefined, players)
     emit({ type: 'fallback', reason: `spec failed: ${message}`, title: fb.title, slug: fb.slug })
     return done({
@@ -146,8 +178,72 @@ export async function pipeline(
   }
 
   const prompt = buildPrompt(spec, transcript, loadTemplates())
+  recordDesignContext(run, 'build', prompt.designContext)
+  run.write('implementation-context.json', JSON.stringify(prompt.referenceContext, null, 2))
+  if (prompt.catalog)
+    run.write('catalog-context.json', JSON.stringify(catalogSnapshot(prompt.catalog), null, 2))
   run.write('prompt.txt', `=== SYSTEM ===\n${prompt.system}\n\n=== USER ===\n${prompt.user}\n`)
   const controls = controlsFromSpec(spec.controls)
+  const preview = prompt.catalog && catalogPreview(prompt.catalog)
+  if (preview) emit({ type: 'foundation', ...preview })
+  function checkCandidate(
+    code: string,
+    stage: CandidateStage,
+    variant: number,
+    validate: () => Promise<ProbeResult> | ProbeResult,
+    output: { raw: string; sourceCode?: string },
+    signal = opts.signal,
+  ) {
+    const repairing = stage === 'repair' || stage === 'remix-repair'
+    return validateCandidate(
+      {
+        runId: run.id,
+        attemptId: `${stage}:${variant}`,
+        stage,
+        variant,
+        transcript,
+        spec,
+        code,
+        rawOutput: output.raw,
+        sourceCode: output.sourceCode,
+        model: repairing
+          ? MODELS.repair
+          : stage === 'remix'
+            ? MODELS.remix
+            : (opts.model ?? MODELS.build),
+        effort: repairing
+          ? MODELS.repairEffort
+          : stage === 'remix'
+            ? MODELS.remixEffort
+            : (opts.effort ?? MODELS.buildEffort),
+        parts: prompt.catalog ? catalogSnapshot(prompt.catalog).parts : [],
+        sprites: prompt.catalog ? catalogSnapshot(prompt.catalog).sprites : [],
+      },
+      async () => {
+        // Archive first, including completed output returned during cancellation.
+        checkCancelled(signal)
+        const result = await validate()
+        checkCancelled(signal)
+        return result
+      },
+      {
+        onRecorded: (hash, validation) =>
+          run.event('catalog-candidate', {
+            hash,
+            stage,
+            variant,
+            status: 'quarantined',
+            ...validation,
+          }),
+        onError: (error) =>
+          run.event('catalog-error', {
+            stage,
+            variant,
+            message: error instanceof Error ? error.message : String(error),
+          }),
+      },
+    )
+  }
 
   // 1b. remix: edit the game on screen instead of writing a new one. A real
   // remix keeps the genre; a genre change means the words were a new game.
@@ -174,9 +270,13 @@ export async function pipeline(
       })
     }
     try {
+      run.write(
+        'remix-prompt.txt',
+        `=== SYSTEM ===\n${remixSystemPrompt(prompt)}\n\n=== USER ===\n${remixUserTurn(spec, cur.code, spec.changes, prompt.designContext, prompt.transcript)}\n`,
+      )
       const r = await remix(prompt, spec, cur.code, spec.changes, {
         signal: opts.signal,
-        onDelta: (text) => emit({ type: 'token', text, variant: 0 }),
+        onDelta: (text) => emit({ type: 'token', text, variant: 0, stage: 'remix' }),
       })
       run.write('remix.raw.txt', r.raw)
       run.write('game.remix.js', r.code)
@@ -189,30 +289,41 @@ export async function pipeline(
         applyError: r.applyError,
         syntaxError: r.syntaxError,
       })
-      let observations: string[] = []
       let code = r.code
-      if (r.applyError) observations = [`the edit could not be applied: ${r.applyError}`]
-      else if (r.syntaxError) observations = [`the game failed to load: ${r.syntaxError}`]
-      else {
-        const p = await probe(code, { controls, title: spec.title, players })
-        run.event('probe', { stage: 'remix', ok: p.ok, observations: p.observations, ms: p.ms })
-        emit({ type: 'probe', variant: 0, ok: p.ok, observations: p.observations, ms: p.ms })
-        if (p.ok) {
-          emit({ type: 'remix', phase: 'done', changes: spec.changes, ok: true, ms: r.ms })
-          if (p.thumb) run.write('thumb.png', p.thumb)
-          return done({
-            code,
-            title: spec.title,
-            note: spec.note,
-            spec,
-            players,
-            slug: cur.slug,
-            source: 'remix',
-            observations: p.observations,
-          })
-        }
-        observations = p.observations
+      const p = await checkCandidate(
+        code,
+        'remix',
+        0,
+        () => {
+          const error = r.applyError
+            ? `the edit could not be applied: ${r.applyError}`
+            : r.syntaxError
+              ? `the game failed to load: ${r.syntaxError}`
+              : null
+          return error
+            ? { ok: false, observations: [error], thumb: null, ms: 0, checks: {} }
+            : probe(code, { controls, title: spec.title, players })
+        },
+        r,
+      )
+      run.event('probe', { stage: 'remix', ok: p.ok, observations: p.observations, ms: p.ms })
+      emit({ type: 'probe', variant: 0, ok: p.ok, observations: p.observations, ms: p.ms })
+      if (p.ok) {
+        emit({ type: 'remix', phase: 'done', changes: spec.changes, ok: true, ms: r.ms })
+        if (p.thumb) run.write('thumb.png', p.thumb)
+        return done({
+          code,
+          title: spec.title,
+          note: spec.note,
+          spec,
+          players,
+          slug: cur.slug,
+          source: 'remix',
+          observations: p.observations,
+        })
       }
+      checkCancelled(opts.signal)
+      const observations = p.observations
       // One full-file repair round on whichever version got furthest.
       if (r.applyError) code = cur.code
       emit({ type: 'repair', phase: 'start', observations })
@@ -222,18 +333,28 @@ export async function pipeline(
         spec,
         code,
         [`apply these changes: ${spec.changes.join('; ')}`, ...observations],
-        { signal: opts.signal },
+        {
+          signal: opts.signal,
+          onDelta: (text) => emit({ type: 'token', text, variant: 0, stage: 'repair' }),
+        },
       )
       run.write('game.remix.repair.js', fixed.code)
-      const p2 = fixed.syntaxError
-        ? {
-            ok: false,
-            observations: [`the game failed to load: ${fixed.syntaxError}`],
-            thumb: null,
-            ms: 0,
-            checks: {},
-          }
-        : await probe(fixed.code, { controls, title: spec.title, players })
+      const p2 = await checkCandidate(
+        fixed.code,
+        'remix-repair',
+        0,
+        () =>
+          fixed.syntaxError
+            ? {
+                ok: false,
+                observations: [`the game failed to load: ${fixed.syntaxError}`],
+                thumb: null,
+                ms: 0,
+                checks: {},
+              }
+            : probe(fixed.code, { controls, title: spec.title, players }),
+        fixed,
+      )
       run.event('repair', {
         phase: 'done',
         stage: 'remix',
@@ -264,6 +385,7 @@ export async function pipeline(
       emit({ type: 'remix', phase: 'done', changes: spec.changes, ok: false })
       return keep(p2.observations.join('; '))
     } catch (e) {
+      checkCancelled(opts.signal)
       if (isAbort(e)) throw e
       const message = e instanceof Error ? e.message : String(e)
       run.event('error', { stage: 'remix', message })
@@ -277,7 +399,9 @@ export async function pipeline(
   const attempt = async (variant: number): Promise<Attempt> => {
     const ac = new AbortController()
     controllers.push(ac)
-    if (opts.signal) opts.signal.addEventListener('abort', () => ac.abort(), { once: true })
+    const abort = () => ac.abort(opts.signal?.reason)
+    opts.signal?.addEventListener('abort', abort, { once: true })
+    if (opts.signal?.aborted) abort()
     const a: Attempt = { variant, build: null, probe: null, error: null }
     try {
       const b = await build(prompt, {
@@ -289,25 +413,33 @@ export async function pipeline(
       })
       a.build = b
       run.write(`game.v${variant}.js`, b.code)
+      run.write(`customization.v${variant}.js`, b.sourceCode)
       run.event('build', {
         variant,
         ms: b.ms,
         ttftMs: b.ttftMs,
         usage: b.usage,
         syntaxError: b.syntaxError,
+        incompleteReason: b.incompleteReason,
       })
       emit({ type: 'built', variant, ms: b.ms, tokens: b.usage.output, syntaxError: b.syntaxError })
-      if (b.syntaxError) {
-        a.probe = {
-          ok: false,
-          observations: [`the game failed to load: ${b.syntaxError}`],
-          thumb: null,
-          ms: 0,
-          checks: {},
-        }
-      } else {
-        a.probe = await probe(b.code, { controls, title: spec.title, players })
-      }
+      a.probe = await checkCandidate(
+        b.code,
+        'build',
+        variant,
+        () =>
+          b.syntaxError
+            ? {
+                ok: false,
+                observations: [`the game failed to load: ${b.syntaxError}`],
+                thumb: null,
+                ms: 0,
+                checks: {},
+              }
+            : probe(b.code, { controls, title: spec.title, players }),
+        b,
+        ac.signal,
+      )
       run.event('probe', {
         variant,
         ok: a.probe.ok,
@@ -325,8 +457,10 @@ export async function pipeline(
       a.error = isAbort(e) ? 'cancelled' : e instanceof Error ? e.message : String(e)
       if (a.error !== 'cancelled') {
         run.event('error', { stage: 'build', variant, message: a.error })
-        emit({ type: 'error', message: `build ${variant}: ${a.error}` })
+        emit({ type: 'error', message: `build ${variant}: ${a.error}`, terminal: false })
       }
+    } finally {
+      opts.signal?.removeEventListener('abort', abort)
     }
     return a
   }
@@ -337,6 +471,7 @@ export async function pipeline(
   let winner: Attempt | null = null
   while (pending.size > 0 && !winner) {
     const a = await Promise.race(pending.values())
+    checkCancelled(opts.signal)
     pending.delete(a.variant)
     finished.push(a)
     if (a.probe?.ok) winner = a
@@ -345,6 +480,8 @@ export async function pipeline(
     for (const c of controllers) c.abort()
     return finish(winner, 'build')
   }
+
+  checkCancelled(opts.signal)
 
   // 3. repair the loser with the fewest observations
   const candidates = finished.filter((a) => a.build && a.probe)
@@ -360,17 +497,26 @@ export async function pipeline(
     try {
       const r = await repair(prompt, spec, best.build.code, best.probe.observations, {
         signal: opts.signal,
+        onDelta: (text) => emit({ type: 'token', text, variant: best.variant, stage: 'repair' }),
       })
       run.write('game.repair.js', r.code)
-      const p = r.syntaxError
-        ? {
-            ok: false,
-            observations: [`the game failed to load: ${r.syntaxError}`],
-            thumb: null,
-            ms: 0,
-            checks: {},
-          }
-        : await probe(r.code, { controls, title: spec.title, players })
+      run.write('customization.repair.js', r.sourceCode)
+      const p = await checkCandidate(
+        r.code,
+        'repair',
+        best.variant,
+        () =>
+          r.syntaxError
+            ? {
+                ok: false,
+                observations: [`the game failed to load: ${r.syntaxError}`],
+                thumb: null,
+                ms: 0,
+                checks: {},
+              }
+            : probe(r.code, { controls, title: spec.title, players }),
+        r,
+      )
       run.event('repair', {
         phase: 'done',
         ms: r.ms,
@@ -381,11 +527,15 @@ export async function pipeline(
       emit({ type: 'repair', phase: 'done', ok: p.ok, ms: r.ms, observations: p.observations })
       if (p.ok) return finish({ variant: best.variant, build: r, probe: p, error: null }, 'repair')
     } catch (e) {
+      checkCancelled(opts.signal)
+      if (isAbort(e)) throw e
       const message = e instanceof Error ? e.message : String(e)
       run.event('error', { stage: 'repair', message })
       emit({ type: 'repair', phase: 'done', ok: false, observations: [message] })
     }
   }
+
+  checkCancelled(opts.signal)
 
   // 4. fallback
   const reason = best?.probe
@@ -406,6 +556,7 @@ export async function pipeline(
   })
 
   function finish(a: Attempt, source: 'build' | 'repair'): PipelineResult {
+    checkCancelled(opts.signal)
     const code = a.build!.code
     if (a.probe?.thumb) run.write('thumb.png', a.probe.thumb)
     run.write(

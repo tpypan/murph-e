@@ -96,6 +96,7 @@ interface RunResult {
   samples: RunSample[]
   finalScore: number
   deathFrame: number | null
+  terminalFrame: number | null
   error: string | null
   telemetry: { sfx: Record<string, number>; flash: number; shake: number }
   scoreFrames: number[]
@@ -132,6 +133,7 @@ const RUN = (input: {
   const SAMPLE_EVERY = 30 // half a second
   const STEP = 3
 
+  let terminalFrame: number | null = null
   let deathFrame: number | null = null
   let error: string | null = null
   let finalScore = 0
@@ -163,7 +165,8 @@ const RUN = (input: {
       error = r.error
       break
     }
-    if (deathFrame === null && r.state !== 'playing') deathFrame = f
+    if (r.state !== 'playing') terminalFrame = f + STEP
+    if (r.state === 'gameover') deathFrame = terminalFrame
     if (f % SAMPLE_EVERY < STEP) {
       const st = p.frameStats()
       samples.push({
@@ -175,11 +178,11 @@ const RUN = (input: {
         hash: p.frameHash(),
       })
     }
-    if (shotFrames.length > 0 && f >= shotFrames[0]! && deathFrame === null) {
+    if (shotFrames.length > 0 && f >= shotFrames[0]! && terminalFrame === null) {
       shotFrames.shift()
       shots.push(p.snapshot())
     }
-    if (deathFrame !== null) break
+    if (terminalFrame !== null) break
   }
 
   const tele = p.telemetry()
@@ -187,6 +190,7 @@ const RUN = (input: {
     samples,
     finalScore,
     deathFrame,
+    terminalFrame,
     error,
     telemetry: { sfx: tele.sfx, flash: tele.flash, shake: tele.shake },
     scoreFrames: tele.scoreFrames,
@@ -275,7 +279,7 @@ function summarise(idle: RunResult, bot: RunResult, frames: number): PlaytestMet
 
   // Score events, split into the first and last third of the time the bot
   // actually survived, so a short run is not judged on frames it never saw.
-  const played = bot.deathFrame ?? frames
+  const played = bot.terminalFrame ?? frames
   const cut = played / 3
   const evEarly = bot.scoreFrames.filter((f) => f < cut).length
   const evLate = bot.scoreFrames.filter((f) => f >= played - cut).length
@@ -294,8 +298,8 @@ function summarise(idle: RunResult, bot: RunResult, frames: number): PlaytestMet
   const round = (n: number) => Math.round(n * 100) / 100
   // Per second alive, so a bot that throws itself at a hazard is not scored
   // as less effective than a player who never moves.
-  const idleAlive = (idle.deathFrame ?? frames) / 60
-  const botAlive = (bot.deathFrame ?? frames) / 60
+  const idleAlive = (idle.terminalFrame ?? frames) / 60
+  const botAlive = (bot.terminalFrame ?? frames) / 60
   const idleRate = idleScore / Math.max(0.5, idleAlive)
   const botRate = botScore / Math.max(0.5, botAlive)
 

@@ -1,0 +1,100 @@
+{
+  "moduleHash": "603d86406eebdef5a9c18ae41e5c39f8027cd01fb56cd9fa4f59cbb6e62f9015",
+  "legacyEqual": false,
+  "intentionalSceneryRevision": true,
+  "legacyReference": "c5cd04fd28aef6d52635089262ec3ad88b4f14875d651e857afe695142d568a9",
+  "results": [
+    {
+      "players": 1,
+      "name": "grid",
+      "frame": 1,
+      "hash": "bdf30a75",
+      "errors": []
+    },
+    {
+      "players": 1,
+      "name": "straight",
+      "frame": 440,
+      "hash": "8d5e5820",
+      "errors": []
+    },
+    {
+      "players": 1,
+      "name": "corner",
+      "frame": 540,
+      "hash": "7b966d86",
+      "errors": []
+    },
+    {
+      "players": 1,
+      "name": "s-bend",
+      "frame": 660,
+      "hash": "48933834",
+      "errors": []
+    },
+    {
+      "players": 1,
+      "name": "late",
+      "frame": 1800,
+      "hash": "4346d4ef",
+      "errors": []
+    },
+    {
+      "players": 2,
+      "name": "grid",
+      "frame": 1,
+      "hash": "dc4d1408",
+      "errors": []
+    },
+    {
+      "players": 2,
+      "name": "straight",
+      "frame": 440,
+      "hash": "c8ee0237",
+      "errors": []
+    },
+    {
+      "players": 2,
+      "name": "corner",
+      "frame": 540,
+      "hash": "ec0a9add",
+      "errors": []
+    },
+    {
+      "players": 2,
+      "name": "s-bend",
+      "frame": 660,
+      "hash": "642fd17e",
+      "errors": []
+    },
+    {
+      "players": 2,
+      "name": "late",
+      "frame": 1800,
+      "hash": "2098cf83",
+      "errors": []
+    }
+  ],
+  "customResults": [
+    {
+      "players": 1,
+      "test": "native exact scaled RGB including opaque black",
+      "checkedPixels": 60,
+      "blackPixels": 18,
+      "errors": []
+    },
+    {
+      "players": 2,
+      "test": "native exact scaled RGB including opaque black",
+      "checkedPixels": 34,
+      "blackPixels": 6,
+      "errors": []
+    },
+    {
+      "players": 2,
+      "test": "native tall P2 sprite never writes into P1 viewport",
+      "visiblePixels": 210,
+      "errors": []
+    }
+  ]
+}

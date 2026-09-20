@@ -1,0 +1,28 @@
+{
+  "title": "SKY SHIELD",
+  "oneLiner": "Aim ahead, build chain reactions, and defend six cities through four waves.",
+  "genre": "missile-defense",
+  "mechanics": [
+    "Aim ahead of incoming missiles and fire interceptors from the selected battery.",
+    "Blasts expand, hold and contract; intercepted missiles create smaller chain-reaction blasts.",
+    "Each wave has finite ammo and enemy count. Four waves escalate speed, spawn pressure and splitting missiles.",
+    "Protect at least one city. Between waves batteries refill and one lost city is rebuilt.",
+    "Two players move independent colored cursors and share cities/battery ammo; kills score for the shot owner."
+  ],
+  "controls": {
+    "left": "Move targeting cursor left",
+    "right": "Move targeting cursor right",
+    "up": "Move targeting cursor up",
+    "down": "Move targeting cursor down",
+    "a": "Fire an interceptor at your cursor",
+    "b": "Select next launch battery"
+  },
+  "palette": "arcade",
+  "lose": "Every city is destroyed, or the finite overall time limit expires.",
+  "scoring": "25 for a direct interception, 50 for a chain interception, plus surviving-city and remaining-ammo bonuses each wave.",
+  "moderated": false,
+  "note": "Original catalogue foundation, no commercial source/assets.",
+  "remix": false,
+  "changes": [],
+  "players": 1
+}

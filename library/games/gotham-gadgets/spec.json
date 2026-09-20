@@ -1,0 +1,34 @@
+{
+  "title": "GOTHAM GADGETS",
+  "oneLiner": "Leap across Gotham rooftops, grab gadgets, and land every jump before the night closes in.",
+  "genre": "platformer",
+  "mechanics": [
+    "Batman runs left and right across fixed rooftop platforms and jumps with A; hold A for a full 32-pixel jump, tap for a shorter hop, with a 0.10-second coyote window.",
+    "Collect batarangs, grapnels, and signal beacons for 100 points each; chain three gadgets without missing a landing for a capped 2x multiplier.",
+    "Rooftop gaps, low chimneys, and patrolling searchlight drones create readable hazards; use precise short or full jumps to choose safe or risky routes.",
+    "Every 20 seconds the camera reveals a new bounded rooftop chunk, alternating safe recovery platforms with optional high-value shortcuts; speed rises modestly to a 30-second danger peak."
+  ],
+  "controls": {
+    "left": "Move Batman left",
+    "right": "Move Batman right",
+    "up": null,
+    "down": null,
+    "a": "Jump; hold for a higher jump",
+    "b": "Use the grapnel to pull Batman toward a marked rooftop beacon once per jump"
+  },
+  "palette": "nes",
+  "lose": "Batman falls into a rooftop gap or collides with a searchlight drone three times; three hearts are shown.",
+  "scoring": "Collect gadgets for 100 points, with a 2x multiplier after three consecutive collections; taking damage resets the chain.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "platforming",
+    "layouts",
+    "scoring",
+    "reference-identity"
+  ],
+  "players": 1,
+  "runId": "2026-09-19-1843-batman-jumping-between-gotham-ro"
+}

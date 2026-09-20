@@ -1,0 +1,5 @@
+# Focused context regression requests; run alongside the existing full benchmarks.
+a monkey swinging on ropes between rooftops, release to fly and catch the next rope
+a maze where a ghost chases me, with different enemy personalities and temporary power pellets
+a spaceship dodging aimed volleys and rotating bullet fans with short recovery breaks
+Batman jumping between Gotham rooftops and collecting gadgets

@@ -1,0 +1,190 @@
+{
+  "at": "2026-09-19T21:17:25.579Z",
+  "results": [
+    {
+      "players": 1,
+      "name": "serve",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 1,
+        "error": null
+      },
+      "stepMs": 4
+    },
+    {
+      "players": 1,
+      "name": "launch",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 90,
+        "error": null
+      },
+      "stepMs": 10
+    },
+    {
+      "players": 1,
+      "name": "rally",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 500,
+        "error": null
+      },
+      "stepMs": 33
+    },
+    {
+      "players": 1,
+      "name": "return",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 100,
+        "scores": [
+          100
+        ],
+        "winner": null,
+        "frame": 700,
+        "error": null
+      },
+      "stepMs": 16
+    },
+    {
+      "players": 1,
+      "name": "match-end",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "win",
+        "score": 700,
+        "scores": [
+          700
+        ],
+        "winner": null,
+        "frame": 11000,
+        "error": null
+      },
+      "stepMs": 647
+    },
+    {
+      "players": 2,
+      "name": "serve",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0,
+          0
+        ],
+        "winner": null,
+        "frame": 11001,
+        "error": null
+      },
+      "stepMs": 1
+    },
+    {
+      "players": 2,
+      "name": "launch",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0,
+          0
+        ],
+        "winner": null,
+        "frame": 11090,
+        "error": null
+      },
+      "stepMs": 8
+    },
+    {
+      "players": 2,
+      "name": "rally",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 100,
+        "scores": [
+          100,
+          0
+        ],
+        "winner": null,
+        "frame": 11500,
+        "error": null
+      },
+      "stepMs": 30
+    },
+    {
+      "players": 2,
+      "name": "return",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 200,
+        "scores": [
+          200,
+          0
+        ],
+        "winner": null,
+        "frame": 11700,
+        "error": null
+      },
+      "stepMs": 15
+    },
+    {
+      "players": 2,
+      "name": "match-end",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "win",
+        "score": 700,
+        "scores": [
+          700,
+          0
+        ],
+        "winner": 0,
+        "frame": 22000,
+        "error": null
+      },
+      "stepMs": 666
+    }
+  ]
+}

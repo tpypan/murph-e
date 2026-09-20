@@ -1,0 +1,370 @@
+{
+  "passed": true,
+  "at": "2026-09-19T22:56:15.563Z",
+  "sourceHash": "b388608f1de882f3298b3d5e5298f1fe0f2ee38f6838709c3af9342b2b66ef2c",
+  "previousSourceHash": "8840c2e48e62d3961c5033e7809dd7b00a8a37170b0538df3b8ec1fe6c9b9c6d",
+  "scriptHash": "483f4edb3ac2fd0890f54f9a1b725b2749cd1faad9249f28bdcf377adf3c409b",
+  "runtimeHash": "1683361f3b43eb323c9d202135f9fd7ae583c19d7bb3bce5792c0d9d2396072b",
+  "method": "Detached VM telemetry plans ordinary input events, replayed with native __probe.inject. No game state setters, API button overrides or edited frozen generations. Default and optional presentation runs use identical inputs; every changed pixel must be inside declared notice slots or exactly on a well outline.",
+  "results": [
+    {
+      "players": 1,
+      "sourceHash": "b388608f1de882f3298b3d5e5298f1fe0f2ee38f6838709c3af9342b2b66ef2c",
+      "previousSourceHash": "8840c2e48e62d3961c5033e7809dd7b00a8a37170b0538df3b8ec1fe6c9b9c6d",
+      "mechanicsMatch": true,
+      "defaultPixelsUnchanged": true,
+      "boundedOptions": true,
+      "resetCleared": true,
+      "geometry": {
+        "scoreHud": {
+          "x": 0,
+          "y": 0,
+          "w": 256,
+          "h": 12
+        },
+        "status": {
+          "x": 16,
+          "y": 12,
+          "w": 224,
+          "h": 16
+        },
+        "field": {
+          "x": 16,
+          "y": 28,
+          "w": 224,
+          "h": 176
+        },
+        "timer": {
+          "x": 80,
+          "y": 211,
+          "w": 64,
+          "h": 8
+        },
+        "notices": [
+          {
+            "player": 0,
+            "x": 16,
+            "y": 211,
+            "w": 56,
+            "h": 8
+          }
+        ]
+      },
+      "captures": [
+        {
+          "name": "start",
+          "frame": 1,
+          "active": false,
+          "scores": [
+            0
+          ],
+          "file": "1p-customized-start.png",
+          "baselineFile": "1p-ordinary-start.png",
+          "hash": "88207624",
+          "defaultHash": "88207624",
+          "oldDefaultHash": "88207624",
+          "changedPixels": 0,
+          "protectedPixelsUnchanged": true,
+          "native": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 2135,
+            "error": null
+          }
+        },
+        {
+          "name": "p1-home",
+          "frame": 136,
+          "active": true,
+          "scores": [
+            478
+          ],
+          "file": "1p-customized-p1-home.png",
+          "baselineFile": "1p-ordinary-p1-home.png",
+          "hash": "4e569be5",
+          "defaultHash": "30a07e39",
+          "oldDefaultHash": "30a07e39",
+          "changedPixels": 81,
+          "protectedPixelsUnchanged": true,
+          "native": {
+            "state": "playing",
+            "score": 478,
+            "scores": [
+              478
+            ],
+            "winner": null,
+            "frame": 2270,
+            "error": null
+          }
+        },
+        {
+          "name": "after-effect",
+          "frame": 197,
+          "active": false,
+          "scores": [
+            478
+          ],
+          "file": "1p-customized-after-effect.png",
+          "baselineFile": "1p-ordinary-after-effect.png",
+          "hash": "8e564c45",
+          "defaultHash": "8e564c45",
+          "oldDefaultHash": "8e564c45",
+          "changedPixels": 0,
+          "protectedPixelsUnchanged": true,
+          "native": {
+            "state": "playing",
+            "score": 478,
+            "scores": [
+              478
+            ],
+            "winner": null,
+            "frame": 2331,
+            "error": null
+          }
+        },
+        {
+          "name": "level-clear",
+          "frame": 992,
+          "active": true,
+          "scores": [
+            2352
+          ],
+          "file": "1p-customized-level-clear.png",
+          "baselineFile": "1p-ordinary-level-clear.png",
+          "hash": "c8eb136c",
+          "defaultHash": "7c647cb0",
+          "oldDefaultHash": "7c647cb0",
+          "changedPixels": 81,
+          "protectedPixelsUnchanged": true,
+          "native": {
+            "state": "playing",
+            "score": 2352,
+            "scores": [
+              2352
+            ],
+            "winner": null,
+            "frame": 3126,
+            "error": null
+          }
+        },
+        {
+          "name": "terminal",
+          "frame": 1067,
+          "active": false,
+          "scores": [
+            2352
+          ],
+          "file": "1p-customized-terminal.png",
+          "baselineFile": "1p-ordinary-terminal.png",
+          "hash": "8d9d82b6",
+          "defaultHash": "8d9d82b6",
+          "oldDefaultHash": "8d9d82b6",
+          "changedPixels": 0,
+          "protectedPixelsUnchanged": true,
+          "native": {
+            "state": "win",
+            "score": 2352,
+            "scores": [
+              2352
+            ],
+            "winner": null,
+            "frame": 3201,
+            "error": null
+          }
+        }
+      ]
+    },
+    {
+      "players": 2,
+      "sourceHash": "b388608f1de882f3298b3d5e5298f1fe0f2ee38f6838709c3af9342b2b66ef2c",
+      "previousSourceHash": "8840c2e48e62d3961c5033e7809dd7b00a8a37170b0538df3b8ec1fe6c9b9c6d",
+      "mechanicsMatch": true,
+      "defaultPixelsUnchanged": true,
+      "boundedOptions": true,
+      "resetCleared": true,
+      "geometry": {
+        "scoreHud": {
+          "x": 0,
+          "y": 0,
+          "w": 256,
+          "h": 12
+        },
+        "status": {
+          "x": 16,
+          "y": 12,
+          "w": 224,
+          "h": 16
+        },
+        "field": {
+          "x": 16,
+          "y": 28,
+          "w": 224,
+          "h": 176
+        },
+        "timer": {
+          "x": 80,
+          "y": 211,
+          "w": 64,
+          "h": 8
+        },
+        "notices": [
+          {
+            "player": 0,
+            "x": 16,
+            "y": 211,
+            "w": 56,
+            "h": 8
+          },
+          {
+            "player": 1,
+            "x": 168,
+            "y": 211,
+            "w": 56,
+            "h": 8
+          }
+        ]
+      },
+      "captures": [
+        {
+          "name": "start",
+          "frame": 1,
+          "active": false,
+          "scores": [
+            0,
+            0
+          ],
+          "file": "2p-customized-start.png",
+          "baselineFile": "2p-ordinary-start.png",
+          "hash": "7ed7e68c",
+          "defaultHash": "7ed7e68c",
+          "oldDefaultHash": "7ed7e68c",
+          "changedPixels": 0,
+          "protectedPixelsUnchanged": true,
+          "native": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 5186,
+            "error": null
+          }
+        },
+        {
+          "name": "p1-home",
+          "frame": 136,
+          "active": true,
+          "scores": [
+            478,
+            0
+          ],
+          "file": "2p-customized-p1-home.png",
+          "baselineFile": "2p-ordinary-p1-home.png",
+          "hash": "e0bce63b",
+          "defaultHash": "fe7303e7",
+          "oldDefaultHash": "fe7303e7",
+          "changedPixels": 81,
+          "protectedPixelsUnchanged": true,
+          "native": {
+            "state": "playing",
+            "score": 478,
+            "scores": [
+              478,
+              0
+            ],
+            "winner": null,
+            "frame": 5321,
+            "error": null
+          }
+        },
+        {
+          "name": "after-effect",
+          "frame": 197,
+          "active": false,
+          "scores": [
+            478,
+            30
+          ],
+          "file": "2p-customized-after-effect.png",
+          "baselineFile": "2p-ordinary-after-effect.png",
+          "hash": "b501b9df",
+          "defaultHash": "b501b9df",
+          "oldDefaultHash": "b501b9df",
+          "changedPixels": 0,
+          "protectedPixelsUnchanged": true,
+          "native": {
+            "state": "playing",
+            "score": 478,
+            "scores": [
+              478,
+              30
+            ],
+            "winner": null,
+            "frame": 5382,
+            "error": null
+          }
+        },
+        {
+          "name": "p2-home",
+          "frame": 294,
+          "active": true,
+          "scores": [
+            478,
+            476
+          ],
+          "file": "2p-customized-p2-home.png",
+          "baselineFile": "2p-ordinary-p2-home.png",
+          "hash": "7ee65dc0",
+          "defaultHash": "8559be08",
+          "oldDefaultHash": "8559be08",
+          "changedPixels": 81,
+          "protectedPixelsUnchanged": true,
+          "native": {
+            "state": "playing",
+            "score": 478,
+            "scores": [
+              478,
+              476
+            ],
+            "winner": null,
+            "frame": 5479,
+            "error": null
+          }
+        },
+        {
+          "name": "level-clear",
+          "frame": 992,
+          "active": true,
+          "scores": [
+            1413,
+            945
+          ],
+          "file": "2p-customized-level-clear.png",
+          "baselineFile": "2p-ordinary-level-clear.png",
+          "hash": "8ff05824",
+          "defaultHash": "6cbfc7f8",
+          "oldDefaultHash": "6cbfc7f8",
+          "changedPixels": 81,
+          "protectedPixelsUnchanged": true,
+          "native": {
+            "state": "playing",
+            "score": 1413,
+            "scores": [
+              1413,
+              945
+            ],
+            "winner": null,
+            "frame": 6177,
+            "error": null
+          }
+        }
+      ]
+    }
+  ]
+}

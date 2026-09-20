@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "id": "grass",
+  "packId": "ninja-adventure",
+  "camera": "top-down",
+  "width": 16,
+  "height": 16,
+  "source": {
+    "path": "original/content/destroyable/grass.png",
+    "url": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/destroyable/grass.png",
+    "sha256": "3177a5814a6086f615eb8e1f1a4fe095dd23c6d7357e9daccef11ca02c4e5b71",
+    "sourceRevision": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a"
+  },
+  "pixels": [
+    "................",
+    ".......333......",
+    "......3aaa3.....",
+    ".333.3aaaa3333..",
+    "3aaa3baaa3aaaa3.",
+    "3aaaabaabaaaaa3.",
+    ".3aaabbbbbaaa33.",
+    "..3aabaaaababaa3",
+    ".3babaaaaabbaaa3",
+    "3aabbaaabbbaaa3.",
+    "3aaabaabbbbaaa3.",
+    ".3aabaabaabaaab.",
+    ".baababbaaabaab.",
+    "..bbbbbbbaabbb..",
+    "....bbbbbbbb....",
+    "................"
+  ],
+  "anchor": {
+    "x": 8,
+    "y": 16
+  },
+  "normalization": {
+    "palette": "pico-8",
+    "reviewedOverrides": {
+      "#546626": 3,
+      "#74a334": 11,
+      "#adbc3a": 10
+    }
+  },
+  "anchorOrigin": "Authored bottom-center placement; source attachment pivots have not been reconstructed.",
+  "hitboxes": [],
+  "hurtboxes": [],
+  "animations": {},
+  "tags": [
+    "prop",
+    "static"
+  ],
+  "notes": "Static source image only. No implied attack animation, damage volume or destruction sequence."
+}

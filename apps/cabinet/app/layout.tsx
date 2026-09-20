@@ -5,7 +5,7 @@ import './globals.css'
 const pixel = Press_Start_2P({ weight: '400', subsets: ['latin'], variable: '--font-pixel' })
 
 export const metadata: Metadata = {
-  title: 'HTN Arcade',
+  title: 'Arcade',
   description: 'Say a game. Play it.',
 }
 

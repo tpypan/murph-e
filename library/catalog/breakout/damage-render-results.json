@@ -1,0 +1,133 @@
+{
+  "sourceHash": "88caf62a1e367b2820ea29e0b276b434a6d7c20a8eaf8e57f38561e7cc58e58e",
+  "images": [
+    {
+      "name": "fresh",
+      "frame": 1,
+      "file": "screenshots/damage-fresh.png",
+      "sha256": "c68099bb3bf1db91ba50ec1e2b14f170f56153bd2b3faa680e090456203f7642",
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 1,
+        "error": null
+      }
+    },
+    {
+      "name": "1hp-hit-1",
+      "frame": 278,
+      "file": "screenshots/damage-1hp-hit-1.png",
+      "sha256": "2afa7dde630198c35b86392e2c63a1b8e5ad6c95c4357751a070da6ca1fdd071",
+      "state": {
+        "state": "playing",
+        "score": 25,
+        "scores": [
+          25
+        ],
+        "winner": null,
+        "frame": 278,
+        "error": null
+      }
+    },
+    {
+      "name": "2hp-hit-1",
+      "frame": 298,
+      "file": "screenshots/damage-2hp-hit-1.png",
+      "sha256": "149f50d7e0a8d198e8ae65f10db17948a30511014c174f8445fdc4aa18bebfc8",
+      "state": {
+        "state": "playing",
+        "score": 25,
+        "scores": [
+          25
+        ],
+        "winner": null,
+        "frame": 298,
+        "error": null
+      }
+    },
+    {
+      "name": "2hp-hit-2",
+      "frame": 587,
+      "file": "screenshots/damage-2hp-hit-2.png",
+      "sha256": "4176e2c2ad3022c938ffa43c70488f1a14cce186b26d466da4923c1eb40b69e3",
+      "state": {
+        "state": "playing",
+        "score": 70,
+        "scores": [
+          70
+        ],
+        "winner": null,
+        "frame": 587,
+        "error": null
+      }
+    },
+    {
+      "name": "3hp-hit-1",
+      "frame": 699,
+      "file": "screenshots/damage-3hp-hit-1.png",
+      "sha256": "f59379728c77a9fa20802196bac734719e8ac05a74f131a835745bea7f79a35e",
+      "state": {
+        "state": "playing",
+        "score": 70,
+        "scores": [
+          70
+        ],
+        "winner": null,
+        "frame": 699,
+        "error": null
+      }
+    },
+    {
+      "name": "3hp-hit-2",
+      "frame": 912,
+      "file": "screenshots/damage-3hp-hit-2.png",
+      "sha256": "9aca6a57535aea1e18af76b4c4d44f74528e3551fd97c791997e976e887b448b",
+      "state": {
+        "state": "playing",
+        "score": 70,
+        "scores": [
+          70
+        ],
+        "winner": null,
+        "frame": 912,
+        "error": null
+      }
+    },
+    {
+      "name": "3hp-hit-3",
+      "frame": 994,
+      "file": "screenshots/damage-3hp-hit-3.png",
+      "sha256": "ae86e3076a803635e0e3b838f7a60a61cdd0fc175bdaa8bd9390d351def47dde",
+      "state": {
+        "state": "playing",
+        "score": 385,
+        "scores": [
+          385
+        ],
+        "winner": null,
+        "frame": 994,
+        "error": null
+      }
+    },
+    {
+      "name": "complete",
+      "frame": 1060,
+      "file": "screenshots/damage-complete.png",
+      "sha256": "446a03ad9cfbdb84b173d82ed3ab314caff2acb6331cdb2ffe54236df7c687d8",
+      "state": {
+        "state": "win",
+        "score": 385,
+        "scores": [
+          385
+        ],
+        "winner": null,
+        "frame": 1060,
+        "error": null
+      }
+    }
+  ]
+}

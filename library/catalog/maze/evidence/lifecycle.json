@@ -1,0 +1,1083 @@
+{
+  "captured": [
+    2,
+    0,
+    1,
+    3
+  ],
+  "returned": [
+    2,
+    0,
+    1,
+    3
+  ],
+  "releasedAgain": [
+    2,
+    0,
+    1,
+    3
+  ],
+  "state": {
+    "phase": "play",
+    "level": 1,
+    "lives": 3,
+    "power": 0,
+    "ticks": 618,
+    "captures": 5,
+    "capturesTotal": 5,
+    "quota": 30,
+    "timeLeft": 10257,
+    "remaining": 93,
+    "totalPellets": 129,
+    "score": 1360,
+    "huntMode": "player-hunts",
+    "globalMode": "chase",
+    "terminal": false,
+    "players": [
+      {
+        "x": 7,
+        "y": 5,
+        "dir": 2,
+        "to": {
+          "x": 6,
+          "y": 5
+        },
+        "progress": 7,
+        "position": {
+          "x": 99.25,
+          "y": 83
+        },
+        "queued": 2,
+        "index": 0,
+        "invulnerable": 0,
+        "honk": 178
+      }
+    ],
+    "ghosts": [
+      {
+        "x": 7,
+        "y": 3,
+        "dir": 0,
+        "to": {
+          "x": 8,
+          "y": 3
+        },
+        "progress": 7,
+        "position": {
+          "x": 113,
+          "y": 63
+        },
+        "queued": 3,
+        "id": 0,
+        "state": "frightened",
+        "wait": 0,
+        "reform": 45,
+        "captured": 1,
+        "releases": 2,
+        "stun": 33
+      },
+      {
+        "x": 8,
+        "y": 6,
+        "dir": 0,
+        "to": {
+          "x": 9,
+          "y": 6
+        },
+        "progress": 2,
+        "position": {
+          "x": 123,
+          "y": 93
+        },
+        "queued": 3,
+        "id": 1,
+        "state": "returning",
+        "wait": 0,
+        "reform": 45,
+        "captured": 2,
+        "releases": 2,
+        "stun": 0
+      },
+      {
+        "x": 4,
+        "y": 3,
+        "dir": 2,
+        "to": {
+          "x": 3,
+          "y": 3
+        },
+        "progress": 5,
+        "position": {
+          "x": 74.42857142857143,
+          "y": 63
+        },
+        "queued": 3,
+        "id": 2,
+        "state": "frightened",
+        "wait": 0,
+        "reform": 45,
+        "captured": 1,
+        "releases": 2,
+        "stun": 33
+      },
+      {
+        "x": 9,
+        "y": 6,
+        "dir": 0,
+        "to": {
+          "x": 10,
+          "y": 6
+        },
+        "progress": 2,
+        "position": {
+          "x": 129.42857142857142,
+          "y": 93
+        },
+        "queued": 3,
+        "id": 3,
+        "state": "frightened",
+        "wait": 0,
+        "reform": 45,
+        "captured": 1,
+        "releases": 2,
+        "stun": 0
+      }
+    ],
+    "pellets": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        2,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "events": [
+      {
+        "frame": 76,
+        "type": "honk",
+        "player": 0
+      },
+      {
+        "frame": 105,
+        "type": "ghost-leaving",
+        "id": 0
+      },
+      {
+        "frame": 136,
+        "type": "ghost-released",
+        "id": 0,
+        "releases": 1
+      },
+      {
+        "frame": 144,
+        "type": "pickup",
+        "player": 0,
+        "x": 10,
+        "y": 15,
+        "power": false,
+        "remaining": 128
+      },
+      {
+        "frame": 152,
+        "type": "pickup",
+        "player": 0,
+        "x": 11,
+        "y": 15,
+        "power": false,
+        "remaining": 127
+      },
+      {
+        "frame": 160,
+        "type": "pickup",
+        "player": 0,
+        "x": 12,
+        "y": 15,
+        "power": false,
+        "remaining": 126
+      },
+      {
+        "frame": 168,
+        "type": "pickup",
+        "player": 0,
+        "x": 13,
+        "y": 15,
+        "power": false,
+        "remaining": 125
+      },
+      {
+        "frame": 175,
+        "type": "ghost-leaving",
+        "id": 1
+      },
+      {
+        "frame": 176,
+        "type": "pickup",
+        "player": 0,
+        "x": 14,
+        "y": 15,
+        "power": false,
+        "remaining": 124
+      },
+      {
+        "frame": 184,
+        "type": "pickup",
+        "player": 0,
+        "x": 14,
+        "y": 14,
+        "power": false,
+        "remaining": 123
+      },
+      {
+        "frame": 192,
+        "type": "pickup",
+        "player": 0,
+        "x": 14,
+        "y": 13,
+        "power": false,
+        "remaining": 122
+      },
+      {
+        "frame": 196,
+        "type": "ghost-released",
+        "id": 1,
+        "releases": 1
+      },
+      {
+        "frame": 200,
+        "type": "pickup",
+        "player": 0,
+        "x": 14,
+        "y": 12,
+        "power": false,
+        "remaining": 121
+      },
+      {
+        "frame": 208,
+        "type": "pickup",
+        "player": 0,
+        "x": 14,
+        "y": 11,
+        "power": false,
+        "remaining": 120
+      },
+      {
+        "frame": 216,
+        "type": "pickup",
+        "player": 0,
+        "x": 14,
+        "y": 10,
+        "power": false,
+        "remaining": 119
+      },
+      {
+        "frame": 224,
+        "type": "pickup",
+        "player": 0,
+        "x": 14,
+        "y": 9,
+        "power": false,
+        "remaining": 118
+      },
+      {
+        "frame": 232,
+        "type": "pickup",
+        "player": 0,
+        "x": 14,
+        "y": 8,
+        "power": false,
+        "remaining": 117
+      },
+      {
+        "frame": 240,
+        "type": "pickup",
+        "player": 0,
+        "x": 14,
+        "y": 7,
+        "power": false,
+        "remaining": 116
+      },
+      {
+        "frame": 245,
+        "type": "ghost-leaving",
+        "id": 2
+      },
+      {
+        "frame": 248,
+        "type": "pickup",
+        "player": 0,
+        "x": 14,
+        "y": 6,
+        "power": false,
+        "remaining": 115
+      },
+      {
+        "frame": 256,
+        "type": "honk",
+        "player": 0
+      },
+      {
+        "frame": 256,
+        "type": "pickup",
+        "player": 0,
+        "x": 14,
+        "y": 5,
+        "power": false,
+        "remaining": 114
+      },
+      {
+        "frame": 264,
+        "type": "pickup",
+        "player": 0,
+        "x": 14,
+        "y": 4,
+        "power": false,
+        "remaining": 113
+      },
+      {
+        "frame": 272,
+        "type": "pickup",
+        "player": 0,
+        "x": 14,
+        "y": 3,
+        "power": false,
+        "remaining": 112
+      },
+      {
+        "frame": 276,
+        "type": "ghost-released",
+        "id": 2,
+        "releases": 1
+      },
+      {
+        "frame": 280,
+        "type": "pickup",
+        "player": 0,
+        "x": 13,
+        "y": 3,
+        "power": false,
+        "remaining": 111
+      },
+      {
+        "frame": 288,
+        "type": "pickup",
+        "player": 0,
+        "x": 12,
+        "y": 3,
+        "power": false,
+        "remaining": 110
+      },
+      {
+        "frame": 296,
+        "type": "pickup",
+        "player": 0,
+        "x": 11,
+        "y": 3,
+        "power": false,
+        "remaining": 109
+      },
+      {
+        "frame": 304,
+        "type": "pickup",
+        "player": 0,
+        "x": 10,
+        "y": 3,
+        "power": false,
+        "remaining": 108
+      },
+      {
+        "frame": 312,
+        "type": "pickup",
+        "player": 0,
+        "x": 9,
+        "y": 3,
+        "power": false,
+        "remaining": 107
+      },
+      {
+        "frame": 315,
+        "type": "ghost-leaving",
+        "id": 3
+      },
+      {
+        "frame": 320,
+        "type": "pickup",
+        "player": 0,
+        "x": 8,
+        "y": 3,
+        "power": false,
+        "remaining": 106
+      },
+      {
+        "frame": 328,
+        "type": "pickup",
+        "player": 0,
+        "x": 7,
+        "y": 3,
+        "power": false,
+        "remaining": 105
+      },
+      {
+        "frame": 336,
+        "type": "pickup",
+        "player": 0,
+        "x": 6,
+        "y": 3,
+        "power": false,
+        "remaining": 104
+      },
+      {
+        "frame": 342,
+        "type": "capture",
+        "player": 0,
+        "id": 2,
+        "points": 200,
+        "captures": 1
+      },
+      {
+        "frame": 344,
+        "type": "pickup",
+        "player": 0,
+        "x": 6,
+        "y": 4,
+        "power": false,
+        "remaining": 103
+      },
+      {
+        "frame": 346,
+        "type": "ghost-released",
+        "id": 3,
+        "releases": 1
+      },
+      {
+        "frame": 352,
+        "type": "pickup",
+        "player": 0,
+        "x": 6,
+        "y": 5,
+        "power": false,
+        "remaining": 102
+      },
+      {
+        "frame": 360,
+        "type": "pickup",
+        "player": 0,
+        "x": 7,
+        "y": 5,
+        "power": false,
+        "remaining": 101
+      },
+      {
+        "frame": 364,
+        "type": "capture",
+        "player": 0,
+        "id": 0,
+        "points": 200,
+        "captures": 2
+      },
+      {
+        "frame": 368,
+        "type": "pickup",
+        "player": 0,
+        "x": 8,
+        "y": 5,
+        "power": false,
+        "remaining": 100
+      },
+      {
+        "frame": 378,
+        "type": "ghost-home",
+        "id": 2
+      },
+      {
+        "frame": 390,
+        "type": "ghost-home",
+        "id": 0
+      },
+      {
+        "frame": 404,
+        "type": "capture",
+        "player": 0,
+        "id": 1,
+        "points": 200,
+        "captures": 3
+      },
+      {
+        "frame": 423,
+        "type": "ghost-reformed",
+        "id": 2
+      },
+      {
+        "frame": 435,
+        "type": "ghost-reformed",
+        "id": 0
+      },
+      {
+        "frame": 436,
+        "type": "honk",
+        "player": 0
+      },
+      {
+        "frame": 446,
+        "type": "ghost-home",
+        "id": 1
+      },
+      {
+        "frame": 447,
+        "type": "capture",
+        "player": 0,
+        "id": 3,
+        "points": 200,
+        "captures": 4
+      },
+      {
+        "frame": 468,
+        "type": "ghost-leaving",
+        "id": 2
+      },
+      {
+        "frame": 472,
+        "type": "pickup",
+        "player": 0,
+        "x": 15,
+        "y": 3,
+        "power": false,
+        "remaining": 99
+      },
+      {
+        "frame": 480,
+        "type": "pickup",
+        "player": 0,
+        "x": 16,
+        "y": 3,
+        "power": false,
+        "remaining": 98
+      },
+      {
+        "frame": 480,
+        "type": "ghost-leaving",
+        "id": 0
+      },
+      {
+        "frame": 488,
+        "type": "pickup",
+        "player": 0,
+        "x": 17,
+        "y": 3,
+        "power": false,
+        "remaining": 97
+      },
+      {
+        "frame": 491,
+        "type": "ghost-reformed",
+        "id": 1
+      },
+      {
+        "frame": 496,
+        "type": "ghost-home",
+        "id": 3
+      },
+      {
+        "frame": 499,
+        "type": "ghost-released",
+        "id": 2,
+        "releases": 2
+      },
+      {
+        "frame": 511,
+        "type": "ghost-released",
+        "id": 0,
+        "releases": 2
+      },
+      {
+        "frame": 536,
+        "type": "ghost-leaving",
+        "id": 1
+      },
+      {
+        "frame": 541,
+        "type": "ghost-reformed",
+        "id": 3
+      },
+      {
+        "frame": 547,
+        "type": "pickup",
+        "player": 0,
+        "x": 12,
+        "y": 4,
+        "power": false,
+        "remaining": 96
+      },
+      {
+        "frame": 555,
+        "type": "pickup",
+        "player": 0,
+        "x": 12,
+        "y": 5,
+        "power": false,
+        "remaining": 95
+      },
+      {
+        "frame": 563,
+        "type": "pickup",
+        "player": 0,
+        "x": 11,
+        "y": 5,
+        "power": false,
+        "remaining": 94
+      },
+      {
+        "frame": 567,
+        "type": "ghost-released",
+        "id": 1,
+        "releases": 2
+      },
+      {
+        "frame": 571,
+        "type": "pickup",
+        "player": 0,
+        "x": 10,
+        "y": 5,
+        "power": false,
+        "remaining": 93
+      },
+      {
+        "frame": 586,
+        "type": "ghost-leaving",
+        "id": 3
+      },
+      {
+        "frame": 599,
+        "type": "capture",
+        "player": 0,
+        "id": 1,
+        "points": 200,
+        "captures": 5
+      },
+      {
+        "frame": 616,
+        "type": "honk",
+        "player": 0
+      },
+      {
+        "frame": 617,
+        "type": "ghost-released",
+        "id": 3,
+        "releases": 2
+      }
+    ],
+    "layout": [
+      "###################",
+      "#o......#.#......o#",
+      "#.##.##.#.#.##.##.#",
+      "#.................#",
+      "#.##.#.#####.#.##.#",
+      "#....#...#...#....#",
+      "####.###   ###.####",
+      "   #.# ##=## #.#   ",
+      "####.# #HHH# #.####",
+      "T   .  #HHH#  .   T",
+      "####.# ##### #.####",
+      "   #.#       #.#   ",
+      "####.# ##### #.####",
+      "#........#........#",
+      "#.##.###.#.###.##.#",
+      "#o.#..... .....#.o#",
+      "##.#.#.#####.#.#.##",
+      "#....#...#...#....#",
+      "###################"
+    ]
+  }
+}

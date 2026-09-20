@@ -1,0 +1,25 @@
+{
+  "contentHash": "633c4ca13e6fa5d5da90ca6bda5310250e42b8093f69f281dbd922cbe40e7838",
+  "passed": true,
+  "evidenceHash": "3bbdc1e050d06f4cb2b34848818404f384ca0c13ba434de33ab4f0f2e1c08a86",
+  "routes": [
+    {
+      "players": 1,
+      "delayPlayer": 1,
+      "ticks": 992,
+      "winner": 0
+    },
+    {
+      "players": 2,
+      "delayPlayer": 1,
+      "ticks": 992,
+      "winner": 0
+    },
+    {
+      "players": 2,
+      "delayPlayer": 0,
+      "ticks": 992,
+      "winner": 1
+    }
+  ]
+}

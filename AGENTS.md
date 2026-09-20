@@ -4,6 +4,22 @@ Read this before touching the repo. It is short on purpose. The long-form
 reasoning lives in `docs/`, and this file tells you which doc answers which
 question.
 
+## User billing rule — takes precedence over historical benchmark instructions
+
+- Assistant development, base games, iteration and testing use the user's
+  **Codex subscription, gpt-6-astra, medium effort**. Use this Codex task/agents
+  and offline tools; no paid model API calls or API-key fallback for that work.
+- Real people using the cabinet ARE allowed to generate games through the API.
+  Preserve this path. Do not drive its UI/endpoint to bypass the testing restriction.
+- Development generation, spec, repair, remix, evaluation, benchmarks and
+  screenshot scripts that generate games are covered by this rule. A stored key,
+  automated goal or historical bench requirement is not permission to spend.
+- `packages/harness/src/env.ts` allows API calls only inside `withAppGeneration`,
+  entered by the cabinet route for app requests. Developer CLIs fail closed.
+  Do not enter that scope or bypass the guard for live tests without a NEW explicit
+  user instruction authorizing paid API tests. Mocks must prevent all network calls.
+- Never print keys or auth tokens. See the parent workspace `AGENTS.md`.
+
 ## What this is
 
 A voice-to-arcade-game cabinet for Hack the North 2026. A person speaks a
@@ -22,7 +38,7 @@ packages/probe/     headless Playwright verifier for a game.js, plus the fun
                     worth playing.
 packages/badge/     hacker badge over USB serial: hot-plug, app push, hello and
                     button events. Ships the arcade Lua app in app/.
-apps/cabinet/       Next.js kiosk page + API routes (STT token, generate).
+apps/cabinet/       Next.js kiosk page + API routes (local STT, generate).
 library/            games that passed the probe: spec.json, game.js, thumb.png
 bench/              canned prompts and bench results.
 runs/               every generation attempt, gitignored.
@@ -51,30 +67,41 @@ hardware is the checklist in `docs/plans/tier-2.md`.
 
 ## Models and keys
 
-- OpenAI only. `OPENAI_API_KEY` in `.env` (gitignored). `.env.example` is the
-  template. Never commit a key; never print one in a log.
-- Build: `gpt-5.6-sol`, `reasoning.effort: "none"`, streamed (bench
-  2026-09-19: p50 36 s, 90% probe pass; `low` was 46 s for the same pass
-  rate; the re-run after tier 2 landed was p50 26 s, 20/20). Override with
-  `HTN_BUILD_MODEL` / `HTN_BUILD_EFFORT`; `gpt-6-astra` at `low` is the
-  A/B (33 s, same pass rate, 2.5x the price). Two-player prompts: p50
-  30 s, 11/12.
-- Repair: `gpt-5.6-sol`, `reasoning.effort: "low"` (it has to reason about
-  the probe's observations).
-- Remix: `gpt-5.6-sol`, `reasoning.effort: "none"`, search/replace blocks
+- The cabinet's customer generation uses the OpenAI API and the gitignored
+  `OPENAI_API_KEY` in `.env`; assistant development/testing uses Codex subscription
+  and offline tools. Speech uses local faster-whisper tiny.en.
+  `.env.example` is the template. Never commit or print a key.
+- Build: `gpt-6-astra`, `reasoning.effort: "medium"`, streamed, as requested.
+  Override with `HTN_BUILD_MODEL` / `HTN_BUILD_EFFORT`. Current validation:
+  `docs/bench-2026-09-19-astra-medium.md`; earlier context and Sol results are historical.
+- Repair: `gpt-6-astra`, `reasoning.effort: "medium"`.
+- Remix: `gpt-6-astra`, `reasoning.effort: "low"`, search/replace blocks
   against the game on screen, so a few hundred output tokens instead of a
   whole game. Override with `HTN_REMIX_MODEL` / `HTN_REMIX_EFFORT`. The
   bench is `pnpm harness bench-remix bench/remixes.txt`.
+  This is CLI-only for now. The cabinet disables voice changes, ignores TALK
+  during play/Ready/results, and only records after MAKE A GAME opens voice with the selected 1P/2P mode.
 - Judge: `gpt-5.6-sol`, `reasoning.effort: "low"`, over the source and three
-  screenshots. Bench only, never on the cabinet's path. Override with
-  `HTN_JUDGE_MODEL` / `HTN_JUDGE_EFFORT`.
+  screenshots. Historical bench only, never on the cabinet's path. Override with
+  `HTN_JUDGE_MODEL` / `HTN_JUDGE_EFFORT`. Paid developer evaluation remains
+  blocked by the billing rule above; use offline saved-game playtests.
 - Spec: `gpt-5.6-luna`, `reasoning.effort: "none"`, structured output. The
   same call decides whether words spoken over a running game are a remix
   of it or a new game. `players` (1 or 2) comes from the cabinet's menu,
   never from the model.
-- STT: `gpt-live-transcribe` over WebRTC from the kiosk page;
-  `gpt-transcribe` on a recorded clip as the fallback.
-- Do not change a model or effort setting without a bench run. The bench is
+- Genre is open-ended metadata, independent of player count. New specs include
+  art direction; do not remap unsupported requests to dodge or impose line/sprite
+  size ceilings. Examples are optional and must match genre and player count.
+- Local implementation references: `library/reference/` supplies tested original maze
+  and combat helpers, selected independently of exact genre names. Planner gets the
+  contracts; build/repair get code and available pixel sprite data. See its README.
+  `HTN_REFERENCE_CONTEXT=0` disables this layer for comparisons.
+- STT: local `faster-whisper` with `tiny.en`, English, CPU int8.
+  Run `pnpm stt:setup` once. On release, `/api/stt` sends the clip to a
+  resident Python worker over stdin; no cloud STT, token, or API key.
+  Model files and the Python venv are local and gitignored.
+- Historical model validation used a bench run. Paid API benches are prohibited
+  for assistant development; use offline regressions and Codex-authored games. The old bench is
   `pnpm harness bench`; results go in `bench/results/`. Why these models:
   `docs/bench-2026-09-19-openai-models.md`.
 
@@ -88,19 +115,25 @@ hardware is the checklist in `docs/plans/tier-2.md`.
 2. **A game that passes the probe is not yet a game.** The probe answers
    "does this run"; `docs/research/arcade-game-design.md` is what separates
    that from "is this worth playing", and the Design block at the top of the
-   house rules is that research compressed. Changing it needs a `--fun` bench,
-   not just a probe pass.
+   house rules is that research compressed. Validate changes with offline saved-game
+   playtests and genre-specific review; a probe pass alone does not measure quality.
 3. **The runtime API is the contract.** Games are written against it by a
    model that only sees the API reference and the templates in the prompt.
    If you change the API, change all three in the same commit: the runtime,
    the reference in the prompt, and every template in `library/templates/`.
-   Then run the bench.
+   Then run offline runtime/probe tests; no paid API bench.
 4. **Latency is a test.** A change that moves p50 for the bench prompts by
    more than a few seconds needs a reason in the commit message.
 5. **Games are single-file `game.js`** implementing `init`, `update`, `draw`
-   against the runtime. No assets, no imports, no network.
-6. **The cabinet never dead-ends.** Every failure path ends in a playable
-   game from the library and a message on screen.
+   against the runtime. No external assets, imports or network. Tested local
+   catalog factories and pixel data may be bundled deterministically into that
+   file; Astra emits customization against the supplied contracts. Reviewable
+   files are authoritative and SQLite stores their index and generated candidates.
+6. **The cabinet never dead-ends.** Generation failures preserve the current game and
+   return to transcript review with the idea/player count intact and a sanitized
+   reason. Retry is explicit; account-limit errors never loop automatically.
+   Runtime crashes offer an
+   explicitly labelled library fallback, waiting for START.
 7. **Input is owned by the shell, not the game.** Keyboard, encoder and badge
    serial all become the same `{player, button, down}` events posted into the
    game iframe. Games never read keycodes.
@@ -111,20 +144,28 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   probe hook, crash guard, determinism), then `pnpm serve` and play
   `http://localhost:5173/packages/runtime/dev.html` with the keyboard, or
   `pnpm screenshots` for a screenshot of every state. Rebuild `runtime.js`
-  with `pnpm runtime:build` first; it is gitignored.
-- Prompt or model change: `pnpm harness bench bench/prompts.txt` and compare
-  p50, p95 and probe pass rate to the last result file. If the change is meant
-  to make the games better rather than faster, add `--fun` (and `--n 2`, since
-  one run per prompt is noise): it playtests and judges every game and prints
-  losability, distinct point values, agency and the six judge axes. The A/B
-  that set the current numbers is `docs/bench-2026-09-19-game-design.md`.
-  `pnpm playtest <game.js>` prints the same measurements for one file.
-  Two-player prompts: `pnpm harness bench bench/prompts-2p.txt --players 2`
-  (goal 8 of 10).
+  with `pnpm runtime:build` first; it also syncs the built iframe/runtime assets
+  into the running cabinet's public directory without a server restart. Built files are gitignored.
+- Prompt or model change: use offline prompt/retrieval/stream tests and frozen runs.
+  `pnpm playtest <game.js>` measures an existing saved game locally without model
+  calls. Treat these bot metrics as genre-dependent diagnostics, not catalog admission.
+  The historical A/B is `docs/bench-2026-09-19-game-design.md`.
+  The following historical paid bench commands (including `--fun` and its model
+  judge) are blocked for development: `pnpm harness bench bench/prompts.txt` and
+  `pnpm harness bench bench/prompts-2p.txt --players 2` (goal 8 of 10).
   Remix: `pnpm harness bench-remix bench/remixes.txt` (goal p50 under half
   the build p50, most of the original kept).
 - Probe change: run it on `library/` and confirm every library game still
   passes, then on `bench/known-bad/` and confirm every broken one still fails.
+  `pnpm test:probe` covers input crashes and controls that work only after A.
+- Design context: `pnpm test:scores` also checks card retrieval, prompt wiring,
+  legacy specs, budget limits and reproducible run artifacts. The local context
+  library lives in `docs/research/arcade-context/`; its shared core is read for
+  each prompt, while cards and the manifest are cached for the module's lifetime.
+  Reload that module after changing cards/manifest; do not interrupt the shared
+  cabinet/badge process just to refresh core text. `HTN_DESIGN_CONTEXT=0` disables guidance for comparison.
+  Model requests have full-response deadlines: spec 30 s, build/repair 300 s,
+  remix 60 s. Deadline and cancellation regression tests run in the same suite.
 - Badge change: `pnpm test:badge` first (the hub against an in-process fake
   badge that speaks the console protocol: push, hello, buttons, bye,
   unplug, the ring-overflow wedge). `pnpm badge fake` prints the same
@@ -134,15 +175,29 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   `manifest.cfg` and `APP_VERSION` in `protocol.ts` together; the hub
   reinstalls on mismatch. The badge's Lua sandbox has no `pcall`. Only one
   process can hold a port: stop any other `pnpm dev` or `badge watch` first.
-- Leaderboard change: `pnpm test:scores`. `pnpm test` runs every package test.
-- Cabinet change: `pnpm dev`, then `pnpm screenshots:cabinet` for sixteen
+- Leaderboard change: `pnpm test:scores`. `pnpm test` runs badge and harness
+  tests; `pnpm test:probe` separately runs browser-based probe regressions
+  after `pnpm runtime:build`.
+- Cabinet change: `pnpm dev`, then the controlled offline UI tests below.
+  Do not run `pnpm screenshots:cabinet` against a live generation provider; historically it captured sixteen
   screenshots: the tier 1 loop with one real generation and the F8 crash
   injection, then the tier 2 pass with two fake badges: the 1P/2P menu,
   plug-in, a real two-player generation, a cable pull mid-game, the
-  leaderboards and a remix. Or drive it by hand: arrows, Z, X, Enter, hold
-  Space to talk, Esc cancels or returns to attract, F1/F2 plug or unplug a
+  leaderboards and a remix. Or drive it by hand: arrows, Z, X, Enter (confirm/pause), hold
+  Space or V to talk, Esc cancels or returns to menu, F1/F2 plug or unplug a
   fake badge, I J K L N M are player two, F8 injects a crash, F9 ends the
   round.
+  `pnpm --filter @htn/probe exec node scripts/home-ui-test.mjs` verifies all local
+  demo previews, swipe/keyboard browsing, mode selection, pause/resume, reduced
+  motion and screenshots with model/speech calls blocked.
+  For the live build screen, `pnpm --filter @htn/probe exec node scripts/build-ui-test.mjs`
+  drives controlled SSE chunks through the actual UI with no model calls. It
+  covers live code, sprite pixels, isolated procedural previews, worker timeouts,
+  racing candidates, repair output, menu-only voice creation, cancellation,
+  reduced motion, no autoplay, and screenshots at 320×240, 640×480 and 1280×720.
+  `pnpm --filter @htn/probe exec node scripts/player-flow-ui-test.mjs` checks the
+  initial 1P/2P choice, microphone gating, chosen count in generation requests,
+  cancellation, current-game resume and retained in-game controls.
 - STT change: `pnpm stt:test <clip.wav> "<expected words>"` feeds a 24 kHz
   WAV through Chromium's fake microphone (make one with `say -o x.aiff ...`
   and `afconvert -f WAVE -d LEI16@24000 -c 1 x.aiff x.wav`).
@@ -160,3 +215,5 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   `docs/bench-2026-09-19-game-design.md`.
 - Scope per tier: `docs/goals/`.
 - Changing one of these is fine. Update the doc in the same change.
+
+- CRT shell layout and physical controls: `docs/design-guide.md`.

@@ -1,0 +1,4 @@
+I want to create a game which is like Street Fighter, but I yeah
+A side scrolling beat em up where a knight fights goblins with a sword
+A rhythm game where I hit A or B in time with falling musical notes
+A top down racing game with corners, drifting and computer opponents

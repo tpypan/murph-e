@@ -1,0 +1,66 @@
+{
+  "contentHash": "633c4ca13e6fa5d5da90ca6bda5310250e42b8093f69f281dbd922cbe40e7838",
+  "passed": true,
+  "status": "reviewed",
+  "screenshots": [
+    {
+      "file": "screenshots/1p-start.png",
+      "sha256": "548a2d5cdc0bff747e41128fd614b7314be8bdbd745ab1219bf37e363ac75532"
+    },
+    {
+      "file": "screenshots/1p-hills.png",
+      "sha256": "0e4a123b482e2574e327fe5dd3172bf7ec40fc0dd90b8dd5157b323a5af76af1"
+    },
+    {
+      "file": "screenshots/1p-loop.png",
+      "sha256": "56621e63e2917b420671c035091e3687effab0b728050af4b77701a8d15eede2"
+    },
+    {
+      "file": "screenshots/1p-spring.png",
+      "sha256": "1df285ee37a103274f5f9d586fbe9c442e1f574544a92f09241d4c84ade4b5d1"
+    },
+    {
+      "file": "screenshots/1p-ridge.png",
+      "sha256": "f6c316434944fe036f175238f3c4a7248d8e62bcb469ec1e46b5ef778de9e84c"
+    },
+    {
+      "file": "screenshots/1p-finish.png",
+      "sha256": "21d8c4461613af79f8e706d9c600842be5150380149b688b430574a83691f995"
+    },
+    {
+      "file": "screenshots/2p-start.png",
+      "sha256": "2ac49538d7abd219156dd13439ee0ed395ea0ad0aacb27e0c8581934e0699bff"
+    },
+    {
+      "file": "screenshots/2p-hills.png",
+      "sha256": "3610b25bcd14ca0b534ace2369236cad0ec3f56b2cf504ea90589045624f7f55"
+    },
+    {
+      "file": "screenshots/2p-loop.png",
+      "sha256": "c89d03abf5bf236c52dbac6f153103e5776383a8440db36f59a8db2daa0871fc"
+    },
+    {
+      "file": "screenshots/2p-spring.png",
+      "sha256": "9d0d0fb70150259881394db4905d36c7dea77126c8385b79ee33e57442869c41"
+    },
+    {
+      "file": "screenshots/2p-ridge.png",
+      "sha256": "8f2299d3c54235b5e515dce52b6041503a3219f1a9fdfa18ceb161aac578da0f"
+    },
+    {
+      "file": "screenshots/2p-finish.png",
+      "sha256": "06a67a1d55e44b37ec70387d4ca661bda2fd38d91d63b2b1de761def48ca24dd"
+    }
+  ],
+  "reviewer": "Codex offline native framebuffer review",
+  "observations": [
+    "Reviewed all twelve current original-art native captures: start, hills, loop, spring, ridge and terminal in 1P/2P.",
+    "Forward camera reveals upcoming terrain; loop camera retains circular geometry. Split cameras keep each actor in view during high spring flights.",
+    "Connected upper platforms, safe introductory valley, ring arcs and two physical loops preserve distinguishable route choices."
+  ],
+  "limitations": [
+    "Compact authored arcade stages; optimal 992-tick native route is not a human difficulty estimate.",
+    "High spring flights briefly show mostly sky and ocean while ground is below the viewport.",
+    "No physical cabinet or human acceptance test."
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "bomber",
+  "version": "1.0.0",
+  "title": "Grid Bomb Arena",
+  "description": "Complete original Bomberman-inspired arena with fuse-driven cross blasts, obstruction and chaining, destructible crates and bounded upgrades, three monster roles, visible exit, lives and progression, 2P versus rounds and optional cooperative clearing.",
+  "tags": [
+    "bomberman",
+    "bomb arena",
+    "bombs",
+    "grid combat"
+  ],
+  "match": {
+    "phrases": [
+      "bomberman",
+      "bomb arena",
+      "plant bombs",
+      "bomb battle"
+    ],
+    "genres": [
+      "bomb arena",
+      "bomberman",
+      "bomb combat"
+    ]
+  },
+  "supportsPlayers": [
+    1,
+    2
+  ],
+  "module": "module.js",
+  "entry": "bomber",
+  "apiVersion": 1,
+  "license": {
+    "spdx": "LicenseRef-Project-Original",
+    "notes": "Original authored code, arena and indexed pixel art; no commercial source, sprites or ROM extraction."
+  },
+  "provenance": {
+    "kind": "original",
+    "authors": [
+      "Arcade project"
+    ],
+    "sources": [],
+    "createdAt": "2026-09-19"
+  },
+  "assets": [
+    "assets.json"
+  ],
+  "files": [
+    "core.js",
+    "build-assets.mjs",
+    "build.mjs",
+    "demo.js",
+    "spec.json",
+    "harness.mjs",
+    "route.mjs",
+    "test.mjs",
+    "verify.mjs",
+    "screenshots.mjs",
+    "README.md",
+    "default-route.mjs",
+    "default-test.mjs",
+    "default-native.mjs"
+  ],
+  "quality": {
+    "status": "draft"
+  }
+}

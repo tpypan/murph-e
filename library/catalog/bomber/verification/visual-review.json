@@ -1,0 +1,22 @@
+{
+  "contentHash": "80897734c13045d38a405a548bfcc5d92e31d9eb5a42c0f88f995c31c462ac12",
+  "reviewedAt": "2026-09-20T00:24:42.573Z",
+  "passed": true,
+  "screenshots": [
+    "evidence/default-solo-blast.png",
+    "evidence/default-solo-second-arena.png",
+    "evidence/default-solo-complete.png",
+    "evidence/default-versus-complete.png"
+  ],
+  "observations": [
+    "Reviewed native default crate/enemy gameplay, connected cross blast, second solo arena and both default terminal overlays. Actors, crates, pillars, exits and ownership labels remain distinct.",
+    "Eleven behavior checks pass. Native default solo and versus replays match exact scores, levels and life counts; both controllers move independently; native reset restores initial scores/lives/arena.",
+    "Coop default-difficulty carry route reproduces and covers exhausted-player elimination across level reset."
+  ],
+  "limitations": [
+    "Versus winning-round controller attacks a stationary target; no adversarial or human balance claim.",
+    "Optional cooperative completion is carried by P1 after idle P2 is eliminated, not two active cooperating players.",
+    "Older assisted proofs retain their explicit easier configuration labels.",
+    "No physical CRT test."
+  ]
+}

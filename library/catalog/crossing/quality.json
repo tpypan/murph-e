@@ -1,0 +1,36 @@
+{
+  "contentHash": "6c8190fb5a881568348eb47aca34694a90a226f26d5ee0420aa9b9566754fe12",
+  "reviewedAt": "2026-09-19T22:57:33.077Z",
+  "checks": [
+    {
+      "name": "behavior",
+      "passed": true,
+      "artifact": "evidence/behavior.json",
+      "artifactHash": "f427c01d46249767cb47c30a31c8cd8258dd265b91a78e103abed66520e8b3fc"
+    },
+    {
+      "name": "visual",
+      "passed": true,
+      "artifact": "verification/visual-review.json",
+      "artifactHash": "0e4eab8e54c67baf083d111227347b560ccb1bcffe50dcbda6f4661ee05d27fb"
+    },
+    {
+      "name": "runtime-1p",
+      "passed": true,
+      "artifact": "verification/runtime.json",
+      "artifactHash": "0243b9c267e8cac611f410f4d1bf35626715cfad1b1534ade5729d1c38087123"
+    },
+    {
+      "name": "runtime-2p",
+      "passed": true,
+      "artifact": "verification/runtime.json",
+      "artifactHash": "0243b9c267e8cac611f410f4d1bf35626715cfad1b1534ade5729d1c38087123"
+    },
+    {
+      "name": "presentation-safety",
+      "passed": true,
+      "artifact": "verification/presentation/proof.json",
+      "artifactHash": "d3a3acdbd71bf9f785f198a749690cd1e5ef939313f8ffea26543b410d1e3030"
+    }
+  ]
+}

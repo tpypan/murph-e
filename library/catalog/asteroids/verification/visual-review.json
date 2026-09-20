@@ -1,0 +1,53 @@
+{
+  "reviewedAt": "2026-09-19T21:41:27.780Z",
+  "reviewer": "Codex visual inspection and gameplay evidence review",
+  "contentHash": "18afe6dd56c82e9501178a18592980b1f97e306fb431b54c2789ccd768621284",
+  "inspected": [
+    "screenshots/1p-action.png",
+    "screenshots/2p-later.png",
+    "screenshots/1p-finished.png",
+    "screenshots/2p-finished.png"
+  ],
+  "imageHashes": {
+    "screenshots/1p-action.png": "4a9626cb0fe260f96fb8b33b2c813af6ef07964339f2edff4c1aa968fb0e042d",
+    "screenshots/2p-later.png": "0d067d9b4aae1ca8ecb312fb179e0628caaff6b2a470ec0a54d4880e14f3af26",
+    "screenshots/1p-finished.png": "2ff1561cb1498ace9236689fd5ce78c52c4d8bf8765b46d584f7e041e9a5d6b3",
+    "screenshots/2p-finished.png": "a6644a7332eea907ccfab64d8965d86d64d56018fd0985293b0e1da951f2f845"
+  },
+  "findings": [
+    "Directional ship silhouette, three rock sizes and bright bullets are distinguishable in the sparse dark field.",
+    "Ship and rock shape/orientation art remains legible at native 256x224 resolution; the 2P cyan/red accents distinguish independent ships.",
+    "Native 1P and 2P input-policy runs clear all three default sectors and reach cooperative win with retained scores.",
+    "Separate behavior checks cover thrust/inertia/brake response, toroidal seam distance, bounded shots, real rock splitting, safe warp, saucer warnings, loss and reset."
+  ],
+  "limits": [
+    "DOWN does not visibly change the stationary spawn; the focused moving-inertia brake test verifies its actual function.",
+    "The completion pilot emphasizes braking, turning, firing and timed hyperspace; full human flight feel and difficulty are not calibrated by that route.",
+    "Admission covers the bundled art/controller footprint; arbitrary 48px art overrides still require geometry review.",
+    "No gravity wells, solid terrain, scrolling missions or inventory is supplied.",
+    "No human balance study, physical CRT overscan/calibration or badge/controller hardware validation."
+  ],
+  "gameplayEvidence": {
+    "behaviorChecks": 8,
+    "behaviorArtifact": "behavior-results.json",
+    "nativeRuns": [
+      {
+        "players": 1,
+        "state": "win",
+        "scores": [
+          7740
+        ]
+      },
+      {
+        "players": 2,
+        "state": "win",
+        "scores": [
+          4700,
+          4540
+        ]
+      }
+    ],
+    "renderArtifact": "render-results.json",
+    "renderArtifactHash": "21d5978ee93dd6ba6bbc999d6e04a3c6da5d555a36a397d9c0a94f4fdba665ad"
+  }
+}

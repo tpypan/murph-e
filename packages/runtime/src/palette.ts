@@ -35,3 +35,46 @@ export function col(c: unknown, fallback = 7): number {
   if (!Number.isFinite(n)) return fallback
   return (((n | 0) % 16) + 16) % 16
 }
+
+/** Opaque custom RGB tokens are distinct from the original indices 0..15. */
+export const RGB_TOKEN = 0x01000000
+const PALETTE_RGB = PALETTE_HEX.map((hex) => Number.parseInt(hex.slice(1), 16))
+
+/** Validate and snapshot a sprite palette. The caller caches by array identity. */
+export function spritePaletteTokens(colors: unknown): Uint32Array {
+  if (!Array.isArray(colors) || colors.length < 1 || colors.length > 16)
+    throw new Error('Sprite palette must be an array of 1–16 #RRGGBB colors')
+  return Uint32Array.from(colors, (hex, index) => {
+    if (typeof hex !== 'string' || !/^#[0-9a-f]{6}$/i.test(hex))
+      throw new Error(`Sprite palette color ${index} must be a complete #RRGGBB string`)
+    const rgb = Number.parseInt(hex.slice(1), 16)
+    const legacy = PALETTE_RGB.indexOf(rgb)
+    return legacy >= 0 ? legacy : RGB_TOKEN | rgb
+  })
+}
+
+/** Resolve a canonical framebuffer token to the canvas's packed RGBA format. */
+export function tokenABGR(token: number): number {
+  if (token < 16) return PALETTE_ABGR[token]!
+  return (0xff000000 | ((token & 255) << 16) | (token & 0xff00) | ((token >>> 16) & 255)) >>> 0
+}
+
+/** Compatibility readback: custom RGB projects to the nearest fixed PICO color. */
+export function tokenPaletteIndex(token: number): number {
+  if (token < 16) return token
+  const r = (token >>> 16) & 255,
+    g = (token >>> 8) & 255,
+    b = token & 255
+  let nearest = 0,
+    distance = Number.POSITIVE_INFINITY
+  for (let i = 0; i < PALETTE_RGB.length; i++) {
+    const rgb = PALETTE_RGB[i]!
+    const d =
+      (r - ((rgb >>> 16) & 255)) ** 2 + (g - ((rgb >>> 8) & 255)) ** 2 + (b - (rgb & 255)) ** 2
+    if (d < distance) {
+      distance = d
+      nearest = i
+    }
+  }
+  return nearest
+}

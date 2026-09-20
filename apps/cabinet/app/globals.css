@@ -1,51 +1,576 @@
 @import "tailwindcss";
-
 @theme {
   --font-sans: var(--font-pixel), monospace;
-  --font-mono: ui-monospace, Menlo, monospace;
 }
-
+:root {
+  color-scheme: dark;
+}
+* {
+  box-sizing: border-box;
+}
 html,
 body {
+  margin: 0;
   background: #000;
   color: #fff;
-  margin: 0;
   font-family: var(--font-pixel), monospace;
   text-transform: uppercase;
-  cursor: none;
 }
-
-.scanlines {
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0px,
-    rgba(0, 0, 0, 0) 2px,
-    rgba(0, 0, 0, 0.18) 3px,
-    rgba(0, 0, 0, 0.18) 4px
-  );
-  mix-blend-mode: multiply;
+body {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
 }
-
-.blink {
-  animation: blink 1.1s steps(1) infinite;
+button {
+  font: inherit;
+  text-transform: inherit;
+  background: none;
+  border: 0;
+  padding: 0.6cqw 0;
+  color: inherit;
+  cursor: pointer;
+  line-height: 1.8;
 }
-@keyframes blink {
+button:hover,
+button[data-selected="true"] {
+  color: #ffff55;
+}
+button:focus-visible {
+  outline: max(2px, 0.3cqw) solid #ffff55;
+  outline-offset: 0.5cqw;
+}
+.arcade-screen {
+  width: min(100vw, calc(100dvh * 4 / 3), 1200px);
+  aspect-ratio: 4 / 3;
+  container-type: inline-size;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+  outline: none;
+  font-size: 2.5cqw;
+  user-select: none;
+}
+.arcade-screen:fullscreen {
+  width: min(100vw, calc(100dvh * 4 / 3));
+  height: auto;
+  margin: auto;
+}
+.arcade-screen::backdrop {
+  background: #000;
+}
+/* Essential content stays 8% inside every CRT edge, including the game HUD. */
+.arcade-header,
+.game-controls {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  font-size: 2cqw;
+  line-height: 1.8;
+  color: #aaa;
+}
+.arcade-header {
+  top: 8%;
+  display: flex;
+  justify-content: space-between;
+  gap: 3cqw;
+}
+.arcade-header[hidden] {
+  display: none;
+}
+.player-name {
+  display: flex;
+  align-items: center;
+  gap: 1cqw;
+  min-width: 0;
+  max-width: 48%;
+  color: #fff;
+}
+.player-name:nth-child(2) {
+  justify-content: flex-end;
+}
+.player-marker {
+  width: 1cqw;
+  height: 1cqw;
+  flex-shrink: 0;
+}
+.player-number {
+  color: #aaa;
+  flex-shrink: 0;
+}
+.player-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.stage {
+  position: absolute;
+  inset: 19% 8% 17%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5cqw;
+  text-align: center;
+  font-size: 2.5cqw;
+  line-height: 1.8;
+}
+h1,
+h2,
+p,
+blockquote,
+dl {
+  margin: 0;
+  font-weight: 400;
+}
+h1 {
+  font-size: 4cqw;
+  line-height: 1.5;
+  color: #ffff55;
+}
+h2 {
+  font-size: 3cqw;
+  line-height: 1.5;
+  color: #ffff55;
+  overflow-wrap: anywhere;
+}
+.logo {
+  font-size: 6cqw;
+  line-height: 1.4;
+  color: #55ffff;
+  margin-bottom: 1cqw;
+}
+/* One cabinet screen: a real muted demo above its selection and play controls. */
+.home-stage {
+  position: absolute;
+  inset: 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1cqw;
+  text-align: center;
+}
+.home-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3.3fr) minmax(0, 1fr);
+  gap: 2cqw;
+  align-items: center;
+  min-height: 0;
+  flex: 1;
+  touch-action: pan-y;
+}
+.home-current {
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+.home-peek {
+  position: relative;
+  height: 78%;
+  min-width: 0;
+  overflow: hidden;
+  padding: 0;
+  opacity: 0.65;
+}
+.home-peek:hover,
+.home-peek:focus-visible {
+  opacity: 1;
+}
+.home-peek:focus-visible {
+  outline-offset: -2px;
+}
+.home-peek-scene {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  aspect-ratio: 8 / 7;
+  pointer-events: none;
+}
+.home-peek.is-previous .home-peek-scene {
+  right: 0;
+}
+.home-peek.is-next .home-peek-scene {
+  left: 0;
+}
+.home-preview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+}
+.home-preview iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+.home-preview[data-ready="true"] iframe {
+  visibility: visible;
+}
+.home-caption h2 {
+  font-size: 2.5cqw;
+  color: #fff;
+}
+.home-caption h2[data-selected="true"] {
+  color: #ffff55;
+}
+.home-players,
+.home-actions,
+.home-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4cqw;
+}
+.home-players {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 2cqw;
+  color: #aaa;
+}
+.home-players button {
+  min-width: 23cqw;
+}
+.home-players button[aria-pressed="true"] {
+  color: #fff;
+}
+.home-players button[data-selected="true"] {
+  color: #ffff55;
+}
+.home-actions {
+  font-size: 2.5cqw;
+  gap: 5cqw;
+}
+.home-footer {
+  font-size: 2cqw;
+  color: #aaa;
+}
+.home-stage button:disabled {
+  color: #555;
+  cursor: default;
+}
+.home-error {
+  color: #ffaaaa;
+  font-size: 2cqw;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.cyan {
+  color: #55ffff;
+}
+.green {
+  color: #55ff55;
+}
+.primary {
+  color: #ffff55;
+  font-size: 2.5cqw;
+}
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3cqw;
+  margin-top: 1cqw;
+  font-size: 2.5cqw;
+}
+.menu-list button {
+  white-space: pre;
+  padding: 0.1cqw 0;
+}
+.player-menu {
+  gap: 1cqw;
+}
+.player-choice {
+  font-size: 3.5cqw;
+}
+.menu-secondary {
+  font-size: 2cqw;
+  color: #aaa;
+}
+.player-choice + .menu-secondary {
+  margin-top: 2cqw;
+}
+.back,
+.support {
+  color: #aaa;
+  font-size: 2cqw;
+  line-height: 1.8;
+}
+.pixel-meter {
+  width: 50cqw;
+  height: 12.5cqw;
+  image-rendering: pixelated;
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5cqw;
+}
+.talk-button {
+  touch-action: none;
+  -webkit-touch-callout: none;
+}
+.voice-transcript {
+  font-size: 2.5cqw;
+  line-height: 1.8;
+  min-height: 14cqw;
+  display: grid;
+  align-content: center;
+  overflow-wrap: anywhere;
+}
+.voice-transcript > .support {
+  display: block;
+  font-size: 2cqw;
+  color: #aaa;
+  margin-top: 1cqw;
+}
+.error {
+  color: #ffaaaa;
+  border: 0.4cqw solid #ff5555;
+  padding: 1.2cqw;
+  font-size: 2cqw;
+  line-height: 1.8;
+}
+.prompt,
+.objective,
+.notice {
+  font-size: 2cqw;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.notice {
+  color: #ffaaaa;
+}
+.control-list {
+  width: 100%;
+  font-size: 2cqw;
+  line-height: 1.8;
+  text-align: left;
+}
+.control-list > div {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  padding: 0.4cqw 0;
+}
+.control-list dt {
+  color: #55ffff;
+}
+.control-list dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.result-title {
+  font-size: 5cqw;
+}
+.score {
+  color: #55ff55;
+  margin: 2cqw 0;
+}
+.game-frame {
+  position: absolute;
+  top: 16%;
+  left: 8%;
+  width: 84%;
+  /* Generated descriptions must never shrink the playable viewport to zero. */
+  height: calc(76% - min(var(--game-controls-height, 12cqw), 20cqw) - 2cqw);
+  border: 0;
+  pointer-events: none;
+}
+.game-controls {
+  bottom: 8%;
+  color: #fff;
+  font-size: 1.8cqw;
+  line-height: 1.3;
+}
+.game-control-legend {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5cqw 1cqw;
+}
+.game-control-legend > div {
+  min-width: 0;
+  text-align: center;
+}
+.game-control-legend dt {
+  color: #55ffff;
+}
+.game-control-legend dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  text-align: center;
+  font-size: 1.6cqw;
+}
+.game-control-legend dd span {
+  display: block;
+}
+.game-hints {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2cqw;
+  margin-top: 1cqw;
+  font-size: 1.6cqw;
+  color: #aaa;
+}
+.game-control-p2 {
+  margin-right: auto;
+  font-size: 1.6cqw;
+  text-align: center;
+}
+.build-stage {
+  inset: 17% 8% 17%;
+  justify-content: flex-start;
+  gap: 1cqw;
+}
+.build-stage h1 {
+  font-size: 3.5cqw;
+  overflow-wrap: anywhere;
+}
+/* Like the original main-branch stream, code gets its own readable monospace face. */
+.build-workbench {
+  width: 100%;
+  height: 36cqw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2cqw;
+  flex-shrink: 0;
+  border-block: 0.3cqw solid #55ffff;
+  padding: 1.5cqw 0;
+}
+.build-code {
+  min-width: 0;
+  padding: 0.5cqw 0;
+  text-align: left;
+  overflow: hidden;
+  color: #55ff55;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 2cqw;
+  line-height: 1.3;
+  text-transform: none;
+}
+.build-code pre {
+  margin: 0;
+  font: inherit;
+  white-space: pre;
+}
+.build-sprite {
+  width: 12cqw;
+  height: 12cqw;
+  flex-shrink: 0;
+  align-self: center;
+  image-rendering: pixelated;
+}
+.build-preview {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  border-left: 0.2cqw solid #555;
+  padding-left: 2cqw;
+}
+.build-preview-label {
+  color: #aaa;
+  font-size: 1.6cqw;
+  text-align: right;
+  line-height: 2;
+}
+.build-preview-art {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+}
+.build-scene {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.build-scene.is-visible {
+  visibility: visible;
+}
+.build-sprites {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.build-sprites .build-sprite:first-child {
+  width: 21cqw;
+  height: 21cqw;
+  margin-inline: 7cqw;
+}
+.build-sprites:has(.build-sprite:nth-child(2)) .build-sprite:first-child {
+  width: 17cqw;
+  height: 17cqw;
+}
+.build-preview-pending {
+  display: flex;
+  flex-direction: column;
+  gap: 3cqw;
+  align-items: center;
+  color: #aaa;
+  font-size: 1.6cqw;
+  line-height: 1.6;
+}
+.build-waiting {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5cqw;
+}
+.build-waiting i {
+  width: 2cqw;
+  height: 2cqw;
+  background: #ffff55;
+  animation: build-pixels 1.6s steps(1) infinite;
+}
+.build-waiting i:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.build-waiting i:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.build-waiting i:nth-child(4) {
+  animation-delay: 0.6s;
+}
+@keyframes build-pixels {
+  0%,
   50% {
-    opacity: 0.15;
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0.25;
   }
 }
-
-.mic {
+.build-cursor {
   display: inline-block;
-  width: 22px;
-  height: 36px;
-  border: 4px solid #29adff;
-  border-radius: 12px;
-  box-shadow: 0 0 0 6px rgba(41, 173, 255, 0.25);
-  animation: pulse 1s ease-in-out infinite;
+  width: 0.65em;
+  height: 0.85em;
+  background: #ffff55;
+  vertical-align: -0.1em;
+  animation: build-cursor 1.2s steps(1) infinite;
 }
-@keyframes pulse {
+@keyframes build-cursor {
   50% {
-    box-shadow: 0 0 0 14px rgba(41, 173, 255, 0.05);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .build-cursor {
+    animation: none;
+  }
+  .build-waiting i {
+    animation: none;
   }
 }

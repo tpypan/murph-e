@@ -1,0 +1,26 @@
+{
+  "model": "gpt-6-astra",
+  "effort": "medium",
+  "players": 2,
+  "n": 1,
+  "rows": [
+    {
+      "prompt": "co-op zombie survival with a shotgun",
+      "title": "DEADLINE DUO",
+      "genre": "cooperative twin-stick zombie survival",
+      "runId": "2026-09-19-2042-co-op-zombie-survival-with-a-sho",
+      "specMs": 9020,
+      "buildMs": 280669,
+      "ttftMs": 87263,
+      "totalMs": 289706,
+      "tokens": 13522,
+      "reasoning": 2335,
+      "cached": 3201,
+      "lines": 840,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [],
+      "error": null
+    }
+  ]
+}

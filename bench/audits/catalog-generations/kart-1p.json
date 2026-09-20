@@ -1,0 +1,4553 @@
+{
+  "name": "kart-1p",
+  "id": "2026-09-19-211144675-a-kart-racing-game-around-a-coas-XuHLfP",
+  "players": 1,
+  "type": "kart",
+  "spec": {
+    "title": "NIGHT COAST",
+    "oneLiner": "Drift through a moonlit coastal circuit, release turbo boosts, and beat five rivals across three laps.",
+    "genre": "kart racing",
+    "mechanics": [
+      "Race one player kart against five computer rivals on a scrolling pseudo-3D coastal circuit with ordered checkpoints and three laps.",
+      "Use A or UP to accelerate, LEFT/RIGHT to steer, and DOWN to brake; hold B while turning to enter a drift, then release B to cash the stored drift into a short turbo boost.",
+      "Drifting charges only while the kart is turning with B held; release timing determines the turbo burst, rewarding controlled corner exits rather than simply holding boost.",
+      "The first straight teaches steering and includes an early boost strip; the first broad corner gives a safe drift opportunity, while later corners and off-road edges demand braking and line choice.",
+      "Road boost strips provide immediate speed bursts, while leaving the road causes strong slowdown; kart-to-kart collisions cause a brief wobble and positional loss without stopping the race.",
+      "AI rivals follow the same acceleration, lateral movement, collision, and off-road rules, with bounded pace and corner caution that increase modestly across the race.",
+      "Checkpoint gates must be crossed in order on every lap; missed or reverse crossings do not advance progress. Each valid gate awards a small score bonus once per lap and gives a bright gate flash.",
+      "The race uses pressure and recovery phases: an easy opening, alternating straights and corners, a tighter harbor/cliff peak near the final lap, then a final recovery straight toward the finish.",
+      "The first human finisher ends the race after a short finish window; in one-player mode the player wins only by finishing ahead of all rivals. Completing three laps shows position and time results.",
+      "Resetting after a loss or restart clears lap, checkpoint, drift charge, score bonuses, rival positions, and deterministic track state."
+    ],
+    "artDirection": "256x224 pseudo-3D arcade view with large readable karts in the lower-center roadway: the player kart has a bright cyan body, white headlights, and a yellow helmet, while five rivals use distinct red, orange, green, purple, and blue body colors with contrasting helmets. Use a dark navy sky, moonlit ocean, pale surf, black cliffs, warm harbor lights, palms, and reflective road markings; keep the road and active karts high-contrast against the quiet background. Show clear steering, left/right drift, boost flame, and four-frame crash-spin poses using the bundled kart art, with cyan exhaust and gold turbo flashes as event feedback. Track scenery alternates between beach, cliffs, palms, and harbor around one continuous night circuit.",
+    "referenceIntent": {
+      "reference": "",
+      "preserve": [],
+      "change": []
+    },
+    "controls": {
+      "left": "Steer left while racing; also shapes a left drift when B is held.",
+      "right": "Steer right while racing; also shapes a right drift when B is held.",
+      "up": "Accelerate while racing.",
+      "down": "Brake while racing; reduces speed before tight corners.",
+      "a": "Accelerate while racing, as an alternative to UP.",
+      "b": "Hold during a turn to charge and maintain a drift; release during the drift to trigger its turbo."
+    },
+    "palette": "arcade",
+    "lose": "The player loses by running out of the 180-second race timer without finishing, or finishes behind every rival.",
+    "scoring": "Score comes from valid checkpoint crossings, finishing position, and successful drift-release turbos; each checkpoint is awarded once per lap and turbo feedback is shown immediately.",
+    "moderated": false,
+    "note": "",
+    "remix": false,
+    "changes": [],
+    "designCards": [
+      "readability",
+      "scoring",
+      "pacing",
+      "onboarding"
+    ],
+    "players": 1
+  },
+  "sourceHash": "083afb32489ae470c297694558312b9d570af4acbc264d2ba1503ceafe27381e",
+  "inputs": [
+    {
+      "at": 0,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 0,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 221,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 225,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 232,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 240,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 242,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 345,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 354,
+      "player": 0,
+      "button": "b",
+      "down": true
+    },
+    {
+      "at": 356,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 357,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 358,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 366,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 369,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 371,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 372,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 373,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 374,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 376,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 377,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 383,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 384,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 385,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 386,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 391,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 392,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 393,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 394,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 399,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 401,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 405,
+      "player": 0,
+      "button": "b",
+      "down": false
+    },
+    {
+      "at": 407,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 409,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 413,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 414,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 416,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 417,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 426,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 428,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 430,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 431,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 434,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 435,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 524,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 527,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 528,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 535,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 536,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 539,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 540,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 542,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 550,
+      "player": 0,
+      "button": "b",
+      "down": true
+    },
+    {
+      "at": 551,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 554,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 558,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 560,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 563,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 565,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 569,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 571,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 574,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 576,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 580,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 582,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 584,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 585,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 587,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 588,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 590,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 591,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 599,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 602,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 603,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 603,
+      "player": 0,
+      "button": "b",
+      "down": false
+    },
+    {
+      "at": 605,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 607,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 608,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 620,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 621,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 705,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 709,
+      "player": 0,
+      "button": "b",
+      "down": true
+    },
+    {
+      "at": 720,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 721,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 723,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 725,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 726,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 732,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 735,
+      "player": 0,
+      "button": "b",
+      "down": false
+    },
+    {
+      "at": 737,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 742,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 747,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 752,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 757,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 762,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 764,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 770,
+      "player": 0,
+      "button": "b",
+      "down": true
+    },
+    {
+      "at": 772,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 775,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 776,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 778,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 780,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 780,
+      "player": 0,
+      "button": "b",
+      "down": false
+    },
+    {
+      "at": 782,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 784,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 785,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 790,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 793,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 797,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 799,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 800,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 804,
+      "player": 0,
+      "button": "b",
+      "down": true
+    },
+    {
+      "at": 815,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 816,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 820,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 827,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 831,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 834,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 837,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 840,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 843,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 845,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 845,
+      "player": 0,
+      "button": "b",
+      "down": false
+    },
+    {
+      "at": 847,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 849,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 851,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 854,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 855,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 858,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 859,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 861,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 869,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 872,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 878,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 882,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 885,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 902,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 903,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1076,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1088,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1089,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1090,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1098,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1100,
+      "player": 0,
+      "button": "b",
+      "down": true
+    },
+    {
+      "at": 1102,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1107,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1110,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1121,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1124,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1132,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1134,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1137,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1138,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1142,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1143,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1145,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1146,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1149,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1150,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1158,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1158,
+      "player": 0,
+      "button": "b",
+      "down": false
+    },
+    {
+      "at": 1160,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1162,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1163,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1165,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1167,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1177,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1178,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1256,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1263,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1264,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1264,
+      "player": 0,
+      "button": "b",
+      "down": true
+    },
+    {
+      "at": 1267,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1268,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1270,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1272,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1273,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1276,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1277,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1280,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1281,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1282,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1283,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1285,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1285,
+      "player": 0,
+      "button": "b",
+      "down": false
+    },
+    {
+      "at": 1286,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1287,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1288,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1291,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1294,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1299,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1301,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1303,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1305,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1309,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1311,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1314,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1316,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1319,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1320,
+      "player": 0,
+      "button": "b",
+      "down": true
+    },
+    {
+      "at": 1321,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1331,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1333,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1335,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1335,
+      "player": 0,
+      "button": "b",
+      "down": false
+    },
+    {
+      "at": 1337,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1339,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1341,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1352,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1353,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1437,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1441,
+      "player": 0,
+      "button": "b",
+      "down": true
+    },
+    {
+      "at": 1452,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1453,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1455,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1460,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1461,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1462,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1463,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1464,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1465,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1466,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1467,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1469,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1471,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1473,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1475,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1478,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1481,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1485,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1488,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1490,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1491,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1492,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1493,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1494,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1495,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1500,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1501,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1504,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1505,
+      "player": 0,
+      "button": "b",
+      "down": false
+    },
+    {
+      "at": 1506,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1508,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1510,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1511,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1513,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1515,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1516,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1522,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1524,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1527,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1540,
+      "player": 0,
+      "button": "b",
+      "down": true
+    },
+    {
+      "at": 1568,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1572,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1578,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1579,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1581,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1582,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1582,
+      "player": 0,
+      "button": "b",
+      "down": false
+    },
+    {
+      "at": 1583,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1585,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1586,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1592,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1594,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1790,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1799,
+      "player": 0,
+      "button": "b",
+      "down": true
+    },
+    {
+      "at": 1801,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1802,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1803,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1810,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1813,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1816,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1817,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1818,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1819,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1820,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1821,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1823,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1824,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1833,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1835,
+      "player": 0,
+      "button": "b",
+      "down": false
+    },
+    {
+      "at": 1836,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1844,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1847,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1855,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1858,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1870,
+      "player": 0,
+      "button": "b",
+      "down": true
+    },
+    {
+      "at": 1871,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1871,
+      "player": 0,
+      "button": "b",
+      "down": false
+    },
+    {
+      "at": 1872,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1875,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1877,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1970,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1980,
+      "player": 0,
+      "button": "b",
+      "down": true
+    },
+    {
+      "at": 1981,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1982,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1984,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1986,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1987,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1993,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1995,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1998,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2000,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2004,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2006,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2008,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2009,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2011,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2012,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2014,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2015,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2016,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2017,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2020,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2022,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2025,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2026,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2027,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2028,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2031,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2033,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2036,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2037,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2045,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2047,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2048,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2048,
+      "player": 0,
+      "button": "b",
+      "down": false
+    },
+    {
+      "at": 2051,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2052,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2054,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2061,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2063,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2151,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2155,
+      "player": 0,
+      "button": "b",
+      "down": true
+    },
+    {
+      "at": 2165,
+      "player": 0,
+      "button": "b",
+      "down": false
+    },
+    {
+      "at": 2171,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2181,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2187,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2191,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2194,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2197,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2200,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2200,
+      "player": 0,
+      "button": "b",
+      "down": true
+    },
+    {
+      "at": 2203,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2204,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2205,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2207,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2213,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2214,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2218,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2221,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2222,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2225,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2226,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2226,
+      "player": 0,
+      "button": "b",
+      "down": false
+    },
+    {
+      "at": 2227,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2229,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2230,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2236,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2238,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2245,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2249,
+      "player": 0,
+      "button": "b",
+      "down": true
+    },
+    {
+      "at": 2266,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2275,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2275,
+      "player": 0,
+      "button": "b",
+      "down": false
+    },
+    {
+      "at": 2283,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2289,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2296,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2300,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2302,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2303,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2305,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2306,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2311,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2313,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2314,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2318,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2322,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2330,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2332,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2366,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2367,
+      "player": 0,
+      "button": "left",
+      "down": false
+    }
+  ],
+  "shots": [
+    {
+      "name": "idle",
+      "frame": 1,
+      "state": {
+        "phase": "countdown",
+        "countdown": 2.9833333333333334,
+        "time": 0,
+        "trackLength": 15520,
+        "laps": 3,
+        "timeLimit": 180,
+        "winner": null,
+        "stats": {
+          "collisions": 0,
+          "driftBoosts": 0,
+          "padBoosts": 0,
+          "checkpointPasses": 0
+        },
+        "checkpoints": [
+          3880,
+          7760,
+          11640,
+          15520
+        ],
+        "racers": [
+          {
+            "id": 0,
+            "human": true,
+            "x": -0.28,
+            "speed": 0,
+            "distance": 0,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 1,
+            "human": false,
+            "x": 0.28,
+            "speed": 0,
+            "distance": 0,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 2,
+            "human": false,
+            "x": -0.28,
+            "speed": 0,
+            "distance": -90,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 3,
+            "human": false,
+            "x": 0.28,
+            "speed": 0,
+            "distance": -90,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 4,
+            "human": false,
+            "x": -0.28,
+            "speed": 0,
+            "distance": -180,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 5,
+            "human": false,
+            "x": 0.28,
+            "speed": 0,
+            "distance": -180,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "idle",
+            "curve": 0
+          }
+        ],
+        "positions": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "scores": [
+        0
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 1,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "735e8201",
+      "file": "kart-1p-idle.png"
+    },
+    {
+      "name": "straight",
+      "frame": 282,
+      "state": {
+        "phase": "racing",
+        "countdown": 0,
+        "time": 1.6833333333333322,
+        "trackLength": 15520,
+        "laps": 3,
+        "timeLimit": 180,
+        "winner": null,
+        "stats": {
+          "collisions": 2,
+          "driftBoosts": 0,
+          "padBoosts": 0,
+          "checkpointPasses": 0
+        },
+        "checkpoints": [
+          3880,
+          7760,
+          11640,
+          15520
+        ],
+        "racers": [
+          {
+            "id": 0,
+            "human": true,
+            "x": 0.005263187039063562,
+            "speed": 909,
+            "distance": 772.6500000000001,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0
+          },
+          {
+            "id": 1,
+            "human": false,
+            "x": 0.34574881442521727,
+            "speed": 909,
+            "distance": 772.6500000000001,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0
+          },
+          {
+            "id": 2,
+            "human": false,
+            "x": -0.33475419739570167,
+            "speed": 880.2,
+            "distance": 653.37,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0
+          },
+          {
+            "id": 3,
+            "human": false,
+            "x": -0.08239212421833161,
+            "speed": 560.376,
+            "distance": 481.5323999999998,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "steerLeft",
+            "curve": 0
+          },
+          {
+            "id": 4,
+            "human": false,
+            "x": 0.06919742445065358,
+            "speed": 849.96,
+            "distance": 573.954,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0
+          },
+          {
+            "id": 5,
+            "human": false,
+            "x": 0.37160639944849305,
+            "speed": 909,
+            "distance": 592.65,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0
+          }
+        ],
+        "positions": [
+          0,
+          1,
+          2,
+          5,
+          4,
+          3
+        ]
+      },
+      "scores": [
+        0
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 282,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "b5d1ab91",
+      "file": "kart-1p-straight.png"
+    },
+    {
+      "name": "drift",
+      "frame": 377,
+      "state": {
+        "phase": "racing",
+        "countdown": 0,
+        "time": 3.26666666666666,
+        "trackLength": 15520,
+        "laps": 3,
+        "timeLimit": 180,
+        "winner": null,
+        "stats": {
+          "collisions": 2,
+          "driftBoosts": 0,
+          "padBoosts": 6,
+          "checkpointPasses": 0
+        },
+        "checkpoints": [
+          3880,
+          7760,
+          11640,
+          15520
+        ],
+        "racers": [
+          {
+            "id": 0,
+            "human": true,
+            "x": 0.12210039384065438,
+            "speed": 1550,
+            "distance": 2927.5333333333374,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0.03333333333333238,
+            "drift": 0.15320515063168128,
+            "crash": 0,
+            "score": 25,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": 0.46
+          },
+          {
+            "id": 1,
+            "human": false,
+            "x": 0.02931917206607168,
+            "speed": 1191.500000000005,
+            "distance": 2605.643055555558,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0.03333333333333238,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": 0.46
+          },
+          {
+            "id": 2,
+            "human": false,
+            "x": -0.385834858065965,
+            "speed": 1157.2833333333383,
+            "distance": 2425.5686111111136,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0.14999999999999902,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": 0.4345189504373178
+          },
+          {
+            "id": 3,
+            "human": false,
+            "x": -0.15519474406671585,
+            "speed": 1101.626000000003,
+            "distance": 1968.8082888888903,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0.5166666666666656,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": 0
+          },
+          {
+            "id": 4,
+            "human": false,
+            "x": -0.010622681425996842,
+            "speed": 1104.5433333333383,
+            "distance": 2281.1128888888916,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0.23333333333333234,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": 0.27895043731778424
+          },
+          {
+            "id": 5,
+            "human": false,
+            "x": 0.16088817054407142,
+            "speed": 1173.5833333333383,
+            "distance": 2408.045833333335,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0.18333333333333235,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": 0.4345189504373178
+          }
+        ],
+        "positions": [
+          0,
+          1,
+          2,
+          5,
+          4,
+          3
+        ]
+      },
+      "scores": [
+        25
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 25,
+        "scores": [
+          25
+        ],
+        "winner": null,
+        "frame": 377,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "a02c3943",
+      "file": "kart-1p-drift.png"
+    },
+    {
+      "name": "checkpoint",
+      "frame": 424,
+      "state": {
+        "phase": "racing",
+        "countdown": 0,
+        "time": 4.049999999999991,
+        "trackLength": 15520,
+        "laps": 3,
+        "timeLimit": 180,
+        "winner": null,
+        "stats": {
+          "collisions": 2,
+          "driftBoosts": 0,
+          "padBoosts": 6,
+          "checkpointPasses": 1
+        },
+        "checkpoints": [
+          3880,
+          7760,
+          11640,
+          15520
+        ],
+        "racers": [
+          {
+            "id": 0,
+            "human": true,
+            "x": 0.11356054413607261,
+            "speed": 1220,
+            "distance": 3888.700000000011,
+            "lap": 0,
+            "checkpoint": 1,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 175,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0.3688046647230321
+          },
+          {
+            "id": 1,
+            "human": false,
+            "x": -0.1152049974016217,
+            "speed": 1116.5833333333414,
+            "distance": 3488.5250000000074,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0.46
+          },
+          {
+            "id": 2,
+            "human": false,
+            "x": -0.3608674033195732,
+            "speed": 1058.2000000000082,
+            "distance": 3280.890555555564,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "steerRight",
+            "curve": 0.46
+          },
+          {
+            "id": 3,
+            "human": false,
+            "x": -0.046751889533511976,
+            "speed": 1021.7093333333397,
+            "distance": 2807.8236555555623,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "steerRight",
+            "curve": 0.46
+          },
+          {
+            "id": 4,
+            "human": false,
+            "x": 0.0637364688226616,
+            "speed": 1009.2100000000075,
+            "distance": 3115.3857222222296,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "steerRight",
+            "curve": 0.46
+          },
+          {
+            "id": 5,
+            "human": false,
+            "x": 0.07439157619667212,
+            "speed": 1092.416666666675,
+            "distance": 3291.9208333333404,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0.46
+          }
+        ],
+        "positions": [
+          0,
+          1,
+          5,
+          2,
+          4,
+          3
+        ]
+      },
+      "scores": [
+        175
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 175,
+        "scores": [
+          175
+        ],
+        "winner": null,
+        "frame": 424,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "595ffedf",
+      "file": "kart-1p-checkpoint.png"
+    },
+    {
+      "name": "turbo",
+      "frame": 848,
+      "state": {
+        "phase": "racing",
+        "countdown": 0,
+        "time": 11.116666666666799,
+        "trackLength": 15520,
+        "laps": 3,
+        "timeLimit": 180,
+        "winner": null,
+        "stats": {
+          "collisions": 2,
+          "driftBoosts": 3,
+          "padBoosts": 7,
+          "checkpointPasses": 13
+        },
+        "checkpoints": [
+          3880,
+          7760,
+          11640,
+          15520
+        ],
+        "racers": [
+          {
+            "id": 0,
+            "human": true,
+            "x": -0.2586072964842564,
+            "speed": 1220,
+            "distance": 12510.033333333415,
+            "lap": 0,
+            "checkpoint": 3,
+            "boost": 1.1,
+            "drift": 0,
+            "crash": 0,
+            "score": 500,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": -0.92
+          },
+          {
+            "id": 1,
+            "human": false,
+            "x": 0.32315382770691314,
+            "speed": 1080.1666666666765,
+            "distance": 11512.6236111112,
+            "lap": 0,
+            "checkpoint": 2,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": -0.05096209912536443
+          },
+          {
+            "id": 2,
+            "human": false,
+            "x": 0.4457221208450554,
+            "speed": 1192.5333333333645,
+            "distance": 11097.03166666682,
+            "lap": 0,
+            "checkpoint": 2,
+            "boost": 1.2184002721088443,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": 0.33061224489795915
+          },
+          {
+            "id": 3,
+            "human": false,
+            "x": -0.2417881082825173,
+            "speed": 946.8760000000141,
+            "distance": 10021.451555555635,
+            "lap": 0,
+            "checkpoint": 2,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "steerRight",
+            "curve": 0.84
+          },
+          {
+            "id": 4,
+            "human": false,
+            "x": -0.33877302334949605,
+            "speed": 970.6266666666845,
+            "distance": 10458.587777777886,
+            "lap": 0,
+            "checkpoint": 2,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "steerRight",
+            "curve": 0.84
+          },
+          {
+            "id": 5,
+            "human": false,
+            "x": 0.11256645850612046,
+            "speed": 1138.4166666666986,
+            "distance": 11140.748611111258,
+            "lap": 0,
+            "checkpoint": 2,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "steerRight",
+            "curve": 0.16653061224489796
+          }
+        ],
+        "positions": [
+          0,
+          1,
+          5,
+          2,
+          4,
+          3
+        ]
+      },
+      "scores": [
+        500
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 500,
+        "scores": [
+          500
+        ],
+        "winner": null,
+        "frame": 848,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "e516e1c7",
+      "file": "kart-1p-turbo.png"
+    },
+    {
+      "name": "final-lap",
+      "frame": 1694,
+      "state": {
+        "phase": "racing",
+        "countdown": 0,
+        "time": 25.216666666666516,
+        "trackLength": 15520,
+        "laps": 3,
+        "timeLimit": 180,
+        "winner": null,
+        "stats": {
+          "collisions": 4,
+          "driftBoosts": 13,
+          "padBoosts": 18,
+          "checkpointPasses": 40
+        },
+        "checkpoints": [
+          3880,
+          7760,
+          11640,
+          15520
+        ],
+        "racers": [
+          {
+            "id": 0,
+            "human": true,
+            "x": -0.000529669448703567,
+            "speed": 1220,
+            "distance": 31040.133333332757,
+            "lap": 2,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 1380,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0
+          },
+          {
+            "id": 1,
+            "human": false,
+            "x": 0.42812526743387724,
+            "speed": 1158.8333333333467,
+            "distance": 27786.134722222494,
+            "lap": 1,
+            "checkpoint": 3,
+            "boost": 0.27147153061224516,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": -0.92
+          },
+          {
+            "id": 2,
+            "human": false,
+            "x": -0.008764395440115801,
+            "speed": 1117.6956533333891,
+            "distance": 26594.801361334004,
+            "lap": 1,
+            "checkpoint": 2,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "steerRight",
+            "curve": 0.33061224489795915
+          },
+          {
+            "id": 3,
+            "human": false,
+            "x": -0.3392545686740587,
+            "speed": 1052.959333333376,
+            "distance": 24702.692044444884,
+            "lap": 1,
+            "checkpoint": 2,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0
+          },
+          {
+            "id": 4,
+            "human": false,
+            "x": -0.13385106702508429,
+            "speed": 969.2100000000513,
+            "distance": 25484.726555556186,
+            "lap": 1,
+            "checkpoint": 2,
+            "boost": 0,
+            "drift": 0.14601904761904763,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "driftRight",
+            "curve": 0.793469387755102
+          },
+          {
+            "id": 5,
+            "human": false,
+            "x": 0.43236484388491264,
+            "speed": 1109.740533333412,
+            "distance": 27214.153768889762,
+            "lap": 1,
+            "checkpoint": 3,
+            "boost": 0.772769081632654,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": -0.5579008746355685
+          }
+        ],
+        "positions": [
+          0,
+          1,
+          5,
+          2,
+          4,
+          3
+        ]
+      },
+      "scores": [
+        1380
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 1380,
+        "scores": [
+          1380
+        ],
+        "winner": null,
+        "frame": 1694,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "e25e3374",
+      "file": "kart-1p-final-lap.png"
+    },
+    {
+      "name": "terminal",
+      "frame": 2546,
+      "state": {
+        "phase": "finished",
+        "countdown": 0,
+        "time": 39.41666666666571,
+        "trackLength": 15520,
+        "laps": 3,
+        "timeLimit": 180,
+        "winner": 0,
+        "stats": {
+          "collisions": 4,
+          "driftBoosts": 21,
+          "padBoosts": 29,
+          "checkpointPasses": 64
+        },
+        "checkpoints": [
+          3880,
+          7760,
+          11640,
+          15520
+        ],
+        "racers": [
+          {
+            "id": 0,
+            "human": true,
+            "x": -0.002867180963269995,
+            "speed": 0,
+            "distance": 47161.39166666754,
+            "lap": 3,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 3030,
+            "finishTime": 37.416666666665826,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 1,
+            "human": false,
+            "x": 0.018659581555294347,
+            "speed": 1251.2500000000493,
+            "distance": 43964.487500000505,
+            "lap": 2,
+            "checkpoint": 3,
+            "boost": 1.2436196355685136,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": -0.18239067055393587
+          },
+          {
+            "id": 2,
+            "human": false,
+            "x": -0.24298567675071625,
+            "speed": 1123.195653333436,
+            "distance": 42437.93936089079,
+            "lap": 2,
+            "checkpoint": 2,
+            "boost": 1.0464781972789132,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": 0
+          },
+          {
+            "id": 3,
+            "human": false,
+            "x": -0.1603550554351044,
+            "speed": 1147.209333333406,
+            "distance": 39605.70624444578,
+            "lap": 2,
+            "checkpoint": 2,
+            "boost": 0.31867471817298393,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": 0
+          },
+          {
+            "id": 4,
+            "human": false,
+            "x": 0.20323380684155073,
+            "speed": 986.7933333334219,
+            "distance": 40755.43772222385,
+            "lap": 2,
+            "checkpoint": 2,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0.33061224489795915
+          },
+          {
+            "id": 5,
+            "human": false,
+            "x": 0.27900263798745384,
+            "speed": 1030.6572000001288,
+            "distance": 43199.90545333578,
+            "lap": 2,
+            "checkpoint": 3,
+            "boost": 0,
+            "drift": 0.6268107871720117,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "driftLeft",
+            "curve": -0.92
+          }
+        ],
+        "positions": [
+          0,
+          1,
+          5,
+          2,
+          4,
+          3
+        ]
+      },
+      "scores": [
+        3230
+      ],
+      "runtime": {
+        "state": "win",
+        "score": 3230,
+        "scores": [
+          3230
+        ],
+        "winner": null,
+        "frame": 2546,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "b8aa128a",
+      "file": "kart-1p-terminal.png"
+    }
+  ],
+  "final": {
+    "phase": "finished",
+    "countdown": 0,
+    "time": 39.41666666666571,
+    "trackLength": 15520,
+    "laps": 3,
+    "timeLimit": 180,
+    "winner": 0,
+    "stats": {
+      "collisions": 4,
+      "driftBoosts": 21,
+      "padBoosts": 29,
+      "checkpointPasses": 64
+    },
+    "checkpoints": [
+      3880,
+      7760,
+      11640,
+      15520
+    ],
+    "racers": [
+      {
+        "id": 0,
+        "human": true,
+        "x": -0.002867180963269995,
+        "speed": 0,
+        "distance": 47161.39166666754,
+        "lap": 3,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 3030,
+        "finishTime": 37.416666666665826,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 1,
+        "human": false,
+        "x": 0.018659581555294347,
+        "speed": 1251.2500000000493,
+        "distance": 43964.487500000505,
+        "lap": 2,
+        "checkpoint": 3,
+        "boost": 1.2436196355685136,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "boost",
+        "curve": -0.18239067055393587
+      },
+      {
+        "id": 2,
+        "human": false,
+        "x": -0.24298567675071625,
+        "speed": 1123.195653333436,
+        "distance": 42437.93936089079,
+        "lap": 2,
+        "checkpoint": 2,
+        "boost": 1.0464781972789132,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "boost",
+        "curve": 0
+      },
+      {
+        "id": 3,
+        "human": false,
+        "x": -0.1603550554351044,
+        "speed": 1147.209333333406,
+        "distance": 39605.70624444578,
+        "lap": 2,
+        "checkpoint": 2,
+        "boost": 0.31867471817298393,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "boost",
+        "curve": 0
+      },
+      {
+        "id": 4,
+        "human": false,
+        "x": 0.20323380684155073,
+        "speed": 986.7933333334219,
+        "distance": 40755.43772222385,
+        "lap": 2,
+        "checkpoint": 2,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "drive",
+        "curve": 0.33061224489795915
+      },
+      {
+        "id": 5,
+        "human": false,
+        "x": 0.27900263798745384,
+        "speed": 1030.6572000001288,
+        "distance": 43199.90545333578,
+        "lap": 2,
+        "checkpoint": 3,
+        "boost": 0,
+        "drift": 0.6268107871720117,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "driftLeft",
+        "curve": -0.92
+      }
+    ],
+    "positions": [
+      0,
+      1,
+      5,
+      2,
+      4,
+      3
+    ]
+  },
+  "initial": {
+    "phase": "countdown",
+    "countdown": 3,
+    "time": 0,
+    "trackLength": 15520,
+    "laps": 3,
+    "timeLimit": 180,
+    "winner": null,
+    "stats": {
+      "collisions": 0,
+      "driftBoosts": 0,
+      "padBoosts": 0,
+      "checkpointPasses": 0
+    },
+    "checkpoints": [
+      3880,
+      7760,
+      11640,
+      15520
+    ],
+    "racers": [
+      {
+        "id": 0,
+        "human": true,
+        "x": -0.28,
+        "speed": 0,
+        "distance": 0,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 1,
+        "human": false,
+        "x": 0.28,
+        "speed": 0,
+        "distance": 0,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 2,
+        "human": false,
+        "x": -0.28,
+        "speed": 0,
+        "distance": -90,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 3,
+        "human": false,
+        "x": 0.28,
+        "speed": 0,
+        "distance": -90,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 4,
+        "human": false,
+        "x": -0.28,
+        "speed": 0,
+        "distance": -180,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 5,
+        "human": false,
+        "x": 0.28,
+        "speed": 0,
+        "distance": -180,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      }
+    ],
+    "positions": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "reset": {
+    "phase": "countdown",
+    "countdown": 3,
+    "time": 0,
+    "trackLength": 15520,
+    "laps": 3,
+    "timeLimit": 180,
+    "winner": null,
+    "stats": {
+      "collisions": 0,
+      "driftBoosts": 0,
+      "padBoosts": 0,
+      "checkpointPasses": 0
+    },
+    "checkpoints": [
+      3880,
+      7760,
+      11640,
+      15520
+    ],
+    "racers": [
+      {
+        "id": 0,
+        "human": true,
+        "x": -0.28,
+        "speed": 0,
+        "distance": 0,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 1,
+        "human": false,
+        "x": 0.28,
+        "speed": 0,
+        "distance": 0,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 2,
+        "human": false,
+        "x": -0.28,
+        "speed": 0,
+        "distance": -90,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 3,
+        "human": false,
+        "x": 0.28,
+        "speed": 0,
+        "distance": -90,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 4,
+        "human": false,
+        "x": -0.28,
+        "speed": 0,
+        "distance": -180,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      },
+      {
+        "id": 5,
+        "human": false,
+        "x": 0.28,
+        "speed": 0,
+        "distance": -180,
+        "lap": 0,
+        "checkpoint": 0,
+        "boost": 0,
+        "drift": 0,
+        "crash": 0,
+        "score": 0,
+        "finishTime": null,
+        "pose": "idle",
+        "curve": 0
+      }
+    ],
+    "positions": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "terminal": {
+    "state": "win",
+    "winner": null,
+    "frame": 2545
+  },
+  "failure": null,
+  "invalidScoreTargets": 52,
+  "audio": [
+    "powerup",
+    "coin",
+    "win"
+  ],
+  "scoreEvents": [
+    {
+      "frame": 0,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 0,
+      "old": 0,
+      "new": 0
+    },
+    {
+      "frame": 312,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 25,
+      "old": 0,
+      "new": 25
+    },
+    {
+      "frame": 423,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 125,
+      "old": 25,
+      "new": 125
+    },
+    {
+      "frame": 423,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 50,
+      "old": 125,
+      "new": 175
+    },
+    {
+      "frame": 444,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 175,
+      "new": 225
+    },
+    {
+      "frame": 455,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 225,
+      "new": 275
+    },
+    {
+      "frame": 457,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 275,
+      "new": 325
+    },
+    {
+      "frame": 468,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 325,
+      "new": 375
+    },
+    {
+      "frame": 487,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 375,
+      "new": 425
+    },
+    {
+      "frame": 614,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 275,
+      "old": 425,
+      "new": 275
+    },
+    {
+      "frame": 614,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 50,
+      "old": 275,
+      "new": 325
+    },
+    {
+      "frame": 649,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 325,
+      "new": 375
+    },
+    {
+      "frame": 664,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 375,
+      "new": 425
+    },
+    {
+      "frame": 669,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 425,
+      "new": 475
+    },
+    {
+      "frame": 691,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 475,
+      "new": 525
+    },
+    {
+      "frame": 715,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 525,
+      "new": 575
+    },
+    {
+      "frame": 805,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 425,
+      "old": 575,
+      "new": 425
+    },
+    {
+      "frame": 805,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 50,
+      "old": 425,
+      "new": 475
+    },
+    {
+      "frame": 847,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 500,
+      "old": 475,
+      "new": 500
+    },
+    {
+      "frame": 855,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 500,
+      "new": 550
+    },
+    {
+      "frame": 875,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 550,
+      "new": 600
+    },
+    {
+      "frame": 876,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 600,
+      "new": 650
+    },
+    {
+      "frame": 916,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 650,
+      "new": 700
+    },
+    {
+      "frame": 946,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 700,
+      "new": 750
+    },
+    {
+      "frame": 980,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 600,
+      "old": 750,
+      "new": 600
+    },
+    {
+      "frame": 980,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 50,
+      "old": 600,
+      "new": 650
+    },
+    {
+      "frame": 1044,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 675,
+      "old": 650,
+      "new": 675
+    },
+    {
+      "frame": 1052,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 675,
+      "new": 725
+    },
+    {
+      "frame": 1076,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 725,
+      "new": 775
+    },
+    {
+      "frame": 1088,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 775,
+      "new": 825
+    },
+    {
+      "frame": 1129,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 825,
+      "new": 875
+    },
+    {
+      "frame": 1155,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 775,
+      "old": 875,
+      "new": 775
+    },
+    {
+      "frame": 1155,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 50,
+      "old": 775,
+      "new": 825
+    },
+    {
+      "frame": 1165,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 825,
+      "new": 875
+    },
+    {
+      "frame": 1252,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 875,
+      "new": 925
+    },
+    {
+      "frame": 1278,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 925,
+      "new": 975
+    },
+    {
+      "frame": 1295,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 975,
+      "new": 1025
+    },
+    {
+      "frame": 1344,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 1025,
+      "new": 1075
+    },
+    {
+      "frame": 1345,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 925,
+      "old": 1075,
+      "new": 925
+    },
+    {
+      "frame": 1345,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 50,
+      "old": 925,
+      "new": 975
+    },
+    {
+      "frame": 1385,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 975,
+      "new": 1025
+    },
+    {
+      "frame": 1457,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 1025,
+      "new": 1075
+    },
+    {
+      "frame": 1484,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 1075,
+      "new": 1125
+    },
+    {
+      "frame": 1505,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 1015,
+      "old": 1125,
+      "new": 1015
+    },
+    {
+      "frame": 1509,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 1015,
+      "new": 1065
+    },
+    {
+      "frame": 1531,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 1115,
+      "old": 1065,
+      "new": 1115
+    },
+    {
+      "frame": 1531,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 50,
+      "old": 1115,
+      "new": 1165
+    },
+    {
+      "frame": 1565,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 1190,
+      "old": 1165,
+      "new": 1190
+    },
+    {
+      "frame": 1567,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 1190,
+      "new": 1240
+    },
+    {
+      "frame": 1582,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 1230,
+      "old": 1240,
+      "new": 1230
+    },
+    {
+      "frame": 1613,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 1230,
+      "new": 1280
+    },
+    {
+      "frame": 1660,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 1280,
+      "new": 1330
+    },
+    {
+      "frame": 1691,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 1330,
+      "new": 1380
+    },
+    {
+      "frame": 1693,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 1330,
+      "old": 1380,
+      "new": 1330
+    },
+    {
+      "frame": 1693,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 50,
+      "old": 1330,
+      "new": 1380
+    },
+    {
+      "frame": 1725,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 1380,
+      "new": 1430
+    },
+    {
+      "frame": 1757,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 1405,
+      "old": 1430,
+      "new": 1405
+    },
+    {
+      "frame": 1789,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 1405,
+      "new": 1455
+    },
+    {
+      "frame": 1839,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 1455,
+      "new": 1505
+    },
+    {
+      "frame": 1861,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 1505,
+      "new": 1555
+    },
+    {
+      "frame": 1868,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 1505,
+      "old": 1555,
+      "new": 1505
+    },
+    {
+      "frame": 1868,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 50,
+      "old": 1505,
+      "new": 1555
+    },
+    {
+      "frame": 1893,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 1555,
+      "new": 1605
+    },
+    {
+      "frame": 1929,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 1605,
+      "new": 1655
+    },
+    {
+      "frame": 2003,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 1655,
+      "new": 1705
+    },
+    {
+      "frame": 2057,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 1705,
+      "new": 1755
+    },
+    {
+      "frame": 2059,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 1655,
+      "old": 1755,
+      "new": 1655
+    },
+    {
+      "frame": 2059,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 50,
+      "old": 1655,
+      "new": 1705
+    },
+    {
+      "frame": 2061,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 1705,
+      "new": 1755
+    },
+    {
+      "frame": 2096,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 1755,
+      "new": 1805
+    },
+    {
+      "frame": 2136,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 1805,
+      "new": 1855
+    },
+    {
+      "frame": 2219,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 1855,
+      "new": 1905
+    },
+    {
+      "frame": 2250,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 1805,
+      "old": 1905,
+      "new": 1805
+    },
+    {
+      "frame": 2250,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 50,
+      "old": 1805,
+      "new": 1855
+    },
+    {
+      "frame": 2267,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 1855,
+      "new": 1905
+    },
+    {
+      "frame": 2277,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 1905,
+      "new": 1955
+    },
+    {
+      "frame": 2292,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 1880,
+      "old": 1955,
+      "new": 1880
+    },
+    {
+      "frame": 2305,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 1880,
+      "new": 1930
+    },
+    {
+      "frame": 2348,
+      "type": "addScore",
+      "player": 2,
+      "target": 0,
+      "value": 50,
+      "old": 1930,
+      "new": 1980
+    },
+    {
+      "frame": 2425,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 1980,
+      "old": 1980,
+      "new": 1980
+    },
+    {
+      "frame": 2425,
+      "type": "addScore",
+      "player": 0,
+      "target": 0,
+      "value": 50,
+      "old": 1980,
+      "new": 2030
+    },
+    {
+      "frame": 2425,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 3030,
+      "old": 2030,
+      "new": 3030
+    },
+    {
+      "frame": 2440,
+      "type": "addScore",
+      "player": 4,
+      "target": 0,
+      "value": 50,
+      "old": 3030,
+      "new": 3080
+    },
+    {
+      "frame": 2476,
+      "type": "addScore",
+      "player": 1,
+      "target": 0,
+      "value": 50,
+      "old": 3080,
+      "new": 3130
+    },
+    {
+      "frame": 2503,
+      "type": "addScore",
+      "player": 3,
+      "target": 0,
+      "value": 50,
+      "old": 3130,
+      "new": 3180
+    },
+    {
+      "frame": 2515,
+      "type": "addScore",
+      "player": 5,
+      "target": 0,
+      "value": 50,
+      "old": 3180,
+      "new": 3230
+    },
+    {
+      "frame": 2546,
+      "type": "score",
+      "player": 0,
+      "target": 0,
+      "value": 0,
+      "old": 3230,
+      "new": 0
+    }
+  ],
+  "load": {
+    "ok": true
+  },
+  "errors": []
+}

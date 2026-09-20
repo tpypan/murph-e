@@ -1,0 +1,44 @@
+{
+  "model": "gpt-6-astra",
+  "effort": "low",
+  "players": 2,
+  "n": 1,
+  "rows": [
+    {
+      "prompt": "sumo wrestling where you push each other off a platform",
+      "title": "RING RUMBLE",
+      "genre": "two-player sumo brawler",
+      "runId": "2026-09-19-1929-sumo-wrestling-where-you-push-ea",
+      "specMs": 7142,
+      "buildMs": 84624,
+      "ttftMs": 8844,
+      "totalMs": 91773,
+      "tokens": 5051,
+      "reasoning": 194,
+      "cached": 3077,
+      "lines": 390,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [],
+      "error": null
+    },
+    {
+      "prompt": "a race to collect the most coins before the time runs out",
+      "title": "COIN DASH",
+      "genre": "versus coin-collection racing",
+      "runId": "2026-09-19-1929-a-race-to-collect-the-most-coins",
+      "specMs": 6867,
+      "buildMs": 72896,
+      "ttftMs": 5503,
+      "totalMs": 79768,
+      "tokens": 4176,
+      "reasoning": 84,
+      "cached": 0,
+      "lines": 348,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [],
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "title": "PIXEL FIGHT",
+  "oneLiner": "Trade punches, block at the right moment, and land a three-hit combo to win the round!",
+  "genre": "dodge",
+  "mechanics": [
+    "Move a colorful fighter left and right in a single-screen arena; A throws a short-range punch.",
+    "Tap B to block briefly, reducing incoming damage; release it to attack again.",
+    "The computer rival advances, punches, blocks, and retreats in readable three-step patterns.",
+    "Land three distinct hits within 2 seconds for a combo bonus; rounds last up to 30 seconds.",
+    "Pressure rises in three bounded phases, with a short recovery pause after each exchange."
+  ],
+  "controls": {
+    "left": "Move fighter left",
+    "right": "Move fighter right",
+    "up": null,
+    "down": null,
+    "a": "Punch when close to the rival",
+    "b": "Block briefly against incoming punches"
+  },
+  "palette": "nes",
+  "lose": "Lose the round when your 3-heart meter is emptied; win by emptying the rival's meter first or leading when time expires.",
+  "scoring": "Score 100 per clean punch and 500 for each completed three-hit combo, capped at a 3x combo multiplier that resets when no hit lands for 2 seconds.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "readability",
+    "scoring",
+    "pacing",
+    "onboarding"
+  ],
+  "players": 1,
+  "runId": "2026-09-19-1913-i-want-to-create-a-game-which-is"
+}

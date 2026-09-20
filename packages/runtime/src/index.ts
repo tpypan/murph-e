@@ -27,6 +27,7 @@ export interface ProbeHook {
     error: string | null
   }
   frameHash: () => string
+  // dominant is the canonical visible color: legacy index 0..15 or 0x01000000|RGB.
   frameStats: () => { colors: number; dominant: number; dominantShare: number }
   telemetry: () => Telemetry
   state: () => string
@@ -55,7 +56,7 @@ const rt = new Runtime(canvas, { probe, post })
 window.__runtime = rt
 
 function fit(): void {
-  const scale = Math.max(1, Math.floor(Math.min(innerWidth / W, innerHeight / H)))
+  const scale = Math.min(innerWidth / W, innerHeight / H)
   canvas.style.width = `${W * scale}px`
   canvas.style.height = `${H * scale}px`
 }
@@ -66,6 +67,12 @@ window.addEventListener('message', (ev: MessageEvent) => {
   const m = ev.data
   if (!m || typeof m !== 'object' || typeof m.type !== 'string') return
   switch (m.type) {
+    case 'pause':
+      rt.setPaused(!!m.paused)
+      break
+    case 'mute':
+      rt.setMuted(!!m.muted)
+      break
     case 'load':
       rt.load(
         String(m.code ?? ''),

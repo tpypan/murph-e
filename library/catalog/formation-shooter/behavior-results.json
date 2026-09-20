@@ -1,0 +1,33 @@
+{
+  "at": "2026-09-19T21:31:48.941Z",
+  "results": [
+    {
+      "name": "all 30 original frames have valid clips, pixels, timing and anchors",
+      "ok": true
+    },
+    {
+      "name": "independent player controls, shot bounds and shield recharge",
+      "ok": true
+    },
+    {
+      "name": "own fire persistently excavates destructible shields",
+      "ok": true
+    },
+    {
+      "name": "dives warn first, remain bounded and UFO announces before appearing",
+      "ok": true
+    },
+    {
+      "name": "real-input pilot clears all three default waves, scores each enemy once and resets",
+      "ok": true
+    },
+    {
+      "name": "co-op clear and authoritative player count",
+      "ok": true
+    },
+    {
+      "name": "no-input hazards reach a real loss; replay and invalid art are checked",
+      "ok": true
+    }
+  ]
+}

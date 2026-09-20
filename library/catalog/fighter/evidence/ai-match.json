@@ -1,0 +1,88 @@
+{
+  "scenario": "idle human vs seeded CPU",
+  "seed": 19,
+  "frames": 1800,
+  "state": {
+    "phase": "complete",
+    "round": 1,
+    "timeLeft": 413,
+    "freeze": 4,
+    "terminal": true,
+    "lastWinner": 1,
+    "scores": [
+      0,
+      1850
+    ],
+    "roundsToWin": 1,
+    "fighters": [
+      {
+        "id": "batman",
+        "x": 22,
+        "y": 184,
+        "hp": 0,
+        "meter": 100,
+        "wins": 0,
+        "face": 1,
+        "action": null,
+        "age": 0,
+        "animation": "ko",
+        "animationAge": 120,
+        "stun": 22,
+        "blockStun": 0,
+        "bind": null,
+        "bindImmunity": 0,
+        "guard": false,
+        "crouch": false,
+        "grounded": true,
+        "combo": 0,
+        "ai": null
+      },
+      {
+        "id": "flash",
+        "x": 63.69999999999984,
+        "y": 184,
+        "hp": 100,
+        "meter": 100,
+        "wins": 1,
+        "face": -1,
+        "action": null,
+        "age": 9,
+        "animation": "victory",
+        "animationAge": 120,
+        "stun": 0,
+        "blockStun": 0,
+        "bind": null,
+        "bindImmunity": 0,
+        "guard": false,
+        "crouch": true,
+        "grounded": true,
+        "combo": 5,
+        "ai": {
+          "plan": "sweep",
+          "wait": 35,
+          "observed": {
+            "tick": 890,
+            "x": 22,
+            "crouch": false,
+            "guard": false,
+            "action": null,
+            "grounded": true,
+            "decidedAt": 902,
+            "reactionTicks": 12
+          }
+        }
+      }
+    ],
+    "projectiles": [],
+    "effects": []
+  },
+  "terminalEvents": [
+    {
+      "type": "gameOver"
+    }
+  ],
+  "publicScores": [
+    0,
+    0
+  ]
+}

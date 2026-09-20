@@ -1,0 +1,57 @@
+{
+  "at": "2026-09-19T22:19:36.542Z",
+  "results": [
+    {
+      "name": "complete original animation sets, frame timing, anchors and boxes",
+      "ok": true
+    },
+    {
+      "name": "walk input immediately moves only the selected player",
+      "ok": true
+    },
+    {
+      "name": "climbing requires an aligned valid ladder, with floor exit and award",
+      "ok": true
+    },
+    {
+      "name": "jump has bounded measured apex, returns to girder, and tap is shorter",
+      "ok": true
+    },
+    {
+      "name": "barrels telegraph, roll both directions, fall at edges and choose ladders",
+      "ok": true
+    },
+    {
+      "name": "jump-over award is issued once per actual barrel, not once per overlap frame",
+      "ok": true
+    },
+    {
+      "name": "hazard collision consumes lives once, respawns safely, and eventually loses",
+      "ok": true
+    },
+    {
+      "name": "full real-input climb rescues and transitions through all layouts to win",
+      "ok": true
+    },
+    {
+      "name": "co-op input can clear the whole tower with the other player idle",
+      "ok": true
+    },
+    {
+      "name": "custom objectives gate rescue, art validates, chosen players and reset remain authoritative",
+      "ok": true
+    },
+    {
+      "name": "avatar fit rejects the generated 28x44 shape and preserves a separate target limit",
+      "ok": true
+    },
+    {
+      "name": "source palettes reach renderer unchanged and custom rescue identity survives full play",
+      "ok": true
+    },
+    {
+      "name": "seeded hazard paths replay and inspect does not expose mutable state",
+      "ok": true
+    }
+  ]
+}

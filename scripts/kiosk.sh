@@ -14,11 +14,6 @@ mkdir -p "$LOG_DIR"
 # Keep the Mac awake while the cabinet runs (caffeinate dies with this script).
 caffeinate -dimsu -w $$ &
 
-if [ ! -f .env ]; then
-  echo "missing .env (copy .env.example and add OPENAI_API_KEY)" >&2
-  exit 1
-fi
-
 if [ "$MODE" = "--dev" ]; then
   pnpm dev > "$LOG_DIR/server.log" 2>&1 &
 else

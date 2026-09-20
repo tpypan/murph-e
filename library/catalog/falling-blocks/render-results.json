@@ -1,0 +1,190 @@
+{
+  "at": "2026-09-19T21:28:25.281Z",
+  "results": [
+    {
+      "players": 1,
+      "name": "start",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 1,
+        "error": null
+      },
+      "stepMs": 4
+    },
+    {
+      "players": 1,
+      "name": "stack",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 568,
+        "scores": [
+          568
+        ],
+        "winner": null,
+        "frame": 180,
+        "error": null
+      },
+      "stepMs": 21
+    },
+    {
+      "players": 1,
+      "name": "clear",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 1194,
+        "scores": [
+          1194
+        ],
+        "winner": null,
+        "frame": 320,
+        "error": null
+      },
+      "stepMs": 16
+    },
+    {
+      "players": 1,
+      "name": "race",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 1970,
+        "scores": [
+          1970
+        ],
+        "winner": null,
+        "frame": 480,
+        "error": null
+      },
+      "stepMs": 17
+    },
+    {
+      "players": 1,
+      "name": "finished",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "win",
+        "score": 3386,
+        "scores": [
+          3386
+        ],
+        "winner": null,
+        "frame": 1800,
+        "error": null
+      },
+      "stepMs": 94
+    },
+    {
+      "players": 2,
+      "name": "start",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0,
+          0
+        ],
+        "winner": null,
+        "frame": 1801,
+        "error": null
+      },
+      "stepMs": 5
+    },
+    {
+      "players": 2,
+      "name": "stack",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 568,
+        "scores": [
+          568,
+          568
+        ],
+        "winner": null,
+        "frame": 1980,
+        "error": null
+      },
+      "stepMs": 24
+    },
+    {
+      "players": 2,
+      "name": "clear",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 1194,
+        "scores": [
+          1194,
+          1194
+        ],
+        "winner": null,
+        "frame": 2120,
+        "error": null
+      },
+      "stepMs": 17
+    },
+    {
+      "players": 2,
+      "name": "race",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 1970,
+        "scores": [
+          1970,
+          1970
+        ],
+        "winner": null,
+        "frame": 2280,
+        "error": null
+      },
+      "stepMs": 20
+    },
+    {
+      "players": 2,
+      "name": "finished",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "win",
+        "score": 3908,
+        "scores": [
+          3908,
+          3908
+        ],
+        "winner": null,
+        "frame": 3600,
+        "error": null
+      },
+      "stepMs": 97
+    }
+  ]
+}

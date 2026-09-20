@@ -1,0 +1,4284 @@
+{
+  "moduleHash": "9a43b48c9e52144ce621a952db9e9f8394d52e726959e3a84480890bec0ab261",
+  "config": {},
+  "players": 1,
+  "frames": 5512,
+  "inputs": [
+    {
+      "at": 0,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 8,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 8,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 9,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 9,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 17,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 17,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 25,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 133,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 134,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 134,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 142,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 142,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 150,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 258,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 259,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 259,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 267,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 267,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 275,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 383,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 384,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 384,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 392,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 392,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 400,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 508,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 509,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 509,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 517,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 517,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 525,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 633,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 634,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 634,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 642,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 642,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 650,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 758,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 759,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 759,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 767,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 767,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 775,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 883,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 884,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 884,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 892,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 892,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 900,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1008,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1016,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1016,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1017,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1017,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1041,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1141,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1149,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1149,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1157,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1157,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1165,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1165,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1166,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1166,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1182,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1182,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1190,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1290,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1298,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1298,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1306,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1306,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1307,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1307,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1315,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1315,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1323,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1431,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1432,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1432,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1440,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1440,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1448,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1556,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1564,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1564,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1572,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1572,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1573,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1573,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1581,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1581,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1589,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1697,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1698,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1698,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1706,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1706,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1714,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1822,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1830,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1830,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1838,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1838,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1839,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1839,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1847,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1847,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1855,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 1963,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 1971,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 1971,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 1979,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 1979,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 1980,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 1980,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 1988,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 1988,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 1996,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2104,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2112,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2112,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2120,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2120,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2121,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2121,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2129,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2129,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2137,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2245,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2253,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2253,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2261,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2261,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2262,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2262,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2270,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2270,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2278,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2386,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2394,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2394,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2402,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2402,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2403,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2403,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2411,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2411,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2419,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2527,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2535,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2535,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2543,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2543,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2551,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2551,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2559,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2559,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2560,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2560,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2568,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2568,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2576,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2684,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2685,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2685,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2693,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2693,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2701,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2809,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2817,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2817,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2818,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2818,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 2834,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 2834,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 2842,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 2950,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 2951,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 2951,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 2967,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 2967,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2975,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 2975,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 2983,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3075,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 3076,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 3076,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3092,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3092,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 3100,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 3200,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 3208,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 3208,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3216,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3216,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 3217,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 3217,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3225,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3225,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 3233,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 3341,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 3349,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 3349,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 3357,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 3357,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 3365,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 3365,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3373,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3373,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3381,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3381,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3389,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3389,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3397,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3397,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 3398,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 3398,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3414,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3414,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 3422,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 3522,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 3523,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 3523,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 3531,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 3531,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3539,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3647,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3655,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3655,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 3656,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 3656,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3672,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3672,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 3680,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 3780,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 3788,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 3788,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3796,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3796,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 3797,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 3797,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3805,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3805,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 3813,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 3921,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 3929,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 3929,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3937,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3937,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3945,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3945,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3953,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3953,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3961,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3961,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 3969,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 3969,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 3970,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 3970,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 3978,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 3978,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 3986,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 4020,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 4028,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 4028,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 4036,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 4094,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 4095,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 4095,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 4103,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 4103,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 4111,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 4219,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 4220,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 4220,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 4228,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 4228,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 4236,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 4236,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 4244,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 4244,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 4252,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 4252,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 4260,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 4261,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 4269,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 4273,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 4281,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 4285,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 4293,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 4297,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 4305,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 4309,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 4317,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 4344,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 4345,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 4345,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 4353,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 4353,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 4361,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 4469,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 4477,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 4477,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 4485,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 4485,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 4493,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 4493,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 4501,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 4501,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 4509,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 4584,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 4585,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 4585,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 4601,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 4601,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 4609,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 4709,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 4710,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 4710,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 4718,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 4718,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 4726,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 4740,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 4748,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 4752,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 4760,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 4846,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 4847,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 4847,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 4863,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 4863,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 4870,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 4971,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 4972,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 4972,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 4979,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 4979,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 4986,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 5096,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 5097,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 5097,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 5104,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 5104,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 5111,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 5148,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 5155,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 5155,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 5162,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 5162,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 5169,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 5173,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 5180,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 5185,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 5192,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 5197,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 5204,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 5209,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 5216,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 5221,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 5222,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 5222,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 5236,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 5236,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 5243,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 5346,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 5353,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 5353,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 5360,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 5360,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 5367,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 5367,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 5374,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 5374,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 5381,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 5381,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 5388,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 5388,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 5395,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 5395,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 5402,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 5402,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 5409,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 5409,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 5416,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 5416,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 5423,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 5423,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 5430,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 5430,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 5437,
+      "player": 0,
+      "button": "down",
+      "down": false
+    }
+  ],
+  "expectedScores": [
+    2720
+  ],
+  "expectedState": "win",
+  "state": {
+    "mode": "solo",
+    "level": 2,
+    "phase": "complete",
+    "timeLeft": 5147,
+    "ticks": 5512,
+    "terminal": true,
+    "players": [
+      {
+        "x": 5,
+        "y": 7,
+        "id": 0,
+        "to": null,
+        "progress": 0,
+        "dir": 2,
+        "queued": null,
+        "alive": true,
+        "wait": 0,
+        "invulnerable": 0,
+        "age": 212,
+        "range": 4,
+        "capacity": 1,
+        "stepFrames": 7,
+        "lives": 1,
+        "enemy": false,
+        "position": {
+          "x": 128,
+          "y": 174
+        }
+      }
+    ],
+    "enemies": [
+      {
+        "x": 5,
+        "y": 1,
+        "id": 2,
+        "to": null,
+        "progress": 4,
+        "dir": 3,
+        "queued": null,
+        "alive": false,
+        "wait": 0,
+        "invulnerable": 0,
+        "age": 100,
+        "range": 2,
+        "capacity": 1,
+        "stepFrames": 12,
+        "lives": 3,
+        "enemy": true,
+        "type": 0,
+        "position": {
+          "x": 128,
+          "y": 66
+        }
+      },
+      {
+        "x": 8,
+        "y": 1,
+        "id": 3,
+        "to": null,
+        "progress": 5,
+        "dir": 3,
+        "queued": null,
+        "alive": false,
+        "wait": 0,
+        "invulnerable": 0,
+        "age": 737,
+        "range": 2,
+        "capacity": 1,
+        "stepFrames": 12,
+        "lives": 3,
+        "enemy": true,
+        "type": 1,
+        "position": {
+          "x": 182,
+          "y": 66
+        }
+      },
+      {
+        "x": 5,
+        "y": 1,
+        "id": 4,
+        "to": null,
+        "progress": 4,
+        "dir": 1,
+        "queued": null,
+        "alive": false,
+        "wait": 0,
+        "invulnerable": 0,
+        "age": 100,
+        "range": 2,
+        "capacity": 1,
+        "stepFrames": 12,
+        "lives": 3,
+        "enemy": true,
+        "type": 2,
+        "position": {
+          "x": 128,
+          "y": 66
+        }
+      },
+      {
+        "x": 6,
+        "y": 1,
+        "id": 5,
+        "to": null,
+        "progress": 4,
+        "dir": 3,
+        "queued": null,
+        "alive": false,
+        "wait": 0,
+        "invulnerable": 0,
+        "age": 376,
+        "range": 2,
+        "capacity": 1,
+        "stepFrames": 12,
+        "lives": 3,
+        "enemy": true,
+        "type": 0,
+        "position": {
+          "x": 146,
+          "y": 66
+        }
+      }
+    ],
+    "crates": [
+      {
+        "x": 7,
+        "y": 2
+      },
+      {
+        "x": 7,
+        "y": 3
+      },
+      {
+        "x": 3,
+        "y": 4
+      },
+      {
+        "x": 2,
+        "y": 5
+      },
+      {
+        "x": 3,
+        "y": 5
+      },
+      {
+        "x": 9,
+        "y": 5
+      }
+    ],
+    "bombs": [],
+    "flames": [],
+    "pickups": [],
+    "scores": [
+      2720,
+      0
+    ],
+    "wins": [
+      0,
+      0
+    ],
+    "events": [
+      {
+        "tick": 0,
+        "type": "arena-ready",
+        "level": 1,
+        "mode": "solo",
+        "enemies": 3
+      },
+      {
+        "tick": 9,
+        "type": "bomb",
+        "owner": 0,
+        "x": 2,
+        "y": 1,
+        "id": 1
+      },
+      {
+        "tick": 108,
+        "type": "explode",
+        "id": 1,
+        "owner": 0,
+        "x": 2,
+        "y": 1,
+        "cells": [
+          {
+            "x": 2,
+            "y": 1
+          },
+          {
+            "x": 3,
+            "y": 1
+          },
+          {
+            "x": 1,
+            "y": 1
+          }
+        ]
+      },
+      {
+        "tick": 108,
+        "type": "crate",
+        "x": 3,
+        "y": 1,
+        "owner": 0
+      },
+      {
+        "tick": 134,
+        "type": "bomb",
+        "owner": 0,
+        "x": 1,
+        "y": 2,
+        "id": 2
+      },
+      {
+        "tick": 233,
+        "type": "explode",
+        "id": 2,
+        "owner": 0,
+        "x": 1,
+        "y": 2,
+        "cells": [
+          {
+            "x": 1,
+            "y": 2
+          },
+          {
+            "x": 1,
+            "y": 1
+          },
+          {
+            "x": 1,
+            "y": 3
+          }
+        ]
+      },
+      {
+        "tick": 233,
+        "type": "crate",
+        "x": 1,
+        "y": 3,
+        "owner": 0
+      },
+      {
+        "tick": 259,
+        "type": "bomb",
+        "owner": 0,
+        "x": 2,
+        "y": 1,
+        "id": 3
+      },
+      {
+        "tick": 358,
+        "type": "explode",
+        "id": 3,
+        "owner": 0,
+        "x": 2,
+        "y": 1,
+        "cells": [
+          {
+            "x": 2,
+            "y": 1
+          },
+          {
+            "x": 3,
+            "y": 1
+          },
+          {
+            "x": 4,
+            "y": 1
+          },
+          {
+            "x": 1,
+            "y": 1
+          }
+        ]
+      },
+      {
+        "tick": 384,
+        "type": "bomb",
+        "owner": 0,
+        "x": 3,
+        "y": 2,
+        "id": 4
+      },
+      {
+        "tick": 483,
+        "type": "explode",
+        "id": 4,
+        "owner": 0,
+        "x": 3,
+        "y": 2,
+        "cells": [
+          {
+            "x": 3,
+            "y": 2
+          },
+          {
+            "x": 3,
+            "y": 1
+          },
+          {
+            "x": 3,
+            "y": 3
+          },
+          {
+            "x": 3,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "tick": 509,
+        "type": "bomb",
+        "owner": 0,
+        "x": 4,
+        "y": 1,
+        "id": 5
+      },
+      {
+        "tick": 608,
+        "type": "explode",
+        "id": 5,
+        "owner": 0,
+        "x": 4,
+        "y": 1,
+        "cells": [
+          {
+            "x": 4,
+            "y": 1
+          },
+          {
+            "x": 5,
+            "y": 1
+          },
+          {
+            "x": 3,
+            "y": 1
+          },
+          {
+            "x": 2,
+            "y": 1
+          }
+        ]
+      },
+      {
+        "tick": 608,
+        "type": "crate",
+        "x": 5,
+        "y": 1,
+        "owner": 0
+      },
+      {
+        "tick": 634,
+        "type": "bomb",
+        "owner": 0,
+        "x": 3,
+        "y": 2,
+        "id": 6
+      },
+      {
+        "tick": 733,
+        "type": "explode",
+        "id": 6,
+        "owner": 0,
+        "x": 3,
+        "y": 2,
+        "cells": [
+          {
+            "x": 3,
+            "y": 2
+          },
+          {
+            "x": 3,
+            "y": 1
+          },
+          {
+            "x": 3,
+            "y": 3
+          },
+          {
+            "x": 3,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "tick": 759,
+        "type": "bomb",
+        "owner": 0,
+        "x": 4,
+        "y": 1,
+        "id": 7
+      },
+      {
+        "tick": 858,
+        "type": "explode",
+        "id": 7,
+        "owner": 0,
+        "x": 4,
+        "y": 1,
+        "cells": [
+          {
+            "x": 4,
+            "y": 1
+          },
+          {
+            "x": 5,
+            "y": 1
+          },
+          {
+            "x": 6,
+            "y": 1
+          },
+          {
+            "x": 3,
+            "y": 1
+          },
+          {
+            "x": 2,
+            "y": 1
+          }
+        ]
+      },
+      {
+        "tick": 858,
+        "type": "crate",
+        "x": 6,
+        "y": 1,
+        "owner": 0
+      },
+      {
+        "tick": 884,
+        "type": "bomb",
+        "owner": 0,
+        "x": 3,
+        "y": 2,
+        "id": 8
+      },
+      {
+        "tick": 983,
+        "type": "explode",
+        "id": 8,
+        "owner": 0,
+        "x": 3,
+        "y": 2,
+        "cells": [
+          {
+            "x": 3,
+            "y": 2
+          },
+          {
+            "x": 3,
+            "y": 1
+          },
+          {
+            "x": 3,
+            "y": 3
+          },
+          {
+            "x": 3,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "tick": 1017,
+        "type": "bomb",
+        "owner": 0,
+        "x": 5,
+        "y": 1,
+        "id": 9
+      },
+      {
+        "tick": 1116,
+        "type": "explode",
+        "id": 9,
+        "owner": 0,
+        "x": 5,
+        "y": 1,
+        "cells": [
+          {
+            "x": 5,
+            "y": 1
+          },
+          {
+            "x": 6,
+            "y": 1
+          },
+          {
+            "x": 7,
+            "y": 1
+          },
+          {
+            "x": 5,
+            "y": 2
+          },
+          {
+            "x": 4,
+            "y": 1
+          },
+          {
+            "x": 3,
+            "y": 1
+          }
+        ]
+      },
+      {
+        "tick": 1116,
+        "type": "crate",
+        "x": 5,
+        "y": 2,
+        "owner": 0
+      },
+      {
+        "tick": 1166,
+        "type": "bomb",
+        "owner": 0,
+        "x": 9,
+        "y": 3,
+        "id": 10
+      },
+      {
+        "tick": 1265,
+        "type": "explode",
+        "id": 10,
+        "owner": 0,
+        "x": 9,
+        "y": 3,
+        "cells": [
+          {
+            "x": 9,
+            "y": 3
+          },
+          {
+            "x": 9,
+            "y": 2
+          },
+          {
+            "x": 9,
+            "y": 1
+          },
+          {
+            "x": 9,
+            "y": 4
+          },
+          {
+            "x": 9,
+            "y": 5
+          },
+          {
+            "x": 8,
+            "y": 3
+          }
+        ]
+      },
+      {
+        "tick": 1265,
+        "type": "crate",
+        "x": 8,
+        "y": 3,
+        "owner": 0
+      },
+      {
+        "tick": 1307,
+        "type": "bomb",
+        "owner": 0,
+        "x": 6,
+        "y": 1,
+        "id": 11
+      },
+      {
+        "tick": 1406,
+        "type": "explode",
+        "id": 11,
+        "owner": 0,
+        "x": 6,
+        "y": 1,
+        "cells": [
+          {
+            "x": 6,
+            "y": 1
+          },
+          {
+            "x": 7,
+            "y": 1
+          },
+          {
+            "x": 8,
+            "y": 1
+          },
+          {
+            "x": 5,
+            "y": 1
+          },
+          {
+            "x": 4,
+            "y": 1
+          }
+        ]
+      },
+      {
+        "tick": 1432,
+        "type": "bomb",
+        "owner": 0,
+        "x": 7,
+        "y": 2,
+        "id": 12
+      },
+      {
+        "tick": 1531,
+        "type": "explode",
+        "id": 12,
+        "owner": 0,
+        "x": 7,
+        "y": 2,
+        "cells": [
+          {
+            "x": 7,
+            "y": 2
+          },
+          {
+            "x": 7,
+            "y": 1
+          },
+          {
+            "x": 7,
+            "y": 3
+          },
+          {
+            "x": 7,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "tick": 1531,
+        "type": "crate",
+        "x": 7,
+        "y": 4,
+        "owner": 0
+      },
+      {
+        "tick": 1573,
+        "type": "bomb",
+        "owner": 0,
+        "x": 6,
+        "y": 1,
+        "id": 13
+      },
+      {
+        "tick": 1672,
+        "type": "explode",
+        "id": 13,
+        "owner": 0,
+        "x": 6,
+        "y": 1,
+        "cells": [
+          {
+            "x": 6,
+            "y": 1
+          },
+          {
+            "x": 7,
+            "y": 1
+          },
+          {
+            "x": 8,
+            "y": 1
+          },
+          {
+            "x": 5,
+            "y": 1
+          },
+          {
+            "x": 4,
+            "y": 1
+          }
+        ]
+      },
+      {
+        "tick": 1698,
+        "type": "bomb",
+        "owner": 0,
+        "x": 7,
+        "y": 2,
+        "id": 14
+      },
+      {
+        "tick": 1797,
+        "type": "explode",
+        "id": 14,
+        "owner": 0,
+        "x": 7,
+        "y": 2,
+        "cells": [
+          {
+            "x": 7,
+            "y": 2
+          },
+          {
+            "x": 7,
+            "y": 1
+          },
+          {
+            "x": 7,
+            "y": 3
+          },
+          {
+            "x": 7,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "tick": 1839,
+        "type": "bomb",
+        "owner": 0,
+        "x": 7,
+        "y": 2,
+        "id": 15
+      },
+      {
+        "tick": 1938,
+        "type": "explode",
+        "id": 15,
+        "owner": 0,
+        "x": 7,
+        "y": 2,
+        "cells": [
+          {
+            "x": 7,
+            "y": 2
+          },
+          {
+            "x": 7,
+            "y": 1
+          },
+          {
+            "x": 7,
+            "y": 3
+          },
+          {
+            "x": 7,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "tick": 1980,
+        "type": "bomb",
+        "owner": 0,
+        "x": 7,
+        "y": 2,
+        "id": 16
+      },
+      {
+        "tick": 2079,
+        "type": "explode",
+        "id": 16,
+        "owner": 0,
+        "x": 7,
+        "y": 2,
+        "cells": [
+          {
+            "x": 7,
+            "y": 2
+          },
+          {
+            "x": 7,
+            "y": 1
+          },
+          {
+            "x": 7,
+            "y": 3
+          },
+          {
+            "x": 7,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "tick": 2121,
+        "type": "bomb",
+        "owner": 0,
+        "x": 7,
+        "y": 2,
+        "id": 17
+      },
+      {
+        "tick": 2220,
+        "type": "explode",
+        "id": 17,
+        "owner": 0,
+        "x": 7,
+        "y": 2,
+        "cells": [
+          {
+            "x": 7,
+            "y": 2
+          },
+          {
+            "x": 7,
+            "y": 1
+          },
+          {
+            "x": 7,
+            "y": 3
+          },
+          {
+            "x": 7,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "tick": 2262,
+        "type": "bomb",
+        "owner": 0,
+        "x": 7,
+        "y": 2,
+        "id": 18
+      },
+      {
+        "tick": 2361,
+        "type": "explode",
+        "id": 18,
+        "owner": 0,
+        "x": 7,
+        "y": 2,
+        "cells": [
+          {
+            "x": 7,
+            "y": 2
+          },
+          {
+            "x": 7,
+            "y": 1
+          },
+          {
+            "x": 7,
+            "y": 3
+          },
+          {
+            "x": 7,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "tick": 2403,
+        "type": "bomb",
+        "owner": 0,
+        "x": 7,
+        "y": 2,
+        "id": 19
+      },
+      {
+        "tick": 2502,
+        "type": "explode",
+        "id": 19,
+        "owner": 0,
+        "x": 7,
+        "y": 2,
+        "cells": [
+          {
+            "x": 7,
+            "y": 2
+          },
+          {
+            "x": 7,
+            "y": 1
+          },
+          {
+            "x": 7,
+            "y": 3
+          },
+          {
+            "x": 7,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "tick": 2560,
+        "type": "bomb",
+        "owner": 0,
+        "x": 9,
+        "y": 4,
+        "id": 20
+      },
+      {
+        "tick": 2576,
+        "type": "pickup",
+        "player": 0,
+        "item": "range"
+      },
+      {
+        "tick": 2659,
+        "type": "explode",
+        "id": 20,
+        "owner": 0,
+        "x": 9,
+        "y": 4,
+        "cells": [
+          {
+            "x": 9,
+            "y": 4
+          },
+          {
+            "x": 9,
+            "y": 3
+          },
+          {
+            "x": 9,
+            "y": 2
+          },
+          {
+            "x": 9,
+            "y": 5
+          },
+          {
+            "x": 9,
+            "y": 6
+          }
+        ]
+      },
+      {
+        "tick": 2685,
+        "type": "bomb",
+        "owner": 0,
+        "x": 8,
+        "y": 3,
+        "id": 21
+      },
+      {
+        "tick": 2784,
+        "type": "explode",
+        "id": 21,
+        "owner": 0,
+        "x": 8,
+        "y": 3,
+        "cells": [
+          {
+            "x": 8,
+            "y": 3
+          },
+          {
+            "x": 9,
+            "y": 3
+          },
+          {
+            "x": 7,
+            "y": 3
+          },
+          {
+            "x": 6,
+            "y": 3
+          },
+          {
+            "x": 5,
+            "y": 3
+          }
+        ]
+      },
+      {
+        "tick": 2784,
+        "type": "crate",
+        "x": 5,
+        "y": 3,
+        "owner": 0
+      },
+      {
+        "tick": 2818,
+        "type": "bomb",
+        "owner": 0,
+        "x": 9,
+        "y": 3,
+        "id": 22
+      },
+      {
+        "tick": 2885,
+        "type": "player-defeated",
+        "player": 0,
+        "owner": -1,
+        "lives": 2
+      },
+      {
+        "tick": 2917,
+        "type": "explode",
+        "id": 22,
+        "owner": 0,
+        "x": 9,
+        "y": 3,
+        "cells": [
+          {
+            "x": 9,
+            "y": 3
+          },
+          {
+            "x": 9,
+            "y": 2
+          },
+          {
+            "x": 9,
+            "y": 1
+          },
+          {
+            "x": 9,
+            "y": 4
+          },
+          {
+            "x": 9,
+            "y": 5
+          },
+          {
+            "x": 9,
+            "y": 6
+          },
+          {
+            "x": 8,
+            "y": 3
+          },
+          {
+            "x": 7,
+            "y": 3
+          },
+          {
+            "x": 6,
+            "y": 3
+          }
+        ]
+      },
+      {
+        "tick": 2917,
+        "type": "enemy-defeated",
+        "id": 4,
+        "owner": 0
+      },
+      {
+        "tick": 2951,
+        "type": "bomb",
+        "owner": 0,
+        "x": 1,
+        "y": 1,
+        "id": 23
+      },
+      {
+        "tick": 3050,
+        "type": "explode",
+        "id": 23,
+        "owner": 0,
+        "x": 1,
+        "y": 1,
+        "cells": [
+          {
+            "x": 1,
+            "y": 1
+          },
+          {
+            "x": 2,
+            "y": 1
+          },
+          {
+            "x": 3,
+            "y": 1
+          },
+          {
+            "x": 4,
+            "y": 1
+          },
+          {
+            "x": 1,
+            "y": 2
+          },
+          {
+            "x": 1,
+            "y": 3
+          },
+          {
+            "x": 1,
+            "y": 4
+          }
+        ]
+      },
+      {
+        "tick": 3050,
+        "type": "crate",
+        "x": 1,
+        "y": 4,
+        "owner": 0
+      },
+      {
+        "tick": 3076,
+        "type": "bomb",
+        "owner": 0,
+        "x": 3,
+        "y": 3,
+        "id": 24
+      },
+      {
+        "tick": 3175,
+        "type": "explode",
+        "id": 24,
+        "owner": 0,
+        "x": 3,
+        "y": 3,
+        "cells": [
+          {
+            "x": 3,
+            "y": 3
+          },
+          {
+            "x": 3,
+            "y": 2
+          },
+          {
+            "x": 3,
+            "y": 1
+          },
+          {
+            "x": 4,
+            "y": 3
+          },
+          {
+            "x": 3,
+            "y": 4
+          },
+          {
+            "x": 3,
+            "y": 5
+          },
+          {
+            "x": 2,
+            "y": 3
+          },
+          {
+            "x": 1,
+            "y": 3
+          }
+        ]
+      },
+      {
+        "tick": 3175,
+        "type": "crate",
+        "x": 4,
+        "y": 3,
+        "owner": 0
+      },
+      {
+        "tick": 3175,
+        "type": "crate",
+        "x": 3,
+        "y": 5,
+        "owner": 0
+      },
+      {
+        "tick": 3217,
+        "type": "bomb",
+        "owner": 0,
+        "x": 5,
+        "y": 2,
+        "id": 25
+      },
+      {
+        "tick": 3316,
+        "type": "explode",
+        "id": 25,
+        "owner": 0,
+        "x": 5,
+        "y": 2,
+        "cells": [
+          {
+            "x": 5,
+            "y": 2
+          },
+          {
+            "x": 5,
+            "y": 1
+          },
+          {
+            "x": 5,
+            "y": 3
+          },
+          {
+            "x": 5,
+            "y": 4
+          },
+          {
+            "x": 5,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "tick": 3316,
+        "type": "enemy-defeated",
+        "id": 3,
+        "owner": 0
+      },
+      {
+        "tick": 3398,
+        "type": "bomb",
+        "owner": 0,
+        "x": 9,
+        "y": 5,
+        "id": 26
+      },
+      {
+        "tick": 3497,
+        "type": "explode",
+        "id": 26,
+        "owner": 0,
+        "x": 9,
+        "y": 5,
+        "cells": [
+          {
+            "x": 9,
+            "y": 5
+          },
+          {
+            "x": 9,
+            "y": 4
+          },
+          {
+            "x": 9,
+            "y": 3
+          },
+          {
+            "x": 9,
+            "y": 2
+          },
+          {
+            "x": 9,
+            "y": 6
+          },
+          {
+            "x": 9,
+            "y": 7
+          },
+          {
+            "x": 8,
+            "y": 5
+          },
+          {
+            "x": 7,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "tick": 3497,
+        "type": "crate",
+        "x": 7,
+        "y": 5,
+        "owner": 0
+      },
+      {
+        "tick": 3523,
+        "type": "bomb",
+        "owner": 0,
+        "x": 8,
+        "y": 3,
+        "id": 27
+      },
+      {
+        "tick": 3622,
+        "type": "explode",
+        "id": 27,
+        "owner": 0,
+        "x": 8,
+        "y": 3,
+        "cells": [
+          {
+            "x": 8,
+            "y": 3
+          },
+          {
+            "x": 9,
+            "y": 3
+          },
+          {
+            "x": 7,
+            "y": 3
+          },
+          {
+            "x": 6,
+            "y": 3
+          },
+          {
+            "x": 5,
+            "y": 3
+          }
+        ]
+      },
+      {
+        "tick": 3656,
+        "type": "bomb",
+        "owner": 0,
+        "x": 9,
+        "y": 3,
+        "id": 28
+      },
+      {
+        "tick": 3755,
+        "type": "explode",
+        "id": 28,
+        "owner": 0,
+        "x": 9,
+        "y": 3,
+        "cells": [
+          {
+            "x": 9,
+            "y": 3
+          },
+          {
+            "x": 9,
+            "y": 2
+          },
+          {
+            "x": 9,
+            "y": 1
+          },
+          {
+            "x": 9,
+            "y": 4
+          },
+          {
+            "x": 9,
+            "y": 5
+          },
+          {
+            "x": 9,
+            "y": 6
+          },
+          {
+            "x": 8,
+            "y": 3
+          },
+          {
+            "x": 7,
+            "y": 3
+          },
+          {
+            "x": 6,
+            "y": 3
+          }
+        ]
+      },
+      {
+        "tick": 3797,
+        "type": "bomb",
+        "owner": 0,
+        "x": 9,
+        "y": 2,
+        "id": 29
+      },
+      {
+        "tick": 3896,
+        "type": "explode",
+        "id": 29,
+        "owner": 0,
+        "x": 9,
+        "y": 2,
+        "cells": [
+          {
+            "x": 9,
+            "y": 2
+          },
+          {
+            "x": 9,
+            "y": 1
+          },
+          {
+            "x": 9,
+            "y": 3
+          },
+          {
+            "x": 9,
+            "y": 4
+          },
+          {
+            "x": 9,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "tick": 3970,
+        "type": "bomb",
+        "owner": 0,
+        "x": 9,
+        "y": 6,
+        "id": 30
+      },
+      {
+        "tick": 4028,
+        "type": "pickup",
+        "player": 0,
+        "item": "range"
+      },
+      {
+        "tick": 4069,
+        "type": "explode",
+        "id": 30,
+        "owner": 0,
+        "x": 9,
+        "y": 6,
+        "cells": [
+          {
+            "x": 9,
+            "y": 6
+          },
+          {
+            "x": 9,
+            "y": 5
+          },
+          {
+            "x": 9,
+            "y": 4
+          },
+          {
+            "x": 9,
+            "y": 3
+          },
+          {
+            "x": 9,
+            "y": 7
+          }
+        ]
+      },
+      {
+        "tick": 4095,
+        "type": "bomb",
+        "owner": 0,
+        "x": 7,
+        "y": 4,
+        "id": 31
+      },
+      {
+        "tick": 4194,
+        "type": "explode",
+        "id": 31,
+        "owner": 0,
+        "x": 7,
+        "y": 4,
+        "cells": [
+          {
+            "x": 7,
+            "y": 4
+          },
+          {
+            "x": 7,
+            "y": 3
+          },
+          {
+            "x": 7,
+            "y": 2
+          },
+          {
+            "x": 7,
+            "y": 1
+          },
+          {
+            "x": 7,
+            "y": 5
+          },
+          {
+            "x": 7,
+            "y": 6
+          },
+          {
+            "x": 7,
+            "y": 7
+          }
+        ]
+      },
+      {
+        "tick": 4220,
+        "type": "bomb",
+        "owner": 0,
+        "x": 8,
+        "y": 3,
+        "id": 32
+      },
+      {
+        "tick": 4319,
+        "type": "explode",
+        "id": 32,
+        "owner": 0,
+        "x": 8,
+        "y": 3,
+        "cells": [
+          {
+            "x": 8,
+            "y": 3
+          },
+          {
+            "x": 9,
+            "y": 3
+          },
+          {
+            "x": 7,
+            "y": 3
+          },
+          {
+            "x": 6,
+            "y": 3
+          },
+          {
+            "x": 5,
+            "y": 3
+          },
+          {
+            "x": 4,
+            "y": 3
+          }
+        ]
+      },
+      {
+        "tick": 4345,
+        "type": "bomb",
+        "owner": 0,
+        "x": 5,
+        "y": 4,
+        "id": 33
+      },
+      {
+        "tick": 4444,
+        "type": "explode",
+        "id": 33,
+        "owner": 0,
+        "x": 5,
+        "y": 4,
+        "cells": [
+          {
+            "x": 5,
+            "y": 4
+          },
+          {
+            "x": 5,
+            "y": 3
+          },
+          {
+            "x": 5,
+            "y": 2
+          },
+          {
+            "x": 5,
+            "y": 1
+          },
+          {
+            "x": 5,
+            "y": 5
+          },
+          {
+            "x": 5,
+            "y": 6
+          },
+          {
+            "x": 5,
+            "y": 7
+          }
+        ]
+      },
+      {
+        "tick": 4444,
+        "type": "enemy-defeated",
+        "id": 2,
+        "owner": 0
+      },
+      {
+        "tick": 4509,
+        "type": "level-clear",
+        "level": 1
+      },
+      {
+        "tick": 4584,
+        "type": "arena-ready",
+        "level": 2,
+        "mode": "solo",
+        "enemies": 4
+      },
+      {
+        "tick": 4585,
+        "type": "bomb",
+        "owner": 0,
+        "x": 1,
+        "y": 1,
+        "id": 1
+      },
+      {
+        "tick": 4684,
+        "type": "explode",
+        "id": 1,
+        "owner": 0,
+        "x": 1,
+        "y": 1,
+        "cells": [
+          {
+            "x": 1,
+            "y": 1
+          },
+          {
+            "x": 2,
+            "y": 1
+          },
+          {
+            "x": 3,
+            "y": 1
+          },
+          {
+            "x": 4,
+            "y": 1
+          },
+          {
+            "x": 5,
+            "y": 1
+          },
+          {
+            "x": 1,
+            "y": 2
+          },
+          {
+            "x": 1,
+            "y": 3
+          }
+        ]
+      },
+      {
+        "tick": 4684,
+        "type": "crate",
+        "x": 1,
+        "y": 3,
+        "owner": 0
+      },
+      {
+        "tick": 4684,
+        "type": "enemy-defeated",
+        "id": 2,
+        "owner": 0
+      },
+      {
+        "tick": 4684,
+        "type": "enemy-defeated",
+        "id": 4,
+        "owner": 0
+      },
+      {
+        "tick": 4710,
+        "type": "bomb",
+        "owner": 0,
+        "x": 3,
+        "y": 2,
+        "id": 2
+      },
+      {
+        "tick": 4781,
+        "type": "player-defeated",
+        "player": 0,
+        "owner": -1,
+        "lives": 1
+      },
+      {
+        "tick": 4809,
+        "type": "explode",
+        "id": 2,
+        "owner": 0,
+        "x": 3,
+        "y": 2,
+        "cells": [
+          {
+            "x": 3,
+            "y": 2
+          },
+          {
+            "x": 3,
+            "y": 1
+          },
+          {
+            "x": 3,
+            "y": 3
+          }
+        ]
+      },
+      {
+        "tick": 4809,
+        "type": "crate",
+        "x": 3,
+        "y": 3,
+        "owner": 0
+      },
+      {
+        "tick": 4847,
+        "type": "bomb",
+        "owner": 0,
+        "x": 1,
+        "y": 1,
+        "id": 3
+      },
+      {
+        "tick": 4863,
+        "type": "pickup",
+        "player": 0,
+        "item": "speed"
+      },
+      {
+        "tick": 4946,
+        "type": "explode",
+        "id": 3,
+        "owner": 0,
+        "x": 1,
+        "y": 1,
+        "cells": [
+          {
+            "x": 1,
+            "y": 1
+          },
+          {
+            "x": 2,
+            "y": 1
+          },
+          {
+            "x": 3,
+            "y": 1
+          },
+          {
+            "x": 4,
+            "y": 1
+          },
+          {
+            "x": 5,
+            "y": 1
+          },
+          {
+            "x": 1,
+            "y": 2
+          },
+          {
+            "x": 1,
+            "y": 3
+          },
+          {
+            "x": 1,
+            "y": 4
+          },
+          {
+            "x": 1,
+            "y": 5
+          }
+        ]
+      },
+      {
+        "tick": 4960,
+        "type": "enemy-defeated",
+        "id": 5,
+        "owner": 0
+      },
+      {
+        "tick": 4972,
+        "type": "bomb",
+        "owner": 0,
+        "x": 2,
+        "y": 3,
+        "id": 4
+      },
+      {
+        "tick": 5071,
+        "type": "explode",
+        "id": 4,
+        "owner": 0,
+        "x": 2,
+        "y": 3,
+        "cells": [
+          {
+            "x": 2,
+            "y": 3
+          },
+          {
+            "x": 3,
+            "y": 3
+          },
+          {
+            "x": 4,
+            "y": 3
+          },
+          {
+            "x": 1,
+            "y": 3
+          }
+        ]
+      },
+      {
+        "tick": 5071,
+        "type": "crate",
+        "x": 4,
+        "y": 3,
+        "owner": 0
+      },
+      {
+        "tick": 5097,
+        "type": "bomb",
+        "owner": 0,
+        "x": 1,
+        "y": 2,
+        "id": 5
+      },
+      {
+        "tick": 5196,
+        "type": "explode",
+        "id": 5,
+        "owner": 0,
+        "x": 1,
+        "y": 2,
+        "cells": [
+          {
+            "x": 1,
+            "y": 2
+          },
+          {
+            "x": 1,
+            "y": 1
+          },
+          {
+            "x": 1,
+            "y": 3
+          },
+          {
+            "x": 1,
+            "y": 4
+          },
+          {
+            "x": 1,
+            "y": 5
+          },
+          {
+            "x": 1,
+            "y": 6
+          }
+        ]
+      },
+      {
+        "tick": 5222,
+        "type": "bomb",
+        "owner": 0,
+        "x": 9,
+        "y": 1,
+        "id": 6
+      },
+      {
+        "tick": 5321,
+        "type": "explode",
+        "id": 6,
+        "owner": 0,
+        "x": 9,
+        "y": 1,
+        "cells": [
+          {
+            "x": 9,
+            "y": 1
+          },
+          {
+            "x": 9,
+            "y": 2
+          },
+          {
+            "x": 9,
+            "y": 3
+          },
+          {
+            "x": 9,
+            "y": 4
+          },
+          {
+            "x": 8,
+            "y": 1
+          },
+          {
+            "x": 7,
+            "y": 1
+          },
+          {
+            "x": 6,
+            "y": 1
+          },
+          {
+            "x": 5,
+            "y": 1
+          }
+        ]
+      },
+      {
+        "tick": 5321,
+        "type": "crate",
+        "x": 9,
+        "y": 4,
+        "owner": 0
+      },
+      {
+        "tick": 5321,
+        "type": "enemy-defeated",
+        "id": 3,
+        "owner": 0
+      },
+      {
+        "tick": 5437,
+        "type": "level-clear",
+        "level": 2
+      }
+    ],
+    "exit": {
+      "x": 5,
+      "y": 7
+    }
+  },
+  "limitations": [
+    "Deterministic observation-based controller; not a human difficulty test."
+  ]
+}

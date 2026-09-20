@@ -8,9 +8,14 @@ runs/
 .DS_Store
 *.local.md
 packages/runtime/runtime.js
+packages/runtime/build-preview.html
 bench/screenshots/
 *.thumb.png
 soak.log
 library/gallery.html
 tsconfig.tsbuildinfo
 data/
+
+.venv-stt/
+.models/
+__pycache__/

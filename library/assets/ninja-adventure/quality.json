@@ -1,0 +1,23 @@
+{
+  "contentHash": "ee7d9c346724d8cf552a195614177ceefbd237b491332ff51a1ba1890f1210ce",
+  "checks": [
+    {
+      "name": "integrity",
+      "passed": true,
+      "artifact": "verification.json",
+      "artifactHash": "097216246422edd300ef9caf85a179c226de345228610a60024a25198689a481"
+    },
+    {
+      "name": "visual",
+      "passed": true,
+      "artifact": "visual-review.json",
+      "artifactHash": "d4c896b1c14232bc2e155c23ad94c86872e2507ee2fc6b1afb8e0c66d34f914b"
+    },
+    {
+      "name": "provenance",
+      "passed": true,
+      "artifact": "LICENSE.md",
+      "artifactHash": "d5b12b0419a6bbddd1954f93c8deeb994d14d7670be03af4ddf1bb5667e739f5"
+    }
+  ]
+}

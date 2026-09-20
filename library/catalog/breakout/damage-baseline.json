@@ -1,0 +1,21 @@
+{
+  "sourceHash": "fbddb5bf55060acd956586cfd92d7700c23812c7ad731690452c4535aefe3b4d",
+  "images": [
+    {
+      "name": "before-fix-fresh",
+      "frame": 1,
+      "file": "screenshots/damage-before-fix-fresh.png",
+      "sha256": "e08c4596dbbf8e9907ec5af0713ebbfb4f0985de8599bfc9bd527ff42340a9d1",
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 1,
+        "error": null
+      }
+    }
+  ]
+}

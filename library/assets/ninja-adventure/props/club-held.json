@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "club-held",
+  "packId": "ninja-adventure",
+  "camera": "top-down",
+  "width": 8,
+  "height": 10,
+  "source": {
+    "path": "original/content/weapon/club/in_hand.png",
+    "url": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/weapon/club/in_hand.png",
+    "sha256": "68f473ae5042f722b9c2b47140e660a495e38852a2340d9620161d6a60212b77",
+    "sourceRevision": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a"
+  },
+  "pixels": [
+    "..040...",
+    ".04440..",
+    ".04440..",
+    "0444440.",
+    "0444440.",
+    "04444440",
+    "0444440.",
+    "0444440.",
+    ".04440..",
+    "..000..."
+  ],
+  "anchor": {
+    "x": 4,
+    "y": 10
+  },
+  "normalization": {
+    "palette": "pico-8",
+    "reviewedOverrides": {}
+  },
+  "anchorOrigin": "Authored bottom-center placement; source attachment pivots have not been reconstructed.",
+  "hitboxes": [],
+  "hurtboxes": [],
+  "animations": {},
+  "tags": [
+    "weapon",
+    "static"
+  ],
+  "notes": "Static source image only. No implied attack animation, damage volume or destruction sequence."
+}

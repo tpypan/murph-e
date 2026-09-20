@@ -1,0 +1,53 @@
+{
+  "title": "DONKEY CLIMB",
+  "oneLiner": "Two Marios race up the girders, dodge rolling barrels, and rescue Pauline together.",
+  "genre": "cooperative platform climber",
+  "mechanics": [
+    "Exactly two players cooperate on the same full-screen arena, each controlling a separate Mario avatar with independent lives and score; they do not block one another physically.",
+    "Each stage contains five sloped girders linked by eight ladders. Move left/right along a girder; press up/down only while aligned with a usable ladder to climb; press A to jump, with held A producing a higher jump and a tap producing a short hop.",
+    "Donkey Kong visibly telegraphs each throw, then releases rolling barrels from the upper-left. Barrels roll downhill, bounce to the next girder at edges, and sometimes choose a usable ladder; later stages add fire hazards from the oil drum.",
+    "Jumping over each unique barrel awards 100 points once per player. Reaching each new floor awards 100 points once per player. Either player reaching Pauline's top-right rescue goal clears the stage and awards that player the remaining time bonus plus 1000; the stage-clear bonus is awarded to both players.",
+    "The three stages use the foundation's tested layouts, route guarantees, hazard cadence, and bounded speed escalation. Stage 1 teaches movement, ladders, and jumping; stage 2 increases barrel cadence and introduces fire; stage 3 combines the established hazards without exceeding tested limits.",
+    "Each life has a 100-second timer and the visible stage bonus begins at 5000, decaying in hundreds with elapsed time. Timer expiry costs one life. A barrel, fire, or fall also costs one life and triggers a death animation, then respawns that player at the highest floor reached with temporary protection.",
+    "Players may act immediately during any countdown; movement and jumping are practice-enabled while damage is suppressed until the round begins. A player reaching zero lives is revived with one life when the teammate clears a stage; otherwise all available lives exhausted loses the game.",
+    "Rescuing Pauline on stage 3 produces cooperative victory. START and cabinet lifecycle handle reset; no hammer, lift, rivet, cage, or original Donkey Kong topology is added."
+  ],
+  "artDirection": "Compose the fixed 256x224 playfield around five brightly outlined sloped construction girders and eight ladders, with the top 12 pixels reserved for the runtime HUD. Use the bundled source sprites: Mario avatars are compact 16x20-class figures with distinct P1/P2 markers, red cap and overalls, readable idle, walking, climbing, jumping, hurt, and death poses; their physical collision body remains approximately 8x16. Pauline is a clearly contrasting 16x16 target at the top-right with pink dress and light hair, alternating waiting and rescued poses. Donkey Kong occupies roughly 40x40 at the upper-left with broad brown silhouette and visible idle/throw poses. Barrels are about 12x12, strongly circular and striped, with rolling and falling frames; fire hazards are about 16x16 with bright animated flame frames. Use the default 16-colour arcade palette with exact bundled source-sprite colours where supplied; keep girders, ladders, hazards, and characters high-contrast against a dark construction-site background. Broken secondary ladders, oil drum, girder supports, and sparse skyline details establish the setting without obscuring barrel paths or player silhouettes.",
+  "referenceIntent": {
+    "reference": "Donkey Kong",
+    "preserve": [
+      "Mario climbs five sloped construction girders using ladders to reach Pauline at the top-right.",
+      "Donkey Kong stands above the course and telegraphs rolling barrels.",
+      "Barrels roll downhill, bounce at edges, sometimes descend ladders, and hazards include oil-drum fire on later stages.",
+      "Three-stage rescue progression, stage timer, lives, floor bonuses, jump-over-barrel scoring, and cooperative climber rules."
+    ],
+    "change": [
+      "Use the available inspected source sprites for Mario, Pauline, Donkey Kong, barrels, and hazards.",
+      "Use the tested three-stage climber foundation rather than original arcade level topology or ROM behavior.",
+      "Make the game exactly two-player cooperative: both players are Mario climbers, either can reach Pauline, and both share stage-clear progression."
+    ]
+  },
+  "controls": {
+    "left": "Move left along the current girder",
+    "right": "Move right along the current girder",
+    "up": "Climb upward when aligned with a ladder",
+    "down": "Climb downward when aligned with a ladder",
+    "a": "Jump; hold for a higher jump, tap for a short hop",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "The team loses when both players have exhausted their available lives before completing all three stages.",
+  "scoring": "Earn 100 for each new floor, 100 for each unique barrel jumped per player, and rescue points plus the decaying time bonus when either player reaches Pauline; stage-clear bonuses go to both players.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "reference-identity",
+    "readability",
+    "pacing",
+    "scoring"
+  ],
+  "players": 2,
+  "runId": "2026-09-19-223141609-donkey-kong-with-mario-pauline-a-ngfy8V"
+}

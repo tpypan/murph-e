@@ -1,0 +1,49 @@
+{
+  "reviewedAt": "2026-09-19",
+  "passed": true,
+  "sourceHash": "d83bd7f08ae72c3e48d83f828a48b60798de1cad1b2a77160d12f55971908109",
+  "scope": "Native-pixel scene and animation inspection; not a physical CRT or human fun/balance assessment",
+  "images": [
+    {
+      "path": "evidence/classic-1p-house.png",
+      "sha256": "4594060bff431091446f15a34fb4efa0e638135dfdd6b3c26039569f0e4e6fc4"
+    },
+    {
+      "path": "evidence/classic-1p-release.png",
+      "sha256": "da876188ad04472ca05c8ec6f54d65537739699cd67c53eb698f3c7a6f1d00bd"
+    },
+    {
+      "path": "evidence/goose-hunt-2p-play.png",
+      "sha256": "03f7b9c4546cbad31a838cf4147356610f01d9920e4352154d5638133cf4d972"
+    },
+    {
+      "path": "evidence/goose-hunt-2p-capture.png",
+      "sha256": "1be118986e6cec039ad62a3ff031e28ed5e44b5ce7fef3dc8d19f8cc71c7b7df"
+    },
+    {
+      "path": "evidence/animation-clips.png",
+      "sha256": "eb90652e9a69b796bbd6b1a7092bcfb8bfc1c063756e4bd188ca999a0fe4a27f"
+    },
+    {
+      "path": "evidence/cooperative-2p-terminal.png",
+      "sha256": "80105b4e45a7aeae0e02f6992cfe171844a700e864c4fbbe2a4b59410adddf59"
+    },
+    {
+      "path": "evidence/hunt-2p-terminal.png",
+      "sha256": "b2b78926390a8034345c96378ae011fd56107be7213ae480082a85d8133bcd5c"
+    }
+  ],
+  "observations": [
+    "Connected blue wall outlines on black make actual pellet routes legible, without checkerboard blocks.",
+    "The central ghost house is enclosed and has a distinct pink-white door; all four initial colored ghosts are visible in separate slots.",
+    "Returning eyes, frightened ghosts and reform frames are different original shapes; full lifecycle is exercised by behavior tests.",
+    "Original directional white goose silhouettes have orange beaks and feet, and blue/red wing markings distinguish cooperative players.",
+    "Counter, round and timer remain below the runtime score strip; full maze and essential pickups fit the 256x224 viewport."
+  ],
+  "limitations": [
+    "Only chomper/goose avatars and four ghost colors are bundled.",
+    "Original artwork is not commercial Pac-Man sprite fidelity.",
+    "Full classic pellet replay disables ghosts to isolate map coverage; full hunter replay uses all four ghosts.",
+    "No physical CRT validation or human competitive balance study."
+  ]
+}

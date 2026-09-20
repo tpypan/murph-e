@@ -1,6 +1,9 @@
 import { readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { type CatalogContext, catalogContext } from './catalog.ts'
+import { type DesignContext, designCore, selectDesignContext } from './design-context.ts'
 import { ROOT, readRepoFile } from './env.ts'
+import { type ReferenceContext, referenceContext } from './reference-context.ts'
 import type { GameSpec, Genre } from './spec.ts'
 
 export interface Template {
@@ -26,53 +29,48 @@ export function loadTemplates(): Template[] {
     })
 }
 
-// Fixed exemplars so each system prefix is byte-identical across calls and
-// the prompt cache hits. The chosen genre's template goes in the user turn.
-const EXEMPLAR_GENRES = ['dodge', 'shooter']
-const EXEMPLAR_GENRES_2P = ['versus', 'coop']
-
 export const TWO_PLAYER_RULES = `TWO PLAYERS
 
 This game is for exactly two players on one screen. api.players is 2.
 - Read player one's input with api.btn(name, 0) / api.btnp(name, 0) and player two's with api.btn(name, 1) / api.btnp(name, 1). Never read a button without the index; never let one player's buttons move the other player.
-- Keep the two players in one array and run the same movement code for both with a loop over 0 and 1, as in the example games.
-- Draw player one in api.P1 and player two in api.P2, and start them on opposite sides so they are easy to tell apart.
-- Versus: give a point with api.addScore(1, winnerIndex) and end with api.win(winnerIndex). Something must force the round to end: a closing arena, a timer, or a target score.
-- Coop: score with api.addScore(n) (no index, both players get it), share the lives, and end with api.gameOver().
-- Both players must be able to act from the first frame, and every button the spec lists must do something visible for BOTH of them.
-- Something must be moving with no input at all, from the first frame. Two players facing each other is a still screen, so the arena has to supply the motion: a ball already in play, hazards already drifting, a ring that is already closing, a scrolling floor, a spawner that is already running.
-- Two players, an arena and a round that ends need more room than one player: write 170 to 230 lines here, not the one-player budget above.`
+- Use independent input/state for each player. When delegating to a supplied foundation, its controller already handles this; do not wrap or reimplement it unnecessarily.
+- Keep both players visually distinct with api.P1 / api.P2 accents or costume palettes that preserve character identity. Start them in appropriate positions for the game.
+- Versus: preserve the game's documented score units, event values and reward ownership. For new mechanics, choose clear genre-appropriate rewards and award each event once. End with api.win(winnerIndex). Use a suitable timeout, finite objective or target score so play cannot stall forever. A supplied foundation already owns its scoring and terminal calls; do not add a second reward or win call around it.
+- Coop: preserve the foundation's shared-versus-individual rewards and life rules. For new mechanics, api.addScore(n) with no index awards both players; pass a player index for an individual reward. Use shared or independent lives as the game requires. Call api.win() for team victory and api.gameOver() for team defeat only when your own game owns those transitions.
+- Both players must be able to act from the first frame, including independent character selection when present. Never confirm for a human or start combat while one player is still choosing. Something must move on screen with no input at all.`
 
 export const HOUSE_RULES = `HOUSE RULES
 
-Design (the spec's hook is the point of the game; its ramp is the shape of the first minute):
-- Playing must beat standing still: someone who never touches the controls scores slowly and is dead inside 45 seconds. Put the points where the danger is, so there is a reason to move toward what can kill you.
-- Keep a combo variable: it climbs with each success, resets to 1 when the player is hit, multiplies what they score, and is drawn on screen below y = 12. Use at least two point values and make the risky thing worth more.
-- Three stages in the first minute, driven by api.t: a second KIND of hazard at about 20 s, a third one or a new pattern at about 45 s, so there is visibly more on screen at 45 s than at 5. Never cap the difficulty.
-- One bonus that rewrites the rules for a few seconds (shield, spread shot, magnet, double points), shown on screen while it is active. Telegraph anything lethal about half a second before it can reach the player, and never spawn it on top of them.
-- None of the above counts if the screen is still: from the first frame, with nobody touching the controls, something must already be moving.
+Design (the spec's hook explains the central decision; its ramp describes progression):
+- Make active, skillful play more rewarding than standing still. Give the player a readable choice and tradeoff, such as taking a risky route, committing to an attack, or choosing when to use a limited resource. Preserve calm and puzzle requests.
+- Use the hook and ramp to make the requested mechanics concrete. A supplied foundation already has tested rewards and progression: preserve those defaults unless the person asks to change them. Do not add combo multipliers, bonus types or hazards merely to satisfy a generic design checklist.
+- For a new action loop, introduce readable patterns or enemy roles through bounded stages with recovery between pressure peaks. The first minute should reveal the game's depth where its pace allows; existing round, race and puzzle structures need not become a universal three-stage schedule. Cap speeds and density so fair reactions remain possible.
+- Telegraph dangerous attacks and spawns with enough time to react; never spawn an unavoidable hazard on the player. If a requested power-up temporarily changes the rules, make its duration and effect visible. Preserve relevant foundation telegraphs and cues.
 
 Output: exactly one fenced code block (\`\`\`js ... \`\`\`) containing the whole game. No prose before or after it.
 
 Structure:
 - Define init, update and draw as top-level function declarations, exactly as in the API reference.
 - All state lives in top-level let/const variables and is rebuilt inside init(). Nothing runs outside those functions except constant definitions.
-- 140 to 200 lines. This is a hard budget and the person is waiting: if you are running long, cut decoration and extra entity types, never the design rules. Keep one array of things with a kind field rather than one array per kind, and one update loop over it.
-- Plain JavaScript only. No DOM, window, document, canvas, timers, promises, async, fetch, imports, classes, or libraries. Everything goes through api.
+- There is no line-count target. Use enough code and art data to implement the requested mechanics, distinct animation poses, opponent behavior and a coherent stage. Reusable helpers and compact data are encouraged; never omit essential behavior or art just to shorten the file. Deliver a finished, playable game within the response budget.
+- Plain JavaScript only. No DOM, window, document, canvas, timers, promises, async, fetch, imports, classes, or external libraries. Supplied ARCADE factories and ART.get sprite sets are available only when explicitly listed below; their source and pixels are bundled automatically. Everything renders and receives input through api.
 - Do not use api.btn('start'). START belongs to the runtime.
 
 Feel:
-- Something must be moving from the very first frame with no input at all: a scrolling backdrop, drifting enemies, a spawner that is already running, a bobbing player. Three still seconds at the start is a failed game.
-- Every control the spec lists must visibly change the screen every time it is used, from the first frame of play. If the theme means a direction would otherwise do nothing (LEFT and RIGHT in an auto-runner, UP in a side view), still make it nudge, lean or shift lanes. A listed control that does nothing is a failed game.
-- The player can score within 5 seconds of the first press.
-- Grace period: with no input at all, the game must still be alive after 3 seconds and dead well before 45. Put the first hazard at least 3 seconds away, hover a falling player until the first press, or start slow. Never call api.gameOver() before api.t > 2.
-- A must do something visible every single time it is pressed during play (fire, jump, dash, boost, swing), not only in a waiting state and not only when it is useful. If A only works next to something, pressing it anywhere else must still show a swing, a puff or a spark. If A serves or launches, also give it an effect while the ball is in play.
-- Call api.sfx on every event: pickup, hit, shoot, jump, bounce, death. Call api.flash(8, 3) and api.shake(10) when the player is hurt, api.flash(10, 1) on a pickup.
+- The scene should feel alive from the first frame: intentional idle animation, stage motion, or opponent behavior appropriate to the genre. A bobbing static figure alone is not a substitute for action animation.
+- Every declared control does something visible in its eligible state; null controls are unused. Controls work immediately after the runtime START. Fighters with multiple complete character sets should open with a responsive character picker: Left/Right chooses, A confirms, B unlocks. Use characterSelect:true when the supplied fighter foundation supports it. In 1P clearly show the CPU opponent; in 2P wait for both humans. Release confirmation inputs before combat so they cannot become attacks. Any round-intro countdown allows practice actions and only delays damage; never freeze input behind a redundant start screen.
+- Give an achievable scoring opportunity within 5 seconds of active gameplay (after any player-controlled character selection). Action games develop real danger within about 30 seconds; honor calm or puzzle requests. Bound speed, density and minimum gaps. Introduce patterns and recovery phases with api.t instead of accelerating every parameter forever.
+- Grace period: with no input at all, the game must still be alive after 3 seconds. Put the first hazard at least 3 seconds away, hover a falling player until the first press, or start slow. Never call api.gameOver() before api.t > 2.
+- When A is declared, it has a meaningful action in its eligible state (fire, grounded jump, dash, boost, swing). Ensure the first press can demonstrate it. Do not add a midair jump just to make every press change the frame. If A serves or launches, give it a meaningful declared role during a rally too.
+- Give important events distinct sound and visual feedback. Brief local hit sparks, recoil, hitstop and modest screen shake can make impact readable. Do not drown frequent actions in full-screen flashes or constant shaking.
+- Every game needs gameplay sound: use the supplied api.sfx cues for its main action, impacts, rewards and failure; use short api.tone phrases for countdowns or transitions when appropriate. Trigger on event edges, never in draw or every frame of a held button/collision. Catalog foundations already provide these cues; preserve them without doubling sounds. A start/menu beep alone is not gameplay sound.
 
 Look:
-- Start draw with api.cls(c) using a non-black background colour that suits the theme, then a backdrop with some detail (ground, stars, water, walls, a border) and then the objects.
-- Draw the player and the main enemies or pickups as sprites (string arrays) defined as top-level constants, at least 8 pixels wide: a 6-pixel blob is unreadable across an arcade cabinet. Use at least five colours across the screen, and never give a hazard the same colour as the backdrop or as a pickup.
-- Keep the top 12 pixels clear for the runtime HUD. Do not draw a score, a title, lives text longer than a few characters, or "press start"; the runtime does that.
+- Start draw with api.cls(c). Compose a coherent stage with foreground/midground/background where appropriate, grounded characters, deliberate palette shading and enough contrast to read hazards. Black is allowed when the scene calls for it. Use recognizable environmental shapes and detail, not just an empty flat field or repeated boxes.
+- Follow the spec artDirection. Choose character scale for the composition: a close-up fighter may be 40–64 pixels tall, while a maze character can be small. These are examples, not size limits. Draw recognizable silhouettes, proportions, costume features, highlights and shadows with the default palette or exact per-sprite palettes via the optional sixth api.spr argument. For early streamed sprite previews, declare a complete NAME_PALETTE = ["#RRGGBB", ...] before the literal NAME pixel array.
+- Use sprite arrays, layered pixel parts or carefully authored drawing helpers to create the art. Define reusable art data once. Include distinct idle, movement, attack and hurt poses where the game needs them; articulating limbs and changing silhouettes is better than sliding one unchanging sprite around. Use procedural drawing deliberately, not as placeholder rectangles.
+- A named reference should influence proportions, poses, setting and signature mechanics, not just the title or colours. This call cannot fetch reference images; do not claim visual research.
+- Keep the top 12 pixels clear for the runtime score HUD. Game-specific health bars, round timers and meters are allowed below it. The shell shows controls; avoid duplicate instruction paragraphs consuming the playfield. Do not draw the runtime score or a start screen.
 - Text is uppercase, 8 px per character, so keep any text under 30 characters.
 
 Correctness:
@@ -80,14 +78,22 @@ Correctness:
 - Bound every loop. No while(true).
 - Do not create sprites or arrays inside draw; define them once.
 - Use api.rnd / api.rndi / Math.random for randomness. Use api.t and api.frame for time; never Date or performance.
-- Read the API reference carefully. Only call functions that exist on api.`
+- Read the API reference carefully. Only call functions that exist on api.
+- The explicit user request and referenceIntent.change take priority over contradictory reference defaults or incidental spec details. Preserve who chases whom, the primary objective and requested identities.
+- When using a supplied tested foundation, its exact controls, score values, reward ownership, lives and terminal rules govern everything the player did not ask to change. The planner's spec is a draft interpretation; it cannot justify an invented bonus or a contradictory default. Preserve explicit requested changes, implementing new behavior when the documented hooks cannot express them.
+- Before returning, check each promised mechanic against the code: a named place must be rendered and connected, a state must have entry/exit behavior, every advertised action must be reachable, and a completed match must call the runtime terminal API. Mentally trace start, main action, failure, victory and reset; do not claim a test was run.`
 
 export interface BuildPrompt {
   system: string
   user: string
+  /** Keep the original request available to bounded repair, not only the planner's interpretation. */
+  transcript?: string
   chosen: Template | null
   /** OpenAI prompt cache key; one per system prefix. */
   cacheKey: string
+  designContext: DesignContext
+  referenceContext?: ReferenceContext
+  catalog?: CatalogContext
 }
 
 export function buildPrompt(
@@ -96,16 +102,16 @@ export function buildPrompt(
   templates: Template[],
 ): BuildPrompt {
   const apiRef = readRepoFile('packages/runtime/API.md')
+  const designContext = selectDesignContext(transcript, spec)
+  const references = referenceContext(transcript, spec)
+  const catalog = catalogContext(transcript, spec)
   const two = spec.players === 2
-  const exemplars = (two ? EXEMPLAR_GENRES_2P : EXEMPLAR_GENRES)
-    .map((g) => templates.find((t) => t.genre === g))
-    .filter((t): t is Template => !!t)
-  const chosen = templates.find((t) => t.genre === spec.genre) ?? null
+  const chosen = templates.find((t) => t.genre === spec.genre && t.players === spec.players) ?? null
 
   const system = [
     two
-      ? 'You write complete, tiny 8-bit two-player arcade games in one shot for a fantasy console. You are given the console API, house rules, example games and a spec. You output one game file.'
-      : 'You write complete, tiny 8-bit arcade games in one shot for a fantasy console. You are given the console API, house rules, example games and a spec. You output one game file.',
+      ? 'You write complete, polished 2D two-player arcade games in one shot for a fantasy console. You are given the console API, house rules and a spec. You output one game file.'
+      : 'You write complete, polished 2D arcade games in one shot for a fantasy console. You are given the console API, house rules and a spec. You output one game file.',
     '',
     '=== API REFERENCE ===',
     apiRef.trim(),
@@ -113,14 +119,9 @@ export function buildPrompt(
     '=== ' + 'HOUSE RULES' + ' ===',
     HOUSE_RULES.replace(/^HOUSE RULES\n\n/, ''),
     '',
+    designCore(),
+    '',
     ...(two ? ['=== TWO PLAYERS ===', TWO_PLAYER_RULES.replace(/^TWO PLAYERS\n\n/, ''), ''] : []),
-    ...exemplars.flatMap((t) => [
-      `=== EXAMPLE GAME (${t.genre}): ${t.title} ===`,
-      '```js',
-      t.code.trim(),
-      '```',
-      '',
-    ]),
   ].join('\n')
 
   const userParts = [
@@ -130,11 +131,17 @@ export function buildPrompt(
     '=== WHAT THE PERSON SAID ===',
     transcript.trim(),
     '',
+    designContext.text,
+    '',
+    references.text,
+    '',
+    catalog.text,
+    '',
   ]
   if (chosen) {
     userParts.push(
-      `=== TEMPLATE TO ADAPT (${chosen.genre}): ${chosen.title} ===`,
-      'Start from this game. Keep its structure and its proven loop, then change the theme, sprites, colours, mechanics and difficulty to match the spec. Rename everything to fit. It must feel like a different game.',
+      `=== OPTIONAL MATCHING EXAMPLE (${chosen.genre}): ${chosen.title} ===`,
+      'This example demonstrates working API usage only. Borrow mechanics only if they match the request; its art, size, complexity and game loop are not quality ceilings. The user request and spec take precedence. Do not reskin it when the requested game needs a different structure.',
       '```js',
       chosen.code.trim(),
       '```',
@@ -142,7 +149,9 @@ export function buildPrompt(
     )
   } else {
     userParts.push(
-      'No template exists for this genre. Follow the structure of the example games.',
+      catalog.parts.length
+        ? 'A tested foundation contract is supplied above. Delegate to its factory for the matching mechanics and implement the requested customization through its documented configuration/hooks.'
+        : 'No complete matching game template is supplied. Use any relevant component references above and design the requested game directly against the API. There is no requirement to imitate another genre or reduce the requested mechanics.',
       '',
     )
   }
@@ -152,8 +161,12 @@ export function buildPrompt(
   return {
     system,
     user: userParts.join('\n'),
+    transcript: transcript.trim(),
     chosen,
-    cacheKey: two ? 'htn-build-2p-v8' : 'htn-build-v8',
+    cacheKey: two ? 'htn-build-2p-v9' : 'htn-build-v9',
+    designContext,
+    referenceContext: references,
+    catalog,
   }
 }
 

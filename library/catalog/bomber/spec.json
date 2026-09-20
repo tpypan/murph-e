@@ -1,0 +1,30 @@
+{
+  "title": "BLAST PATROL",
+  "oneLiner": "Plant bombs, escape the blast, and clear the arena.",
+  "genre": "bomb arena",
+  "players": 1,
+  "mechanics": [
+    "Grid movement with buffered turns and a dedicated bomb action.",
+    "Bombs have a visible accelerating fuse and cross-shaped blasts that stop at pillars, crates or another bomb.",
+    "Explosions chain bombs, destroy crates and expose range, capacity or movement upgrades after the fire clears.",
+    "Solo: defeat three distinct enemy behaviors, then walk onto the unlocked exit; two escalating levels.",
+    "Two players: independent controls, bombs and scores; win two versus rounds.",
+    "Timers, lives, safe starting areas, respawn immunity and bounded terminal states."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": "Move up",
+    "down": "Move down",
+    "a": "Plant bomb",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "Touching an enemy or explosion costs a life; lose all lives or run out of time. In versus, being the last survivor wins a round.",
+  "scoring": "20 per crate, 200 per enemy, 500 per cleared level or won versus round. Independent player scores.",
+  "moderated": false,
+  "note": "Original Bomberman-inspired implementation, arena and pixel art; no commercial game data copied.",
+  "remix": false,
+  "changes": [],
+  "artDirection": "Original helmeted blue and red players, directional walking poses, three colorful enemy silhouettes, pulsing bombs, connected gold-and-white cross blasts, beveled pillars, wooden crates, and clear upgrade icons."
+}

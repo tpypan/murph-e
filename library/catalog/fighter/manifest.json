@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "id": "fighter",
+  "version": "1.4.0",
+  "title": "Rooftop Fighting Foundation",
+  "description": "Original shared-screen 1P CPU or 2P fighting game with independent character selection, frame-based attacks, animated characters, guard levels, air attacks, meter specials, hitstop, score, timed best-of-three rounds and rooftop art. Includes complete original Batman and Flash fan-art animation sets; additional identities require explicit complete assets.",
+  "tags": ["fighting", "fighter", "duel", "combat", "street fighter", "batman", "flash"],
+  "match": {
+    "phrases": [
+      "street fighter",
+      "fighting game",
+      "fighter",
+      "batman versus flash",
+      "batman and flash",
+      "superhero duel",
+      "mortal kombat"
+    ],
+    "genres": ["fighting", "fighter", "duel", "versus fighting"]
+  },
+  "supportsPlayers": [1, 2],
+  "module": "module.js",
+  "entry": "fighter",
+  "apiVersion": 1,
+  "license": {
+    "spdx": "LicenseRef-Project-Original",
+    "notes": "Original authored implementation and pixel artwork. Batman and The Flash fan-art depicts DC characters; this provenance grants no rights to those underlying characters or trademarks. No commercial game code, sprites, ROM data, or sprite sheets were copied."
+  },
+  "provenance": {
+    "kind": "original",
+    "authors": ["Arcade project"],
+    "sources": [],
+    "createdAt": "2026-09-19"
+  },
+  "assets": ["assets.json"],
+  "files": [
+    "core.js",
+    "build-assets.mjs",
+    "build.mjs",
+    "demo.js",
+    "spec.json",
+    "test.mjs",
+    "screenshots.mjs",
+    "verify.mjs",
+    "README.md",
+    "collision-test.mjs",
+    "asset-test.mjs",
+    "projectile-test.mjs",
+    "selection-test.mjs",
+    "selection-screenshots.mjs",
+    "cpu-test.mjs"
+  ],
+  "animations": [
+    {
+      "characters": ["batman", "flash"],
+      "metadata": "assets.json",
+      "fps": 60,
+      "posesPerCharacter": 30,
+      "clips": [
+        "idle",
+        "walk",
+        "jump",
+        "crouch",
+        "light",
+        "airLight",
+        "airHeavy",
+        "heavy",
+        "sweep",
+        "special",
+        "dash",
+        "guard",
+        "crouchGuard",
+        "hurt",
+        "ko",
+        "victory"
+      ]
+    }
+  ],
+  "quality": {
+    "status": "draft",
+    "notes": "Behavior and isolated browser evidence included; admission requires content-hash-bound quality review."
+  }
+}

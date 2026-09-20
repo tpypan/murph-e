@@ -1,0 +1,30 @@
+{
+  "contentHash": "2534e5ad85673aa70c2e43c33f06d69ff7dfefed9ef8c3200cd5e0824d02f937",
+  "reviewedAt": "2026-09-19T21:42:26.199Z",
+  "checks": [
+    {
+      "name": "behavior",
+      "passed": true,
+      "artifact": "behavior-results.json",
+      "artifactHash": "4cb3084a964a138b5767e0c7a7fd5a475287a394e107039ea4aefc9b8221f34a"
+    },
+    {
+      "name": "visual",
+      "passed": true,
+      "artifact": "verification/visual-review.json",
+      "artifactHash": "0e0c996ade889b1fb1edeb15e0a931fb727a743fb44ea652065abcabf6aa75e3"
+    },
+    {
+      "name": "runtime-1p",
+      "passed": true,
+      "artifact": "verification/runtime.json",
+      "artifactHash": "a5e7746931d9950d0cd232ab0187b2729b9bcf4f3839c4fdae6fd58f1fbded8c"
+    },
+    {
+      "name": "runtime-2p",
+      "passed": true,
+      "artifact": "verification/runtime.json",
+      "artifactHash": "a5e7746931d9950d0cd232ab0187b2729b9bcf4f3839c4fdae6fd58f1fbded8c"
+    }
+  ]
+}

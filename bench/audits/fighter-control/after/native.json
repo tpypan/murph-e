@@ -1,0 +1,1245 @@
+{
+  "sourceSha256": "92eb8e2a91fff522b6c008999fcfa6d0d77e84023eb0f157014d2f8f2317061c",
+  "runtimeSha256": "057ae1d8271580c901ff3c05ff1d40dcd14f73e0dc551f5e35e746b9f7d8f1d5",
+  "cases": [
+    {
+      "policy": "back",
+      "frames": 1695,
+      "minHumanHp": 0,
+      "final": {
+        "phase": "complete",
+        "round": 2,
+        "timeLeft": 2948,
+        "freeze": 4,
+        "terminal": true,
+        "lastWinner": 1,
+        "scores": [
+          0,
+          3600
+        ],
+        "roundsToWin": 2,
+        "fighters": [
+          {
+            "id": "batman",
+            "x": 22,
+            "y": 184,
+            "hp": 0,
+            "meter": 100,
+            "wins": 0,
+            "face": 1,
+            "action": null,
+            "age": 0,
+            "animation": "ko",
+            "animationAge": 120,
+            "stun": 22,
+            "blockStun": 0,
+            "bind": null,
+            "bindImmunity": 0,
+            "guard": false,
+            "crouch": false,
+            "grounded": true,
+            "combo": 0,
+            "ai": null
+          },
+          {
+            "id": "flash",
+            "x": 63.80000000000043,
+            "y": 184,
+            "hp": 100,
+            "meter": 100,
+            "wins": 2,
+            "face": -1,
+            "action": null,
+            "age": 9,
+            "animation": "victory",
+            "animationAge": 120,
+            "stun": 0,
+            "blockStun": 0,
+            "bind": null,
+            "bindImmunity": 0,
+            "guard": false,
+            "crouch": true,
+            "grounded": true,
+            "combo": 1,
+            "ai": {
+              "plan": "sweep",
+              "wait": 30,
+              "observed": {
+                "tick": 1556,
+                "x": 22,
+                "crouch": false,
+                "guard": true,
+                "action": null,
+                "grounded": true,
+                "decidedAt": 1568,
+                "reactionTicks": 12
+              }
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": []
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "hp": [
+            0,
+            100
+          ],
+          "winner": 1
+        },
+        {
+          "round": 2,
+          "hp": [
+            0,
+            100
+          ],
+          "winner": 1
+        }
+      ],
+      "errors": [],
+      "shots": [
+        {
+          "label": "combat-0",
+          "state": {
+            "phase": "fight",
+            "round": 1,
+            "timeLeft": 3506,
+            "freeze": 4,
+            "terminal": false,
+            "lastWinner": null,
+            "scores": [
+              0,
+              100
+            ],
+            "roundsToWin": 2,
+            "fighters": [
+              {
+                "id": "batman",
+                "x": 22,
+                "y": 184,
+                "hp": 90,
+                "meter": 100,
+                "wins": 0,
+                "face": 1,
+                "action": null,
+                "age": 0,
+                "animation": "hurt",
+                "animationAge": 0,
+                "stun": 22,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": true,
+                "crouch": false,
+                "grounded": true,
+                "combo": 0,
+                "ai": null
+              },
+              {
+                "id": "flash",
+                "x": 63.80000000000043,
+                "y": 184,
+                "hp": 100,
+                "meter": 100,
+                "wins": 0,
+                "face": -1,
+                "action": "sweep",
+                "age": 9,
+                "animation": "sweep",
+                "animationAge": 9,
+                "stun": 0,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": true,
+                "grounded": true,
+                "combo": 1,
+                "ai": {
+                  "plan": "sweep",
+                  "wait": 35,
+                  "observed": {
+                    "tick": 152,
+                    "x": 22,
+                    "crouch": false,
+                    "guard": true,
+                    "action": null,
+                    "grounded": true,
+                    "decidedAt": 164,
+                    "reactionTicks": 12
+                  }
+                }
+              }
+            ],
+            "projectiles": [],
+            "effects": [
+              {
+                "x": 21.18,
+                "y": 184,
+                "type": "dust",
+                "face": 1,
+                "age": 10
+              },
+              {
+                "x": 29,
+                "y": 172,
+                "type": "hit",
+                "face": -1,
+                "age": 0
+              }
+            ]
+          },
+          "image": "back-combat-0.png",
+          "sha256": "2d7183ef7fd2e68f884a963cb2b027863eb2430a3b6e7fe42e60d9476193a758"
+        },
+        {
+          "label": "combat-1",
+          "state": {
+            "phase": "fight",
+            "round": 1,
+            "timeLeft": 3506,
+            "freeze": 3,
+            "terminal": false,
+            "lastWinner": null,
+            "scores": [
+              0,
+              100
+            ],
+            "roundsToWin": 2,
+            "fighters": [
+              {
+                "id": "batman",
+                "x": 22,
+                "y": 184,
+                "hp": 90,
+                "meter": 100,
+                "wins": 0,
+                "face": 1,
+                "action": null,
+                "age": 0,
+                "animation": "hurt",
+                "animationAge": 0,
+                "stun": 22,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": true,
+                "crouch": false,
+                "grounded": true,
+                "combo": 0,
+                "ai": null
+              },
+              {
+                "id": "flash",
+                "x": 63.80000000000043,
+                "y": 184,
+                "hp": 100,
+                "meter": 100,
+                "wins": 0,
+                "face": -1,
+                "action": "sweep",
+                "age": 9,
+                "animation": "sweep",
+                "animationAge": 9,
+                "stun": 0,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": true,
+                "grounded": true,
+                "combo": 1,
+                "ai": {
+                  "plan": "sweep",
+                  "wait": 35,
+                  "observed": {
+                    "tick": 152,
+                    "x": 22,
+                    "crouch": false,
+                    "guard": true,
+                    "action": null,
+                    "grounded": true,
+                    "decidedAt": 164,
+                    "reactionTicks": 12
+                  }
+                }
+              }
+            ],
+            "projectiles": [],
+            "effects": [
+              {
+                "x": 21.18,
+                "y": 184,
+                "type": "dust",
+                "face": 1,
+                "age": 11
+              },
+              {
+                "x": 29,
+                "y": 172,
+                "type": "hit",
+                "face": -1,
+                "age": 1
+              }
+            ]
+          },
+          "image": "back-combat-1.png",
+          "sha256": "83ec4a9e8b6590576768366057c4180672cad55a0bee0604846b68a7ff283cfe"
+        },
+        {
+          "label": "combat-2",
+          "state": {
+            "phase": "fight",
+            "round": 1,
+            "timeLeft": 3110,
+            "freeze": 0,
+            "terminal": false,
+            "lastWinner": null,
+            "scores": [
+              0,
+              900
+            ],
+            "roundsToWin": 2,
+            "fighters": [
+              {
+                "id": "batman",
+                "x": 22,
+                "y": 184,
+                "hp": 30,
+                "meter": 100,
+                "wins": 0,
+                "face": 1,
+                "action": null,
+                "age": 0,
+                "animation": "guard",
+                "animationAge": 7,
+                "stun": 0,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": true,
+                "crouch": false,
+                "grounded": true,
+                "combo": 0,
+                "ai": null
+              },
+              {
+                "id": "flash",
+                "x": 67.80000000000035,
+                "y": 184,
+                "hp": 100,
+                "meter": 100,
+                "wins": 0,
+                "face": -1,
+                "action": "sweep",
+                "age": 4,
+                "animation": "sweep",
+                "animationAge": 4,
+                "stun": 0,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": true,
+                "grounded": true,
+                "combo": 1,
+                "ai": {
+                  "plan": "sweep",
+                  "wait": 29,
+                  "observed": {
+                    "tick": 587,
+                    "x": 22,
+                    "crouch": false,
+                    "guard": true,
+                    "action": null,
+                    "grounded": true,
+                    "decidedAt": 599,
+                    "reactionTicks": 12
+                  }
+                }
+              }
+            ],
+            "projectiles": [],
+            "effects": []
+          },
+          "image": "back-combat-2.png",
+          "sha256": "a0ea987f555a57b74ed873e286d7da81240ffd9959202c905179ea58c45d6ea2"
+        },
+        {
+          "label": "final",
+          "state": {
+            "phase": "complete",
+            "round": 2,
+            "timeLeft": 2948,
+            "freeze": 4,
+            "terminal": true,
+            "lastWinner": 1,
+            "scores": [
+              0,
+              3600
+            ],
+            "roundsToWin": 2,
+            "fighters": [
+              {
+                "id": "batman",
+                "x": 22,
+                "y": 184,
+                "hp": 0,
+                "meter": 100,
+                "wins": 0,
+                "face": 1,
+                "action": null,
+                "age": 0,
+                "animation": "ko",
+                "animationAge": 120,
+                "stun": 22,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": false,
+                "grounded": true,
+                "combo": 0,
+                "ai": null
+              },
+              {
+                "id": "flash",
+                "x": 63.80000000000043,
+                "y": 184,
+                "hp": 100,
+                "meter": 100,
+                "wins": 2,
+                "face": -1,
+                "action": null,
+                "age": 9,
+                "animation": "victory",
+                "animationAge": 120,
+                "stun": 0,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": true,
+                "grounded": true,
+                "combo": 1,
+                "ai": {
+                  "plan": "sweep",
+                  "wait": 30,
+                  "observed": {
+                    "tick": 1556,
+                    "x": 22,
+                    "crouch": false,
+                    "guard": true,
+                    "action": null,
+                    "grounded": true,
+                    "decidedAt": 1568,
+                    "reactionTicks": 12
+                  }
+                }
+              }
+            ],
+            "projectiles": [],
+            "effects": []
+          },
+          "image": "back-final.png",
+          "sha256": "ca0aed452f6dccbda728b3c3e143d3242b0803125f113100d28d1645d5d1c735"
+        }
+      ]
+    },
+    {
+      "policy": "jab-then-back",
+      "frames": 1788,
+      "minHumanHp": 0,
+      "final": {
+        "phase": "complete",
+        "round": 2,
+        "timeLeft": 2843,
+        "freeze": 4,
+        "terminal": true,
+        "lastWinner": 1,
+        "scores": [
+          140,
+          3650
+        ],
+        "roundsToWin": 2,
+        "fighters": [
+          {
+            "id": "batman",
+            "x": 22,
+            "y": 184,
+            "hp": 0,
+            "meter": 100,
+            "wins": 0,
+            "face": 1,
+            "action": null,
+            "age": 0,
+            "animation": "ko",
+            "animationAge": 120,
+            "stun": 22,
+            "blockStun": 0,
+            "bind": null,
+            "bindImmunity": 0,
+            "guard": false,
+            "crouch": false,
+            "grounded": true,
+            "combo": 0,
+            "ai": null
+          },
+          {
+            "id": "flash",
+            "x": 63.10962247438214,
+            "y": 184,
+            "hp": 93,
+            "meter": 100,
+            "wins": 2,
+            "face": -1,
+            "action": null,
+            "age": 9,
+            "animation": "victory",
+            "animationAge": 120,
+            "stun": 0,
+            "blockStun": 0,
+            "bind": null,
+            "bindImmunity": 0,
+            "guard": false,
+            "crouch": true,
+            "grounded": true,
+            "combo": 2,
+            "ai": {
+              "plan": "sweep",
+              "wait": 28,
+              "observed": {
+                "tick": 1649,
+                "x": 22,
+                "crouch": false,
+                "guard": true,
+                "action": null,
+                "grounded": true,
+                "decidedAt": 1661,
+                "reactionTicks": 12
+              }
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": []
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "hp": [
+            0,
+            93
+          ],
+          "winner": 1
+        },
+        {
+          "round": 2,
+          "hp": [
+            0,
+            93
+          ],
+          "winner": 1
+        }
+      ],
+      "errors": [],
+      "shots": [
+        {
+          "label": "combat-0",
+          "state": {
+            "phase": "fight",
+            "round": 1,
+            "timeLeft": 3506,
+            "freeze": 4,
+            "terminal": false,
+            "lastWinner": null,
+            "scores": [
+              0,
+              100
+            ],
+            "roundsToWin": 2,
+            "fighters": [
+              {
+                "id": "batman",
+                "x": 69,
+                "y": 184,
+                "hp": 90,
+                "meter": 100,
+                "wins": 0,
+                "face": 1,
+                "action": null,
+                "age": 9,
+                "animation": "hurt",
+                "animationAge": 0,
+                "stun": 22,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": false,
+                "grounded": true,
+                "combo": 0,
+                "ai": null
+              },
+              {
+                "id": "flash",
+                "x": 110.20000000000027,
+                "y": 184,
+                "hp": 100,
+                "meter": 100,
+                "wins": 0,
+                "face": -1,
+                "action": "sweep",
+                "age": 9,
+                "animation": "sweep",
+                "animationAge": 9,
+                "stun": 0,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": true,
+                "grounded": true,
+                "combo": 1,
+                "ai": {
+                  "plan": "sweep",
+                  "wait": 35,
+                  "observed": {
+                    "tick": 152,
+                    "x": 69,
+                    "crouch": false,
+                    "guard": false,
+                    "action": "light",
+                    "grounded": true,
+                    "decidedAt": 164,
+                    "reactionTicks": 12
+                  }
+                }
+              }
+            ],
+            "projectiles": [],
+            "effects": [
+              {
+                "x": 76,
+                "y": 172,
+                "type": "hit",
+                "face": -1,
+                "age": 0
+              }
+            ]
+          },
+          "image": "jab-then-back-combat-0.png",
+          "sha256": "bdb37dd5fc3173bb0e1d5167673342371275ce7027e485414bef01fcfa388e4b"
+        },
+        {
+          "label": "combat-1",
+          "state": {
+            "phase": "fight",
+            "round": 1,
+            "timeLeft": 3506,
+            "freeze": 3,
+            "terminal": false,
+            "lastWinner": null,
+            "scores": [
+              0,
+              100
+            ],
+            "roundsToWin": 2,
+            "fighters": [
+              {
+                "id": "batman",
+                "x": 69,
+                "y": 184,
+                "hp": 90,
+                "meter": 100,
+                "wins": 0,
+                "face": 1,
+                "action": null,
+                "age": 9,
+                "animation": "hurt",
+                "animationAge": 0,
+                "stun": 22,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": false,
+                "grounded": true,
+                "combo": 0,
+                "ai": null
+              },
+              {
+                "id": "flash",
+                "x": 110.20000000000027,
+                "y": 184,
+                "hp": 100,
+                "meter": 100,
+                "wins": 0,
+                "face": -1,
+                "action": "sweep",
+                "age": 9,
+                "animation": "sweep",
+                "animationAge": 9,
+                "stun": 0,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": true,
+                "grounded": true,
+                "combo": 1,
+                "ai": {
+                  "plan": "sweep",
+                  "wait": 35,
+                  "observed": {
+                    "tick": 152,
+                    "x": 69,
+                    "crouch": false,
+                    "guard": false,
+                    "action": "light",
+                    "grounded": true,
+                    "decidedAt": 164,
+                    "reactionTicks": 12
+                  }
+                }
+              }
+            ],
+            "projectiles": [],
+            "effects": [
+              {
+                "x": 76,
+                "y": 172,
+                "type": "hit",
+                "face": -1,
+                "age": 1
+              }
+            ]
+          },
+          "image": "jab-then-back-combat-1.png",
+          "sha256": "18f5a4b00f7a836b16e2c114f327f8148c95a21a47d44e3c7d9112b91ea4d82f"
+        },
+        {
+          "label": "combat-2",
+          "state": {
+            "phase": "fight",
+            "round": 1,
+            "timeLeft": 3115,
+            "freeze": 0,
+            "terminal": false,
+            "lastWinner": null,
+            "scores": [
+              70,
+              1050
+            ],
+            "roundsToWin": 2,
+            "fighters": [
+              {
+                "id": "batman",
+                "x": 22,
+                "y": 184,
+                "hp": 20,
+                "meter": 100,
+                "wins": 0,
+                "face": 1,
+                "action": null,
+                "age": 0,
+                "animation": "hurt",
+                "animationAge": 6,
+                "stun": 16,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": true,
+                "crouch": false,
+                "grounded": true,
+                "combo": 0,
+                "ai": null
+              },
+              {
+                "id": "flash",
+                "x": 68.86192449487692,
+                "y": 184,
+                "hp": 93,
+                "meter": 100,
+                "wins": 0,
+                "face": -1,
+                "action": "sweep",
+                "age": 15,
+                "animation": "sweep",
+                "animationAge": 15,
+                "stun": 0,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": true,
+                "grounded": true,
+                "combo": 1,
+                "ai": {
+                  "plan": "sweep",
+                  "wait": 19,
+                  "observed": {
+                    "tick": 572,
+                    "x": 22,
+                    "crouch": false,
+                    "guard": true,
+                    "action": null,
+                    "grounded": true,
+                    "decidedAt": 584,
+                    "reactionTicks": 12
+                  }
+                }
+              }
+            ],
+            "projectiles": [],
+            "effects": [
+              {
+                "x": 29,
+                "y": 172,
+                "type": "hit",
+                "face": -1,
+                "age": 10
+              }
+            ]
+          },
+          "image": "jab-then-back-combat-2.png",
+          "sha256": "8aa00a0ddc6a3357aa3b71e9930fcc0289c910754031b39593ebe3fac05f8b85"
+        },
+        {
+          "label": "final",
+          "state": {
+            "phase": "complete",
+            "round": 2,
+            "timeLeft": 2843,
+            "freeze": 4,
+            "terminal": true,
+            "lastWinner": 1,
+            "scores": [
+              140,
+              3650
+            ],
+            "roundsToWin": 2,
+            "fighters": [
+              {
+                "id": "batman",
+                "x": 22,
+                "y": 184,
+                "hp": 0,
+                "meter": 100,
+                "wins": 0,
+                "face": 1,
+                "action": null,
+                "age": 0,
+                "animation": "ko",
+                "animationAge": 120,
+                "stun": 22,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": false,
+                "grounded": true,
+                "combo": 0,
+                "ai": null
+              },
+              {
+                "id": "flash",
+                "x": 63.10962247438214,
+                "y": 184,
+                "hp": 93,
+                "meter": 100,
+                "wins": 2,
+                "face": -1,
+                "action": null,
+                "age": 9,
+                "animation": "victory",
+                "animationAge": 120,
+                "stun": 0,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": true,
+                "grounded": true,
+                "combo": 2,
+                "ai": {
+                  "plan": "sweep",
+                  "wait": 28,
+                  "observed": {
+                    "tick": 1649,
+                    "x": 22,
+                    "crouch": false,
+                    "guard": true,
+                    "action": null,
+                    "grounded": true,
+                    "decidedAt": 1661,
+                    "reactionTicks": 12
+                  }
+                }
+              }
+            ],
+            "projectiles": [],
+            "effects": []
+          },
+          "image": "jab-then-back-final.png",
+          "sha256": "ebd59e9e1f4111ca7e6931dba43ebc10cabc51abbcc5a6edb387a9d3f2baa8ea"
+        }
+      ]
+    },
+    {
+      "policy": "sweep",
+      "frames": 3896,
+      "minHumanHp": 0,
+      "final": {
+        "phase": "complete",
+        "round": 3,
+        "timeLeft": 2358,
+        "freeze": 4,
+        "terminal": true,
+        "lastWinner": 1,
+        "scores": [
+          2650,
+          4430
+        ],
+        "roundsToWin": 2,
+        "fighters": [
+          {
+            "id": "batman",
+            "x": 22,
+            "y": 184,
+            "hp": 0,
+            "meter": 100,
+            "wins": 1,
+            "face": 1,
+            "action": null,
+            "age": 8,
+            "animation": "ko",
+            "animationAge": 120,
+            "stun": 21,
+            "blockStun": 0,
+            "bind": null,
+            "bindImmunity": 0,
+            "guard": false,
+            "crouch": true,
+            "grounded": true,
+            "combo": 0,
+            "ai": null
+          },
+          {
+            "id": "flash",
+            "x": 22,
+            "y": 184,
+            "hp": 40,
+            "meter": 100,
+            "wins": 2,
+            "face": -1,
+            "action": null,
+            "age": 13,
+            "animation": "victory",
+            "animationAge": 120,
+            "stun": 0,
+            "blockStun": 0,
+            "bind": null,
+            "bindImmunity": 0,
+            "guard": false,
+            "crouch": false,
+            "grounded": true,
+            "combo": 1,
+            "ai": {
+              "plan": "jump",
+              "wait": 4,
+              "observed": {
+                "tick": 3733,
+                "x": 22,
+                "crouch": false,
+                "guard": false,
+                "action": null,
+                "grounded": true,
+                "decidedAt": 3745,
+                "reactionTicks": 12
+              }
+            }
+          }
+        ],
+        "projectiles": [],
+        "effects": []
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "hp": [
+            0,
+            60
+          ],
+          "winner": 1
+        },
+        {
+          "round": 2,
+          "hp": [
+            24,
+            0
+          ],
+          "winner": 0
+        },
+        {
+          "round": 3,
+          "hp": [
+            0,
+            40
+          ],
+          "winner": 1
+        }
+      ],
+      "errors": [],
+      "shots": [
+        {
+          "label": "combat-0",
+          "state": {
+            "phase": "fight",
+            "round": 1,
+            "timeLeft": 3121,
+            "freeze": 0,
+            "terminal": false,
+            "lastWinner": null,
+            "scores": [
+              300,
+              1010
+            ],
+            "roundsToWin": 2,
+            "fighters": [
+              {
+                "id": "batman",
+                "x": 22,
+                "y": 184,
+                "hp": 19,
+                "meter": 100,
+                "wins": 0,
+                "face": 1,
+                "action": "sweep",
+                "age": 25,
+                "animation": "sweep",
+                "animationAge": 25,
+                "stun": 0,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": true,
+                "grounded": true,
+                "combo": 0,
+                "ai": null
+              },
+              {
+                "id": "flash",
+                "x": 73.84409340597087,
+                "y": 184,
+                "hp": 70,
+                "meter": 100,
+                "wins": 0,
+                "face": -1,
+                "action": "heavy",
+                "age": 20,
+                "animation": "heavy",
+                "animationAge": 20,
+                "stun": 0,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": false,
+                "grounded": true,
+                "combo": 0,
+                "ai": {
+                  "plan": "heavy",
+                  "wait": 23,
+                  "observed": {
+                    "tick": 569,
+                    "x": 22,
+                    "crouch": true,
+                    "guard": false,
+                    "action": "sweep",
+                    "grounded": true,
+                    "decidedAt": 581,
+                    "reactionTicks": 12
+                  }
+                }
+              }
+            ],
+            "projectiles": [],
+            "effects": []
+          },
+          "image": "sweep-combat-0.png",
+          "sha256": "627b5f1cd0a7b4bad8e16bf2ed679b3c063f308edbacb5682a0948dd265c787f"
+        },
+        {
+          "label": "combat-1",
+          "state": {
+            "phase": "fight",
+            "round": 3,
+            "timeLeft": 2751,
+            "freeze": 4,
+            "terminal": false,
+            "lastWinner": 0,
+            "scores": [
+              2650,
+              3500
+            ],
+            "roundsToWin": 2,
+            "fighters": [
+              {
+                "id": "batman",
+                "x": 22,
+                "y": 184,
+                "hp": 28,
+                "meter": 100,
+                "wins": 1,
+                "face": 1,
+                "action": null,
+                "age": 8,
+                "animation": "hurt",
+                "animationAge": 0,
+                "stun": 22,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": true,
+                "grounded": true,
+                "combo": 1,
+                "ai": null
+              },
+              {
+                "id": "flash",
+                "x": 63.984013167557755,
+                "y": 184,
+                "hp": 40,
+                "meter": 100,
+                "wins": 1,
+                "face": -1,
+                "action": "sweep",
+                "age": 9,
+                "animation": "sweep",
+                "animationAge": 9,
+                "stun": 0,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": true,
+                "grounded": true,
+                "combo": 1,
+                "ai": {
+                  "plan": "sweep",
+                  "wait": 26,
+                  "observed": {
+                    "tick": 3337,
+                    "x": 22,
+                    "crouch": true,
+                    "guard": false,
+                    "action": "sweep",
+                    "grounded": true,
+                    "decidedAt": 3349,
+                    "reactionTicks": 12
+                  }
+                }
+              }
+            ],
+            "projectiles": [],
+            "effects": [
+              {
+                "x": 29,
+                "y": 172,
+                "type": "hit",
+                "face": -1,
+                "age": 0
+              }
+            ]
+          },
+          "image": "sweep-combat-1.png",
+          "sha256": "b57fef43823000e7f91c6b8bc7fe2100770eeb15caaf609c24309937601fa356"
+        },
+        {
+          "label": "final",
+          "state": {
+            "phase": "complete",
+            "round": 3,
+            "timeLeft": 2358,
+            "freeze": 4,
+            "terminal": true,
+            "lastWinner": 1,
+            "scores": [
+              2650,
+              4430
+            ],
+            "roundsToWin": 2,
+            "fighters": [
+              {
+                "id": "batman",
+                "x": 22,
+                "y": 184,
+                "hp": 0,
+                "meter": 100,
+                "wins": 1,
+                "face": 1,
+                "action": null,
+                "age": 8,
+                "animation": "ko",
+                "animationAge": 120,
+                "stun": 21,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": true,
+                "grounded": true,
+                "combo": 0,
+                "ai": null
+              },
+              {
+                "id": "flash",
+                "x": 22,
+                "y": 184,
+                "hp": 40,
+                "meter": 100,
+                "wins": 2,
+                "face": -1,
+                "action": null,
+                "age": 13,
+                "animation": "victory",
+                "animationAge": 120,
+                "stun": 0,
+                "blockStun": 0,
+                "bind": null,
+                "bindImmunity": 0,
+                "guard": false,
+                "crouch": false,
+                "grounded": true,
+                "combo": 1,
+                "ai": {
+                  "plan": "jump",
+                  "wait": 4,
+                  "observed": {
+                    "tick": 3733,
+                    "x": 22,
+                    "crouch": false,
+                    "guard": false,
+                    "action": null,
+                    "grounded": true,
+                    "decidedAt": 3745,
+                    "reactionTicks": 12
+                  }
+                }
+              }
+            ],
+            "projectiles": [],
+            "effects": []
+          },
+          "image": "sweep-final.png",
+          "sha256": "597d3615a4957dc2fe36c4dde06f64f9d0b413e4b059a15b1f574c6d40390132"
+        }
+      ]
+    }
+  ]
+}

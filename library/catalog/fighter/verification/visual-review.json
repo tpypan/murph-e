@@ -1,0 +1,41 @@
+{
+  "reviewedAt": "2026-09-20T00:53:52.232Z",
+  "reviewer": "Codex actual native screenshot inspection",
+  "contentHash": "71c243636c5f38a49582b5da13eedd0df1603c828625ead7524b673ad8c4dc30",
+  "moduleSha256": "92eb8e2a91fff522b6c008999fcfa6d0d77e84023eb0f157014d2f8f2317061c",
+  "inspected": [
+    "evidence/2p-select.png",
+    "evidence/2p-kick.png",
+    "evidence/2p-terminal.png",
+    "evidence/cpu-back-combat-0.png"
+  ],
+  "screenshots": [
+    {
+      "file": "evidence/2p-select.png",
+      "sha256": "66020d4de765a1ffcac7651268aabed35dbb1bb4b12beb294676fff76acd9d38"
+    },
+    {
+      "file": "evidence/2p-kick.png",
+      "sha256": "5d440fe08aeeb6a276ebbe8aa5f37a2717d58b3b82059a2caa05816f0886d5f9"
+    },
+    {
+      "file": "evidence/2p-terminal.png",
+      "sha256": "7574afda737ac44ae6a79190cb36cb6900ac9807a01903ca8b3107859d950d47"
+    },
+    {
+      "file": "evidence/cpu-back-combat-0.png",
+      "sha256": "2d7183ef7fd2e68f884a963cb2b027863eb2430a3b6e7fe42e60d9476193a758"
+    }
+  ],
+  "findings": [
+    "Native selector retains the actual two complete identities, separate cyan/yellow cursors, names and confirmation controls.",
+    "The new CPU low attack shows a distinct extended-leg crouch pose contacting the standing defender; health, timer, score and rooftop remain legible.",
+    "Independent2P combat and terminal winner rendering remain intact; controller tests prove no CPU branch executes for humans.",
+    "53 behavior tests, current native1P/2P selection/combat/terminal scripts, and192 controlled CPU policy trials passed their stated assertions."
+  ],
+  "limits": [
+    "Bot outcomes do not establish human balance or optimal play.",
+    "The generic probe has soft UP/DOWN/B observations while in character selection; dedicated real-input selection-then-combat proofs cover those controls.",
+    "No physical CRT calibration or audio-hardware test."
+  ]
+}

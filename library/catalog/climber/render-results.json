@@ -1,0 +1,150 @@
+[
+  {
+    "players": 1,
+    "name": "start",
+    "load": {
+      "ok": true
+    },
+    "state": {
+      "state": "playing",
+      "score": 0,
+      "scores": [
+        0
+      ],
+      "winner": null,
+      "frame": 12,
+      "error": null
+    },
+    "ms": 12
+  },
+  {
+    "players": 1,
+    "name": "climb",
+    "load": {
+      "ok": true
+    },
+    "state": {
+      "state": "playing",
+      "score": 100,
+      "scores": [
+        100
+      ],
+      "winner": null,
+      "frame": 330,
+      "error": null
+    },
+    "ms": 97
+  },
+  {
+    "players": 1,
+    "name": "top",
+    "load": {
+      "ok": true
+    },
+    "state": {
+      "state": "playing",
+      "score": 200,
+      "scores": [
+        200
+      ],
+      "winner": null,
+      "frame": 600,
+      "error": null
+    },
+    "ms": 78
+  },
+  {
+    "players": 1,
+    "name": "later-stage",
+    "load": {
+      "ok": true
+    },
+    "state": {
+      "state": "playing",
+      "score": 6000,
+      "scores": [
+        6000
+      ],
+      "winner": null,
+      "frame": 1260,
+      "error": null
+    },
+    "ms": 207
+  },
+  {
+    "players": 2,
+    "name": "start",
+    "load": {
+      "ok": true
+    },
+    "state": {
+      "state": "playing",
+      "score": 0,
+      "scores": [
+        0,
+        0
+      ],
+      "winner": null,
+      "frame": 1272,
+      "error": null
+    },
+    "ms": 9
+  },
+  {
+    "players": 2,
+    "name": "climb",
+    "load": {
+      "ok": true
+    },
+    "state": {
+      "state": "playing",
+      "score": 100,
+      "scores": [
+        100,
+        100
+      ],
+      "winner": null,
+      "frame": 1590,
+      "error": null
+    },
+    "ms": 110
+  },
+  {
+    "players": 2,
+    "name": "top",
+    "load": {
+      "ok": true
+    },
+    "state": {
+      "state": "playing",
+      "score": 200,
+      "scores": [
+        200,
+        200
+      ],
+      "winner": null,
+      "frame": 1860,
+      "error": null
+    },
+    "ms": 102
+  },
+  {
+    "players": 2,
+    "name": "later-stage",
+    "load": {
+      "ok": true
+    },
+    "state": {
+      "state": "playing",
+      "score": 6000,
+      "scores": [
+        6000,
+        6000
+      ],
+      "winner": null,
+      "frame": 2520,
+      "error": null
+    },
+    "ms": 250
+  }
+]

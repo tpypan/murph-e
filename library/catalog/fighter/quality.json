@@ -1,0 +1,48 @@
+{
+  "contentHash": "71c243636c5f38a49582b5da13eedd0df1603c828625ead7524b673ad8c4dc30",
+  "reviewedAt": "2026-09-20T00:53:52.232Z",
+  "checks": [
+    {
+      "name": "behavior",
+      "passed": true,
+      "artifact": "evidence/behavior.json",
+      "artifactHash": "5c9d44b865e83c9fd490b530f32ff07501d47a318cf7eccebad693b66b0e7e5b"
+    },
+    {
+      "name": "visual",
+      "passed": true,
+      "artifact": "verification/visual-review.json",
+      "artifactHash": "46b6f7ece026627d0bdd044fd568e0fc1fde81c64a7dabc14c96bdae9a595226"
+    },
+    {
+      "name": "runtime-1p",
+      "passed": true,
+      "artifact": "verification/runtime.json",
+      "artifactHash": "5df8b20bb1a8c85d54dc9b82641be0e567f81bd1674af55074d71764de6230a5"
+    },
+    {
+      "name": "runtime-2p",
+      "passed": true,
+      "artifact": "verification/runtime.json",
+      "artifactHash": "5df8b20bb1a8c85d54dc9b82641be0e567f81bd1674af55074d71764de6230a5"
+    },
+    {
+      "name": "character-selection",
+      "passed": true,
+      "artifact": "evidence/selection-runtime.json",
+      "artifactHash": "dee677e29ffd758408e41afd9da038357ca07b95a0da544e0b37a2d275301ef5"
+    },
+    {
+      "name": "native-combat-terminal",
+      "passed": true,
+      "artifact": "evidence/runtime.json",
+      "artifactHash": "4d4cf5e5c68263335873e40b085438af240c574d4d07a0df71f839e2c7d74674"
+    },
+    {
+      "name": "native-adversarial-control",
+      "passed": true,
+      "artifact": "evidence/cpu-control.json",
+      "artifactHash": "640d1a88b8ce683a346374be41b1793a93746393e9a515d410d1a5773524f6c4"
+    }
+  ]
+}

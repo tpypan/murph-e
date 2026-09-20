@@ -1,0 +1,54 @@
+{
+  "contentHash": "70c6e3118b2e9f61b483cab5df2f22f14cc27baa83b31965841018a896dc601a",
+  "results": [
+    {
+      "players": 1,
+      "ok": true,
+      "observations": [
+        "pressing B changed nothing on screen"
+      ],
+      "ms": 232,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": false
+      }
+    },
+    {
+      "players": 2,
+      "ok": true,
+      "observations": [
+        "pressing B changed nothing on screen",
+        "player two pressing A changed nothing on screen"
+      ],
+      "ms": 360,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": false,
+        "respondsToP2": true,
+        "soft:responds:p2:a": false
+      }
+    }
+  ]
+}

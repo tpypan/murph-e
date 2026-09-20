@@ -1,0 +1,34 @@
+{
+  "title": "STAR CATCH",
+  "oneLiner": "Guide a friendly star through a sparkling sky, catch the gems, and dodge the storm clouds.",
+  "genre": "dodge",
+  "mechanics": [
+    "Move the bright five-point star left and right along the bottom sky lane.",
+    "Catch descending gems for 100 points; three gems in a row briefly doubles the score.",
+    "Dodge storm clouds that drift downward in readable waves; collecting a shield grants one safe hit.",
+    "Every 20 seconds, enter a short recovery lull, then resume with at most three simultaneous clouds."
+  ],
+  "controls": {
+    "left": "Move star left",
+    "right": "Move star right",
+    "up": null,
+    "down": null,
+    "a": "Activate a held shield when available",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "Lose a life after touching a storm cloud without a shield; three lives end the round.",
+  "scoring": "Gems score 100 points, with a capped 2x bonus for three consecutive catches.",
+  "moderated": true,
+  "note": "LET'S PLAY THIS INSTEAD",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "readability",
+    "scoring",
+    "pacing",
+    "onboarding"
+  ],
+  "players": 1,
+  "runId": "2026-09-19-1915-it-s-great-naked-bodies"
+}

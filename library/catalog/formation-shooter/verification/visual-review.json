@@ -1,0 +1,52 @@
+{
+  "reviewedAt": "2026-09-19T21:41:27.780Z",
+  "reviewer": "Codex visual inspection and gameplay evidence review",
+  "contentHash": "84738713fcf3f122257bfee17552f7ce7cd9756a45e7444c746f4c8761608e97",
+  "inspected": [
+    "screenshots/1p-action.png",
+    "screenshots/2p-later.png",
+    "screenshots/1p-finished.png",
+    "screenshots/2p-finished.png"
+  ],
+  "imageHashes": {
+    "screenshots/1p-action.png": "ad7584ba7cb061abd1f29647f7d0f76a8bf184e24107fd453eff2bb0da94162c",
+    "screenshots/2p-later.png": "f6dd505c5ef82ee24200af6879d50bdbad354b1eea70ad4b2764902273311dcf",
+    "screenshots/1p-finished.png": "75df7415ec6e7dd4206dfdc30cf73c9bbcafcd5c6ecd9db8632d174a93e31772",
+    "screenshots/2p-finished.png": "526cc0bc20ea1c8f56449b12543747d6b8cad68cee200b7d9aedf1afbc68b672"
+  },
+  "findings": [
+    "Four marching ranks, three enemy silhouettes, player shots and worn bunker silhouettes are readable against the dark field.",
+    "Yellow dive-warning rings and descending dive positions are distinct from ordinary formation rows.",
+    "Cyan/red player ships, lives and separate runtime scores remain readable in cooperative play; neither ship is an automatic follower.",
+    "Default three-wave 1P and 2P real-input browser runs both reach native win; the terminal scene preserves the cleared arena and score."
+  ],
+  "limits": [
+    "Admission covers the bundled original formation game and documented options, not arbitrary replacement sprites or invented mechanics.",
+    "Three-wave default seed is reachable using observable-state automation; this is not a human balance or difficulty study.",
+    "No scrolling terrain, capture/dual-ship mechanic or bullet-hell boss is supplied.",
+    "No human balance study, physical CRT overscan/calibration or badge/controller hardware validation."
+  ],
+  "gameplayEvidence": {
+    "behaviorChecks": 7,
+    "behaviorArtifact": "behavior-results.json",
+    "nativeRuns": [
+      {
+        "players": 1,
+        "state": "win",
+        "scores": [
+          9600
+        ]
+      },
+      {
+        "players": 2,
+        "state": "win",
+        "scores": [
+          4710,
+          5740
+        ]
+      }
+    ],
+    "renderArtifact": "render-results.json",
+    "renderArtifactHash": "30e63e1c70c576a9a4624b4f40f0ba6fc938cbfe71e02cefdc5248e79b521891"
+  }
+}

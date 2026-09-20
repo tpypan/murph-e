@@ -1,7 +1,8 @@
 import { EventEmitter } from 'node:events'
-import { readFile } from 'node:fs/promises'
+import { readdir, readFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { type BadgeDisplay, displayText } from './display.ts'
 import { BadgeLink } from './link.ts'
 import {
   APP_SLUG,
@@ -55,6 +56,9 @@ interface Attached {
   info: BadgeInfo
   link: BadgeLink
   map: Record<number, string>
+  onboarded: boolean
+  writingDisplay: boolean
+  sentDisplay: string
 }
 
 export interface HubOptions {
@@ -77,6 +81,7 @@ export class BadgeHub extends EventEmitter {
   private retryAt = new Map<string, number>()
   private timer: ReturnType<typeof setInterval> | null = null
   private polling = false
+  private display: BadgeDisplay = { players: 1, controls: {}, playing: false }
   private opts: HubOptions
   private transports: Transport[]
 
@@ -101,6 +106,33 @@ export class BadgeHub extends EventEmitter {
 
   badges(): BadgeInfo[] {
     return [...this.links.values()].map((a) => ({ ...a.info }))
+  }
+
+  setDisplay(display: BadgeDisplay): void {
+    this.display = display
+    for (const a of this.links.values()) void this.syncDisplay(a)
+  }
+
+  private async syncDisplay(a: Attached): Promise<void> {
+    if (!a.onboarded || a.writingDisplay || a.info.slot === null) return
+    a.writingDisplay = true
+    try {
+      while (a.link.isOpen && a.info.slot !== null) {
+        const text = displayText(this.display, a.info.slot)
+        if (text === a.sentDisplay) break
+        const bytes = Buffer.from(text)
+        a.link.clear()
+        await a.link.writeLine(`put /littlefs/apps/${APP_SLUG}/display.txt ${bytes.length}`)
+        await a.link.waitFor('READY', 5000)
+        await a.link.writeBytes(bytes)
+        await a.link.waitFor(`OK ${bytes.length}`, 5000)
+        a.sentDisplay = text
+      }
+    } catch (e) {
+      this.send({ type: 'error', path: a.info.path, message: `display: ${String(e)}` })
+    } finally {
+      a.writingDisplay = false
+    }
   }
 
   /** Look for new badges now instead of at the next tick. */
@@ -168,6 +200,9 @@ export class BadgeHub extends EventEmitter {
       },
       link,
       map: { ...DEFAULT_BUTTON_MAP },
+      onboarded: false,
+      writingDisplay: false,
+      sentDisplay: '',
     }
     this.links.set(path, a)
     this.pending.delete(path)
@@ -180,6 +215,8 @@ export class BadgeHub extends EventEmitter {
     })
     try {
       await this.onboard(a)
+      a.onboarded = true
+      await this.syncDisplay(a)
     } catch (e) {
       a.info.state = 'error'
       this.send({ type: 'error', path, message: e instanceof Error ? e.message : String(e) })
@@ -228,8 +265,19 @@ export class BadgeHub extends EventEmitter {
   /** The IDE's push flow: mkdir, put each file in paced chunks, reload. */
   private async push(link: BadgeLink): Promise<void> {
     const dir = `/littlefs/apps/${APP_SLUG}`
+    // Release the old Lua UI before overwriting its font files. An upgrade can
+    // otherwise allocate upload buffers while the previous UI still owns RAM.
+    link.clear()
+    await link.writeLine('reload')
+    await link.waitFor('reload:', 8000)
     await link.command(`mkdir ${dir}`, 5000)
-    for (const name of ['manifest.cfg', 'main.lua']) {
+    const assets = (await readdir(APP_DIR))
+      .filter((name) => /^font-[a-z0-9]+-[0-2]\.bin$/.test(name))
+      .sort()
+    const binary = await link.command('put --binary')
+    if (!binary.includes('PUT BINARY OK'))
+      throw new Error('Badge firmware does not support font image uploads')
+    for (const name of [...assets, 'main.lua', 'manifest.cfg']) {
       const bytes = await readFile(join(APP_DIR, name))
       link.clear()
       await link.writeLine(`put ${dir}/${name} ${bytes.length}`)
@@ -255,6 +303,7 @@ export class BadgeHub extends EventEmitter {
       identity,
       slot: a.info.slot,
     })
+    void this.syncDisplay(a)
   }
 
   private freeSlot(): number {

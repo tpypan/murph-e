@@ -1,0 +1,86 @@
+{
+  "model": "gpt-6-astra",
+  "effort": "low",
+  "players": 1,
+  "n": 1,
+  "rows": [
+    {
+      "prompt": "a monkey swinging on ropes between rooftops, release to fly and catch the next rope",
+      "title": "ROOFTOP SWING",
+      "genre": "platformer",
+      "runId": "2026-09-19-1837-a-monkey-swinging-on-ropes-betwe",
+      "specMs": 4342,
+      "buildMs": 57047,
+      "ttftMs": 10923,
+      "totalMs": 61396,
+      "tokens": 3040,
+      "reasoning": 253,
+      "cached": 5609,
+      "lines": 245,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [],
+      "error": null
+    },
+    {
+      "prompt": "a maze where a ghost chases me, with different enemy personalities and temporary power pellets",
+      "title": "GHOST MAZE",
+      "genre": "snake",
+      "runId": "2026-09-19-1837-a-maze-where-a-ghost-chases-me-w",
+      "specMs": 5270,
+      "buildMs": 45740,
+      "ttftMs": 3320,
+      "totalMs": 51016,
+      "tokens": 2926,
+      "reasoning": 81,
+      "cached": 5609,
+      "lines": 222,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [
+        "holding LEFT changed nothing on screen, including after A when available",
+        "holding DOWN changed nothing on screen, including after A when available",
+        "pressing B changed nothing on screen"
+      ],
+      "error": null
+    },
+    {
+      "prompt": "a spaceship dodging aimed volleys and rotating bullet fans with short recovery breaks",
+      "title": "FAN ESCAPE",
+      "genre": "shooter",
+      "runId": "2026-09-19-1837-a-spaceship-dodging-aimed-volley",
+      "specMs": 3675,
+      "buildMs": 49928,
+      "ttftMs": 7151,
+      "totalMs": 53619,
+      "tokens": 2716,
+      "reasoning": 134,
+      "cached": 5609,
+      "lines": 215,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [
+        "pressing B changed nothing on screen"
+      ],
+      "error": null
+    },
+    {
+      "prompt": "Batman jumping between Gotham rooftops and collecting gadgets",
+      "title": "GOTHAM GADGETS",
+      "genre": "platformer",
+      "runId": "2026-09-19-1837-batman-jumping-between-gotham-ro",
+      "specMs": 4091,
+      "buildMs": 49892,
+      "ttftMs": 3465,
+      "totalMs": 53988,
+      "tokens": 2951,
+      "reasoning": 74,
+      "cached": 5609,
+      "lines": 226,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [],
+      "error": null
+    }
+  ]
+}

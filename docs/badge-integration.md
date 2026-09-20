@@ -311,3 +311,73 @@ the design. Step 5 only affects tier 3.
 | QR tap-in | dropped | not needed once the wire does identity |
 | BLE controller | BLE scanner on the Mac plus rate testing | high; two unknowns, and lossy by nature |
 | NFC reader on the cabinet | a reader nobody's badge can talk to | do not buy one |
+
+
+## 7. Badge screen: identity and current controls (2026-09-19)
+
+Arcade app version 3 shows the holder's name, the cabinet-assigned player number,
+and three lines of controls on a black 320×240 screen. Longer instructions page
+at four-second intervals. START and HOME remain visible. The menu shows D-pad /
+select / back; during play the cabinet sends that game's directional and A/B actions.
+
+The earlier statement that nothing can be sent back needs qualification: Lua has
+no serial-input callback, but the firmware console can write app files while Lua
+runs. The hub writes a small, versioned `display.txt` mailbox only when contents
+change; Lua reads it at most once a second. Incomplete writes are ignored until
+the END marker arrives. Uploads are paced and serialized after onboarding, with
+latest-state coalescing, and do not call reload. This is low-frequency UI state,
+not a frame-streaming transport. In 1P mode attached controllers display PLAYER 1;
+in 2P mode they display their hub slot plus one.
+
+Verified on Tony Pan's physical badge: upgraded app loads, name recovery works
+with the hidden ID label, assigned PLAYER 1 appears, game controls update live,
+and automatic paging works. Captured and inspected the actual display through
+`shot`. The currently installed firmware also supports `press <name>` and `shot`
+(RGB565 RLE); older descriptions above predate that console inspection.
+
+Validation: badge tests cover concurrent assignment/display updates, two-player
+slots, mode changes, button delivery and no-reload behavior. Cabinet and badge
+TypeScript checks pass. Badge screenshots are in `bench/screenshots/badge/`.
+
+
+Version 4 restyles the controller screen with a stroke-drawn arcade wordmark,
+large P1/P2 glyphs, uppercase names, a cyan rule and square outlined control keys.
+Fewer than 40 app widgets are needed for the default screen; no bitmap/font files are
+uploaded. Installed and opened on the real badge, with its screen capture checked
+at 320×240. Hidden identity labels still recover Tony Pan with original casing.
+The current capture is `bench/screenshots/badge/arcade-style.png`.
+
+
+### Press Start 2P revision — verified on hardware
+
+Version 10 replaces the stroke approximation with the cabinet's actual Press Start
+2P raster and spells out PLAYER 1 / PLAYER 2. Controls wrap to 18 characters.
+Nine RGB565 files store the font atlases, heading and two footer states. Existing
+glyph widgets are reused across page/label changes. The app stays within the
+standard 48 KiB Lua budget and the 48 KiB / 16-file share-bundle limits.
+
+The earlier renderer exhausted memory on startup and repeated updates. Simply
+raising the Lua ceiling did not fix physical RAM pressure. Reusing UI objects and
+keeping glyph pixels out of Lua removed the observed failure. Upload now checks
+binary-file support and exits the old app before replacing its assets; the fake
+badge test verifies binary preservation and the complete bundle's size limits.
+
+Hardware validation on Tony's badge: four consecutive control/player updates,
+automatic paging, three maximum-width control lines, A-button events, and original
+name/ID recovery all passed without visible Lua errors. After stress, system free
+heap was 18,000 bytes and LVGL free memory 10,936 bytes. Restored the normal menu
+after testing. Badge tests: 12 passing; badge TypeScript and changed-file Biome
+checks pass. Logs are in `bench/screenshots/badge/font-stability.log`.
+
+The badge firmware's console `shot` can overflow its console task stack when
+rendering file images. Do not use it for this screen. The layout was checked using
+`font-layout-preview.png`, rendered from the same font data and coordinates; device
+validation used the actual widget tree, error logs, heap and button events. The
+preview is not a photograph or capture of the physical LCD.
+
+An exhausted app can reject even console HOME/reboot with ESP_ERR_NO_MEM. Physical
+HOME or a power cycle recovers it. We also successfully recovered through the
+Espressif USB hard-reset sequence (DTR false, RTS true for 200 ms, then RTS false),
+without writing firmware. This remains a manual diagnostic, never an automatic
+reset during gameplay. A smaller/slower paced upload (64-byte chunks, 50 ms pause)
+was used when this badge's serial receive ring stalled during a development upload.

@@ -1,0 +1,44 @@
+{
+  "model": "gpt-6-astra",
+  "effort": "medium",
+  "players": 1,
+  "n": 1,
+  "rows": [
+    {
+      "prompt": "Street Fighter but with Batman and the Flash. Make the characters recognizable, with proper fighting moves, blocking, specials and rounds.",
+      "title": "GOTHAM CLASH",
+      "genre": "one-on-one fighting",
+      "runId": "2026-09-19-2109-street-fighter-but-with-batman-a",
+      "specMs": 8741,
+      "buildMs": 5999,
+      "ttftMs": 2058,
+      "totalMs": 14762,
+      "tokens": 322,
+      "reasoning": 37,
+      "cached": 2979,
+      "lines": 881,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [],
+      "error": null
+    },
+    {
+      "prompt": "A kart racing game around a coastal circuit at night. Let me drift for turbo boosts and race against rival drivers over three laps.",
+      "title": "NIGHT COAST",
+      "genre": "arcade kart racing",
+      "runId": "2026-09-19-2109-a-kart-racing-game-around-a-coas",
+      "specMs": 8558,
+      "buildMs": 58889,
+      "ttftMs": 33183,
+      "totalMs": 67468,
+      "tokens": 2771,
+      "reasoning": 1034,
+      "cached": 2979,
+      "lines": 621,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [],
+      "error": null
+    }
+  ]
+}
