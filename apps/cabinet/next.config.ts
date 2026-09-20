@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     'playwright',
     'openai',
     'dotenv',
+    'typescript',
     'serialport',
     '@serialport/bindings-cpp',
   ],

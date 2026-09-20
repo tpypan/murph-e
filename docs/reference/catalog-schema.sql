@@ -99,3 +99,26 @@ CREATE INDEX reference_kind ON reference_sheets(kind, status);
 
 -- index: reviews_candidate
 CREATE INDEX reviews_candidate ON candidate_reviews(code_hash, created_at);
+
+-- Offline saved-game component inventory; admission remains in catalog_parts.
+CREATE TABLE component_blobs (code_hash TEXT PRIMARY KEY, source TEXT NOT NULL);
+
+CREATE TABLE component_origins (
+      source_path TEXT NOT NULL, code_hash TEXT NOT NULL, metadata_json TEXT NOT NULL,
+      current INTEGER NOT NULL, PRIMARY KEY(source_path,code_hash));
+
+CREATE TABLE component_sources (
+      code_hash TEXT PRIMARY KEY, version INTEGER NOT NULL, source_file TEXT NOT NULL,
+      errors_json TEXT NOT NULL, indexed_at TEXT NOT NULL);
+
+CREATE TABLE game_components (
+      id TEXT PRIMARY KEY, source_hash TEXT NOT NULL, name TEXT NOT NULL, kind TEXT NOT NULL,
+      start_line INTEGER NOT NULL, end_line INTEGER NOT NULL, code_hash TEXT NOT NULL,
+      dependencies_json TEXT NOT NULL, blockers_json TEXT NOT NULL, top_level INTEGER NOT NULL,
+      status TEXT NOT NULL CHECK(status='needs-review'), start_offset INTEGER NOT NULL DEFAULT 0);
+
+CREATE INDEX component_names ON game_components(name,kind);
+
+CREATE INDEX component_origin_hash ON component_origins(code_hash);
+
+CREATE INDEX component_source ON game_components(source_hash);

@@ -1,0 +1,13 @@
+{
+  "source": "library/games/sky-karts/game.js",
+  "sourceHash": "9ed8ada7ba8c3fe8aadce02487012078844f0a1a2293789cc4182907db859bdd",
+  "runId": "2026-09-20-064212391-i-want-to-create-a-game-like-mar-Gdmc1s",
+  "adaptations": [
+    "Per-instance closure",
+    "Bounded rival speed and boost cooldown",
+    "Configurable names and plane palette",
+    "Single-player guard",
+    "Read-only telemetry copies"
+  ],
+  "snapshot": "source-game.js"
+}

@@ -34,6 +34,16 @@ code, the engine, or the judge.
 
 ## What we are building instead
 
+This experiment branch optionally inserts Jev foundation/settings selection
+between the Luna spec and Astra code generation. Set `HTN_JEV=1` with a
+server-side `TYPESAFE_API_KEY`; see [setup and limits](plans/jev-experiment.md).
+The default without that switch remains the original pipeline. New game code
+and repair still come from Astra.
+
+Speech in this branch now defaults to OpenAI `gpt-4o-mini-transcribe`, replacing the
+local `tiny.en` model for recognition accuracy. The clip is uploaded only after
+TALK release, with the microphone stopped. See [speech setup](plans/speech-transcription.md).
+
 - **An 8-bit runtime we own.** 256x224, a default 16-colour palette plus optional per-sprite palettes, a PICO-8-style API
   of about twenty functions. It runs in a sandboxed iframe in a kiosk Chromium
   on the Mac. The runtime owns the frame loop, input, sound synthesis, HUD,
@@ -42,6 +52,10 @@ code, the engine, or the judge.
   candidates racing through a headless probe, one repair round if needed,
   then an explicit library fallback. Current timings are in
   `bench-2026-09-19-astra-medium.md`.
+- **Multiplayer from the start.** Every new game file supports solo and local
+  two-player play. Planning specifies both modes; generation/repair must pass both
+  runtime/input checks before acceptance. Existing saved games retain their
+  historical capabilities. See `plans/multiplayer-first.md`.
 - **Open genre and visual planning.** Genre is descriptive rather than a fixed
   template menu. Specs preserve detailed mechanics and include art direction;
   builders have no line-count target or tiny-sprite requirement. Matching examples
@@ -97,7 +111,7 @@ Tier 3 is wireless badges and take-home games.
 | Provider | OpenAI | Tony's call | |
 | Build and repair model | `gpt-6-astra`, effort medium (CLI remix remains low) | requested medium upgrade; longer latency budget | `bench-2026-09-19-astra-medium.md` |
 | Spec model | `gpt-5.6-luna`, effort none | 0.6 s to first token | same |
-| STT | local `faster-whisper`, `tiny.en`, CPU int8 | audio-reactive meter while held, English transcript after release; no speech API key | `harness-plan.md` §4 |
+| STT | OpenAI `gpt-4o-mini-transcribe`; optional local `tiny.en` | recorded clip after release, existing server-side OpenAI key | `plans/speech-transcription.md` |
 | Display | 256x224, default 16 colours plus per-sprite palettes, aspect-preserving pixel scaling | every game looks like it belongs to the same cabinet | |
 | Identity | USB-C serial hello from the arcade app, both modes | one gesture for identity and controls; badge NFC is a reader, not a tag; QR dropped 2026-09-19 | `badge-integration.md` §3 |
 | Multiplayer transport | USB-C serial | the only low-latency channel the badge exposes | `badge-integration.md` §2 |

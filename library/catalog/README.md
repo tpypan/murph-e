@@ -7,8 +7,8 @@ new games from spoken requests and always waits for PLAY before starting a run.
 
 ## How generation uses them
 
-1. Select at most one relevant, verified foundation compatible with the cabinet's
-   1P/2P choice. Unrelated requests keep the open-ended code writer.
+1. For new generation, select at most one relevant, verified foundation supporting
+   BOTH 1P and 2P. The cabinet's choice selects the active session. Unrelated requests keep the open-ended code writer.
 2. Give the planner and Astra the actual `api.md` configuration/hook contract.
    Do not spend model output tokens reproducing tested source or pixel rows.
 3. Astra writes `init/update/draw` wrappers and the requested customization.
@@ -67,6 +67,12 @@ or incomplete packs are excluded and diagnosed without taking other generation
 offline. `HTN_CATALOG=0` disables retrieval for comparison.
 
 ## Admission
+
+New foundations must advertise and implement both 1P and 2P. The standard
+`verify-catalog.ts` workflow rejects single-mode packs and exercises independent
+player effects in 2P. Existing legacy packs remain available for playback in
+only their verified modes; generation excludes them until both modes are ready.
+See [multiplayer rules](../../docs/plans/multiplayer-first.md).
 
 `manifest.quality.status` is only descriptive. The loader requires `quality.json`
 with the current content hash and hash-bound evidence for behavior, visual review,

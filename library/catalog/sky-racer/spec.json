@@ -1,0 +1,45 @@
+{
+  "title": "SKY RACER",
+  "oneLiner": "Pilot a stunt plane through colorful courses, drift around clouds, grab gadgets, and beat rival flyers to the finish.",
+  "genre": "aerial racing",
+  "hook": "Choose flight altitude to clear hazards and shortcut rings; time boosts and items to pass rivals.",
+  "ramp": "Three courses introduce stronger winds and moving hazards, with three laps per race.",
+  "mechanics": [
+    "Auto-forward airplane racing against three AI rivals. Left/right steer; up/down select one of three altitude bands.",
+    "A uses a collected gust boost, homing balloon or cloud puff. B boosts for 0.7 seconds with a default 2.7-second cooldown.",
+    "Clouds, storm balloons, winds and course boundaries impede flight. Three spin-outs cause a three-second checkpoint rescue.",
+    "Three laps per race; three races per cup. Results advance on A after 1.2 seconds or automatically after 6 seconds. Highest total cup points wins, ties included."
+  ],
+  "artDirection": "256x224 overhead/three-quarter scrolling view with the player plane about 24x16 pixels, a bold red-and-cream fuselage, blue canopy, swept wings, and a contrasting spinning propeller. Rival planes use distinct silhouettes and colors: yellow biplane, green jet, and purple seaplane. Show readable banking-left, banking-right, boost, hit-spin, and crash poses. Track lanes use saturated blue sky, cream cloud banks, green islands, red-and-white buoy gates, and dark navy hazard shadows; keep active hazards high-contrast and backgrounds quiet. Item crates are 10x10 pixel floating boxes with clear symbols. HUD reserves the top 12 pixels for lap, place, item, and race timer.",
+  "referenceIntent": {
+    "reference": "Mario Kart",
+    "preserve": [
+      "third-person kart-racing structure adapted to an overhead arcade race",
+      "multiple racers competing across scrolling courses",
+      "drifting, item pickups, shortcuts, laps, placement and race progression",
+      "bright characterful racers and readable track hazards"
+    ],
+    "change": [
+      "replace all cars and kart visuals with planes",
+      "make flying the primary movement fantasy, with altitude used for shortcuts and obstacle avoidance",
+      "keep the game single-player against computer-controlled rival planes"
+    ]
+  },
+  "controls": {
+    "left": "Steer or bank left during flight",
+    "right": "Steer or bank right during flight",
+    "up": "Climb one flight lane; hold to remain high",
+    "down": "Descend one flight lane; hold to remain low",
+    "a": "Use the held item during active racing",
+    "b": "Trigger the short boost burst during active racing"
+  },
+  "palette": "arcade",
+  "lose": "Finish the three-race cup below the best rival cup total. Crashes rescue at a checkpoint instead of ending the game.",
+  "scoring": "10 per checkpoint; 50 per clean shortcut; placement points 15/10/6/3 per race. Preserve these defaults.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": ["readability", "pacing", "onboarding", "scoring"],
+  "players": 1
+}

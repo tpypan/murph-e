@@ -1,0 +1,52 @@
+{
+  "title": "SKY KART",
+  "oneLiner": "Race rival planes through stormy skies, grab gadgets, and dive through risky shortcut rings to win the cup.",
+  "genre": "overhead arcade airplane racing",
+  "hook": "Choose safe checkpoint lines or risky shortcut rings: shortcuts and boost timing can win a position, but clouds, wind, and collisions can cause a spin-out and a",
+  "ramp": "Three races form a cup, each with three laps. The opening course teaches steering, altitude changes, crates, and one forgiving shortcut; later courses add stronger crosswinds, tighter ring placement,আ",
+  "mechanics": [
+    "Forward flight is automatic. LEFT/RIGHT steer horizontally, while UP/DOWN move between three readable altitude bands; inputs work immediately when play begins.",
+    "Three AI rival planes race the player through overhead courses. The player completes three laps per race and three races per cup.",
+    "A collects or uses the currently held item from crates: gust boost, homing balloon, or cloud puff. B activates a 0.7-second personal boost with a 2.7-second default cooldown.",
+    "Checkpoint gates must be crossed in course order. Each crossed checkpoint awards 10 points once; missing one makes the next valid route leg readable rather than duplicating score.",
+    "Shortcut rings offer a dangerous alternate line. Cleanly crossing one awards 50 points once and advances the route, while clouds, storm balloons, wind, boundaries, and rival contact can disrupt the plane.",
+    "Three spin-outs trigger a three-second checkpoint rescue and do not immediately end the race. Rescue returns the plane to the latest checkpoint with clear smoke and invulnerability feedback.",
+    "Race placement awards 15, 10, 6, or 3 cup points. After three races, the player wins when their cup total equals or exceeds every rival; otherwise the cup ends in defeat.",
+    "Race results advance with A after 1.2 seconds or automatically after six seconds. Resetting a cup clears laps, items, spin-outs, score events, and cup points."
+  ],
+  "artDirection": "Use the skyRacer foundation's bundled overhead plane artwork and HUD. The player plane uses a distinct bright cyan-and-yellow palette, roughly 16x24 pixels, with a wide wing silhouette, blinking engine exhaust, readable banking left/right poses, boost flame, spin-out tumble, and checkpoint-rescue smoke. Rivals use clearly different accent colours and silhouettes. Courses occupy the 256x224 viewport with layered scrolling cloud bands, blue sky gradients, dark storm clouds, visible course boundaries, high-contrast checkpoint gates, shortcut rings, item crates, wind streaks, and hazards kept visually separated from the planes. Reserve the top HUD area for lap, placement, item, boost, and cup information.",
+  "referenceIntent": {
+    "reference": "Mario Kart",
+    "preserve": [
+      "single-player kart-racing structure adapted to an overhead arcade race",
+      "automatic forward movement, steering, rivals, item crates, shortcuts, boosts, collisions, checkpoints, laps, and cup progression"
+    ],
+    "change": [
+      "replace cars and kart presentation with airplanes and aerial courses",
+      "retain racing rather than turning the game into flight combat or free-flight simulation"
+    ]
+  },
+  "controls": {
+    "left": "Steer left during active flight",
+    "right": "Steer right during active flight",
+    "up": "Move up one altitude band during active flight",
+    "down": "Move down one altitude band during active flight",
+    "a": "Use the held item during active flight; advance race results after the result screen becomes eligible",
+    "b": "Activate the boost during active flight when its cooldown is ready"
+  },
+  "palette": "arcade",
+  "lose": "The cup is lost after the third race if the player's total cup points are lower than at least one rival.",
+  "scoring": "Score 10 points per ordered checkpoint, 50 for each clean shortcut ring, plus 15/10/6/3 points for race placement.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "reference-identity",
+    "pacing",
+    "scoring",
+    "readability"
+  ],
+  "players": 1,
+  "runId": "2026-09-20-073539987-i-want-to-create-a-game-like-mar-ZbTZsq"
+}

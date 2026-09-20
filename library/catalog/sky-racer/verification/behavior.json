@@ -1,0 +1,40 @@
+{
+  "checks": [
+    {
+      "name": "bounded settings and explicit single-player contract",
+      "passed": true
+    },
+    {
+      "name": "independent instances, telemetry copies and reset",
+      "passed": true
+    },
+    {
+      "name": "altitude, boost cooldown, starting item and scoring through actual controls",
+      "passed": true
+    },
+    {
+      "name": "rival speed configuration changes travel without moving the human",
+      "passed": true
+    },
+    {
+      "name": "complete three-race cups reach both victory and defeat with bounded particles",
+      "passed": true
+    }
+  ],
+  "outcomes": [
+    {
+      "label": "easy-active",
+      "terminal": "win",
+      "seconds": 119.0166666666612,
+      "score": 945,
+      "maxParticles": 56
+    },
+    {
+      "label": "hard-idle",
+      "terminal": "loss",
+      "seconds": 141.80000000000499,
+      "score": 809,
+      "maxParticles": 32
+    }
+  ]
+}

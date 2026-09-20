@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "id": "sky-racer",
+  "version": "1.0.0",
+  "title": "SKY RACER",
+  "description": "Single-player overhead airplane racing: three altitude bands, three AI rivals, item crates, shortcut rings, boosts, wind, collisions, checkpoints, three laps and a three-race cup. Includes complete plane art and HUD.",
+  "tags": [
+    "plane racing",
+    "airplane racing",
+    "aerial racing",
+    "flight racing"
+  ],
+  "match": {
+    "phrases": [
+      "plane racing",
+      "airplane racing",
+      "aerial racing",
+      "flight racing",
+      "sky karts",
+      "sky racer"
+    ],
+    "genres": [
+      "arcade aerial racing",
+      "aerial racing",
+      "arcade kart flight racing",
+      "plane racing"
+    ]
+  },
+  "supportsPlayers": [
+    1
+  ],
+  "module": "module.js",
+  "entry": "skyRacer",
+  "apiVersion": 1,
+  "license": {
+    "spdx": "LicenseRef-Project-Original",
+    "notes": "Project-generated code and procedural pixel art; no commercial game source or assets."
+  },
+  "provenance": {
+    "kind": "derived",
+    "authors": [
+      "Arcade project"
+    ],
+    "sources": [
+      "library/games/sky-karts/game.js"
+    ],
+    "createdAt": "2026-09-20"
+  },
+  "files": [
+    "demo.js",
+    "spec.json",
+    "source.json",
+    "source-game.js"
+  ]
+}

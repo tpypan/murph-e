@@ -18,8 +18,8 @@ library/gallery.html
 tsconfig.tsbuildinfo
 data/
 
-.venv-stt/
-.models/
+.venv-stt
+.models
 __pycache__/
 
 .claude/worktrees/

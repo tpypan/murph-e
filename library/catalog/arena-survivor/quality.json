@@ -1,0 +1,41 @@
+{
+  "contentHash": "ea706af6ecc3a512996e78399d579ca022489026d2dfa94a668b1749986a0883",
+  "checks": [
+    {
+      "name": "behavior",
+      "passed": true,
+      "artifact": "verification/behavior.json",
+      "artifactHash": "93322e1b6acb7285b4b749de5a2b6866c09f54759b8be8f5c4b837e30d4ba0eb"
+    },
+    {
+      "name": "visual",
+      "passed": true,
+      "artifact": "verification/visual-review.json",
+      "artifactHash": "a8db3b8136caceadb0c9b414af92a1ac57f3310742b8bf78cb69953c20a41907"
+    },
+    {
+      "name": "runtime-1p",
+      "passed": true,
+      "artifact": "verification/runtime.json",
+      "artifactHash": "8ad92658f6195c462692c08049304833ab98bb8ecebdea3ee577d7ba49cb04c9"
+    },
+    {
+      "name": "runtime-2p",
+      "passed": true,
+      "artifact": "verification/runtime.json",
+      "artifactHash": "8ad92658f6195c462692c08049304833ab98bb8ecebdea3ee577d7ba49cb04c9"
+    },
+    {
+      "name": "full-match-1p",
+      "passed": true,
+      "artifact": "verification/1p-native.json",
+      "artifactHash": "f99d05f7c3406d58b2ae4cf0bd83bc413af3649fd49c8c9c041339b6fef26ac5"
+    },
+    {
+      "name": "full-match-2p",
+      "passed": true,
+      "artifact": "verification/2p-native.json",
+      "artifactHash": "f354c70a1845d9d1c9a4a20a186d0e34b1742d1ad844d1e4938c436975f48bc4"
+    }
+  ]
+}

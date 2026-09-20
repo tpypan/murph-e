@@ -20,6 +20,34 @@ question.
   user instruction authorizing paid API tests. Mocks must prevent all network calls.
 - Never print keys or auth tokens. See the parent workspace `AGENTS.md`.
 
+## Multiplayer is required from the start
+
+- Every NEW generated game and reusable foundation must support both solo and
+  local two-player play in the same code. The cabinet's menu chooses the current
+  session; it must not restrict the file to one player count.
+- Design explicit co-op/versus rules, meaningful independent human roles, a solo
+  adaptation, camera layout, score/life ownership, elimination and end/reset rules
+  before implementation. Use player-indexed input and per-player/team state.
+- Require runtime/input evidence for both 1P and 2P. Test full match completion,
+  reset and independent/simultaneous controls for reusable foundations. A second
+  sprite or an advertised player count is not multiplayer behavior.
+- Do not select a single-mode foundation for new generation. Existing saved games
+  keep their historical capabilities until deliberately upgraded and reverified.
+  The original sky-racer is still 1P-only and is excluded from new generation.
+- See `docs/plans/multiplayer-first.md`. This rule does not authorize paid model
+  generation/testing; the billing rule above continues to apply.
+
+## Arcade catalog scope
+
+- New catalog games must be familiar, plausible arcade games: immediate joystick
+  and A/B controls, clear scoring/objectives, short finite rounds and real solo/2P.
+- Prioritize run-and-gun, scrolling beat ’em up, bubble/match puzzle, pinball,
+  ball sports and single-screen action platformers. Do not add crafting, long
+  RPG campaigns, open-world survival or card games merely to grow the database.
+- The implemented arena and Gauntlet-style shooters are short arcade matches.
+  See `docs/plans/arcade-catalog-next.md` for the current build order; it
+  supersedes the older broad genre brainstorms.
+
 ## What this is
 
 A voice-to-arcade-game cabinet for Hack the North 2026. A person speaks a
@@ -38,7 +66,7 @@ packages/probe/     headless Playwright verifier for a game.js, plus the fun
                     worth playing.
 packages/badge/     hacker badge over USB serial: hot-plug, app push, hello and
                     button events. Ships the arcade Lua app in app/.
-apps/cabinet/       Next.js kiosk page + API routes (local STT, generate).
+apps/cabinet/       Next.js kiosk page + API routes (speech, generate).
 library/            games that passed the probe: spec.json, game.js, thumb.png
 bench/              canned prompts and bench results.
 runs/               every generation attempt, gitignored.
@@ -67,9 +95,21 @@ hardware is the checklist in `docs/plans/tier-2.md`.
 
 ## Models and keys
 
+- Saved-game component collection is offline: `pnpm harness components index/find/export`.
+  The SQLite inventory and immutable source archive preserve dependencies and provenance;
+  collection does not confer catalog approval. New complete app outputs are indexed
+  asynchronously. See `docs/plans/reusable-components.md` for scope and verification.
+
+- This branch supports optional Jev + Astra generation: `HTN_JEV=1` enables
+  one TypeSafe foundation/settings selection after the Luna spec. Astra still
+  writes and repairs code. `TYPESAFE_API_KEY` stays server-side and is protected
+  by the same app-request spending guard; assistant tests must mock all network
+  calls. Use the installed TypeSafe skill for this integration. Details and
+  offline checks: `docs/plans/jev-experiment.md`.
+
 - The cabinet's customer generation uses the OpenAI API and the gitignored
   `OPENAI_API_KEY` in `.env`; assistant development/testing uses Codex subscription
-  and offline tools. Speech uses local faster-whisper tiny.en.
+  and offline tools. Speech defaults to OpenAI `gpt-4o-mini-transcribe` in this branch.
   `.env.example` is the template. Never commit or print a key.
 - Build: `gpt-6-astra`, `reasoning.effort: "medium"`, streamed, as requested.
   Override with `HTN_BUILD_MODEL` / `HTN_BUILD_EFFORT`. Current validation:
@@ -96,10 +136,12 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   and combat helpers, selected independently of exact genre names. Planner gets the
   contracts; build/repair get code and available pixel sprite data. See its README.
   `HTN_REFERENCE_CONTEXT=0` disables this layer for comparisons.
-- STT: local `faster-whisper` with `tiny.en`, English, CPU int8.
-  Run `pnpm stt:setup` once. On release, `/api/stt` sends the clip to a
-  resident Python worker over stdin; no cloud STT, token, or API key.
-  Model files and the Python venv are local and gitignored.
+- STT: OpenAI `gpt-4o-mini-transcribe` after TALK release, using the existing server-side
+  key. `HTN_STT=local` explicitly selects the previous faster-whisper
+  `tiny.en` CPU/int8 worker; `HTN_STT_MODEL` overrides the API model. No silent
+  local fallback. Both speech and generation routes use `withAppGeneration`;
+  paid assistant speech tests are prohibited without new explicit permission.
+  See `docs/plans/speech-transcription.md`. Local model files and venv stay ignored.
 - Historical model validation used a bench run. Paid API benches are prohibited
   for assistant development; use offline regressions and Codex-authored games. The old bench is
   `pnpm harness bench`; results go in `bench/results/`. Why these models:
@@ -208,7 +250,10 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   with a badge only naming the score, 2P on the two fake badges with the panel
   ignored except START, menus from either, and the laptop keyboard stand-in.
   `docs/encoder-bringup.md` is the setup-day procedure for the real encoder.
-- STT change: `pnpm stt:test <clip.wav> "<expected words>"` feeds a 24 kHz
+- STT change: harness `test/transcribe.test.ts` mocks the API completely.
+  `pnpm stt:test <clip.wav> "<expected words>"` intercepts the app's speech
+  request and feeds it to the local worker regardless of the app provider;
+  it never sends a cloud speech or game request. This local-only test feeds a 24 kHz
   WAV through Chromium's fake microphone (make one with `say -o x.aiff ...`
   and `afconvert -f WAVE -d LEI16@24000 -c 1 x.aiff x.wav`).
 

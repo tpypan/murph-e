@@ -1,0 +1,55 @@
+{
+  "title": "SKY KARTS",
+  "oneLiner": "Pilot a stunt plane through colorful courses, drift around clouds, grab gadgets, and beat rival flyers to the finish.",
+  "genre": "arcade kart flight racing",
+  "hook": "Choose a safe low flight line or climb for risky shortcut rings and stronger item crates: higher routes save time but expose the plane to turbulence, balloons,6",
+  "ramp": "Each cup has three short races with a teach-first opening, then wider turns, moving cloud banks, wind tunnels, and split-level shortcuts. Rival speed rises in bounded steps between cups; every race is",
+  "mechanics": [
+    "The player plane automatically flies forward through a vertically scrolling course; left/right steer across the screen and up/down change altitude between low, middle, and high flight lanes.",
+    "A steered plane can bank around bends, pass through gates, collect item crates, and use altitude to avoid cloud walls or enter marked shortcut rings.",
+    "A releases the currently held item: blue gust boosts forward for 1.2 seconds, a homing balloon slows the nearest rival, and a cloud puff briefly obscures rivals. Item crates award one random item and cannot be recollected until their 3-second reset.",
+    "B performs a short 0.7-second boost burst with a 2-second recovery; using it while aligned with a shortcut ring gives the best time, but poor timing can collide with terrain.",
+    "Rival planes follow waypoint lanes, switch lanes around hazards, and leave readable gaps; they are slowed by hazards and can be affected by the player's items.",
+    "Cloud banks, storm balloons, cliff walls, and missed checkpoint gates cause a spin-out with 1 second of control loss and a 0.8-second invulnerability flash. Three spin-outs in one race cause a crash and restart from the last checkpoint with a 3-second penalty.",
+    "Each race has three laps and five checkpoints; missing a checkpoint forces the plane toward the next visible gate rather than creating an unwinnable route. Finish position determines race points, and the cup winner is the highest total after three races.",
+    "The first race begins with a clear straight, one item crate, and a low-risk boost ring; later sections combine wind, hazards, and split routes, followed by a short recovery straight before the finish."
+  ],
+  "artDirection": "256x224 overhead/three-quarter scrolling view with the player plane about 24x16 pixels, a bold red-and-cream fuselage, blue canopy, swept wings, and a contrasting spinning propeller. Rival planes use distinct silhouettes and colors: yellow biplane, green jet, and purple seaplane. Show readable banking-left, banking-right, boost, hit-spin, and crash poses. Track lanes use saturated blue sky, cream cloud banks, green islands, red-and-white buoy gates, and dark navy hazard shadows; keep active hazards high-contrast and backgrounds quiet. Item crates are 10x10 pixel floating boxes with clear symbols. HUD reserves the top 12 pixels for lap, place, item, and race timer.",
+  "referenceIntent": {
+    "reference": "Mario Kart",
+    "preserve": [
+      "third-person kart-racing structure adapted to an overhead arcade race",
+      "multiple racers competing across scrolling courses",
+      "drifting, item pickups, shortcuts, laps, placement and race progression",
+      "bright characterful racers and readable track hazards"
+    ],
+    "change": [
+      "replace all cars and kart visuals with planes",
+      "make flying the primary movement fantasy, with altitude used for shortcuts and obstacle avoidance",
+      "keep the game single-player against computer-controlled rival planes"
+    ]
+  },
+  "controls": {
+    "left": "Steer or bank left during flight",
+    "right": "Steer or bank right during flight",
+    "up": "Climb one flight lane; hold to remain high",
+    "down": "Descend one flight lane; hold to remain low",
+    "a": "Use the held item during active racing",
+    "b": "Trigger the short boost burst during active racing"
+  },
+  "palette": "arcade",
+  "lose": "Crash after three spin-outs in a race, or finish the cup below the required winning score; the current race restarts after a crash.",
+  "scoring": "Award race points for placement, 10 points per checkpoint, and a 50-point bonus for completing a shortcut ring without colliding; each event scores once.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "readability",
+    "pacing",
+    "onboarding",
+    "scoring"
+  ],
+  "players": 1,
+  "runId": "2026-09-20-064212391-i-want-to-create-a-game-like-mar-Gdmc1s"
+}
