@@ -27,7 +27,7 @@ def image(name, text, cols, rows, scale, color):
 for style, scale, color in [('white16',2,(255,255,255)),('cyan8',1,(85,255,255))]:
     for group in range(3):
         image(f'font-{style}-{group}.bin', chars[group*16:(group+1)*16], 4, 4, scale, color)
-image('font-heading-0.bin','ARCADE',6,1,2,(255,255,85))
+image('font-heading-0.bin','MURPH-E',7,1,2,(255,255,85))
 
 for index, text in enumerate(['START: CONFIRM   HOME: EXIT', 'START: PAUSE   HOME: EXIT']):
     image(f'font-footer-{index}.bin', text, len(text), 1, 1, (255,255,85))

@@ -21,6 +21,12 @@ const POLL_MS = 1000
 // A port that would not open (busy, or gone between list and open) is
 // retried after this long, and the error is reported once per streak.
 const RETRY_MS = 5000
+const FD_EXHAUSTED = /Unable to allocate FD/
+// A badge answers READY before its flash is ready for the bytes; one real badge
+// wedged its console when data followed READY at once. Give it a moment after
+// READY and after each file.
+const PUT_SETTLE_MS = 250
+const settle = () => new Promise<void>((r) => setTimeout(r, PUT_SETTLE_MS))
 const APP_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'app')
 
 export interface BadgeInfo {
@@ -129,10 +135,41 @@ export class BadgeHub extends EventEmitter {
         a.sentDisplay = text
       }
     } catch (e) {
-      this.send({ type: 'error', path: a.info.path, message: `display: ${String(e)}` })
+      const message = String(e)
+      this.send({ type: 'error', path: a.info.path, message: `display: ${message}` })
+      if (FD_EXHAUSTED.test(message) && !this.display.playing) await this.recoverFileHandles(a)
     } finally {
       a.writingDisplay = false
     }
+  }
+
+  /**
+   * The firmware has no file handles left: glyphs stop drawing, the app cannot
+   * read its mailbox and `put` fails. Only exiting the app frees them, so
+   * reload the launcher and wait for the player to reopen the app. Never done
+   * while a game is on, where a dead display beats a kicked player.
+   */
+  private async recoverFileHandles(a: Attached): Promise<void> {
+    if (!a.link.isOpen) return
+    this.send({
+      type: 'error',
+      path: a.info.path,
+      message: 'display: badge is out of file handles; reloading it so the app can be reopened',
+    })
+    try {
+      a.link.clear()
+      await a.link.writeLine('reload')
+      await a.link.waitFor('reload:', 8000)
+    } catch (e) {
+      this.send({ type: 'error', path: a.info.path, message: `reload: ${String(e)}` })
+      return
+    }
+    a.sentDisplay = ''
+    const slot = a.info.slot
+    a.info.slot = null
+    a.info.identity = null
+    a.info.state = 'waiting'
+    this.send({ type: 'bye', path: a.info.path, slot })
   }
 
   /** Look for new badges now instead of at the next tick. */
@@ -220,6 +257,12 @@ export class BadgeHub extends EventEmitter {
     } catch (e) {
       a.info.state = 'error'
       this.send({ type: 'error', path, message: e instanceof Error ? e.message : String(e) })
+      // Let go of the port and try again from scratch, so a badge whose install
+      // died halfway does not need a replug to get another attempt.
+      if (this.links.get(path) === a) {
+        this.retryAt.set(path, Date.now() + RETRY_MS)
+        await a.link.close()
+      }
     }
   }
 
@@ -277,13 +320,19 @@ export class BadgeHub extends EventEmitter {
     const binary = await link.command('put --binary')
     if (!binary.includes('PUT BINARY OK'))
       throw new Error('Badge firmware does not support font image uploads')
-    for (const name of [...assets, 'main.lua', 'manifest.cfg']) {
+    const names = [...assets, 'main.lua', 'manifest.cfg']
+    // Free the old copies first: on a nearly full LittleFS an in-place overwrite
+    // can accept the `put` and then never acknowledge the data.
+    for (const name of names) await link.command(`rm ${dir}/${name}`, 3000).catch(() => {})
+    for (const name of names) {
       const bytes = await readFile(join(APP_DIR, name))
       link.clear()
       await link.writeLine(`put ${dir}/${name} ${bytes.length}`)
       await link.waitFor('READY', 5000)
+      await settle()
       await link.writeBytes(bytes)
       await link.waitFor(`OK ${bytes.length}`, 20000)
+      await settle()
     }
     // reload makes the launcher see the app. It also exits any running app,
     // which is fine here: the badge cannot be in an app it did not have.
@@ -340,6 +389,8 @@ export class BadgeHub extends EventEmitter {
         break
       }
       case 'bye': {
+        // A reload already released this badge; the app's own BYE follows it.
+        if (!a.info.identity) break
         const slot = a.info.slot
         a.info.slot = null
         a.info.identity = null

@@ -2,7 +2,7 @@
 // Mac side: pure parsing of the lines the firmware prints, nothing else.
 
 export const APP_SLUG = 'arcade'
-export const APP_VERSION = '10'
+export const APP_VERSION = '13'
 
 export const BUTTONS = ['up', 'down', 'left', 'right', 'a', 'b', 'start'] as const
 export type Button = (typeof BUTTONS)[number]
@@ -92,7 +92,7 @@ export function identityFromUitree(dump: string): Identity | null {
   if (!meta) return null
   const labels = [...dump.matchAll(/text="([^"]*)"/g)].map((x) => x[1] ?? '')
   // Labels print in creation order: title, name, status, meta.
-  const i = labels.findIndex((label) => label === 'ARCADE' || label === 'HTN ARCADE')
+  const i = labels.findIndex((label) => ['MURPH-E', 'ARCADE', 'HTN ARCADE'].includes(label))
   const name = i >= 0 ? (labels[i + 1] ?? '') : ''
   return {
     badgeId: meta[1]!,

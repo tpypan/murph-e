@@ -25,7 +25,7 @@ and 4 carry the reasoning.
 | Radio | `badge.radio.send(payload)` broadcasts 1 to 44 bytes over BLE to every badge in range with a `LUA1` prefix; `on_recv(mac, rssi, payload)` receives. No Wi-Fi, HTTP, GATT or sockets from Lua | README `badge.radio` |
 | USB | USB-C, enumerates as "USB JTAG/serial debug unit", vendor `0x303A` product `0x1001`, macOS device `/dev/cu.usbmodem*`. The USB serial number is the badge's MAC (`E8:F6:0A:...`), a stable per-badge key visible before any app runs. 115200 baud console with a `badge> ` prompt. `badge.sys.log("...")` writes one line to that serial port | verified 2026-09-19 |
 | Identity | `badge.me.badge_id()` is a word slug like `quiet-phoenix-noble-bold`; `badge.me.name()`, `badge.me.role_name()`, `badge.me.color()` (three ints). No email or socials | verified 2026-09-19 |
-| Apps | Lua, sandboxed, one `main.lua` plus `manifest.cfg`, 48 KiB heap, 64 KiB source. Installed by USB push from the IDE or badge-to-badge over Bluetooth with the built-in Share app | README |
+| Apps | Lua, sandboxed, one `main.lua` plus `manifest.cfg`, 48 KiB Lua heap by default (`heap_kb=96` is the only larger setting; no `collectgarbage`), 64 KiB source. Installed by USB push from the IDE or badge-to-badge over Bluetooth with the built-in Share app | README |
 | Power | 2x AA. Manual says switch the battery OFF before plugging into USB; the badge then runs on USB power | manual |
 | Rules | software interaction is explicitly allowed; hardware modification and unsupported accessories are not. Custom firmware would wipe the event firmware the badge needs as their ID, so it is out | rules page |
 
@@ -327,8 +327,14 @@ select / back; during play the cabinet sends that game's directional and A/B act
 The earlier statement that nothing can be sent back needs qualification: Lua has
 no serial-input callback, but the firmware console can write app files while Lua
 runs. The hub writes a small, versioned `display.txt` mailbox only when contents
-change; Lua reads it at most once a second. Incomplete writes are ignored until
-the END marker arrives. Uploads are paced and serialized after onboarding, with
+change; Lua reads it every two seconds. Incomplete writes are ignored until
+the END marker arrives. A badge that answers a mailbox `put` with
+`esp_littlefs: Unable to allocate FD` has run out of file handles (seen on a real
+badge after about half an hour in the app: glyphs stop drawing, the mailbox stops
+updating, writes time out). Only exiting the app frees them, so the hub reloads
+the badge when that happens on the menu and reports it while a game is on. The
+app only re-points a glyph image when its character changes, since each
+`set_src` opens the atlas file. Uploads are paced and serialized after onboarding, with
 latest-state coalescing, and do not call reload. This is low-frequency UI state,
 not a frame-streaming transport. In 1P mode attached controllers display PLAYER 1;
 in 2P mode they display their hub slot plus one.
@@ -359,6 +365,30 @@ Version 10 replaces the stroke approximation with the cabinet's actual Press Sta
 Nine RGB565 files store the font atlases, heading and two footer states. Existing
 glyph widgets are reused across page/label changes. The app stays within the
 standard 48 KiB Lua budget and the 48 KiB / 16-file share-bundle limits.
+
+### Native control rows — 2026-09-20
+
+Versions 11 and 12 raised the Lua heap to 96 KiB, removed per-tick allocations,
+re-pointed glyph images only when a character changed and slowed paging, and two
+real badges still went blank: `esp_littlefs: Unable to allocate FD` after about
+sixty control-page repaints in both versions (4 s and 6 s per page), and
+reopening the app did not recover them. Each `set_src` on a file-backed image
+costs the firmware a handle it never returns; only `reload` clears it. Version 13
+therefore draws the control rows and their page counter with native labels
+(14 px font, five rows per page, rows wrapped at 28 characters by the hub) and
+keeps the pixel font only for the wordmark, player tag and name, which are
+painted once. The hub reloads a badge that reports the handle error while the
+cabinet is on the menu and only reports it during a game. Verified 2026-09-20
+on two real badges: 31 mailbox writes over 30 minutes alternating the two
+longest control sets, no handle errors, both badges still in the app; versions
+11 and 12 failed the same soak inside four minutes.
+
+Installs need a good cable: over one cable every push stalled on the second file
+(READY, then no OK) and wedged the badge console, on two different badges, while
+the same badges installed in 16 s over the other cable. The hub now deletes the
+old files first, pauses after READY and after each file, and on any onboarding
+failure releases the port and retries every five seconds instead of waiting for
+a replug.
 
 The earlier renderer exhausted memory on startup and repeated updates. Simply
 raising the Lua ceiling did not fix physical RAM pressure. Reusing UI objects and

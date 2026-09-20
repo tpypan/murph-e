@@ -12,7 +12,19 @@ scripts/kiosk.sh                # builds, starts next on :3000, launches Chrome 
 
 `scripts/kiosk.sh --dev` runs `next dev` in a normal window instead. Logs
 land in `~/htn-arcade-logs/`. The script keeps the Mac awake with
-`caffeinate`; also turn off the screensaver and sleep in System Settings.
+`caffeinate`; also turn off the screensaver and sleep in System Settings,
+or from a terminal:
+
+```
+defaults -currentHost write com.apple.screensaver idleTime -int 0
+sudo pmset -a sleep 0 displaysleep 0
+```
+
+The cabinet Mac mini is an Intel one (i3, 8 GB, macOS 15). `.mise.toml`
+takes pnpm from the npm registry (`"npm:pnpm"`) because mise's default
+pnpm backend has no darwin/amd64 build. Node, serialport's native binding,
+esbuild and Playwright's Chromium all have Intel builds and installed
+cleanly there on 2026-09-19.
 
 Quit the kiosk with Cmd+Q on a keyboard, or `pkill -f "Google Chrome"`.
 

@@ -111,10 +111,12 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   `OPENAI_API_KEY` in `.env`; assistant development/testing uses Codex subscription
   and offline tools. Speech defaults to OpenAI `gpt-4o-mini-transcribe` in this branch.
   `.env.example` is the template. Never commit or print a key.
-- Build: `gpt-6-astra`, `reasoning.effort: "medium"`, streamed, as requested.
+- Build: `gpt-6-astra`, `reasoning.effort: "low"`, streamed. Medium was tried
+  on 2026-09-19 and took 279 s against 88 s at low for the same prompt (the
+  2026-09-20 dog race runs in `runs/`), so low is the default again.
   Override with `HTN_BUILD_MODEL` / `HTN_BUILD_EFFORT`. Current validation:
   `docs/bench-2026-09-19-astra-medium.md`; earlier context and Sol results are historical.
-- Repair: `gpt-6-astra`, `reasoning.effort: "medium"`.
+- Repair: `gpt-6-astra`, `reasoning.effort: "low"`.
 - Remix: `gpt-6-astra`, `reasoning.effort: "low"`, search/replace blocks
   against the game on screen, so a few hundred output tokens instead of a
   whole game. Override with `HTN_REMIX_MODEL` / `HTN_REMIX_EFFORT`. The

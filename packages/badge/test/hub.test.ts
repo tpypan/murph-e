@@ -77,7 +77,7 @@ test('hub against fake badges: install, hello, buttons, bye, unplug', async () =
       installedVersion: null,
     })
     await next('installing', (e) => e.path === b.path)
-    const installed = await next('installed', (e) => e.path === b.path, 10000)
+    const installed = await next('installed', (e) => e.path === b.path, 20000)
     if (installed.type !== 'installed') return
     assert.equal(b.installedVersion, APP_VERSION)
     const lua = readFileSync(join(APP_DIR, 'main.lua'))
@@ -214,6 +214,89 @@ test('display mailbox follows actual slots, mode and latest controls without rel
     b.tap('a')
     await next('button', (e) => e.type === 'button' && e.path === b.path && e.down)
     assert.ok(!a.wedged && !b.wedged)
+  } finally {
+    await hub.stop()
+  }
+})
+
+test('a badge out of file handles is reloaded on the menu, never mid-game', async () => {
+  const fake = new FakeTransport()
+  const hub = new BadgeHub({ transports: [fake], pollMs: 20 })
+  const events: HubEvent[] = []
+  hub.on('event', (e: HubEvent) => events.push(e))
+  const next = waiter(events)
+  hub.setDisplay({ players: 2, playing: true, controls: { a: 'Serve' } })
+  hub.start()
+  try {
+    const badge = fake.plug({
+      badgeId: 'one',
+      name: 'One',
+      color: [1, 2, 3],
+      installedVersion: APP_VERSION,
+      inApp: true,
+      autoOpenMs: 50,
+    })
+    await next('hello', (e) => e.path === badge.path)
+    const text = () =>
+      new TextDecoder().decode(
+        badge.files.get('/littlefs/apps/arcade/display.txt') ?? new Uint8Array(),
+      )
+    for (let i = 0; i < 100 && !text().includes('A: SERVE'); i++) await sleep(20)
+    assert.ok(text().includes('A: SERVE'), text())
+
+    // Mid-game: the write fails, the hub reports it, the player is not kicked.
+    badge.fdExhausted = true
+    hub.setDisplay({ players: 2, playing: true, controls: { a: 'Smash' } })
+    await next('error', (e) => e.type === 'error' && /Unable to allocate FD/.test(e.message))
+    await sleep(100)
+    assert.ok(badge.inApp, 'a game in progress must not be interrupted')
+    assert.equal(hub.badges()[0]?.state, 'ready')
+    const byesBefore = events.filter((e) => e.type === 'bye').length
+
+    // Back on the menu: reload frees the handles; the reopened app syncs again.
+    hub.setDisplay({ players: 2, playing: false, controls: {} })
+    await next('error', (e) => e.type === 'error' && /reloading/.test(e.message))
+    await next('bye', () => events.filter((e) => e.type === 'bye').length > byesBefore)
+    assert.equal(hub.badges()[0]?.state, 'waiting')
+    await next(
+      'hello',
+      (e) => e.type === 'hello' && e.path === badge.path && events.indexOf(e) > events.length - 5,
+    )
+    assert.ok(!badge.fdExhausted)
+    for (let i = 0; i < 100 && !text().includes('D-PAD: CHOOSE'); i++) await sleep(20)
+    assert.ok(text().includes('D-PAD: CHOOSE'), text())
+  } finally {
+    await hub.stop()
+  }
+})
+
+test('a failed install releases the port and is retried without a replug', async () => {
+  const fake = new FakeTransport()
+  const hub = new BadgeHub({ transports: [fake], pollMs: 20 })
+  const events: HubEvent[] = []
+  hub.on('event', (e: HubEvent) => events.push(e))
+  const next = waiter(events)
+  hub.start()
+  try {
+    const badge = fake.plug({
+      badgeId: 'one',
+      name: 'One',
+      color: [1, 2, 3],
+      installedVersion: null,
+      autoOpenMs: 50,
+    })
+    badge.failPuts = 1
+    await next('installing', (e) => e.path === badge.path)
+    await next(
+      'error',
+      (e) => e.type === 'error' && e.path === badge.path && /READY/.test(e.message),
+    )
+    await next('detached', (e) => e.path === badge.path)
+    const attached = events.filter((e) => e.type === 'attached').length
+    await next('attached', () => events.filter((e) => e.type === 'attached').length > attached)
+    await next('installed', (e) => e.path === badge.path)
+    await next('hello', (e) => e.path === badge.path)
+    assert.equal(badge.installedVersion, APP_VERSION)
   } finally {
     await hub.stop()
   }

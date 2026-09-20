@@ -1,4 +1,8 @@
-/** Small, non-executable mailbox read by the badge once a second. */
+/** Small, non-executable mailbox read by the badge every two seconds. */
+
+/** Characters per control row: the badge draws rows in its 14 px native font
+ *  across 288 px, five rows to a page. */
+const ROW_CHARS = 28
 export interface BadgeDisplay {
   players: 1 | 2
   controls: Record<string, string | null>
@@ -27,9 +31,9 @@ export function displayText(display: BadgeDisplay, slot: number): string {
               const text = `${key.toUpperCase()}: ${clean(value!).slice(0, 160)}`
               const lines: string[] = []
               let rest = text
-              while (rest.length > 18) {
-                const space = rest.lastIndexOf(' ', 18)
-                const end = space > 0 ? space : 18
+              while (rest.length > ROW_CHARS) {
+                const space = rest.lastIndexOf(' ', ROW_CHARS)
+                const end = space > 0 ? space : ROW_CHARS
                 lines.push(rest.slice(0, end))
                 rest = rest.slice(end).trimStart()
               }
@@ -41,7 +45,7 @@ export function displayText(display: BadgeDisplay, slot: number): string {
     'ARCADE-DISPLAY-1',
     `PLAYER ${display.players === 1 ? 1 : slot + 1}`,
     display.playing ? 'START: PAUSE' : 'START: CONFIRM',
-    ...(rows.length ? rows : ['SEE ARCADE FOR', 'GAME CONTROLS']),
+    ...(rows.length ? rows : ['SEE MURPH-E FOR', 'GAME CONTROLS']),
     'END',
     '',
   ].join('\n')

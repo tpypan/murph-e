@@ -1,3 +1,5 @@
 [tools]
 node = "24"
-pnpm = "11"
+# pnpm via the npm registry: the aqua backend has no darwin/amd64 build,
+# and the cabinet server is an Intel Mac mini.
+"npm:pnpm" = "11"

@@ -1,4 +1,4 @@
-import { BadgeHub, FakeTransport, SerialTransport } from '@htn/badge'
+import { BadgeHub, FakeTransport, type HubEvent, SerialTransport } from '@htn/badge'
 
 // One hub per server process, watching the real serial ports and the fake
 // badges that /api/badges/fake plugs in. globalThis survives Next's
@@ -15,6 +15,11 @@ export function getHub(): BadgeHub {
     const transports =
       process.env.HTN_BADGES === 'off' ? [getFake()] : [new SerialTransport(), getFake()]
     g.__badgeHub = new BadgeHub({ transports, pollMs: 500 })
+    // The page drops hub errors, so a badge that stops taking mailbox writes
+    // must at least show up in the server log.
+    g.__badgeHub.on('event', (ev: HubEvent) => {
+      if (ev.type === 'error') console.error(`[badge] ${ev.path}: ${ev.message}`)
+    })
     g.__badgeHub.start()
   }
   return g.__badgeHub

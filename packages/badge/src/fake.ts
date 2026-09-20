@@ -44,6 +44,11 @@ export class FakeBadge {
   readonly files = new Map<string, Uint8Array>()
   inApp: boolean
   wedged = false
+  /** The firmware has run out of LittleFS file handles: every open fails until
+   *  the app exits. Seen on a real badge after half an hour in the arcade app. */
+  fdExhausted = false
+  /** Refuse this many file writes outright, like a badge whose flash will not take a put. */
+  failPuts = 0
   /** The largest single write seen during a put; the real ring is 256 bytes. */
   maxWrite = 0
   private autoOpenMs: number | null
@@ -216,6 +221,15 @@ export class FakeBadge {
           this.out(`E: usage put <path> <bytes>\r\n${PROMPT}`)
           return
         }
+        if (this.fdExhausted) {
+          this.out(`E (${Date.now() - this.t0}) esp_littlefs: Unable to allocate FD\r\n${PROMPT}`)
+          return
+        }
+        if (this.failPuts > 0) {
+          this.failPuts--
+          this.out(`E (${Date.now() - this.t0}) esp_littlefs: write failed\r\n${PROMPT}`)
+          return
+        }
         this.put = { path: args[0], remaining: n, chunks: [], bytes: [] }
         this.out('READY\r\n')
         return
@@ -226,6 +240,7 @@ export class FakeBadge {
         return
       case 'reload':
         if (this.inApp) this.exit()
+        this.fdExhausted = false
         this.out(`reload: ${this.apps().length} apps\r\n${PROMPT}`)
         if (this.autoOpenMs !== null && this.installedVersion !== null) {
           setTimeout(() => {

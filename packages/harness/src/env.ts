@@ -12,11 +12,11 @@ dotenv.config({ path: resolve(ROOT, '.env'), quiet: true })
 
 export const MODELS = {
   build: process.env.HTN_BUILD_MODEL ?? 'gpt-6-astra',
-  buildEffort: process.env.HTN_BUILD_EFFORT ?? 'medium',
+  buildEffort: process.env.HTN_BUILD_EFFORT ?? 'low',
   spec: process.env.HTN_SPEC_MODEL ?? 'gpt-5.6-luna',
   specEffort: process.env.HTN_SPEC_EFFORT ?? 'none',
   repair: process.env.HTN_REPAIR_MODEL ?? 'gpt-6-astra',
-  repairEffort: process.env.HTN_REPAIR_EFFORT ?? 'medium',
+  repairEffort: process.env.HTN_REPAIR_EFFORT ?? 'low',
   // Astra needs at least low effort; remix still emits small search/replace blocks.
   remix: process.env.HTN_REMIX_MODEL ?? 'gpt-6-astra',
   remixEffort: process.env.HTN_REMIX_EFFORT ?? 'low',
