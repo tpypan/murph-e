@@ -4,10 +4,13 @@
 
 Hack the North 2026. The team is building a physical arcade cabinet around a
 Mac mini: a monitor, a microphone, a joystick and four buttons on a USB
-encoder that shows up as a keyboard. Someone walks up, chooses one or two players,
-holds the mic button, describes a game, and a pipeline writes it while they watch. They can also browse
-a muted gameplay carousel and choose an existing local game. They play it on
-the stick. The next person in line does the same.
+encoder that shows up as a keyboard. Someone walks up, holds the mic button,
+describes a game, and a pipeline writes it twice while they watch: a
+one-player version for the cabinet controls and a two-player version for two
+plugged-in badges. Nobody is asked how many players; the cabinet shows the
+version that fits the badges plugged in, and up/down switches. They can also
+browse a muted gameplay carousel and choose an existing local game. The next
+person in line does the same.
 
 Every hacker at the event carries a Hacker Badge: an ESP32-C3 device with a
 screen, eight buttons, LEDs, a USB-C port and a Lua app sandbox. The badges
@@ -34,6 +37,16 @@ code, the engine, or the judge.
 
 ## What we are building instead
 
+This experiment branch optionally inserts Jev foundation/settings selection
+between the Luna spec and Astra code generation. Set `HTN_JEV=1` with a
+server-side `TYPESAFE_API_KEY`; see [setup and limits](plans/jev-experiment.md).
+The default without that switch remains the original pipeline. New game code
+and repair still come from Astra.
+
+Speech in this branch now defaults to OpenAI `gpt-4o-mini-transcribe`, replacing the
+local `tiny.en` model for recognition accuracy. The clip is uploaded only after
+TALK release, with the microphone stopped. See [speech setup](plans/speech-transcription.md).
+
 - **An 8-bit runtime we own.** 256x224, a default 16-colour palette plus optional per-sprite palettes, a PICO-8-style API
   of about twenty functions. It runs in a sandboxed iframe in a kiosk Chromium
   on the Mac. The runtime owns the frame loop, input, sound synthesis, HUD,
@@ -42,6 +55,10 @@ code, the engine, or the judge.
   candidates racing through a headless probe, one repair round if needed,
   then an explicit library fallback. Current timings are in
   `bench-2026-09-19-astra-medium.md`.
+- **Multiplayer from the start.** Every new game file supports solo and local
+  two-player play. Planning specifies both modes; generation/repair must pass both
+  runtime/input checks before acceptance. Existing saved games retain their
+  historical capabilities. See `plans/multiplayer-first.md`.
 - **Open genre and visual planning.** Genre is descriptive rather than a fixed
   template menu. Specs preserve detailed mechanics and include art direction;
   builders have no line-count target or tiny-sprite requirement. Matching examples
@@ -58,7 +75,7 @@ code, the engine, or the judge.
   The display keeps the CRT safe area and waits for START after verification;
   a separate muted draft preview shows streamed sprite rows and procedural scenes
   in a disposable worker. It never advances the playable game.
-- **Push-to-talk microphone.** Player count is an explicit first-screen choice.
+- **Push-to-talk microphone.** Player count is never asked: both versions are built.
   Microphone access is requested only on TALK-down after that choice opens the
   listening screen; in-game voice changes are
   disabled and the cabinet endpoint ignores previous-game context.
@@ -97,11 +114,11 @@ Tier 3 is wireless badges and take-home games.
 | Provider | OpenAI | Tony's call | |
 | Build and repair model | `gpt-6-astra`, effort medium (CLI remix remains low) | requested medium upgrade; longer latency budget | `bench-2026-09-19-astra-medium.md` |
 | Spec model | `gpt-5.6-luna`, effort none | 0.6 s to first token | same |
-| STT | local `faster-whisper`, `tiny.en`, CPU int8 | audio-reactive meter while held, English transcript after release; no speech API key | `harness-plan.md` §4 |
+| STT | OpenAI `gpt-4o-mini-transcribe`; optional local `tiny.en` | recorded clip after release, existing server-side OpenAI key | `plans/speech-transcription.md` |
 | Display | 256x224, default 16 colours plus per-sprite palettes, aspect-preserving pixel scaling | every game looks like it belongs to the same cabinet | |
 | Identity | USB-C serial hello from the arcade app, both modes | one gesture for identity and controls; badge NFC is a reader, not a tag; QR dropped 2026-09-19 | `badge-integration.md` §3 |
 | Multiplayer transport | USB-C serial | the only low-latency channel the badge exposes | `badge-integration.md` §2 |
-| Player count | chosen on the attract screen, 1P or 2P, before speaking | an explicit choice beats inferring it from speech; 2P means both players on badges | `badge-integration.md` §4 |
+| Player count | never asked: every request builds a 1P version (cabinet controls) and a 2P version (badges) in parallel; the badges plugged in pick which one opens | no question before speaking, and both devices always have a game; costs about double the model spend per request | `badge-integration.md` §4, `AGENTS.md` models |
 | Remix | search/replace blocks against the game on screen, one call | a few hundred output tokens instead of a whole game, so a change lands in seconds | `plans/tier-2.md` M4 |
 | Leaderboard | one JSON file keyed by badge id, guests kept | nothing to deploy, survives restarts, the badge id is the only identity we have | `plans/tier-2.md` M2 |
 | Badge dev loop | an in-process fake badge that speaks the console protocol | the whole 2P flow runs on a laptop; the hardware checklist is what is left | `plans/tier-2.md` M0 |

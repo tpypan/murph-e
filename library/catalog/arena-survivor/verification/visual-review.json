@@ -1,0 +1,57 @@
+{
+  "contentHash": "ea706af6ecc3a512996e78399d579ca022489026d2dfa94a668b1749986a0883",
+  "passed": true,
+  "reviewedAt": "2026-09-20T08:50:17.559Z",
+  "screenshots": [
+    {
+      "file": "1p-start.png",
+      "sha256": "148fa8df052db9af6caf9a37569cd36ea8040410ed19408d83b13e3587cd71c4"
+    },
+    {
+      "file": "1p-combat.png",
+      "sha256": "65f33ccc164108a5940f0c43132a95ea538fad2c40044b4eef2a3ff83284bbca"
+    },
+    {
+      "file": "1p-boss.png",
+      "sha256": "1437f00362ff6396be28538bc10c405d4ea83b4b193034fbc3c280ae81a519ab"
+    },
+    {
+      "file": "1p-victory.png",
+      "sha256": "aba3bf7a1bc824e2301ac94d34a4de47f52957c4f56a6dcda3348f859d3fc615"
+    },
+    {
+      "file": "2p-start.png",
+      "sha256": "191fd06052c9531c592698827dcf72dbaa0b4d318eef06244696bdf2b7cf140c"
+    },
+    {
+      "file": "2p-combat.png",
+      "sha256": "03d0a654f3576fe01e0c85208d6934d5d2c7624b6118dc90d7c56fa7cb695e6b"
+    },
+    {
+      "file": "2p-boss.png",
+      "sha256": "106a9c1ac28c41d1578c8972fe955727d7ad3af7aed545f837d96560eee68524"
+    },
+    {
+      "file": "2p-victory.png",
+      "sha256": "51f8d3a7c22cab5720cc0bc1d3766fae31d7aa3331f4ec8a44dacbf02052eeac"
+    },
+    {
+      "file": "1p-upgrade.png",
+      "sha256": "ed1eb5d65d0e28242d29cdfb18ca2abcdd196a7b0a138ef672b94fa14503c546"
+    },
+    {
+      "file": "2p-upgrade.png",
+      "sha256": "efced47fd5893c9a8f58b4cd820b2c367e4d10f43b6bc397793a5a9f47c98088"
+    }
+  ],
+  "observations": [
+    "Reviewed native solo and co-op gameplay, powerup/door progression, guardian and terminal overlays.",
+    "Cyan P1 and orange P2 have separate labels, HP and dash bars; gentle separation prevents complete silhouette overlap. Player bolts have distinct colors.",
+    "Spawn warnings, hostile shots, original wizard/monster/key sprites and bottom objective text are readable at native resolution.",
+    "Both player-count replays reach the real YOU WIN overlay with independently owned scores; runtime reset starts a fresh match."
+  ],
+  "limitations": [
+    "No physical cabinet or human enjoyment/balance study.",
+    "The two additions share a top-down shooter kit; they do not provide scrolling, melee or an RPG engine."
+  ]
+}

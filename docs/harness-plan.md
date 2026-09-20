@@ -163,6 +163,13 @@ narrative or branching, any judge that produces a score.
 
 ## 4. Pipeline
 
+Since 2026-09-20 the cabinet runs this pipeline twice per request, in
+parallel and independently: once with `players: 1` (the game for the cabinet
+controls) and once with `players: 2` (the game for the two badges). Nobody is
+asked which; the cabinet opens on the version the plugged-in badges call for
+and shows the other when it lands. `pipelineBoth` in `packages/harness` is
+the wrapper; everything below describes one of the two.
+
 ```
  mic ──► STT ──► spec (luna) ──► build (streamed) ──► probe ──► cabinet plays
                      │                 │                 │

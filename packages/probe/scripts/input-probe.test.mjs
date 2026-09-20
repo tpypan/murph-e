@@ -108,3 +108,51 @@ test('a crash only when combining action and steering remains a hard failure', a
   assert.equal(r.ok, false)
   assert.equal(r.checks.survivesInput, false)
 })
+
+const twoActors = `
+let positions
+function init(api) { positions = Array.from({length:api.players}, (_,i)=>50+i*100) }
+function update(api) {
+  for (let player=0;player<positions.length;player++) {
+    if(api.btn('left',player)) positions[player]-=1
+    if(api.btn('right',player)) positions[player]+=1
+    if(api.btnp('a',player)) positions[player]+=12
+  }
+}
+function draw(api) {
+  api.cls(1)
+  api.rectfill(0,190,256,34,3)
+  positions.forEach((x,i)=>api.rectfill(x,100,12,12,i===0?8:10))
+  api.rectfill(api.frame%200,50,10,10,7)
+}`
+
+test('action-only multiplayer cannot pass when player two is ignored', async () => {
+  const broken = twoActors.replaceAll("api.btnp('a',player)", "player===0 && api.btnp('a',0)")
+  const result = await probe(broken, { players: 2, controls: ['a'], thumb: false })
+  assert.equal(result.ok, false)
+  assert.equal(result.checks.respondsToP2, false)
+})
+
+test('dual-mode checks accept independently controlled actors and action-only games', async () => {
+  for (const controls of [['left', 'right', 'a'], ['a']]) {
+    const result = await probe(twoActors, {
+      players: 2,
+      controls,
+      thumb: false,
+      requireIndependentPlayers: true,
+    })
+    assert.equal(result.ok, true, result.observations.join('; '))
+    assert.equal(result.checks.independentPlayerEffects, true)
+  }
+})
+
+test('a mirrored shared controller fails the independent-player check', async () => {
+  const mirrored = twoActors
+    .replaceAll("api.btn('left',player)", "(api.btn('left',0)||api.btn('left',1))")
+    .replaceAll("api.btn('right',player)", "(api.btn('right',0)||api.btn('right',1))")
+    .replaceAll("api.btnp('a',player)", "(api.btnp('a',0)||api.btnp('a',1))")
+  const result = await probe(mirrored, { ...options, players: 2, requireIndependentPlayers: true })
+  assert.equal(result.ok, false)
+  assert.equal(result.checks.respondsToP2, true)
+  assert.equal(result.checks.independentPlayerEffects, false)
+})

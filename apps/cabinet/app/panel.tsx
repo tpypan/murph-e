@@ -22,13 +22,13 @@ const STICK: Array<{ input: PanelInput; glyph: string; slot: string }> = [
   { input: 'right', glyph: '▶', slot: 'right' },
   { input: 'down', glyph: '▼', slot: 'down' },
 ]
-// SNES geometry as the placeholder: X top, Y left, A right, B bottom. Fix on
-// setup day if the real diamond differs.
+// The real diamond, checked against the cabinet on 2026-09-20: Y top, X left,
+// B right, A bottom.
 const DIAMOND: Array<{ input: PanelInput; slot: string }> = [
-  { input: 'x', slot: 'up' },
-  { input: 'y', slot: 'left' },
-  { input: 'a', slot: 'right' },
-  { input: 'b', slot: 'down' },
+  { input: 'y', slot: 'up' },
+  { input: 'x', slot: 'left' },
+  { input: 'b', slot: 'right' },
+  { input: 'a', slot: 'down' },
 ]
 
 function fire(type: 'keydown' | 'keyup', code: string): void {

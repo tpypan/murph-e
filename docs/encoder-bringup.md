@@ -1,9 +1,9 @@
 # Encoder bring-up: making the real cabinet controls work
 
-Written 2026-09-20, before the board was on the desk. This is the procedure
-for the session that has the real encoder plugged in: what to look at, what
-to change, and what to run before calling the cabinet controls done. Every
-step here is offline; nothing needs a model call (`AGENTS.md`, billing rule).
+Written 2026-09-20 before the board was on the desk; **done the same day,
+see "What the board turned out to be" at the end.** The procedure below is
+kept for the next board or the next re-wire. Every step here is offline;
+nothing needs a model call.
 
 ## What already exists
 
@@ -36,8 +36,8 @@ Plug the encoder into the Mac with the stick and all four buttons wired.
    `gamepadconnected`. If it is a gamepad, see "If the board is a gamepad"
    below before anything else; the rest of this doc still applies afterwards.
 3. Record which physical button is which letter on the panel, and where the
-   four sit in the diamond. The overlay assumes X top, Y left, A right,
-   B bottom (`DIAMOND` in `panel.tsx`); fix it if the panel differs.
+   four sit in the diamond. The overlay draws Y top, X left, B right, A bottom
+   (`DIAMOND` in `panel.tsx`); fix it if a new panel differs.
 4. Check for collisions. The eight codes must be distinct and must not be
    any of: `ArrowUp/Down/Left/Right KeyZ KeyX Enter Space KeyV` (dev keys),
    `KeyI KeyJ KeyK KeyL KeyN KeyM` (player-two dev keys), or the dev hooks
@@ -141,3 +141,52 @@ and add a unit test for the gamepad mapping function instead.
 - Every row of the step 4 table was done on the cabinet by a person.
 - The docs no longer say "placeholder" and H8 is marked done with the codes.
 - One commit: `feat(cabinet): map the real encoder` (no AI attribution).
+
+## What the board turned out to be (2026-09-20)
+
+Not a keyboard. The panel enumerates as **"ESP32-S3 Arcade Controller"**,
+Espressif vendor `0x303a`, product `0x1001`, a USB HID **game pad** (usage
+page 1, usage 5). `packages/runtime/keys.html` prints nothing for it, and
+Chrome only reports it to a page that is focused and has seen a press, so
+the mapping was read with a raw HID capture instead (no window focus
+needed), `uv run --with hidapi python` and this loop:
+
+```python
+import hid
+d = hid.device(); d.open(0x303a, 0x1001); d.set_nonblocking(True); prev = None
+while True:
+    r = d.read(64)
+    if r and bytes(r) != prev:
+        prev = b = bytes(r)
+        axes = [((v + 128) % 256) - 128 for v in b[1:7]]
+        buttons = [i for i in range(32) if int.from_bytes(b[8:12], 'little') >> i & 1]
+        print(b[0], axes, b[7], buttons)
+```
+
+Report descriptor: report id 3, six 8-bit signed axes (X Y Z Rz Rx Ry), an
+eight-way hat switch, 32 buttons. What actually moves:
+
+| control | report | Gamepad API |
+|---|---|---|
+| stick left / right | X axis -127 / +127 | `axes[0]` -1 / +1 |
+| stick **up** / down | Y axis **+126** / -127 (up is positive) | `axes[1]` +1 / -1, so the map has `yUp: 1` |
+| A, B, X, Y | HID buttons 1, 2, 3, 4 | `buttons[0..3]` |
+| hat switch, Z Rz Rx Ry | never change | ignored |
+
+So the code path is the gamepad one from the section above, built in
+`apps/cabinet/app/input.ts`: `GAMEPAD` holds the map, `gamepadInputs` decodes a
+pad state into panel inputs (dead zone 0.5), and `attachGamepad` polls the pad
+every frame and replays each change as the encoder key code of that panel
+input, so `attachKeyboard`, the F3 overlay, the routing and every test see
+one path. `ENCODER_KEYS` keeps its numpad values: they are now the codes the
+gamepad source emits, not codes a keyboard sends, and the tests press them.
+
+Checked on the cabinet the same day: every direction and button drives the
+page; the only correction was the overlay's diamond, which is Y top, X left,
+B right, A bottom (`DIAMOND` in `apps/cabinet/app/panel.tsx`).
+
+Verified offline by `packages/probe/scripts/gamepad.test.mjs` (the decoder)
+and `gamepad-ui-test.mjs` (a fake pad of this shape drives the overlay, the
+menus, a game and START through the real page). The step 4 table above is
+the check to do on the cabinet with the real board; `packages/runtime/pad.html`
+(served with `pnpm serve`, page focused) shows Chrome's live view of it.

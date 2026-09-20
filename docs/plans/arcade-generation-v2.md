@@ -185,7 +185,7 @@ The unsupported-plan result and output format need a schema/parser before enabli
 
 Suggested new code locations are `packages/harness/src/contracts/`, `references.ts`, `assets.ts`, `compile.ts`, a pure helper catalogue, and versioned `library/assets/` manifests. These are proposals, not existing files. Keep JSON/file caches local initially; there is no demonstrated need for a vector database or extra service.
 
-Do not change the default model or remove the two-builder race without a benchmark. Compare one builder, the current two builders, and a delayed second attempt launched only when the first is unusually slow. First-pass racing helps latency only if the passing gate represents the game we actually want.
+The user clarified on 2026-09-20 that multiplayer means one game supporting both player counts. The cabinet now uses one build per prompt, with no default race or separate player-count builds. Any future paid comparison of racing strategies needs new explicit authorization; preserve the single-build default.
 
 Initial performance hypotheses: matching cached cartridge ready in under one second after lookup; new game with cached references/art around 10–20 seconds of generation and validation; uncached reference/asset work measured separately, with no promise that arbitrary new character art fits that budget. The 10–20-second target is unproven and depends on reducing output and retries. Report warm/cold p50 and p95, tokens/cost, repair rate, reference misses, fidelity, and correctness together. Keep the existing pipeline behind a feature flag until the new path improves quality without unacceptable latency.
 

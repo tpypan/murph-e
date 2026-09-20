@@ -22,13 +22,15 @@ physical-control requirements take precedence over its desktop typing examples.
 
 ## Physical input
 
-All keyboard, encoder and badge input passes through the same shell handler.
+All keyboard, panel and badge input passes through the same shell handler.
 The panel is a joystick and four buttons, A B X Y in a diamond. X is START and
 Y is TALK (`PANEL_ROLES` in `apps/cabinet/app/input.ts`; sticker the buttons to
-match). The encoder keycodes are numpad placeholders (8 2 4 6, then 1 3 7 9 for
-A B X Y) until the actual hardware is read on setup day; F3 shows a simulated
-panel whose buttons send those codes, lights on every player-one press and
-names the last code it received. It sits in the gutter beside the game.
+match). The board is a USB HID gamepad ("ESP32-S3 Arcade Controller"), read
+through the Gamepad API by `attachGamepad` and replayed as the numpad codes
+(8 2 4 6 for the stick, 1 3 7 9 for A B X Y), which are also what the keyboard
+and the tests press; F3 shows a simulated panel whose buttons send those codes,
+lights on every player-one press and names the last code it received. It sits
+in the gutter beside the game.
 `docs/encoder-bringup.md` is the procedure for mapping the real board.
 
 Who plays is fixed by the player count, never decided per press. A
@@ -57,9 +59,15 @@ F3 toggles the simulated panel. The kiosk opens `/?cabinet=1`, which makes the
 play legend's keycaps the panel letters (A, B) instead of the keyboard hints
 (A / Z, B / X) and hides the player-two keyboard hint.
 Player-two development keys remain I/J/K/L/N/M; M is not a global mute key.
-Sound and fullscreen are available in Options. Player count is the first choice,
-not an option buried in settings. Keep the development input bindings working,
-but do not advertise STICK, START: OK or B: BACK before the cabinet controls exist.
+Sound and fullscreen are available in Options. Keep the development input
+bindings working. Every shell screen carries one grey line saying what the
+controls do there (`controls-strip.tsx`), in the words of the device that
+plays in the current mode: in 1P the cabinet panel (CABINET · STICK: CHOOSE ·
+A: SELECT, HOLD Y: TALK, A: PLAY · B: MENU, and CABINET PLAYS · X: PAUSE in the
+play legend), in 2P the badges (BADGES · D-PAD: CHOOSE · A: SELECT, START:
+PAUSE; talking is HOLD Y ON THE CABINET, since a badge has no TALK). Off the
+cabinet it names the keyboard (ARROWS, Z, X, ENTER, SPACE) and never a button
+the machine does not have.
 Shell buttons use plain labels such as CANCEL, MAKE GAME and PLAY; the actual
 game's movement and action legend stays visible during play.
 
@@ -71,8 +79,9 @@ game. Swipe the center, click a side preview, or move the stick left/right to br
 There are no arrow glyphs, ARCADE heading, demo label or position counter. Only
 the selected game and its two neighbors are prefetched, with a bounded local cache.
 Up/down moves
-between the game, player count, PLAY, MAKE A GAME, Resume and Options. The selected
-1 PLAYER / 2 PLAYERS mode applies to both playing and creating a game.
+between the game, player count, PLAY, MAKE A GAME, Resume and Options. The
+1 PLAYER / 2 PLAYERS row applies to the demos only and follows the badges (two
+in: 2P) unless overridden. MAKE A GAME never asks: both versions are built.
 
 PLAY opens the selected game's instructions; a second PLAY starts the real run.
 The home preview uses synthetic inputs in a separate sandbox and never starts the
@@ -85,7 +94,13 @@ preview/detail caches replace changed code; a temporary refresh failure keeps
 the current menu usable.
 
 MAKE A GAME → hold to talk → transcribing → read-only review → building → ready →
-playing → results. MAKE A GAME opens voice with the microphone off; only holding
+playing → results. Building makes two versions at once, a one-player game for
+the cabinet controls and a two-player game for the badges; the build screen
+follows the one the badges call for and says the other is building too. READY
+opens as soon as that version lands, with a line naming it (1 PLAYER · CABINET
+CONTROLS or 2 PLAYERS · BADGES) and whether the other version is switchable,
+still building or could not be made. Up/down switches; until someone does,
+the version on screen follows the badges (plug both in for 2P). MAKE A GAME opens voice with the microphone off; only holding
 TALK starts recording. MAKE GAME confirms the transcript; PLAY separately starts
 the finished game. Real gameplay never autoplays.
 No text-entry fallback, step bar, or promotional tagline. Voice changes/remixes

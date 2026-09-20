@@ -54,11 +54,13 @@ try {
   const requests = []
   page.on('pageerror', (error) => errors.push(error.message))
   await context.addInitScript(() => {
-    if (window !== window.top) return
+    // Every frame records the `load` messages it receives (the runtime iframe
+    // is the one that matters); only the top window wraps the microphone.
     window.generationErrorTest = { calls: 0, streams: [], loads: [] }
     window.addEventListener('message', (event) => {
       if (event.data?.type === 'load') window.generationErrorTest.loads.push(event.data)
     })
+    if (window !== window.top) return
     if (!navigator.mediaDevices?.getUserMedia) return
     const original = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices)
     navigator.mediaDevices.getUserMedia = async (constraints) => {
@@ -148,7 +150,7 @@ try {
   await page.getByRole('alert').filter({ hasText: 'OPENAI PROJECT SPEND LIMIT REACHED' }).waitFor()
   await page.waitForTimeout(500)
   assert.equal(requests.length, 1, 'generation failures must not retry automatically')
-  assert.deepEqual(requests[0], { transcript, players: 2 })
+  assert.deepEqual(requests[0], { transcript }, 'nobody is asked how many players')
   assert.equal(await page.getByRole('heading', { name: 'YOU SAID', exact: true }).count(), 1)
   assert.equal(
     (await page.locator('.voice-transcript').innerText()).toUpperCase(),
@@ -178,7 +180,7 @@ try {
   await page.getByRole('button', { name: /MAKE GAME/ }).click()
   await page.getByRole('heading', { name: 'READY!', exact: true }).waitFor()
   assert.equal(requests.length, 2, 'only the explicit retry should generate again')
-  assert.deepEqual(requests[1], requests[0], 'retry preserves the exact idea and player count')
+  assert.deepEqual(requests[1], requests[0], 'retry preserves the exact idea')
   assert.equal(await page.locator('.arcade-screen [role=alert]').count(), 0)
   const runtime = page.frames().find((frame) => frame.url().includes('/runtime/index.html'))
   assert.ok(runtime)

@@ -29,7 +29,6 @@ const KEY = {
   x: 'Numpad7', // START
   y: 'Numpad9', // TALK
 }
-const forbiddenHints = /\bSTICK\b|START:\s*OK|B:\s*(?:BACK|CANCEL|MENU)/i
 const browser = await chromium.launch({
   args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'],
 })
@@ -64,26 +63,32 @@ try {
   await page.route('**/api/generate', async (route) => {
     counts.generate++
     const request = route.request().postDataJSON()
+    assert.equal(request.players, undefined, 'nobody is asked how many players')
     const spec = {
       title: 'PANEL TEST',
-      players: request.players,
       oneLiner: 'CATCH FISH. DODGE SEALS.',
       controls: { left: 'MOVE LEFT', right: 'MOVE RIGHT', a: 'JUMP' },
     }
     await route.fulfill({
       contentType: 'text/event-stream',
-      body: `data: ${JSON.stringify({
-        type: 'ready',
-        title: spec.title,
-        code,
-        note: '',
-        source: 'build',
-        players: request.players,
-        slug: 'panel-test',
-        spec,
-        runId: 'panel-test',
-        totalMs: 1,
-      })}\n\n`,
+      // The server builds both versions; the page picks by the badges.
+      body: [1, 2]
+        .map(
+          (players) =>
+            `data: ${JSON.stringify({
+              type: 'ready',
+              players,
+              title: 'PANEL TEST',
+              code: code,
+              note: '',
+              source: 'build',
+              slug: players === 2 ? 'panel-test-2p' : 'panel-test',
+              spec: { ...spec, players },
+              runId: `panel-test-${players}p`,
+              totalMs: 1,
+            })}\n\n`,
+        )
+        .join(''),
     })
   })
 
@@ -92,7 +97,13 @@ try {
   const heading = (name) => page.getByRole('heading', { name, exact: true })
   const step = async (name, fn) => {
     await fn()
-    assert.doesNotMatch(await screen.innerText(), forbiddenHints, `${name}: no shell hints`)
+    // Every shell screen names what the panel does (cabinet mode advertises it).
+    if ((await page.locator('.game-controls').count()) === 0)
+      assert.match(
+        await page.locator('.controls-strip').innerText(),
+        /SELECT|PLAY|CANCEL|MENU|TALK/,
+        `${name}: strip`,
+      )
     results.steps.push(name)
     console.log(`ok ${name}`)
   }
@@ -121,9 +132,18 @@ try {
     await heading('YOU SAID').waitFor()
   }
 
-  await page.goto(base)
-  await step('home on the encoder', home)
-  await step('A selects MAKE A GAME', describe)
+  await page.goto(`${base}/?cabinet=1`)
+  await step('home on the encoder', async () => {
+    await home()
+    assert.match(
+      await page.locator('.controls-strip').innerText(),
+      /CABINET · STICK: CHOOSE · A: SELECT/,
+    )
+  })
+  await step('A selects MAKE A GAME', async () => {
+    await describe()
+    assert.match(await page.locator('.controls-strip').innerText(), /HOLD Y: TALK · B: CANCEL/)
+  })
   await step('Y is TALK: hold to record, release to review', talkAndReview)
   await step('B is back: cancel returns home', async () => {
     await press(KEY.b)
@@ -133,8 +153,10 @@ try {
   await step('A confirms the transcript and builds', async () => {
     await describe()
     await talkAndReview()
+    assert.match(await page.locator('.controls-strip').innerText(), /A: MAKE GAME/)
     await press(KEY.a)
     await heading('READY!').waitFor()
+    assert.match(await page.locator('.controls-strip').innerText(), /A: PLAY · B: MENU/)
     assert.equal(counts.generate, 1)
     await runtime().waitForFunction(() => Boolean(window.__runtime))
     assert.equal(await runtime().evaluate(() => window.__runtime.gameFrame), 0, 'no autoplay')
@@ -144,6 +166,7 @@ try {
     await page.getByRole('region', { name: 'Game controls', exact: true }).waitFor()
     await runtime().waitForFunction(() => window.__runtime.gameFrame > 5)
     assert.match(await page.locator('.game-control-legend').innerText(), /JUMP/)
+    assert.match(await page.locator('.game-hints').innerText(), /X: PAUSE/)
     await page.keyboard.down(KEY.right)
     await runtime().waitForFunction(() => window.__runtime.input.btn('right', 0))
     await page.keyboard.up(KEY.right)
@@ -164,6 +187,7 @@ try {
   await step('B leaves the game over card', async () => {
     await page.keyboard.press('F9')
     await heading('GAME OVER').waitFor()
+    assert.match(await page.locator('.controls-strip').innerText(), /A: PLAY AGAIN · B: MENU/)
     await press(KEY.b)
     await home()
   })
@@ -229,7 +253,10 @@ try {
     await press(KEY.up)
     await press(KEY.a)
     await heading('OPTIONS').waitFor()
-    assert.match(await screen.innerText(), /PANEL: A B X Y/)
+    assert.match(
+      await page.locator('.controls-strip').innerText(),
+      /STICK: MOVE · A: SELECT · B: BACK/,
+    )
     assert.doesNotMatch(await screen.innerText(), /KEYBOARD/)
     await shot('cabinet-options-640')
     await press(KEY.b)

@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "id": "arena-survivor",
+  "version": "1.0.0",
+  "title": "EMBER WATCH",
+  "description": "Single-screen arcade wave shooter with aimed spell bolts, dash, slime/bat/mage enemies, pickups, three bounded powerups and a final guardian. Short finite rounds; solo or two-player co-op, separate health/scores and proximity revives.",
+  "tags": [
+    "arena survival",
+    "arena survivor",
+    "wave survival",
+    "arena shooter",
+    "wave shooter",
+    "smash tv"
+  ],
+  "match": {
+    "phrases": [
+      "arena survival",
+      "arena survivor",
+      "wave survival",
+      "arena shooter",
+      "wave shooter",
+      "smash tv"
+    ],
+    "genres": [
+      "arena survival",
+      "arena survivor",
+      "wave survival",
+      "arena shooter",
+      "wave shooter",
+      "smash tv"
+    ]
+  },
+  "supportsPlayers": [
+    1,
+    2
+  ],
+  "module": "module.js",
+  "entry": "arenaSurvivor",
+  "apiVersion": 1,
+  "license": {
+    "spdx": "LicenseRef-Project-Original",
+    "notes": "Original code, room layouts and procedural pixel art. No commercial game assets."
+  },
+  "provenance": {
+    "kind": "original",
+    "authors": [
+      "Arcade project"
+    ],
+    "sources": [
+      "library/mechanics/expedition-kit/kit.js",
+      "library/mechanics/expedition-kit/create-assets.mjs"
+    ],
+    "createdAt": "2026-09-20"
+  },
+  "assets": [
+    "assets.json"
+  ],
+  "files": [
+    "core.js",
+    "demo.js",
+    "spec.json"
+  ]
+}

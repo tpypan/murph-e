@@ -144,3 +144,110 @@ export function attachKeyboard(onInput: (ev: InputEvent) => void): () => void {
     release()
   }
 }
+
+// ---- the real cabinet board: a USB HID gamepad ------------------------------
+// The panel enumerates as "ESP32-S3 Arcade Controller" (vendor 0x303a): a HID
+// game pad with six axes, an eight-way hat switch and 32 buttons, not a
+// keyboard. The Gamepad API is polled and every change is replayed as the
+// encoder key code of the same panel input, so attachKeyboard, the F3
+// overlay, the tests and the 1P/2P routing all see the one path.
+export interface GamepadMap {
+  /** Gamepad API button index -> panel input. */
+  buttons: Record<number, PanelInput>
+  /** Axis indices for the stick; a hat switch is one axis Chrome encodes in eighths. */
+  axes: { x?: number; y?: number; hat?: number }
+  /** The sign of the Y axis when the stick is pushed up (the Gamepad API convention is -1). */
+  yUp: 1 | -1
+  /** Only pads whose id contains this drive the cabinet. */
+  idIncludes: string
+}
+
+// Read from the real board on 2026-09-20 with a raw HID capture
+// (docs/encoder-bringup.md): the stick is an analog joystick on X and Y,
+// 8-bit signed, and pushing UP is +Y; A B X Y are HID buttons 1 to 4, which
+// the Gamepad API numbers 0 to 3. The hat switch and the other four axes in
+// the descriptor never move.
+export const GAMEPAD: GamepadMap = {
+  buttons: { 0: 'a', 1: 'b', 2: 'x', 3: 'y' },
+  axes: { x: 0, y: 1 },
+  yUp: 1,
+  idIncludes: 'Arcade',
+}
+const AXIS_DEADZONE = 0.5
+
+/** Which panel inputs a pad state holds down, by the map. */
+export function gamepadInputs(
+  pad: { buttons: ReadonlyArray<{ pressed: boolean }>; axes: ReadonlyArray<number> },
+  map: GamepadMap = GAMEPAD,
+): Set<PanelInput> {
+  const held = new Set<PanelInput>()
+  for (const [index, input] of Object.entries(map.buttons))
+    if (pad.buttons[Number(index)]?.pressed) held.add(input)
+  const axis = (i: number | undefined) => (i === undefined ? 0 : (pad.axes[i] ?? 0))
+  const x = axis(map.axes.x)
+  const y = axis(map.axes.y) * map.yUp
+  if (x <= -AXIS_DEADZONE) held.add('left')
+  if (x >= AXIS_DEADZONE) held.add('right')
+  if (y >= AXIS_DEADZONE) held.add('up')
+  if (y <= -AXIS_DEADZONE) held.add('down')
+  // Chrome reports a raw hat switch as one axis: -1 is up, then clockwise in
+  // steps of 2/7 to 1 (up-left); anything outside [-1, 1] is centred.
+  const hat = axis(map.axes.hat)
+  if (map.axes.hat !== undefined && Math.abs(hat) <= 1.0001) {
+    const step = Math.round(((hat + 1) / 2) * 7) % 8
+    for (const d of (
+      [
+        ['up'],
+        ['up', 'right'],
+        ['right'],
+        ['down', 'right'],
+        ['down'],
+        ['down', 'left'],
+        ['left'],
+        ['up', 'left'],
+      ] as PanelInput[][]
+    )[step] ?? [])
+      held.add(d)
+  }
+  return held
+}
+
+/**
+ * Poll the cabinet pad and replay changes as keyboard events carrying the
+ * encoder codes; returns a detach function. Chrome exposes a pad only after
+ * its first press, so the very first press on a fresh page is consumed.
+ */
+export function attachGamepad(map: GamepadMap = GAMEPAD): () => void {
+  if (typeof navigator === 'undefined' || !navigator.getGamepads) return () => {}
+  // Headless browsers on the cabinet Mac see the real board too, so a press
+  // during a test run would land in every test page. Automation only reads
+  // a pad when the test says so (gamepad-ui-test.mjs sets this flag).
+  if (navigator.webdriver && !(window as { __gamepadTest?: boolean }).__gamepadTest) return () => {}
+  let held = new Set<PanelInput>()
+  let frame = 0
+  const fire = (type: 'keydown' | 'keyup', p: PanelInput) =>
+    window.dispatchEvent(
+      new KeyboardEvent(type, { code: codeForPanel(p), bubbles: true, cancelable: true }),
+    )
+  const release = () => {
+    for (const p of held) fire('keyup', p)
+    held = new Set()
+  }
+  const tick = () => {
+    frame = requestAnimationFrame(tick)
+    const pad = [...navigator.getGamepads()].find(
+      (g) => g?.connected && g.id.includes(map.idIncludes),
+    )
+    const now = pad ? gamepadInputs(pad, map) : new Set<PanelInput>()
+    for (const p of now) if (!held.has(p)) fire('keydown', p)
+    for (const p of held) if (!now.has(p)) fire('keyup', p)
+    held = now
+  }
+  frame = requestAnimationFrame(tick)
+  window.addEventListener('blur', release)
+  return () => {
+    cancelAnimationFrame(frame)
+    window.removeEventListener('blur', release)
+    release()
+  }
+}

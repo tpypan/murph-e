@@ -16,6 +16,8 @@ export interface ProbeOptions {
   thumb?: boolean
   /** 1 or 2. A two-player game must also respond to player two. */
   players?: number
+  /** New dual-mode games must show distinct input effects for the two humans. */
+  requireIndependentPlayers?: boolean
 }
 
 export interface ProbeResult {
@@ -273,6 +275,7 @@ export async function probe(code: string, opts: ProbeOptions = {}): Promise<Prob
     // direction is the hard check; A is a repair note.
     if (players === 2) {
       let anyP2 = dirs.length === 0
+      let anyP2Action = false
       for (const d of dirs) {
         const ok = await directionChanges(1, d)
         anyP2 = anyP2 || ok
@@ -283,10 +286,54 @@ export async function probe(code: string, opts: ProbeOptions = {}): Promise<Prob
       }
       checks.respondsToP2 = anyP2
       if (!anyP2) observations.push("none of player two's direction buttons changed anything")
-      if (acts.includes('a')) {
-        const ok = await tapChanges(1, 'a')
-        checks['soft:responds:p2:a'] = ok
-        if (!ok) observations.push('player two pressing A changed nothing on screen')
+      for (const action of acts) {
+        const ok = await tapChanges(1, action)
+        anyP2Action ||= ok
+        checks[`soft:responds:p2:${action}`] = ok
+        if (!ok)
+          observations.push(`player two pressing ${action.toUpperCase()} changed nothing on screen`)
+      }
+      // Action-only games must not pass merely because no directions were declared.
+      if (dirs.length === 0) checks.respondsToP2 = anyP2Action
+      if (!checks.respondsToP2 && dirs.length === 0)
+        observations.push("none of player two's action buttons changed anything")
+
+      if (opts.requireIndependentPlayers) {
+        let distinct = false
+        const checkpoints = [64, 72, 100, 120]
+        const baseline = await hashesAfter([], checkpoints)
+        for (const button of [...dirs, ...acts]) {
+          const trials = []
+          for (const player of [0, 1]) {
+            const trial = await hashesAfter(
+              [
+                { at: 60, player, button, down: true },
+                { at: 80, player, button, down: false },
+              ],
+              checkpoints,
+            )
+            inputSurvived(
+              trial.error,
+              `while checking player ${player + 1}'s independent ${button.toUpperCase()} input`,
+            )
+            trials.push(trial)
+          }
+          const [p1, p2] = trials
+          if (
+            !baseline.error &&
+            !p1!.error &&
+            !p2!.error &&
+            p1!.hashes.some((h, i) => h !== baseline.hashes[i]) &&
+            p2!.hashes.some((h, i) => h !== baseline.hashes[i]) &&
+            p1!.hashes.some((h, i) => h !== p2!.hashes[i])
+          )
+            distinct = true
+        }
+        checks.independentPlayerEffects = distinct
+        if (!distinct)
+          observations.push(
+            'two-player mode did not show distinct visible effects from P1-only versus P2-only inputs; provide independent human roles and controls',
+          )
       }
     }
 

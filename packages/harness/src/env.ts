@@ -26,12 +26,12 @@ const appGeneration = new AsyncLocalStorage<true>()
 export const APP_API_ONLY_MESSAGE =
   'APP_API_ONLY: Paid model requests are reserved for people using the app. Development, base games and tests must use the Codex Astra subscription or offline fixtures.'
 
-/** The cabinet route scopes a real player's request; developer CLIs never enter this scope. */
+/** Cabinet generation and speech routes scope real player requests; developer CLIs never enter it. */
 export function withAppGeneration<T>(operation: () => T): T {
   return appGeneration.run(true, operation)
 }
 
-function assertAppGeneration(): void {
+export function assertAppGeneration(): void {
   if (!appGeneration.getStore()) throw new Error(APP_API_ONLY_MESSAGE)
 }
 

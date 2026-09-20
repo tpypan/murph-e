@@ -1,0 +1,32 @@
+{
+  "ok": true,
+  "error": null,
+  "idleDeathS": 141.8,
+  "botDeathS": 137.2,
+  "grace": true,
+  "losable": false,
+  "idleScore": 809,
+  "botScore": 549,
+  "agency": 0.7,
+  "firstScoreS": 1.5,
+  "scoreEvents": 40,
+  "scoreTiers": 4,
+  "scoreSpread": 16.67,
+  "busyEarly": 0.55,
+  "busyLate": 0.59,
+  "densityRamp": 1.06,
+  "rateEarly": 0.37,
+  "rateLate": 0.17,
+  "colors": 21,
+  "motion": 275,
+  "motionSamples": 275,
+  "sfxKinds": 8,
+  "sfxCalls": 134,
+  "flash": 5,
+  "shake": 20,
+  "shots": [
+    "default-2s.png",
+    "default-15s.png",
+    "default-40s.png"
+  ]
+}

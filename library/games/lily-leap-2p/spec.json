@@ -1,0 +1,46 @@
+{
+  "title": "LILY LEAP",
+  "oneLiner": "Two frogs hop across drifting lily pads together while swooping herons guard the pond.",
+  "genre": "cooperative platforming",
+  "hook": "Players must choose safe pad-to-pad timing or leap farther through exposed gaps; taking the risky route reaches the finish faster but makes heron dodges harder.",
+  "ramp": "Each pond section teaches a stable hop, then adds drifting pads, staggered pads, and alternating heron swoops. Pressure peaks in short crossings with two herons, followed by a recovery stretch with a3",
+  "mechanics": [
+    "Two players cooperate in one horizontally scrolling pond; each frog has its own lane position but shares the same camera and finish objective.",
+    "Left/Right moves a frog across its current lily pad; A performs a hop toward the held direction, with a 0.32-second ascent to a 32-pixel apex and 0.32-second descent. A tap or release after launch does not cancel the hop.",
+    "A hop succeeds only when the frog overlaps a lily pad during descent; landing recenters the frog slightly and allows immediate movement or another hop. Falling between pads causes a splash and costs that player one life.",
+    "Herons enter from alternating sides, telegraph with a brief hover and shadow, then swoop diagonally across a marked lane. Contact during a frog's airborne or grounded state costs one life and knocks the frog back to the last safe pad; brief 0.8-second protection follows damage.",
+    "Players can revive a fallen partner by reaching the next safe pad together; otherwise each player has 3 lives, and losing all lives for either frog ends the run.",
+    "Every section has a visible finish reed; both frogs must touch it to clear the section. Clear 5 pond sections to win, with a shared 1000-point clear bonus per section.",
+    "Scoring rewards forward progress and clean landings: 100 points per newly reached pad and 250 points when both frogs land on the same pad within 1.5 seconds. Each pad scores once per frog per section; score resets only on a new game.",
+    "Sections alternate teach, build, peak, and recovery patterns. Maximum simultaneous herons is 2, pad gaps stay within the tuned 44-pixel horizontal reach, and recovery sections remove herons for at least 8 seconds."
+  ],
+  "artDirection": "256x224 shared pond view with a 12-pixel HUD strip. Each frog is about 18x22 pixels: one green frog with a yellow throat and red scarf, the other blue-green with a cream throat and blue scarf; use distinct silhouettes and matching idle, crouch, airborne, land, hurt, and splash poses. Lily pads are 28–36 pixels wide with bright rims and dark centers. Herons are 30x24 pixels, white and gray with long black beaks, red crown marks, broad wing-up and wing-down poses, and a strong shadow beneath them. Layer dark blue water, muted reeds, distant trees, and quiet lily clusters behind the active crossing; keep active pads and threats high-contrast in the default 16-color arcade palette.",
+  "referenceIntent": {
+    "reference": "",
+    "preserve": [],
+    "change": []
+  },
+  "controls": {
+    "left": "Move frog left",
+    "right": "Move frog right",
+    "up": null,
+    "down": null,
+    "a": "Hop in the held direction",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "A player loses a life by missing a pad or touching a heron; the run ends when either frog loses all 3 lives.",
+  "scoring": "Score 100 for each newly reached pad, 250 for a synchronized same-pad landing, and 1000 for clearing each section.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "platforming",
+    "collision",
+    "pacing",
+    "readability"
+  ],
+  "players": 2,
+  "runId": "2026-09-20-062416150-a-frog-hopping-across-lily-pads-R5yEoz"
+}

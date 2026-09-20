@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { queueComponentIndex } from './component-queue.ts'
 import { ROOT, readRepoFile } from './env.ts'
 import { loadTemplates } from './prompt.ts'
 import { slugify } from './run-store.ts'
@@ -74,7 +75,9 @@ export function keepInLibrary(
   thumb: Buffer | null,
   runId: string,
 ): string {
-  const base = slugify(spec.title)
+  // The cabinet keeps a 1P and a 2P version of every idea; the suffix keeps
+  // their slugs (and so their leaderboards) apart.
+  const base = `${slugify(spec.title)}${spec.players === 2 ? '-2p' : ''}`
   let slug = base
   for (let i = 2; existsSync(resolve(GAMES_DIR, slug)); i++) slug = `${base}-${i}`
   const dir = resolve(GAMES_DIR, slug)
@@ -82,5 +85,14 @@ export function keepInLibrary(
   writeFileSync(resolve(dir, 'game.js'), code)
   writeFileSync(resolve(dir, 'spec.json'), JSON.stringify({ ...spec, runId }, null, 2))
   if (thumb) writeFileSync(resolve(dir, 'thumb.png'), thumb)
+  queueComponentIndex(
+    {
+      code,
+      sourcePath: resolve(dir, 'game.js'),
+      metadata: { spec, runId, collection: 'library/games' },
+    },
+    resolve(ROOT, 'data/catalog.sqlite'),
+    resolve(ROOT, 'data/components'),
+  )
   return slug
 }

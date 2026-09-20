@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "id": "dungeon-gauntlet",
+  "version": "1.0.0",
+  "title": "KEYSTONE KEEP",
+  "description": "Gauntlet-style arcade room-clearing shooter with aimed spell bolts, dash, monsters, shared exit keys, locked doors, treasure and a final guardian. Short finite rounds; solo or two-player co-op, separate health/scores and proximity revives.",
+  "tags": [
+    "gauntlet",
+    "dungeon shooter",
+    "dungeon crawler",
+    "room clearing",
+    "dungeon arcade"
+  ],
+  "match": {
+    "phrases": [
+      "gauntlet",
+      "dungeon shooter",
+      "dungeon crawler",
+      "room clearing",
+      "dungeon arcade"
+    ],
+    "genres": [
+      "gauntlet",
+      "dungeon shooter",
+      "dungeon crawler",
+      "room clearing",
+      "dungeon arcade"
+    ]
+  },
+  "supportsPlayers": [
+    1,
+    2
+  ],
+  "module": "module.js",
+  "entry": "dungeonGauntlet",
+  "apiVersion": 1,
+  "license": {
+    "spdx": "LicenseRef-Project-Original",
+    "notes": "Original code, room layouts and procedural pixel art. No commercial game assets."
+  },
+  "provenance": {
+    "kind": "original",
+    "authors": [
+      "Arcade project"
+    ],
+    "sources": [
+      "library/mechanics/expedition-kit/kit.js",
+      "library/mechanics/expedition-kit/create-assets.mjs"
+    ],
+    "createdAt": "2026-09-20"
+  },
+  "assets": [
+    "assets.json"
+  ],
+  "files": [
+    "core.js",
+    "demo.js",
+    "spec.json"
+  ]
+}

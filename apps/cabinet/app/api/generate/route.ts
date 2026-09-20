@@ -3,11 +3,14 @@ import { closeProbe, type PipelineEvent, pipeline, withAppGeneration } from '@ht
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
-/** POST { transcript } -> server-sent pipeline events, ending with `ready`. */
+/**
+ * POST { transcript, players? } -> one shared game, checked in both player modes.
+ * `players` chooses the initial session mode, never another generated version.
+ * The cabinet always starts one build; legacy client race values are ignored.
+ */
 export async function POST(req: Request): Promise<Response> {
   const body = (await req.json().catch(() => ({}))) as {
     transcript?: string
-    race?: number
     players?: number
   }
   const transcript = String(body.transcript ?? '').trim()
@@ -24,16 +27,15 @@ export async function POST(req: Request): Promise<Response> {
           closed = true
         }
       }
-      withAppGeneration(() =>
-        pipeline(transcript, {
-          race: body.race ?? 2,
-          players: body.players === 2 ? 2 : 1,
-          // The cabinet only creates new games. Ignore legacy clients' remix context.
-          current: null,
-          onEvent: send,
-          signal: req.signal,
-        }),
-      )
+      const players = body.players === 2 ? 2 : 1
+      const common = {
+        race: 1,
+        // The cabinet only creates new games. Ignore legacy clients' remix context.
+        current: null,
+        onEvent: send,
+        signal: req.signal,
+      }
+      withAppGeneration(() => pipeline(transcript, { ...common, players }))
         .catch((e: unknown) =>
           send({
             type: 'error',

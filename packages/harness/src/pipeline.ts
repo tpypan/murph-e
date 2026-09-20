@@ -1,17 +1,22 @@
-import { controlsFromSpec, type ProbeResult, probe } from '@htn/probe'
+import { controlsFromSpec, type ProbeResult } from '@htn/probe'
 import { BUILD_MAX_OUTPUT_TOKENS, type BuildResult, build } from './build.ts'
 import { validateCandidate } from './candidate-history.ts'
 import { type CandidateStage, catalogPreview, catalogSnapshot } from './catalog.ts'
 import { recordDesignContext } from './design-context.ts'
 import { MODELS } from './env.ts'
+import { assertJevConfigured, jevEnabled, selectWithJev } from './jev.ts'
 import { keepInLibrary, pickFallback } from './library.ts'
+import { probeGameModes } from './multiplayer-probe.ts'
 import { buildPrompt, loadTemplates } from './prompt.ts'
 import { remix, remixSystemPrompt, remixUserTurn } from './remix.ts'
 import { repair } from './repair.ts'
 import { createRun, type Run } from './run-store.ts'
 import { type GameSpec, type Players, specify } from './spec.ts'
 
-export type PipelineEvent =
+// Every event may carry the player count of the pipeline that produced it.
+// Build progress is shared. `ready.players` is the initial session mode;
+// supportedPlayers lists the modes validated on this same generated file.
+export type PipelineEvent = (
   | { type: 'spec'; spec: GameSpec; ms: number }
   | { type: 'foundation'; prefix: string; demo: string }
   | { type: 'token'; text: string; variant: number; stage?: 'build' | 'remix' | 'repair' }
@@ -27,6 +32,7 @@ export type PipelineEvent =
       note: string
       spec: GameSpec | null
       players: Players
+      supportedPlayers: Players[]
       /** Library slug when the game was kept, else the run id; keys the leaderboard. */
       slug: string
       source: Source
@@ -34,6 +40,7 @@ export type PipelineEvent =
       totalMs: number
     }
   | { type: 'error'; message: string; terminal?: boolean }
+) & { players?: Players }
 
 /** Where the code that is about to play came from. `kept` is a remix that
  *  failed twice, so the original game stays on screen. */
@@ -48,7 +55,7 @@ export interface CurrentGame {
 
 export interface PipelineOptions {
   race?: number
-  /** From the cabinet's 1P/2P menu. Default 1. */
+  /** Initial session mode; new games must support and pass checks in both modes. */
   players?: Players
   /** The game on screen, so "make it faster" edits it instead of starting over. */
   current?: CurrentGame | null
@@ -71,6 +78,35 @@ export interface PipelineResult {
   run: Run
   totalMs: number
   observations: string[]
+}
+
+export interface PipelineBothOptions extends Omit<PipelineOptions, 'players'> {}
+
+export interface PipelineBothResult {
+  /** Two session views of one build/run, or an unavailable mode's error. */
+  results: Record<Players, PipelineResult | Error>
+  totalMs: number
+}
+
+/**
+ * Compatibility entry point for callers requesting both modes. Generate once;
+ * expose two session views only after that file passes both-mode validation.
+ * This never starts a separate spec, router or build for the second player count.
+ */
+export async function pipelineBoth(
+  transcript: string,
+  opts: PipelineBothOptions = {},
+): Promise<PipelineBothResult> {
+  const t0 = performance.now()
+  const game = await pipeline(transcript, { ...opts, players: 1 })
+  const shared = !!game.spec?.multiplayer && ['build', 'repair'].includes(game.source)
+  const results: PipelineBothResult['results'] = {
+    1: game,
+    2: shared
+      ? { ...game, players: 2 }
+      : new Error('The returned fallback has not been validated for both player modes'),
+  }
+  return { results, totalMs: Math.round(performance.now() - t0) }
 }
 
 interface Attempt {
@@ -100,6 +136,9 @@ export async function pipeline(
   opts: PipelineOptions = {},
 ): Promise<PipelineResult> {
   checkCancelled(opts.signal)
+  // Fail before paying for the spec if the experiment is enabled but not configured.
+  const hybridEnabled = jevEnabled()
+  if (hybridEnabled) assertJevConfigured()
   const t0 = performance.now()
   const emit = opts.onEvent ?? (() => {})
   const run = opts.run ?? createRun(transcript)
@@ -109,7 +148,7 @@ export async function pipeline(
     buildEffort: opts.effort ?? MODELS.buildEffort,
     buildMaxOutputTokens: BUILD_MAX_OUTPUT_TOKENS,
   })
-  const race = Math.max(1, opts.race ?? 2)
+  const race = Math.max(1, opts.race ?? 1)
   const players: Players = opts.players === 2 ? 2 : 1
   const done = (r: Omit<PipelineResult, 'run' | 'totalMs'>): PipelineResult => {
     checkCancelled(opts.signal)
@@ -131,6 +170,8 @@ export async function pipeline(
       note: r.note,
       spec: r.spec,
       players: r.players,
+      supportedPlayers:
+        r.spec?.multiplayer && ['build', 'repair'].includes(r.source) ? [1, 2] : [r.players],
       slug: r.slug,
       source: r.source,
       runId: run.id,
@@ -177,7 +218,15 @@ export async function pipeline(
     })
   }
 
-  const prompt = buildPrompt(spec, transcript, loadTemplates())
+  const hybrid = hybridEnabled
+    ? await selectWithJev(transcript, spec, { signal: opts.signal })
+    : undefined
+  checkCancelled(opts.signal)
+  if (hybrid) {
+    run.write('jev-routing.json', JSON.stringify(hybrid.audit, null, 2))
+    run.event('jev-routing', hybrid.audit)
+  }
+  const prompt = buildPrompt(spec, transcript, loadTemplates(), hybrid)
   recordDesignContext(run, 'build', prompt.designContext)
   run.write('implementation-context.json', JSON.stringify(prompt.referenceContext, null, 2))
   if (prompt.catalog)
@@ -302,7 +351,13 @@ export async function pipeline(
               : null
           return error
             ? { ok: false, observations: [error], thumb: null, ms: 0, checks: {} }
-            : probe(code, { controls, title: spec.title, players })
+            : probeGameModes(code, {
+                controls,
+                title: spec.title,
+                players,
+                multiplayer: spec.multiplayer,
+                signal: opts.signal,
+              })
         },
         r,
       )
@@ -352,7 +407,13 @@ export async function pipeline(
                 ms: 0,
                 checks: {},
               }
-            : probe(fixed.code, { controls, title: spec.title, players }),
+            : probeGameModes(fixed.code, {
+                controls,
+                title: spec.title,
+                players,
+                multiplayer: spec.multiplayer,
+                signal: opts.signal,
+              }),
         fixed,
       )
       run.event('repair', {
@@ -436,7 +497,13 @@ export async function pipeline(
                 ms: 0,
                 checks: {},
               }
-            : probe(b.code, { controls, title: spec.title, players }),
+            : probeGameModes(b.code, {
+                controls,
+                title: spec.title,
+                players,
+                multiplayer: spec.multiplayer,
+                signal: ac.signal,
+              }),
         b,
         ac.signal,
       )
@@ -514,7 +581,13 @@ export async function pipeline(
                 ms: 0,
                 checks: {},
               }
-            : probe(r.code, { controls, title: spec.title, players }),
+            : probeGameModes(r.code, {
+                controls,
+                title: spec.title,
+                players,
+                multiplayer: spec.multiplayer,
+                signal: opts.signal,
+              }),
         r,
       )
       run.event('repair', {

@@ -8,7 +8,7 @@
 // presets, which no real badge shares.
 // Run: pnpm --filter @htn/probe exec node scripts/input-routing-ui-test.mjs
 import assert from 'node:assert/strict'
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { chromium } from 'playwright'
 
@@ -38,7 +38,6 @@ const KEY = {
   y: 'Numpad9',
 }
 const BADGE = ['FA:KE:00:00:00:01', 'FA:KE:00:00:00:02']
-const forbiddenHints = /\bSTICK\b|START:\s*OK|B:\s*(?:BACK|CANCEL|MENU)/i
 const browser = await chromium.launch({
   args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'],
 })
@@ -56,9 +55,21 @@ const plugged = async () => (await (await fetch(`${base}/api/badges/fake`)).json
 const unplugAll = async () => {
   for (const b of await plugged()) await api({ op: 'unplug', serial: b.serial })
 }
+// A plugged preset gets the app pushed (several seconds of paced chunks) and
+// only then says its real hello; wait for that, not for a name on screen,
+// which a kept session may still be showing from before an unplug.
+const APP_VERSION = /^version=(\S+)/m.exec(
+  readFileSync(resolve(root, 'packages/badge/app/manifest.cfg'), 'utf8'),
+)[1]
 const plug = async (n) => {
   const { plugged: on } = await api({ op: 'toggle', n })
   assert.ok(on, `badge ${n} plugged`)
+  for (let i = 0; i < 300; i++) {
+    const b = (await plugged()).find((x) => x.serial === BADGE[n - 1])
+    if (b?.inApp && b.installedVersion === APP_VERSION) return
+    await new Promise((f) => setTimeout(f, 100))
+  }
+  assert.fail(`badge ${n} never opened the installed app`)
 }
 const badge = (n, button, down) => api({ op: 'press', serial: BADGE[n - 1], button, down })
 const tapBadge = (n, button) => api({ op: 'tap', serial: BADGE[n - 1], button })
@@ -92,26 +103,32 @@ try {
   await page.route('**/api/generate', async (route) => {
     counts.generate++
     const request = route.request().postDataJSON()
+    assert.equal(request.players, undefined, 'nobody is asked how many players')
     const spec = {
       title: 'ROUTING TEST',
-      players: request.players,
       oneLiner: 'CATCH FISH. DODGE SEALS.',
       controls: { left: 'MOVE LEFT', right: 'MOVE RIGHT', a: 'JUMP' },
     }
     await route.fulfill({
       contentType: 'text/event-stream',
-      body: `data: ${JSON.stringify({
-        type: 'ready',
-        title: spec.title,
-        code,
-        note: '',
-        source: 'build',
-        players: request.players,
-        slug: 'routing-test',
-        spec,
-        runId: 'routing-test',
-        totalMs: 1,
-      })}\n\n`,
+      // The server builds both versions; the page picks by the badges.
+      body: [1, 2]
+        .map(
+          (players) =>
+            `data: ${JSON.stringify({
+              type: 'ready',
+              players,
+              title: 'ROUTING TEST',
+              code: code,
+              note: '',
+              source: 'build',
+              slug: players === 2 ? 'routing-test-2p' : 'routing-test',
+              spec: { ...spec, players },
+              runId: `routing-test-${players}p`,
+              totalMs: 1,
+            })}\n\n`,
+        )
+        .join(''),
     })
   })
 
@@ -120,7 +137,13 @@ try {
   const heading = (name) => page.getByRole('heading', { name, exact: true })
   const step = async (name, fn) => {
     await fn()
-    assert.doesNotMatch(await screen.innerText(), forbiddenHints, `${name}: no shell hints`)
+    // Every shell screen names what the panel does (cabinet mode advertises it).
+    if ((await page.locator('.game-controls').count()) === 0)
+      assert.match(
+        await page.locator('.controls-strip').innerText(),
+        /SELECT|PLAY|CANCEL|MENU|TALK/,
+        `${name}: strip`,
+      )
     results.steps.push(name)
     console.log(`ok ${name}`)
   }
@@ -140,14 +163,16 @@ try {
     await page.getByRole('button', { name: 'MAKE A GAME', exact: true }).waitFor()
   }
   const roster = () => page.locator('.arcade-header .player-label').allInnerTexts()
-  // Home opens on PLAY. MAKE A GAME is one row down; the player row is one up.
+  const versionLine = () => page.locator('.version-line').innerText()
+  const waitVersion = (want) =>
+    page.waitForFunction(
+      (w) => document.querySelector('.version-line')?.textContent?.includes(w),
+      want,
+    )
+  // Home opens on PLAY; MAKE A GAME is one row down. Nobody is asked how many
+  // players: both versions are built and the badges decide which one opens.
   const makeGame = async (players) => {
     await home()
-    if (players === 2) {
-      await press(KEY.up)
-      await press(KEY.right) // toggles 1P -> 2P when the selected demo allows it
-      await press(KEY.down)
-    }
     await press(KEY.down)
     await press(KEY.a)
     await heading('DESCRIBE YOUR GAME').waitFor()
@@ -159,6 +184,7 @@ try {
     await press(KEY.a)
     await heading('READY!').waitFor()
     await runtime().waitForFunction(() => Boolean(window.__runtime))
+    await waitVersion(players === 2 ? '2 PLAYERS · BADGES' : '1 PLAYER · CABINET')
     assert.equal(await rt(() => window.__runtime.players), players)
   }
   const play = async () => {
@@ -195,6 +221,7 @@ try {
   })
   await step('1P: the panel moves and scores', async () => {
     await play()
+    assert.match(await page.locator('.game-hints').innerText(), /CABINET PLAYS[\s\S]*X: PAUSE/)
     await page.keyboard.down(KEY.right)
     await runtime().waitForFunction(() => window.__runtime.input.btn('right', 0))
     await page.keyboard.up(KEY.right)
@@ -238,15 +265,33 @@ try {
   })
 
   // ---- two players: the badges play, the panel only works the shell
-  await step('2P: build a game; READY asks for both badges', async () => {
-    await makeGame(2)
-    assert.match(await screen.innerText(), /PLUG IN BOTH BADGES/)
-    await shot('2p-ready-no-badges')
-  })
-  await step('2P: one badge is enough to start (never dead-ends)', async () => {
+  await step('both versions: READY follows the badges', async () => {
+    await makeGame(1)
+    assert.match(await versionLine(), /2 PLAYER VERSION/)
     await plug(1)
     await waitBadges('Tony Pan')
+    assert.match(await versionLine(), /1 PLAYER · CABINET/, 'one badge is still a 1P game')
+    await plug(2) // preset 2 gets the app pushed first: several seconds of paced chunks
+    await waitVersion('2 PLAYERS · BADGES')
+    await waitBadges('Tony Pan', 'Sam Rivera')
+    await runtime().waitForFunction(() => window.__runtime.players === 2)
+    // In 2P the instructions speak badge: d-pad, A, B, START.
+    assert.match(await page.locator('.controls-strip').innerText(), /BADGES · A: PLAY/)
+    await shot('2p-ready-two-badges')
+    await api({ op: 'unplug', serial: BADGE[1] })
+    await waitVersion('1 PLAYER · CABINET')
+    assert.equal(await rt(() => window.__runtime.players), 1)
+  })
+  await step('2P: up/down picks the 2P version by hand; one badge is enough to start', async () => {
+    await press(KEY.up)
+    await waitVersion('2 PLAYERS · BADGES')
     assert.match(await screen.innerText(), /PLUG IN BOTH BADGES/)
+    await shot('2p-ready-one-badge')
+    await api({ op: 'unplug', serial: BADGE[0] })
+    await page.waitForTimeout(300)
+    assert.match(await versionLine(), /2 PLAYERS · BADGES/, 'a hand-picked version stays')
+    await plug(1)
+    await waitBadges('Tony Pan')
     await play()
     await badge(1, 'right', true)
     await runtime().waitForFunction(() => window.__runtime.input.btn('right', 0))
@@ -285,6 +330,7 @@ try {
     const before = await score(1)
     await tapBadge(2, 'a')
     await runtime().waitForFunction((n) => window.__runtime.scores[1] > n, before)
+    assert.match(await page.locator('.game-hints').innerText(), /BADGES PLAY[\s\S]*START: PAUSE/)
     await shot('2p-playing-two-badges')
   })
   await step('2P: pulling a badge keeps the game and the name', async () => {
@@ -316,7 +362,9 @@ try {
   await step('laptop 2P: arrows and I J K L stand in for the badges', async () => {
     await unplugAll()
     await page.goto(base)
-    await makeGame(2)
+    await makeGame(1)
+    await press(KEY.down)
+    await waitVersion('2 PLAYERS · BADGES')
     await play()
     await page.keyboard.down('ArrowRight')
     await runtime().waitForFunction(() => window.__runtime.input.btn('right', 0))

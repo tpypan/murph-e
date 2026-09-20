@@ -85,7 +85,8 @@ export function GameControls({
       </dl>
       <div className="game-hints">
         {players === 2 && !cabinet && <span className="game-control-p2">P2: IJKL · N/M</span>}
-        <span>START: PAUSE</span>
+        {cabinet && <span>{players === 2 ? 'BADGES PLAY' : 'CABINET PLAYS'}</span>}
+        <span>{cabinet && players !== 2 ? 'X: PAUSE' : 'START: PAUSE'}</span>
       </div>
     </section>
   )

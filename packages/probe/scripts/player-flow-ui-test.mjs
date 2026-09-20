@@ -34,10 +34,26 @@ try {
         ? route.abort()
         : route.fallback()
     })
+    // Two badges that already said hello make the 2P version the one shown.
+    const roster =
+      players === 2
+        ? [
+            {
+              path: 'fake-a',
+              slot: 0,
+              identity: { badgeId: 'one', name: 'One', color: [1, 2, 3] },
+            },
+            {
+              path: 'fake-b',
+              slot: 1,
+              identity: { badgeId: 'two', name: 'Two', color: [4, 5, 6] },
+            },
+          ]
+        : []
     await page.route('**/api/badges', (route) =>
       route.fulfill({
         contentType: 'text/event-stream',
-        body: 'data: {"type":"roster","badges":[]}\n\n',
+        body: `data: ${JSON.stringify({ type: 'roster', badges: roster })}\n\n`,
       }),
     )
     const errors = []
@@ -62,22 +78,23 @@ try {
       builds.push(request)
       const spec = {
         title: 'PLAYER FLOW TEST',
-        players: request.players,
         oneLiner: 'CATCH FISH. DODGE SEALS.',
         controls: { left: 'MOVE LEFT', right: 'MOVE RIGHT', a: 'JUMP' },
       }
       await route.fulfill({
         contentType: 'text/event-stream',
+        // One shared output advertises both validated runtime modes.
         body: `data: ${JSON.stringify({
           type: 'ready',
-          title: spec.title,
+          players: 1,
+          supportedPlayers: [1, 2],
+          title: 'PLAYER FLOW TEST',
           code,
           note: '',
           source: 'build',
-          players: request.players,
           slug: 'player-flow-test',
-          spec,
-          runId: 'player-flow-test',
+          spec: { ...spec, players: 1 },
+          runId: 'player-flow-test-shared',
           totalMs: 1,
         })}\n\n`,
       })
@@ -111,6 +128,8 @@ try {
     await page.getByRole('button', { name: '1 PLAYER', exact: true }).waitFor()
     await page.getByRole('button', { name: '2 PLAYERS', exact: true }).waitFor()
     await assertHintsRemoved()
+    // Off the cabinet the strip names the keyboard, never the panel.
+    assert.match(await page.locator('.controls-strip').innerText(), /ARROWS: CHOOSE · Z: SELECT/)
     assert.equal(await page.getByRole('button', { name: /HOLD.*TALK/ }).count(), 0)
     await page.keyboard.press('Space')
     await page.keyboard.press('KeyV')
@@ -164,7 +183,7 @@ try {
     await page.getByRole('button', { name: /MAKE GAME/ }).click()
     await page.getByRole('heading', { name: 'READY!', exact: true }).waitFor()
     assert.equal(builds.length, 1)
-    assert.equal(builds[0].players, players)
+    assert.equal(builds[0].players, undefined, 'nobody is asked how many players')
     assert.match(builds[0].transcript, /penguin/)
     await assertHintsRemoved()
     await page.waitForFunction(() => {
@@ -178,7 +197,27 @@ try {
       'ready must not autoplay',
     )
     assert.equal(await runtime().evaluate(() => window.__runtime.players), players)
+    // Both modes share one output; badges choose initially, up/down switches.
+    const versionLine = () => page.locator('.version-line').innerText()
+    assert.match(await versionLine(), players === 2 ? /2 PLAYERS · BADGES/ : /1 PLAYER · CABINET/)
+    assert.match(await versionLine(), players === 2 ? /1 PLAYER MODE/ : /2 PLAYER MODE/)
     await shot('ready')
+    await page.keyboard.press('ArrowDown')
+    await page.waitForFunction(
+      (want) => document.querySelector('.version-line')?.textContent?.includes(want),
+      players === 2 ? '1 PLAYER · CABINET' : '2 PLAYERS · BADGES',
+    )
+    await runtime().waitForFunction(
+      (want) => window.__runtime.players === want,
+      players === 2 ? 1 : 2,
+    )
+    await page.keyboard.press('ArrowUp')
+    await page.waitForFunction(
+      (want) => document.querySelector('.version-line')?.textContent?.includes(want),
+      players === 2 ? '2 PLAYERS · BADGES' : '1 PLAYER · CABINET',
+    )
+    await runtime().waitForFunction((want) => window.__runtime.players === want, players)
+    assert.equal(builds.length, 1, 'switching modes never regenerates')
 
     if (players === 1) {
       await page.getByRole('button', { name: /^(?:>\s*)?PLAY$/ }).click()

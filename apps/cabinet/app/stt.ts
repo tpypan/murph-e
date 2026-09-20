@@ -1,5 +1,5 @@
-// Push-to-talk, local Whisper transcription. Capture only while held; send the
-// finished clip to our own server on release. No cloud audio or live session.
+// Push-to-talk. Capture only while held; send the finished clip to our server
+// on release. The server selects OpenAI or explicitly configured local speech.
 export interface SttHandlers {
   onState: (state: 'live' | 'error', detail?: string) => void
   onStream?: (stream: MediaStream | null) => void
@@ -98,7 +98,7 @@ export class Stt {
         signal: request.signal,
       })
       const result = await response.json()
-      if (!response.ok) throw new Error(result.error || 'Local transcription failed. Try again.')
+      if (!response.ok) throw new Error(result.error || 'Transcription failed. Try again.')
       return this.session === session ? String(result.text ?? '').trim() : ''
     } catch (error) {
       if (this.session !== session) return ''

@@ -134,6 +134,7 @@ export function BuildConsole({
   title,
   status,
   players = 1,
+  note,
   onCancel,
 }: {
   code: string
@@ -141,6 +142,8 @@ export function BuildConsole({
   title?: string
   status: BuildStatus
   players?: number
+  /** One line under the heading, e.g. which version this stream is. */
+  note?: string
   onCancel: () => void
 }) {
   const lines = useMemo(() => codeWindow(code, 30, 11), [code])
@@ -156,6 +159,7 @@ export function BuildConsole({
   return (
     <section className="stage build-stage" aria-label="Live game build">
       <h1 aria-live="polite">{label}</h1>
+      {note && <p className="support">{note}</p>}
       <div className="build-workbench">
         <section className="build-code" aria-label="Live generated code" aria-live="off">
           {code ? (

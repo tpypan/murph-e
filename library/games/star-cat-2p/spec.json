@@ -1,0 +1,47 @@
+{
+  "title": "STAR CAT",
+  "oneLiner": "Two wizard cats bounce across magic clouds together to catch falling stars before they vanish.",
+  "genre": "cooperative vertical platforming",
+  "hook": "Players must choose whether to bounce toward nearby safe stars or take riskier high arcs for rare gold stars, while coordinating their positions so neither cat-",
+  "ramp": "Begin with slow, widely spaced stars and stable clouds, then add moving clouds, brief star clusters, and gentle wind lanes one at a time. Alternate 10–15 second pressure bursts with recovery sections;",
+  "mechanics": [
+    "Two players cooperate in one shared vertical arena: each wizard cat automatically bounces whenever it lands on a cloud, while left/right steer the horizontal arc; both can also use A to cast a short horizontal wand burst that collects a star from a little farther away, with a 20-frame cooldown.",
+    "Stars fall from the top at bounded speed and disappear after 3.5 seconds. Catching a star scores 100 points for the team and removes it exactly once; a gold star scores 300 and briefly shows a sparkle burst.",
+    "Clouds are solid only from above. Cats land on them during a downward arc, bounce upward with a fixed 78-pixel vertical impulse, and wrap at the side edges. Missed clouds cause a fall; a cat is rescued and reset to the lowest cloud if it falls below the playfield, costing one shared rescue.",
+    "A cat may spend B once per jump to perform a short air-dash in its facing direction, improving reach but making the landing route harder to control. B resets when the cat lands.",
+    "Players have separate three-heart counters. Touching a storm puff or missing the rescue zone costs one heart, flashes the cat for 60 frames, and respawns it on the lowest cloud; the other player continues playing.",
+    "The team wins after catching 30 stars or when the 75-second round ends; at timeout, the team keeps its score and receives a clear if at least 24 stars were caught. The team loses when both cats have no hearts, or when the timer ends below 24 stars.",
+    "Every 10 seconds the camera scrolls upward to reveal new clouds. The first section has fixed clouds and ordinary stars; later sections add horizontally drifting clouds, then slow storm puffs and gold stars. Never exceed four active stars, three moving clouds, or two storm puffs.",
+    "The first star falls directly above a broad starting cloud within 2 seconds, making steering and A collection immediately understandable. Missed stars are replaced by the next bounded spawn, so failure never softlocks the round.",
+    "On clear, show total team score and remaining hearts; reset both players, clouds, timer, star IDs, cooldowns, and rescue state for a fresh deterministic round."
+  ],
+  "artDirection": "256x224 shared vertical arena with a 12-pixel runtime HUD. Each cat is about 20x24 pixels, using a clear wizard-cat silhouette: pointed hat, triangular ears, tail, robe, and a bright wand. Give each player a distinct robe color and hat band. Use the supplied climber/cat asset for the cat identity, drawing wait while airborne or idle and rescued for a successful catch; add a small hat, wand, and colored player marker as aligned sprite details. Clouds are 28–40 pixels wide white-blue platforms with darker undersides. Stars are 8x8 gold four-point pickups with a strong twinkle. Use a deep navy sky, moonlit cloud layers, sparse stars, and a dark quiet region behind active pickups. Show distinct bounce, falling, catch, and hurt poses through simple overlays and squash/stretch primitives; never let effects obscure cloud or star hitboxes.",
+  "referenceIntent": {
+    "reference": "",
+    "preserve": [],
+    "change": []
+  },
+  "controls": {
+    "left": "Steer wizard cat left",
+    "right": "Steer wizard cat right",
+    "up": null,
+    "down": null,
+    "a": "Cast a short wand burst to collect a nearby star; 20-frame cooldown",
+    "b": "Air-dash once per jump in the facing direction"
+  },
+  "palette": "arcade",
+  "lose": "The team loses when both cats are out of hearts, or the 75-second timer ends with fewer than 24 stars caught.",
+  "scoring": "Ordinary stars are worth 100 points and gold stars are worth 300; each star scores once when caught.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "platforming",
+    "collision",
+    "scoring",
+    "onboarding"
+  ],
+  "players": 2,
+  "runId": "2026-09-20-083713049-a-wizard-cat-bouncing-on-clouds-lyFzMn"
+}

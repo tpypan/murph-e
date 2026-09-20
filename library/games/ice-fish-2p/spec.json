@@ -1,0 +1,47 @@
+{
+  "title": "ICE FISH",
+  "oneLiner": "Two penguins slide, grab fish, and outmaneuver snapping seals before the ice gives way.",
+  "genre": "cooperative ice-sliding collection",
+  "hook": "Players must choose safe braking lanes or risky long slides through seal patrols: risky routes collect clustered fish faster but make stopping and rescuing a sk",
+  "ramp": "Each bounded stage opens with a quiet fish line, then adds seal patrols, crossing patrols, and shrinking safe ice gaps one pattern at a time. Pressure peaks during dense schools, followed by a clearow",
+  "mechanics": [
+    "Both players cooperate in one shared scrolling ice arena; each controls a penguin and the team wins by collecting every fish in the stage before the ice route closes.",
+    "Left/right steer the penguin while it slides continuously; up gives a short forward shove and down brakes sharply. A and B are unused.",
+    "Penguins have momentum: steering is strongest during a slide, braking reduces speed, and touching the water border or a seal causes a brief tumble and loss of one team heart.",
+    "Seals patrol marked lanes, pause with mouths closed, then telegraph with a red flash and snap forward; their active bite lasts 0.25 seconds, after which they have 0.45 seconds of harmless recovery.",
+    "Fish are collected once by either player for 100 points, with a shared 5-second chain multiplier from x1 to x4 for consecutive pickups; taking damage resets the chain.",
+    "A player can bump the other penguin gently, but cannot block fish or seals; players should split routes and can regroup during recovery sections.",
+    "Stages contain 12–20 fish and 3–6 seals, with at least one safe lane and a visible warning before every seal crossing. Complete four compact stages; each stage resets positions and hearts while carrying the score.",
+    "The first stage teaches steering, braking, and one harmless seal before introducing a crossing patrol. Later stages add moving ice cracks, offset fish routes, and short recovery stretches, capped at four simultaneous seals.",
+    "A stage ends when all fish are collected; the team gets a brief clear fanfare. The cabinet ends the run when the shared three-heart supply is exhausted, or after a stage timer expires; the timer is generous enough for deliberate play and pauses during clear fanfare."
+  ],
+  "artDirection": "256x224 shared overhead arena. Each penguin is 18x20 pixels: black-and-white rounded silhouette, orange beak and feet, colored scarf for P1/P2, with clear idle, sliding, braking, and hurt poses. Fish are bright 6x6 silver-blue sprites with a single sparkle frame. Seals are 20x14 dark gray bodies with pale bellies and oversized snapping mouths; their open-mouth pose is the hazard telegraph. Use a dark navy water border, pale blue ice floes, white cracks, and muted cyan background layers; keep active lanes uncluttered and use warm orange/red only for danger and feedback. HUD space is reserved by runtime; draw directional ice streaks behind sliding players.",
+  "referenceIntent": {
+    "reference": "",
+    "preserve": [],
+    "change": []
+  },
+  "controls": {
+    "left": "Steer penguin left",
+    "right": "Steer penguin right",
+    "up": "Forward shove",
+    "down": "Brake",
+    "a": null,
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "Lose one shared heart when either penguin hits a seal, water, or a broken ice edge; the run ends at zero hearts or an expired stage timer.",
+  "scoring": "100 points per fish; consecutive fish within 5 seconds build a shared multiplier up to x4, reset by damage or timeout.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "readability",
+    "pacing",
+    "onboarding",
+    "scoring"
+  ],
+  "players": 2,
+  "runId": "2026-09-20-062904026-a-penguin-sliding-on-ice-collect-OcZeGS"
+}

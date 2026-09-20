@@ -9,6 +9,11 @@ import {
   selectDesignContext,
 } from './design-context.ts'
 import { MODELS, ms, now, openai } from './env.ts'
+import {
+  MULTIPLAYER_DESIGN_RULES,
+  MultiplayerPlanSchema,
+  multiplayerJsonSchema,
+} from './multiplayer.ts'
 import { referenceContext } from './reference-context.ts'
 
 export const GENRES = [
@@ -46,6 +51,7 @@ const controlDescription = z
   )
 
 export const GameSpecSchema = z.object({
+  multiplayer: MultiplayerPlanSchema.optional(),
   title: z.string().min(1),
   oneLiner: z.string().min(1),
   genre: z.string().trim().min(1).max(64),
@@ -81,6 +87,7 @@ export const GameSpecSchema = z.object({
   // Optional for library games saved before design context was connected.
   designCards: z.array(z.enum(DESIGN_CARD_IDS)).max(4).optional(),
 })
+export const GeneratedGameSpecSchema = GameSpecSchema.extend({ multiplayer: MultiplayerPlanSchema })
 export type GameSpec = z.infer<typeof GameSpecSchema> & { players: Players }
 
 // Hand-written so it is strict-mode valid: every property required, no extras.
@@ -88,6 +95,7 @@ export const specJsonSchema = {
   type: 'object',
   additionalProperties: false,
   required: [
+    'multiplayer',
     'title',
     'oneLiner',
     'genre',
@@ -107,6 +115,7 @@ export const specJsonSchema = {
     'designCards',
   ],
   properties: {
+    multiplayer: multiplayerJsonSchema,
     referenceIntent: {
       type: 'object',
       additionalProperties: false,
@@ -216,13 +225,13 @@ export const specJsonSchema = {
   },
 }
 
-export const SPEC_INSTRUCTIONS = `You turn what a person said into a spec for a complete, polished 2D arcade game that a second model will write in one go. The game runs at 256x224 with a default 16-colour palette plus optional exact per-sprite palettes, a d-pad and two buttons (A, B), single player.
+export const SPEC_INSTRUCTIONS = `You turn what a person said into a spec for a complete, polished 2D arcade game that a second model will write in one go. The game runs at 256x224 with a default 16-colour palette plus optional exact per-sprite palettes, a d-pad and two buttons (A, B) per human. The current session has one human; the same generated game must also support two humans.
 
 Rules:
 - Keep the person's idea. Their nouns become the sprites and the theme. Their verbs become the mechanics.
 - Describe the actual genre, using any precise lowercase label or hybrid. Fighting, brawler, racing, rhythm, puzzle, maze, sports and adventure are valid; these are examples, not a closed list. Genre is metadata, not a restriction or an instruction to reskin a template. Street Fighter is fighting, not dodge.
 - Preserve the requested experience and signature mechanics. One viewport does not mean one static room: scrolling stages, rounds, progression and compact multi-stage games are allowed. Adapt only what is incompatible with the actual 2D runtime, physical controls, player count or generation budget, and explain material changes in note.
-- If the request is for two or more players, make it one player against the computer and set note to MADE IT ONE PLAYER.
+- The current session has one human. Preserve requested multiplayer rules in the two-player mode and describe the solo adaptation in multiplayer.solo. Requests beyond two local humans must explain the two-human limit in note; do not remove multiplayer support.
 - If the request is vague ("something with cats", "a relaxing game"), invent a concrete, charming game that fits.
 - Give an achievable scoring opportunity within 5 seconds. Action games should develop real danger within about 30 seconds; preserve calm or puzzle requests. Use bounded difficulty and pressure/recovery phases, not endless acceleration. Describe one concrete skillful action, reward, and hazard interaction.
 - hook: the central decision and what it risks. Name an actual gameplay tradeoff, such as choosing a route, spacing an attack, managing a scarce resource or coordinating with a teammate. Preserve the supplied foundation's tested reward rules; do not invent combo points or extra meters to create a hook.
@@ -236,13 +245,13 @@ Rules:
 - Moderation: if the request is hateful, sexual, about real people, about self-harm, about real-world violence such as shootings or attacks on people or places, or is not a game at all, do not make that game. Replace it with an unrelated, wholesome arcade game, set moderated to true, and set note to LET'S PLAY THIS INSTEAD. Cartoon action such as shooting asteroids, zapping aliens or bonking slimes is fine.
 - Remix: when the input says a game is already on screen and the person is asking to change that game, set remix to true, keep the title and the genre, and put the concrete changes in changes (1 to 4 short imperative lines, e.g. "double the car speed ramp", "add a boss sprite at the top that fires every 2 seconds"). The rest of the spec then describes the game after the changes. A remix is a modification: speed, size, count, lives, difficulty, colours, one new enemy or item, or swapping one thing ("make the hero a cat"). Words that describe a game with its own premise (a different hero, setting and goal, e.g. "a game where a penguin slides on ice collecting fish") are a NEW game even if the genre is similar: remix false, changes empty, and the spec describes that new game. With no game on screen, remix is always false. When remix is true, leave hook and ramp as empty strings and describe the requested behavior in changes.`
 
-export const SPEC_INSTRUCTIONS_2P = `You turn what two people said into a spec for a complete, polished 2D arcade game for exactly two players that a second model will write in one go. The game runs at 256x224 with a default 16-colour palette plus optional exact per-sprite palettes. Each player has their own d-pad and two buttons (A, B). Both players share one cabinet display. Use a shared arena when appropriate; a racer may use two compact independent viewports within that display.
+export const SPEC_INSTRUCTIONS_2P = `You turn what two people said into a spec for a complete, polished 2D arcade game supporting both solo and two-player play, currently starting with two humans, that a second model will write in one go. The game runs at 256x224 with a default 16-colour palette plus optional exact per-sprite palettes. Each player has their own d-pad and two buttons (A, B). Both players share one cabinet display. Use a shared arena when appropriate; a racer may use two compact independent viewports within that display.
 
 Rules:
 - Keep their idea. Their nouns become the sprites and the theme. Their verbs become the mechanics.
 - Describe the actual genre with any precise lowercase label or hybrid: fighting, racing, puzzle, shooter, rhythm, sports, etc. Genre is independent of player count. In mechanics explicitly state whether players compete or cooperate, their roles, and how they win. Preserve legacy versus/coop labels when remixing a saved game.
 - Preserve signature mechanics. Scrolling stages, rounds, progression and compact multi-stage games are allowed within one shared viewport. Adapt only what is incompatible with the actual runtime or controls; explain material changes in note.
-- If the request is for one player, or for more than two, make it two players and set note to MADE IT TWO PLAYERS.
+- The current session has two humans. Also design the solo mode in multiplayer.solo. Requests beyond two local humans must explain the two-human limit in note.
 - If the request is vague ("something fun for us"), invent a concrete, charming two-player game that fits.
 - Versus: use a finite objective, suitable timer or bounded progress so play cannot stall forever. Preserve a supplied foundation's documented round timing and terminal rules unless the person asked to change them; do not replace its defaults with a universal one-minute round. Coop: give an achievable scoring opportunity within 5 seconds and real danger within about 30 seconds for action games. Preserve calm requests. Use bounded difficulty and pressure/recovery phases. Preserve signature mechanics even when the genre label is broad.
 - hook: the central decision and what it risks. Name an actual gameplay tradeoff, such as choosing a route, spacing an attack, managing a scarce resource or coordinating with a teammate. Preserve the supplied foundation's tested reward rules; do not invent combo points or extra meters to create a hook.
@@ -275,8 +284,19 @@ export interface SpecOptions {
 }
 
 function describeCurrent(spec: GameSpec): string {
-  const { title, genre, oneLiner, hook, ramp, mechanics, artDirection, controls, lose, scoring } =
-    spec
+  const {
+    title,
+    genre,
+    oneLiner,
+    hook,
+    ramp,
+    mechanics,
+    artDirection,
+    controls,
+    lose,
+    scoring,
+    multiplayer,
+  } = spec
   return JSON.stringify({
     title,
     genre,
@@ -288,6 +308,7 @@ function describeCurrent(spec: GameSpec): string {
     controls,
     lose,
     scoring,
+    multiplayer,
   })
 }
 
@@ -296,6 +317,7 @@ export function specPrompt(transcript: string, opts: SpecOptions = {}) {
   const context = selectDesignContext(transcript, opts.current ?? {}, 'spec')
   const system = [
     players === 2 ? SPEC_INSTRUCTIONS_2P : SPEC_INSTRUCTIONS,
+    MULTIPLAYER_DESIGN_RULES,
     'Fill referenceIntent first. Example: Pac-Man but a goose chases the ghosts changes the player into the hunter; ghosts flee by default and catching ghosts must advance the primary objective. Do not restrict that requested reversal to a temporary power-up unless the user asks for that. Mechanics, scoring and lose conditions must agree with referenceIntent.change. Reference behavior is subordinate to the explicit adaptation.',
     'For a named game, distinguish the reference features to preserve from the explicit changes requested. Put both into concrete mechanics and artDirection. A changed actor or verb is a requirement: do not silently restore the original win condition or chase relationship. Prioritize those requirements over optional extra moves and meters.',
     designCore(),
@@ -314,7 +336,7 @@ export function specPrompt(transcript: string, opts: SpecOptions = {}) {
       : 'No game is on screen.',
     context.text,
     referenceContext(transcript, {}, false).text,
-    catalogContext(transcript, { players }).text,
+    catalogContext(transcript, { players, requireMultiplayer: true }).text,
   ]
     .filter(Boolean)
     .join('\n\n')
@@ -340,12 +362,12 @@ export async function specify(transcript: string, opts: SpecOptions = {}): Promi
             schema: specJsonSchema,
           },
         },
-        prompt_cache_key: players === 2 ? 'htn-spec-2p-v5' : 'htn-spec-v5',
+        prompt_cache_key: players === 2 ? 'htn-spec-2p-v6' : 'htn-spec-v6',
       },
       { signal },
     ),
   )
-  const parsed = GameSpecSchema.parse(JSON.parse(res.output_text))
+  const parsed = GeneratedGameSpecSchema.parse(JSON.parse(res.output_text))
   parsed.title = parsed.title.toUpperCase().slice(0, 14)
   parsed.note = parsed.note.toUpperCase().slice(0, 40)
   parsed.oneLiner = parsed.oneLiner.slice(0, 120)

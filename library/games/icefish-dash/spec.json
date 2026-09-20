@@ -1,0 +1,48 @@
+{
+  "title": "ICEFISH DASH",
+  "oneLiner": "Slide through icy waters, scoop up fish, and weave past snapping seals.",
+  "genre": "ice-sliding collection action",
+  "hook": "Commit to a slippery line: staying on a fast slide collects fish efficiently, but braking or steering early is safer when seals block the route.",
+  "ramp": "Each run has four short scrolling ice fields with authored teach, build, peak, and recovery sections. The first field presents isolated fish and one slow seal; later fields add staggered seal patrols,",
+  "mechanics": [
+    "The penguin automatically slides forward across connected ice floes; Left and Right steer, while releasing both directions preserves momentum.",
+    "Press A to brake briefly, reducing speed and allowing a sharper turn; braking has a 0.6-second recovery before it can be used again.",
+    "Fish are collected on contact and score once; the first fish is placed directly on the opening route so the goal is immediately readable.",
+    "Seals patrol marked ice lanes. They pause with a warning bark for 0.35 seconds, then lunge across their lane; touching a seal or leaving the ice costs one life.",
+    "A seal lunge can be dodged by steering to another lane or braking before the crossing. Successful near-misses within 12 pixels award a 50-point precision bonus once per lunge.",
+    "Collecting fish without missing one builds a chain multiplier up to x4; missing a fish or losing a life resets the chain. Each fish scores 100 times the current multiplier.",
+    "Cracked ice is a visual warning and collapses only after the penguin crosses it; crossing costs momentum and forces a short recovery, while falling off the bottom or side costs a life.",
+    "Each field ends at a bright igloo gate after 20 to 28 fish placements. Reaching it advances the stage; stage four ends the run with a results screen.",
+    "The opening section has one slow seal and wide lanes, later sections add staggered patrols, narrow floes, and at most three simultaneous seals. Every field includes a quiet recovery stretch after its peak.",
+    "The penguin has three lives. On loss, freeze for 0.8 seconds, show the collision cause and knockback, then restart the current field at its checkpoint with its fish placements reset."
+  ],
+  "artDirection": "256x224 single-screen viewport with horizontal scrolling. The penguin is a 24x28 pixel black-and-white sprite with a round white belly, orange beak and feet, blue scarf, and distinct upright idle, crouched sliding, turning, and hurt poses. Fish are 10x7 bright cyan-and-gold sprites with a clear sparkle. Seals are 24x16 pale-gray sprites with dark noses and flippers; their raised-head warning pose precedes a lunge. Use deep navy ice shadows, pale-blue platforms, white snow, and warm orange pickups against a quiet layered polar background: distant mountains, midground ice floes, and foreground cracks. Keep hazards and fish high-contrast and reserve the brightest highlights for pickups and impact flashes.",
+  "referenceIntent": {
+    "reference": "",
+    "preserve": [],
+    "change": []
+  },
+  "controls": {
+    "left": "Steer the sliding penguin left; active during play and recovery movement.",
+    "right": "Steer the sliding penguin right; active during play and recovery movement.",
+    "up": null,
+    "down": null,
+    "a": "Brake and turn sharply while sliding; usable during play, with a 0.6-second cooldown.",
+    "b": null
+  },
+  "palette": "nes",
+  "lose": "The run ends when all three lives are lost; falling or colliding with a seal costs one life.",
+  "scoring": "Fish score 100 points times the current x1–x4 chain multiplier, and a clean seal near-miss scores 50 points.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "platforming",
+    "collision",
+    "scoring",
+    "readability"
+  ],
+  "players": 1,
+  "runId": "2026-09-20-062903977-a-penguin-sliding-on-ice-collect-ACb22C"
+}
