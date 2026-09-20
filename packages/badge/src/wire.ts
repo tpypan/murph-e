@@ -30,6 +30,24 @@ export interface Transport {
 const VENDOR_ID = '303a'
 const PRODUCT_ID = '1001'
 const BAUD = 115200
+// A badge's USB serial number is its MAC. The cabinet's arcade board is an
+// ESP32-S3 with the same vendor and product IDs but a plain hex serial
+// (E072A1E9FEF42); opening its port toggles DTR/RTS, which resets the chip and
+// drops the gamepad, so the hub must never touch it.
+const BADGE_SERIAL = /^([0-9a-f]{2}:){5}[0-9a-f]{2}$/i
+
+/** True for a serial port that is a badge: Espressif's IDs and a MAC serial. */
+export function isBadgePort(p: {
+  vendorId?: string
+  productId?: string
+  serialNumber?: string
+}): boolean {
+  return (
+    (p.vendorId ?? '').toLowerCase() === VENDOR_ID &&
+    (p.productId ?? '').toLowerCase() === PRODUCT_ID &&
+    BADGE_SERIAL.test(p.serialNumber ?? '')
+  )
+}
 
 export class SerialWire implements Wire {
   readonly path: string
@@ -97,11 +115,7 @@ export class SerialTransport implements Transport {
     const ports = await SerialPort.list()
     return (
       ports
-        .filter(
-          (p) =>
-            (p.vendorId ?? '').toLowerCase() === VENDOR_ID &&
-            (p.productId ?? '').toLowerCase() === PRODUCT_ID,
-        )
+        .filter(isBadgePort)
         // macOS lists tty.*; cu.* is the right one to open (no carrier wait).
         .map((p) => ({
           path: p.path.replace('/dev/tty.', '/dev/cu.'),

@@ -17,6 +17,7 @@ mapping exercise, not a build.
 | Simulator | `apps/cabinet/app/panel.tsx`, F3 | lights on every player-one press, names the last code it received, and its buttons dispatch the encoder codes as synthetic key events |
 | Keycaps | `apps/cabinet/app/game-controls.tsx` | the play legend says A and B by default; only `?keyboard=1` shows A / Z and B / X |
 | Kiosk | `scripts/kiosk.sh` | opens `/` |
+| Badge hub | `packages/badge/src/wire.ts`, `isBadgePort` | skips the board's serial port (same Espressif IDs as a badge, hex serial instead of a MAC); probing it reset the board and dropped the pad |
 | Code reader | `packages/runtime/keys.html` (`pnpm serve`, port 5173) | prints the code of every key pressed |
 | Tests | `packages/probe/scripts/panel-ui-test.mjs`, `input-routing-ui-test.mjs` | the whole loop on the encoder codes; who plays in 1P and 2P with two fake badges |
 | Docs that name the placeholders | `docs/design-guide.md` (Physical input), `docs/runbook.md` (Encoder mapping, Keyboard), `docs/overview.md` (Hardware), `AGENTS.md` (Cabinet change), `docs/plans/tier-2.md` (H8) | say "numpad placeholders" until this procedure is done |

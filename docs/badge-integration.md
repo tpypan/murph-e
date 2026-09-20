@@ -383,6 +383,12 @@ on two real badges: 31 mailbox writes over 30 minutes alternating the two
 longest control sets, no handle errors, both badges still in the app; versions
 11 and 12 failed the same soak inside four minutes.
 
+The hub only opens Espressif ports whose USB serial number is a MAC
+(`isBadgePort` in `wire.ts`). The arcade control board is also an ESP32 with
+vendor `0x303A` product `0x1001` but a plain hex serial; before this filter the
+hub probed it for a `badge>` prompt every ten seconds, and each open toggled
+DTR/RTS and reset the board, so the gamepad kept dropping (seen 2026-09-20).
+
 Installs need a good cable: over one cable every push stalled on the second file
 (READY, then no OK) and wedged the badge console, on two different badges, while
 the same badges installed in 16 s over the other cable. The hub now deletes the
