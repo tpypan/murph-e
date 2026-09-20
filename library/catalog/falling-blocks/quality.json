@@ -1,0 +1,36 @@
+{
+  "contentHash": "3e73dfc26df55237d05f616a80a8fd90c587ed8406030777932693db4cbd6a41",
+  "reviewedAt": "2026-09-19T22:57:33.096Z",
+  "checks": [
+    {
+      "name": "behavior",
+      "passed": true,
+      "artifact": "behavior-results.json",
+      "artifactHash": "ef7d08599ab6bee33053dcad2a0afd29b5b8f6b8d5a511deb3162d30c3b6fce7"
+    },
+    {
+      "name": "visual",
+      "passed": true,
+      "artifact": "verification/visual-review.json",
+      "artifactHash": "f189cf65ca6f0ee1bc9ea9a53518ec205e01d62775a3d073b7b05ea9391cc38e"
+    },
+    {
+      "name": "runtime-1p",
+      "passed": true,
+      "artifact": "verification/runtime.json",
+      "artifactHash": "3a74d2d7fd83d785d00db4ca5e1a95c9f22a4edef91e10b03b9cc5a5cb5f9336"
+    },
+    {
+      "name": "runtime-2p",
+      "passed": true,
+      "artifact": "verification/runtime.json",
+      "artifactHash": "3a74d2d7fd83d785d00db4ca5e1a95c9f22a4edef91e10b03b9cc5a5cb5f9336"
+    },
+    {
+      "name": "presentation-safety",
+      "passed": true,
+      "artifact": "verification/presentation/proof.json",
+      "artifactHash": "c28f7ca36e511c8c2b7311d961d7a8158621ddac1661ed0164e5ec673112aaf9"
+    }
+  ]
+}

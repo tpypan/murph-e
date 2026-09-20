@@ -1,0 +1,86 @@
+{
+  "date": "2026-09-19",
+  "checks": [
+    {
+      "scenario": "classic-1p",
+      "players": 1,
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "gameover",
+        "score": 140,
+        "scores": [
+          140
+        ],
+        "winner": null,
+        "frame": 1771,
+        "error": null
+      },
+      "errors": [],
+      "stats": {
+        "colors": 8,
+        "dominant": 0,
+        "dominantShare": 0.9070347377232143
+      }
+    },
+    {
+      "scenario": "goose-hunt-2p",
+      "players": 2,
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "gameover",
+        "score": 980,
+        "scores": [
+          980,
+          980
+        ],
+        "winner": null,
+        "frame": 3542,
+        "error": null
+      },
+      "errors": [],
+      "stats": {
+        "colors": 10,
+        "dominant": 0,
+        "dominantShare": 0.9027099609375
+      }
+    },
+    {
+      "scenario": "full cooperative replay",
+      "players": 2,
+      "replayFrames": 869,
+      "state": {
+        "state": "win",
+        "score": 1950,
+        "scores": [
+          1950,
+          1950
+        ],
+        "winner": null,
+        "frame": 4412,
+        "error": null
+      },
+      "errors": []
+    },
+    {
+      "scenario": "full hunt replay",
+      "players": 2,
+      "replayFrames": 942,
+      "state": {
+        "state": "win",
+        "score": 2610,
+        "scores": [
+          2610,
+          2610
+        ],
+        "winner": null,
+        "frame": 5355,
+        "error": null
+      },
+      "errors": []
+    }
+  ]
+}

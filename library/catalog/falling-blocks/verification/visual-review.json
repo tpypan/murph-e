@@ -1,0 +1,31 @@
+{
+  "reviewedAt": "2026-09-19T22:57:33.096Z",
+  "passed": true,
+  "contentHash": "3e73dfc26df55237d05f616a80a8fd90c587ed8406030777932693db4cbd6a41",
+  "sourceHash": "80b4d0cf8c89ac462f3027ccdbf08d274355b676344265d6fae1fa3c02c1b09d",
+  "method": "Native 256x224 framebuffer captures visually inspected. Paired input replays compare every pixel; presentation differences must stay within declared notice slots or exact well-border pixels.",
+  "findings": [
+    "Clear flash follows only the affected well outline in 1P/2P.",
+    "Shared NEXT/TIME, both preview queues, blocks and control legend remain unobscured.",
+    "Flash expires and resets; there is no center divider."
+  ],
+  "screenshots": [
+    {
+      "path": "verification/presentation/1p-customized-clear.png",
+      "sha256": "373ea7f7b91c574dc7d631e8f738e019b6ad8a7f62f16361f77d8fa3234ebfc0"
+    },
+    {
+      "path": "verification/presentation/2p-customized-clear.png",
+      "sha256": "67373f4e858972f9dcd963c816dd82d20bd370c61b79644f4276b1d04eed5b95"
+    }
+  ],
+  "presentationProof": {
+    "path": "verification/presentation/proof.json",
+    "sha256": "c28f7ca36e511c8c2b7311d961d7a8158621ddac1661ed0164e5ec673112aaf9"
+  },
+  "limitations": [
+    "Frozen historical generated cartridges are unchanged; this contract improves future compositions.",
+    "Arbitrary custom wrapper drawing can still obscure the HUD.",
+    "No physical CRT calibration or new model-generation benchmark is claimed."
+  ]
+}

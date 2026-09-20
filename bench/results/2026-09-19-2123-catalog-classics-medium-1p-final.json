@@ -1,0 +1,67 @@
+{
+  "model": "gpt-6-astra",
+  "effort": "medium",
+  "players": 1,
+  "n": 1,
+  "rows": [
+    {
+      "prompt": "Donkey Kong style: climb a construction tower, jump rolling barrels, and rescue a kitten at the top. Three stages.",
+      "title": "KITTY KONG",
+      "genre": "arcade platforming",
+      "runId": "2026-09-19-212228451-donkey-kong-style-climb-a-constr-Ifg12N",
+      "specMs": 7443,
+      "buildMs": 54667,
+      "ttftMs": 15478,
+      "totalMs": 62149,
+      "tokens": 3180,
+      "reasoning": 516,
+      "cached": 0,
+      "lines": 540,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [
+        "holding UP changed nothing on screen, including after A when available",
+        "holding DOWN changed nothing on screen, including after A when available"
+      ],
+      "error": null
+    },
+    {
+      "prompt": "Classic Pong with satisfying spin, charged returns and first to seven points.",
+      "title": "SPIN PONG",
+      "genre": "competitive paddle sports",
+      "runId": "2026-09-19-212228482-classic-pong-with-satisfying-spi-ViM0GJ",
+      "specMs": 6856,
+      "buildMs": 12419,
+      "ttftMs": 7383,
+      "totalMs": 19302,
+      "tokens": 505,
+      "reasoning": 177,
+      "cached": 2996,
+      "lines": 208,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [
+        "pressing B changed nothing on screen"
+      ],
+      "error": null
+    },
+    {
+      "prompt": "Breakout with three brick formations, tough bricks that crack before breaking, and pickups.",
+      "title": "CRACKOUT",
+      "genre": "brick-breaker",
+      "runId": "2026-09-19-212248206-breakout-with-three-brick-format-4ZaE5n",
+      "specMs": 7332,
+      "buildMs": 14812,
+      "ttftMs": 11029,
+      "totalMs": 22204,
+      "tokens": 569,
+      "reasoning": 328,
+      "cached": 2996,
+      "lines": 264,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [],
+      "error": null
+    }
+  ]
+}

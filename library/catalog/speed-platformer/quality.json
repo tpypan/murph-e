@@ -1,0 +1,36 @@
+{
+  "contentHash": "633c4ca13e6fa5d5da90ca6bda5310250e42b8093f69f281dbd922cbe40e7838",
+  "status": "verified",
+  "checks": [
+    {
+      "name": "behavior",
+      "passed": true,
+      "artifact": "verification/behavior.json",
+      "artifactHash": "2dcad38b71818cba44643c1f28f574ec90ddfaea232d37a214a81cac10c4efd8"
+    },
+    {
+      "name": "runtime-1p",
+      "passed": true,
+      "artifact": "verification/runtime-1p.json",
+      "artifactHash": "6ac113f9f9c47cf005cde1b56e32469c5b0dc8ace8e901ebcda0cbda87f2a975"
+    },
+    {
+      "name": "runtime-2p",
+      "passed": true,
+      "artifact": "verification/runtime-2p.json",
+      "artifactHash": "629bbe04ba5de3f203f0ae32361d2807905e7a7f272efd82d01f94e7454d7871"
+    },
+    {
+      "name": "default-input-routes",
+      "passed": true,
+      "artifact": "verification/default-input-routes.json",
+      "artifactHash": "5289c2de77a211c77423c6e02b0cd785f627a1dc50bcccbdcff8bb6b51dfcd72"
+    },
+    {
+      "name": "visual",
+      "passed": true,
+      "artifact": "verification/visual-review.json",
+      "artifactHash": "a5da84c13d3abf7bfb2e4481a45f2a0d83d0096340d0044c463da15349bd5ab1"
+    }
+  ]
+}

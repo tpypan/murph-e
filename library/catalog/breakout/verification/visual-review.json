@@ -1,0 +1,47 @@
+{
+  "reviewedAt": "2026-09-19T22:10:32.249806+00:00",
+  "contentHash": "3cd357daf1ed2445140d74135164fe3e2c17e76f1419e67908a7e7fdcaa56e13",
+  "passed": true,
+  "method": "Opened native256x224 runtime snapshots using view_image. Replayed ordinary button events from the real collision/damage regression.",
+  "inspected": [
+    {
+      "file": "screenshots/damage-before-fix-fresh.png",
+      "sha256": "e08c4596dbbf8e9907ec5af0713ebbfb4f0985de8599bfc9bd527ff42340a9d1"
+    },
+    {
+      "file": "screenshots/damage-fresh.png",
+      "sha256": "c68099bb3bf1db91ba50ec1e2b14f170f56153bd2b3faa680e090456203f7642"
+    },
+    {
+      "file": "screenshots/damage-2hp-hit-1.png",
+      "sha256": "149f50d7e0a8d198e8ae65f10db17948a30511014c174f8445fdc4aa18bebfc8"
+    },
+    {
+      "file": "screenshots/damage-3hp-hit-1.png",
+      "sha256": "f59379728c77a9fa20802196bac734719e8ac05a74f131a835745bea7f79a35e"
+    },
+    {
+      "file": "screenshots/damage-3hp-hit-2.png",
+      "sha256": "9aca6a57535aea1e18af76b4c4d44f74528e3551fd97c791997e976e887b448b"
+    },
+    {
+      "file": "screenshots/1p-serve.png",
+      "sha256": "43a02940df70241dbe7110ebdb0d5025450a94b901c8a57ef9ff582f8bc16b85"
+    },
+    {
+      "file": "screenshots/2p-impact.png",
+      "sha256": "78e50196c6ebf8fda4623be69c22d975ce7debca01cf6a80a6228bf09bc393cd"
+    }
+  ],
+  "findings": [
+    "All fresh one-, two- and three-hit bricks now use intact art. The baseline shows the original false cracks on untouched one/two-hit bricks.",
+    "A first hit produces one crack pattern on two/three-hit bricks. A second hit produces the deeper crack pattern on a three-hit brick. Destroyed bricks disappear.",
+    "Native damage replay completes after six actual accepted collisions and reaches runtime win with score385; no health or position mutation.",
+    "Full default 1P/2P browser runs still clear all three stages with expected scores4300 and2380/2700."
+  ],
+  "limits": [
+    "No physical CRT or human balance study.",
+    "B is a precision movement modifier; its standalone2P probe observation is covered by movement behavior tests.",
+    "damage-before-fix-fresh.png is intentionally the preserved old rendering, with its original source hash in damage-baseline.json."
+  ]
+}

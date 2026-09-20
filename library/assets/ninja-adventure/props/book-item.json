@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "book-item",
+  "packId": "ninja-adventure",
+  "camera": "top-down",
+  "width": 9,
+  "height": 9,
+  "source": {
+    "path": "original/content/weapon/book/sprite.png",
+    "url": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/weapon/book/sprite.png",
+    "sha256": "002f4bb82b508af0ef3a492f4305fb52b5ef8aba293f8dfadf2ed3dbe3c42e8a",
+    "sourceRevision": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a"
+  },
+  "pixels": [
+    ".0000000.",
+    "024444640",
+    "024444740",
+    "020004740",
+    "024444740",
+    "024444740",
+    "024444740",
+    "024444640",
+    ".0000000."
+  ],
+  "anchor": {
+    "x": 4,
+    "y": 9
+  },
+  "normalization": {
+    "palette": "pico-8",
+    "reviewedOverrides": {}
+  },
+  "anchorOrigin": "Authored bottom-center placement; source attachment pivots have not been reconstructed.",
+  "hitboxes": [],
+  "hurtboxes": [],
+  "animations": {},
+  "tags": [
+    "weapon",
+    "static"
+  ],
+  "notes": "Static source image only. No implied attack animation, damage volume or destruction sequence."
+}

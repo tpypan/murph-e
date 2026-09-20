@@ -1,0 +1,1449 @@
+{
+  "name": "ninja-1p",
+  "id": "2026-09-19-212231442-a-top-down-blue-ninja-in-a-moonl-MkrhM9",
+  "players": 1,
+  "type": "ninja",
+  "spec": {
+    "title": "MOON NINJA",
+    "oneLiner": "Dash through a moonlit bamboo garden, gather ten golden scrolls, and outwit the beetle patrols.",
+    "genre": "top-down collection action",
+    "mechanics": [
+      "The ninja moves smoothly in four directions with the d-pad; movement is acceleration-free and stops cleanly when released.",
+      "Press A to dash for 0.22 seconds in the current movement direction, or the last faced direction while standing; the ninja moves about 2.5 times normal speed and is invulnerable during the dash, with a 1.2-second cooldown shown by a small blue icon.",
+      "Ten scrolls are placed across the garden; touching a scroll collects it once, adds 100 points, flashes a gold burst, and updates the HUD counter.",
+      "Three beetles patrol closed routes with bounded speeds, reversing at route ends and pausing briefly at corners; later waves add crossing routes but never more than four beetles at once.",
+      "A beetle contact outside a dash costs one life, flashes the ninja, knocks the ninja back, and grants 1.5 seconds of damage protection; the beetle resumes its route after the collision.",
+      "The opening 8 seconds contain two slow beetles and nearby scrolls as a safe tutorial; pressure increases after four and seven scrolls, while a short low-threat recovery follows each life loss.",
+      "Collecting all ten scrolls wins the round with a clear completion fanfare; the garden resets for a new round with the score retained only by the cabinet results system.",
+      "A precise dash through a narrow gap to collect a scroll before a patrol turns is the main skillful risk: successful dash collection awards an additional 50-point speed bonus once per scroll.",
+      "The fixed camera shows the complete garden, with bamboo clusters framing the edges and open lanes ensuring every scroll and patrol route is visible before the player commits."
+    ],
+    "artDirection": "256x224 single-screen arena with a deep navy moonlit garden, layered bamboo silhouettes, pale moon glow, and dark pathways that keep hazards readable. The blue ninja is about 18x22 pixels, with a distinct hooded silhouette, bright blue body, pale face slit, and gold belt; use idle, four-direction walk, dash ability-pose, item-pose, and death-pose assets. Golden scrolls are 8x10 bright yellow pickups with a red seal. Beetles are 14x12 dark red-brown shapes with contrasting shells and bright eyes, patrolling along visibly marked routes. Keep the HUD in the top strip, leave recovery spaces around scrolls, and use a brief blue trail for dashes and a gold burst for collection.",
+    "referenceIntent": {
+      "reference": "",
+      "preserve": [],
+      "change": []
+    },
+    "controls": {
+      "left": "Walk/facing left while held",
+      "right": "Walk/facing right while held",
+      "up": "Walk/facing up while held",
+      "down": "Walk/facing down while held",
+      "a": "Dash in the current or last faced direction when cooldown is ready",
+      "b": null
+    },
+    "palette": "arcade",
+    "lose": "Lose a life on unprotected beetle contact; the game ends after all three lives are lost.",
+    "scoring": "100 points per scroll, plus a one-time 50-point bonus when that scroll is collected during a dash.",
+    "moderated": false,
+    "note": "",
+    "remix": false,
+    "changes": [],
+    "designCards": [
+      "readability",
+      "camera",
+      "scoring",
+      "pacing"
+    ],
+    "players": 1
+  },
+  "sourceHash": "bacd6410f2b1ec6ee7be03ab3ebc26be5a2691942d7cbe889e1587a3165efabe",
+  "inputs": [
+    {
+      "at": 0,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 7,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 8,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 10,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 10,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 62,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 65,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 162,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 164,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 168,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 169,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 192,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 193,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 208,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 209,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 274,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 275,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 281,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 282,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 283,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 301,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 305,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 306,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 308,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 309,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 336,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 338,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 347,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 348,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 405,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 405,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 441,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 443,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 465,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 466,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 494,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 518,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 545,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 545,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 545,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 547,
+      "player": 0,
+      "button": "up",
+      "down": false
+    }
+  ],
+  "shots": [
+    {
+      "name": "idle",
+      "frame": 1,
+      "state": {
+        "player": {
+          "x": 41.166666666666664,
+          "y": 184,
+          "fx": 1,
+          "fy": 0,
+          "face": "right",
+          "dash": 0,
+          "cooldown": 0,
+          "dx": 1,
+          "dy": 0,
+          "protection": 0,
+          "knock": 0,
+          "kx": 0,
+          "ky": 0,
+          "item": 0
+        },
+        "scrolls": [
+          {
+            "x": 60,
+            "y": 184,
+            "taken": false,
+            "phase": 0
+          },
+          {
+            "x": 35,
+            "y": 135,
+            "taken": false,
+            "phase": 1.8
+          },
+          {
+            "x": 46,
+            "y": 65,
+            "taken": false,
+            "phase": 3.6
+          },
+          {
+            "x": 101,
+            "y": 64,
+            "taken": false,
+            "phase": 5.4
+          },
+          {
+            "x": 176,
+            "y": 64,
+            "taken": false,
+            "phase": 7.2
+          },
+          {
+            "x": 221,
+            "y": 95,
+            "taken": false,
+            "phase": 9
+          },
+          {
+            "x": 118,
+            "y": 111,
+            "taken": false,
+            "phase": 10.8
+          },
+          {
+            "x": 201,
+            "y": 139,
+            "taken": false,
+            "phase": 12.6
+          },
+          {
+            "x": 146,
+            "y": 185,
+            "taken": false,
+            "phase": 14.4
+          },
+          {
+            "x": 219,
+            "y": 192,
+            "taken": false,
+            "phase": 16.2
+          }
+        ],
+        "beetles": [
+          {
+            "route": 0,
+            "x": 35,
+            "y": 65,
+            "target": 1,
+            "direction": 1,
+            "pause": 0.18333333333333335,
+            "warning": 0,
+            "vx": 1,
+            "vy": 0,
+            "phase": 0
+          },
+          {
+            "route": 1,
+            "x": 170,
+            "y": 65,
+            "target": 1,
+            "direction": 1,
+            "pause": 0.18333333333333335,
+            "warning": 0,
+            "vx": 1,
+            "vy": 0,
+            "phase": 1.7
+          }
+        ],
+        "mode": "play",
+        "lives": 3,
+        "collected": 0,
+        "clip": "walk-right",
+        "clipTicks": 0,
+        "dashVisible": false
+      },
+      "scores": [
+        0
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 1,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "e02875f9",
+      "file": "ninja-1p-idle.png"
+    },
+    {
+      "name": "walking",
+      "frame": 4,
+      "state": {
+        "player": {
+          "x": 44.66666666666666,
+          "y": 184,
+          "fx": 1,
+          "fy": 0,
+          "face": "right",
+          "dash": 0,
+          "cooldown": 0,
+          "dx": 1,
+          "dy": 0,
+          "protection": 0,
+          "knock": 0,
+          "kx": 0,
+          "ky": 0,
+          "item": 0
+        },
+        "scrolls": [
+          {
+            "x": 60,
+            "y": 184,
+            "taken": false,
+            "phase": 0
+          },
+          {
+            "x": 35,
+            "y": 135,
+            "taken": false,
+            "phase": 1.8
+          },
+          {
+            "x": 46,
+            "y": 65,
+            "taken": false,
+            "phase": 3.6
+          },
+          {
+            "x": 101,
+            "y": 64,
+            "taken": false,
+            "phase": 5.4
+          },
+          {
+            "x": 176,
+            "y": 64,
+            "taken": false,
+            "phase": 7.2
+          },
+          {
+            "x": 221,
+            "y": 95,
+            "taken": false,
+            "phase": 9
+          },
+          {
+            "x": 118,
+            "y": 111,
+            "taken": false,
+            "phase": 10.8
+          },
+          {
+            "x": 201,
+            "y": 139,
+            "taken": false,
+            "phase": 12.6
+          },
+          {
+            "x": 146,
+            "y": 185,
+            "taken": false,
+            "phase": 14.4
+          },
+          {
+            "x": 219,
+            "y": 192,
+            "taken": false,
+            "phase": 16.2
+          }
+        ],
+        "beetles": [
+          {
+            "route": 0,
+            "x": 35,
+            "y": 65,
+            "target": 1,
+            "direction": 1,
+            "pause": 0.13333333333333336,
+            "warning": 0,
+            "vx": 1,
+            "vy": 0,
+            "phase": 0
+          },
+          {
+            "route": 1,
+            "x": 170,
+            "y": 65,
+            "target": 1,
+            "direction": 1,
+            "pause": 0.13333333333333336,
+            "warning": 0,
+            "vx": 1,
+            "vy": 0,
+            "phase": 1.7
+          }
+        ],
+        "mode": "play",
+        "lives": 3,
+        "collected": 0,
+        "clip": "walk-right",
+        "clipTicks": 3,
+        "dashVisible": false
+      },
+      "scores": [
+        0
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 4,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "c28162bd",
+      "file": "ninja-1p-walking.png"
+    },
+    {
+      "name": "dash",
+      "frame": 8,
+      "state": {
+        "player": {
+          "x": 51.083333333333314,
+          "y": 184,
+          "fx": 1,
+          "fy": 0,
+          "face": "right",
+          "dash": 0.20333333333333334,
+          "cooldown": 1.2,
+          "dx": 1,
+          "dy": 0,
+          "protection": 0,
+          "knock": 0,
+          "kx": 0,
+          "ky": 0,
+          "item": 0.2
+        },
+        "scrolls": [
+          {
+            "x": 60,
+            "y": 184,
+            "taken": true,
+            "phase": 0
+          },
+          {
+            "x": 35,
+            "y": 135,
+            "taken": false,
+            "phase": 1.8
+          },
+          {
+            "x": 46,
+            "y": 65,
+            "taken": false,
+            "phase": 3.6
+          },
+          {
+            "x": 101,
+            "y": 64,
+            "taken": false,
+            "phase": 5.4
+          },
+          {
+            "x": 176,
+            "y": 64,
+            "taken": false,
+            "phase": 7.2
+          },
+          {
+            "x": 221,
+            "y": 95,
+            "taken": false,
+            "phase": 9
+          },
+          {
+            "x": 118,
+            "y": 111,
+            "taken": false,
+            "phase": 10.8
+          },
+          {
+            "x": 201,
+            "y": 139,
+            "taken": false,
+            "phase": 12.6
+          },
+          {
+            "x": 146,
+            "y": 185,
+            "taken": false,
+            "phase": 14.4
+          },
+          {
+            "x": 219,
+            "y": 192,
+            "taken": false,
+            "phase": 16.2
+          }
+        ],
+        "beetles": [
+          {
+            "route": 0,
+            "x": 35,
+            "y": 65,
+            "target": 1,
+            "direction": 1,
+            "pause": 0.06666666666666671,
+            "warning": 0,
+            "vx": 1,
+            "vy": 0,
+            "phase": 0
+          },
+          {
+            "route": 1,
+            "x": 170,
+            "y": 65,
+            "target": 1,
+            "direction": 1,
+            "pause": 0.06666666666666671,
+            "warning": 0,
+            "vx": 1,
+            "vy": 0,
+            "phase": 1.7
+          }
+        ],
+        "mode": "play",
+        "lives": 3,
+        "collected": 1,
+        "clip": "ability-pose",
+        "clipTicks": 0,
+        "dashVisible": true
+      },
+      "scores": [
+        150
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 150,
+        "scores": [
+          150
+        ],
+        "winner": null,
+        "frame": 8,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "289717b7",
+      "file": "ninja-1p-dash.png"
+    },
+    {
+      "name": "seven-scrolls",
+      "frame": 399,
+      "state": {
+        "player": {
+          "x": 127.81246007830454,
+          "y": 109.09757041553567,
+          "fx": -1,
+          "fy": 0,
+          "face": "left",
+          "dash": 0,
+          "cooldown": 0.3499999999999992,
+          "dx": -1,
+          "dy": 0,
+          "protection": 0,
+          "knock": -0.009999999999999964,
+          "kx": 2.9886369787821168,
+          "ky": -12.608724926220347,
+          "item": 0.2
+        },
+        "scrolls": [
+          {
+            "x": 60,
+            "y": 184,
+            "taken": true,
+            "phase": 0
+          },
+          {
+            "x": 35,
+            "y": 135,
+            "taken": true,
+            "phase": 1.8
+          },
+          {
+            "x": 46,
+            "y": 65,
+            "taken": true,
+            "phase": 3.6
+          },
+          {
+            "x": 101,
+            "y": 64,
+            "taken": true,
+            "phase": 5.4
+          },
+          {
+            "x": 176,
+            "y": 64,
+            "taken": true,
+            "phase": 7.2
+          },
+          {
+            "x": 221,
+            "y": 95,
+            "taken": true,
+            "phase": 9
+          },
+          {
+            "x": 118,
+            "y": 111,
+            "taken": true,
+            "phase": 10.8
+          },
+          {
+            "x": 201,
+            "y": 139,
+            "taken": false,
+            "phase": 12.6
+          },
+          {
+            "x": 146,
+            "y": 185,
+            "taken": false,
+            "phase": 14.4
+          },
+          {
+            "x": 219,
+            "y": 192,
+            "taken": false,
+            "phase": 16.2
+          }
+        ],
+        "beetles": [
+          {
+            "route": 0,
+            "x": 100,
+            "y": 81.22133333333295,
+            "target": 2,
+            "direction": 1,
+            "pause": -0.016666666666666618,
+            "warning": 0,
+            "vx": 0,
+            "vy": 1,
+            "phase": 0
+          },
+          {
+            "route": 1,
+            "x": 220,
+            "y": 93.68799999999939,
+            "target": 2,
+            "direction": 1,
+            "pause": -0.016666666666666618,
+            "warning": 0,
+            "vx": 0,
+            "vy": 1,
+            "phase": 1.7
+          }
+        ],
+        "mode": "play",
+        "lives": 1,
+        "collected": 7,
+        "clip": "walk-left",
+        "clipTicks": 37,
+        "dashVisible": false
+      },
+      "scores": [
+        800
+      ],
+      "runtime": {
+        "state": "playing",
+        "score": 800,
+        "scores": [
+          800
+        ],
+        "winner": null,
+        "frame": 399,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "ec712610",
+      "file": "ninja-1p-seven-scrolls.png"
+    },
+    {
+      "name": "terminal",
+      "frame": 690,
+      "state": {
+        "player": {
+          "x": 155.43640786291206,
+          "y": 186.88818486680964,
+          "fx": -1,
+          "fy": 0,
+          "face": "left",
+          "dash": 0,
+          "cooldown": 0,
+          "dx": -1,
+          "dy": 0,
+          "protection": 0,
+          "knock": -0.009999999999999964,
+          "kx": 2.9886369787821168,
+          "ky": -12.608724926220347,
+          "item": 0.2
+        },
+        "scrolls": [
+          {
+            "x": 60,
+            "y": 184,
+            "taken": true,
+            "phase": 0
+          },
+          {
+            "x": 35,
+            "y": 135,
+            "taken": true,
+            "phase": 1.8
+          },
+          {
+            "x": 46,
+            "y": 65,
+            "taken": true,
+            "phase": 3.6
+          },
+          {
+            "x": 101,
+            "y": 64,
+            "taken": true,
+            "phase": 5.4
+          },
+          {
+            "x": 176,
+            "y": 64,
+            "taken": true,
+            "phase": 7.2
+          },
+          {
+            "x": 221,
+            "y": 95,
+            "taken": true,
+            "phase": 9
+          },
+          {
+            "x": 118,
+            "y": 111,
+            "taken": true,
+            "phase": 10.8
+          },
+          {
+            "x": 201,
+            "y": 139,
+            "taken": true,
+            "phase": 12.6
+          },
+          {
+            "x": 146,
+            "y": 185,
+            "taken": true,
+            "phase": 14.4
+          },
+          {
+            "x": 219,
+            "y": 192,
+            "taken": true,
+            "phase": 16.2
+          }
+        ],
+        "beetles": [
+          {
+            "route": 0,
+            "x": 57.33333333333311,
+            "y": 110,
+            "target": 3,
+            "direction": 1,
+            "pause": -0.01333333333333329,
+            "warning": 0,
+            "vx": -1,
+            "vy": 0,
+            "phase": 0
+          },
+          {
+            "route": 1,
+            "x": 194.66666666666703,
+            "y": 140,
+            "target": 3,
+            "direction": 1,
+            "pause": -0.01333333333333329,
+            "warning": 0,
+            "vx": -1,
+            "vy": 0,
+            "phase": 1.7
+          },
+          {
+            "route": 2,
+            "x": 79.3333333333334,
+            "y": 158,
+            "target": 1,
+            "direction": 1,
+            "pause": -0.016666666666666618,
+            "warning": -9.506284648352903e-16,
+            "vx": 1,
+            "vy": 0,
+            "phase": 3.4
+          }
+        ],
+        "mode": "finished",
+        "lives": 1,
+        "collected": 10,
+        "clip": "item-pose",
+        "clipTicks": 91,
+        "dashVisible": false
+      },
+      "scores": [
+        1100
+      ],
+      "runtime": {
+        "state": "win",
+        "score": 1100,
+        "scores": [
+          1100
+        ],
+        "winner": null,
+        "frame": 690,
+        "error": null
+      },
+      "scoreMatches": true,
+      "frameHash": "f7b1785e",
+      "file": "ninja-1p-terminal.png"
+    }
+  ],
+  "final": {
+    "player": {
+      "x": 155.43640786291206,
+      "y": 186.88818486680964,
+      "fx": -1,
+      "fy": 0,
+      "face": "left",
+      "dash": 0,
+      "cooldown": 0,
+      "dx": -1,
+      "dy": 0,
+      "protection": 0,
+      "knock": -0.009999999999999964,
+      "kx": 2.9886369787821168,
+      "ky": -12.608724926220347,
+      "item": 0.2
+    },
+    "scrolls": [
+      {
+        "x": 60,
+        "y": 184,
+        "taken": true,
+        "phase": 0
+      },
+      {
+        "x": 35,
+        "y": 135,
+        "taken": true,
+        "phase": 1.8
+      },
+      {
+        "x": 46,
+        "y": 65,
+        "taken": true,
+        "phase": 3.6
+      },
+      {
+        "x": 101,
+        "y": 64,
+        "taken": true,
+        "phase": 5.4
+      },
+      {
+        "x": 176,
+        "y": 64,
+        "taken": true,
+        "phase": 7.2
+      },
+      {
+        "x": 221,
+        "y": 95,
+        "taken": true,
+        "phase": 9
+      },
+      {
+        "x": 118,
+        "y": 111,
+        "taken": true,
+        "phase": 10.8
+      },
+      {
+        "x": 201,
+        "y": 139,
+        "taken": true,
+        "phase": 12.6
+      },
+      {
+        "x": 146,
+        "y": 185,
+        "taken": true,
+        "phase": 14.4
+      },
+      {
+        "x": 219,
+        "y": 192,
+        "taken": true,
+        "phase": 16.2
+      }
+    ],
+    "beetles": [
+      {
+        "route": 0,
+        "x": 57.33333333333311,
+        "y": 110,
+        "target": 3,
+        "direction": 1,
+        "pause": -0.01333333333333329,
+        "warning": 0,
+        "vx": -1,
+        "vy": 0,
+        "phase": 0
+      },
+      {
+        "route": 1,
+        "x": 194.66666666666703,
+        "y": 140,
+        "target": 3,
+        "direction": 1,
+        "pause": -0.01333333333333329,
+        "warning": 0,
+        "vx": -1,
+        "vy": 0,
+        "phase": 1.7
+      },
+      {
+        "route": 2,
+        "x": 79.3333333333334,
+        "y": 158,
+        "target": 1,
+        "direction": 1,
+        "pause": -0.016666666666666618,
+        "warning": -9.506284648352903e-16,
+        "vx": 1,
+        "vy": 0,
+        "phase": 3.4
+      }
+    ],
+    "mode": "finished",
+    "lives": 1,
+    "collected": 10,
+    "clip": "item-pose",
+    "clipTicks": 91,
+    "dashVisible": false
+  },
+  "initial": {
+    "player": {
+      "x": 40,
+      "y": 184,
+      "fx": 1,
+      "fy": 0,
+      "face": "right",
+      "dash": 0,
+      "cooldown": 0,
+      "dx": 1,
+      "dy": 0,
+      "protection": 0,
+      "knock": 0,
+      "kx": 0,
+      "ky": 0,
+      "item": 0
+    },
+    "scrolls": [
+      {
+        "x": 60,
+        "y": 184,
+        "taken": false,
+        "phase": 0
+      },
+      {
+        "x": 35,
+        "y": 135,
+        "taken": false,
+        "phase": 1.8
+      },
+      {
+        "x": 46,
+        "y": 65,
+        "taken": false,
+        "phase": 3.6
+      },
+      {
+        "x": 101,
+        "y": 64,
+        "taken": false,
+        "phase": 5.4
+      },
+      {
+        "x": 176,
+        "y": 64,
+        "taken": false,
+        "phase": 7.2
+      },
+      {
+        "x": 221,
+        "y": 95,
+        "taken": false,
+        "phase": 9
+      },
+      {
+        "x": 118,
+        "y": 111,
+        "taken": false,
+        "phase": 10.8
+      },
+      {
+        "x": 201,
+        "y": 139,
+        "taken": false,
+        "phase": 12.6
+      },
+      {
+        "x": 146,
+        "y": 185,
+        "taken": false,
+        "phase": 14.4
+      },
+      {
+        "x": 219,
+        "y": 192,
+        "taken": false,
+        "phase": 16.2
+      }
+    ],
+    "beetles": [
+      {
+        "route": 0,
+        "x": 35,
+        "y": 65,
+        "target": 1,
+        "direction": 1,
+        "pause": 0.2,
+        "warning": 0,
+        "vx": 1,
+        "vy": 0,
+        "phase": 0
+      },
+      {
+        "route": 1,
+        "x": 170,
+        "y": 65,
+        "target": 1,
+        "direction": 1,
+        "pause": 0.2,
+        "warning": 0,
+        "vx": 1,
+        "vy": 0,
+        "phase": 1.7
+      }
+    ],
+    "mode": "play",
+    "lives": 3,
+    "collected": 0,
+    "clip": "idle-right",
+    "clipTicks": 0,
+    "dashVisible": false
+  },
+  "reset": {
+    "player": {
+      "x": 40,
+      "y": 184,
+      "fx": 1,
+      "fy": 0,
+      "face": "right",
+      "dash": 0,
+      "cooldown": 0,
+      "dx": 1,
+      "dy": 0,
+      "protection": 0,
+      "knock": 0,
+      "kx": 0,
+      "ky": 0,
+      "item": 0
+    },
+    "scrolls": [
+      {
+        "x": 60,
+        "y": 184,
+        "taken": false,
+        "phase": 0
+      },
+      {
+        "x": 35,
+        "y": 135,
+        "taken": false,
+        "phase": 1.8
+      },
+      {
+        "x": 46,
+        "y": 65,
+        "taken": false,
+        "phase": 3.6
+      },
+      {
+        "x": 101,
+        "y": 64,
+        "taken": false,
+        "phase": 5.4
+      },
+      {
+        "x": 176,
+        "y": 64,
+        "taken": false,
+        "phase": 7.2
+      },
+      {
+        "x": 221,
+        "y": 95,
+        "taken": false,
+        "phase": 9
+      },
+      {
+        "x": 118,
+        "y": 111,
+        "taken": false,
+        "phase": 10.8
+      },
+      {
+        "x": 201,
+        "y": 139,
+        "taken": false,
+        "phase": 12.6
+      },
+      {
+        "x": 146,
+        "y": 185,
+        "taken": false,
+        "phase": 14.4
+      },
+      {
+        "x": 219,
+        "y": 192,
+        "taken": false,
+        "phase": 16.2
+      }
+    ],
+    "beetles": [
+      {
+        "route": 0,
+        "x": 35,
+        "y": 65,
+        "target": 1,
+        "direction": 1,
+        "pause": 0.2,
+        "warning": 0,
+        "vx": 1,
+        "vy": 0,
+        "phase": 0
+      },
+      {
+        "route": 1,
+        "x": 170,
+        "y": 65,
+        "target": 1,
+        "direction": 1,
+        "pause": 0.2,
+        "warning": 0,
+        "vx": 1,
+        "vy": 0,
+        "phase": 1.7
+      }
+    ],
+    "mode": "play",
+    "lives": 3,
+    "collected": 0,
+    "clip": "idle-right",
+    "clipTicks": 0,
+    "dashVisible": false
+  },
+  "terminal": {
+    "state": "win",
+    "winner": null,
+    "frame": 689
+  },
+  "failure": null,
+  "invalidScoreTargets": 0,
+  "audio": [
+    "jump",
+    "powerup",
+    "coin",
+    "hit",
+    "select"
+  ],
+  "scoreEvents": [
+    {
+      "frame": 0,
+      "type": "score",
+      "player": null,
+      "target": 0,
+      "value": 0,
+      "old": 0,
+      "new": 0
+    },
+    {
+      "frame": 7,
+      "type": "addScore",
+      "player": null,
+      "target": 0,
+      "value": 150,
+      "old": 0,
+      "new": 150
+    },
+    {
+      "frame": 95,
+      "type": "addScore",
+      "player": null,
+      "target": 0,
+      "value": 100,
+      "old": 150,
+      "new": 250
+    },
+    {
+      "frame": 155,
+      "type": "addScore",
+      "player": null,
+      "target": 0,
+      "value": 100,
+      "old": 250,
+      "new": 350
+    },
+    {
+      "frame": 199,
+      "type": "addScore",
+      "player": null,
+      "target": 0,
+      "value": 150,
+      "old": 350,
+      "new": 500
+    },
+    {
+      "frame": 247,
+      "type": "addScore",
+      "player": null,
+      "target": 0,
+      "value": 100,
+      "old": 500,
+      "new": 600
+    },
+    {
+      "frame": 315,
+      "type": "addScore",
+      "player": null,
+      "target": 0,
+      "value": 100,
+      "old": 600,
+      "new": 700
+    },
+    {
+      "frame": 398,
+      "type": "addScore",
+      "player": null,
+      "target": 0,
+      "value": 100,
+      "old": 700,
+      "new": 800
+    },
+    {
+      "frame": 488,
+      "type": "addScore",
+      "player": null,
+      "target": 0,
+      "value": 100,
+      "old": 800,
+      "new": 900
+    },
+    {
+      "frame": 538,
+      "type": "addScore",
+      "player": null,
+      "target": 0,
+      "value": 100,
+      "old": 900,
+      "new": 1000
+    },
+    {
+      "frame": 598,
+      "type": "addScore",
+      "player": null,
+      "target": 0,
+      "value": 100,
+      "old": 1000,
+      "new": 1100
+    },
+    {
+      "frame": 690,
+      "type": "score",
+      "player": null,
+      "target": 0,
+      "value": 0,
+      "old": 1100,
+      "new": 0
+    }
+  ],
+  "load": {
+    "ok": true
+  },
+  "errors": []
+}

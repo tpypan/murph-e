@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "id": "breakout",
+  "version": "1.0.0",
+  "title": "PRISM BREAK",
+  "description": "Three authored brick formations with swept ball collisions, multi-hit durability, angle-controlled returns, pulse shots, useful pickups and a cooperative two-player court.",
+  "tags": [
+    "breakout",
+    "brick breaker",
+    "arkanoid",
+    "paddle",
+    "cooperative",
+    "two-player"
+  ],
+  "supportsPlayers": [
+    1,
+    2
+  ],
+  "module": "module.js",
+  "entry": "breakout",
+  "apiVersion": 1,
+  "license": {
+    "spdx": "LicenseRef-Project-Original",
+    "notes": "Original project code and pixel artwork. No third-party source or ripped commercial assets."
+  },
+  "provenance": {
+    "kind": "original",
+    "authors": [
+      "Arcade project"
+    ],
+    "sources": [],
+    "createdAt": "2026-09-19"
+  },
+  "quality": {
+    "status": "draft"
+  },
+  "assets": [
+    "assets.json"
+  ],
+  "api": "api.md",
+  "demo": "demo.js",
+  "spec": "spec.json",
+  "files": [
+    "assets.json",
+    "demo.js",
+    "spec.json"
+  ],
+  "match": {
+    "phrases": [
+      "breakout",
+      "brick breaker",
+      "brick breaking",
+      "arkanoid"
+    ],
+    "genres": [
+      "breakout",
+      "brick breaker",
+      "brick-breaker"
+    ]
+  }
+}

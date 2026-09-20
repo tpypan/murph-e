@@ -1,0 +1,215 @@
+{
+  "at": "2026-09-19T22:55:16.638Z",
+  "reports": [
+    {
+      "name": "palette-frames-and-animation-geometry",
+      "passed": true,
+      "frames": 20
+    },
+    {
+      "name": "complete-target-line-game-1p",
+      "passed": true,
+      "seconds": 10.666666666666776,
+      "boards": [
+        {
+          "lines": 12,
+          "score": 3386,
+          "stats": {
+            "locked": 35,
+            "hardDrops": 35,
+            "softCells": 0,
+            "rotations": 29,
+            "kicks": 0,
+            "lockResets": 0,
+            "garbageSent": 0,
+            "garbageReceived": 0,
+            "sequence": [
+              "T",
+              "L",
+              "I",
+              "Z",
+              "S",
+              "J",
+              "O",
+              "Z",
+              "O",
+              "L",
+              "S",
+              "J",
+              "I",
+              "T",
+              "O",
+              "I",
+              "T",
+              "Z",
+              "J",
+              "L",
+              "S",
+              "T",
+              "L",
+              "I",
+              "Z",
+              "O",
+              "J",
+              "S",
+              "O",
+              "L",
+              "Z",
+              "S",
+              "I",
+              "T",
+              "J",
+              "O"
+            ]
+          }
+        }
+      ],
+      "terminal": [
+        "win",
+        null
+      ]
+    },
+    {
+      "name": "complete-target-line-game-2p",
+      "passed": true,
+      "seconds": 10.033333333333411,
+      "boards": [
+        {
+          "lines": 13,
+          "score": 3908,
+          "stats": {
+            "locked": 33,
+            "hardDrops": 33,
+            "softCells": 0,
+            "rotations": 26,
+            "kicks": 0,
+            "lockResets": 0,
+            "garbageSent": 3,
+            "garbageReceived": 1,
+            "sequence": [
+              "T",
+              "L",
+              "I",
+              "Z",
+              "S",
+              "J",
+              "O",
+              "Z",
+              "O",
+              "L",
+              "S",
+              "J",
+              "I",
+              "T",
+              "O",
+              "I",
+              "T",
+              "Z",
+              "J",
+              "L",
+              "S",
+              "T",
+              "L",
+              "I",
+              "Z",
+              "O",
+              "J",
+              "S",
+              "O",
+              "L",
+              "Z",
+              "S",
+              "I",
+              "T"
+            ]
+          }
+        },
+        {
+          "lines": 13,
+          "score": 3908,
+          "stats": {
+            "locked": 33,
+            "hardDrops": 33,
+            "softCells": 0,
+            "rotations": 26,
+            "kicks": 0,
+            "lockResets": 0,
+            "garbageSent": 3,
+            "garbageReceived": 1,
+            "sequence": [
+              "T",
+              "L",
+              "I",
+              "Z",
+              "S",
+              "J",
+              "O",
+              "Z",
+              "O",
+              "L",
+              "S",
+              "J",
+              "I",
+              "T",
+              "O",
+              "I",
+              "T",
+              "Z",
+              "J",
+              "L",
+              "S",
+              "T",
+              "L",
+              "I",
+              "Z",
+              "O",
+              "J",
+              "S",
+              "O",
+              "L",
+              "Z",
+              "S",
+              "I",
+              "T"
+            ]
+          }
+        }
+      ],
+      "terminal": [
+        "win",
+        null
+      ]
+    },
+    {
+      "name": "independent-player-two-board-input",
+      "passed": true
+    },
+    {
+      "name": "real-stacking-topout",
+      "passed": true
+    },
+    {
+      "name": "wall-kicks-bounded-lock-resets-soft-drop",
+      "passed": true,
+      "stats": {
+        "locked": 1,
+        "hardDrops": 0,
+        "softCells": 18,
+        "rotations": 31,
+        "kicks": 3,
+        "lockResets": 8,
+        "garbageSent": 0,
+        "garbageReceived": 0,
+        "sequence": [
+          "I",
+          "T"
+        ]
+      }
+    },
+    {
+      "name": "player-two-wins-when-opponent-tops-out",
+      "passed": true,
+      "seconds": 0.3833333333333333
+    }
+  ]
+}

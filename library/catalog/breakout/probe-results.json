@@ -1,0 +1,47 @@
+{
+  "at": "2026-09-19T21:15:25.132Z",
+  "results": [
+    {
+      "players": 1,
+      "ok": true,
+      "observations": [],
+      "ms": 297,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "players": 2,
+      "ok": true,
+      "observations": [
+        "pressing B changed nothing on screen"
+      ],
+      "ms": 275,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": false,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      }
+    }
+  ]
+}

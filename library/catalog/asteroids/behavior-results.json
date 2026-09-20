@@ -1,0 +1,37 @@
+{
+  "at": "2026-09-19T21:31:49.315Z",
+  "results": [
+    {
+      "name": "79 original orientation, thrust, rock, saucer and explosion frames are complete",
+      "ok": true
+    },
+    {
+      "name": "rotation, thrust, retained inertia, braking and 2P independence",
+      "ok": true
+    },
+    {
+      "name": "wrapped geometry crosses both seams and ship stays in playfield under thrust",
+      "ok": true
+    },
+    {
+      "name": "projectile lifetime/fire cooldown cap shots; warp is safe and rate-limited",
+      "ok": true
+    },
+    {
+      "name": "real bullet hits split large into two medium, then small, with single event scoring",
+      "ok": true
+    },
+    {
+      "name": "real-input pilot clears all three default sectors with default lives and terminal win; reset clean",
+      "ok": true
+    },
+    {
+      "name": "co-op team clear, saucer telegraph and authoritative player count",
+      "ok": true
+    },
+    {
+      "name": "actual no-input collision reaches loss; same controls replay deterministically",
+      "ok": true
+    }
+  ]
+}

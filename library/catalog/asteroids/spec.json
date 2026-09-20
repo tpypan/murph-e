@@ -1,0 +1,29 @@
+{
+  "title": "VECTOR DRIFT",
+  "oneLiner": "Original inertial wraparound space shooter with rotating thrust-driven ships, three rock split sizes, bounded projectiles, warned saucers, hyperspace and cooperative sector clears.",
+  "genre": "asteroids",
+  "mechanics": [
+    "Rotate the ship, thrust and retain momentum; brake to stabilize aim.",
+    "Ships, rocks and projectiles wrap across matching screen edges with matching wrapped collision.",
+    "Large rocks split into two medium rocks; each medium splits into two small rocks.",
+    "Saucers announce entry before firing aimed shots.",
+    "Hyperspace chooses a safer position and gives brief protection with a six-second cooldown.",
+    "Clear all rocks to advance sectors; each player has independent controls and lives."
+  ],
+  "controls": {
+    "left": "Rotate counterclockwise",
+    "right": "Rotate clockwise",
+    "up": "Thrust",
+    "down": "Brake",
+    "a": "Fire (hold)",
+    "b": "Hyperspace; recharges in 6 seconds"
+  },
+  "palette": "arcade",
+  "lose": "The team runs out of lives after rock or projectile collisions.",
+  "scoring": "20 for large rocks, 50 for medium, 100 for small, 250 for a saucer and 500 per cleared sector.",
+  "moderated": false,
+  "note": "Original reusable catalog foundation.",
+  "remix": false,
+  "changes": [],
+  "players": 1
+}

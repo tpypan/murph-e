@@ -1,0 +1,29 @@
+{
+  "title": "AZURE DASH",
+  "oneLiner": "Race the coast and ridge: build speed, roll the loop, collect rings and reach both flags.",
+  "genre": "speed platformer",
+  "players": 1,
+  "mechanics": [
+    "Accelerate, skid, reverse and backtrack through two authored acts.",
+    "Slope momentum and rolling retain speed; down+B charges a release dash.",
+    "Variable jump height, springs, elevated routes and a traversable momentum loop.",
+    "Rings scatter on damage and can be recovered during invulnerability; empty-ring hits cost a life.",
+    "Checkpoints restore progress after a fall; each act has a visible finish flag.",
+    "Two players race independently in stacked views; first to finish both acts wins."
+  ],
+  "controls": {
+    "left": "Accelerate left / skid",
+    "right": "Accelerate right / skid",
+    "up": "Jump (hold higher)",
+    "down": "Roll / hold with B to charge",
+    "a": "Jump (hold higher)",
+    "b": "Roll; down+B charge, release to dash"
+  },
+  "palette": "arcade",
+  "lose": "Run out of three lives; falls restart at the last checkpoint.",
+  "scoring": "10 per ring, 100 per enemy or checkpoint, act-clear ring and time bonuses.",
+  "moderated": false,
+  "note": "Original Azure Hare character and levels, inspired by momentum platformer mechanics.",
+  "remix": false,
+  "changes": []
+}

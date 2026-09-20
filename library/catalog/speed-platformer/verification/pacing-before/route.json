@@ -1,0 +1,16 @@
+{
+  "ticks": 959,
+  "stats": {
+    "hits": 0,
+    "recovered": 0,
+    "springs": 4,
+    "enemies": 10,
+    "acts": 2,
+    "maxSpeed": 9.2,
+    "loops": 1
+  },
+  "landings": [],
+  "acts": [
+    521
+  ]
+}

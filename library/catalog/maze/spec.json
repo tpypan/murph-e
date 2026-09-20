@@ -1,0 +1,46 @@
+{
+  "title": "GOOSE GHOSTS",
+  "oneLiner": "Hunt the fleeing ghosts as a goose, alone or together.",
+  "genre": "maze chase",
+  "players": 1,
+  "mechanics": [
+    "Buffered four-direction tile movement with continuous pixel interpolation and paired side tunnels.",
+    "A goose permanently hunts the ghosts; touching them captures them and never kills the goose.",
+    "Four fleeing ghosts leave a visible central house through its ghost-only door, return as eyes after capture, reform, and leave again.",
+    "Collect pellets for points and power pickups for a speed/score boost.",
+    "Honk with A to briefly stun nearby fleeing ghosts; the honk recharges.",
+    "Catch eight ghosts within sixty seconds to clear the first round; the next rounds require two more captures, up to three rounds.",
+    "In 2P both players control separate geese and share progress, time and score."
+  ],
+  "artDirection": "Original 19×19 maze drawn with connected cyan-blue wall outlines and dark corridors. Central enclosed ghost house and pink door are distinct. Directional original goose and ghost pixel clips are 14×14, center anchored, with white feathers, colored P1/P2 wings, orange beaks and feet. Returning ghosts are eyes only until they visibly reform at home.",
+  "referenceIntent": {
+    "reference": "Pac-Man-style maze chase",
+    "preserve": [
+      "pellet routes",
+      "central ghost house and visible exits",
+      "returning eyes",
+      "power pickups and tunnels"
+    ],
+    "change": [
+      "the goose is permanently the hunter",
+      "ghosts flee and are captured on contact",
+      "shared cooperative hunt in 2P"
+    ]
+  },
+  "controls": {
+    "left": "Turn left",
+    "right": "Turn right",
+    "up": "Turn up",
+    "down": "Turn down",
+    "a": "Honk: stun nearby ghosts",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "Time expires before the capture target; ghost contact does not harm the goose.",
+  "scoring": "10 per pellet, 50 per power pickup, 200 per capture (400 while powered), and 500×round completion bonus; both players share credit.",
+  "moderated": false,
+  "note": "Original maze and pixel artwork inspired by the maze-chase genre.",
+  "remix": false,
+  "changes": [],
+  "designCards": ["grid-movement", "enemy-roles", "reference-identity", "scoring"]
+}

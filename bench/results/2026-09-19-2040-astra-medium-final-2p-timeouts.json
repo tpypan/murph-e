@@ -1,0 +1,64 @@
+{
+  "model": "gpt-6-astra",
+  "effort": "medium",
+  "players": 2,
+  "n": 1,
+  "rows": [
+    {
+      "prompt": "two knights defending a castle from goblins together",
+      "title": "CASTLE GUARD",
+      "genre": "cooperative castle-defense action",
+      "runId": "2026-09-19-2036-two-knights-defending-a-castle-f",
+      "specMs": 6866,
+      "buildMs": 237534,
+      "ttftMs": 60429,
+      "totalMs": 244408,
+      "tokens": 11421,
+      "reasoning": 1552,
+      "cached": 0,
+      "lines": 741,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [],
+      "error": null
+    },
+    {
+      "prompt": "we are two astronauts fixing a space station while meteors hit it",
+      "title": "STATION SAVERS",
+      "genre": "cooperative action-survival",
+      "runId": "2026-09-19-2036-we-are-two-astronauts-fixing-a-s",
+      "specMs": 7579,
+      "buildMs": 235595,
+      "ttftMs": 71890,
+      "totalMs": 243187,
+      "tokens": 10808,
+      "reasoning": 1935,
+      "cached": 3201,
+      "lines": 767,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [],
+      "error": null
+    },
+    {
+      "prompt": "co-op zombie survival with a shotgun",
+      "title": "DEAD HOLD",
+      "genre": "cooperative top-down zombie survival shooter",
+      "runId": "2026-09-19-2036-co-op-zombie-survival-with-a-sho",
+      "specMs": 8421,
+      "buildMs": 264447,
+      "ttftMs": 94165,
+      "totalMs": 272877,
+      "tokens": 0,
+      "reasoning": 0,
+      "cached": 0,
+      "lines": 783,
+      "syntaxError": "SyntaxError: Unexpected end of input",
+      "probeOk": false,
+      "observations": [
+        "the game failed to load: load: Unexpected end of input"
+      ],
+      "error": null
+    }
+  ]
+}

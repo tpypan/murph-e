@@ -1,0 +1,564 @@
+{
+  "version": 2,
+  "reviewed_at": "2026-09-19",
+  "enabled_in_harness": true,
+  "core": "core.md",
+  "selection": {
+    "max_cards": 4,
+    "max_core_and_card_characters": 9000,
+    "recommended_cards": [
+      2,
+      4
+    ],
+    "soft_token_budget": [
+      1200,
+      2200
+    ],
+    "token_budget_measured": false,
+    "policy": "Spec-selected IDs plus weighted explicit-mechanic signals and genre fallbacks; at most four cards within the character cap. Full request and spec remain present even when guidance is omitted. Actual runtime API remains authoritative."
+  },
+  "sources": [
+    {
+      "id": "jump-pittman",
+      "title": "Building a Better Jump",
+      "author": "J. Kyle Pittman",
+      "url": "https://media.gdcvault.com/gdc2016/Presentations/Pittman_Kyle_BuildingBetterJump.pdf",
+      "kind": "developer_presentation",
+      "reviewed_sections": "Trajectory derivation and variable jump sections; extracted PDF text.",
+      "limitations": "No video watched; formula screenshot unavailable."
+    },
+    {
+      "id": "actor-solids",
+      "title": "Celeste & TowerFall Physics",
+      "author": "Maddy Thorson",
+      "url": "https://maddymakesgames.com/articles/celeste_and_towerfall_physics/index.html",
+      "kind": "developer_article",
+      "reviewed_sections": "Actors, solids, fractional movement and moving-platform interactions.",
+      "limitations": ""
+    },
+    {
+      "id": "forgiveness",
+      "title": "Celeste & Forgiveness",
+      "author": "Maddy Thorson",
+      "url": "https://maddymakesgames.com/articles/celeste_and_forgiveness/index.html",
+      "kind": "developer_article",
+      "reviewed_sections": "Input and position tolerance techniques.",
+      "limitations": ""
+    },
+    {
+      "id": "mario-onboarding",
+      "title": "Adjusting the Map in a Daily Cycle",
+      "author": "Nintendo; Satoru Iwata, Takashi Tezuka, Toshihiko Nakago",
+      "url": "https://www.nintendo.com/en-gb/Iwata-Asks/Iwata-Asks-New-Super-Mario-Bros-Wii/Volume-2/4-Adjusting-the-Map-in-a-Daily-Cycle/4-Adjusting-the-Map-in-a-Daily-Cycle-233027.html",
+      "kind": "developer_interview",
+      "reviewed_sections": "Level iteration, beginner difficulty and World 1-1 placement.",
+      "limitations": ""
+    },
+    {
+      "id": "bulletml",
+      "title": "BulletML Reference 0.21",
+      "author": "Kenta Cho",
+      "url": "https://www.asahi-net.or.jp/~cs8k-cyu/bulletml/bulletml_ref_e.html",
+      "kind": "author_documentation",
+      "reviewed_sections": "Action grammar, direction modes, timing, reusable actions and parameters.",
+      "limitations": "Historical format; not installed in this engine."
+    },
+    {
+      "id": "gunroar-score",
+      "title": "Gunroar instructions",
+      "author": "Kenta Cho",
+      "url": "https://www.asahi-net.or.jp/~cs8k-cyu/windows/gr_e.html",
+      "kind": "developer_manual",
+      "reviewed_sections": "Controls, rank multiplier and boss timer.",
+      "limitations": ""
+    },
+    {
+      "id": "pacman-dossier",
+      "title": "The Pac-Man Dossier",
+      "author": "Jamey Pittman",
+      "url": "https://pacman.holenet.info/",
+      "kind": "original_technical_analysis",
+      "reviewed_sections": "Scoring, behavior modes, targeting and timing.",
+      "limitations": "Independent analysis; not an official Namco specification."
+    },
+    {
+      "id": "l4d-pacing",
+      "title": "The AI Systems of Left 4 Dead",
+      "author": "Michael Booth / Valve",
+      "url": "https://cdn.fastly.steamstatic.com/apps/valve/2009/ai_systems_of_l4d_mike_booth.pdf",
+      "kind": "developer_presentation",
+      "reviewed_sections": "PDF pacing section, zero-indexed pages 77-91.",
+      "limitations": "Selected sections; no video watched. Pacing is explicitly distinguished from difficulty."
+    },
+    {
+      "id": "pixel-basics",
+      "title": "Pixel Art Tutorial: Basics",
+      "author": "Derek Yu",
+      "url": "https://www.derekyu.com/makegames/pixelart.html",
+      "kind": "artist_tutorial",
+      "reviewed_sections": "Palette, outlines, form/value clusters and background-dependent antialiasing.",
+      "limitations": "Text reviewed; no assets approved or copied."
+    },
+    {
+      "id": "tf2-readability",
+      "title": "Illustrative Rendering in Team Fortress 2",
+      "author": "Jason Mitchell, Moby Francke, Dhabih Eng / Valve",
+      "url": "https://cdn.fastly.steamstatic.com/apps/valve/2007/NPAR07_IllustrativeRenderingInTeamFortress2.pdf",
+      "kind": "developer_paper",
+      "reviewed_sections": "Section 4: silhouette and environmental visual noise.",
+      "limitations": "3D source; application to tiny sprites is our adaptation."
+    },
+    {
+      "id": "box2d-distance",
+      "title": "Distance Joint",
+      "author": "Box2D documentation",
+      "url": "https://box2d.org/documentation/group__distance__joint.html",
+      "kind": "official_engine_documentation",
+      "reviewed_sections": "Rigid distance, springs, limits and length configuration.",
+      "limitations": "Conceptual reference; not a dependency or available runtime API."
+    },
+    {
+      "id": "fixed-timestep",
+      "title": "Fix Your Timestep!",
+      "author": "Glenn Fiedler",
+      "url": "https://gafferongames.com/post/fix_your_timestep/",
+      "kind": "developer_article",
+      "reviewed_sections": "Fixed/semi-fixed steps and bounded catch-up work.",
+      "limitations": ""
+    },
+    {
+      "id": "tanagra",
+      "title": "Tanagra: Reactive Planning and Constraint Solving for Mixed-Initiative Level Design",
+      "author": "Gillian Smith, Jim Whitehead, Michael Mateas",
+      "url": "https://www.researchgate.net/publication/224242275_Tanagra_Reactive_Planning_and_Constraint_Solving_for_Mixed-Initiative_Level_Design",
+      "kind": "author_uploaded_paper",
+      "reviewed_sections": "Gameplay beats, geometry constraints and the scope of playability guarantees.",
+      "limitations": "Author-uploaded text read; separate CiteSeer PDF fetch failed. DOI 10.1109/TCIAIG.2011.2159716."
+    },
+    {
+      "id": "meta-arcade",
+      "title": "Meta Arcade: A Configurable Environment Suite for Deep Reinforcement Learning and Meta-Learning",
+      "author": "Edward W. Staley et al.",
+      "url": "https://openreview.net/pdf?id=6Tw0QPDyXML",
+      "kind": "research_paper",
+      "reviewed_sections": "Shared game elements, configuration parameters and task variation.",
+      "limitations": "RL research environment; not a cabinet runtime recommendation."
+    },
+    {
+      "id": "camera-keren",
+      "title": "Scroll Back: The Theory and Practice of Cameras in Side-Scrollers",
+      "author": "Itay Keren",
+      "url": "https://www.gamedeveloper.com/design/scroll-back-the-theory-and-practice-of-cameras-in-side-scrollers",
+      "kind": "developer_article",
+      "reviewed_sections": "Camera windows, forward focus and taxonomy.",
+      "limitations": "Article reviewed; separate GDC slide fetch failed."
+    },
+    {
+      "id": "valve-playtesting",
+      "title": "Valve's Approach to Playtesting: The Application of Empiricism",
+      "author": "Mike Ambinder / Valve",
+      "url": "https://cdn.fastly.steamstatic.com/apps/valve/2009/GDC2009_ValvesApproachToPlaytesting.pdf",
+      "kind": "developer_presentation",
+      "reviewed_sections": "Direct observation and verbal reports.",
+      "limitations": "Selected PDF sections; no video watched."
+    },
+    {
+      "id": "benji-official",
+      "title": "Benji Bananas publisher listing",
+      "author": "Benji Bananas publisher on Google Play",
+      "url": "https://play.google.com/store/apps/details?id=com.fingersoft.benjibananas&hl=en",
+      "kind": "publisher_game_description",
+      "reviewed_sections": "Monkey, vine/rope swinging and fruit collection.",
+      "limitations": "Text grounding only; visual identity requires actual image inspection."
+    },
+    {
+      "id": "batman-official",
+      "title": "Batman official character profile",
+      "author": "DC",
+      "url": "https://www.dc.com/characters/batman",
+      "kind": "official_character_profile",
+      "reviewed_sections": "Identity and Gotham setting.",
+      "limitations": "Text grounding only; intended version and reference images still required."
+    }
+  ],
+  "cards": [
+    {
+      "id": "platforming",
+      "version": 1,
+      "path": "cards/platforming.md",
+      "title": "Platforming and flight trajectory",
+      "tags": [
+        "jump",
+        "platformer",
+        "runner",
+        "flap",
+        "trajectory"
+      ],
+      "audience": [
+        "designer",
+        "builder",
+        "verifier"
+      ],
+      "sources": [
+        "jump-pittman",
+        "forgiveness"
+      ],
+      "word_count": 149,
+      "basis": "source_informed_project_adaptation"
+    },
+    {
+      "id": "collision",
+      "version": 1,
+      "path": "cards/collision.md",
+      "title": "Collision and moving platforms",
+      "tags": [
+        "platformer",
+        "moving-platform",
+        "collision",
+        "projectile"
+      ],
+      "audience": [
+        "builder",
+        "verifier"
+      ],
+      "sources": [
+        "actor-solids"
+      ],
+      "word_count": 159,
+      "basis": "source_informed_project_adaptation"
+    },
+    {
+      "id": "swing-grapple",
+      "version": 1,
+      "path": "cards/swing-grapple.md",
+      "title": "Swinging and grappling",
+      "tags": [
+        "swing",
+        "grapple",
+        "rope",
+        "vine",
+        "web"
+      ],
+      "audience": [
+        "designer",
+        "builder",
+        "verifier"
+      ],
+      "sources": [
+        "box2d-distance"
+      ],
+      "word_count": 156,
+      "basis": "source_informed_project_adaptation"
+    },
+    {
+      "id": "projectiles",
+      "version": 1,
+      "path": "cards/projectiles.md",
+      "title": "Projectile and attack patterns",
+      "tags": [
+        "shoot",
+        "bullet",
+        "volley",
+        "boss",
+        "shmup"
+      ],
+      "audience": [
+        "designer",
+        "builder",
+        "verifier"
+      ],
+      "sources": [
+        "bulletml"
+      ],
+      "word_count": 154,
+      "basis": "source_informed_project_adaptation"
+    },
+    {
+      "id": "enemy-roles",
+      "version": 1,
+      "path": "cards/enemy-roles.md",
+      "title": "Enemy roles and state changes",
+      "tags": [
+        "chase",
+        "maze",
+        "enemy",
+        "ambush"
+      ],
+      "audience": [
+        "designer",
+        "builder",
+        "verifier"
+      ],
+      "sources": [
+        "pacman-dossier"
+      ],
+      "word_count": 109,
+      "basis": "source_informed_project_adaptation"
+    },
+    {
+      "id": "pacing",
+      "version": 1,
+      "path": "cards/pacing.md",
+      "title": "Encounter pacing and difficulty",
+      "tags": [
+        "wave",
+        "difficulty",
+        "survival",
+        "pressure"
+      ],
+      "audience": [
+        "designer",
+        "builder",
+        "verifier"
+      ],
+      "sources": [
+        "l4d-pacing"
+      ],
+      "word_count": 150,
+      "basis": "source_informed_project_adaptation"
+    },
+    {
+      "id": "scoring",
+      "version": 1,
+      "path": "cards/scoring.md",
+      "title": "Scoring and voluntary risk",
+      "tags": [
+        "score",
+        "combo",
+        "collect",
+        "risk",
+        "leaderboard"
+      ],
+      "audience": [
+        "designer",
+        "builder",
+        "verifier"
+      ],
+      "sources": [
+        "gunroar-score",
+        "pacman-dossier"
+      ],
+      "word_count": 132,
+      "basis": "source_informed_project_adaptation"
+    },
+    {
+      "id": "onboarding",
+      "version": 1,
+      "path": "cards/onboarding.md",
+      "title": "Teach through the first encounter",
+      "tags": [
+        "teach",
+        "first-encounter",
+        "novice"
+      ],
+      "audience": [
+        "designer",
+        "verifier"
+      ],
+      "sources": [
+        "mario-onboarding"
+      ],
+      "word_count": 143,
+      "basis": "source_informed_project_adaptation"
+    },
+    {
+      "id": "readability",
+      "version": 1,
+      "path": "cards/readability.md",
+      "title": "Pixel art, identity and playfield readability",
+      "tags": [
+        "sprite",
+        "pixel-art",
+        "character",
+        "crt",
+        "animation"
+      ],
+      "audience": [
+        "designer",
+        "artist",
+        "verifier"
+      ],
+      "sources": [
+        "pixel-basics",
+        "tf2-readability"
+      ],
+      "word_count": 153,
+      "basis": "source_informed_project_adaptation"
+    },
+    {
+      "id": "camera",
+      "version": 1,
+      "path": "cards/camera.md",
+      "title": "Camera and useful visible space",
+      "tags": [
+        "scroll",
+        "runner",
+        "swing",
+        "framing"
+      ],
+      "audience": [
+        "designer",
+        "builder",
+        "verifier"
+      ],
+      "sources": [
+        "camera-keren"
+      ],
+      "word_count": 137,
+      "basis": "source_informed_project_adaptation"
+    },
+    {
+      "id": "layouts",
+      "version": 1,
+      "path": "cards/layouts.md",
+      "title": "Reachable layouts and encounter chunks",
+      "tags": [
+        "gap",
+        "route",
+        "platformer",
+        "procedural",
+        "reachability"
+      ],
+      "audience": [
+        "designer",
+        "builder",
+        "verifier"
+      ],
+      "sources": [
+        "tanagra"
+      ],
+      "word_count": 143,
+      "basis": "source_informed_project_adaptation"
+    },
+    {
+      "id": "simulation",
+      "version": 1,
+      "path": "cards/simulation.md",
+      "title": "Simulation and reproducibility",
+      "tags": [
+        "determinism",
+        "physics",
+        "replay",
+        "reset"
+      ],
+      "audience": [
+        "builder",
+        "verifier"
+      ],
+      "sources": [
+        "fixed-timestep"
+      ],
+      "word_count": 133,
+      "basis": "source_informed_project_adaptation"
+    },
+    {
+      "id": "evaluation",
+      "version": 1,
+      "path": "cards/evaluation.md",
+      "title": "Observe behavior and evaluate the actual game",
+      "tags": [
+        "quality",
+        "playtest",
+        "benchmark",
+        "validation"
+      ],
+      "audience": [
+        "designer",
+        "verifier"
+      ],
+      "sources": [
+        "valve-playtesting"
+      ],
+      "word_count": 148,
+      "basis": "source_informed_project_adaptation"
+    },
+    {
+      "id": "composition",
+      "version": 1,
+      "path": "cards/composition.md",
+      "title": "Compose mechanics without erasing the idea",
+      "tags": [
+        "new-mechanic",
+        "hybrid",
+        "reuse",
+        "components"
+      ],
+      "audience": [
+        "designer"
+      ],
+      "sources": [
+        "meta-arcade"
+      ],
+      "word_count": 162,
+      "basis": "source_informed_project_adaptation"
+    },
+    {
+      "id": "reference-identity",
+      "version": 1,
+      "path": "cards/reference-identity.md",
+      "title": "Resolve a named game or character",
+      "tags": [
+        "named-character",
+        "named-game",
+        "reference",
+        "alias"
+      ],
+      "audience": [
+        "designer",
+        "artist",
+        "verifier"
+      ],
+      "sources": [
+        "benji-official",
+        "batman-official"
+      ],
+      "word_count": 151,
+      "basis": "source_informed_project_adaptation"
+    },
+    {
+      "id": "ball-paddle",
+      "version": 1,
+      "path": "cards/ball-paddle.md",
+      "title": "Ball/paddle games",
+      "tags": [
+        "pong",
+        "breakout",
+        "ball",
+        "paddle",
+        "bounce"
+      ],
+      "audience": [
+        "designer",
+        "builder",
+        "verifier"
+      ],
+      "sources": [
+        "meta-arcade",
+        "fixed-timestep"
+      ],
+      "word_count": 149,
+      "basis": "project_recipe"
+    },
+    {
+      "id": "grid-movement",
+      "version": 1,
+      "path": "cards/grid-movement.md",
+      "title": "Maze and snake movement",
+      "tags": [
+        "snake",
+        "maze",
+        "grid",
+        "turn",
+        "occupancy"
+      ],
+      "audience": [
+        "designer",
+        "builder",
+        "verifier"
+      ],
+      "sources": [],
+      "word_count": 166,
+      "basis": "project_recipe"
+    }
+  ]
+}

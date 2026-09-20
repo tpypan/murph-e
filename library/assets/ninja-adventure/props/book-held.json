@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "id": "book-held",
+  "packId": "ninja-adventure",
+  "camera": "top-down",
+  "width": 12,
+  "height": 9,
+  "source": {
+    "path": "original/content/weapon/book/in_hand.png",
+    "url": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/weapon/book/in_hand.png",
+    "sha256": "5be0bf833cd9e43a0a8bdf802ea4c165681f874931cc036f9dc8fb508869647e",
+    "sourceRevision": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a"
+  },
+  "pixels": [
+    "..04422440..",
+    ".0476666740.",
+    "047676676740",
+    "046766677640",
+    "047676667740",
+    "046770077640",
+    "04770..07740",
+    "0470....0740",
+    ".00......00."
+  ],
+  "anchor": {
+    "x": 6,
+    "y": 9
+  },
+  "normalization": {
+    "palette": "pico-8",
+    "reviewedOverrides": {}
+  },
+  "anchorOrigin": "Authored bottom-center placement; source attachment pivots have not been reconstructed.",
+  "hitboxes": [],
+  "hurtboxes": [],
+  "animations": {},
+  "tags": [
+    "weapon",
+    "static"
+  ],
+  "notes": "Static source image only. No implied attack animation, damage volume or destruction sequence."
+}

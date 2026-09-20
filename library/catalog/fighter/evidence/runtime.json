@@ -1,0 +1,81 @@
+{
+  "date": "2026-09-19",
+  "checks": [
+    {
+      "players": 1,
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "gameover",
+        "score": 170,
+        "scores": [
+          170
+        ],
+        "winner": null,
+        "frame": 1956,
+        "error": null
+      },
+      "errors": [],
+      "stats": {
+        "colors": 14,
+        "dominant": 0,
+        "dominantShare": 0.531005859375
+      }
+    },
+    {
+      "players": 2,
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 140,
+        "scores": [
+          140,
+          170
+        ],
+        "winner": null,
+        "frame": 4074,
+        "error": null
+      },
+      "errors": [],
+      "stats": {
+        "colors": 14,
+        "dominant": 1,
+        "dominantShare": 0.465576171875
+      }
+    },
+    {
+      "players": 1,
+      "scenario": "idle human loss",
+      "state": {
+        "state": "gameover",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 5715,
+        "error": null
+      },
+      "errors": []
+    },
+    {
+      "players": 2,
+      "scenario": "player two scripted win",
+      "state": {
+        "state": "win",
+        "score": 0,
+        "scores": [
+          0,
+          1870
+        ],
+        "winner": 1,
+        "frame": 7570,
+        "error": null
+      },
+      "errors": []
+    }
+  ]
+}

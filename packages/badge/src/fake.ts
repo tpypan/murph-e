@@ -207,6 +207,10 @@ export class FakeBadge {
         this.out(PROMPT)
         return
       case 'put': {
+        if (args[0] === '--binary') {
+          this.out(`PUT BINARY OK\r\n${PROMPT}`)
+          return
+        }
         const n = Number(args[1])
         if (!args[0] || !Number.isFinite(n)) {
           this.out(`E: usage put <path> <bytes>\r\n${PROMPT}`)

@@ -1,0 +1,1054 @@
+{
+  "schemaVersion": 1,
+  "provider": "The Spriters Resource",
+  "sectionUrl": "https://www.spriters-resource.com/arcade/",
+  "verifiedAt": "2026-09-19",
+  "verification": "Game titles and selected sheet links read directly from live game pages; only sheets marked sheet-inspected have been visually inspected.",
+  "rights": {
+    "classification": "commercial-game-art-reference",
+    "termsUrl": "https://www.spriters-resource.com/page/tou/",
+    "notes": "Archive availability is not a blanket redistribution license. Preserve source/credit and track permission independently of technical import readiness."
+  },
+  "games": [
+    {
+      "id": "streetfighter2",
+      "title": "Street Fighter 2 / Super Street Fighter 2",
+      "url": "https://www.spriters-resource.com/arcade/streetfighter2/",
+      "families": [
+        "fighter"
+      ],
+      "camera": "side-view",
+      "purpose": "Fighter silhouettes, stance/attack poses, stage composition and combat feedback.",
+      "limitations": [
+        "Sheets combine editions; preserve the edition of each sheet. Timings and collision geometry need separate measurement."
+      ],
+      "sheets": [
+        {
+          "assetId": "60224",
+          "title": "Ryu",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/streetfighter2/asset/60224/",
+          "inspection": "sheet-inspected",
+          "runtimeReady": false,
+          "cache": {
+            "sha256": "85a832917a536e80987ddc26964979702624dd0f655da9ea451d537c82b7696b",
+            "dimensions": [
+              1549,
+              12116
+            ],
+            "sourceImage": "https://www.spriters-resource.com/media/assets/57/60224.png?updated=1782485256",
+            "uploader": "T0misaurus",
+            "path": "data/reference-cache/spriters-resource/street-fighter-ryu-60224.png",
+            "metadataPath": "data/reference-cache/spriters-resource/street-fighter-ryu-60224.json"
+          }
+        },
+        {
+          "assetId": "117308",
+          "title": "Ken",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/streetfighter2/asset/117308/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "38136",
+          "title": "Blanka",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/streetfighter2/asset/38136/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "129870",
+          "title": "Guile",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/streetfighter2/asset/129870/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "127015",
+          "title": "Zangief",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/streetfighter2/asset/127015/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "275150",
+          "title": "Chun-Li's Stage",
+          "kind": "stage",
+          "url": "https://www.spriters-resource.com/arcade/streetfighter2/asset/275150/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "27200",
+          "title": "Ken's Stage (SFII)",
+          "kind": "stage",
+          "url": "https://www.spriters-resource.com/arcade/streetfighter2/asset/27200/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "190979",
+          "title": "Effects",
+          "kind": "effect",
+          "url": "https://www.spriters-resource.com/arcade/streetfighter2/asset/190979/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "175665",
+          "title": "Game Text, Fonts, & Health Bars",
+          "kind": "hud",
+          "url": "https://www.spriters-resource.com/arcade/streetfighter2/asset/175665/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        }
+      ]
+    },
+    {
+      "id": "marvelvscapcom",
+      "title": "Marvel vs. Capcom",
+      "url": "https://www.spriters-resource.com/arcade/marvelvscapcom/",
+      "families": [
+        "fighter"
+      ],
+      "camera": "side-view",
+      "purpose": "Recognizable Marvel fighters, attack silhouettes and character select art.",
+      "limitations": [
+        "Assist characters are not complete playable fighter sets. Do not infer canonical frame timing from sheet order."
+      ],
+      "sheets": [
+        {
+          "assetId": "275483",
+          "title": "Spider-Man",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/marvelvscapcom/asset/275483/",
+          "inspection": "sheet-inspected",
+          "runtimeReady": false,
+          "cache": {
+            "sha256": "140acafe486efc32761c98cf60134eed376f2f08a1896904abb2e1f3d4ba8c3f",
+            "dimensions": [
+              1917,
+              5966
+            ],
+            "sourceImage": "https://www.spriters-resource.com/media/assets/272/275483.png?updated=1779835886",
+            "uploader": "kilburto",
+            "path": "data/reference-cache/spriters-resource/marvel-spider-man-275483.png",
+            "metadataPath": "data/reference-cache/spriters-resource/marvel-spider-man-275483.json"
+          }
+        },
+        {
+          "assetId": "275477",
+          "title": "Wolverine",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/marvelvscapcom/asset/275477/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "275475",
+          "title": "The Hulk",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/marvelvscapcom/asset/275475/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "5918",
+          "title": "Captain America",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/marvelvscapcom/asset/5918/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "74176",
+          "title": "Venom",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/marvelvscapcom/asset/74176/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "275481",
+          "title": "Gambit",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/marvelvscapcom/asset/275481/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "275476",
+          "title": "War Machine",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/marvelvscapcom/asset/275476/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "570313",
+          "title": "Ryu",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/marvelvscapcom/asset/570313/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "5925",
+          "title": "Chun-Li",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/marvelvscapcom/asset/5925/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "570314",
+          "title": "Strider Hiryu",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/marvelvscapcom/asset/570314/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "282225",
+          "title": "Thor",
+          "kind": "assist",
+          "url": "https://www.spriters-resource.com/arcade/marvelvscapcom/asset/282225/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "5941",
+          "title": "Iceman",
+          "kind": "assist",
+          "url": "https://www.spriters-resource.com/arcade/marvelvscapcom/asset/5941/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "38812",
+          "title": "Jubilee",
+          "kind": "assist",
+          "url": "https://www.spriters-resource.com/arcade/marvelvscapcom/asset/38812/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "103253",
+          "title": "Character Select Portraits",
+          "kind": "portrait",
+          "url": "https://www.spriters-resource.com/arcade/marvelvscapcom/asset/103253/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "153315",
+          "title": "Character Logos",
+          "kind": "hud",
+          "url": "https://www.spriters-resource.com/arcade/marvelvscapcom/asset/153315/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        }
+      ]
+    },
+    {
+      "id": "pacman",
+      "title": "Pac-Man",
+      "url": "https://www.spriters-resource.com/arcade/pacman/",
+      "families": [
+        "maze"
+      ],
+      "camera": "top-down",
+      "purpose": "Player/ghost readability, maze walls, ghost-house presentation, pellets and HUD.",
+      "limitations": [
+        "Artwork does not implement maze topology, ghost release rules, targeting or frightened-state timing."
+      ],
+      "sheets": [
+        {
+          "assetId": "52631",
+          "title": "General Sprites",
+          "kind": "mixed",
+          "url": "https://www.spriters-resource.com/arcade/pacman/asset/52631/",
+          "inspection": "sheet-inspected",
+          "runtimeReady": false,
+          "cache": {
+            "sha256": "2a13b214b274eb48d9dfe1352c5bcc0ebd22de98600a27cd9d0baa40c2f4bd4f",
+            "dimensions": [
+              680,
+              248
+            ],
+            "sourceImage": "https://www.spriters-resource.com/media/assets/50/52631.png?updated=1781198463",
+            "uploader": "Superjustinbros",
+            "path": "data/reference-cache/spriters-resource/pac-man/52631.png",
+            "metadataPath": "data/reference-cache/spriters-resource/pac-man/52631.json"
+          }
+        },
+        {
+          "assetId": "73389",
+          "title": "Maze Parts",
+          "kind": "tiles",
+          "url": "https://www.spriters-resource.com/arcade/pacman/asset/73389/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "159361",
+          "title": "All Assets/Palettes",
+          "kind": "mixed",
+          "url": "https://www.spriters-resource.com/arcade/pacman/asset/159361/",
+          "inspection": "sheet-inspected",
+          "runtimeReady": false,
+          "cache": {
+            "sha256": "7dbc934a79bfd7530448d7ccee2757bcf326d49c75845f6d0eebb4403063c723",
+            "dimensions": [
+              1000,
+              750
+            ],
+            "sourceImage": "https://www.spriters-resource.com/media/assets/156/159361.png?updated=1755484381",
+            "uploader": "Caylie C",
+            "path": "data/reference-cache/spriters-resource/pac-man/159361.png",
+            "metadataPath": "data/reference-cache/spriters-resource/pac-man/159361.json"
+          }
+        },
+        {
+          "assetId": "113279",
+          "title": "Attract Mode & HUD Assets",
+          "kind": "hud",
+          "url": "https://www.spriters-resource.com/arcade/pacman/asset/113279/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "73388",
+          "title": "Text",
+          "kind": "hud",
+          "url": "https://www.spriters-resource.com/arcade/pacman/asset/73388/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        }
+      ]
+    },
+    {
+      "id": "dk",
+      "title": "Donkey Kong",
+      "url": "https://www.spriters-resource.com/arcade/dk/",
+      "families": [
+        "climber"
+      ],
+      "camera": "side-view",
+      "purpose": "Compact character poses, barrels, girders, ladders and four distinct stage layouts.",
+      "limitations": [
+        "Stage images are reference layouts, not validated collision maps. Match sprite size to floor spacing."
+      ],
+      "sheets": [
+        {
+          "assetId": "252263",
+          "title": "Characters and Objects",
+          "kind": "mixed",
+          "url": "https://www.spriters-resource.com/arcade/dk/asset/252263/",
+          "inspection": "sheet-inspected",
+          "runtimeReady": false,
+          "cache": {
+            "sha256": "3b7ddf955f382aa00e707566f281f4ac2b86a39a98f2f5a58a385e3442006ace",
+            "sourceImage": "https://www.spriters-resource.com/media/assets/249/252263.png?updated=1755493594",
+            "uploader": "125scratch",
+            "path": "data/reference-cache/spriters-resource/donkey-kong/252263.png",
+            "metadataPath": "data/reference-cache/spriters-resource/donkey-kong/252263.json",
+            "dimensions": [
+              252,
+              526
+            ]
+          }
+        },
+        {
+          "assetId": "45989",
+          "title": "25 M/50 M",
+          "kind": "stage",
+          "url": "https://www.spriters-resource.com/arcade/dk/asset/45989/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "45990",
+          "title": "75 M/100 M",
+          "kind": "stage",
+          "url": "https://www.spriters-resource.com/arcade/dk/asset/45990/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "106602",
+          "title": "Tiles",
+          "kind": "tiles",
+          "url": "https://www.spriters-resource.com/arcade/dk/asset/106602/",
+          "inspection": "sheet-inspected",
+          "runtimeReady": false,
+          "cache": {
+            "sha256": "8389614a265d2e14af217e020a1fea60249143d6cb0fc8582a107c9ac6af6d9f",
+            "sourceImage": "https://www.spriters-resource.com/media/assets/103/106602.png?updated=1755477204",
+            "uploader": "Superjustinbros",
+            "path": "data/reference-cache/spriters-resource/donkey-kong/106602.png",
+            "metadataPath": "data/reference-cache/spriters-resource/donkey-kong/106602.json",
+            "dimensions": [
+              368,
+              256
+            ]
+          }
+        },
+        {
+          "assetId": "46052",
+          "title": "Fonts & Rankings",
+          "kind": "hud",
+          "url": "https://www.spriters-resource.com/arcade/dk/asset/46052/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        }
+      ]
+    },
+    {
+      "id": "frogger",
+      "title": "Frogger",
+      "url": "https://www.spriters-resource.com/arcade/frogger/",
+      "families": [
+        "crossing"
+      ],
+      "camera": "top-down",
+      "purpose": "Frog hops, vehicles, river carriers and visible destination homes.",
+      "limitations": [
+        "General Rip still needs component extraction and water/carrier/death state mapping."
+      ],
+      "sheets": [
+        {
+          "assetId": "11067",
+          "title": "General Rip",
+          "kind": "mixed",
+          "url": "https://www.spriters-resource.com/arcade/frogger/asset/11067/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        }
+      ]
+    },
+    {
+      "id": "arkanoid",
+      "title": "Arkanoid",
+      "url": "https://www.spriters-resource.com/arcade/arkanoid/",
+      "families": [
+        "breakout"
+      ],
+      "camera": "top-down",
+      "purpose": "Paddle transformations, enemy silhouettes, brick readability, powerups and field art.",
+      "limitations": [
+        "Field and block sheets do not provide ball collision or reward rules."
+      ],
+      "sheets": [
+        {
+          "assetId": "105879",
+          "title": "Vaus",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/arkanoid/asset/105879/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "105909",
+          "title": "Enemies",
+          "kind": "enemy",
+          "url": "https://www.spriters-resource.com/arcade/arkanoid/asset/105909/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "50419",
+          "title": "DOH",
+          "kind": "enemy",
+          "url": "https://www.spriters-resource.com/arcade/arkanoid/asset/50419/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "60811",
+          "title": "Fields",
+          "kind": "stage",
+          "url": "https://www.spriters-resource.com/arcade/arkanoid/asset/60811/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "52829",
+          "title": "Blocks & Backgrounds",
+          "kind": "tiles",
+          "url": "https://www.spriters-resource.com/arcade/arkanoid/asset/52829/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "65940",
+          "title": "Powerups",
+          "kind": "item",
+          "url": "https://www.spriters-resource.com/arcade/arkanoid/asset/65940/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        }
+      ]
+    },
+    {
+      "id": "bombermanworld",
+      "title": "Bomberman World",
+      "url": "https://www.spriters-resource.com/arcade/bombermanworld/",
+      "families": [
+        "bomber"
+      ],
+      "camera": "top-down",
+      "purpose": "Directional bomber art and readable enemy/boss designs.",
+      "limitations": [
+        "Only two listed sheets; do not assume this includes a complete arena tileset or every explosion state."
+      ],
+      "sheets": [
+        {
+          "assetId": "67231",
+          "title": "Bomberman",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/bombermanworld/asset/67231/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "67230",
+          "title": "Bosses & Enemies",
+          "kind": "enemy",
+          "url": "https://www.spriters-resource.com/arcade/bombermanworld/asset/67230/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        }
+      ]
+    },
+    {
+      "id": "tetrisatari",
+      "title": "Tetris (Atari)",
+      "url": "https://www.spriters-resource.com/arcade/tetrisatari/",
+      "families": [
+        "falling-blocks"
+      ],
+      "camera": "board",
+      "purpose": "Readable tetromino colors and assembled block forms.",
+      "limitations": [
+        "Tiles only; bag/rotation/lock rules are implemented in our foundation."
+      ],
+      "sheets": [
+        {
+          "assetId": "236871",
+          "title": "Assembled Blocks",
+          "kind": "tiles",
+          "url": "https://www.spriters-resource.com/arcade/tetrisatari/asset/236871/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "65480",
+          "title": "Block Tiles",
+          "kind": "tiles",
+          "url": "https://www.spriters-resource.com/arcade/tetrisatari/asset/65480/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        }
+      ]
+    },
+    {
+      "id": "galaga",
+      "title": "Galaga",
+      "url": "https://www.spriters-resource.com/arcade/galaga/",
+      "families": [
+        "formation-shooter"
+      ],
+      "camera": "top-down",
+      "purpose": "Player/enemy ships and compact arcade HUD reference.",
+      "limitations": [
+        "Dive paths, formation scheduling and capture behavior are not supplied by sprite sheets."
+      ],
+      "sheets": [
+        {
+          "assetId": "26482",
+          "title": "General Sprites",
+          "kind": "mixed",
+          "url": "https://www.spriters-resource.com/arcade/galaga/asset/26482/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "125248",
+          "title": "Screens and Text",
+          "kind": "hud",
+          "url": "https://www.spriters-resource.com/arcade/galaga/asset/125248/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        }
+      ]
+    },
+    {
+      "id": "mariokartarcadegp2",
+      "title": "Mario Kart Arcade GP 2",
+      "url": "https://www.spriters-resource.com/arcade/mariokartarcadegp2/",
+      "families": [
+        "kart"
+      ],
+      "camera": "perspective-racing",
+      "purpose": "Race HUD, item readability, course maps and character portraits.",
+      "limitations": [
+        "The inspected page lists interface/texture art, not a verified set of 2D racing vehicle animation frames. Source game is 3D; do not promise usable driver sprites from this listing."
+      ],
+      "sheets": [
+        {
+          "assetId": "203028",
+          "title": "HUD Elements",
+          "kind": "hud",
+          "url": "https://www.spriters-resource.com/arcade/mariokartarcadegp2/asset/203028/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "246849",
+          "title": "Item Icons",
+          "kind": "item",
+          "url": "https://www.spriters-resource.com/arcade/mariokartarcadegp2/asset/246849/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "246850",
+          "title": "Items",
+          "kind": "item",
+          "url": "https://www.spriters-resource.com/arcade/mariokartarcadegp2/asset/246850/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "202468",
+          "title": "Course Maps",
+          "kind": "map",
+          "url": "https://www.spriters-resource.com/arcade/mariokartarcadegp2/asset/202468/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "202883",
+          "title": "Character Mugshots",
+          "kind": "portrait",
+          "url": "https://www.spriters-resource.com/arcade/mariokartarcadegp2/asset/202883/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "202647",
+          "title": "Course Backgrounds (Normal)",
+          "kind": "stage",
+          "url": "https://www.spriters-resource.com/arcade/mariokartarcadegp2/asset/202647/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        }
+      ]
+    },
+    {
+      "id": "outrun",
+      "title": "Out Run",
+      "url": "https://www.spriters-resource.com/arcade/outrun/",
+      "families": [
+        "kart"
+      ],
+      "camera": "perspective-racing",
+      "purpose": "Vehicle and driver artwork for rear-view arcade racing reference.",
+      "limitations": [
+        "Car art is not a Mario Kart character set. Check turning frames and scale levels before import."
+      ],
+      "sheets": [
+        {
+          "assetId": "104648",
+          "title": "Vehicle and Drivers",
+          "kind": "vehicle",
+          "url": "https://www.spriters-resource.com/arcade/outrun/asset/104648/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        }
+      ]
+    },
+    {
+      "id": "poleposition",
+      "title": "Pole Position",
+      "url": "https://www.spriters-resource.com/arcade/poleposition/",
+      "families": [
+        "kart"
+      ],
+      "camera": "perspective-racing",
+      "purpose": "Rear-view F1 steering poses, wheel variants and crash effects; starting gantries, trackside signs and race interface reference.",
+      "limitations": [
+        "Archive PNGs supply artwork, not road projection, car physics, qualification rules, original timings or collision geometry.",
+        "Miscellaneous sheet contains edition-specific branding and maps; a page comment flags Pole Position II material. Preserve per-element attribution and do not assume every element belongs to the first game.",
+        "Car poses need explicit steering, distance, wheel and crash-state mapping; unreviewed rows must not be treated as one sequential animation."
+      ],
+      "sheets": [
+        {
+          "assetId": "94319",
+          "title": "F1 Car",
+          "kind": "vehicle",
+          "url": "https://www.spriters-resource.com/arcade/poleposition/asset/94319/",
+          "inspection": "sheet-inspected",
+          "runtimeReady": false,
+          "cache": {
+            "sha256": "1363ed964d192c916320fc5b10010bfc8bed908a0637b85f5e39051fb23dee42",
+            "dimensions": [
+              957,
+              160
+            ],
+            "sourceImage": "https://www.spriters-resource.com/media/assets/91/94319.png?updated=1755475971",
+            "uploader": "Sonicfan32",
+            "path": "data/reference-cache/spriters-resource/pole-position/94319.png",
+            "metadataPath": "data/reference-cache/spriters-resource/pole-position/94319.json"
+          }
+        },
+        {
+          "assetId": "97926",
+          "title": "Miscellaneous",
+          "kind": "mixed",
+          "url": "https://www.spriters-resource.com/arcade/poleposition/asset/97926/",
+          "inspection": "sheet-inspected",
+          "runtimeReady": false,
+          "cache": {
+            "sha256": "0544805776c88d8a9207d8fbc042a5c16a85b46709c1947e1b70cfeacde0e5de",
+            "dimensions": [
+              820,
+              744
+            ],
+            "sourceImage": "https://www.spriters-resource.com/media/assets/95/97926.png?updated=1755476380",
+            "uploader": "Yawackhary",
+            "path": "data/reference-cache/spriters-resource/pole-position/97926.png",
+            "metadataPath": "data/reference-cache/spriters-resource/pole-position/97926.json"
+          }
+        }
+      ]
+    },
+    {
+      "id": "finalfight",
+      "title": "Final Fight",
+      "url": "https://www.spriters-resource.com/arcade/finalfight/",
+      "families": [
+        "brawler"
+      ],
+      "camera": "belt-scroll",
+      "purpose": "Street brawler locomotion/attack poses and varied enemy silhouettes.",
+      "limitations": [
+        "Future brawler reference; not compatible with our duel factory without explicit movement and attack mapping."
+      ],
+      "sheets": [
+        {
+          "assetId": "52417",
+          "title": "Cody",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/finalfight/asset/52417/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "52418",
+          "title": "Guy",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/finalfight/asset/52418/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "52504",
+          "title": "Haggar",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/finalfight/asset/52504/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "135403",
+          "title": "Andore Family",
+          "kind": "enemy",
+          "url": "https://www.spriters-resource.com/arcade/finalfight/asset/135403/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "46080",
+          "title": "Poison / Roxy",
+          "kind": "enemy",
+          "url": "https://www.spriters-resource.com/arcade/finalfight/asset/46080/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "54708",
+          "title": "Bred",
+          "kind": "enemy",
+          "url": "https://www.spriters-resource.com/arcade/finalfight/asset/54708/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "252827",
+          "title": "Character Select",
+          "kind": "portrait",
+          "url": "https://www.spriters-resource.com/arcade/finalfight/asset/252827/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        }
+      ]
+    },
+    {
+      "id": "tmnt",
+      "title": "Teenage Mutant Ninja Turtles",
+      "url": "https://www.spriters-resource.com/arcade/tmnt/",
+      "families": [
+        "brawler"
+      ],
+      "camera": "belt-scroll",
+      "purpose": "Four distinct weapon silhouettes, enemies, stage composition and pickups.",
+      "limitations": [
+        "Future co-op brawler reference; source multiplayer design does not make sheets runtime-ready."
+      ],
+      "sheets": [
+        {
+          "assetId": "50888",
+          "title": "Donatello",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/tmnt/asset/50888/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "50886",
+          "title": "Leonardo",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/tmnt/asset/50886/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "50887",
+          "title": "Michelangelo",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/tmnt/asset/50887/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "50923",
+          "title": "Raphael",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/tmnt/asset/50923/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "32977",
+          "title": "Foot Soldier (Purple)",
+          "kind": "enemy",
+          "url": "https://www.spriters-resource.com/arcade/tmnt/asset/32977/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "35355",
+          "title": "The Shredder",
+          "kind": "enemy",
+          "url": "https://www.spriters-resource.com/arcade/tmnt/asset/35355/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "4249",
+          "title": "Stage 1",
+          "kind": "stage",
+          "url": "https://www.spriters-resource.com/arcade/tmnt/asset/4249/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "197674",
+          "title": "Pizzas",
+          "kind": "item",
+          "url": "https://www.spriters-resource.com/arcade/tmnt/asset/197674/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        }
+      ]
+    },
+    {
+      "id": "ms6",
+      "title": "Metal Slug 6",
+      "url": "https://www.spriters-resource.com/arcade/ms6/",
+      "families": [
+        "run-and-gun"
+      ],
+      "camera": "side-view",
+      "purpose": "Detailed walk/weapon poses, enemy animation, vehicles, impacts and layered stages.",
+      "limitations": [
+        "Future run-and-gun reference. Some page entries are PS2 variants; selected stage below is not labelled PS2. Weapon SFX is a sprite-sheet label, not an audio download."
+      ],
+      "sheets": [
+        {
+          "assetId": "183706",
+          "title": "Marco Rossi",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/ms6/asset/183706/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "36311",
+          "title": "Fio Germi",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/ms6/asset/36311/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "23186",
+          "title": "Tarma Roving",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/ms6/asset/23186/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "32525",
+          "title": "Metal Slug",
+          "kind": "vehicle",
+          "url": "https://www.spriters-resource.com/arcade/ms6/asset/32525/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "241948",
+          "title": "Rebel Soldier",
+          "kind": "enemy",
+          "url": "https://www.spriters-resource.com/arcade/ms6/asset/241948/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "123749",
+          "title": "Mission 1-1",
+          "kind": "stage",
+          "url": "https://www.spriters-resource.com/arcade/ms6/asset/123749/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "29724",
+          "title": "HUD & Interface",
+          "kind": "hud",
+          "url": "https://www.spriters-resource.com/arcade/ms6/asset/29724/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "39083",
+          "title": "Items",
+          "kind": "item",
+          "url": "https://www.spriters-resource.com/arcade/ms6/asset/39083/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "53067",
+          "title": "Weapon SFX",
+          "kind": "effect",
+          "url": "https://www.spriters-resource.com/arcade/ms6/asset/53067/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        }
+      ]
+    },
+    {
+      "id": "streetfighteralpha3",
+      "title": "Street Fighter Alpha 3",
+      "url": "https://www.spriters-resource.com/arcade/streetfighteralpha3/",
+      "families": [
+        "fighter"
+      ],
+      "camera": "side-view",
+      "purpose": "Richer fighting-game animation reference and alternate character sets.",
+      "limitations": [
+        "Keep sets stylistically coherent; do not mix scale/palettes blindly with SF2."
+      ],
+      "sheets": [
+        {
+          "assetId": "560863",
+          "title": "Ryu",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/streetfighteralpha3/asset/560863/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "94434",
+          "title": "Ken Masters",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/streetfighteralpha3/asset/94434/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "560874",
+          "title": "Chun-Li",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/streetfighteralpha3/asset/560874/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "560865",
+          "title": "Akuma",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/streetfighteralpha3/asset/560865/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "560877",
+          "title": "Sakura",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/streetfighteralpha3/asset/560877/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "250964",
+          "title": "Character Select Icons",
+          "kind": "portrait",
+          "url": "https://www.spriters-resource.com/arcade/streetfighteralpha3/asset/250964/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        },
+        {
+          "assetId": "137416",
+          "title": "Front Super Finish BG (A-ism)",
+          "kind": "effect",
+          "url": "https://www.spriters-resource.com/arcade/streetfighteralpha3/asset/137416/",
+          "inspection": "listed-on-game-page",
+          "runtimeReady": false
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "family": "pong",
+      "note": "No suitable sheet indexed in this curated pass; retain original procedural art. This is not an assertion that the archive has none."
+    },
+    {
+      "family": "asteroids",
+      "note": "No suitable sheet indexed in this curated pass; retain original procedural art. This is not an assertion that the archive has none."
+    },
+    {
+      "family": "missile-defense",
+      "note": "No suitable sheet indexed in this curated pass; retain original procedural art. This is not an assertion that the archive has none."
+    }
+  ]
+}

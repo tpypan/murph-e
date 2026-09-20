@@ -1,0 +1,26 @@
+{
+  "model": "gpt-6-astra",
+  "effort": "medium",
+  "players": 1,
+  "n": 1,
+  "rows": [
+    {
+      "prompt": "A top-down blue ninja in a moonlit bamboo garden collecting golden scrolls and dodging patrolling beetles. Smooth four-direction walking, a short dash, three lives, and win when I collect ten scrolls.",
+      "title": "MOON NINJA",
+      "genre": "top-down collection action",
+      "runId": "2026-09-19-212231442-a-top-down-blue-ninja-in-a-moonl-MkrhM9",
+      "specMs": 6060,
+      "buildMs": 157567,
+      "ttftMs": 51913,
+      "totalMs": 163668,
+      "tokens": 8871,
+      "reasoning": 1765,
+      "cached": 2996,
+      "lines": 685,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [],
+      "error": null
+    }
+  ]
+}

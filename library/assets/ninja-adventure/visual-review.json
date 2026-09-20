@@ -1,0 +1,18 @@
+{
+  "reviewedAt": "2026-09-19T21:18:42.102Z",
+  "contentHash": "ee7d9c346724d8cf552a195614177ceefbd237b491332ff51a1ba1890f1210ce",
+  "inspected": [
+    "contact-sheet.png",
+    "LICENSE.md"
+  ],
+  "findings": [
+    "Source and palette-converted silhouettes inspected side by side",
+    "Ninja blue and samurai green palettes remain distinguishable",
+    "Humanoid directional walks preserved; single action poses are explicitly not full combat clips",
+    "Pinned original creator CC0 source, source paths and source hashes retained"
+  ],
+  "limits": [
+    "Not a fighter or general arbitrary-character art pack",
+    "Gameplay geometry must be tested by each consuming game"
+  ]
+}

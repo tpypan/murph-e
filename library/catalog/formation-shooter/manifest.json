@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "id": "formation-shooter",
+  "version": "1.0.0",
+  "title": "PRISM SQUADRON",
+  "description": "Original fixed-screen formation shooter with marching ranks, telegraphed divers, destructible shields, bonus UFOs and cooperative play.",
+  "tags": [
+    "formation",
+    "shooter",
+    "space invaders",
+    "galaga",
+    "divers",
+    "shields",
+    "cooperative"
+  ],
+  "match": {
+    "phrases": [
+      "space invaders",
+      "galaga",
+      "galaxian",
+      "formation shooter",
+      "marching aliens"
+    ],
+    "genres": [
+      "formation shooter",
+      "fixed shooter"
+    ]
+  },
+  "supportsPlayers": [
+    1,
+    2
+  ],
+  "module": "module.js",
+  "entry": "formationShooter",
+  "apiVersion": 1,
+  "license": {
+    "spdx": "LicenseRef-Project-Original",
+    "notes": "Original authored implementation and artwork; no commercial sprites, ROM data or source copied."
+  },
+  "provenance": {
+    "kind": "original",
+    "authors": [
+      "Arcade project"
+    ],
+    "sources": [],
+    "createdAt": "2026-09-19"
+  },
+  "quality": {
+    "status": "draft"
+  },
+  "assets": [
+    "assets.json"
+  ],
+  "files": [
+    "module.base.js",
+    "build.mjs",
+    "create-assets.mjs",
+    "demo.js",
+    "spec.json"
+  ],
+  "api": "api.md",
+  "demo": "demo.js",
+  "spec": "spec.json"
+}

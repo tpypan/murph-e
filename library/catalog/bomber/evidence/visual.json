@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "sourceHash": "1ddfef3ab739a9061a65861aeab12db5f16603c5c3f74f3db61db4815ca910f4",
+  "reviewedNativeResolution": "256x224",
+  "observations": [
+    "Distinct helmeted blue/red players, three monster colors, beveled pillar grid and readable wooden crate obstacles.",
+    "Visible fuse and connected yellow/white blast rays with solid-wall clipping; open exit icon distinct from locked gate.",
+    "Actual solo win, both-player versus kills and three rounds to P1 win, two-level co-op win, exact independent score totals."
+  ],
+  "limitations": [
+    "Original compact pixel art, not commercial Bomberman fidelity.",
+    "No physical CRT or human difficulty/fun study.",
+    "Automated solo full-clear replay uses nine lives and180seconds; co-op full-clear uses one enemy and open crate layout. Default enemy and crate rules tested independently."
+  ],
+  "screenshots": [
+    {
+      "file": "evidence/1p-start.png",
+      "sha256": "bb061b975ff2e9b83095122093b69e3c4fb91825092d0b2017a164c32f1352e7"
+    },
+    {
+      "file": "evidence/2p-start.png",
+      "sha256": "8d3c7893e2ec6c903e29d504116e4d56895ebe8747ff22e99fe432a265ab2fbe"
+    },
+    {
+      "file": "evidence/bomb-fuse.png",
+      "sha256": "418247ce9f46510853f193f0722491a71afda46ec919a1480a7a597a1900d124"
+    },
+    {
+      "file": "evidence/connected-cross-blast.png",
+      "sha256": "a6f2a8ad74dce37d9827c9d4080ab8993c927863afbb3a6ada173a7936aa51ac"
+    },
+    {
+      "file": "evidence/versus-complete.png",
+      "sha256": "572b240b0cde9252103acd8b1817bc1dd9436ba9df6a572ad85719f7a27f46b9"
+    },
+    {
+      "file": "evidence/solo-complete.png",
+      "sha256": "b422e9bb716cbd5a223ef0db14b454fd81875e272a1363effd7ee5214ac5e2f3"
+    },
+    {
+      "file": "evidence/coop-complete.png",
+      "sha256": "a472f5bcc0bcd5cca815eb2ba49b0997004f82fae85e5918e840c356c2e62638"
+    }
+  ]
+}

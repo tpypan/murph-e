@@ -1,5 +1,15 @@
 import { z } from 'zod'
+import { catalogContext } from './catalog.ts'
+import { REQUEST_LIMITS, withDeadline } from './deadline.ts'
+import {
+  DESIGN_CARD_IDS,
+  type DesignContext,
+  designCatalogue,
+  designCore,
+  selectDesignContext,
+} from './design-context.ts'
 import { MODELS, ms, now, openai } from './env.ts'
+import { referenceContext } from './reference-context.ts'
 
 export const GENRES = [
   'dodge',
@@ -10,26 +20,53 @@ export const GENRES = [
   'runner',
   'pong',
   'flappy',
+  'fighting',
+  'brawler',
+  'racing',
+  'rhythm',
+  'puzzle',
+  'maze',
+  'sports',
+  'adventure',
 ] as const
-// Two-player genres. The cabinet's 1P/2P choice picks the list; the model
-// never mixes them.
-export const GENRES_2P = ['versus', 'coop'] as const
-export const ALL_GENRES = [...GENRES, ...GENRES_2P] as const
-export type Genre = (typeof ALL_GENRES)[number]
+// Suggestions, not an exhaustive enum. Mechanics and player count are independent.
+// Retain legacy versus/coop labels so saved games can still be remixed.
+export const GENRES_2P = [...GENRES, 'versus', 'coop'] as const
+export const ALL_GENRES = GENRES_2P
+export type Genre = string
 export type Players = 1 | 2
+
+const controlDescription = z
+  .string()
+  .nullable()
+  .transform((value) =>
+    value === null || /^(?:unused|none|not used|no action|n\/a)?$/i.test(value.trim())
+      ? null
+      : value.trim(),
+  )
 
 export const GameSpecSchema = z.object({
   title: z.string().min(1),
   oneLiner: z.string().min(1),
-  genre: z.enum(ALL_GENRES),
-  mechanics: z.array(z.string()).min(1),
+  genre: z.string().trim().min(1).max(64),
+  mechanics: z.array(z.string()).min(1).max(12),
+  // Optional when reading existing saved games; required from new specifications.
+  artDirection: z.string().max(1200).optional(),
+  // Make adaptations explicit instead of burying changed verbs in a summary.
+  referenceIntent: z
+    .object({
+      reference: z.string(),
+      preserve: z.array(z.string()).max(6),
+      change: z.array(z.string()).max(6),
+    })
+    .optional(),
   controls: z.object({
-    left: z.string().nullable(),
-    right: z.string().nullable(),
-    up: z.string().nullable(),
-    down: z.string().nullable(),
-    a: z.string().nullable(),
-    b: z.string().nullable(),
+    left: controlDescription,
+    right: controlDescription,
+    up: controlDescription,
+    down: controlDescription,
+    a: controlDescription,
+    b: controlDescription,
   }),
   palette: z.enum(['arcade', 'gameboy', 'nes', 'cga']),
   lose: z.string(),
@@ -38,11 +75,13 @@ export const GameSpecSchema = z.object({
   note: z.string(),
   remix: z.boolean(),
   changes: z.array(z.string()),
+  // Optional for library games saved before design context was connected.
+  designCards: z.array(z.enum(DESIGN_CARD_IDS)).max(4).optional(),
 })
 export type GameSpec = z.infer<typeof GameSpecSchema> & { players: Players }
 
 // Hand-written so it is strict-mode valid: every property required, no extras.
-const jsonSchema = (genres: readonly string[]) => ({
+export const specJsonSchema = {
   type: 'object',
   additionalProperties: false,
   required: [
@@ -50,6 +89,8 @@ const jsonSchema = (genres: readonly string[]) => ({
     'oneLiner',
     'genre',
     'mechanics',
+    'artDirection',
+    'referenceIntent',
     'controls',
     'palette',
     'lose',
@@ -58,15 +99,66 @@ const jsonSchema = (genres: readonly string[]) => ({
     'note',
     'remix',
     'changes',
+    'designCards',
   ],
   properties: {
+    referenceIntent: {
+      type: 'object',
+      additionalProperties: false,
+      required: ['reference', 'preserve', 'change'],
+      description:
+        'Resolve the named-game adaptation BEFORE detailing mechanics. The requested changes take precedence over the reference defaults. Empty strings/lists when no reference game is named.',
+      properties: {
+        reference: {
+          type: 'string',
+          description:
+            'The game or tradition referenced by the user, not an invented source lookup.',
+        },
+        preserve: {
+          type: 'array',
+          items: { type: 'string' },
+          maxItems: 6,
+          description:
+            'Concrete signature structures and behavior that should remain recognizable.',
+        },
+        change: {
+          type: 'array',
+          items: { type: 'string' },
+          maxItems: 6,
+          description:
+            'Explicit requested changes, including who acts on whom and how the objective changes. Do not add limitations the user did not request.',
+        },
+      },
+    },
+    designCards: {
+      type: 'array',
+      items: { type: 'string', enum: DESIGN_CARD_IDS },
+      maxItems: 4,
+      description:
+        'Up to four relevant local design card IDs, chosen for the actual mechanics and character requirements.',
+    },
     title: { type: 'string', description: 'Uppercase, at most 14 characters, shown on screen.' },
     oneLiner: { type: 'string', description: 'One sentence a player would read on a cabinet.' },
-    genre: { type: 'string', enum: [...genres] },
+    genre: {
+      type: 'string',
+      minLength: 1,
+      maxLength: 64,
+      description:
+        'Accurate lowercase genre or hybrid, e.g. fighting, brawler, racing, puzzle, rhythm. Invent a precise label when needed; never force a request into the available templates. Preserve the current label for a remix.',
+    },
+    artDirection: {
+      type: 'string',
+      maxLength: 1200,
+      description:
+        'Concrete visual plan: character size in pixels, identifying features, distinct action poses, background layers, contrast and composition. Fit the actual 256x224 screen, default 16-color palette and optional exact per-sprite palettes.',
+    },
     mechanics: {
       type: 'array',
       items: { type: 'string' },
-      description: '3 to 5 short lines: what moves, what hurts, what scores, how it ramps.',
+      minItems: 1,
+      maxItems: 12,
+      description:
+        'Enough concrete rules to define the requested game: movement, action states and timing, interactions, opponent behavior, win/loss, progression and feedback. Usually 5 to 10 lines.',
     },
     controls: {
       type: 'object',
@@ -105,44 +197,54 @@ const jsonSchema = (genres: readonly string[]) => ({
         'When remix is true: 1 to 4 short imperative lines a programmer can apply to the existing code. Otherwise empty.',
     },
   },
-})
+}
 
-export const SPEC_INSTRUCTIONS = `You turn what a person said into a spec for a tiny one-screen 8-bit arcade game that a second model will write in one go. The game runs at 256x224 with a 16-colour palette, a d-pad and two buttons (A, B), single player.
+export const SPEC_INSTRUCTIONS = `You turn what a person said into a spec for a complete, polished 2D arcade game that a second model will write in one go. The game runs at 256x224 with a default 16-colour palette plus optional exact per-sprite palettes, a d-pad and two buttons (A, B), single player.
 
 Rules:
 - Keep the person's idea. Their nouns become the sprites and the theme. Their verbs become the mechanics.
-- Pick the closest genre from the list. If the request is bigger than one screen (open world, RPG, 3D, story, crafting, levels), keep the theme and shrink it to one arcade loop; say what you did in note.
+- Describe the actual genre, using any precise lowercase label or hybrid. Fighting, brawler, racing, rhythm, puzzle, maze, sports and adventure are valid; these are examples, not a closed list. Genre is metadata, not a restriction or an instruction to reskin a template. Street Fighter is fighting, not dodge.
+- Preserve the requested experience and signature mechanics. One viewport does not mean one static room: scrolling stages, rounds, progression and compact multi-stage games are allowed. Adapt only what is incompatible with the actual 2D runtime, physical controls, player count or generation budget, and explain material changes in note.
 - If the request is for two or more players, make it one player against the computer and set note to MADE IT ONE PLAYER.
 - If the request is vague ("something with cats", "a relaxing game"), invent a concrete, charming game that fits.
-- The player must be able to lose within about 30 seconds and to score within 5. Difficulty ramps with time.
-- title: at most 14 characters, uppercase, punchy. oneLiner: one sentence. mechanics: 3 to 5 short lines.
-- controls: describe what each input does or null if unused. Always use left/right or up/down, and A must do something.
-- palette is only a colour mood hint.
+- Give an achievable scoring opportunity within 5 seconds. Action games should develop real danger within about 30 seconds; preserve calm or puzzle requests. Use bounded difficulty and pressure/recovery phases, not endless acceleration. Describe one concrete skillful action, reward, and hazard interaction.
+- title: at most 14 characters, uppercase, punchy. oneLiner: one sentence. mechanics: usually 5 to 10 concrete rules, up to 12 when necessary. Include essential state transitions and feedback, not just a theme.
+- controls: declare only inputs that serve the actual game. Use null for unused inputs, never the string "Unused". Rhythm and puzzle games need not use movement; movement-only games need not invent an A action. Describe each used control and its eligible states.
+- The cabinet already handles START. Controls must work as soon as play begins; use a harmless opponent/grace period rather than locking input for an intro countdown.
+- artDirection: plan the composition, character scale, distinguishing features, palette shading and animation poses. For close-up fighting, fighters roughly 40–64 pixels tall can occupy the stage meaningfully; adapt scale to the genre. Specify readable idle, movement, attack and hurt poses where relevant. Small resolution does not mean tiny figures or crude art.
+- For fighting: define spacing, facing, jump/crouch where appropriate, attacks with startup/active/recovery, blocking, hitstun and knockback. Each attack hits once; opponents telegraph and leave punishable recovery. An abbreviated two-button moveset should still feel like fighting.
+- palette is a colour mood hint; primitives use the default 16 colours and each sprite draw can supply up to 16 exact RGB colours. Multiple draws or aligned planes may use different palettes; retain the full colours of supplied ART sets through their draw helper. This is not a global scene colour limit.
 - Moderation: if the request is hateful, sexual, about real people, about self-harm, about real-world violence such as shootings or attacks on people or places, or is not a game at all, do not make that game. Replace it with an unrelated, wholesome arcade game, set moderated to true, and set note to LET'S PLAY THIS INSTEAD. Cartoon action such as shooting asteroids, zapping aliens or bonking slimes is fine.
 - Remix: when the input says a game is already on screen and the person is asking to change that game, set remix to true, keep the title and the genre, and put the concrete changes in changes (1 to 4 short imperative lines, e.g. "double the car speed ramp", "add a boss sprite at the top that fires every 2 seconds"). The rest of the spec then describes the game after the changes. A remix is a modification: speed, size, count, lives, difficulty, colours, one new enemy or item, or swapping one thing ("make the hero a cat"). Words that describe a game with its own premise (a different hero, setting and goal, e.g. "a game where a penguin slides on ice collecting fish") are a NEW game even if the genre is similar: remix false, changes empty, and the spec describes that new game. With no game on screen, remix is always false.`
 
-export const SPEC_INSTRUCTIONS_2P = `You turn what two people said into a spec for a tiny one-screen 8-bit arcade game for exactly two players that a second model will write in one go. The game runs at 256x224 with a 16-colour palette. Each player has their own d-pad and two buttons (A, B). Both players share the one screen and one arena: no split screen.
+export const SPEC_INSTRUCTIONS_2P = `You turn what two people said into a spec for a complete, polished 2D arcade game for exactly two players that a second model will write in one go. The game runs at 256x224 with a default 16-colour palette plus optional exact per-sprite palettes. Each player has their own d-pad and two buttons (A, B). Both players share one cabinet display. Use a shared arena when appropriate; a racer may use two compact independent viewports within that display.
 
 Rules:
 - Keep their idea. Their nouns become the sprites and the theme. Their verbs become the mechanics.
-- Pick the genre: "versus" when the two players compete and one wins, "coop" when they work together against the game and share a score and a loss. If they did not say, pick whichever fits the theme better; a fighting, racing or duelling idea is versus, a defending, surviving or collecting-together idea is coop.
-- If the request is bigger than one screen (open world, RPG, 3D, story, crafting, levels), keep the theme and shrink it to one arcade loop; say what you did in note.
+- Describe the actual genre with any precise lowercase label or hybrid: fighting, racing, puzzle, shooter, rhythm, sports, etc. Genre is independent of player count. In mechanics explicitly state whether players compete or cooperate, their roles, and how they win. Preserve legacy versus/coop labels when remixing a saved game.
+- Preserve signature mechanics. Scrolling stages, rounds, progression and compact multi-stage games are allowed within one shared viewport. Adapt only what is incompatible with the actual runtime or controls; explain material changes in note.
 - If the request is for one player, or for more than two, make it two players and set note to MADE IT TWO PLAYERS.
 - If the request is vague ("something fun for us"), invent a concrete, charming two-player game that fits.
-- Versus: a round must be decidable within about a minute, and it must be impossible to stall forever (a closing arena, a timer, or points that keep coming). Coop: the pair must be able to score within 5 seconds and lose within 30 seconds if they stand still, ramping with time.
-- title: at most 14 characters, uppercase, punchy. oneLiner: one sentence that mentions both players. mechanics: 3 to 5 short lines, and one of them must say what player one and player two each are.
-- controls: describe what each input does for a player (both players have the same controls) or null if unused. Always use left/right or up/down, and A must do something.
-- palette is only a colour mood hint.
+- Versus: use a finite objective, suitable timer or bounded progress so play cannot stall forever. Preserve a supplied foundation's documented round timing and terminal rules unless the person asked to change them; do not replace its defaults with a universal one-minute round. Coop: give an achievable scoring opportunity within 5 seconds and real danger within about 30 seconds for action games. Preserve calm requests. Use bounded difficulty and pressure/recovery phases. Preserve signature mechanics even when the genre label is broad.
+- title: at most 14 characters, uppercase, punchy. oneLiner: one sentence that mentions both players. mechanics: usually 5 to 10 concrete rules, up to 12 when necessary; explicitly describe both player roles.
+- controls: describe each used input for either player (the same mapping for both); use null for unused inputs, never the string "Unused". Do not invent extra actions merely to fill buttons.
+- The cabinet already handles START. Both players can act immediately; any round-intro countdown allows practice movement/actions and only delays damage, rather than locking controls.
+- artDirection: plan the composition, character scale, distinguishing features, palette shading and animation poses. For close-up fighting, fighters roughly 40–64 pixels tall can occupy the stage meaningfully; adapt scale to the genre. Specify readable idle, movement, attack and hurt poses where relevant. Small resolution does not mean tiny figures or crude art.
+- For fighting: define spacing, facing, jump/crouch where appropriate, attacks with startup/active/recovery, blocking, hitstun and knockback. Each attack hits once; opponents telegraph and leave punishable recovery. An abbreviated two-button moveset should still feel like fighting.
+- palette is a colour mood hint; primitives use the default 16 colours and each sprite draw can supply up to 16 exact RGB colours. Multiple draws or aligned planes may use different palettes; retain the full colours of supplied ART sets through their draw helper. This is not a global scene colour limit.
 - Moderation: if the request is hateful, sexual, about real people, about self-harm, about real-world violence such as shootings or attacks on people or places, or is not a game at all, do not make that game. Replace it with an unrelated, wholesome two-player arcade game, set moderated to true, and set note to LET'S PLAY THIS INSTEAD. Cartoon action such as shooting asteroids, zapping aliens, sword duels or bonking slimes is fine.
 - Remix: when the input says a game is already on screen and the players are asking to change that game, set remix to true, keep the title and the genre, and put the concrete changes in changes (1 to 4 short imperative lines). The rest of the spec then describes the game after the changes. A remix is a modification: speed, size, count, lives, difficulty, colours, one new enemy or item, or swapping one thing. Words that describe a game with its own premise (a different hero, setting and goal) are a NEW game even if the genre is similar: remix false, changes empty, and the spec describes that new game. With no game on screen, remix is always false.`
 
 export interface SpecResult {
   spec: GameSpec
+  context: DesignContext
+  prompt: { system: string; user: string }
   ms: number
   usage: { input: number; output: number; cached: number }
 }
 
 export interface SpecOptions {
+  signal?: AbortSignal
   model?: string
   effort?: string
   /** Set by the cabinet's 1P/2P menu, never inferred from the transcript. */
@@ -152,37 +254,77 @@ export interface SpecOptions {
 }
 
 function describeCurrent(spec: GameSpec): string {
-  const { title, genre, oneLiner, mechanics, controls, lose, scoring } = spec
-  return JSON.stringify({ title, genre, oneLiner, mechanics, controls, lose, scoring })
+  const { title, genre, oneLiner, mechanics, artDirection, controls, lose, scoring } = spec
+  return JSON.stringify({
+    title,
+    genre,
+    oneLiner,
+    mechanics,
+    artDirection,
+    controls,
+    lose,
+    scoring,
+  })
+}
+
+export function specPrompt(transcript: string, opts: SpecOptions = {}) {
+  const players = opts.players === 2 ? 2 : 1
+  const context = selectDesignContext(transcript, opts.current ?? {}, 'spec')
+  const system = [
+    players === 2 ? SPEC_INSTRUCTIONS_2P : SPEC_INSTRUCTIONS,
+    'Fill referenceIntent first. Example: Pac-Man but a goose chases the ghosts changes the player into the hunter; ghosts flee by default and catching ghosts must advance the primary objective. Do not restrict that requested reversal to a temporary power-up unless the user asks for that. Mechanics, scoring and lose conditions must agree with referenceIntent.change. Reference behavior is subordinate to the explicit adaptation.',
+    'For a named game, distinguish the reference features to preserve from the explicit changes requested. Put both into concrete mechanics and artDirection. A changed actor or verb is a requirement: do not silently restore the original win condition or chase relationship. Prioritize those requirements over optional extra moves and meters.',
+    designCore(),
+    designCatalogue(),
+    'The selected cards are conditional guidance. Produce the required spec JSON, not prose or code. Include concrete tuning or limits in mechanics where helpful; preserve a complete, buildable game and its signature mechanics. For a remix, select guidance relevant to the requested changes and keep unrelated behavior unchanged.',
+    'When a tested foundation is supplied, use its documented controls, scoring, action timing and round structure as the default. Do not invent extra meters, combo multipliers, secondary objectives or API wrappers just to fill the mechanics list. Preserve every explicit requested change; add new systems only when needed for that request. Existing tested rules already provide game feel and progression. Copy reward ownership, life-loss versus team-loss rules, stage counts and timeout behavior exactly from that contract unless the transcript explicitly asks to change them. A timer costing one life is not a team game-over. A shared clear bonus is not a rescuer-only bonus. Do not add an extra reward for an already-scored event. Check that mechanics, lose and scoring agree with one another and with every explicit number in the transcript.',
+  ]
+    .filter(Boolean)
+    .join('\n\n')
+  const user = [
+    players === 2
+      ? `The two players said: "${transcript.trim()}"`
+      : `The person said: "${transcript.trim()}"`,
+    opts.current
+      ? `A game is already on screen: ${describeCurrent(opts.current)}. They may be asking to change it (remix) or for a different game.`
+      : 'No game is on screen.',
+    context.text,
+    referenceContext(transcript, {}, false).text,
+    catalogContext(transcript, { players }).text,
+  ]
+    .filter(Boolean)
+    .join('\n\n')
+  return { system, user, context }
 }
 
 export async function specify(transcript: string, opts: SpecOptions = {}): Promise<SpecResult> {
   const t0 = now()
   const players: Players = opts.players === 2 ? 2 : 1
-  const genres = players === 2 ? GENRES_2P : GENRES
-  const res = await openai().responses.create({
-    model: opts.model ?? MODELS.spec,
-    reasoning: { effort: (opts.effort ?? MODELS.specEffort) as 'none' },
-    instructions: players === 2 ? SPEC_INSTRUCTIONS_2P : SPEC_INSTRUCTIONS,
-    input: [
-      players === 2
-        ? `The two players said: "${transcript.trim()}"`
-        : `The person said: "${transcript.trim()}"`,
-      opts.current
-        ? `A game is already on screen: ${describeCurrent(opts.current)}. They may be asking to change it (remix) or for a different game.`
-        : 'No game is on screen.',
-    ].join('\n\n'),
-    text: {
-      format: { type: 'json_schema', name: 'game_spec', strict: true, schema: jsonSchema(genres) },
-    },
-    prompt_cache_key: players === 2 ? 'htn-spec-2p-v1' : 'htn-spec-v1',
-  })
+  const prompt = specPrompt(transcript, opts)
+  const res = await withDeadline('spec', REQUEST_LIMITS.spec, opts.signal, (signal) =>
+    openai().responses.create(
+      {
+        model: opts.model ?? MODELS.spec,
+        reasoning: { effort: (opts.effort ?? MODELS.specEffort) as 'none' },
+        instructions: prompt.system,
+        input: prompt.user,
+        text: {
+          format: {
+            type: 'json_schema',
+            name: 'game_spec',
+            strict: true,
+            schema: specJsonSchema,
+          },
+        },
+        prompt_cache_key: players === 2 ? 'htn-spec-2p-v4.5' : 'htn-spec-v4.5',
+      },
+      { signal },
+    ),
+  )
   const parsed = GameSpecSchema.parse(JSON.parse(res.output_text))
   parsed.title = parsed.title.toUpperCase().slice(0, 14)
   parsed.note = parsed.note.toUpperCase().slice(0, 40)
   parsed.oneLiner = parsed.oneLiner.slice(0, 120)
-  parsed.mechanics = parsed.mechanics.slice(0, 6)
-  if (!(genres as readonly string[]).includes(parsed.genre)) parsed.genre = genres[0]
   if (!opts.current) {
     parsed.remix = false
     parsed.changes = []
@@ -190,6 +332,8 @@ export async function specify(transcript: string, opts: SpecOptions = {}): Promi
   parsed.changes = parsed.changes.slice(0, 4)
   return {
     spec: { ...parsed, players },
+    context: prompt.context,
+    prompt: { system: prompt.system, user: prompt.user },
     ms: ms(t0),
     usage: {
       input: res.usage?.input_tokens ?? 0,

@@ -1,0 +1,30 @@
+{
+  "title": "RIVER RUN",
+  "oneLiner": "Hop past traffic and ride the river to fill five safe homes.",
+  "genre": "road crossing",
+  "players": 1,
+  "mechanics": [
+    "Buffered four-direction eight-frame hops through four traffic lanes, a safe bank and four river lanes.",
+    "Cars are lethal; floating logs and turtles carry riders sideways.",
+    "Turtles warn before diving; water, sinking supports and drifting beyond the bank cost a life.",
+    "Fill five clearly drawn home bays; occupied or reserved bays cannot be overwritten.",
+    "Both cooperative players move independently and earn their own progress and home scores.",
+    "A clock and bounded lane acceleration create three escalating rounds."
+  ],
+  "controls": {
+    "left": "Hop left",
+    "right": "Hop right",
+    "up": "Hop forward",
+    "down": "Hop back",
+    "a": null,
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "Traffic, water, drifting off the river or a timeout costs lives; the game ends when everyone is out.",
+  "scoring": "10 for each new forward row per crossing, 200 plus remaining seconds for a home; independent player scores.",
+  "moderated": false,
+  "note": "Original Frogger-inspired mechanics and pixel art; no original game assets copied.",
+  "remix": false,
+  "changes": [],
+  "artDirection": "Original green frogs with blue/red player markings, directional spread-leg hop poses, colored cars with wheels and glass, textured logs, and turtle swim/warning/submerged shapes. Distinct road, grass bank, river and five home bays."
+}

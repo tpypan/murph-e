@@ -1,0 +1,542 @@
+{
+  "config": {
+    "levels": 1,
+    "lives": 3,
+    "timeLimit": 180
+  },
+  "players": 1,
+  "frames": 1098,
+  "inputs": [
+    {
+      "at": 0,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 16,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 16,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 32,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 32,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 56,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 56,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 80,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 80,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 88,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 88,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 96,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 96,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 120,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 120,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 128,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 128,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 136,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 286,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 294,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 302,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 310,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 310,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 318,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 318,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 350,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 350,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 366,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 366,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 374,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 382,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 390,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 390,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 398,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 398,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 406,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 406,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 422,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 430,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 438,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 438,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 454,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 470,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 478,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 508,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 532,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 540,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 548,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 556,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 612,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 642,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 650,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 650,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 674,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 674,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 690,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 690,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 706,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 706,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 722,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 722,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 730,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 730,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 738,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 746,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 754,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 762,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 778,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 778,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 794,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 794,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 802,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 832,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 872,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 872,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 896,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 904,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 912,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 912,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 936,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 944,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 952,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 952,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 960,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 960,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 968,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 968,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 992,
+      "player": 0,
+      "button": "up",
+      "down": false
+    }
+  ],
+  "expectedScores": [
+    2352
+  ]
+}

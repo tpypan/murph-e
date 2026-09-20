@@ -1,0 +1,43 @@
+{
+  "title": "MIDNIGHT DUEL",
+  "oneLiner": "Choose Batman or The Flash, then fight a rooftop best-of-three duel.",
+  "genre": "fighting",
+  "players": 1,
+  "mechanics": [
+    "Before fighting: Left/Right chooses your character, A locks, B unlocks. In 2P each person confirms independently; 1P shows a CPU opponent.",
+    "Move and control spacing; hold away to guard.",
+    "A punches, B kicks; Down+A sweeps, Down+B uses a metered special.",
+    "Jump with Up and attack in the air; low attacks beat standing guard, overhead kicks beat crouch guard.",
+    "Five-frame jab and eleven-frame kick startups expose meaningful recovery; one hit per attack with hitstop and knockback.",
+    "Batman throws a batarang; Flash performs a speed dash.",
+    "First to two rounds wins; CPU opponent in 1P, both controllers in 2P."
+  ],
+  "artDirection": "Original articulated pixel characters around 60 pixels tall with named-character masks, cape, lightning emblem, pointed cowl and action-specific silhouettes. Layered moonlit rooftop and perspective floor. Complete original animation sets with baked frame metadata.",
+  "referenceIntent": {
+    "reference": "Street Fighter-style arcade duel",
+    "preserve": [
+      "independent character selection before fighting",
+      "spacing and attack recovery",
+      "high and low guard",
+      "rounds and health",
+      "full-body action animation"
+    ],
+    "change": ["original Batman and Flash fan-art", "two-button arcade controls"]
+  },
+  "controls": {
+    "left": "Choose / move / away: guard",
+    "right": "Choose / move / away: guard",
+    "up": "Jump",
+    "down": "Crouch / modify A or B",
+    "a": "Lock / punch / down: sweep",
+    "b": "Unlock / kick / down: special"
+  },
+  "palette": "arcade",
+  "lose": "Lose two rounds to the CPU; versus ends with the winning player.",
+  "scoring": "10 points per damage, 50 bonus for linked hits, 500 per round; player scores are independent.",
+  "moderated": false,
+  "note": "Original fan-art; character rights remain with their owners.",
+  "remix": false,
+  "changes": [],
+  "designCards": ["collision", "readability", "scoring"]
+}

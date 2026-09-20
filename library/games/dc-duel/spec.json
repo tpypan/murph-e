@@ -1,0 +1,41 @@
+{
+  "title": "DC DUEL",
+  "oneLiner": "Battle iconic DC heroes in fast, readable one-on-one super fights.",
+  "genre": "fighting",
+  "mechanics": [
+    "The player selects Batman, Superman, or Flash, then fights computer-controlled DC opponents in best-of-three rounds; each round begins with both fighters controllable immediately and a brief harmless spacing period.",
+    "Left/right move horizontally and change facing; Up jumps; Down crouches. Fighters can block while holding B, reducing damage and preventing most knockback, but throws and low attacks beat standing block.",
+    "A performs the character's quick attack: Batman close punch, Superman straight punch, or Flash fast kick. It has 4-frame startup, 4-frame active time, and 8-frame recovery; each attack can hit a target only once.",
+    "B performs the character's special only when not blocking and with at least 25 energy: Batman throws a slow batarang, Superman fires a short heat burst, or Flash performs a horizontal lightning dash. Specials have clear startup and recovery and consume 25 energy.",
+    "A successful normal hit deals 6 damage and causes 10 frames of hitstun; a special deals 10 damage and causes stronger knockback. The attacker gains a small combo bonus for landing another hit within 90 frames, capped at 3 hits.",
+    "Opponents alternate between approach, attack, block, retreat, and recovery states. They telegraph attacks with a 12-frame pose, never attack more often than once per 45 frames, and remain punishable for 18 frames after a blocked or missed heavy action.",
+    "Health starts at 100 and slowly refills by 1 point per second only during a 2-second no-hit recovery window; energy starts at 50 and regenerates by 1 per second, capped at 100. A round ends at zero health or when the 60-second timer expires, with higher health winning.",
+    "Win two rounds to clear a match and advance through four opponents with bounded difficulty: later opponents gain modest reaction speed and health, but enemy damage, simultaneous projectiles, and movement speed each have fixed caps.",
+    "Earn 100 points for a normal hit, 250 for a special hit, 500 for a three-hit combo, and 1,000 for winning a round. Display hit sparks, hit sounds, knockback, health changes, and a brief KO flash; reset health, energy, combo, and positions at every round.",
+    "After the final opponent, show a victory pose and score; losing all three rounds shows a defeat screen, and A returns to the character-select screen."
+  ],
+  "artDirection": "256x224 arcade fighting screen with two 48–58 pixel-tall fighters, large readable silhouettes, and a simple Gotham rooftop arena. Batman uses a black-and-dark-gray cowl silhouette, pointed ears, blue-gray highlights, yellow belt, and a flowing cape; Superman uses blue suit blocks, red cape and boots, and a bright chest emblem; Flash uses a red silhouette, yellow lightning ear wings and yellow accents. Use distinct idle, walk, crouch, jump, punch, kick, block, hitstun and knockout poses. Keep the floor and skyline dark and low-detail, with bright impact stars and character colors separated from the background. Include three selectable fighters, each with a distinct special move: Batman batarang, Superman heat burst, Flash lightning dash.",
+  "controls": {
+    "left": "Move left; also choose a fighter in character select.",
+    "right": "Move right; also choose a fighter in character select.",
+    "up": "Jump during a round; move selection upward in character select if applicable.",
+    "down": "Crouch during a round; move selection downward in character select if applicable.",
+    "a": "Quick attack during active play; confirm fighter selection and advance after results.",
+    "b": "Hold to block while grounded or crouching; tap to use the fighter's special when not blocking and energy is at least 25; cancel menus if applicable."
+  },
+  "palette": "arcade",
+  "lose": "Lose the match by losing two rounds, or let the 60-second round timer expire with less health than the opponent.",
+  "scoring": "Score for unique hits, three-hit combos, special attacks, and round wins; combo bonuses expire after 90 frames and reset on being hit or at round end.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "reference-identity",
+    "readability",
+    "scoring",
+    "pacing"
+  ],
+  "players": 1,
+  "runId": "2026-09-19-1951-basically-i-want-to-create-a-gam"
+}

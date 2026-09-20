@@ -1,0 +1,17 @@
+{
+  "contentHash": "f8e4cd2dbf7c8d0c2fd061ef1d633956798ae2ffd54cccb9a665232d23eec438",
+  "reviewedAt": "2026-09-19T22:21:10.693Z",
+  "passed": true,
+  "screenshots": [
+    "screenshots/1p-climb.png",
+    "screenshots/2p-later-stage.png"
+  ],
+  "observations": [
+    "Characters fit between girders; ladders, barrel paths and rescue destination remain readable.",
+    "Thirteen behavior checks include full three-stage clears, independent 2P, jump timing, custom palette forwarding, rescue labels, and oversized-avatar rejection."
+  ],
+  "limitations": [
+    "Imported source art is separately audited; these checks establish the original foundation and optional adapter, not original Donkey Kong rules or human balance."
+  ],
+  "paletteVerification": "Current native sprites inspected after optional exact-color forwarding; legacy renderer regression independently matched all 245 snapshots byte-for-byte."
+}

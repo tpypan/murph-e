@@ -9,14 +9,14 @@ function draw(api) {}          // right after each update; draw the whole frame
 ```
 
 Nothing else runs. There is no DOM, no `window`, no `setTimeout`, no
-`requestAnimationFrame`, no `fetch`, no imports, no assets. Keep all state in
+`requestAnimationFrame`, no `fetch`, no imports, no external assets. Keep all state in
 variables declared at the top level and rebuild them in `init`. `Math.random`
 is seeded by the runtime, so use it freely.
 
 ## Screen
 
 `api.W` is 256 and `api.H` is 224. Pixel (0, 0) is top-left. Colours are
-palette indices 0 to 15:
+default palette indices 0 to 15 for primitives and ordinary sprites:
 
 ```
 0 black      1 dark blue   2 dark purple  3 dark green
@@ -46,12 +46,13 @@ Every call clips to the screen. Coordinates are truncated to integers.
 ```js
 api.cls(c)                          // clear the screen to colour c (default 0)
 api.pset(x, y, c)                   // one pixel
+api.pget(x, y)                      // default palette index 0..15; see custom-color note below
 api.line(x0, y0, x1, y1, c)
 api.rect(x, y, w, h, c)             // outline
 api.rectfill(x, y, w, h, c)         // filled
 api.circ(x, y, r, c)                // outline
 api.circfill(x, y, r, c)            // filled
-api.spr(sprite, x, y, flipX, flipY) // draw a sprite; flips are optional booleans
+api.spr(sprite, x, y, flipX, flipY, colors) // optional flips and per-sprite palette
 api.text(str, x, y, c)              // 8x8 pixel font, uppercase; 8 px per character
 api.textCenter(str, y, c)           // centred horizontally
 api.text(str, x, y, c, 2)           // optional last argument scales the font (2 = 16 px)
@@ -74,6 +75,31 @@ const SHIP = [
 api.spr(SHIP, x, y)
 ```
 
+The optional sixth argument preserves a sprite's own colors: a `readonly string[]`
+with 1–16 complete `#RRGGBB` entries. Pixel characters index that array. `.` remains
+transparent; slot `0` is an ordinary **opaque** color, including opaque black.
+Omitting `colors` keeps the exact default rendering. Primitives still use the
+default palette. Multiple sprites can use different palettes in the same frame.
+
+```js
+const HERO_PALETTE = ['#000000', '#0033ee', '#0066ff', '#0088ff'];
+const HERO = ['.12.', '0230'];
+api.spr(HERO, x, y, false, false, HERO_PALETTE);
+```
+
+Define palettes once, like sprites. Palette arrays are validated and snapshotted
+on first use; mutation afterward has no effect. Reusing the same pixel array with
+another palette is supported. Invalid colors, more than 16 entries or a pixel
+index outside the supplied palette cause a clear runtime error; no silent color
+conversion occurs while drawing. Transparency preserves the previous pixel; later
+opaque sprites, primitives, text, clear and flash overwrite it normally.
+
+`pget` keeps its 0–15 compatibility contract. For custom colors it returns the
+nearest default color by squared RGB distance, with the lower index breaking ties.
+It returns 0 outside the screen. Consequently, `pset(x,y,pget(...))` is exact for
+legacy pixels and explicitly lossy for custom art. Do not use approximate color
+readback as a sprite collision mask.
+
 ## Sound
 
 ```js
@@ -82,6 +108,10 @@ api.tone(freq, ms, wave)      // wave: 'square' (default) 'triangle' 'saw' 'nois
 ```
 
 Play a sound on every event that matters: a pickup, a hit, a shot, a death.
+Trigger effects once per event in update, never in draw or on every frame of a
+held button/collision. The shared bank is already bundled locally; no audio
+download or generation is needed. Catalog factories already trigger their own
+gameplay cues. Use short tones for extra countdowns or transitions.
 
 ## Juice
 
@@ -105,8 +135,9 @@ The runtime draws the score and the high score. Do not draw your own.
 ## Two players
 
 `api.players` is 1 or 2 and never changes during a game. In a two-player
-game both players share one screen and one arena; there is no split
-screen. Player one is index 0 and player two is index 1:
+game both players share one cabinet display. Shared arenas suit most games;
+independent racing views can occupy compact regions of that same framebuffer.
+Player one is index 0 and player two is index 1:
 
 ```js
 api.btn('left', 1)      // player two holding LEFT

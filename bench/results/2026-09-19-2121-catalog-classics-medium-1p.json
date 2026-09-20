@@ -1,0 +1,62 @@
+{
+  "model": "gpt-6-astra",
+  "effort": "medium",
+  "players": 1,
+  "n": 1,
+  "rows": [
+    {
+      "prompt": "Donkey Kong style: climb a construction tower, jump rolling barrels, and rescue a kitten at the top. Three stages.",
+      "title": "",
+      "genre": "",
+      "runId": "",
+      "specMs": 0,
+      "buildMs": 0,
+      "ttftMs": null,
+      "totalMs": 0,
+      "tokens": 0,
+      "reasoning": 0,
+      "cached": 0,
+      "lines": 0,
+      "syntaxError": null,
+      "probeOk": null,
+      "observations": [],
+      "error": "manifest is not defined"
+    },
+    {
+      "prompt": "Classic Pong with satisfying spin, charged returns and first to seven points.",
+      "title": "",
+      "genre": "",
+      "runId": "",
+      "specMs": 0,
+      "buildMs": 0,
+      "ttftMs": null,
+      "totalMs": 0,
+      "tokens": 0,
+      "reasoning": 0,
+      "cached": 0,
+      "lines": 0,
+      "syntaxError": null,
+      "probeOk": null,
+      "observations": [],
+      "error": "manifest is not defined"
+    },
+    {
+      "prompt": "Breakout with three brick formations, tough bricks that crack before breaking, and pickups.",
+      "title": "",
+      "genre": "",
+      "runId": "",
+      "specMs": 0,
+      "buildMs": 0,
+      "ttftMs": null,
+      "totalMs": 0,
+      "tokens": 0,
+      "reasoning": 0,
+      "cached": 0,
+      "lines": 0,
+      "syntaxError": null,
+      "probeOk": null,
+      "observations": [],
+      "error": "manifest is not defined"
+    }
+  ]
+}

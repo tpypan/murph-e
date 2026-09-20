@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "provider": "The Spriters Resource",
+  "sectionUrl": "https://www.spriters-resource.com/arcade/",
+  "verifiedAt": "2026-09-19",
+  "verification": "Arcade game/category and sheet pages read directly; actual downloaded PNGs and final partial-import contacts visually inspected.",
+  "rights": {
+    "classification": "commercial-game-art-reference",
+    "termsUrl": "https://www.spriters-resource.com/page/tou/",
+    "notes": "Private source import; preserve original rights and uploader credit; no redistribution license inferred."
+  },
+  "games": [
+    {
+      "id": "batman",
+      "title": "Batman (Atari, 1991)",
+      "url": "https://www.spriters-resource.com/arcade/batman/",
+      "platform": "Arcade",
+      "camera": "side-view",
+      "families": [
+        "character-animation",
+        "platform-action"
+      ],
+      "sheets": [
+        {
+          "assetId": "31098",
+          "title": "Batman",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/batman/asset/31098/",
+          "inspection": "sheet-inspected",
+          "runtimeReady": false,
+          "uploader": "Yawackhary",
+          "cache": {
+            "path": "data/reference-cache/spriters-resource/dc-arcade/batman-31098.png",
+            "sha256": "b394fc88ff78734fe1976da90d3d081e1665c5f151d7fad5975d8e1f20b23c2a",
+            "dimensions": [
+              608,
+              1408
+            ],
+            "sourceImage": "https://www.spriters-resource.com/media/assets/28/31098.png?updated=1755472649",
+            "uploader": "Yawackhary",
+            "metadataPath": "data/reference-cache/spriters-resource/dc-arcade/batman-31098.json"
+          },
+          "localPack": "data/local-assets/dc-batman-arcade",
+          "reviewedImport": {
+            "frames": 22,
+            "clips": [
+              "walk",
+              "jump",
+              "crouch",
+              "punch",
+              "kick"
+            ],
+            "nativeResolution": true,
+            "rgbaMismatches": 0,
+            "fighterCompatible": false
+          },
+          "limitations": [
+            "Partial pose sequences only; remaining source poses not mapped.",
+            "Preview timing and anchors are authored; original game frame timing and pivots unverified.",
+            "No hit/hurt boxes or complete16-clip fighter contract supplied."
+          ]
+        },
+        {
+          "assetId": "110272",
+          "title": "Joker",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/batman/asset/110272/",
+          "inspection": "sheet-inspected",
+          "runtimeReady": false,
+          "uploader": "shadowman44",
+          "cache": {
+            "path": "data/reference-cache/spriters-resource/dc-arcade/joker-110272.png",
+            "sha256": "01fb6386debd5cf978af52806e64dd0f3a21d128dc5671072c03205c0346f8f0",
+            "dimensions": [
+              431,
+              968
+            ],
+            "sourceImage": "https://www.spriters-resource.com/media/assets/107/110272.png?updated=1755477868",
+            "uploader": "shadowman44",
+            "metadataPath": "data/reference-cache/spriters-resource/dc-arcade/joker-110272.json"
+          },
+          "localPack": "data/local-assets/dc-joker-arcade",
+          "reviewedImport": {
+            "frames": 23,
+            "clips": [
+              "hatWalk",
+              "hatPistol",
+              "hatCrouch",
+              "hatFall",
+              "walk"
+            ],
+            "nativeResolution": true,
+            "rgbaMismatches": 0,
+            "fighterCompatible": false
+          },
+          "limitations": [
+            "Partial pose sequences only; remaining source poses not mapped.",
+            "Preview timing and anchors are authored; original game frame timing and pivots unverified.",
+            "No hit/hurt boxes or complete16-clip fighter contract supplied."
+          ]
+        }
+      ],
+      "purpose": "Reviewed source character poses for locally composed side-view action games.",
+      "limitations": [
+        "Partial source clips; not complete fighter animation sets.",
+        "Authored anchors and timings, no recovered original game code."
+      ]
+    },
+    {
+      "id": "superman",
+      "title": "Superman (Taito arcade)",
+      "url": "https://www.spriters-resource.com/arcade/superman/",
+      "platform": "Arcade",
+      "camera": "side-view",
+      "families": [
+        "character-animation",
+        "platform-action"
+      ],
+      "sheets": [
+        {
+          "assetId": "108348",
+          "title": "Superman",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/arcade/superman/asset/108348/",
+          "inspection": "sheet-inspected",
+          "runtimeReady": false,
+          "uploader": "jin315",
+          "cache": {
+            "path": "data/reference-cache/spriters-resource/dc-arcade/superman-108348.png",
+            "sha256": "f4a0cd3f73623bb2d1b441cb269c46b4aa25dac187d48b456e5f374db27f5579",
+            "dimensions": [
+              1225,
+              2716
+            ],
+            "sourceImage": "https://www.spriters-resource.com/media/assets/105/108348.png?updated=1755477412",
+            "uploader": "jin315",
+            "metadataPath": "data/reference-cache/spriters-resource/dc-arcade/superman-108348.json"
+          },
+          "localPack": "data/local-assets/dc-superman-arcade",
+          "reviewedImport": {
+            "frames": 16,
+            "clips": [
+              "idle",
+              "walk",
+              "punch",
+              "crouch",
+              "hover"
+            ],
+            "nativeResolution": true,
+            "rgbaMismatches": 0,
+            "fighterCompatible": false
+          },
+          "limitations": [
+            "Partial pose sequences only; remaining source poses not mapped.",
+            "Preview timing and anchors are authored; original game frame timing and pivots unverified.",
+            "No hit/hurt boxes or complete16-clip fighter contract supplied."
+          ]
+        }
+      ],
+      "purpose": "Reviewed source character poses for locally composed side-view action games.",
+      "limitations": [
+        "Partial source clips; not complete fighter animation sets.",
+        "Authored anchors and timings, no recovered original game code."
+      ]
+    }
+  ],
+  "gaps": []
+}

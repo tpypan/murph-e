@@ -1,0 +1,190 @@
+{
+  "at": "2026-09-19T21:29:15.024Z",
+  "results": [
+    {
+      "players": 1,
+      "name": "ready",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 1,
+        "error": null
+      },
+      "stepMs": 4
+    },
+    {
+      "players": 1,
+      "name": "aim",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 25,
+        "scores": [
+          25
+        ],
+        "winner": null,
+        "frame": 180,
+        "error": null
+      },
+      "stepMs": 17
+    },
+    {
+      "players": 1,
+      "name": "blast",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 175,
+        "scores": [
+          175
+        ],
+        "winner": null,
+        "frame": 500,
+        "error": null
+      },
+      "stepMs": 28
+    },
+    {
+      "players": 1,
+      "name": "wave-3",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 1679,
+        "scores": [
+          1679
+        ],
+        "winner": null,
+        "frame": 2100,
+        "error": null
+      },
+      "stepMs": 125
+    },
+    {
+      "players": 1,
+      "name": "finished",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "win",
+        "score": 2961,
+        "scores": [
+          2961
+        ],
+        "winner": null,
+        "frame": 9000,
+        "error": null
+      },
+      "stepMs": 464
+    },
+    {
+      "players": 2,
+      "name": "ready",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0,
+          0
+        ],
+        "winner": null,
+        "frame": 9001,
+        "error": null
+      },
+      "stepMs": 2
+    },
+    {
+      "players": 2,
+      "name": "aim",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 25,
+        "scores": [
+          25,
+          0
+        ],
+        "winner": null,
+        "frame": 9180,
+        "error": null
+      },
+      "stepMs": 15
+    },
+    {
+      "players": 2,
+      "name": "blast",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 100,
+        "scores": [
+          100,
+          75
+        ],
+        "winner": null,
+        "frame": 9500,
+        "error": null
+      },
+      "stepMs": 27
+    },
+    {
+      "players": 2,
+      "name": "wave-3",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 1102,
+        "scores": [
+          1102,
+          1202
+        ],
+        "winner": null,
+        "frame": 11100,
+        "error": null
+      },
+      "stepMs": 125
+    },
+    {
+      "players": 2,
+      "name": "finished",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "win",
+        "score": 2095,
+        "scores": [
+          2095,
+          2195
+        ],
+        "winner": null,
+        "frame": 18000,
+        "error": null
+      },
+      "stepMs": 470
+    }
+  ]
+}

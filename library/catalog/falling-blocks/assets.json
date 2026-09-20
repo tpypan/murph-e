@@ -1,0 +1,476 @@
+{
+  "schemaVersion": 1,
+  "id": "falling-blocks-art",
+  "palette": "pico-8",
+  "coordinateSystem": "Frame-local pixels. Game collision is discrete 10 by 20 grid occupancy, not decorative bevel bounds.",
+  "provenance": {
+    "kind": "original",
+    "authors": [
+      "Arcade project"
+    ],
+    "sources": [],
+    "license": "LicenseRef-Project-Original"
+  },
+  "frames": {
+    "block-5": {
+      "width": 7,
+      "height": 7,
+      "pixels": [
+        "7777777",
+        "7755551",
+        "7555551",
+        "7555551",
+        "7555551",
+        "7555551",
+        "7111111"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 7,
+          "h": 7
+        }
+      ],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "mini-5": {
+      "width": 3,
+      "height": 3,
+      "pixels": [
+        "777",
+        "751",
+        "111"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "block-8": {
+      "width": 7,
+      "height": 7,
+      "pixels": [
+        "7777777",
+        "7788881",
+        "7888881",
+        "7888881",
+        "7888881",
+        "7888881",
+        "7111111"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 7,
+          "h": 7
+        }
+      ],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "mini-8": {
+      "width": 3,
+      "height": 3,
+      "pixels": [
+        "777",
+        "781",
+        "111"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "block-9": {
+      "width": 7,
+      "height": 7,
+      "pixels": [
+        "7777777",
+        "7799991",
+        "7999991",
+        "7999991",
+        "7999991",
+        "7999991",
+        "7111111"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 7,
+          "h": 7
+        }
+      ],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "mini-9": {
+      "width": 3,
+      "height": 3,
+      "pixels": [
+        "777",
+        "791",
+        "111"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "block-10": {
+      "width": 7,
+      "height": 7,
+      "pixels": [
+        "7777777",
+        "77aaaa1",
+        "7aaaaa1",
+        "7aaaaa1",
+        "7aaaaa1",
+        "7aaaaa1",
+        "7111111"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 7,
+          "h": 7
+        }
+      ],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "mini-10": {
+      "width": 3,
+      "height": 3,
+      "pixels": [
+        "777",
+        "7a1",
+        "111"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "block-11": {
+      "width": 7,
+      "height": 7,
+      "pixels": [
+        "7777777",
+        "77bbbb1",
+        "7bbbbb1",
+        "7bbbbb1",
+        "7bbbbb1",
+        "7bbbbb1",
+        "7111111"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 7,
+          "h": 7
+        }
+      ],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "mini-11": {
+      "width": 3,
+      "height": 3,
+      "pixels": [
+        "777",
+        "7b1",
+        "111"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "block-12": {
+      "width": 7,
+      "height": 7,
+      "pixels": [
+        "7777777",
+        "77cccc1",
+        "7ccccc1",
+        "7ccccc1",
+        "7ccccc1",
+        "7ccccc1",
+        "7111111"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 7,
+          "h": 7
+        }
+      ],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "mini-12": {
+      "width": 3,
+      "height": 3,
+      "pixels": [
+        "777",
+        "7c1",
+        "111"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "block-13": {
+      "width": 7,
+      "height": 7,
+      "pixels": [
+        "7777777",
+        "77dddd1",
+        "7ddddd1",
+        "7ddddd1",
+        "7ddddd1",
+        "7ddddd1",
+        "7111111"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 7,
+          "h": 7
+        }
+      ],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "mini-13": {
+      "width": 3,
+      "height": 3,
+      "pixels": [
+        "777",
+        "7d1",
+        "111"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "block-14": {
+      "width": 7,
+      "height": 7,
+      "pixels": [
+        "7777777",
+        "77eeee1",
+        "7eeeee1",
+        "7eeeee1",
+        "7eeeee1",
+        "7eeeee1",
+        "7111111"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 7,
+          "h": 7
+        }
+      ],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "mini-14": {
+      "width": 3,
+      "height": 3,
+      "pixels": [
+        "777",
+        "7e1",
+        "111"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "ghost": {
+      "width": 7,
+      "height": 7,
+      "pixels": [
+        "5555555",
+        "5.....5",
+        "5.....5",
+        "5.....5",
+        "5.....5",
+        "5.....5",
+        "5555555"
+      ],
+      "durationTicks": 60,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "clear-0": {
+      "width": 7,
+      "height": 7,
+      "pixels": [
+        "7777777",
+        "7777777",
+        "7777777",
+        "7777777",
+        "7777777",
+        "7777777",
+        "7777777"
+      ],
+      "durationTicks": 4,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "clear-1": {
+      "width": 7,
+      "height": 7,
+      "pixels": [
+        "7777777",
+        "aaaaaaa",
+        "7777777",
+        "aaaaaaa",
+        "7777777",
+        "aaaaaaa",
+        "7777777"
+      ],
+      "durationTicks": 4,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    },
+    "clear-2": {
+      "width": 7,
+      "height": 7,
+      "pixels": [
+        ".c.c.c.",
+        "c.c.c.c",
+        ".c.c.c.",
+        "c.c.c.c",
+        ".c.c.c.",
+        "c.c.c.c",
+        ".c.c.c."
+      ],
+      "durationTicks": 4,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "hitboxes": [],
+      "hurtboxes": [],
+      "provenance": "Original project pixel artwork."
+    }
+  },
+  "animations": {
+    "lineClear": {
+      "frames": [
+        "clear-0",
+        "clear-1",
+        "clear-2"
+      ],
+      "loop": false
+    },
+    "ghost": {
+      "frames": [
+        "ghost"
+      ],
+      "loop": true
+    }
+  }
+}

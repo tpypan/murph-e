@@ -1,0 +1,27 @@
+{
+  "title": "STACK CIRCUIT",
+  "oneLiner": "Stack, rotate and clear twelve lines before the well overflows.",
+  "genre": "falling-blocks",
+  "mechanics": [
+    "Place seven distinct four-cell shapes to fill horizontal lines.",
+    "A rotates with bounded wall kicks; B hard-drops; DOWN soft-drops.",
+    "A landing ghost and three-piece queue support planning.",
+    "Clear twelve lines to finish. Gravity accelerates every six cleared lines.",
+    "Two players control independent boards with equal seeded bags; multi-line clears send bounded garbage."
+  ],
+  "controls": {
+    "left": "Move piece left",
+    "right": "Move piece right",
+    "down": "Soft drop",
+    "a": "Rotate clockwise",
+    "b": "Hard drop and lock"
+  },
+  "palette": "arcade",
+  "lose": "A piece cannot spawn or locks above the well; in versus the surviving player wins. The run also has a finite time limit.",
+  "scoring": "Single/double/triple/four-line clears score 100/300/500/800 times level, with combo and consecutive four-line bonuses; soft drop scores one per cell, hard drop two.",
+  "moderated": false,
+  "note": "Original catalogue foundation, no commercial source/assets.",
+  "remix": false,
+  "changes": [],
+  "players": 1
+}

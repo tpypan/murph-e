@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "beforeModuleSha256": "d83bd7f08ae72c3e48d83f828a48b60798de1cad1b2a77160d12f55971908109",
+  "afterModuleSha256": "5496fd7087843ba1b203a24ae219caf77933bd574f34ed29e07f85b72ecfbd30",
+  "compared": 11,
+  "before": {
+    "cooperative-2p-terminal.png": "80105b4e45a7aeae0e02f6992cfe171844a700e864c4fbbe2a4b59410adddf59",
+    "goose-hunt-2p-capture.png": "1be118986e6cec039ad62a3ff031e28ed5e44b5ce7fef3dc8d19f8cc71c7b7df",
+    "goose-hunt-2p-release.png": "aef5ba706e9e8b465ef9ebd12c7a0a57584905d6e086ea00b4e0744d08a13a90",
+    "goose-hunt-2p-play.png": "03f7b9c4546cbad31a838cf4147356610f01d9920e4352154d5638133cf4d972",
+    "animation-clips.png": "eb90652e9a69b796bbd6b1a7092bcfb8bfc1c063756e4bd188ca999a0fe4a27f",
+    "hunt-2p-terminal.png": "b2b78926390a8034345c96378ae011fd56107be7213ae480082a85d8133bcd5c",
+    "2p-terminal.png": "68da167bc3ebbaf01bf2d4ebd2abe1f1f79785aa0610c1d56b755ac9cab8a50c",
+    "classic-1p-house.png": "4594060bff431091446f15a34fb4efa0e638135dfdd6b3c26039569f0e4e6fc4",
+    "classic-1p-play.png": "8e2bf37eb8c2f44f741b31284579fb44e3f992b50a525f48b0f1a648006fc314",
+    "goose-hunt-2p-house.png": "c45dc3ffe0549cf697537f3c457fc6e93aef47d3099aa6280cd598c76f79cdd2",
+    "classic-1p-release.png": "da876188ad04472ca05c8ec6f54d65537739699cd67c53eb698f3c7a6f1d00bd"
+  },
+  "after": {
+    "cooperative-2p-terminal.png": "80105b4e45a7aeae0e02f6992cfe171844a700e864c4fbbe2a4b59410adddf59",
+    "goose-hunt-2p-capture.png": "1be118986e6cec039ad62a3ff031e28ed5e44b5ce7fef3dc8d19f8cc71c7b7df",
+    "goose-hunt-2p-release.png": "aef5ba706e9e8b465ef9ebd12c7a0a57584905d6e086ea00b4e0744d08a13a90",
+    "goose-hunt-2p-play.png": "03f7b9c4546cbad31a838cf4147356610f01d9920e4352154d5638133cf4d972",
+    "animation-clips.png": "eb90652e9a69b796bbd6b1a7092bcfb8bfc1c063756e4bd188ca999a0fe4a27f",
+    "hunt-2p-terminal.png": "b2b78926390a8034345c96378ae011fd56107be7213ae480082a85d8133bcd5c",
+    "2p-terminal.png": "68da167bc3ebbaf01bf2d4ebd2abe1f1f79785aa0610c1d56b755ac9cab8a50c",
+    "classic-1p-house.png": "4594060bff431091446f15a34fb4efa0e638135dfdd6b3c26039569f0e4e6fc4",
+    "classic-1p-play.png": "8e2bf37eb8c2f44f741b31284579fb44e3f992b50a525f48b0f1a648006fc314",
+    "goose-hunt-2p-house.png": "c45dc3ffe0549cf697537f3c457fc6e93aef47d3099aa6280cd598c76f79cdd2",
+    "classic-1p-release.png": "da876188ad04472ca05c8ec6f54d65537739699cd67c53eb698f3c7a6f1d00bd"
+  },
+  "method": "Identical native input replay screenshots before and after adding imported-art adapter; default art path unchanged."
+}

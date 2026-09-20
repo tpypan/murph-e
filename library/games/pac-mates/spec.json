@@ -1,0 +1,34 @@
+{
+  "title": "PAC-MATES",
+  "oneLiner": "Two players clear a shared maze, gobble dots, and outscore the roaming ghosts together.",
+  "genre": "coop",
+  "mechanics": [
+    "Player one is a yellow round maze-runner; player two is a blue round maze-runner, each moving tile-by-tile through the shared maze.",
+    "Collect every dot for 10 points and power pellets for 50 points; a pellet makes ghosts vulnerable for 6 seconds, with chained captures worth 200, 400, 800, then 1600.",
+    "Four ghosts patrol, chase, ambush, and briefly scatter; players can pass through each other, but a ghost collision costs a life unless powered.",
+    "The maze is compact and fully visible; each round gives an early pellet within 5 seconds, pressure rises through faster ghost movement, and a clear route remains available for recovery."
+  ],
+  "controls": {
+    "left": "Move left; buffer the turn until the next legal junction.",
+    "right": "Move right; buffer the turn until the next legal junction.",
+    "up": "Move up; buffer the turn until the next legal junction.",
+    "down": "Move down; buffer the turn until the next legal junction.",
+    "a": "Use a collected power pellet immediately to frighten ghosts for 6 seconds.",
+    "b": "Ping the shared maze route for 1 second, highlighting nearby dots and the safest open corridor; cooldown 4 seconds."
+  },
+  "palette": "arcade",
+  "lose": "The team loses a life when either player is caught by a normal ghost; the game ends after 3 shared lives, or when time expires with uncleared dots.",
+  "scoring": "Score dots, pellets, and unique ghost captures; chained powered captures multiply up to 1600 points before the multiplier resets.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "grid-movement",
+    "reference-identity",
+    "scoring",
+    "readability"
+  ],
+  "players": 2,
+  "runId": "2026-09-19-1811-pac-man"
+}

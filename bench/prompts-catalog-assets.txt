@@ -1,0 +1,1 @@
+A top-down blue ninja in a moonlit bamboo garden collecting golden scrolls and dodging patrolling beetles. Smooth four-direction walking, a short dash, three lives, and win when I collect ten scrolls.

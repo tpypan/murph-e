@@ -1,0 +1,219 @@
+{
+  "config": {
+    "crateDensity": 0,
+    "roundsToWin": 2
+  },
+  "players": 2,
+  "frames": 891,
+  "inputs": [
+    {
+      "at": 0,
+      "player": 1,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 48,
+      "player": 1,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 48,
+      "player": 1,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 104,
+      "player": 1,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 104,
+      "player": 1,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 105,
+      "player": 1,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 105,
+      "player": 1,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 113,
+      "player": 1,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 113,
+      "player": 1,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 121,
+      "player": 1,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 297,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 345,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 345,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 393,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 393,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 401,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 401,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 402,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 402,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 410,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 410,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 418,
+      "player": 0,
+      "button": "up",
+      "down": false
+    },
+    {
+      "at": 594,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 642,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 642,
+      "player": 0,
+      "button": "down",
+      "down": true
+    },
+    {
+      "at": 690,
+      "player": 0,
+      "button": "down",
+      "down": false
+    },
+    {
+      "at": 690,
+      "player": 0,
+      "button": "right",
+      "down": true
+    },
+    {
+      "at": 698,
+      "player": 0,
+      "button": "right",
+      "down": false
+    },
+    {
+      "at": 698,
+      "player": 0,
+      "button": "a",
+      "down": true
+    },
+    {
+      "at": 699,
+      "player": 0,
+      "button": "a",
+      "down": false
+    },
+    {
+      "at": 699,
+      "player": 0,
+      "button": "left",
+      "down": true
+    },
+    {
+      "at": 707,
+      "player": 0,
+      "button": "left",
+      "down": false
+    },
+    {
+      "at": 707,
+      "player": 0,
+      "button": "up",
+      "down": true
+    },
+    {
+      "at": 715,
+      "player": 0,
+      "button": "up",
+      "down": false
+    }
+  ],
+  "expectedScores": [
+    1000,
+    500
+  ],
+  "expectedState": "win"
+}

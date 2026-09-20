@@ -1,0 +1,47 @@
+{
+  "reviewedAt": "2026-09-19",
+  "passed": true,
+  "scope": "Native-pixel screenshot inspection of stage, HUD, poses and identity; not a human balance or physical CRT playtest",
+  "images": [
+    {
+      "path": "evidence/2p-ready.png",
+      "sha256": "a9643e77316b102c18da06c0b90adeb760fe4c014f1c2af8a66435f83c6b0783"
+    },
+    {
+      "path": "evidence/2p-kick.png",
+      "sha256": "35d9af46ff986a88e7b952241040c63247659316c95cbdbf655e928dc6d3e3d6"
+    },
+    {
+      "path": "evidence/2p-speed-dash.png",
+      "sha256": "7e9249c384c50cec209c81ac877880b6f8f7aa4ea80254cf3a5f366f8032861d"
+    },
+    {
+      "path": "evidence/2p-air-kick.png",
+      "sha256": "8bdfdfe3288e8e45449a48d4a151dbdc03d2722a008b7bf8569b5a6496258aa5"
+    },
+    {
+      "path": "evidence/1p-batarang.png",
+      "sha256": "1b16ea24cdcac57a555071df4d226e8e56701653c3c040cb61e0677e81448ff9"
+    },
+    {
+      "path": "evidence/batman-poses.png",
+      "sha256": "db1cb18e2c32102951b8296d4afa69ed7458d7b02f5632d00005726f51c02157"
+    },
+    {
+      "path": "evidence/flash-poses.png",
+      "sha256": "034088793caaccbcc17ba6274c84dd66672f706a6e551303b3613197bb77fb0c"
+    }
+  ],
+  "observations": [
+    "Original pointed cowl, cape and chest emblem identify Batman; red masked speedster, yellow ear bolts and lightning identify Flash.",
+    "30 different baked articulated poses per character cover 16 semantic animation clips. Punch, kick, airborne, guard, crouch, hit and KO silhouettes are distinct.",
+    "Cropped frame feet anchors maintain floor contact, with metadata mirrored consistently when facing left.",
+    "Health, meter, clock and round pips stay below the runtime score strip. Stage footing is visually continuous; city layers do not occlude combat."
+  ],
+  "limitations": [
+    "No physical CRT/overscan validation.",
+    "No human competitive balance study.",
+    "Original limited-palette art does not claim commercial Street Fighter asset fidelity."
+  ],
+  "sourceHash": "9ea2621f2dd2d7ba20d83479d0a203ab12e4d0a788a8e2ad33036d3bf5119af8"
+}

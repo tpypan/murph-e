@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "exitCode": 0,
+  "command": "node --test library/catalog/bomber/test.mjs library/catalog/bomber/default-test.mjs",
+  "sourceHash": "9a43b48c9e52144ce621a952db9e9f8394d52e726959e3a84480890bec0ab261",
+  "stdout": "✔ unmodified solo defaults complete both enemy waves with three initial lives and 100 seconds per level (92.478792ms)\n✔ unmodified versus defaults clear crates and credit both controllers across three normal rounds (79.984792ms)\n✔ a cooperatively eliminated player remains eliminated across a real default-difficulty level transition (72.271625ms)\n✔ immediate directional movement, buffered turns, solid pillars and safe starting zones (2.208417ms)\n✔ bomb ownership/capacity, one-way leave permission, exact fuse and obstacle-aware chained cross blasts (2.350291ms)\n✔ crate blocking, single score attribution, delayed pickups and bounded upgrade application (3.531291ms)\n✔ self-blast life loss, respawn immunity, all-lives-out and clock termination use runtime semantics (14.128209ms)\n✔ full default-crate/default-enemy solo skill route defeats every enemy and reaches the unlocked exit (45.249458ms)\n✔ two-player versus resolves both players’ real bomb kills, preserves independent wins/scores and resets clean rounds (8.1315ms)\n✔ co-op friendly-fire policy, independent scores and team clear preserve lives across levels (28.73025ms)\n✔ bounded versus timeout draws terminate rather than silently replaying forever (2.939333ms)\nℹ tests 11\nℹ suites 0\nℹ pass 11\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 286.765375\n",
+  "stderr": ""
+}

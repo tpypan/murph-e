@@ -1,0 +1,296 @@
+{
+  "passed": true,
+  "base": "http://localhost:3000",
+  "checks": [
+    {
+      "name": "home -> 2P -> Play -> Ready",
+      "players": 2,
+      "gameFrame": 0
+    },
+    {
+      "name": "selection fits cabinet viewport",
+      "width": 640,
+      "height": 480,
+      "bounds": {
+        "x": 51.1875,
+        "y": 76.796875,
+        "width": 537.578125,
+        "height": 256.09375
+      },
+      "canvas": {
+        "x": 173.90625,
+        "y": 76.796875,
+        "width": 292.5625,
+        "height": 256
+      },
+      "nativeScale": 1.142822265625
+    },
+    {
+      "name": "selection fits cabinet viewport",
+      "width": 320,
+      "height": 240,
+      "bounds": {
+        "x": 25.59375,
+        "y": 38.390625,
+        "width": 268.78125,
+        "height": 128.015625
+      },
+      "canvas": {
+        "x": 96.09375,
+        "y": 46.390625,
+        "width": 128,
+        "height": 112
+      },
+      "nativeScale": 0.5
+    },
+    {
+      "name": "independent cursor and P1 lock",
+      "names": [
+        "FLASH",
+        "BATMAN"
+      ],
+      "locks": [
+        "READY",
+        "CHOOSE"
+      ],
+      "selecting": true,
+      "versus": false,
+      "round": null,
+      "gameFrame": 75
+    },
+    {
+      "name": "X and M unlock within game",
+      "names": [
+        "FLASH",
+        "BATMAN"
+      ],
+      "locks": [
+        "READY",
+        "CHOOSE"
+      ],
+      "selecting": true,
+      "versus": false,
+      "round": null,
+      "gameFrame": 104
+    },
+    {
+      "name": "both confirmations reach fight via physical mappings",
+      "names": [],
+      "locks": [],
+      "selecting": false,
+      "versus": false,
+      "round": null,
+      "gameFrame": 256,
+      "deliveredControls": [
+        {
+          "player": 0,
+          "button": "right",
+          "down": true
+        },
+        {
+          "player": 0,
+          "button": "right",
+          "down": false
+        },
+        {
+          "player": 1,
+          "button": "left",
+          "down": true
+        },
+        {
+          "player": 1,
+          "button": "left",
+          "down": false
+        },
+        {
+          "player": 0,
+          "button": "a",
+          "down": true
+        },
+        {
+          "player": 0,
+          "button": "a",
+          "down": false
+        },
+        {
+          "player": 0,
+          "button": "left",
+          "down": true
+        },
+        {
+          "player": 0,
+          "button": "left",
+          "down": false
+        },
+        {
+          "player": 1,
+          "button": "right",
+          "down": true
+        },
+        {
+          "player": 1,
+          "button": "right",
+          "down": false
+        },
+        {
+          "player": 1,
+          "button": "left",
+          "down": true
+        },
+        {
+          "player": 1,
+          "button": "left",
+          "down": false
+        },
+        {
+          "player": 0,
+          "button": "b",
+          "down": true
+        },
+        {
+          "player": 0,
+          "button": "b",
+          "down": false
+        },
+        {
+          "player": 0,
+          "button": "a",
+          "down": true
+        },
+        {
+          "player": 0,
+          "button": "a",
+          "down": false
+        },
+        {
+          "player": 1,
+          "button": "a",
+          "down": true
+        },
+        {
+          "player": 1,
+          "button": "a",
+          "down": false
+        },
+        {
+          "player": 1,
+          "button": "b",
+          "down": true
+        },
+        {
+          "player": 1,
+          "button": "b",
+          "down": false
+        },
+        {
+          "player": 1,
+          "button": "a",
+          "down": true
+        },
+        {
+          "player": 1,
+          "button": "a",
+          "down": false
+        },
+        {
+          "player": 0,
+          "button": "up",
+          "down": true
+        },
+        {
+          "player": 0,
+          "button": "up",
+          "down": false
+        },
+        {
+          "player": 0,
+          "button": "down",
+          "down": true
+        },
+        {
+          "player": 0,
+          "button": "down",
+          "down": false
+        },
+        {
+          "player": 1,
+          "button": "up",
+          "down": true
+        },
+        {
+          "player": 1,
+          "button": "up",
+          "down": false
+        },
+        {
+          "player": 1,
+          "button": "down",
+          "down": true
+        },
+        {
+          "player": 1,
+          "button": "down",
+          "down": false
+        },
+        {
+          "player": 0,
+          "button": "b",
+          "down": true
+        },
+        {
+          "player": 0,
+          "button": "b",
+          "down": false
+        },
+        {
+          "player": 1,
+          "button": "b",
+          "down": true
+        },
+        {
+          "player": 1,
+          "button": "b",
+          "down": false
+        }
+      ]
+    }
+  ],
+  "blocked": {
+    "generation": 0,
+    "speech": 0,
+    "badgeWrites": 4,
+    "scoreWrites": 0,
+    "external": 0
+  },
+  "micCalls": 0,
+  "errors": [],
+  "screenshots": [
+    {
+      "path": "/Users/shayaanazeem/Downloads/htncodex/htn-2026/bench/audits/fighter-selection-ui/selection-640.png",
+      "sha256": "64136abe45b6bc6d3bc6e096166b8ce0cbd87aec521f1186d35499d023eedaf7"
+    },
+    {
+      "path": "/Users/shayaanazeem/Downloads/htncodex/htn-2026/bench/audits/fighter-selection-ui/selection-320.png",
+      "sha256": "d143864525ed913d1c20b1e554941a704c03c623db149030471a06912fbe63e4"
+    },
+    {
+      "path": "/Users/shayaanazeem/Downloads/htncodex/htn-2026/bench/audits/fighter-selection-ui/p1-locked-p2-choosing-640.png",
+      "sha256": "76b48a6f83710ae84057fc2297d52493cb442117f461b3afe25b9376007e1c09"
+    },
+    {
+      "path": "/Users/shayaanazeem/Downloads/htncodex/htn-2026/bench/audits/fighter-selection-ui/versus-640.png",
+      "sha256": "ee4e44193dd4d8069b4196f046274531d467985f44df71fc0ac167fe2543bf8e"
+    },
+    {
+      "path": "/Users/shayaanazeem/Downloads/htncodex/htn-2026/bench/audits/fighter-selection-ui/fight-640.png",
+      "sha256": "6fbf75e1c388df09c3160eee4e81c5060112e90624b6058dc2e0f150d1968c02"
+    }
+  ],
+  "visualLimitations": [
+    {
+      "width": 320,
+      "nativeScale": 0.5,
+      "note": "The shell fits the game but reduces it below native resolution. Fine selector lettering loses pixel strokes; this is not a legibility pass."
+    }
+  ]
+}

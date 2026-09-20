@@ -34,7 +34,7 @@ Where the time goes, and what changes for the cabinet:
 |---|---|---|
 | Multi-turn agent loop (agent-runner): design turn, build turn, nudge turns, tool calls to read/write files and run `godot --import` | dominant. Every tool round trip is a full model call with growing context | **one streamed call** that emits the whole game. No file tools, no shell. |
 | Godot 4 + GDScript | import cache build, headless import only catches parse errors, capture needs a real window, web export ~10 s, models are far less fluent in GDScript than JS | **browser canvas runtime**. Zero build step, loads instantly, headless Chromium verifies in seconds, models are extremely fluent. |
-| Open-ended 3D brief with narrative, branching, endings | 900 to 2000 lines of output | **constrained 8-bit arcade contract**: 200 to 400 lines against a runtime we own. |
+| Open-ended 3D brief with narrative, branching, endings | large output and engine setup | **2D arcade API contract**: open genres and genre-appropriate art against our runtime, without a line-count ceiling. |
 | Judge panel, VLM scoring, RL framing | minutes, and irrelevant here | a **pass/fail probe** (loads, no errors, moves, responds to input). No scoring. |
 
 Godot is not a bad engine for this, it is just paying for capabilities we do not
@@ -99,13 +99,21 @@ Alternatives considered and rejected for the hackathon:
 
 ## 3. Latency budget
 
+Current implementation update (2026-09-19): build and repair now use
+`gpt-6-astra` at `medium` by user request; CLI remix stays at `low` and spec
+stays on Luna at `none`. Local implementation references supply tested maze
+and combat relationships without extra generation-time calls. The local arcade context
+is connected to all four stages. Fresh measurements are in
+`bench-2026-09-19-astra-medium.md`. The estimates and initial model comparison
+below describe the original plan, not the current defaults.
+
 Where the seconds go once the person stops talking. Estimates marked *est.*
 need to be measured with the bench in section 8 on day one.
 
 | stage | est. | lever |
 |---|---|---|
 | speech to text | 1 to 2 s | push-to-talk button, stream audio, hosted STT |
-| **spec** (gpt-5.6-luna, effort none): title, genre template, 3-5 mechanics, palette, win/lose | ~1 s | small structured output; result goes on screen immediately, so the person sees "BUILDING: *Frog Dodge*" before any code exists |
+| **spec** (gpt-5.6-luna, effort none): title, open genre, mechanics, art direction, palette, win/lose | ~1 s | small structured output; result goes on screen immediately, so the person sees "BUILDING: *Frog Dodge*" before any code exists |
 | **build** (streamed): game.js | dominant: output tokens ÷ tokens per second | see below |
 | verify (headless probe) | 5 to 8 s | run in parallel with the tail of the stream where possible; hard cap |
 | repair (only on failure) | one more build-sized call | bounded to 1 round, then fallback |
@@ -113,9 +121,12 @@ need to be measured with the bench in section 8 on day one.
 
 The build stage is the whole game. Its levers, in order of impact:
 
-1. **Output size.** 250 to 400 lines ≈ 3k to 6k tokens. The spec step and the
-   prompt's few-shot examples are how we hold the model at that size. A game that
-   streams 12k tokens is a prompt failure, not a model failure.
+1. **Output size.** There is no target line count. Essential mechanics, animation
+   poses and stage art take priority over minimizing the file. The response still
+   has a 20k-token budget (including reasoning) and a 300-second full-stream deadline. The latest focused
+   tests used 4.4k–8.3k output tokens and took 95–161 seconds for spec plus build;
+   see `bench-2026-09-19-open-genres.md`. This intentionally trades latency for
+   richer games and currently misses the original under-one-minute target.
 2. **Tokens per second.** Tony's call, 2026-09-19: quality over the last
    ten seconds. Build call is **`gpt-5.6-sol` at `reasoning.effort: "low"`**:
    31 s end to end for a whole 345-line game in the bench, streaming at
@@ -161,16 +172,16 @@ narrative or branching, any judge that produces a score.
                               run store: every stage's timing + artifacts
 ```
 
-**STT.** Push-to-talk on a dedicated cabinet button. **`gpt-live-transcribe`**
-from the kiosk page over WebRTC with a short-lived token minted by a server
-route (the OpenAI realtime docs name WebRTC as the browser path; the Node
-WebSocket path is the fallback if kiosk mic capture is awkward). It streams transcript deltas while
-the person is still talking, which does two things: the transcript is final
-the instant they release the button, and their words appear on the screen as
-they speak, which is part of the arcade show. Turn detection stays off; the
-button release commits the turn. `gpt-transcribe` ($0.0045/min vs $0.017/min)
-is the fallback if the live model misbehaves on a noisy floor; it costs about
-one extra second after release.
+**STT (updated 2026-09-19).** Hold TALK to record locally in the browser.
+The waveform reacts to microphone audio; there are no streamed transcript deltas.
+On release the microphone tracks stop, and `/api/stt` transcribes the clip using
+`faster-whisper` with the English `tiny.en` model on the Mac CPU (`int8`, four
+threads). A resident Python worker keeps the model loaded across requests.
+`pnpm stt:setup` installs the project venv and downloads the model once; the
+worker uses local files with Hugging Face offline mode afterward. Review the
+read-only transcript, re-record if needed, and press CREATE GAME to generate.
+There is no cloud speech request or speech API key. Game generation still uses
+OpenAI. Verify STT with `pnpm stt:test <clip.wav> "<expected words>"`.
 
 **Spec.** One small structured-output call. The output is what the build prompt
 consumes and what the screen shows:
@@ -183,12 +194,20 @@ consumes and what the screen shows:
   "lose": "hit by a car", "score": "seconds survived" }
 ```
 
-The genre field selects a **template** in the build prompt: dodge, shooter,
-platformer, snake, breakout, runner, pong, maze. Each template is a complete
-working example game in the prompt (this is the few-shot). The model adapts the
-nearest template rather than inventing structure, which is why output stays small
-and why it rarely breaks. Anything off-template falls back to the nearest one and
-the spec says so.
+The genre field is open-ended metadata, independent of player count. Fighting,
+brawler, racing, rhythm, puzzle and hybrid genres do not get mapped to dodge.
+Only an exact genre/player-count match supplies an optional example; other games
+are written directly against the API. Examples are API references, not mandatory
+structures or quality ceilings. New specs include concrete art direction and up
+to twelve mechanics; legacy saved specs remain readable.
+
+The builder has no line-count target or tiny-sprite requirement. It asks for
+appropriate character scale, distinct poses, coherent stages and complete
+mechanics. The runtime is 256×224 with a default 16-colour palette and optional
+exact RGB palettes per sprite draw; aligned sprite layers preserve source art
+with more than 16 colours. There is no global 16-colour ceiling. Response budgets
+and bounded request deadlines still apply. Approved local sprites and factories
+are linked deterministically; generated games still cannot load external assets.
 
 **Build.** One streamed call, system prompt cached, user turn = spec JSON + the
 original transcript. Output is a single fenced JS block. Strip the fence, done.
@@ -211,10 +230,14 @@ Each failure maps to a one-line observation, phrased as evidence (the takehome's
 "holding LEFT for 2 s changed nothing on screen". That plus the original code is
 the entire repair prompt.
 
-**Repair.** One round, Sol again, cached prefix, the failing code and the
-observation. If it fails again, do not loop. Load the closest game from the
-fallback library and say so on screen ("couldn't build that one, here's
-FROG DODGE from earlier"). The cabinet never dead-ends.
+**Repair.** One bounded Astra medium round with the original user request, spec,
+selected contracts, failing code and probe observations. The original request
+must survive even if the planner introduced an incorrect assumption. Preserve
+the selected foundation's scoring, controls and terminal behavior unless the
+user requested a change; a conflicting draft spec is not permission to invent
+new rewards. If generation fails, the cabinet preserves the current game and
+returns to review for an explicit retry. A runtime crash offers a labeled library
+fallback that waits for START.
 
 **Fallback library.** Every game that passes the probe is saved. Before the
 event, generate 20 to 30 across the genre templates so day one has a bench and a
@@ -312,10 +335,10 @@ Settled 2026-09-19:
 
 - **Provider: OpenAI.** Key lives in `.env` (gitignored), template in
   `.env.example`. Verified against `/v1/models`.
-- **Build model: `gpt-5.6-sol`, effort `low`**, also for repair and remix.
-  Spec: `gpt-5.6-luna`, effort `none`. Bench in `bench-2026-09-19-openai-models.md`.
-  The day-one bench A/Bs Sol against `gpt-6-astra` on the real prompt, judged
-  by playing the games, not by the clock.
+- **Build model: `gpt-6-astra`, effort `medium`**, also for repair. CLI remix stays low.
+  Spec: `gpt-5.6-luna`, effort `none`. Current measurements:
+  `bench-2026-09-19-astra-medium.md`; initial comparison:
+  `bench-2026-09-19-openai-models.md`.
 - **Badges.** Wired USB-C serial is the only identity path and the only
   badge controller path: plugging in is tapping in, in both modes. No QR
   scanner (dropped 2026-09-19, one identity path is enough), no NFC reader
@@ -326,14 +349,12 @@ Settled 2026-09-19:
   request and the spec model does not get to change it. 1P plays on the
   cabinet stick; 2P plays on two plugged-in badges. Adds nothing to the
   latency budget because it happens before speech.
-- **STT: `gpt-live-transcribe`**, streamed, push-to-talk commits the turn.
-- **Display: 256x224, 16-colour fixed palette**, integer-scaled. Every game
-  looks like it belongs to the same cabinet.
-- **Steering: v1 is one utterance, one game.** Holding TALK while a game is
-  running is a *remix* of that game ("make it faster", "add a boss"): the
-  current code goes in the prompt and the model returns the changed file.
-  Same pipeline, smaller output, so it is cheap to add once one-shot works.
-  It is step 7 in the build order, not before.
+- **STT: local faster-whisper `tiny.en`**, push-to-talk transcribes on release.
+- **Display: 256x224**, integer-scaled. The default 16-colour palette is optional
+  for sprites; exact RGB palettes and aligned layers preserve approved source art.
+- **Steering: one utterance, one game.** TALK only records after MAKE A GAME
+  opens voice creation. Voice changes during play are disabled; the remix
+  implementation remains CLI-only.
 
 Still to settle before the cabinet build, none of them blocking the harness:
 

@@ -177,6 +177,13 @@ export async function probe(code: string, opts: ProbeOptions = {}): Promise<Prob
         },
         { c: code, s: seed, t: opts.title ?? '', frames, checkpoints, pl: players },
       )
+    checks.survivesInput = true
+    const inputSurvived = (error: string | null, label: string) => {
+      if (!error) return true
+      checks.survivesInput = false
+      observations.push(`the game crashed ${label}: ${error}`)
+      return false
+    }
     const tapChanges = async (player: number, button: string) => {
       const base = await hashesAfter([], ACT_CHECKPOINTS)
       const trial = await hashesAfter(
@@ -186,19 +193,71 @@ export async function probe(code: string, opts: ProbeOptions = {}): Promise<Prob
         ],
         ACT_CHECKPOINTS,
       )
-      return !!trial.error || trial.hashes.some((h, i) => h !== base.hashes[i])
+      const survived = inputSurvived(
+        trial.error,
+        `when player ${player + 1} pressed ${button.toUpperCase()}`,
+      )
+      if (!survived || base.error) return false
+      if (trial.hashes.some((h, i) => h !== base.hashes[i])) return true
+      // Holding guard or drifting while steering is a real action too. Compare
+      // each held action with the SAME movement-only run; steering cannot pass
+      // a dead action button. Try only declared directions, with bounded samples.
+      for (const direction of [null, ...dirs]) {
+        const movement = direction ? [{ at: 40, player, button: direction, down: true }] : []
+        const baseline = await hashesAfter(movement, ACT_CHECKPOINTS)
+        const active = await hashesAfter(
+          [...movement, { at: 60, player, button, down: true }],
+          ACT_CHECKPOINTS,
+        )
+        const baselineOk = inputSurvived(
+          baseline.error,
+          `when player ${player + 1} moved before ${button.toUpperCase()}`,
+        )
+        const activeOk = inputSurvived(
+          active.error,
+          `when player ${player + 1} held ${button.toUpperCase()}${direction ? ` with ${direction.toUpperCase()}` : ''}`,
+        )
+        if (!baselineOk || !activeOk) return false
+        if (active.hashes.some((h, i) => h !== baseline.hashes[i])) return true
+      }
+      return false
     }
     // A snake already heading right ignores RIGHT and LEFT, so one working
     // direction is the hard requirement; the others are repair notes.
     const base120 = await hashAfter([], 120)
+    const directionChanges = async (player: number, button: string) => {
+      const trial = await hashAfter([{ at: 60, player, button, down: true }], 120)
+      if (!inputSurvived(trial.error, `when player ${player + 1} held ${button.toUpperCase()}`))
+        return false
+      if (!base120.error && trial.hash !== base120.hash) return true
+      if (!acts.includes('a')) return false
+      // Some games only steer in flight or after launch. Compare A+direction
+      // against the identical A-only run, so A itself cannot pass this check.
+      const launch = [
+        { at: 60, player, button: 'a', down: true },
+        { at: 80, player, button: 'a', down: false },
+      ]
+      const base = await hashesAfter(launch, ACT_CHECKPOINTS)
+      const active = await hashesAfter(
+        [...launch, { at: 62, player, button, down: true }],
+        ACT_CHECKPOINTS,
+      )
+      const baseOk = inputSurvived(base.error, `when player ${player + 1} held A`)
+      const activeOk = inputSurvived(
+        active.error,
+        `when player ${player + 1} held A and ${button.toUpperCase()}`,
+      )
+      return baseOk && activeOk && active.hashes.some((h, i) => h !== base.hashes[i])
+    }
     let anyDir = dirs.length === 0
     for (const d of dirs) {
-      const trial = await hashAfter([{ at: 60, button: d, down: true }], 120)
-      const ok = trial.hash !== base120.hash || !!trial.error
+      const ok = await directionChanges(0, d)
       checks[`soft:responds:${d}`] = ok
       anyDir = anyDir || ok
       if (!ok)
-        observations.push(`holding ${d.toUpperCase()} for one second changed nothing on screen`)
+        observations.push(
+          `holding ${d.toUpperCase()} changed nothing on screen, including after A when available`,
+        )
     }
     checks.respondsToDirection = anyDir
     if (!anyDir) observations.push('none of the direction buttons changed anything on screen')
@@ -215,12 +274,11 @@ export async function probe(code: string, opts: ProbeOptions = {}): Promise<Prob
     if (players === 2) {
       let anyP2 = dirs.length === 0
       for (const d of dirs) {
-        const trial = await hashAfter([{ at: 60, player: 1, button: d, down: true }], 120)
-        const ok = trial.hash !== base120.hash || !!trial.error
+        const ok = await directionChanges(1, d)
         anyP2 = anyP2 || ok
         if (!ok)
           observations.push(
-            `player two holding ${d.toUpperCase()} for one second changed nothing on screen`,
+            `player two holding ${d.toUpperCase()} changed nothing on screen, including after A when available`,
           )
       }
       checks.respondsToP2 = anyP2

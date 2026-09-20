@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "bone-item",
+  "packId": "ninja-adventure",
+  "camera": "top-down",
+  "width": 7,
+  "height": 12,
+  "source": {
+    "path": "original/content/weapon/bone/sprite.png",
+    "url": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/weapon/bone/sprite.png",
+    "sha256": "f62d8b43346df886b8bf3bfdfcb40155c7bcd4573e49246ae3658d63ffe0deed",
+    "sourceRevision": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a"
+  },
+  "pixels": [
+    ".00.00.",
+    "0770770",
+    "0776770",
+    ".07770.",
+    "..060..",
+    "..060..",
+    "..060..",
+    "..060..",
+    "..070..",
+    "..070..",
+    "..070..",
+    "...0..."
+  ],
+  "anchor": {
+    "x": 3,
+    "y": 12
+  },
+  "normalization": {
+    "palette": "pico-8",
+    "reviewedOverrides": {}
+  },
+  "anchorOrigin": "Authored bottom-center placement; source attachment pivots have not been reconstructed.",
+  "hitboxes": [],
+  "hurtboxes": [],
+  "animations": {},
+  "tags": [
+    "weapon",
+    "static"
+  ],
+  "notes": "Static source image only. No implied attack animation, damage volume or destruction sequence."
+}

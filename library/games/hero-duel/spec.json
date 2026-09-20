@@ -1,0 +1,28 @@
+{
+  "title": "HERO DUEL",
+  "oneLiner": "Two masked heroes battle across a comic-book Waterloo arena in a fast one-screen showdown.",
+  "genre": "versus",
+  "mechanics": [
+    "Player one is a gadget hero; player two is a powerhouse hero.",
+    "Move, jump, and strike with A or B to knock back your rival.",
+    "Waterloo street hazards briefly appear and can stun either fighter.",
+    "A shrinking arena and constant round timer prevent stalling; first to two knockouts wins."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": "Jump",
+    "down": "Crouch or block low",
+    "a": "Quick attack",
+    "b": "Power attack"
+  },
+  "palette": "arcade",
+  "lose": "Lose the round when your health reaches zero; lose the match after two round defeats.",
+  "scoring": "Score points for landing attacks, collecting a street-sign bonus, and winning rounds.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "players": 2,
+  "runId": "2026-09-19-1806-i-want-to-create-a-game-which-is"
+}

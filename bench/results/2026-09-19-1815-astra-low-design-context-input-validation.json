@@ -1,0 +1,467 @@
+{
+  "note": "Same generated files; corrected input-crash and conditional-steering checks. No model calls.",
+  "rows": [
+    {
+      "runId": "2026-09-19-1810-a-game-where-i-m-a-frog-dodging",
+      "title": "FROGGER RUSH",
+      "originalOk": true,
+      "ok": true,
+      "observations": [],
+      "thumb": null,
+      "ms": 254,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "runId": "2026-09-19-1810-space-invaders-but-the-aliens-ar",
+      "title": "PIZZA INVADERS",
+      "originalOk": true,
+      "ok": true,
+      "observations": [],
+      "thumb": null,
+      "ms": 116,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "runId": "2026-09-19-1810-a-snake-game-but-the-snake-is-a",
+      "title": "TRAIN SNAKE",
+      "originalOk": true,
+      "ok": true,
+      "observations": [
+        "holding LEFT changed nothing on screen, including after A when available",
+        "holding RIGHT changed nothing on screen, including after A when available"
+      ],
+      "thumb": null,
+      "ms": 212,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": false,
+        "soft:responds:right": false,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "runId": "2026-09-19-1810-breakout-with-a-really-big-ball",
+      "title": "BIG BALL BREAK",
+      "originalOk": true,
+      "ok": true,
+      "observations": [
+        "pressing B changed nothing on screen"
+      ],
+      "thumb": null,
+      "ms": 127,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": false
+      }
+    },
+    {
+      "runId": "2026-09-19-1810-flappy-bird-but-you-re-a-submari",
+      "title": "JELLY SUB",
+      "originalOk": true,
+      "ok": true,
+      "observations": [],
+      "thumb": null,
+      "ms": 101,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "runId": "2026-09-19-1810-a-platformer-where-you-collect-c",
+      "title": "COIN SPIKE RUN",
+      "originalOk": true,
+      "ok": true,
+      "observations": [
+        "pressing B changed nothing on screen"
+      ],
+      "thumb": null,
+      "ms": 109,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": false
+      }
+    },
+    {
+      "runId": "2026-09-19-1810-pong-against-the-computer-and-it",
+      "title": "SPEED PONG",
+      "originalOk": true,
+      "ok": true,
+      "observations": [],
+      "thumb": null,
+      "ms": 109,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "runId": "2026-09-19-1811-an-endless-runner-where-you-re-a",
+      "title": "CAT DASH",
+      "originalOk": false,
+      "ok": true,
+      "observations": [],
+      "thumb": null,
+      "ms": 157,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "runId": "2026-09-19-1811-something-with-cats",
+      "title": "CAT NAP DASH",
+      "originalOk": true,
+      "ok": true,
+      "observations": [],
+      "thumb": null,
+      "ms": 119,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "runId": "2026-09-19-1811-a-game-about-avoiding-my-exams",
+      "title": "EXAM ESCAPE",
+      "originalOk": true,
+      "ok": true,
+      "observations": [],
+      "thumb": null,
+      "ms": 113,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "runId": "2026-09-19-1811-dodge-the-falling-anvils-and-cat",
+      "title": "PIE PANIC",
+      "originalOk": true,
+      "ok": true,
+      "observations": [
+        "pressing B changed nothing on screen"
+      ],
+      "thumb": null,
+      "ms": 111,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": false
+      }
+    },
+    {
+      "runId": "2026-09-19-1811-asteroids",
+      "title": "ASTRO BLAST",
+      "originalOk": true,
+      "ok": true,
+      "observations": [],
+      "thumb": null,
+      "ms": 127,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "runId": "2026-09-19-1812-a-shooter-where-you-defend-a-cas",
+      "title": "DRAGON KEEP",
+      "originalOk": true,
+      "ok": true,
+      "observations": [],
+      "thumb": null,
+      "ms": 118,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "runId": "2026-09-19-1812-a-maze-where-a-ghost-chases-you",
+      "title": "GHOST MAZE",
+      "originalOk": true,
+      "ok": true,
+      "observations": [
+        "holding LEFT changed nothing on screen, including after A when available",
+        "holding UP changed nothing on screen, including after A when available"
+      ],
+      "thumb": null,
+      "ms": 175,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": false,
+        "soft:responds:right": true,
+        "soft:responds:up": false,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true
+      }
+    },
+    {
+      "runId": "2026-09-19-1812-a-game-where-you-are-a-taco-and",
+      "title": "SALSA TACO",
+      "originalOk": true,
+      "ok": true,
+      "observations": [
+        "pressing B changed nothing on screen"
+      ],
+      "thumb": null,
+      "ms": 109,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": false
+      }
+    },
+    {
+      "runId": "2026-09-19-1812-something-really-hard",
+      "title": "BRUTAL RUN",
+      "originalOk": true,
+      "ok": true,
+      "observations": [
+        "holding DOWN changed nothing on screen, including after A when available"
+      ],
+      "thumb": null,
+      "ms": 140,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:up": true,
+        "soft:responds:down": false,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "runId": "2026-09-19-1813-a-relaxing-game",
+      "title": "BREEZY BLOOMS",
+      "originalOk": true,
+      "ok": true,
+      "observations": [],
+      "thumb": null,
+      "ms": 112,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "runId": "2026-09-19-1813-a-two-player-fighting-game",
+      "title": "SLIME DUEL",
+      "originalOk": true,
+      "ok": true,
+      "observations": [],
+      "thumb": null,
+      "ms": 116,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "runId": "2026-09-19-1813-an-open-world-rpg-with-crafting",
+      "title": "CRAFT RUN",
+      "originalOk": true,
+      "ok": true,
+      "observations": [],
+      "thumb": null,
+      "ms": 130,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "runId": "2026-09-19-1813-a-game-where-you-shoot-up-a-scho",
+      "title": "STAR SHOT",
+      "originalOk": true,
+      "ok": true,
+      "observations": [],
+      "thumb": null,
+      "ms": 112,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    }
+  ]
+}

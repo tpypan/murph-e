@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "exitCode": 0,
+  "command": "node --test library/catalog/crossing/test.mjs",
+  "sourceHash": "b388608f1de882f3298b3d5e5298f1fe0f2ee38f6838709c3af9342b2b66ef2c",
+  "stdout": "✔ buffered hops are discrete, immediate and cannot leave safe world bounds (3.360708ms)\n✔ traffic collisions and timer losses consume lives and respawn correctly (10.288083ms)\n✔ turtles warn before submerging, sunk frames have no support boxes, and logs carry riders (12.056375ms)\n✔ all five homes can be reached by actual joystick skill routes with original moving lanes and sinking turtles (12924.994959ms)\n✔ cooperative home ownership and independent scores survive full clear and round reset (11134.317ms)\n✔ simultaneous players reserve a home once without overwrite or unfair contact death (3.945ms)\nℹ tests 6\nℹ suites 0\nℹ pass 6\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 24138.085875\n",
+  "stderr": ""
+}

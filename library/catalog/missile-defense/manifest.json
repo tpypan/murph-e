@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "id": "missile-defense",
+  "version": "1.0.0",
+  "title": "SKY SHIELD",
+  "description": "An original target-defense arcade game with finite battery ammunition, converging missiles, expanding and contracting interception blasts, chain reactions and shared-city 2P defense.",
+  "tags": [
+    "missile defense",
+    "missile command",
+    "target defense",
+    "interception",
+    "cooperative"
+  ],
+  "supportsPlayers": [
+    1,
+    2
+  ],
+  "module": "module.js",
+  "entry": "missileDefense",
+  "apiVersion": 1,
+  "license": {
+    "spdx": "LicenseRef-Project-Original",
+    "notes": "Original project code and pixel artwork; no commercial source or ripped assets."
+  },
+  "provenance": {
+    "kind": "original",
+    "authors": [
+      "Arcade project"
+    ],
+    "sources": [],
+    "createdAt": "2026-09-19"
+  },
+  "quality": {
+    "status": "draft"
+  },
+  "assets": [
+    "assets.json"
+  ],
+  "api": "api.md",
+  "demo": "demo.js",
+  "spec": "spec.json",
+  "files": [
+    "assets.json",
+    "demo.js",
+    "spec.json"
+  ],
+  "match": {
+    "phrases": [
+      "missile defense",
+      "missile command",
+      "defend cities",
+      "city defense"
+    ],
+    "genres": [
+      "missile defense",
+      "missile-defense",
+      "target defense"
+    ]
+  }
+}

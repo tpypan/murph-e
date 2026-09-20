@@ -1,0 +1,40 @@
+{
+  "title": "FAIRY PIE DROP",
+  "oneLiner": "CATCH THE PIES, DODGE THE ANVILS, AS A FAIRY.",
+  "genre": "platformer",
+  "mechanics": [
+    "Play as a winged fairy running across three small cloud platforms.",
+    "Move left/right and press A to flap-jump between clouds and catch falling pies.",
+    "Anvils fall through marked warning shadows; avoid them or lose a life.",
+    "Chain up to 5 pies for bonus points, then take a brief recovery wave before faster hazards return.",
+    "All characters, pickups, and hazards are fairy-themed silhouettes with distinct wings and shapes."
+  ],
+  "controls": {
+    "left": "MOVE LEFT",
+    "right": "MOVE RIGHT",
+    "up": null,
+    "down": null,
+    "a": "FLAP-JUMP",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "Lose a life when an anvil hits the fairy; the round ends after 3 lives.",
+  "scoring": "Catch pies for 100 points, with a chain bonus rising to 5x and resetting when a pie is missed or the fairy is hit.",
+  "moderated": false,
+  "note": "",
+  "remix": true,
+  "changes": [
+    "Turn the player, pies, and anvils into clearly readable fairy-themed characters or props.",
+    "Keep the original catch-pies-and-dodge-anvils loop and controls.",
+    "Add three cloud platforms and make A flap-jump between them.",
+    "Use fairy wings and silhouettes to distinguish the player, falling pies, and warning shadows."
+  ],
+  "designCards": [
+    "readability",
+    "scoring",
+    "pacing",
+    "onboarding"
+  ],
+  "players": 1,
+  "runId": "2026-09-19-1844-but-make-me-a-game-but-i-want-al"
+}

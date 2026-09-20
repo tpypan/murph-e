@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "id": "axe-item",
+  "packId": "ninja-adventure",
+  "camera": "top-down",
+  "width": 11,
+  "height": 13,
+  "source": {
+    "path": "original/content/weapon/axe/sprite.png",
+    "url": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/weapon/axe/sprite.png",
+    "sha256": "122b3452d5d948acb34bb04d803fe1081cf1dd93bbf756fefe63ab84982bf39d",
+    "sourceRevision": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a"
+  },
+  "pixels": [
+    "..00.0.00..",
+    ".076070660.",
+    "0666d7d6660",
+    "06666666660",
+    "0666d6d6660",
+    ".066060660.",
+    "..0006000..",
+    "....060....",
+    "....070....",
+    "....0d0....",
+    "....0d0....",
+    "....070....",
+    "....000...."
+  ],
+  "anchor": {
+    "x": 5,
+    "y": 13
+  },
+  "normalization": {
+    "palette": "pico-8",
+    "reviewedOverrides": {}
+  },
+  "anchorOrigin": "Authored bottom-center placement; source attachment pivots have not been reconstructed.",
+  "hitboxes": [],
+  "hurtboxes": [],
+  "animations": {},
+  "tags": [
+    "weapon",
+    "static"
+  ],
+  "notes": "Static source image only. No implied attack animation, damage volume or destruction sequence."
+}

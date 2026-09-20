@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "big-sword-item",
+  "packId": "ninja-adventure",
+  "camera": "top-down",
+  "width": 7,
+  "height": 16,
+  "source": {
+    "path": "original/content/weapon/big_sword/sprite.png",
+    "url": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/weapon/big_sword/sprite.png",
+    "sha256": "3d2263f8cf38f70b0eb775a37aa3af4316b2dea76f849ccb5fe8f19fe060fba2",
+    "sourceRevision": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a"
+  },
+  "pixels": [
+    "...0...",
+    "..060..",
+    ".06670.",
+    ".06770.",
+    ".07760.",
+    ".07670.",
+    ".06770.",
+    ".07760.",
+    ".07660.",
+    ".0ddd0.",
+    "0aaaaa0",
+    "0777770",
+    ".00400.",
+    "..040..",
+    "..0a0..",
+    "..000.."
+  ],
+  "anchor": {
+    "x": 3,
+    "y": 16
+  },
+  "normalization": {
+    "palette": "pico-8",
+    "reviewedOverrides": {}
+  },
+  "anchorOrigin": "Authored bottom-center placement; source attachment pivots have not been reconstructed.",
+  "hitboxes": [],
+  "hurtboxes": [],
+  "animations": {},
+  "tags": [
+    "weapon",
+    "static"
+  ],
+  "notes": "Static source image only. No implied attack animation, damage volume or destruction sequence."
+}

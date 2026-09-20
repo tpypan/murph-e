@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "id": "falling-blocks",
+  "version": "1.1.0",
+  "title": "STACK CIRCUIT",
+  "description": "An original falling-block puzzle with seeded seven-piece bags, bounded rotation kicks and lock delay, ghost landing, next queue, clear combos and independent versus boards.",
+  "tags": [
+    "falling blocks",
+    "block puzzle",
+    "tetris",
+    "puzzle",
+    "versus"
+  ],
+  "supportsPlayers": [
+    1,
+    2
+  ],
+  "module": "module.js",
+  "entry": "fallingBlocks",
+  "apiVersion": 1,
+  "license": {
+    "spdx": "LicenseRef-Project-Original",
+    "notes": "Original project code and pixel artwork; no commercial source or ripped assets."
+  },
+  "provenance": {
+    "kind": "original",
+    "authors": [
+      "Arcade project"
+    ],
+    "sources": [],
+    "createdAt": "2026-09-19"
+  },
+  "quality": {
+    "status": "draft"
+  },
+  "assets": [
+    "assets.json"
+  ],
+  "api": "api.md",
+  "demo": "demo.js",
+  "spec": "spec.json",
+  "files": [
+    "assets.json",
+    "demo.js",
+    "spec.json",
+    "module.base.js",
+    "build.mjs",
+    "policy.js",
+    "verify.mjs",
+    "README.md"
+  ],
+  "match": {
+    "phrases": [
+      "falling blocks",
+      "falling block",
+      "tetris",
+      "block puzzle"
+    ],
+    "genres": [
+      "falling blocks",
+      "falling-blocks",
+      "block puzzle"
+    ]
+  }
+}

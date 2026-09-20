@@ -1,0 +1,123 @@
+{
+  "at": "2026-09-19T21:31:48.483Z",
+  "reports": [
+    {
+      "name": "palette-frames-and-animation-geometry",
+      "passed": true,
+      "frames": 42
+    },
+    {
+      "name": "complete-four-wave-defense-1p",
+      "passed": true,
+      "seconds": 55.9999999999981,
+      "cities": 6,
+      "stats": {
+        "shots": 43,
+        "ammoSpent": 43,
+        "shotsByPlayer": [
+          43,
+          0
+        ],
+        "interceptions": 56,
+        "killsByPlayer": [
+          56,
+          0
+        ],
+        "chainKills": 7,
+        "splits": 0,
+        "impacts": 0,
+        "citiesLost": 0,
+        "wavesCleared": 4,
+        "restored": 0
+      },
+      "scores": [
+        2961,
+        0
+      ],
+      "terminal": [
+        "win",
+        null
+      ]
+    },
+    {
+      "name": "complete-four-wave-defense-2p",
+      "passed": true,
+      "seconds": 55.54999999999813,
+      "cities": 6,
+      "stats": {
+        "shots": 51,
+        "ammoSpent": 51,
+        "shotsByPlayer": [
+          23,
+          28
+        ],
+        "interceptions": 56,
+        "killsByPlayer": [
+          26,
+          30
+        ],
+        "chainKills": 6,
+        "splits": 0,
+        "impacts": 0,
+        "citiesLost": 0,
+        "wavesCleared": 4,
+        "restored": 0
+      },
+      "scores": [
+        2095,
+        2195
+      ],
+      "terminal": [
+        "win",
+        null
+      ]
+    },
+    {
+      "name": "independent-cursor-and-battery-selection",
+      "passed": true
+    },
+    {
+      "name": "finite-ammo-and-selected-launch-station",
+      "passed": true
+    },
+    {
+      "name": "undefended-cities-are-lost-and-end-run",
+      "passed": true,
+      "seconds": 48.88333333333184,
+      "stats": {
+        "shots": 0,
+        "ammoSpent": 0,
+        "shotsByPlayer": [
+          0,
+          0
+        ],
+        "interceptions": 0,
+        "killsByPlayer": [
+          0,
+          0
+        ],
+        "chainKills": 0,
+        "splits": 1,
+        "impacts": 25,
+        "citiesLost": 8,
+        "wavesCleared": 2,
+        "restored": 2
+      }
+    },
+    {
+      "name": "actual-blast-expands-holds-and-contracts",
+      "passed": true,
+      "radii": [
+        3,
+        7,
+        12,
+        18,
+        24,
+        18,
+        12,
+        7,
+        3
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "sourceHash": "8840c2e48e62d3961c5033e7809dd7b00a8a37170b0538df3b8ec1fe6c9b9c6d",
+  "reviewedNativeResolution": "256x224",
+  "observations": [
+    "Clear five home bays, distinct road and river lanes, recognizable original frogs/cars/logs/turtles.",
+    "Solo complete joystick route reaches actual runtime win; co-op preserves individual scores across next-level reset.",
+    "Hazards remain readable at native resolution."
+  ],
+  "limitations": [
+    "Original compact pixel art, not commercial Frogger fidelity.",
+    "No physical CRT or human difficulty/fun study."
+  ],
+  "screenshots": [
+    {
+      "file": "evidence/1p-start.png",
+      "sha256": "91f80cedff76d4601f99bacef40267dca619e0dc7c28ca995525ef1e725db7a0"
+    },
+    {
+      "file": "evidence/2p-turtle-warning.png",
+      "sha256": "c7410750e5e903cca30646673c2f77c2c2a1de48cf712b25973c005ecd3d8082"
+    },
+    {
+      "file": "evidence/solo-complete.png",
+      "sha256": "024510d5f3eca079937109659f03fdac64344197173be3c3566911d3b5e9f4be"
+    },
+    {
+      "file": "evidence/coop-complete.png",
+      "sha256": "34dce2aab45d520c50d4400cfc6ab52f2fa2cc35547d697defb0d8717d87f61c"
+    }
+  ]
+}

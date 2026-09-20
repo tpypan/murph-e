@@ -1,0 +1,34 @@
+{
+  "title": "PACK THAT!",
+  "oneLiner": "Pack colorful crates into matching trucks before the conveyor jams!",
+  "genre": "dodge",
+  "mechanics": [
+    "Move the tiny packer left and right along the loading bay; press A to grab the nearest crate and pack it into the matching truck.",
+    "Correctly packed crates score 100 points; chain up to 5 deliveries for a multiplier, with a quick pickup-and-pack route rewarding precision.",
+    "Loose crates slide across three conveyor lanes as hazards; avoid crashing into them, and use B to briefly stop the conveyor once every 8 seconds.",
+    "The first 10 seconds show slow single crates, then add alternating lanes and short recovery pauses; cap at three loose crates and 1.5x speed."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": null,
+    "down": null,
+    "a": "Grab and pack the nearest matching crate",
+    "b": "Stop the conveyor for 1 second; cooldown 8 seconds"
+  },
+  "palette": "arcade",
+  "lose": "Lose a life after three collisions with loose crates or when the loading timer expires with an overfilled jam meter.",
+  "scoring": "Score 100 for each correct delivery, plus a chain multiplier up to 5x; a miss resets the chain.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "readability",
+    "scoring",
+    "pacing",
+    "onboarding"
+  ],
+  "players": 1,
+  "runId": "2026-09-19-1909-hey-can-you-make-a-game-which-is"
+}

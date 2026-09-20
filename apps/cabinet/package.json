@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "sync-runtime": "mkdir -p public/runtime && cp ../../packages/runtime/runtime.js ../../packages/runtime/index.html public/runtime/",
+    "sync-runtime": "mkdir -p public/runtime && cp ../../packages/runtime/runtime.js ../../packages/runtime/index.html ../../packages/runtime/build-preview.html public/runtime/",
     "predev": "pnpm --filter @htn/runtime build && pnpm sync-runtime",
     "dev": "next dev",
     "prebuild": "pnpm --filter @htn/runtime build && pnpm sync-runtime",

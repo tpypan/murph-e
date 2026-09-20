@@ -1,0 +1,303 @@
+{
+  "schemaVersion": 1,
+  "id": "ninja-adventure",
+  "version": "1.0.0",
+  "title": "Ninja Adventure CC0 subset",
+  "camera": "top-down",
+  "description": "Three four-direction humanoid walk sets and one two-frame animal, plus static weapons/props, normalized for the existing runtime.",
+  "license": {
+    "spdx": "CC0-1.0",
+    "authors": [
+      "Pixel-Boy",
+      "AAA"
+    ],
+    "sourceUrl": "https://pixel-boy.itch.io/ninja-adventure-asset-pack",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "localNotice": "LICENSE.md"
+  },
+  "provenance": {
+    "kind": "licensed",
+    "repository": "https://github.com/pixel-boy/NinjaAdventure",
+    "commit": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a",
+    "retrievedAt": "2026-09-19",
+    "normalization": "compile.py",
+    "sourceLicenseStatement": "Creator's linked itch.io asset page identifies this asset pack as CC0. The GitHub Godot example is linked by that same page.",
+    "authorPageSha256AtRetrieval": "2263b2b7ef3dc83a2b67a88295058acf08e27fa3e02b50da572b535fad11af2d"
+  },
+  "palette": {
+    "name": "pico-8",
+    "hex": [
+      "#000000",
+      "#1d2b53",
+      "#7e2553",
+      "#008751",
+      "#ab5236",
+      "#5f574f",
+      "#c2c3c7",
+      "#fff1e8",
+      "#ff004d",
+      "#ffa300",
+      "#ffec27",
+      "#00e436",
+      "#29adff",
+      "#83769c",
+      "#ff77a8",
+      "#ffccaa"
+    ],
+    "transparent": ".",
+    "source": "packages/runtime/src/palette.ts"
+  },
+  "actors": [
+    {
+      "id": "ninja-blue",
+      "file": "actors/ninja-blue.json",
+      "tags": [
+        "humanoid",
+        "top-down",
+        "ninja"
+      ]
+    },
+    {
+      "id": "samurai-blue",
+      "file": "actors/samurai-blue.json",
+      "tags": [
+        "humanoid",
+        "top-down",
+        "samurai"
+      ]
+    },
+    {
+      "id": "samurai-green",
+      "file": "actors/samurai-green.json",
+      "tags": [
+        "humanoid",
+        "top-down",
+        "samurai"
+      ]
+    },
+    {
+      "id": "pig",
+      "file": "actors/pig.json",
+      "tags": [
+        "animal",
+        "pig",
+        "top-down",
+        "horizontal-motion"
+      ]
+    }
+  ],
+  "props": [
+    {
+      "id": "shadow",
+      "file": "props/shadow.json",
+      "tags": [
+        "prop",
+        "static"
+      ]
+    },
+    {
+      "id": "crate",
+      "file": "props/crate.json",
+      "tags": [
+        "prop",
+        "static"
+      ]
+    },
+    {
+      "id": "grass",
+      "file": "props/grass.json",
+      "tags": [
+        "prop",
+        "static"
+      ]
+    },
+    {
+      "id": "pot",
+      "file": "props/pot.json",
+      "tags": [
+        "prop",
+        "static"
+      ]
+    },
+    {
+      "id": "axe-held",
+      "file": "props/axe-held.json",
+      "tags": [
+        "weapon",
+        "static"
+      ]
+    },
+    {
+      "id": "axe-item",
+      "file": "props/axe-item.json",
+      "tags": [
+        "weapon",
+        "static"
+      ]
+    },
+    {
+      "id": "big-sword-held",
+      "file": "props/big-sword-held.json",
+      "tags": [
+        "weapon",
+        "static"
+      ]
+    },
+    {
+      "id": "big-sword-item",
+      "file": "props/big-sword-item.json",
+      "tags": [
+        "weapon",
+        "static"
+      ]
+    },
+    {
+      "id": "bone-held",
+      "file": "props/bone-held.json",
+      "tags": [
+        "weapon",
+        "static"
+      ]
+    },
+    {
+      "id": "bone-item",
+      "file": "props/bone-item.json",
+      "tags": [
+        "weapon",
+        "static"
+      ]
+    },
+    {
+      "id": "book-held",
+      "file": "props/book-held.json",
+      "tags": [
+        "weapon",
+        "static"
+      ]
+    },
+    {
+      "id": "book-item",
+      "file": "props/book-item.json",
+      "tags": [
+        "weapon",
+        "static"
+      ]
+    },
+    {
+      "id": "club-held",
+      "file": "props/club-held.json",
+      "tags": [
+        "weapon",
+        "static"
+      ]
+    },
+    {
+      "id": "club-item",
+      "file": "props/club-item.json",
+      "tags": [
+        "weapon",
+        "static"
+      ]
+    }
+  ],
+  "counts": {
+    "actors": 4,
+    "actorFrames": 86,
+    "props": 14,
+    "sourcePngs": 18
+  },
+  "files": [
+    "LICENSE.md",
+    "README.md",
+    "actors/ninja-blue.json",
+    "actors/pig.json",
+    "actors/samurai-blue.json",
+    "actors/samurai-green.json",
+    "compile.py",
+    "contact-sheet.png",
+    "original/content/character/Shadow.png",
+    "original/content/character/ninja_blue/sprite.png",
+    "original/content/character/pig/pig.png",
+    "original/content/character/samurai_blue/sprite.png",
+    "original/content/character/samurai_green/samurai_green.png",
+    "original/content/destroyable/crate.png",
+    "original/content/destroyable/grass.png",
+    "original/content/destroyable/pot.png",
+    "original/content/weapon/axe/in_hand.png",
+    "original/content/weapon/axe/sprite.png",
+    "original/content/weapon/big_sword/in_hand.png",
+    "original/content/weapon/big_sword/sprite.png",
+    "original/content/weapon/bone/in_hand.png",
+    "original/content/weapon/bone/sprite.png",
+    "original/content/weapon/book/in_hand.png",
+    "original/content/weapon/book/sprite.png",
+    "original/content/weapon/club/in_hand.png",
+    "original/content/weapon/club/sprite.png",
+    "palette-map.json",
+    "props-contact-sheet.png",
+    "props/axe-held.json",
+    "props/axe-item.json",
+    "props/big-sword-held.json",
+    "props/big-sword-item.json",
+    "props/bone-held.json",
+    "props/bone-item.json",
+    "props/book-held.json",
+    "props/book-item.json",
+    "props/club-held.json",
+    "props/club-item.json",
+    "props/crate.json",
+    "props/grass.json",
+    "props/pot.json",
+    "props/shadow.json",
+    "source-tree.json",
+    "verify.py",
+    "walk-preview.gif"
+  ],
+  "fileHashes": {
+    "LICENSE.md": "d5b12b0419a6bbddd1954f93c8deeb994d14d7670be03af4ddf1bb5667e739f5",
+    "README.md": "804170939bb779a841e175da30f8a86847839d7948bb4f21c3a8347106b09c12",
+    "actors/ninja-blue.json": "2ffa10487d48f8e8cc4047ecfc1d351925a18f79f1ddda75b7d4d87dc31376e2",
+    "actors/pig.json": "0316028de3949c4148db9880b72e0fb2c479b734d62c637fe545ef338031d091",
+    "actors/samurai-blue.json": "81086e340ae6d26cc308c50cdd430180bdeb07cf7c4836ddf640a66c2629d3ce",
+    "actors/samurai-green.json": "89c530fcb3fc1aed40a091a6a550537b422c43f04859aec85ab47f44b968bc8c",
+    "compile.py": "7707b4e4d1e5547ee4f1012a53d12e2c20d5f907ed8bf06027c5ca812f5f370a",
+    "contact-sheet.png": "5d70de4eeb05faf6611c10b603aca8e4533879d517c3815167fe2ec0a0b9969e",
+    "original/content/character/Shadow.png": "b0ba84bf6132d1f2b361fb87a62a8362f9e04639f7a649431c6b297ceec46ec2",
+    "original/content/character/ninja_blue/sprite.png": "f2dd61a264c251b81e63da7a28ab0fdccd261b807e5fa7d1832a468e14a21078",
+    "original/content/character/pig/pig.png": "778a33eab2674e1fcf60c915ae327710af08ebaa586050ef9e30bb00307c21d8",
+    "original/content/character/samurai_blue/sprite.png": "7307266f5a51c5a7446350bf5a5866930fccbebd67429f11dca213086f89e062",
+    "original/content/character/samurai_green/samurai_green.png": "552e1af74a8d565408519ced8c5bb309d291a9d3002e4e37c881d2181f413e96",
+    "original/content/destroyable/crate.png": "ff1465852d5ee375341a2a68a97cd086103fe3856142a247cb39f4050366fcda",
+    "original/content/destroyable/grass.png": "3177a5814a6086f615eb8e1f1a4fe095dd23c6d7357e9daccef11ca02c4e5b71",
+    "original/content/destroyable/pot.png": "9e23e3809522c9e2c447fa1f413bdbee67a0e3407e4144cb25298bb88ea5c762",
+    "original/content/weapon/axe/in_hand.png": "f17ae12622f3fd0a150e7d281d42bb5902bac87b5983e88affdcb63235b9ede0",
+    "original/content/weapon/axe/sprite.png": "122b3452d5d948acb34bb04d803fe1081cf1dd93bbf756fefe63ab84982bf39d",
+    "original/content/weapon/big_sword/in_hand.png": "78febb995750fcf1066332b3b552a009ed2ed474a7dab1c20476b0283583a061",
+    "original/content/weapon/big_sword/sprite.png": "3d2263f8cf38f70b0eb775a37aa3af4316b2dea76f849ccb5fe8f19fe060fba2",
+    "original/content/weapon/bone/in_hand.png": "d13603214eb2a38e36a82c0166d6ae572b4635fecb4e6c64d70926439aa43be4",
+    "original/content/weapon/bone/sprite.png": "f62d8b43346df886b8bf3bfdfcb40155c7bcd4573e49246ae3658d63ffe0deed",
+    "original/content/weapon/book/in_hand.png": "5be0bf833cd9e43a0a8bdf802ea4c165681f874931cc036f9dc8fb508869647e",
+    "original/content/weapon/book/sprite.png": "002f4bb82b508af0ef3a492f4305fb52b5ef8aba293f8dfadf2ed3dbe3c42e8a",
+    "original/content/weapon/club/in_hand.png": "68f473ae5042f722b9c2b47140e660a495e38852a2340d9620161d6a60212b77",
+    "original/content/weapon/club/sprite.png": "06c6f31f26c47c621975b032f8a9c846150278a1745f75952c702819a3500da8",
+    "palette-map.json": "d2cf549048d836494e717880c78c1d5cea2ed8194dda0406be85de8a1449d3b3",
+    "props-contact-sheet.png": "6373213f5d58c3215f22050f594649fc1e50479f8d15267a85da988e2b6f02fb",
+    "props/axe-held.json": "f309a70e045f6e3fc76d54209e843735393ea41da20e9de8fe5e488edb6f3b46",
+    "props/axe-item.json": "3e4fe8a0eaa372dd32772836692ed474881b1a0d0b540e7edc3f216e2efc5653",
+    "props/big-sword-held.json": "349f7d12d9fc357a5b11623b9e0077855e3bcd787e1a4fee16649af22f84a7ac",
+    "props/big-sword-item.json": "0877ca946aa8395b860ae41b1b5931532cc4d431fe68beb402eb828caefb2189",
+    "props/bone-held.json": "c5bed2abe61a1d65041d37af4ab0382414c149d57d8af82f08f91716e9435725",
+    "props/bone-item.json": "b77865fac550257ef5b9548884e2ec89097c38c23585f6579499a1ffc8de0d62",
+    "props/book-held.json": "eeff9ee074b9f53ba8733aba2396feb94d0f7c6c864bfa2673bc0d7fbf06349b",
+    "props/book-item.json": "c4bd95f80c5248818f45957b1c28ec893b772829c4350a3d3e31f61327d0ce0f",
+    "props/club-held.json": "3efe0ce7010a6e20a2d845bbbc8769cf4720a2f37b6534674cfe1f3b3771d38d",
+    "props/club-item.json": "5956617f718e9fe4829dad1966171b1ae5e942d0891ad6499bc7cee64ed99d63",
+    "props/crate.json": "7a3e39893f3916e7b52b04cdcaf8f9e99bb8de5458d94659a5e43567acd487ef",
+    "props/grass.json": "0e1bff5b08096da4fc76db44c509d918fc80ea95b3f9f9c6a90fc606737b85b3",
+    "props/pot.json": "cb48c8f1484e3f33ab5f24ec9325009c9a750a2e9cf4a2fce8d3aadee5063a1d",
+    "props/shadow.json": "f839ecd9cf6a04a020b8b2a6ccc5d70e165a56dcb4af9b7a0a214f0d7521b18c",
+    "source-tree.json": "0367a676df7f5a3dbdc53fd5c72b48309296dcf393f02773b4cf4510d3ff301a",
+    "verify.py": "9b94c000a115955ac2c856ccc799538b269643f74e5728f1a0adc0f1264b1279",
+    "walk-preview.gif": "01228d4b1991704b4dd4d70c7062875f70d30224b845a2afe9ad7e4f7522cda1"
+  }
+}

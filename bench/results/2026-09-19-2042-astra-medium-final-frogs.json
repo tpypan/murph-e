@@ -1,0 +1,26 @@
+{
+  "model": "gpt-6-astra",
+  "effort": "medium",
+  "players": 2,
+  "n": 1,
+  "rows": [
+    {
+      "prompt": "two frogs catching flies and dodging cars together",
+      "title": "FROG FLYERS",
+      "genre": "cooperative action crossing",
+      "runId": "2026-09-19-2038-two-frogs-catching-flies-and-dod",
+      "specMs": 7771,
+      "buildMs": 226835,
+      "ttftMs": 104967,
+      "totalMs": 234613,
+      "tokens": 9515,
+      "reasoning": 2588,
+      "cached": 3201,
+      "lines": 536,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [],
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "provider": "The Spriters Resource",
+  "sectionUrl": "https://www.spriters-resource.com/sega_genesis/",
+  "verifiedAt": "2026-09-19",
+  "verification": "Actual source pages, downloaded PNGs and imported contacts inspected.",
+  "rights": {
+    "classification": "commercial-game-art-reference",
+    "termsUrl": "https://www.spriters-resource.com/page/tou/",
+    "notes": "Private local source imports; no redistribution grant inferred."
+  },
+  "games": [
+    {
+      "id": "sonicth2",
+      "title": "Sonic the Hedgehog 2",
+      "url": "https://www.spriters-resource.com/sega_genesis/sonicth2/",
+      "families": [
+        "speed-platformer",
+        "momentum-platformer",
+        "character-animation"
+      ],
+      "camera": "side-view",
+      "purpose": "Native Sonic movement art, rings, checkpoints and goal sign for original momentum platformer.",
+      "limitations": [
+        "Original Genesis source, not an arcade release.",
+        "The local game uses original project levels and physics, with authored timing and anchors."
+      ],
+      "sheets": [
+        {
+          "assetId": "10073",
+          "title": "Sonic",
+          "kind": "character",
+          "url": "https://www.spriters-resource.com/sega_genesis/sonicth2/asset/10073/",
+          "inspection": "sheet-inspected",
+          "runtimeReady": false,
+          "cache": {
+            "path": "data/reference-cache/spriters-resource/sonic/10073.png",
+            "metadataPath": "data/reference-cache/spriters-resource/sonic/10073.json",
+            "sha256": "13802d67234c3937cc9397f6d1ab5948974944e6d7fcca472c937bbcbbf6c428",
+            "dimensions": [
+              1204,
+              1509
+            ],
+            "sourceImage": "https://www.spriters-resource.com/media/assets/10/10073.png?updated=1784486197",
+            "uploader": "Triangly"
+          }
+        },
+        {
+          "assetId": "85563",
+          "title": "Common Objects",
+          "kind": "mixed",
+          "url": "https://www.spriters-resource.com/sega_genesis/sonicth2/asset/85563/",
+          "inspection": "sheet-inspected",
+          "runtimeReady": false,
+          "cache": {
+            "path": "data/reference-cache/spriters-resource/sonic/85563.png",
+            "metadataPath": "data/reference-cache/spriters-resource/sonic/85563.json",
+            "sha256": "e883cd17a8c802e5d33e3b712598715fd145f31cc4597a77daef74147d84b7cd",
+            "dimensions": [
+              1186,
+              893
+            ],
+            "sourceImage": "https://www.spriters-resource.com/media/assets/82/85563.png?updated=1755474939",
+            "uploader": "Tiaremoana"
+          }
+        }
+      ]
+    }
+  ],
+  "gaps": []
+}

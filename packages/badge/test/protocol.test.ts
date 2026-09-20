@@ -80,6 +80,10 @@ test('identity from a uitree dump', () => {
     name: 'Tony Pan',
     color: [76, 175, 80],
   })
+  assert.deepEqual(
+    identityFromUitree(dump.replace('HTN ARCADE', 'ARCADE')),
+    identityFromUitree(dump),
+  )
   assert.equal(identityFromUitree('obj\n  label text="Badge ID: x"\n  qrcode'), null)
 })
 

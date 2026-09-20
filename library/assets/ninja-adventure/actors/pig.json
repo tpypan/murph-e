@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "id": "pig",
+  "packId": "ninja-adventure",
+  "width": 16,
+  "height": 16,
+  "camera": "top-down",
+  "tags": [
+    "animal",
+    "pig",
+    "top-down",
+    "horizontal-motion"
+  ],
+  "anchor": {
+    "x": 8,
+    "y": 13
+  },
+  "source": {
+    "path": "original/content/character/pig/pig.png",
+    "url": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/character/pig/pig.png",
+    "sha256": "778a33eab2674e1fcf60c915ae327710af08ebaa586050ef9e30bb00307c21d8",
+    "sourceRevision": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a"
+  },
+  "license": {
+    "spdx": "CC0-1.0",
+    "authors": [
+      "Pixel-Boy",
+      "AAA"
+    ],
+    "sourceUrl": "https://pixel-boy.itch.io/ninja-adventure-asset-pack"
+  },
+  "timing": {
+    "simulationHz": 60,
+    "sourceFramesPerSecond": 6,
+    "origin": "Source Godot IMAGE_SPEED = 6; 60/6 = 10 simulation ticks per frame."
+  },
+  "geometry": {
+    "coordinates": "frame-local pixels; subtract anchor to obtain world-relative offsets",
+    "anchorOrigin": "Source centered Sprite2D dimensions and its vertical offset.",
+    "collisionOrigin": "Authored conservative body/foot rectangles for this catalogue; not recovered from PNG or copied from the Godot collision circles.",
+    "attackOrigin": "No attack hitboxes or combat windows provided. A one-frame attack pose is not a complete combat animation.",
+    "mirroring": "For a local rectangle mirror x to width - x - w; mirror anchor.x to width - anchor.x. Do not flip only the pixels."
+  },
+  "normalization": {
+    "palette": "pico-8",
+    "paletteHex": [
+      "#000000",
+      "#1d2b53",
+      "#7e2553",
+      "#008751",
+      "#ab5236",
+      "#5f574f",
+      "#c2c3c7",
+      "#fff1e8",
+      "#ff004d",
+      "#ffa300",
+      "#ffec27",
+      "#00e436",
+      "#29adff",
+      "#83769c",
+      "#ff77a8",
+      "#ffccaa"
+    ],
+    "reviewedOverrides": {},
+    "method": "Reviewed palette-map.json overrides retain characteristic clothing hue; remaining colors use nearest squared RGB distance with lowest-index tie break. Alpha 0 is '.', alpha 255 is an opaque hex digit. No scaling, cropping, dithering or drawing new pixels."
+  },
+  "layoutSource": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/system/character/animal.gd",
+  "anchorSource": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/character/pig/pig.tscn",
+  "frames": [
+    {
+      "id": "left-0",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "................",
+        "....0..0........",
+        "...0f00f0000....",
+        "...0ffffffff0...",
+        "..0ffffffffff0..",
+        ".0f0ff0fffffff0.",
+        ".0f0ff0fffffff0.",
+        ".0444fffffffff40",
+        "040404ffffffff40",
+        "044444ffffffff0.",
+        ".0444fffffffff0.",
+        "..00fffffffff0..",
+        "...04040000440..",
+        ".....040...040..",
+        "................"
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 13
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 2,
+        "right": 16,
+        "bottom": 15
+      },
+      "hurtboxes": [
+        {
+          "x": 3,
+          "y": 5,
+          "w": 10,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "left-1",
+      "sourceRect": {
+        "x": 16,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "....0..0........",
+        "...0f00f0000....",
+        "...0ffffffff0...",
+        "..0ffffffffff0..",
+        ".0f0ff0fffffff0.",
+        ".0f0ff0fffffff0.",
+        ".0444fffffffff40",
+        "040404ffffffff40",
+        "044444ffffffff0.",
+        ".0444fffffffff0.",
+        "0400ffffffff440.",
+        ".000440000000440",
+        "..0440.......00.",
+        "...00...........",
+        "................"
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 13
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 15
+      },
+      "hurtboxes": [
+        {
+          "x": 3,
+          "y": 5,
+          "w": 10,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    }
+  ],
+  "animations": {
+    "idle-left": {
+      "frameIds": [
+        "left-0"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "walk-left": {
+      "frameIds": [
+        "left-0",
+        "left-1"
+      ],
+      "loop": true,
+      "kind": "cycle",
+      "flipX": false
+    },
+    "idle-right": {
+      "frameIds": [
+        "left-0"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": true
+    },
+    "walk-right": {
+      "frameIds": [
+        "left-0",
+        "left-1"
+      ],
+      "loop": true,
+      "kind": "cycle",
+      "flipX": true
+    }
+  },
+  "supportedStates": [
+    "idle-left",
+    "idle-right",
+    "walk-left",
+    "walk-right"
+  ],
+  "unsupportedStates": [
+    "walk-up",
+    "walk-down",
+    "attack",
+    "hurt-animation",
+    "death-animation"
+  ],
+  "notes": [
+    "Two source frames, mirrored horizontally for right-facing motion, as in the source animal controller. No invented up/down poses."
+  ]
+}

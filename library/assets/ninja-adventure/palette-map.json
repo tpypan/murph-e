@@ -1,0 +1,12 @@
+{
+  "description": "Reviewed overrides retain clothing hue and separable shade roles where nearest-RGB mapping made blue gray and green brown. Source PNGs remain unchanged. All other colors use deterministic nearest-RGB mapping.",
+  "actors": {
+    "ninja-blue": {"#79b8ce": 12, "#ef914f": 15},
+    "samurai-blue": {"#548789": 1, "#79b8ce": 12, "#ef914f": 15, "#4a5270": 1},
+    "samurai-green": {"#56864c": 3, "#a8a129": 11, "#f1c471": 10, "#d78b4a": 9, "#5f7160": 3, "#8d977f": 6},
+    "pig": {}
+  },
+  "props": {
+    "grass": {"#546626": 3, "#74a334": 11, "#adbc3a": 10}
+  }
+}

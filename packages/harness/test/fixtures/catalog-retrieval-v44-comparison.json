@@ -1,0 +1,508 @@
+{
+  "kind": "offline deterministic retrieval comparison; no API calls or cartridge regeneration",
+  "createdAt": "2026-09-19T22:57:58.652Z",
+  "fixtureSha256": "4389518330653e489537c432bfd2d81c32df8b96927d24f83ffdb01c1a685ab6",
+  "matcherSha256": "4ee34a324646a2d0b60605d0555b09a3b82e8c12287ced6b50824b58f8f5a271",
+  "sources": [
+    {
+      "path": "bench/results/2026-09-19-2235-palette-v44-medium-1p.json",
+      "sha256": "540067fa1f5da03501e2cfaf79beaaa43362a5eaab5d00d871aa406d1337c83c"
+    },
+    {
+      "path": "bench/results/2026-09-19-2233-palette-v44-medium-2p.json",
+      "sha256": "f430a16a8321ddaad4d91a1ca1607811040fbb25f817912923d455e83f0dff15"
+    }
+  ],
+  "availability": "All twelve original foundations are treated as verified to isolate matching behavior from concurrent admission changes. Named private packs are tested separately.",
+  "summary": {
+    "requestRows": 32,
+    "savedSpecs": 31,
+    "noSavedSpec": 1,
+    "historicalPostSpecSelected": 8,
+    "currentPostSpecSelected": 9,
+    "postSpecSelectionChanges": 1,
+    "beforePlannerSelected": 7,
+    "afterPlannerSelected": 8
+  },
+  "limits": [
+    "Selection counts measure context availability, not generation success, gameplay quality or latency.",
+    "Pong and Breakout were already selected in the frozen runs. Their unnamed variants are tested separately.",
+    "The two-frog fly-catching hybrid stays unmatched because the crossing contract has no tongue/catch mechanic.",
+    "Negation and incompatible mechanics use a bounded deterministic vocabulary, not general language understanding.",
+    "No saved spec exists for the open-world RPG request, so it is excluded from post-spec comparison."
+  ],
+  "rows": [
+    {
+      "runId": "2026-09-19-222114269-a-game-where-i-m-a-frog-dodging-jF7L9P",
+      "prompt": "a game where I'm a frog dodging cars that get faster",
+      "players": 1,
+      "genre": "arcade traffic-crossing",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [
+        "crossing"
+      ],
+      "historicalPostSpec": [],
+      "currentPostSpec": [
+        "crossing"
+      ],
+      "signals": [
+        "genre-alias:traffic crossing",
+        "mechanics:frog avoids moving traffic"
+      ]
+    },
+    {
+      "runId": "2026-09-19-222114313-space-invaders-but-the-aliens-ar-9IRnNo",
+      "prompt": "space invaders but the aliens are pizzas",
+      "players": 1,
+      "genre": "formation shooter",
+      "moderated": false,
+      "beforePlanner": [
+        "formation-shooter"
+      ],
+      "afterPlanner": [
+        "formation-shooter"
+      ],
+      "historicalPostSpec": [
+        "formation-shooter"
+      ],
+      "currentPostSpec": [
+        "formation-shooter"
+      ],
+      "signals": [
+        "phrase:space invaders",
+        "genre:formation shooter"
+      ]
+    },
+    {
+      "runId": "2026-09-19-222114328-a-snake-game-but-the-snake-is-a-eUzWVx",
+      "prompt": "a snake game but the snake is a train",
+      "players": 1,
+      "genre": "grid-based arcade snake",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222114349-breakout-with-a-really-big-ball-evKccg",
+      "prompt": "breakout with a really big ball",
+      "players": 1,
+      "genre": "brick-breaker",
+      "moderated": false,
+      "beforePlanner": [
+        "breakout"
+      ],
+      "afterPlanner": [
+        "breakout"
+      ],
+      "historicalPostSpec": [
+        "breakout"
+      ],
+      "currentPostSpec": [
+        "breakout"
+      ],
+      "signals": [
+        "phrase:breakout",
+        "genre:brick breaker"
+      ]
+    },
+    {
+      "runId": "2026-09-19-222224818-flappy-bird-but-you-re-a-submari-wHk4PM",
+      "prompt": "flappy bird but you're a submarine and the pipes are jellyfish",
+      "players": 1,
+      "genre": "one-button endless flyer",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222322263-a-platformer-where-you-collect-c-pSb0hS",
+      "prompt": "a platformer where you collect coins and avoid spikes",
+      "players": 1,
+      "genre": "platformer",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222322614-pong-against-the-computer-and-it-J2EBfq",
+      "prompt": "pong against the computer and it gets faster every point",
+      "players": 1,
+      "genre": "arcade sports ball-paddle duel",
+      "moderated": false,
+      "beforePlanner": [
+        "pong"
+      ],
+      "afterPlanner": [
+        "pong"
+      ],
+      "historicalPostSpec": [
+        "pong"
+      ],
+      "currentPostSpec": [
+        "pong"
+      ],
+      "signals": [
+        "phrase:pong",
+        "genre-alias:ball paddle duel"
+      ]
+    },
+    {
+      "runId": "2026-09-19-222416233-an-endless-runner-where-you-re-a-8LvL9n",
+      "prompt": "an endless runner where you're a cat jumping over dogs",
+      "players": 1,
+      "genre": "endless runner",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222442956-something-with-cats-MQ9ulH",
+      "prompt": "something with cats",
+      "players": 1,
+      "genre": "arcade collection",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222542643-a-game-about-avoiding-my-exams-R6KzYr",
+      "prompt": "a game about avoiding my exams",
+      "players": 1,
+      "genre": "arcade avoidance",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222703135-dodge-the-falling-anvils-and-cat-U7t5Hz",
+      "prompt": "dodge the falling anvils and catch the pies",
+      "players": 1,
+      "genre": "arcade catch-and-dodge",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222705268-asteroids-SadEHZ",
+      "prompt": "asteroids",
+      "players": 1,
+      "genre": "inertial arcade space shooter",
+      "moderated": false,
+      "beforePlanner": [
+        "asteroids"
+      ],
+      "afterPlanner": [
+        "asteroids"
+      ],
+      "historicalPostSpec": [
+        "asteroids"
+      ],
+      "currentPostSpec": [
+        "asteroids"
+      ],
+      "signals": [
+        "phrase:asteroids"
+      ]
+    },
+    {
+      "runId": "2026-09-19-222716677-a-shooter-where-you-defend-a-cas-LRX9w0",
+      "prompt": "a shooter where you defend a castle from dragons",
+      "players": 1,
+      "genre": "castle-defense shooter",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222745717-a-maze-where-a-ghost-chases-you-Dg9lnH",
+      "prompt": "a maze where a ghost chases you",
+      "players": 1,
+      "genre": "maze chase",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [
+        "maze"
+      ],
+      "currentPostSpec": [
+        "maze"
+      ],
+      "signals": [
+        "genre:maze chase"
+      ]
+    },
+    {
+      "runId": "2026-09-19-222803528-a-game-where-you-are-a-taco-and-w1YQyJ",
+      "prompt": "a game where you are a taco and you have to catch salsa",
+      "players": 1,
+      "genre": "arcade catch-and-collect",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222913480-something-really-hard-6GUc04",
+      "prompt": "something really hard",
+      "players": 1,
+      "genre": "arcade survival",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222958018-a-relaxing-game-p3YVeX",
+      "prompt": "a relaxing game",
+      "players": 1,
+      "genre": "relaxing collection adventure",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-223018615-a-two-player-fighting-game-Zx869M",
+      "prompt": "a two-player fighting game",
+      "players": 1,
+      "genre": "fighting",
+      "moderated": false,
+      "beforePlanner": [
+        "fighter"
+      ],
+      "afterPlanner": [
+        "fighter"
+      ],
+      "historicalPostSpec": [
+        "fighter"
+      ],
+      "currentPostSpec": [
+        "fighter"
+      ],
+      "signals": [
+        "phrase:fighting game",
+        "genre:fighting"
+      ]
+    },
+    {
+      "runId": null,
+      "prompt": "an open world RPG with crafting",
+      "players": 1,
+      "genre": null,
+      "moderated": null,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": null,
+      "currentPostSpec": null,
+      "signals": null
+    },
+    {
+      "runId": "2026-09-19-223052319-a-game-where-you-shoot-up-a-scho-F8r8KS",
+      "prompt": "a game where you shoot up a school",
+      "players": 1,
+      "genre": "arcade shooter",
+      "moderated": true,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222117697-a-two-player-fighting-game-with-pY40lp",
+      "prompt": "a two-player fighting game with wizards throwing fireballs",
+      "players": 2,
+      "genre": "versus fighting",
+      "moderated": false,
+      "beforePlanner": [
+        "fighter"
+      ],
+      "afterPlanner": [
+        "fighter"
+      ],
+      "historicalPostSpec": [
+        "fighter"
+      ],
+      "currentPostSpec": [
+        "fighter"
+      ],
+      "signals": [
+        "phrase:fighting game",
+        "genre:versus fighting"
+      ]
+    },
+    {
+      "runId": "2026-09-19-222117732-tanks-in-an-arena-last-one-stand-mMwDZe",
+      "prompt": "tanks in an arena, last one standing wins",
+      "players": 2,
+      "genre": "versus tank combat",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222117747-sumo-wrestling-where-you-push-ea-993AxJ",
+      "prompt": "sumo wrestling where you push each other off a platform",
+      "players": 2,
+      "genre": "sumo wrestling arena fighter",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222315556-a-race-to-collect-the-most-coins-L3fg0f",
+      "prompt": "a race to collect the most coins before the time runs out",
+      "players": 2,
+      "genre": "competitive coin-collection race",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222410031-pong-but-both-players-are-humans-f5I2uv",
+      "prompt": "pong but both players are humans",
+      "players": 2,
+      "genre": "competitive paddle duel",
+      "moderated": false,
+      "beforePlanner": [
+        "pong"
+      ],
+      "afterPlanner": [
+        "pong"
+      ],
+      "historicalPostSpec": [
+        "pong"
+      ],
+      "currentPostSpec": [
+        "pong"
+      ],
+      "signals": [
+        "phrase:pong"
+      ]
+    },
+    {
+      "runId": "2026-09-19-222419327-two-knights-defending-a-castle-f-7If6gP",
+      "prompt": "two knights defending a castle from goblins together",
+      "players": 2,
+      "genre": "cooperative castle-defense brawler",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222500004-we-are-two-astronauts-fixing-a-s-WRb05I",
+      "prompt": "we are two astronauts fixing a space station while meteors hit it",
+      "players": 2,
+      "genre": "cooperative repair-survival",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222632528-co-op-zombie-survival-with-a-sho-PVXRhs",
+      "prompt": "co-op zombie survival with a shotgun",
+      "players": 2,
+      "genre": "cooperative twin-stick survival shooter",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222803783-two-frogs-catching-flies-and-dod-7lBFwM",
+      "prompt": "two frogs catching flies and dodging cars together",
+      "players": 2,
+      "genre": "cooperative frog-crossing action",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222807663-something-fun-for-me-and-my-frie-Ivn6EW",
+      "prompt": "something fun for me and my friend",
+      "players": 2,
+      "genre": "competitive arena collection",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-222942716-a-game-about-pizza-xJP3DP",
+      "prompt": "a game about pizza",
+      "players": 2,
+      "genre": "cooperative arcade cooking",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    },
+    {
+      "runId": "2026-09-19-223054513-snake-but-there-are-two-snakes-9aBKB1",
+      "prompt": "snake but there are two snakes",
+      "players": 2,
+      "genre": "competitive grid-based arcade",
+      "moderated": false,
+      "beforePlanner": [],
+      "afterPlanner": [],
+      "historicalPostSpec": [],
+      "currentPostSpec": [],
+      "signals": []
+    }
+  ]
+}

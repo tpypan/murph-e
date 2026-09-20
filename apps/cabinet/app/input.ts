@@ -20,6 +20,7 @@ const DEV_KEYS: Record<string, Button> = {
   KeyX: 'b',
   Enter: 'start',
   Space: 'talk',
+  KeyV: 'talk',
 }
 
 const ENCODER_KEYS: Record<string, Button> = {
@@ -46,49 +47,37 @@ export function buttonForCode(code: string): { player: number; button: Button } 
 
 /** Attach keyboard listeners; returns a detach function. */
 export function attachKeyboard(onInput: (ev: InputEvent) => void): () => void {
-  const typing = () => {
-    const el = document.activeElement
-    return el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement
-  }
+  const pressed = new Map<string, { player: number; button: Button }>()
   const down = (e: KeyboardEvent) => {
     const b = buttonForCode(e.code)
-    if (!b || typing()) return
+    if (!b || e.altKey || e.ctrlKey || e.metaKey) return
+    const el = document.activeElement
+    if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) return
+    if (el instanceof HTMLButtonElement && (e.code === 'Enter' || e.code === 'Space')) return
     e.preventDefault()
     if (e.repeat) return
+    pressed.set(e.code, b)
     onInput({ ...b, down: true })
   }
   const up = (e: KeyboardEvent) => {
-    const b = buttonForCode(e.code)
-    if (!b || typing()) return
+    const b = pressed.get(e.code)
+    if (!b) return
+    pressed.delete(e.code)
     e.preventDefault()
-    onInput({ ...b, down: false })
+    if (![...pressed.values()].some((held) => held.player === b.player && held.button === b.button))
+      onInput({ ...b, down: false })
+  }
+  const release = () => {
+    for (const b of pressed.values()) onInput({ ...b, down: false })
+    pressed.clear()
   }
   window.addEventListener('keydown', down)
   window.addEventListener('keyup', up)
+  window.addEventListener('blur', release)
   return () => {
     window.removeEventListener('keydown', down)
     window.removeEventListener('keyup', up)
+    window.removeEventListener('blur', release)
+    release()
   }
-}
-
-/** A plausible-looking random input script for attract mode, as inject frames. */
-export function attractScript(
-  seconds: number,
-  rnd: () => number = Math.random,
-): Array<{ at: number; button: string; down: boolean }> {
-  const frames: Array<{ at: number; button: string; down: boolean }> = []
-  const dirs = ['left', 'right', 'up', 'down']
-  let at = 0
-  const end = seconds * 60
-  while (at < end) {
-    const d = dirs[Math.floor(rnd() * dirs.length)]!
-    const hold = 10 + Math.floor(rnd() * 40)
-    frames.push({ at, button: d, down: true }, { at: at + hold, button: d, down: false })
-    if (rnd() < 0.7) {
-      const t = at + Math.floor(rnd() * hold)
-      frames.push({ at: t, button: 'a', down: true }, { at: t + 3, button: 'a', down: false })
-    }
-    at += hold + Math.floor(rnd() * 20)
-  }
-  return frames
 }

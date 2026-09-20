@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "maze",
+  "version": "1.1.0",
+  "title": "Maze Chase and Goose Hunt",
+  "description": "Complete original maze chase with buffered grid turns, paired tunnels, connected pellets, four ghost roles, visible central house and return/reform lifecycle, power pickups, bounded levels and 1P/2P cooperative play. Permanent player-hunts mode makes a goose chase and capture fleeing ghosts without contact death. Original complete directional player and ghost animation sets are bundled.",
+  "tags": ["maze chase", "maze", "pacman", "pac man", "ghost", "goose", "pellets"],
+  "match": {
+    "phrases": [
+      "pac man",
+      "pacman",
+      "maze chase",
+      "goose hunting ghosts",
+      "goose chasing ghosts",
+      "ghost maze"
+    ],
+    "genres": ["maze", "maze chase", "maze-chase", "maze hunt"]
+  },
+  "supportsPlayers": [1, 2],
+  "module": "module.js",
+  "entry": "maze",
+  "apiVersion": 1,
+  "license": {
+    "spdx": "LicenseRef-Project-Original",
+    "notes": "Original project code, layout and deterministic pixel artwork. No commercial Pac-Man ROM, source code, maze map or sprite sheet was copied. The genre inspiration does not grant rights to any underlying game trademark."
+  },
+  "provenance": {
+    "kind": "original",
+    "authors": ["Arcade project"],
+    "sources": ["project:library/reference/maze-chase.js"],
+    "createdAt": "2026-09-19"
+  },
+  "assets": ["assets.json"],
+  "files": [
+    "core.js",
+    "build-assets.mjs",
+    "build.mjs",
+    "demo.js",
+    "spec.json",
+    "test.mjs",
+    "screenshots.mjs",
+    "verify.mjs",
+    "README.md"
+  ],
+  "animations": [
+    {
+      "metadata": "assets.json",
+      "fps": 60,
+      "frames": 156,
+      "clips": 54,
+      "coordinates": "14×14 center anchor; directional player/ghost clips; center-relative hitboxes and hurtboxes",
+      "subjects": [
+        "chomper P1/P2",
+        "goose P1/P2",
+        "four ghosts",
+        "frightened",
+        "returning eyes",
+        "reforming"
+      ]
+    }
+  ],
+  "quality": {
+    "status": "draft",
+    "notes": "Complete behavior and isolated runtime evidence included; admission requires content-hash-bound review."
+  }
+}

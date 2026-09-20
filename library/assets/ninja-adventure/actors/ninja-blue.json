@@ -1,0 +1,1774 @@
+{
+  "schemaVersion": 1,
+  "id": "ninja-blue",
+  "packId": "ninja-adventure",
+  "width": 16,
+  "height": 16,
+  "camera": "top-down",
+  "tags": [
+    "humanoid",
+    "top-down",
+    "ninja"
+  ],
+  "anchor": {
+    "x": 8,
+    "y": 14
+  },
+  "source": {
+    "path": "original/content/character/ninja_blue/sprite.png",
+    "url": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/character/ninja_blue/sprite.png",
+    "sha256": "f2dd61a264c251b81e63da7a28ab0fdccd261b807e5fa7d1832a468e14a21078",
+    "sourceRevision": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a"
+  },
+  "license": {
+    "spdx": "CC0-1.0",
+    "authors": [
+      "Pixel-Boy",
+      "AAA"
+    ],
+    "sourceUrl": "https://pixel-boy.itch.io/ninja-adventure-asset-pack"
+  },
+  "timing": {
+    "simulationHz": 60,
+    "sourceFramesPerSecond": 6,
+    "origin": "Source Godot IMAGE_SPEED = 6; 60/6 = 10 simulation ticks per frame."
+  },
+  "geometry": {
+    "coordinates": "frame-local pixels; subtract anchor to obtain world-relative offsets",
+    "anchorOrigin": "Source centered Sprite2D dimensions and its vertical offset.",
+    "collisionOrigin": "Authored conservative body/foot rectangles for this catalogue; not recovered from PNG or copied from the Godot collision circles.",
+    "attackOrigin": "No attack hitboxes or combat windows provided. A one-frame attack pose is not a complete combat animation.",
+    "mirroring": "For a local rectangle mirror x to width - x - w; mirror anchor.x to width - anchor.x. Do not flip only the pixels."
+  },
+  "normalization": {
+    "palette": "pico-8",
+    "paletteHex": [
+      "#000000",
+      "#1d2b53",
+      "#7e2553",
+      "#008751",
+      "#ab5236",
+      "#5f574f",
+      "#c2c3c7",
+      "#fff1e8",
+      "#ff004d",
+      "#ffa300",
+      "#ffec27",
+      "#00e436",
+      "#29adff",
+      "#83769c",
+      "#ff77a8",
+      "#ffccaa"
+    ],
+    "reviewedOverrides": {
+      "#79b8ce": 12,
+      "#ef914f": 15
+    },
+    "method": "Reviewed palette-map.json overrides retain characteristic clothing hue; remaining colors use nearest squared RGB distance with lowest-index tie break. Alpha 0 is '.', alpha 255 is an opaque hex digit. No scaling, cropping, dithering or drawing new pixels."
+  },
+  "layoutSource": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/system/character/sprite_character.gd",
+  "anchorSource": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/system/character/character.tscn",
+  "frames": [
+    {
+      "id": "down-0",
+      "sourceRect": {
+        "x": 0,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "....00000000....",
+        "...0c777777c0...",
+        "..0cc777777cc0..",
+        "..0ccc7777ccc0..",
+        "..0cfccccccfc0..",
+        ".05cffffffffc50.",
+        ".0c5cffffffc5c0.",
+        "0ccc00000000ccc0",
+        "0c5c00000000c5c0",
+        "0cc5c00cc00c5cc0",
+        ".0cc05cccc50cc0.",
+        "..001155551100..",
+        ".044cc1111cc440.",
+        ".0ff01111110ff0.",
+        "..005550055500.."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "down-1",
+      "sourceRect": {
+        "x": 0,
+        "y": 16,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "................",
+        "....00000000....",
+        "...0c777777c0...",
+        "..0cc777777cc0..",
+        "..0ccc7777ccc0..",
+        "..0cfccccccfc0..",
+        ".05cffffffffc50.",
+        ".0c5cffffffc5c0.",
+        "0ccc00000000ccc0",
+        "0c5c00000000c5c0",
+        "0cc5c00cc00c5cc0",
+        "04cc05cccc50cc0.",
+        ".0001155551100..",
+        "...0cc1111ff10..",
+        "....055501ff0..."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 2,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "down-2",
+      "sourceRect": {
+        "x": 0,
+        "y": 32,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "....00000000....",
+        "...0c777777c0...",
+        "..0cc777777cc0..",
+        "..0ccc7777ccc0..",
+        "..0cfccccccfc0..",
+        ".05cffffffffc50.",
+        ".0c5cffffffc5c0.",
+        "0ccc00000000ccc0",
+        "0c5c00000000c5c0",
+        "0cc5c00cc00c5cc0",
+        ".0cc05cccc50cc0.",
+        "..001155551100..",
+        ".044cc1111cc440.",
+        ".0ff01111110ff0.",
+        "..005550055500.."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "down-3",
+      "sourceRect": {
+        "x": 0,
+        "y": 48,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "................",
+        "....00000000....",
+        "...0c777777c0...",
+        "..0cc777777cc0..",
+        "..0ccc7777ccc0..",
+        "..0cfccccccfc0..",
+        ".05cffffffffc50.",
+        ".0c5cffffffc5c0.",
+        "0ccc00000000ccc0",
+        "0c5c00000000c5c0",
+        "0cc5c00cc00c5cc0",
+        ".0cc05cccc50cc40",
+        "..0011555511000.",
+        "..01ff1111cc0...",
+        "...0ff105550...."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 2,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "down-4",
+      "sourceRect": {
+        "x": 0,
+        "y": 64,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "................",
+        "................",
+        "....00000000....",
+        "...0c777777c0...",
+        "..0cc777777cc0..",
+        "..0ccc7777ccc0..",
+        "..0cfccccccfc0..",
+        ".05cffffffffc50.",
+        ".0c5cffffffc5c0.",
+        "0ccc00000000cc00",
+        "0c5c00000000c440",
+        "0cc5c00cc00c5440",
+        ".0cc05cccc50c00.",
+        "..001155551100..",
+        ".0111ff111cc10.."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 3,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "down-5",
+      "sourceRect": {
+        "x": 0,
+        "y": 80,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "....00000000....",
+        "...0f777777f0...",
+        "..07ffffffffc0..",
+        "..0ccffffffcc0..",
+        "..0c00000000c0..",
+        ".05c00000000c50.",
+        ".0c5c00cc00c5c0.",
+        "0cccc5cccc5cccc0",
+        "000c01555510c5c0",
+        "0ff0111110005cc0",
+        "0ff015cc0ccc0c0.",
+        ".0001155c55c040.",
+        "...0cc100555040.",
+        "...01110000000..",
+        "....0550........",
+        ".....000........"
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "up-0",
+      "sourceRect": {
+        "x": 16,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "....00000000....",
+        "...0c777777c0...",
+        "..0cc777777cc0..",
+        "..0ccc7777ccc0..",
+        "..0cfccccccfc0..",
+        ".05cffffffffc50.",
+        ".0c5cffffffc5c0.",
+        "05cc51111115c5c0",
+        "0c5cc555555cc5c0",
+        "0cc5111111115cc0",
+        ".0c5555555555c0.",
+        "..001555555100..",
+        ".04451111115440.",
+        ".04401111110440.",
+        "..005550055500.."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "up-1",
+      "sourceRect": {
+        "x": 16,
+        "y": 16,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "....00000000....",
+        "...0c777777c0...",
+        "..0cc777777cc0..",
+        "..0ccc7777ccc0..",
+        "..0cfccccccfc0..",
+        ".05cffffffffc50.",
+        ".0c5cffffffc5c0.",
+        "0c5c51111115c5c0",
+        "0c5cc555555cc5c0",
+        "0cc5111111115cc0",
+        ".0c5555555555c0.",
+        "..0015555551440.",
+        "..0ff111111500..",
+        "..0ff00111100...",
+        "...00..055550...",
+        "........0550...."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "up-2",
+      "sourceRect": {
+        "x": 16,
+        "y": 32,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "....00000000....",
+        "...0c777777c0...",
+        "..0cc777777cc0..",
+        "..0ccc7777ccc0..",
+        "..0cfccccccfc0..",
+        ".05cffffffffc50.",
+        ".0c5cffffffc5c0.",
+        "05cc51111115c5c0",
+        "0c5cc555555cc5c0",
+        "0cc5111111115cc0",
+        ".0c5555555555c0.",
+        "..001555555100..",
+        ".04451111115440.",
+        ".04401111110440.",
+        "..005550055500.."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "up-3",
+      "sourceRect": {
+        "x": 16,
+        "y": 48,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "....00000000....",
+        "...0c777777c0...",
+        "..0cc777777cc0..",
+        "..0ccc7777ccc0..",
+        "..0cfccccccfc0..",
+        ".05cffffffffc50.",
+        ".0c5cffffffc5c0.",
+        "0c5c51111115c5c0",
+        "0c5cc555555cc5c0",
+        "0cc5111111115cc0",
+        ".0c5555555555c0.",
+        ".0441555555100..",
+        "..005111111ff0..",
+        "...00111100ff0..",
+        "...055550..00...",
+        "....0550........"
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "up-4",
+      "sourceRect": {
+        "x": 16,
+        "y": 64,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "...0440.........",
+        "...000000000....",
+        "...0c777777c0...",
+        "..0cc777777cc0..",
+        "..0ccc7777ccc0..",
+        "..0cfccccccfc0..",
+        ".05cffffffffc50.",
+        ".0c5cffffffc5c0.",
+        "0c5c51111115c5c0",
+        "0c5cc555555cc5c0",
+        "0cc5111111115cc0",
+        ".0c5555555555c0.",
+        "..001555555100..",
+        "...05111111110..",
+        "......111110ff0.",
+        ".........110ff0."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "up-5",
+      "sourceRect": {
+        "x": 16,
+        "y": 80,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "....00000000....",
+        "...0c777777c0...",
+        "..0cc777777cc0..",
+        "..0ccc7777ccc0..",
+        "..0cfccccccfc0..",
+        ".05cffffffffc50.",
+        ".0c5cffffffc5c0.",
+        "0c5c51111115c5c0",
+        "0c5cc555555cc440",
+        "0cc5111111115440",
+        ".0c555555555500.",
+        ".0111555555110..",
+        "0ff11111111550..",
+        "0ff0000111110...",
+        ".00....05550....",
+        ".......0000....."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "left-0",
+      "sourceRect": {
+        "x": 32,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "....00000000....",
+        "..00777777cc0...",
+        ".0fc777777ccc0..",
+        ".0fccf777cccc0..",
+        ".0ffffccccccc0..",
+        ".00fffcccccc5c0.",
+        "..00055cccc5c50.",
+        ".0c00005555cc50.",
+        ".0cc000ccccc5c0.",
+        "..0555555555cc0.",
+        "...0001cccccc0..",
+        "....011111110...",
+        "....0cc0440c0...",
+        "....0150ff010...",
+        ".....0550050...."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 1,
+        "top": 1,
+        "right": 15,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "left-1",
+      "sourceRect": {
+        "x": 32,
+        "y": 16,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "................",
+        "....00000000....",
+        "..00777777cc0...",
+        ".0fc777777ccc0..",
+        ".0fccf777cccc0..",
+        ".0ffffccccccc0..",
+        ".00fffcccccc5c0.",
+        "..00055cccc5c50.",
+        ".0c00005555cc50.",
+        ".0cc000ccccc5c0.",
+        "..0555555555cc0.",
+        "...0001cccccc0..",
+        "...0ff5555550...",
+        "...0ff00555510..",
+        "....00..055550.."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 1,
+        "top": 2,
+        "right": 15,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "left-2",
+      "sourceRect": {
+        "x": 32,
+        "y": 32,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "....00000000....",
+        "..00777777cc0...",
+        ".0fc777777ccc0..",
+        ".0fccf777cccc0..",
+        ".0ffffccccccc0..",
+        ".00fffcccccc5c0.",
+        "..00055cccc5c50.",
+        ".0c00005555cc50.",
+        ".0cc000ccccc5c0.",
+        "..0555555555cc0.",
+        "...0001cccccc0..",
+        "....011111110...",
+        "....0cc0440c0...",
+        "....0150ff010...",
+        ".....0550050...."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 1,
+        "top": 1,
+        "right": 15,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "left-3",
+      "sourceRect": {
+        "x": 32,
+        "y": 48,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "................",
+        "....00000000....",
+        "..00777777cc0...",
+        ".0fc777777ccc0..",
+        ".0fccf777cccc0..",
+        ".0ffffccccccc0..",
+        ".00fffcccccc5c0.",
+        "..00055cccc5c50.",
+        ".0c00005555cc50.",
+        ".0cc000ccccc5c0.",
+        "..0555555555cc0.",
+        "...0001cccccc0..",
+        "....0cc1110440..",
+        "....0555110440..",
+        "...0555550.00..."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 1,
+        "top": 2,
+        "right": 15,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "left-4",
+      "sourceRect": {
+        "x": 32,
+        "y": 64,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "................",
+        "....00000000....",
+        "..00777777cc0...",
+        ".0fc777777ccc0..",
+        ".0fccf777cccc0..",
+        ".0ffffccccccc0..",
+        ".00fffcccccc5c0.",
+        "..00055cccc5c50.",
+        ".0c00005555cc50.",
+        "0055000ccccc5c0.",
+        "ffcccc555555cc0.",
+        "ffcc555cccccc0..",
+        "0005555555550...",
+        "...00000055510..",
+        ".........055550."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 2,
+        "right": 15,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "left-5",
+      "sourceRect": {
+        "x": 32,
+        "y": 80,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "...000000000....",
+        "..0f777777cc0...",
+        "..0f7f7777ccc0..",
+        "..0fff777cccc0..",
+        "..00ffccccccc0..",
+        "..00055ccccc5c0.",
+        ".0c0000cccc5c50.",
+        ".0cc0005555cc50.",
+        "..0cc55ccccc5c0.",
+        "..0005005555cc0.",
+        "..0550ffccc5c0..",
+        "..0550ffcc51040.",
+        "..0555001111140.",
+        "..00000.0111550.",
+        ".........055550.",
+        "..........00000."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 1,
+        "top": 0,
+        "right": 15,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "right-0",
+      "sourceRect": {
+        "x": 48,
+        "y": 0,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "....00000000....",
+        "...0cc77777700..",
+        "..0ccc777777cf0.",
+        "..0cccc777fccf0.",
+        "..0cccccccffff0.",
+        ".0c5ccccccfff00.",
+        ".05c5cccc55000..",
+        ".05cc55550000c0.",
+        ".0c5ccccc000cc0.",
+        ".0cc5555555550..",
+        "..0cccccc1000...",
+        "...011111110....",
+        "...0c0440cc0....",
+        "...010ff0510....",
+        "....0500550....."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 1,
+        "top": 1,
+        "right": 15,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "right-1",
+      "sourceRect": {
+        "x": 48,
+        "y": 16,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "................",
+        "....00000000....",
+        "...0cc77777700..",
+        "..0ccc777777cf0.",
+        "..0cccc777fccf0.",
+        "..0cccccccffff0.",
+        ".0c5ccccccfff00.",
+        ".05c5cccc55000..",
+        ".05cc55550000c0.",
+        ".0c5ccccc000cc0.",
+        ".0cc5555555550..",
+        "..0cccccc1000...",
+        "...0555555ff0...",
+        "..01555500ff0...",
+        "..055550..00...."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 1,
+        "top": 2,
+        "right": 15,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "right-2",
+      "sourceRect": {
+        "x": 48,
+        "y": 32,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "....00000000....",
+        "...0cc77777700..",
+        "..0ccc777777cf0.",
+        "..0cccc777fccf0.",
+        "..0cccccccffff0.",
+        ".0c5ccccccfff00.",
+        ".05c5cccc55000..",
+        ".05cc55550000c0.",
+        ".0c5ccccc000cc0.",
+        ".0cc5555555550..",
+        "..0cccccc1000...",
+        "...011111110....",
+        "...0c0440cc0....",
+        "...010ff0510....",
+        "....0500550....."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 1,
+        "top": 1,
+        "right": 15,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "right-3",
+      "sourceRect": {
+        "x": 48,
+        "y": 48,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "................",
+        "....00000000....",
+        "...0cc77777700..",
+        "..0ccc777777cf0.",
+        "..0cccc777fccf0.",
+        "..0cccccccffff0.",
+        ".0c5ccccccfff00.",
+        ".05c5cccc55000..",
+        ".05cc55550000c0.",
+        ".0c5ccccc000cc0.",
+        ".0cc5555555550..",
+        "..0cccccc1000...",
+        "..0440111cc0....",
+        "..0440115550....",
+        "...00.0555550..."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 1,
+        "top": 2,
+        "right": 15,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "right-4",
+      "sourceRect": {
+        "x": 48,
+        "y": 64,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "................",
+        "....00000000....",
+        "...0cc77777700..",
+        "..0ccc777777cf0.",
+        "..0cccc777fccf0.",
+        "..0cccccccffff0.",
+        ".0c5ccccccfff00.",
+        ".05c5cccc55000..",
+        ".05cc55550000c0.",
+        ".0c5ccccc0005500",
+        ".0cc555555ccccff",
+        "..0cccccc555ccff",
+        "...0555555555000",
+        "..01555000000...",
+        ".055550........."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 1,
+        "top": 2,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "right-5",
+      "sourceRect": {
+        "x": 48,
+        "y": 80,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "....000000000...",
+        "...0cc777777f0..",
+        "..0ccc7777f7f0..",
+        "..0cccc777fff0..",
+        "..0cccccccff00..",
+        ".0c5ccccc55000..",
+        ".05c5cccc0000c0.",
+        ".05cc5555000cc0.",
+        ".0c5ccccc55cc0..",
+        ".0cc5555005000..",
+        "..0c5cccff0550..",
+        ".04015ccff0550..",
+        ".0411111005550..",
+        ".0551110.00000..",
+        ".055550.........",
+        ".00000.........."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 1,
+        "top": 0,
+        "right": 15,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "death-pose",
+      "sourceRect": {
+        "x": 0,
+        "y": 96,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "................",
+        "....00000000....",
+        "...0c777777c0...",
+        "..0cc777777cc0..",
+        "..0cc777777cc0..",
+        "..0ccc7777ccc0..",
+        ".05cfccccccfc50.",
+        ".0ccffffffff5c0.",
+        "0cc5cffffffcccc0",
+        "0c5c00000000c5c0",
+        "0ccc000000005cc0",
+        ".0c5c00cc00ccc0.",
+        "0ffc05cccc500ff0",
+        "0ff0000000000ff0",
+        ".00..........00."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 2,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "item-pose",
+      "sourceRect": {
+        "x": 16,
+        "y": 96,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "....00....00....",
+        "...0f000000f0...",
+        "...0ffffffff0...",
+        ".00ccffffffcc00.",
+        "0ffc00000000cff0",
+        "0ffc00000000cff0",
+        "0551500cc0051550",
+        "0cc155cccc551cc0",
+        "0551115555111550",
+        ".05511111111550.",
+        ".05511111111550.",
+        "..0155cccc5510..",
+        "..055155551150..",
+        "...0cc1111cc0...",
+        "...0011111100...",
+        "...0555005550..."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "ability-pose",
+      "sourceRect": {
+        "x": 32,
+        "y": 96,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "................",
+        "....00000000....",
+        "...0c777777c0...",
+        "..0cc777777cc0..",
+        "..0ccc7777ccc0..",
+        "..0cfccccccfc0..",
+        ".05cffffffffc50.",
+        ".0c5cffffffc5c0.",
+        "0ccc00000000cc00",
+        "0c5c00000000c540",
+        "0cc5c00cc00c5540",
+        ".0cc05cccc50c00.",
+        "..001155551100..",
+        ".0114ff100cc550.",
+        "0111fff0..055110"
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 2,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    },
+    {
+      "id": "ability-2-pose",
+      "sourceRect": {
+        "x": 48,
+        "y": 96,
+        "w": 16,
+        "h": 16
+      },
+      "pixels": [
+        "................",
+        "....00000000....",
+        "...0c777777c0...",
+        "..0cc777777cc0..",
+        "..0ccc7777ccc0..",
+        "..0cfccccccfc0..",
+        ".05cffffffffc50.",
+        "00c5cffffffc5c0.",
+        "44cc00000000ccc0",
+        "445c00000000c5c0",
+        "00c5c000500c5cc0",
+        "..0c050f0005550.",
+        "..00110f4cc550..",
+        "..01550f4cc50...",
+        ".011110001110...",
+        "011110..05550..."
+      ],
+      "durationTicks": 10,
+      "anchor": {
+        "x": 8,
+        "y": 14
+      },
+      "opaqueBounds": {
+        "left": 0,
+        "top": 1,
+        "right": 16,
+        "bottom": 16
+      },
+      "hurtboxes": [
+        {
+          "x": 4,
+          "y": 5,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "pushbox": {
+        "x": 4,
+        "y": 11,
+        "w": 8,
+        "h": 3
+      },
+      "hitboxes": [],
+      "attachmentAnchors": {}
+    }
+  ],
+  "animations": {
+    "idle-down": {
+      "frameIds": [
+        "down-0"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "walk-down": {
+      "frameIds": [
+        "down-0",
+        "down-1",
+        "down-2",
+        "down-3"
+      ],
+      "loop": true,
+      "kind": "cycle",
+      "flipX": false
+    },
+    "attack-pose-down": {
+      "frameIds": [
+        "down-4"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "jump-pose-down": {
+      "frameIds": [
+        "down-5"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "idle-up": {
+      "frameIds": [
+        "up-0"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "walk-up": {
+      "frameIds": [
+        "up-0",
+        "up-1",
+        "up-2",
+        "up-3"
+      ],
+      "loop": true,
+      "kind": "cycle",
+      "flipX": false
+    },
+    "attack-pose-up": {
+      "frameIds": [
+        "up-4"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "jump-pose-up": {
+      "frameIds": [
+        "up-5"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "idle-left": {
+      "frameIds": [
+        "left-0"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "walk-left": {
+      "frameIds": [
+        "left-0",
+        "left-1",
+        "left-2",
+        "left-3"
+      ],
+      "loop": true,
+      "kind": "cycle",
+      "flipX": false
+    },
+    "attack-pose-left": {
+      "frameIds": [
+        "left-4"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "jump-pose-left": {
+      "frameIds": [
+        "left-5"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "idle-right": {
+      "frameIds": [
+        "right-0"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "walk-right": {
+      "frameIds": [
+        "right-0",
+        "right-1",
+        "right-2",
+        "right-3"
+      ],
+      "loop": true,
+      "kind": "cycle",
+      "flipX": false
+    },
+    "attack-pose-right": {
+      "frameIds": [
+        "right-4"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "jump-pose-right": {
+      "frameIds": [
+        "right-5"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "death-pose": {
+      "frameIds": [
+        "death-pose"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "item-pose": {
+      "frameIds": [
+        "item-pose"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "ability-pose": {
+      "frameIds": [
+        "ability-pose"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    },
+    "ability-2-pose": {
+      "frameIds": [
+        "ability-2-pose"
+      ],
+      "loop": true,
+      "kind": "pose",
+      "flipX": false
+    }
+  },
+  "supportedStates": [
+    "idle",
+    "walk",
+    "attack-pose",
+    "jump-pose",
+    "death-pose",
+    "item-pose",
+    "ability-pose",
+    "ability-2-pose"
+  ],
+  "unsupportedStates": [
+    "hurt-animation",
+    "guard-animation",
+    "multi-frame-attack",
+    "side-view-fighting",
+    "directional-death-animation"
+  ],
+  "notes": [
+    "28 source frames. Only walking has a multi-frame motion cycle. Attack/jump/death/abilities are static source poses.",
+    "Source damage response flashes and shakes the sprite rather than selecting hurt artwork; this pack does not fabricate a hurt animation.",
+    "Last sheet row encodes four distinct action poses, not four directions of the same action."
+  ]
+}

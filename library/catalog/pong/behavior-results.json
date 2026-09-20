@@ -1,0 +1,112 @@
+{
+  "at": "2026-09-19T21:18:52.656Z",
+  "reports": [
+    {
+      "name": "complete-palette-frames-and-animation-metadata",
+      "passed": true,
+      "frames": 9
+    },
+    {
+      "name": "explicit-launch-and-precision-modifier",
+      "passed": true
+    },
+    {
+      "name": "independent-input-and-queued-serve",
+      "passed": true
+    },
+    {
+      "name": "complete-seven-point-match-1p",
+      "passed": true,
+      "seconds": 72.16666666666386,
+      "points": [
+        7,
+        0
+      ],
+      "stats": {
+        "hits": [
+          22,
+          16
+        ],
+        "powerHits": [
+          22,
+          0
+        ],
+        "serves": 7,
+        "longestRally": 18,
+        "rally": 0,
+        "wallHits": 41,
+        "points": 7
+      },
+      "terminal": [
+        "win",
+        null
+      ]
+    },
+    {
+      "name": "complete-seven-point-match-2p",
+      "passed": true,
+      "seconds": 34.34999999999933,
+      "points": [
+        7,
+        0
+      ],
+      "stats": {
+        "hits": [
+          8,
+          2
+        ],
+        "powerHits": [
+          8,
+          0
+        ],
+        "serves": 7,
+        "longestRally": 3,
+        "rally": 0,
+        "wallHits": 8,
+        "points": 7
+      },
+      "terminal": [
+        "win",
+        0
+      ]
+    },
+    {
+      "name": "player-two-can-win-full-match",
+      "passed": true,
+      "seconds": 40.883333333332295,
+      "points": [
+        0,
+        7
+      ],
+      "stats": {
+        "hits": [
+          4,
+          11
+        ],
+        "powerHits": [
+          0,
+          11
+        ],
+        "serves": 7,
+        "longestRally": 7,
+        "rally": 0,
+        "wallHits": 11,
+        "points": 7
+      },
+      "terminal": [
+        "win",
+        1
+      ]
+    },
+    {
+      "name": "cpu-win-produces-single-game-over",
+      "passed": true,
+      "seconds": 54.749999999998174
+    },
+    {
+      "name": "bounded-time-terminal",
+      "passed": true,
+      "seconds": 30.016666666666243
+    }
+  ]
+}

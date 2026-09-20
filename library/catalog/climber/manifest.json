@@ -1,0 +1,10 @@
+{
+ "schemaVersion":1,"id":"climber","version":"1.0.0","title":"Crane Rescue",
+ "description":"Original Donkey Kong-inspired barrel/ladder arcade foundation: sloped girders, ladder eligibility, telegraphed barrel rolling/drop paths, rescue goal, time bonus, lives, multiple stages, jump-over scoring and cooperative 2P.",
+ "tags":["donkey kong","barrels","ladder","platformer","climb","construction","rescue","cooperative"],
+ "match":{"phrases":["donkey kong","barrel climber","barrel climbing","barrels and ladders","ladder platformer"],"genres":["barrel ladder platformer","barrel climber","ladder platformer"]},
+ "supportsPlayers":[1,2],"module":"module.js","entry":"climber","apiVersion":1,
+ "license":{"spdx":"LicenseRef-Project-Original","notes":"Original authored implementation and pixel art. No commercial game sprites, ROM data or source copied. Donkey Kong is a reference to the requested mechanic family, not the identity of this game's characters."},
+ "provenance":{"kind":"original","authors":["Arcade project"],"sources":[],"createdAt":"2026-09-19"},
+ "quality":{"status":"draft"},"assets":["assets.json"],"api":"api.md","demo":"demo.js","spec":"spec.json"
+}

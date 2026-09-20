@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "axe-held",
+  "packId": "ninja-adventure",
+  "camera": "top-down",
+  "width": 11,
+  "height": 8,
+  "source": {
+    "path": "original/content/weapon/axe/in_hand.png",
+    "url": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/weapon/axe/in_hand.png",
+    "sha256": "f17ae12622f3fd0a150e7d281d42bb5902bac87b5983e88affdcb63235b9ede0",
+    "sourceRevision": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a"
+  },
+  "pixels": [
+    "....060....",
+    "..0006000..",
+    ".066060660.",
+    "0666d6d6660",
+    "06666666660",
+    "0666d7d6660",
+    ".066070670.",
+    "..00.0.00.."
+  ],
+  "anchor": {
+    "x": 5,
+    "y": 8
+  },
+  "normalization": {
+    "palette": "pico-8",
+    "reviewedOverrides": {}
+  },
+  "anchorOrigin": "Authored bottom-center placement; source attachment pivots have not been reconstructed.",
+  "hitboxes": [],
+  "hurtboxes": [],
+  "animations": {},
+  "tags": [
+    "weapon",
+    "static"
+  ],
+  "notes": "Static source image only. No implied attack animation, damage volume or destruction sequence."
+}

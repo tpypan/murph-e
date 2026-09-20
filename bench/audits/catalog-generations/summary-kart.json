@@ -1,0 +1,726 @@
+{
+  "at": "2026-09-19T21:34:10.297Z",
+  "method": "Read-only VM inspection plans button transitions; original unchanged saved game.js replayed in isolated real Chromium runtime. No teleports, internal state mutations, or model calls. Native 256x224 PNGs and nearest-neighbor 4x copies.",
+  "reports": [
+    {
+      "name": "kart-1p",
+      "id": "2026-09-19-211144675-a-kart-racing-game-around-a-coas-XuHLfP",
+      "sourceHash": "083afb32489ae470c297694558312b9d570af4acbc264d2ba1503ceafe27381e",
+      "terminal": {
+        "state": "win",
+        "winner": null,
+        "frame": 2545
+      },
+      "final": {
+        "phase": "finished",
+        "countdown": 0,
+        "time": 39.41666666666571,
+        "trackLength": 15520,
+        "laps": 3,
+        "timeLimit": 180,
+        "winner": 0,
+        "stats": {
+          "collisions": 4,
+          "driftBoosts": 21,
+          "padBoosts": 29,
+          "checkpointPasses": 64
+        },
+        "checkpoints": [
+          3880,
+          7760,
+          11640,
+          15520
+        ],
+        "racers": [
+          {
+            "id": 0,
+            "human": true,
+            "x": -0.002867180963269995,
+            "speed": 0,
+            "distance": 47161.39166666754,
+            "lap": 3,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 3030,
+            "finishTime": 37.416666666665826,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 1,
+            "human": false,
+            "x": 0.018659581555294347,
+            "speed": 1251.2500000000493,
+            "distance": 43964.487500000505,
+            "lap": 2,
+            "checkpoint": 3,
+            "boost": 1.2436196355685136,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": -0.18239067055393587
+          },
+          {
+            "id": 2,
+            "human": false,
+            "x": -0.24298567675071625,
+            "speed": 1123.195653333436,
+            "distance": 42437.93936089079,
+            "lap": 2,
+            "checkpoint": 2,
+            "boost": 1.0464781972789132,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": 0
+          },
+          {
+            "id": 3,
+            "human": false,
+            "x": -0.1603550554351044,
+            "speed": 1147.209333333406,
+            "distance": 39605.70624444578,
+            "lap": 2,
+            "checkpoint": 2,
+            "boost": 0.31867471817298393,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "boost",
+            "curve": 0
+          },
+          {
+            "id": 4,
+            "human": false,
+            "x": 0.20323380684155073,
+            "speed": 986.7933333334219,
+            "distance": 40755.43772222385,
+            "lap": 2,
+            "checkpoint": 2,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0.33061224489795915
+          },
+          {
+            "id": 5,
+            "human": false,
+            "x": 0.27900263798745384,
+            "speed": 1030.6572000001288,
+            "distance": 43199.90545333578,
+            "lap": 2,
+            "checkpoint": 3,
+            "boost": 0,
+            "drift": 0.6268107871720117,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "driftLeft",
+            "curve": -0.92
+          }
+        ],
+        "positions": [
+          0,
+          1,
+          5,
+          2,
+          4,
+          3
+        ]
+      },
+      "invalidScoreTargets": 52,
+      "failure": null,
+      "errors": [],
+      "shots": [
+        {
+          "name": "idle",
+          "frame": 1,
+          "file": "kart-1p-idle.png",
+          "runtime": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 1,
+            "error": null
+          },
+          "scoreMatches": true
+        },
+        {
+          "name": "straight",
+          "frame": 282,
+          "file": "kart-1p-straight.png",
+          "runtime": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 282,
+            "error": null
+          },
+          "scoreMatches": true
+        },
+        {
+          "name": "drift",
+          "frame": 377,
+          "file": "kart-1p-drift.png",
+          "runtime": {
+            "state": "playing",
+            "score": 25,
+            "scores": [
+              25
+            ],
+            "winner": null,
+            "frame": 377,
+            "error": null
+          },
+          "scoreMatches": true
+        },
+        {
+          "name": "checkpoint",
+          "frame": 424,
+          "file": "kart-1p-checkpoint.png",
+          "runtime": {
+            "state": "playing",
+            "score": 175,
+            "scores": [
+              175
+            ],
+            "winner": null,
+            "frame": 424,
+            "error": null
+          },
+          "scoreMatches": true
+        },
+        {
+          "name": "turbo",
+          "frame": 848,
+          "file": "kart-1p-turbo.png",
+          "runtime": {
+            "state": "playing",
+            "score": 500,
+            "scores": [
+              500
+            ],
+            "winner": null,
+            "frame": 848,
+            "error": null
+          },
+          "scoreMatches": true
+        },
+        {
+          "name": "final-lap",
+          "frame": 1694,
+          "file": "kart-1p-final-lap.png",
+          "runtime": {
+            "state": "playing",
+            "score": 1380,
+            "scores": [
+              1380
+            ],
+            "winner": null,
+            "frame": 1694,
+            "error": null
+          },
+          "scoreMatches": true
+        },
+        {
+          "name": "terminal",
+          "frame": 2546,
+          "file": "kart-1p-terminal.png",
+          "runtime": {
+            "state": "win",
+            "score": 3230,
+            "scores": [
+              3230
+            ],
+            "winner": null,
+            "frame": 2546,
+            "error": null
+          },
+          "scoreMatches": true
+        }
+      ]
+    },
+    {
+      "name": "kart-1p-idle-audit",
+      "id": "2026-09-19-211144675-a-kart-racing-game-around-a-coas-XuHLfP",
+      "sourceHash": "083afb32489ae470c297694558312b9d570af4acbc264d2ba1503ceafe27381e",
+      "terminal": {
+        "state": "gameover",
+        "frame": 10980
+      },
+      "final": {
+        "phase": "finished",
+        "countdown": 0,
+        "time": 180.00000000003539,
+        "trackLength": 15520,
+        "laps": 3,
+        "timeLimit": 180,
+        "winner": null,
+        "stats": {
+          "collisions": 8,
+          "driftBoosts": 26,
+          "padBoosts": 27,
+          "checkpointPasses": 60
+        },
+        "checkpoints": [
+          3880,
+          7760,
+          11640,
+          15520
+        ],
+        "racers": [
+          {
+            "id": 0,
+            "human": true,
+            "x": -0.54,
+            "speed": 0,
+            "distance": 0,
+            "lap": 0,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 1,
+            "human": false,
+            "x": 0.020058781213569174,
+            "speed": 0,
+            "distance": 47115.341666667264,
+            "lap": 3,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": 41.56666666666559,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 2,
+            "human": false,
+            "x": 0.398073887956754,
+            "speed": 0,
+            "distance": 46983.29415778072,
+            "lap": 3,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": 43.066666666665505,
+            "pose": "steerLeft",
+            "curve": 0
+          },
+          {
+            "id": 3,
+            "human": false,
+            "x": -0.04314039523796099,
+            "speed": 0,
+            "distance": 46925.059677779835,
+            "lap": 3,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": 45.43333333333204,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 4,
+            "human": false,
+            "x": -0.15997699380913202,
+            "speed": 0,
+            "distance": 46970.25588444668,
+            "lap": 3,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": 45.68333333333202,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 5,
+            "human": false,
+            "x": -0.499319178214855,
+            "speed": 0,
+            "distance": 47042.13716666772,
+            "lap": 3,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": 42.21666666666555,
+            "pose": "steerRight",
+            "curve": 0
+          }
+        ],
+        "positions": [
+          1,
+          5,
+          2,
+          3,
+          4,
+          0
+        ]
+      },
+      "invalidScoreTargets": 60,
+      "failure": null,
+      "errors": [],
+      "shots": [
+        {
+          "name": "idle",
+          "frame": 1,
+          "file": "kart-1p-idle-audit-idle.png",
+          "runtime": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 1,
+            "error": null
+          },
+          "scoreMatches": true
+        },
+        {
+          "name": "rival-score",
+          "frame": 445,
+          "file": "kart-1p-idle-audit-rival-score.png",
+          "runtime": {
+            "state": "playing",
+            "score": 50,
+            "scores": [
+              50
+            ],
+            "winner": null,
+            "frame": 445,
+            "error": null
+          },
+          "scoreMatches": true
+        },
+        {
+          "name": "rival-finish",
+          "frame": 2675,
+          "file": "kart-1p-idle-audit-rival-finish.png",
+          "runtime": {
+            "state": "playing",
+            "score": 2700,
+            "scores": [
+              2700
+            ],
+            "winner": null,
+            "frame": 2675,
+            "error": null
+          },
+          "scoreMatches": true
+        },
+        {
+          "name": "terminal",
+          "frame": 10981,
+          "file": "kart-1p-idle-audit-terminal.png",
+          "runtime": {
+            "state": "gameover",
+            "score": 3000,
+            "scores": [
+              3000
+            ],
+            "winner": null,
+            "frame": 10981,
+            "error": null
+          },
+          "scoreMatches": true
+        }
+      ]
+    },
+    {
+      "name": "kart-2p",
+      "id": "2026-09-19-211146680-a-kart-racing-game-around-a-coas-7dafTY",
+      "sourceHash": "209a19605573da8abddda0f447eb67141d022a8b0aa8657893a4f7957f388b32",
+      "terminal": {
+        "state": "win",
+        "winner": 0,
+        "frame": 3037
+      },
+      "final": {
+        "phase": "finished",
+        "countdown": 0,
+        "time": 47.616666666665246,
+        "trackLength": 18720,
+        "laps": 3,
+        "timeLimit": 180,
+        "winner": 0,
+        "stats": {
+          "collisions": 5,
+          "driftBoosts": 8,
+          "padBoosts": 31,
+          "checkpointPasses": 66
+        },
+        "checkpoints": [
+          4680,
+          9360,
+          14040,
+          18720
+        ],
+        "racers": [
+          {
+            "id": 0,
+            "human": true,
+            "x": 0.1233991687570455,
+            "speed": 0,
+            "distance": 56755.49516666849,
+            "lap": 3,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 4001,
+            "finishTime": 45.61666666666536,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 1,
+            "human": true,
+            "x": -0.12826972891165264,
+            "speed": 0,
+            "distance": 56667.62016000181,
+            "lap": 3,
+            "checkpoint": 0,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 4000,
+            "finishTime": 45.76666666666535,
+            "pose": "idle",
+            "curve": 0
+          },
+          {
+            "id": 2,
+            "human": false,
+            "x": 0.26079796851316656,
+            "speed": 1117.3433333334956,
+            "distance": 51722.065000003604,
+            "lap": 2,
+            "checkpoint": 3,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": 0
+          },
+          {
+            "id": 3,
+            "human": false,
+            "x": -0.13696794342878443,
+            "speed": 973.6397333334438,
+            "distance": 48793.786446669015,
+            "lap": 2,
+            "checkpoint": 2,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "steerLeft",
+            "curve": -0.46501457725947515
+          },
+          {
+            "id": 4,
+            "human": false,
+            "x": -0.29644260852386833,
+            "speed": 1064.7565333334558,
+            "distance": 49476.955362224915,
+            "lap": 2,
+            "checkpoint": 2,
+            "boost": 0,
+            "drift": 0.13335,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "driftLeft",
+            "curve": -0.58
+          },
+          {
+            "id": 5,
+            "human": false,
+            "x": 0.14910831790168902,
+            "speed": 1102.1666666668334,
+            "distance": 53175.37361111497,
+            "lap": 2,
+            "checkpoint": 3,
+            "boost": 0,
+            "drift": 0,
+            "crash": 0,
+            "score": 0,
+            "finishTime": null,
+            "pose": "drive",
+            "curve": -0.18192419825072884
+          }
+        ],
+        "positions": [
+          0,
+          1,
+          5,
+          2,
+          4,
+          3
+        ]
+      },
+      "invalidScoreTargets": 0,
+      "failure": null,
+      "errors": [],
+      "shots": [
+        {
+          "name": "idle",
+          "frame": 1,
+          "file": "kart-2p-idle.png",
+          "runtime": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 1,
+            "error": null
+          },
+          "scoreMatches": true
+        },
+        {
+          "name": "straight",
+          "frame": 284,
+          "file": "kart-2p-straight.png",
+          "runtime": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 284,
+            "error": null
+          },
+          "scoreMatches": true
+        },
+        {
+          "name": "checkpoint",
+          "frame": 465,
+          "file": "kart-2p-checkpoint.png",
+          "runtime": {
+            "state": "playing",
+            "score": 225,
+            "scores": [
+              225,
+              25
+            ],
+            "winner": null,
+            "frame": 465,
+            "error": null
+          },
+          "scoreMatches": true
+        },
+        {
+          "name": "drift",
+          "frame": 810,
+          "file": "kart-2p-drift.png",
+          "runtime": {
+            "state": "playing",
+            "score": 425,
+            "scores": [
+              425,
+              425
+            ],
+            "winner": null,
+            "frame": 810,
+            "error": null
+          },
+          "scoreMatches": true
+        },
+        {
+          "name": "turbo",
+          "frame": 1031,
+          "file": "kart-2p-turbo.png",
+          "runtime": {
+            "state": "playing",
+            "score": 650,
+            "scores": [
+              650,
+              625
+            ],
+            "winner": null,
+            "frame": 1031,
+            "error": null
+          },
+          "scoreMatches": true
+        },
+        {
+          "name": "final-lap",
+          "frame": 2029,
+          "file": "kart-2p-final-lap.png",
+          "runtime": {
+            "state": "playing",
+            "score": 2000,
+            "scores": [
+              2000,
+              1650
+            ],
+            "winner": null,
+            "frame": 2029,
+            "error": null
+          },
+          "scoreMatches": true
+        },
+        {
+          "name": "terminal",
+          "frame": 3038,
+          "file": "kart-2p-terminal.png",
+          "runtime": {
+            "state": "win",
+            "score": 4001,
+            "scores": [
+              4001,
+              4000
+            ],
+            "winner": 0,
+            "frame": 3038,
+            "error": null
+          },
+          "scoreMatches": true
+        }
+      ]
+    }
+  ]
+}

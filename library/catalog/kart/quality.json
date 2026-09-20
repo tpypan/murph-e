@@ -1,0 +1,43 @@
+{
+  "contentHash": "656b9abef8dfe90156d78d5c09cc16ae9e17472df906c62d5c712c9ab69430e0",
+  "status": "verified",
+  "reviewedAt": "2026-09-20T00:33:22.950Z",
+  "checks": [
+    {
+      "name": "behavior",
+      "passed": true,
+      "artifact": "behavior-results.json",
+      "artifactHash": "f97a404ded9db737f125195b30a3e72ab0138b4d2b0ff3c38c74149627e870fb"
+    },
+    {
+      "name": "visual",
+      "passed": true,
+      "artifact": "verification/visual-review.json",
+      "artifactHash": "58a35f01abe7060e81c18a76a3f262ea5c2910dc13e227d867288dc33621e2eb"
+    },
+    {
+      "name": "runtime-1p",
+      "passed": true,
+      "artifact": "verification/default-play/runtime-proof.json",
+      "artifactHash": "308b64177582f534a03ad32744acb76076b776704d59bdb70391492932fa802c"
+    },
+    {
+      "name": "runtime-2p",
+      "passed": true,
+      "artifact": "verification/default-play/runtime-proof.json",
+      "artifactHash": "308b64177582f534a03ad32744acb76076b776704d59bdb70391492932fa802c"
+    },
+    {
+      "name": "palette-behavior",
+      "passed": true,
+      "artifact": "verification/palette-adapter/behavior.tap",
+      "artifactHash": "cc44b44aa9b39428f4aae3bfb8471d7bd5b8ba3153db85c0b8354da86746279c"
+    },
+    {
+      "name": "palette-native",
+      "passed": true,
+      "artifact": "verification/palette-adapter/scenery-after.json",
+      "artifactHash": "11450a921487647686ec40cfabf80a3e48399ac21fc4ed0e4f8a025066796b2a"
+    }
+  ]
+}

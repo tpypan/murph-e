@@ -1,0 +1,185 @@
+{
+  "note": "Initial batch stopped after complete-file responses violated the edit-block contract. Three initial attempts; not a complete benchmark. Fixed by a stage-specific system output contract, then a fresh remix benchmark.",
+  "rows": [
+    {
+      "runId": "2026-09-19-1838-add-a-boss-that-shoots-back",
+      "prompt": "add a boss that shoots back",
+      "events": [
+        {
+          "t": 3813,
+          "type": "remix",
+          "phase": "start",
+          "slug": "pizza-invaders",
+          "changes": [
+            "Add a large crowned pizza boss after every two regular waves.",
+            "Make the boss strafe across the top and fire clearly telegraphed aimed three-shot topping volleys every 2.5 seconds.",
+            "Give the boss 24 laser-hit points, a distinct hit flash, and a 500-point defeat bonus.",
+            "Pause boss fire during its entry and damage recovery, and cap its active toppings at 6."
+          ]
+        },
+        {
+          "t": 51101,
+          "type": "remix",
+          "phase": "built",
+          "ms": 47286,
+          "ttftMs": 2042,
+          "usage": {
+            "input": 9439,
+            "cached": 5609,
+            "output": 3074,
+            "reasoning": 37
+          },
+          "blocks": 0,
+          "applyError": "the reply had no search/replace blocks",
+          "syntaxError": null
+        },
+        {
+          "t": 51101,
+          "type": "repair",
+          "phase": "start",
+          "stage": "remix",
+          "observations": [
+            "the edit could not be applied: the reply had no search/replace blocks"
+          ]
+        },
+        {
+          "t": 94029,
+          "type": "repair",
+          "phase": "done",
+          "stage": "remix",
+          "ms": 42770,
+          "ok": true,
+          "observations": []
+        },
+        {
+          "t": 94030,
+          "type": "ready",
+          "source": "remix",
+          "title": "PIZZA INVADERS",
+          "slug": "pizza-invaders",
+          "totalMs": 94030
+        }
+      ]
+    },
+    {
+      "runId": "2026-09-19-1838-make-it-faster",
+      "prompt": "make it faster",
+      "events": [
+        {
+          "t": 3308,
+          "type": "remix",
+          "phase": "start",
+          "slug": "frogger-dash",
+          "changes": [
+            "Increase all car speeds by 25% and raise their starting speed slightly.",
+            "Cap speed and keep at least one readable gap between cars.",
+            "Preserve the frog's movement, hop distance, scoring, and road layout."
+          ]
+        },
+        {
+          "t": 41920,
+          "type": "remix",
+          "phase": "built",
+          "ms": 38611,
+          "ttftMs": 5257,
+          "usage": {
+            "input": 8883,
+            "cached": 5609,
+            "output": 2582,
+            "reasoning": 103
+          },
+          "blocks": 0,
+          "applyError": "the reply had no search/replace blocks",
+          "syntaxError": null
+        },
+        {
+          "t": 41920,
+          "type": "repair",
+          "phase": "start",
+          "stage": "remix",
+          "observations": [
+            "the edit could not be applied: the reply had no search/replace blocks"
+          ]
+        },
+        {
+          "t": 78223,
+          "type": "repair",
+          "phase": "done",
+          "stage": "remix",
+          "ms": 36122,
+          "ok": true,
+          "observations": [
+            "holding DOWN changed nothing on screen, including after A when available"
+          ]
+        },
+        {
+          "t": 78223,
+          "type": "ready",
+          "source": "remix",
+          "title": "FROGGER DASH",
+          "slug": "frogger-dash",
+          "totalMs": 78224
+        }
+      ]
+    },
+    {
+      "runId": "2026-09-19-1838-make-the-snake-longer-at-the-sta",
+      "prompt": "make the snake longer at the start and slower",
+      "events": [
+        {
+          "t": 2701,
+          "type": "remix",
+          "phase": "start",
+          "slug": "train-snake",
+          "changes": [
+            "Start the train with 6 cars.",
+            "Reduce base movement speed by 25%.",
+            "Keep the A boost brief and bounded, with gradual capped ramping."
+          ]
+        },
+        {
+          "t": 40332,
+          "type": "remix",
+          "phase": "built",
+          "ms": 37630,
+          "ttftMs": 4806,
+          "usage": {
+            "input": 8834,
+            "cached": 5609,
+            "output": 2500,
+            "reasoning": 90
+          },
+          "blocks": 0,
+          "applyError": "the reply had no search/replace blocks",
+          "syntaxError": null
+        },
+        {
+          "t": 40332,
+          "type": "repair",
+          "phase": "start",
+          "stage": "remix",
+          "observations": [
+            "the edit could not be applied: the reply had no search/replace blocks"
+          ]
+        },
+        {
+          "t": 74474,
+          "type": "repair",
+          "phase": "done",
+          "stage": "remix",
+          "ms": 33897,
+          "ok": true,
+          "observations": []
+        },
+        {
+          "t": 74475,
+          "type": "ready",
+          "source": "remix",
+          "title": "TRAIN SNAKE",
+          "slug": "train-snake",
+          "totalMs": 74475
+        }
+      ]
+    }
+  ]
+}

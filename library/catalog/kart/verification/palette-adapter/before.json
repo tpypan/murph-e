@@ -1,0 +1,76 @@
+{
+  "moduleHash": "c5cd04fd28aef6d52635089262ec3ad88b4f14875d651e857afe695142d568a9",
+  "legacyEqual": false,
+  "results": [
+    {
+      "players": 1,
+      "name": "grid",
+      "frame": 1,
+      "hash": "1a4541ba",
+      "errors": []
+    },
+    {
+      "players": 1,
+      "name": "straight",
+      "frame": 440,
+      "hash": "7b2f0e7e",
+      "errors": []
+    },
+    {
+      "players": 1,
+      "name": "corner",
+      "frame": 540,
+      "hash": "debe078d",
+      "errors": []
+    },
+    {
+      "players": 1,
+      "name": "s-bend",
+      "frame": 660,
+      "hash": "cde4f24d",
+      "errors": []
+    },
+    {
+      "players": 1,
+      "name": "late",
+      "frame": 1800,
+      "hash": "d3e9c20a",
+      "errors": []
+    },
+    {
+      "players": 2,
+      "name": "grid",
+      "frame": 1,
+      "hash": "87f2a695",
+      "errors": []
+    },
+    {
+      "players": 2,
+      "name": "straight",
+      "frame": 440,
+      "hash": "6b43849d",
+      "errors": []
+    },
+    {
+      "players": 2,
+      "name": "corner",
+      "frame": 540,
+      "hash": "c3d4096b",
+      "errors": []
+    },
+    {
+      "players": 2,
+      "name": "s-bend",
+      "frame": 660,
+      "hash": "47c27e11",
+      "errors": []
+    },
+    {
+      "players": 2,
+      "name": "late",
+      "frame": 1800,
+      "hash": "c3eb3b2b",
+      "errors": []
+    }
+  ]
+}

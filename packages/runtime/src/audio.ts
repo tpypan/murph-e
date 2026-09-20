@@ -1,53 +1,9 @@
 // A tiny Web Audio synth: eight named effects plus a raw tone. Everything is
 // generated, nothing is loaded. Muted entirely in probe mode.
 
-export type Wave = 'square' | 'triangle' | 'saw' | 'noise'
-export const SFX_NAMES = [
-  'jump',
-  'hit',
-  'coin',
-  'explode',
-  'select',
-  'die',
-  'powerup',
-  'shoot',
-] as const
-export type SfxName = (typeof SFX_NAMES)[number]
+import { SFX_BANK, type SfxName, type SfxNote, type Wave } from './sound-bank'
 
-interface Note {
-  wave: Wave
-  f?: number
-  to?: number
-  ms: number
-  delay?: number
-  vol?: number
-}
-
-const SFX: Record<SfxName, Note[]> = {
-  jump: [{ wave: 'square', f: 260, to: 720, ms: 120 }],
-  hit: [
-    { wave: 'saw', f: 220, to: 60, ms: 150 },
-    { wave: 'noise', ms: 80, vol: 0.4 },
-  ],
-  coin: [
-    { wave: 'square', f: 988, ms: 70 },
-    { wave: 'square', f: 1319, ms: 220, delay: 70 },
-  ],
-  explode: [
-    { wave: 'noise', ms: 450 },
-    { wave: 'saw', f: 120, to: 30, ms: 400, vol: 0.5 },
-  ],
-  select: [{ wave: 'square', f: 660, ms: 50 }],
-  die: [
-    { wave: 'saw', f: 440, to: 40, ms: 600 },
-    { wave: 'noise', ms: 300, delay: 120, vol: 0.5 },
-  ],
-  powerup: [
-    { wave: 'triangle', f: 440, to: 880, ms: 120 },
-    { wave: 'triangle', f: 880, to: 1760, ms: 220, delay: 120 },
-  ],
-  shoot: [{ wave: 'square', f: 900, to: 200, ms: 90 }],
-}
+export { SFX_NAMES, type SfxName, type Wave } from './sound-bank'
 
 const OSC_TYPE: Record<Exclude<Wave, 'noise'>, OscillatorType> = {
   square: 'square',
@@ -57,6 +13,7 @@ const OSC_TYPE: Record<Exclude<Wave, 'noise'>, OscillatorType> = {
 
 export class Synth {
   private ctx: AudioContext | null = null
+  private master: GainNode | null = null
   private noise: AudioBuffer | null = null
   private lastPlayed = new Map<string, number>()
   private muted: boolean
@@ -65,11 +22,18 @@ export class Synth {
     this.muted = muted
   }
 
+  setMuted(muted: boolean): void {
+    this.muted = muted
+    if (this.master) this.master.gain.value = muted ? 0 : 1
+  }
+
   private ensure(): AudioContext | null {
     if (this.muted) return null
     if (!this.ctx) {
       try {
         this.ctx = new AudioContext()
+        this.master = this.ctx.createGain()
+        this.master.connect(this.ctx.destination)
       } catch {
         this.muted = true
         return null
@@ -86,7 +50,7 @@ export class Synth {
 
   sfx(name: unknown): void {
     const key = String(name)
-    const notes = SFX[key as SfxName]
+    const notes = SFX_BANK[key as SfxName]
     if (!notes) return
     // A game that calls sfx('hit') every frame while colliding would drone.
     const now = performance.now()
@@ -107,7 +71,7 @@ export class Synth {
     this.play({ wave: w in OSC_TYPE || w === 'noise' ? w : 'square', f, ms: Math.min(d, 2000) })
   }
 
-  private play(n: Note): void {
+  private play(n: SfxNote): void {
     const ctx = this.ensure()
     if (!ctx) return
     const t0 = ctx.currentTime + (n.delay ?? 0) / 1000
@@ -117,7 +81,7 @@ export class Synth {
     gain.gain.setValueAtTime(0.0001, t0)
     gain.gain.linearRampToValueAtTime(vol, t0 + 0.005)
     gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur)
-    gain.connect(ctx.destination)
+    gain.connect(this.master!)
     if (n.wave === 'noise') {
       const src = ctx.createBufferSource()
       src.buffer = this.noiseBuffer(ctx)

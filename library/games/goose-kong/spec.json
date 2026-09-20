@@ -1,0 +1,54 @@
+{
+  "title": "GOOSE KONG",
+  "oneLiner": "Guide a determined goose up the girders, leap over barrels, and rescue its friend at the top.",
+  "genre": "platforming arcade",
+  "mechanics": [
+    "Use the tested climber foundation with one goose player, three stages, three lives, and a 100-second limit per life; configure a custom goose avatar and goose rescue target.",
+    "Walk left/right on five sloped girders; press Up/Down only at ladders to climb or descend. Press A to jump, with held A producing the full jump and a tap producing a shorter jump.",
+    "The gorilla at the upper-left telegraphs each barrel throw; barrels roll downhill, bounce at girder edges, and sometimes take usable ladders. Later stages add fire hazards.",
+    "Jumping over each individual barrel awards 100 points once per goose/barrel event. Reaching each new floor awards 100 points once per stage.",
+    "Reach the top-right target to rescue it, award the remaining time bonus plus 1000 points, show GOOSE RESCUED!, and advance to the next layout.",
+    "A barrel, fire hazard, fall, or timer expiry costs one life. After a hit, show the goose hurt/death animation, respawn at the highest reached floor with temporary protection, and preserve the stage until lives run out.",
+    "Stage layouts and hazard cadence escalate across three stages while keeping a guaranteed usable ladder route and bounded simultaneous threats; each stage begins with a brief low-pressure throw cadence.",
+    "Clear all three stages to win. Exhausting all lives loses; normal cabinet START/reset behavior handles a new round.",
+    "Provide immediate scoring within the first barrel encounter: the skillful action is timing a jump to clear a moving barrel while staying on the current girder and avoiding its edge or ladder route."
+  ],
+  "artDirection": "256x224 construction-site screens with five rust-orange sloped girders, dark blue-black sky, bright ladders, oil drum, and a large animated gorilla silhouette at upper left. The goose player uses a compact 20x20 maximum avatar compatible with the climber foundation: white body, orange beak and feet, black eye, broad readable wing silhouette, distinct idle, two-frame waddling walk, ladder-climb, airborne wing-out jump, hurt flinch, and death poses. Keep the goose high-contrast against the girders and hazards. Barrels are red-brown rolling circles with bright highlight pixels; fire hazards are orange-red animated sprites; the top rescue target is a small recognizable gosling or goose friend with a waiting and rescued pose. Use the arcade 16-color palette, reserving pale white/yellow for the goose and target and red/orange for hazards and warning effects.",
+  "referenceIntent": {
+    "reference": "Donkey Kong",
+    "preserve": [
+      "Single-screen construction-site platforming with sloped girders and ladders",
+      "A top-level rescue goal",
+      "Rolling barrels and fire hazards as escalating threats",
+      "Jumping over hazards for points",
+      "Multi-stage progression with a timer and limited lives"
+    ],
+    "change": [
+      "Replace the player character with a goose while retaining the original climber controller and objectives",
+      "The goose is the playable rescuer; the construction-site gorilla remains the hazard source"
+    ]
+  },
+  "controls": {
+    "left": "Walk left while grounded on a girder; also steer during a jump.",
+    "right": "Walk right while grounded on a girder; also steer during a jump.",
+    "up": "Climb upward when overlapping a usable ladder; otherwise no effect.",
+    "down": "Climb downward when overlapping a usable ladder; otherwise no effect.",
+    "a": "Jump while grounded or within the climber's supported jump grace window; holding preserves full height and releasing early shortens ascent.",
+    "b": null
+  },
+  "palette": "arcade",
+  "lose": "Lose one life on a barrel, fire, fall, or timer expiry; the game ends when all three lives are exhausted.",
+  "scoring": "100 for each new floor, 100 for each barrel jumped once, plus the remaining-time bonus and 1000 for each rescue.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "reference-identity",
+    "platforming",
+    "readability",
+    "pacing"
+  ],
+  "players": 1,
+  "runId": "2026-09-19-235056742-i-want-to-make-a-game-that-is-li-GPqFV8"
+}

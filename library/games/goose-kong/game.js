@@ -1,0 +1,638 @@
+// <arcade-catalog-bundle>
+// dk-climber-reference@1.0.0 b30a039e6d600ef3386a1d4ddcde00a17f7843ee9ebddc6d080db3192a423a22
+const ARCADE = Object.freeze({
+"climber": ((function(){
+const base=((config = {}) => {
+  const ART = {"sets":{"worker":{"width":16,"height":20,"frames":{"idle-0":{"pixels":["................",".....aaaaaaa....",".....aaaaaaa....","....aaaaaaaaa...","....aaaaaaaaa...","...99999999999..","......fffffff...",".....444fff00...",".....444fffff...",".....444fffff...","........444.....","....c77ccc77....","...fff7ccc77fff.","...fffccccccfff.","...fff11111cfff.","...fff11111cfff.","....cc11111c....",".....111.111....",".....111.111....","....0000.0000..."],"durationMs":300,"anchor":{"x":8,"y":20},"hurtboxes":[{"x":4,"y":4,"w":8,"h":16}],"hitboxes":[],"sockets":{"hand":{"x":13,"y":12},"head":{"x":8,"y":4}}},"idle-1":{"pixels":["................",".....aaaaaaa....",".....aaaaaaa....","....aaaaaaaaa...","....aaaaaaaaa...","...99999999999..","......fffffff...",".....444fff00...",".....444fff00...",".....444fffff...","........444.....","....c77ccc77....","...fff7ccc77fff.","...fffccccccfff.","...fff11111cfff.","...fff11111cfff.","....cc11111c....",".....111.111....",".....111.111....","....0000.0000..."],"durationMs":300,"anchor":{"x":8,"y":20},"hurtboxes":[{"x":4,"y":4,"w":8,"h":16}],"hitboxes":[],"sockets":{"hand":{"x":13,"y":12},"head":{"x":8,"y":4}}},"walk-0":{"pixels":["................",".....aaaaaaa....",".....aaaaaaa....","....aaaaaaaaa...","....aaaaaaaaa...","...99999999999..","......fffffff...",".....444fff00...",".....444fffff...",".....444fffff...","........444.....","....c77ccc77....","...fff7ccc77fff.","...fffccccccfff.","...fff11111cfff.","...fff11111cfff.","....cc11111c....",".....111.111....",".....111.111....","....0000.0000..."],"durationMs":100,"anchor":{"x":8,"y":20},"hurtboxes":[{"x":4,"y":4,"w":8,"h":16}],"hitboxes":[],"sockets":{"hand":{"x":13,"y":12},"head":{"x":8,"y":4}}},"walk-1":{"pixels":["................","................",".....aaaaaaa....",".....aaaaaaa....","....aaaaaaaaa...","....aaaaaaaaa...","...99999999999..","......fffffff...",".....444fff00...",".....444fffff...",".....444fffff...","........444.....","...fff7ccc77fff.","...fff7ccc77fff.","...fffccccccfff.","...fff11111cfff.","....cc11111c....","...1111111111...","...111....111...","..0000....10000."],"durationMs":100,"anchor":{"x":8,"y":20},"hurtboxes":[{"x":4,"y":4,"w":8,"h":16}],"hitboxes":[],"sockets":{"hand":{"x":13,"y":12},"head":{"x":8,"y":4}}},"walk-2":{"pixels":["................",".....aaaaaaa....",".....aaaaaaa....","....aaaaaaaaa...","....aaaaaaaaa...","...99999999999..","......fffffff...",".....444fff00...",".....444fffff...",".....444fffff...","........444.....","....c77ccc77....","...fff7ccc77fff.","...fffccccccfff.","...fff11111cfff.","...fff11111cfff.","....cc11111c....",".....111.111....",".....111.111....","....0000.0000..."],"durationMs":100,"anchor":{"x":8,"y":20},"hurtboxes":[{"x":4,"y":4,"w":8,"h":16}],"hitboxes":[],"sockets":{"hand":{"x":13,"y":12},"head":{"x":8,"y":4}}},"walk-3":{"pixels":["................","................",".....aaaaaaa....",".....aaaaaaa....","....aaaaaaaaa...","....aaaaaaaaa...","...99999999999..","......fffffff...",".....444fff00...",".....444fffff...",".....444fffff...","........444.....","...fff7ccc77fff.","...fff7ccc77fff.","...fffccccccfff.","...fff11111cfff.","....cc11111c....","...1111111111...","...111....111...","..0000....10000."],"durationMs":100,"anchor":{"x":8,"y":20},"hurtboxes":[{"x":4,"y":4,"w":8,"h":16}],"hitboxes":[],"sockets":{"hand":{"x":13,"y":12},"head":{"x":8,"y":4}}},"climb-0":{"pixels":["................",".....aaaaaaa....",".....aaaaaaa....","....aaaaaaaaa...","....aaaaaaaaa...","...999999999fff.","......fffffffff.",".....444fffffff.",".....444fffffff.","..fff444fffffff.","..fff...444.fff.","..fff77ccc77fff.","..fff77ccc77....","..fffccccccc....","..fffc11111c....","..fffc11111c....","....cc1111111...","....111...111...","....111.........","....111........."],"durationMs":130,"anchor":{"x":8,"y":20},"hurtboxes":[{"x":4,"y":4,"w":8,"h":16}],"hitboxes":[],"sockets":{"hand":{"x":13,"y":12},"head":{"x":8,"y":4}}},"climb-1":{"pixels":["................",".....aaaaaaa....",".....aaaaaaa....","....aaaaaaaaa...","....aaaaaaaaa...","..fff999999999..","..fff.fffffff...","..fff444fffff...","..fff444fffff...","..fff444fffffff.","..fff...444.fff.","..fff77ccc77fff.","....c77ccc77fff.","....ccccccccfff.","....cc11111cfff.","....cc11111cfff.","....cc1111111...","....111...111...","....111...111...","..........111..."],"durationMs":130,"anchor":{"x":8,"y":20},"hurtboxes":[{"x":4,"y":4,"w":8,"h":16}],"hitboxes":[],"sockets":{"hand":{"x":13,"y":12},"head":{"x":8,"y":4}}},"jump-rise":{"pixels":["................",".....aaaaaaa....",".....aaaaaaa....","....aaaaaaaaa...","....aaaaaaaaa...","...99999999999..","......fffffff...",".....444fff00...","..fff444fffffff.","..fff444fffffff.","..fff...444.fff.","..fff77ccc77fff.","..fff77ccc77fff.","..fffcccccccfff.","....cc11111c....","....cc11111111..","...11111111111..","...1111.........","................","................"],"durationMs":180,"anchor":{"x":8,"y":20},"hurtboxes":[{"x":4,"y":4,"w":8,"h":16}],"hitboxes":[],"sockets":{"hand":{"x":13,"y":12},"head":{"x":8,"y":4}}},"jump-fall":{"pixels":["................",".....aaaaaaa....",".....aaaaaaa....","....aaaaaaaaa...","....aaaaaaaaa...","...99999999999..","......fffffff...",".....444fff00...","..fff444fffffff.","..fff444fffffff.","..fff...444.fff.","..fff77ccc77fff.","..fff77ccc77fff.","..fffcccccccfff.","....cc11111c....","....cc11111c....","....cc11111c....","...1111...1111..","...1111...1111..","...1111...1111.."],"durationMs":180,"anchor":{"x":8,"y":20},"hurtboxes":[{"x":4,"y":4,"w":8,"h":16}],"hitboxes":[],"sockets":{"hand":{"x":13,"y":12},"head":{"x":8,"y":4}}},"hurt-0":{"pixels":["................",".....aaaaaaa....",".....aaaaaaa....","....aaaaaaaaa...","....aaaaaaaaa...","...99999999999..","......fffffff...",".....4488ff00...",".....4488ffff...",".ffff444fffff...",".ffff...444.ffff",".ffff77ccc77ffff","....c77ccc77ffff","....cccccccc....","....cc11111c....","....cc11111c....","....cc11111c....","..1111....1111..","..1111....1111..","..1111....1111.."],"durationMs":100,"anchor":{"x":8,"y":20},"hurtboxes":[{"x":4,"y":4,"w":8,"h":16}],"hitboxes":[],"sockets":{"hand":{"x":13,"y":12},"head":{"x":8,"y":4}}},"hurt-1":{"pixels":["................",".....aaaaaaa....",".....aaaaaaa....","....aaaaaaaaa...","....aaaaaaaaa...","...99999999999..","......fffffff...",".....4488ff00...",".....4488ffff...",".ffff444fffff...",".ffff...444.ffff",".ffff77ccc77ffff","....c77ccc77ffff","....cccccccc....","....cc11111c....","....cc11111c....","....cc11111c....","..1111....1111..","..1111....1111..","..1111....1111.."],"durationMs":100,"anchor":{"x":8,"y":20},"hurtboxes":[{"x":4,"y":4,"w":8,"h":16}],"hitboxes":[],"sockets":{"hand":{"x":13,"y":12},"head":{"x":8,"y":4}}},"death-0":{"pixels":["................","................","................","................","................","................","................","................","................",".aaaaa..........",".aaaaa..........",".aaaaacccccccc..",".ccccccccccccc..",".cccccccccfffff.",".cccccccccfffff.",".c1111cccc1111f.","..1111....1111..","................","................","................"],"durationMs":650,"anchor":{"x":8,"y":20},"hurtboxes":[],"hitboxes":[],"sockets":{"hand":{"x":13,"y":12},"head":{"x":8,"y":4}}}},"animations":{"idle":{"frames":["idle-0","idle-1"],"frameMs":300,"loop":true},"walk":{"frames":["walk-0","walk-1","walk-2","walk-3"],"frameMs":100,"loop":true},"climb":{"frames":["climb-0","climb-1"],"frameMs":130,"loop":true},"jump":{"frames":["jump-rise","jump-fall"],"frameMs":180,"loop":false},"hurt":{"frames":["hurt-0","hurt-1"],"frameMs":100,"loop":true},"death":{"frames":["death-0"],"frameMs":650,"loop":false}}},"gorilla":{"width":36,"height":32,"frames":{"idle-0":{"pixels":["..................4.................","..............444444444.............","..........aaaaaaaaaaaaaaaa..........","..........aaaaaaaaaaaaaaaa..........","..........aaaaaaaaaaaaaaaa..........","........99999999999999999999........","........99999999999999999999........","..........44444444444444444.........","..........44ffffffffffff444.........",".........4400770fffff0770044........","..........400770fffff077004.........",".........4400000fffff0000044........","........44400000fffff00000444.......","........4444fff9999999ff44444.......",".......44444fff9999999ff444444......",".......44449444444444444494444......","4444444444499fffffffffff994444444444","4444444444499fffffffffff994444444444","444444444499999999499999999444444444","444444444444999999999999444444444444","444444444444999999999999444444444444","444444444444999999999999444444444444","444444444444999999999999444444444444","444444444444999999999999444444444444","4ffffff4444499999999999944444ffffff4","4ffffff4444449999999999944444ffffff4",".ffffff4444444999999999444444ffffff.",".....44444444449999999444444444.....","...444444444444444944444444444444...","...4444444444.4444444444444444444...","...4444444444.....4....4444444444...","...4444444444..........4444444444..."],"durationMs":350,"anchor":{"x":18,"y":32},"hurtboxes":[],"hitboxes":[],"sockets":{"barrel":{"x":32,"y":18}}},"idle-1":{"pixels":["..................4.................","..............444444444.............","..........aaaaaaaaaaaaaaaa..........","..........aaaaaaaaaaaaaaaa..........","..........aaaaaaaaaaaaaaaa..........","........99999999999999999999........","........99999999999999999999........","..........44444444444444444.........","..........44ffffffffffff444.........",".........4400770fffff0770044........","..........400770fffff077004.........",".........4400000fffff0000044........","........44400000fffff00000444.......","........4444fff9999999ff44444.......",".......44444fff9999999ff444444......",".......44449444444444444494444444444",".......444499fffffffffff994444444444","4444444444499fffffffffff994444444444","444444444499999999499999999444444444","444444444444999999999999444444444444","444444444444999999999999444444444444","444444444444999999999999444444444444","444444444444999999999999444444444444","44444444444499999999999944444ffffff4","44444444444499999999999944444ffffff4","4ffffff4444449999999999944444ffffff.","4ffffff444444499999999944444444.....",".ffffff444444449999999444444444.....","...444444444444444944444444444444...","...4444444444.4444444444444444444...","...4444444444.....4....4444444444...","...4444444444..........4444444444..."],"durationMs":350,"anchor":{"x":18,"y":32},"hurtboxes":[],"hitboxes":[],"sockets":{"barrel":{"x":32,"y":18}}},"throw-0":{"pixels":["..................4.................","..............444444444.............","..........aaaaaaaaaaaaaaaa..........","..........aaaaaaaaaaaaaaaa..........","..........aaaaaaaaaaaaaaaa..........","........99999999999999999999........","........999999999999999999999999999.","..........4444444444444444477777777.","..........44ffffffffffff44499999999.",".........4400770fffff07700499999999.","..........400770fffff07700499999999.",".........4400000fffff00000477777777.",".fffffff44400000fffff00000499999999.",".fffffff4444fff9999999ff44444444444.",".fffffff4444fff9999999ff44444444444.",".4444444444944444444444449444444444.",".4444444444990000000000099444444444.",".4444444444990000000000099444444444.",".4444444449999999949999999944444444.",".4444444444499999999999944444444444.",".444444444449999999999994444444.....",".444444444449999999999994444444.....",".....44444449999999999994444444.....",".....44444449999999999994444444.....",".....44444449999999999994444444.....",".....44444444999999999994444444.....",".....44444444499999999944444444.....",".....44444444449999999444444444.....","...444444444444444944444444444444...","...4444444444.4444444444444444444...","...4444444444.....4....4444444444...","...4444444444..........4444444444..."],"durationMs":160,"anchor":{"x":18,"y":32},"hurtboxes":[],"hitboxes":[],"sockets":{"barrel":{"x":32,"y":6}}},"throw-1":{"pixels":["..................4........99999999.","..............444444444....99999999.","..........aaaaaaaaaaaaaaaa.77777777.",".fffffff..aaaaaaaaaaaaaaaa.99999999.",".fffffff..aaaaaaaaaaaaaaaa..4444444.",".fffffff999999999999999999994444444.",".4444444999999999999999999994444444.",".4444444..44444444444444444.4444444.",".4444444..44ffffffffffff444.4444444.",".4444444.4400770fffff07700444444444.",".4444444..400770fffff077004.4444444.",".4444444.4400000fffff0000044........",".444444444400000fffff00000444.......","........4444fff9999999ff44444.......",".......44444fff9999999ff444444......",".......44449444444444444494444......",".......44449900000000000994444......",".......44449900000000000994444......","......4444999999994999999994444.....",".....44444449999999999994444444.....",".....44444449999999999994444444.....",".....44444449999999999994444444.....",".....44444449999999999994444444.....",".....44444449999999999994444444.....",".....44444449999999999994444444.....",".....44444444999999999994444444.....",".....44444444499999999944444444.....",".....44444444449999999444444444.....","...444444444444444944444444444444...","...4444444444.4444444444444444444...","...4444444444.....4....4444444444...","...4444444444..........4444444444..."],"durationMs":160,"anchor":{"x":18,"y":32},"hurtboxes":[],"hitboxes":[],"sockets":{"barrel":{"x":32,"y":6}}},"throw-2":{"pixels":["..................4.................","..............444444444.............","..........aaaaaaaaaaaaaaaa..........","..........aaaaaaaaaaaaaaaa..........","..........aaaaaaaaaaaaaaaa..........","........99999999999999999999........","........99999999999999999999........","..........44444444444444444.........","..........44ffffffffffff444.fffffff.",".........4400770fffff0770044fffffff.",".fffffff..400770fffff077004.fffffff.",".fffffff.4400000fffff00000444444444.",".fffffff44400000fffff00000444444444.",".44444444444fff9999999ff44444444444.",".44444444444fff9999999ff44444444444.",".4444444444944444444444449444444444.",".4444444444990000000000099444444444.",".4444444444990000000000099444444444.",".444444444999999994999999994444.....",".444444444449999999999994444444.....",".....44444449999999999994444444.....",".....44444449999999999994444444.....",".....44444449999999999994444444.....",".....44444449999999999994444444.....",".....44444449999999999994444444.....",".....44444444999999999994444444.....",".....44444444499999999944444444.....",".....44444444449999999444444444.....","...444444444444444944444444444444...","...4444444444.4444444444444444444...","...4444444444.....4....4444444444...","...4444444444..........4444444444..."],"durationMs":160,"anchor":{"x":18,"y":32},"hurtboxes":[],"hitboxes":[],"sockets":{"barrel":{"x":32,"y":6}}}},"animations":{"idle":{"frames":["idle-0","idle-1"],"frameMs":350,"loop":true},"throw":{"frames":["throw-0","throw-1","throw-2"],"frameMs":160,"loop":false}}},"barrel":{"width":12,"height":12,"frames":{"roll-0":{"pixels":["............","......4.....","...4449444..","..774777774.","..494999994.","..494999994.",".49949999994","..494999994.","..664666664.","..449999944.","...4449444..","......4....."],"durationMs":80,"anchor":{"x":6,"y":6},"hurtboxes":[],"hitboxes":[{"x":2,"y":2,"w":8,"h":8}],"sockets":{}},"roll-1":{"pixels":["............","......4.....","...4449444..","..747777774.","..494999994.","..499499994.",".49999499994","..499994994.","..666666464.","..449999944.","...4449444..","......4....."],"durationMs":80,"anchor":{"x":6,"y":6},"hurtboxes":[],"hitboxes":[{"x":2,"y":2,"w":8,"h":8}],"sockets":{}},"roll-2":{"pixels":["............","......4.....","...4449444..","..777774774.","..499994994.","..499994994.",".49999949994","..499994994.","..666664664.","..449999944.","...4449444..","......4....."],"durationMs":80,"anchor":{"x":6,"y":6},"hurtboxes":[],"hitboxes":[{"x":2,"y":2,"w":8,"h":8}],"sockets":{}},"roll-3":{"pixels":["............","......4.....","...4449444..","..777777474.","..499994994.","..499949994.",".49994999994","..494999994.","..646666664.","..449999944.","...4449444..","......4....."],"durationMs":80,"anchor":{"x":6,"y":6},"hurtboxes":[],"hitboxes":[{"x":2,"y":2,"w":8,"h":8}],"sockets":{}},"fall-0":{"pixels":["............","......4.....","...7449464..","..479999644.","..474449694.","..474449694.",".49744496994","..479999694.","..479999694.","..479999644.","...4449444..","......4....."],"durationMs":90,"anchor":{"x":6,"y":6},"hurtboxes":[],"hitboxes":[{"x":2,"y":2,"w":8,"h":8}],"sockets":{}},"fall-1":{"pixels":["............","......4.....","...7449464..","..479999644.","..479444694.","..479444694.",".49794446994","..479999694.","..479999694.","..479999644.","...4449444..","......4....."],"durationMs":90,"anchor":{"x":6,"y":6},"hurtboxes":[],"hitboxes":[{"x":2,"y":2,"w":8,"h":8}],"sockets":{}}},"animations":{"roll":{"frames":["roll-0","roll-1","roll-2","roll-3"],"frameMs":80,"loop":true},"fall":{"frames":["fall-0","fall-1"],"frameMs":90,"loop":true}}},"fire":{"width":16,"height":16,"frames":{"burn-0":{"pixels":["................",".....a..........","....99..........","....99..........","....99....aa....","....99..8.aa....","....998898aa....","....999999aa8...","...89999a9aa88..","...8999aaaaa88..","..88999aaaaa988.","...889aaaaaa88..","...8899aaaaa88..","....889aaa988...",".....888a888....","........8......."],"durationMs":100,"anchor":{"x":8,"y":14},"hurtboxes":[],"hitboxes":[{"x":4,"y":6,"w":8,"h":8}],"sockets":{}},"burn-1":{"pixels":["................","......a.........","................",".....99..aa.....",".....99..aa.....",".....99.8aa.....",".....9989aa8....","....89999aa88...","...88999aaa988..","...8899aaaa988..","..88999aaaa9988.","...889aaaaa988..","...8899aaa9988..","....889aaa988...",".....888a888....","........8......."],"durationMs":100,"anchor":{"x":8,"y":14},"hurtboxes":[],"hitboxes":[{"x":4,"y":6,"w":8,"h":8}],"sockets":{}},"burn-2":{"pixels":["................",".......a........","........aa......","........aa......","......99aa......","......99aa......",".....899aa88....","....8899aa988...","...88999aa9988..","...88999aa9988..","..889999aa99988.","...88999aaa988..","...8899aaa9988..","....889aaa988...",".....888a888....","........8......."],"durationMs":100,"anchor":{"x":8,"y":14},"hurtboxes":[],"hitboxes":[{"x":4,"y":6,"w":8,"h":8}],"sockets":{}},"burst-0":{"pixels":["................","................","................","................","........7.......",".....7.....7....","........9.......",".......9a9......","....7.9aaa9.7...",".......9a9......","........9.......",".....7.....7....","........7.......","................","................","................"],"durationMs":80,"anchor":{"x":8,"y":14},"hurtboxes":[],"hitboxes":[],"sockets":{}},"burst-1":{"pixels":["................","................","........7.......","................","....7...9...7...","......99999.....",".....999a999....",".....99aaa99....","..7.99aaaaa99.7.",".....99aaa99....",".....999a999....","......99999.....","....7...9...7...","................","........7.......","................"],"durationMs":80,"anchor":{"x":8,"y":14},"hurtboxes":[],"hitboxes":[],"sockets":{}},"burst-2":{"pixels":["........7.......","................","..7.....9.....7.",".....9999999....","....9999a9999...","...999aaaaa999..","...99aaaaaaa99..","...99aaaaaaa99..","7.99aaaaaaaaa99.","...99aaaaaaa99..","...99aaaaaaa99..","...999aaaaa999..","....9999a9999...",".....9999999....","..7.....9.....7.","................"],"durationMs":80,"anchor":{"x":8,"y":14},"hurtboxes":[],"hitboxes":[],"sockets":{}}},"animations":{"burn":{"frames":["burn-0","burn-1","burn-2"],"frameMs":100,"loop":true},"explode":{"frames":["burst-0","burst-1","burst-2"],"frameMs":80,"loop":false}}},"cat":{"width":16,"height":16,"frames":{"wait-0":{"pixels":["................","................","....999...999...","....9e9...9e9...","....9e9...9e9...","....999999999...","....999999999...","....970999079...","....97799977999.","....99999999999.","....9999e999999.","....99999999999.",".....9999999.99.",".....9999999.99.",".....fff99fff...","........9......."],"durationMs":300,"anchor":{"x":8,"y":15},"hurtboxes":[],"hitboxes":[],"sockets":{}},"wait-1":{"pixels":["................","................","....999...999...","....9e9...9e9...","....9e9...9e9...","....999999999...","....999999999...","....970999079...",".99.977999779...",".99.999999999...",".99.9999e9999...",".99.999999999...",".99..9999999....",".99..9999999....",".....fff99fff...","........9......."],"durationMs":300,"anchor":{"x":8,"y":15},"hurtboxes":[],"hitboxes":[],"sockets":{}},"rescued":{"pixels":["........a.......","......aaaaa.....","....999.a.999...","....9e9...9e9...","....9e9...9e9...","....999999999...","....999999999...","....970999079...","....97799977999.","....99999999999.","....9999e999999.","....99999999999.",".....9999999.99.",".....9999999.99.",".....fff99fff...","........9......."],"durationMs":300,"anchor":{"x":8,"y":15},"hurtboxes":[],"hitboxes":[],"sockets":{}}},"animations":{"wait":{"frames":["wait-0","wait-1"],"frameMs":300,"loop":true},"rescued":{"frames":["rescued"],"frameMs":300,"loop":false}}}}};
+  const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
+  const layouts = [
+    [[202,0.025],[168,-0.025],[134,0.025],[100,-0.025],[65,0.025]],
+    [[202,0.035],[168,-0.035],[133,0.03],[99,-0.035],[65,0.025]],
+    [[204,0.018],[168,-0.032],[133,0.036],[99,-0.023],[65,0.025]],
+  ];
+  const ladderLayouts = [
+    [[204,70],[40,171],[204,111],[151,77]],
+    [[181,61],[58,197],[184,96],[139,67]],
+    [[212,83],[45,161],[193,104],[147,64]],
+  ];
+  let floors=[],ladders=[],people=[],barrels=[],fires=[],particles=[],popups=[];
+  let players=1,stage=0,stageCount=3,lives=3,limit=100,difficulty=0,phase='playing',phaseTime=0;
+  let clock=0,frame=0,spawnClock=1.8,throwTime=0,nextId=1,rescuer=null,terminal=false;
+  let stageBonus=5000,totalTime=0,goal={x:226,floor:4},stageSeed=0,avatarSets=[],targetSet=null,artSets={};
+  const stats={spawned:0,ladderDrops:0,edgeDrops:0,jumps:0,jumpAwards:0,hits:0,rescues:0};
+  const GRAVITY=520,JUMP_SPEED=170,SPEED=72,CLIMB_SPEED=43;
+  function floorY(f,x){const p=floors[f];return p.y+(x-128)*p.slope;}
+  function addScore(api,p,n){p.score+=n;api.score(p.score,p.id);}
+  function say(text,x,y,color=10){popups.push({text,x,y,life:0.9,color});}
+  function colorConfig(p,key,fallback){const c=(config.avatars||[])[p]||{};return Number.isFinite(c[key])?clamp(c[key]|0,0,15):fallback;}
+  function setupStage(api,first=false){
+    const index=stage%layouts.length;
+    floors=layouts[index].map(([y,slope],id)=>({id,y,slope,left:12,right:244,dir:slope>0?1:-1}));
+    ladders=[];
+    for(let f=0;f<4;f++)for(let n=0;n<2;n++)ladders.push({id:ladders.length,x:ladderLayouts[index][f][n],bottom:f,top:f+1,main:n===0,
+      // Broken optional shortcuts are visible but never the only route.
+      broken:stage>=1&&n===1&&(f+stage)%3===0});
+    barrels=[];fires=[];particles=[];popups=[];clock=0;spawnClock=1.8;throwTime=0;
+    phase='playing';phaseTime=0;stageBonus=Math.max(3000,Math.floor((Number(config.bonus)||5000)/100)*100);rescuer=null;
+    goal={x:clamp(Number(config.goalX)||226,184,234),floor:4};
+    people=Array.from({length:players},(_,id)=>{
+      const old=people[id];
+      return {id,x:32+id*24,y:floorY(0,32+id*24),vx:0,vy:0,floor:0,checkpoint:0,grounded:true,
+        ladder:null,climbFrom:null,face:1,walk:0,jumpBuffer:0,coyote:0,prevA:false,
+        jumpFloor:0,jumpStart:0,invulnerable:first?1:1.4,hurt:0,dead:0,
+        lives:first?lives:Math.max(1,old?.lives||0),score:first?0:old?.score||0,
+        reached:[true,false,false,false,false],pose:'idle'};
+    });
+    if(first)for(const p of people)api.score(0,p.id);
+    stageSeed=((stage+1)*69069+((Number(config.seed)||7)|0))>>>0;
+  }
+  function validateSet(set,required,role){
+    if(!set)return null;
+    const avatar=role==='avatar',limit=avatar||role==='fire'?24:role==='barrel'?16:48;
+    if(!Number.isInteger(set.width)||!Number.isInteger(set.height)||set.width<1||set.height<1||set.width>limit||set.height>limit)
+      throw new Error('Climber '+role+' sprite canvas must be 1-'+limit+' pixels per side');
+    for(const pose of required){
+      const clip=set.animations?.[pose];
+      if(!clip||!Array.isArray(clip.frames)||clip.frames.length<1||!Number.isFinite(clip.frameMs)||clip.frameMs<16)
+        throw new Error('Climber sprite missing animation '+pose);
+      for(const key of clip.frames){
+        const f=set.frames?.[key];
+        if(!f||!Array.isArray(f.pixels)||f.pixels.length!==set.height||f.pixels.some(row=>typeof row!=='string'||row.length!==set.width||!/^[0-9a-f.]+$/i.test(row))||!f.anchor||!Number.isInteger(f.anchor.x)||!Number.isInteger(f.anchor.y)||f.anchor.x<0||f.anchor.x>set.width||f.anchor.y<0||f.anchor.y>set.height)
+          throw new Error('Invalid climber sprite frame '+key);
+        if(f.palette!==undefined&&(!Array.isArray(f.palette)||f.palette.length<1||f.palette.length>16||f.palette.some(c=>typeof c!=='string'||!/^#[0-9a-f]{6}$/i.test(c))||f.pixels.some(row=>[...row].some(ch=>ch!=='.'&&Number.parseInt(ch,16)>=f.palette.length))))
+          throw new Error('Invalid climber sprite palette '+key);
+        if(avatar){
+          // Fixed girders leave about 20px of standing clearance at their tightest point.
+          // Art is a visual skin of the 8x16 controller, never an implicit physics resize.
+          if(f.anchor.x!==Math.floor(set.width/2)||f.anchor.y!==set.height)
+            throw new Error('Climber avatar '+key+' must use the same bottom-center foot anchor in every frame');
+          for(let y=0;y<set.height;y++)for(let x=0;x<set.width;x++){
+            if(f.pixels[y][x]==='.')continue;
+            const dx=x-f.anchor.x,dy=y-f.anchor.y;
+            if(dx< -10||dx>9||dy< -20||dy> -1)
+              throw new Error('Climber avatar '+key+' must fit 20px high and 20px wide above its foot anchor; larger characters need a different level layout');
+          }
+        }
+      }
+    }
+    return set;
+  }
+  function init(api){
+    players=(api.players??config.players)===2?2:1;stage=0;stageCount=clamp((Number(config.stages)||3)|0,1,6);
+    lives=clamp((Number(config.lives)||3)|0,1,6);limit=clamp(Number(config.timeLimit)||100,30,240);difficulty=clamp(Number(config.difficulty)||0,0,1);
+    terminal=false;totalTime=0;frame=0;nextId=1;people=[];
+    avatarSets=Array.from({length:players},(_,p)=>validateSet(config.avatars?.[p]?.sprites,['idle','walk','climb','jump','hurt','death'],'avatar'));
+    targetSet=validateSet(config.targetSprites,['wait','rescued'],'target');
+    artSets={gorilla:validateSet(config.art?.gorilla,['idle','throw'],'gorilla'),barrel:validateSet(config.art?.barrel,['roll','fall'],'barrel'),fire:validateSet(config.art?.fire,['burn','explode'],'fire')};
+    for(const k in stats)stats[k]=0;setupStage(api,true);
+  }
+  function noise(){stageSeed=(Math.imul(stageSeed,1664525)+1013904223)>>>0;return stageSeed/4294967296;}
+  function damage(p,api,cause){
+    if(p.invulnerable>0||p.dead>0||p.lives<=0||phase!=='playing')return;
+    p.lives--;p.dead=1.0;p.hurt=0.3;p.invulnerable=2.8;p.vy=-80;p.vx=-p.face*22;p.grounded=false;p.ladder=null;p.pose='hurt';
+    stats.hits++;api.sfx(p.lives>0?'hit':'die');say('-1 LIFE',p.x-22,p.y-22,8);
+    if(typeof config.onHit==='function'){config.onHit({player:p.id,cause,lives:p.lives},api);p.score=api.getScore(p.id);}
+  }
+  function respawn(p){
+    p.x=clamp(p.checkpoint===0?32+p.id*24:(ladderLayouts[stage%3][p.checkpoint-1][0]+22),22,228);
+    p.floor=p.checkpoint;p.y=floorY(p.floor,p.x);p.vx=p.vy=0;p.dead=0;p.hurt=0;p.invulnerable=2;
+    p.grounded=true;p.ladder=null;p.jumpBuffer=0;p.coyote=0;p.pose='idle';
+  }
+  function nearestLadder(p,direction){
+    return ladders.find(l=>!l.broken&&Math.abs(p.x-l.x)<=5&&
+      ((direction<0&&p.grounded&&p.floor===l.bottom)||(direction>0&&p.grounded&&p.floor===l.top)));
+  }
+  function reachFloor(p,f,api){
+    p.floor=f;p.grounded=true;p.y=floorY(f,p.x);p.vy=0;p.ladder=null;
+    p.checkpoint=Math.max(p.checkpoint,f);
+    if(!p.reached[f]){p.reached[f]=true;addScore(api,p,100);say('+100',p.x-12,p.y-21);api.sfx('coin');
+      if(typeof config.onFloor==='function'){config.onFloor({player:p.id,floor:f,stage:stage+1},api);p.score=api.getScore(p.id);}}
+  }
+  function movePlayer(p,dt,api){
+    p.invulnerable=Math.max(0,p.invulnerable-dt);p.hurt=Math.max(0,p.hurt-dt);
+    if(p.lives<=0&&p.dead<=0){p.pose='death';return;}
+    if(p.dead>0){p.dead=Math.max(0,p.dead-dt);p.pose=p.dead>0.5?'hurt':'death';p.vy=Math.min(150,p.vy+GRAVITY*dt);p.y=Math.min(219,p.y+p.vy*dt);p.x=clamp(p.x+p.vx*dt,18,238);
+      if(p.dead===0&&p.lives>0)respawn(p);return;}
+    const left=api.btn('left',p.id),right=api.btn('right',p.id),up=api.btn('up',p.id),down=api.btn('down',p.id),a=api.btn('a',p.id);
+    if(a&&!p.prevA)p.jumpBuffer=0.1;p.prevA=a;p.jumpBuffer=Math.max(0,p.jumpBuffer-dt);
+    const horizontal=(right?1:0)-(left?1:0),vertical=(down?1:0)-(up?1:0);
+    if(horizontal)p.face=horizontal;
+    if(p.grounded)p.coyote=0.09;else p.coyote=Math.max(0,p.coyote-dt);
+    if(p.ladder===null&&vertical){const l=nearestLadder(p,vertical);if(l){p.ladder=l.id;p.climbFrom=p.floor;p.grounded=false;p.vy=0;p.x=l.x;}}
+    if(p.jumpBuffer>0&&(p.grounded||p.coyote>0||p.ladder!==null)){
+      p.jumpFloor=p.floor;p.jumpStart=p.y;p.vy=-JUMP_SPEED;p.jumpBuffer=0;p.coyote=0;p.grounded=false;p.ladder=null;stats.jumps++;api.sfx('jump');
+    }
+    if(p.ladder!==null){
+      const l=ladders[p.ladder];p.x=l.x;p.y+=vertical*CLIMB_SPEED*dt;p.vx=p.vy=0;
+      p.pose='climb';if(vertical)p.walk+=dt;
+      if(p.y<=floorY(l.top,l.x))reachFloor(p,l.top,api);
+      else if(p.y>=floorY(l.bottom,l.x))reachFloor(p,l.bottom,api);
+      return;
+    }
+    p.vx=horizontal*SPEED;p.x=clamp(p.x+p.vx*dt,18,238);
+    if(p.grounded){p.y=floorY(p.floor,p.x);p.pose=horizontal?'walk':'idle';}
+    else{
+      const oldY=p.y;p.vy=Math.min(235,p.vy+GRAVITY*dt);
+      if(!a&&p.vy<-65)p.vy=-65;
+      p.y+=p.vy*dt;p.pose='jump';
+      if(p.vy>=0){
+        for(let f=floors.length-1;f>=0;f--){const y=floorY(f,p.x);if(oldY<=y+0.01&&p.y>=y&&p.x>=floors[f].left&&p.x<=floors[f].right){reachFloor(p,f,api);break;}}
+      }
+      if(p.y>220)damage(p,api,'fall');
+    }
+    if(horizontal||!p.grounded)p.walk+=dt;
+  }
+  function spawnBarrel(){
+    barrels.push({id:nextId++,x:65,y:floorY(4,65)-6,floor:4,dir:1,mode:'roll',vy:0,age:0,
+      speed:clamp(37+stage*7+difficulty*15,28,85),jumped:0,lastLadder:-1,oldX:65,oldY:floorY(4,65)-6});
+    stats.spawned++;
+  }
+  function dropBarrel(b,kind){
+    if(b.floor<=0){
+      b.remove=true;particles.push({x:b.x,y:b.y,age:0,life:0.3});
+      if(stage>0&&fires.length<2)fires.push({id:nextId++,x:224,y:floorY(0,224),dir:-1,speed:19+stage*3,jumped:0});return;
+    }
+    b.mode='fall';b.vy=0;b.target=b.floor-1;b.x=clamp(b.x,17,239);
+    if(kind==='ladder')stats.ladderDrops++;else stats.edgeDrops++;
+  }
+  function updateBarrels(dt,api){
+    const cadence=Math.max(1.35,2.75-stage*0.4-difficulty*0.35);
+    spawnClock-=dt;throwTime=Math.max(0,throwTime-dt);
+    if(spawnClock<0.5&&throwTime===0)throwTime=0.5;
+    if(spawnClock<=0){if(barrels.length<15){spawnBarrel();api.sfx('select');}spawnClock=cadence;throwTime=0;}
+    for(const b of barrels){
+      b.age+=dt;b.oldX=b.x;b.oldY=b.y;
+      if(b.mode==='fall'){
+        b.vy=Math.min(200,b.vy+300*dt);b.y+=b.vy*dt;
+        const target=floorY(b.target,b.x)-6;
+        if(b.y>=target){b.y=target;b.floor=b.target;b.mode='roll';b.dir=floors[b.floor].dir;b.vy=0;b.lastLadder=-1;}
+      }else{
+        b.x+=b.dir*b.speed*dt;b.y=floorY(b.floor,b.x)-6;
+        const l=ladders.find(l=>l.top===b.floor&&!l.broken&&Math.abs(b.x-l.x)<2&&b.lastLadder!==l.id);
+        if(l){b.lastLadder=l.id;if(noise()<0.20+stage*0.10){b.x=l.x;dropBarrel(b,'ladder');}}
+        if(b.mode==='roll'&&(b.x>242||b.x<14))dropBarrel(b,'edge');
+      }
+      for(const p of people){
+        if(p.lives<=0||p.dead>0)continue;
+        const dx=Math.abs(p.x-b.x),overlap=dx<8&&p.y>b.y-5&&p.y-16<b.y+4;
+        if(overlap)damage(p,api,'barrel');
+        const mask=1<<p.id;
+        if(!p.grounded&&p.ladder===null&&p.dead===0&&p.jumpFloor===b.floor&&dx<7&&p.y<=b.y-5&&p.y>b.y-32&&!(b.jumped&mask)){
+          b.jumped|=mask;stats.jumpAwards++;addScore(api,p,100);say('+100',p.x-12,p.y-18);api.sfx('coin');
+          if(typeof config.onJumpOver==='function'){config.onJumpOver({player:p.id,hazard:b.id,stage:stage+1},api);p.score=api.getScore(p.id);}
+        }
+      }
+    }
+    barrels=barrels.filter(b=>!b.remove&&b.age<45);
+    for(const f of fires){
+      f.x+=f.dir*f.speed*dt;if(f.x<24){f.x=24;f.dir=1;}if(f.x>229){f.x=229;f.dir=-1;}f.y=floorY(0,f.x);
+      for(const p of people)if(p.floor===0&&Math.abs(p.x-f.x)<8&&p.y>f.y-8)damage(p,api,'fire');
+    }
+  }
+  function rescue(p,api){
+    if(phase!=='playing')return;phase='rescue';phaseTime=1.3;rescuer=p.id;stats.rescues++;api.sfx('powerup');
+    const award=1000+Math.floor(Math.max(0,stageBonus-clock*30)/100)*100;
+    for(const person of people)addScore(api,person,award);
+    say('RESCUED!',179,42,11);
+    if(typeof config.onRescue==='function'){config.onRescue({player:p.id,stage:stage+1,bonus:award},api);for(const person of people)person.score=api.getScore(person.id);}
+  }
+  function update(api,dt){
+    dt=clamp(dt||1/60,1/240,0.05);frame++;if(terminal)return;
+    for(const e of popups){e.life-=dt;e.y-=dt*10;}popups=popups.filter(e=>e.life>0);
+    for(const e of particles)e.age+=dt;particles=particles.filter(e=>e.age<e.life);
+    if(phase==='rescue'){
+      phaseTime-=dt;if(phaseTime<=0){stage++;if(stage>=stageCount){terminal=true;phase='won';api.win();}else setupStage(api);}
+      return;
+    }
+    clock+=dt;totalTime+=dt;
+    for(const p of people)movePlayer(p,dt,api);
+    updateBarrels(dt,api);
+    for(const p of people)if(p.lives>0&&p.dead<=0&&p.grounded&&p.floor===goal.floor&&Math.abs(p.x-goal.x)<12&&(!config.canRescue||config.canRescue({player:p.id,stage:stage+1},api)!==false))rescue(p,api);
+    if(phase==='playing'&&people.every(p=>p.lives<=0&&p.dead<=0)){terminal=true;phase='lost';api.gameOver();}
+    if(clock>=limit&&phase==='playing'){
+      for(const p of people)if(p.lives>0){p.invulnerable=0;damage(p,api,'timeout');}
+      // The clock restarts after a life penalty; finite lives still bound a no-input run.
+      clock=0;say('TIME UP!',96,119,8);
+    }
+  }
+  function frameFor(set,animation,time){const clip=set.animations[animation];return set.frames[clip.frames[(clip.loop?Math.floor(time*1000/clip.frameMs)%clip.frames.length:Math.min(clip.frames.length-1,Math.floor(time*1000/clip.frameMs)))]];}
+  function sprite(api,setName,animation,x,y,time,flip=false,recolor={},override=null){
+    const set=override||artSets[setName]||ART.sets[setName],f=frameFor(set,animation,time),ox=Math.round(x-f.anchor.x),oy=Math.round(y-f.anchor.y);
+    // Source palettes define their own indexes; default clothing recolors must not replace them.
+    if(f.palette){api.spr(f.pixels,ox,oy,flip,false,f.palette);return;}
+    for(let yy=0;yy<set.height;yy++)for(let xx=0;xx<set.width;xx++){
+      const ch=f.pixels[yy][xx];if(ch==='.')continue;const color=Object.hasOwn(recolor,ch)?recolor[ch]:Number.parseInt(ch,16);
+      api.pset(ox+(flip?set.width-1-xx:xx),oy+yy,color);
+    }
+  }
+  function draw(api){
+    api.cls(0);
+    // Construction silhouettes stay dark, preserving hazard silhouettes and clear empty routes.
+    for(let x=28;x<256;x+=64){api.rectfill(x,30,3,177,1);api.line(x,71,x+60,131,1);api.line(x+60,131,x,191,1);}
+    api.rectfill(0,12,256,12,1);api.text('STAGE '+(stage+1),4,14,7);api.text('BONUS '+Math.max(0,Math.floor((stageBonus-clock*30)/100)*100),115,14,10);
+    for(const l of ladders){
+      const top=floorY(l.top,l.x),bottom=floorY(l.bottom,l.x),middle=(top+bottom)/2;
+      const col=l.broken?5:9;
+      api.line(l.x-4,top,l.x-4,l.broken?middle-3:bottom,col);api.line(l.x+4,top,l.x+4,l.broken?middle-3:bottom,col);
+      if(l.broken){api.line(l.x-4,middle+6,l.x-4,bottom,col);api.line(l.x+4,middle+6,l.x+4,bottom,col);}
+      for(let y=top+4;y<bottom;y+=5){if(l.broken&&y>middle-3&&y<middle+6)continue;api.line(l.x-3,y,l.x+3,y,col);}
+    }
+    for(const f of floors){
+      // Sloped metal girders, repeating triangular trusses and visible rivets.
+      const girder=Number.isFinite(config.girderColor)?clamp(config.girderColor|0,0,15):8;
+      for(let x=f.left;x<=f.right;x++){
+        const y=floorY(f.id,x);api.line(x,y,x,y+7,girder);api.pset(x,y,14);api.pset(x,y+7,2);
+      }
+      for(let x=f.left+3;x<f.right-8;x+=12){const y=floorY(f.id,x);api.line(x,y+2,x+4,y+5,0);api.line(x+4,y+5,x+8,y+2,0);api.pset(x+9,y+3,7);}
+    }
+    // Barrel supply, throw telegraph, crane cage and the visibly waiting rescue target.
+    for(let n=0;n<3;n++)sprite(api,'barrel','roll',18+n*10,39,0);
+    const gy=floorY(4,39);
+    sprite(api,'gorilla',throwTime>0?'throw':'idle',39,gy,throwTime>0?0.5-throwTime:frame/60);
+    if(config.cage!==false){api.rectfill(goal.x-12,28,25,3,6);api.line(goal.x,24,goal.x,28,6);}
+    const rescueY=floorY(4,goal.x);
+    if(config.cage!==false&&phase!=='rescue'&&phase!=='won'){api.line(goal.x-11,31,goal.x-11,rescueY,5);api.line(goal.x+11,31,goal.x+11,rescueY,5);api.line(goal.x-11,43,goal.x+11,43,5);}
+    sprite(api,'cat',phase==='rescue'||phase==='won'?'rescued':'wait',goal.x,rescueY-1,frame/60,false,{},targetSet);
+    if(frame%100<64&&phase==='playing')api.text('HELP',goal.x-15,32,10);
+    // The oil drum is the clear destination for barrels leaving the bottom girder.
+    api.rectfill(232,199,17,20,1);api.rect(232,199,17,20,12);api.line(231,202,250,202,12);api.text('O',237,206,7);
+    sprite(api,'fire','burn',240,200,frame/60);
+    for(const b of barrels)sprite(api,'barrel',b.mode==='fall'?'fall':'roll',b.x,b.y,b.age,b.dir<0);
+    for(const f of fires)sprite(api,'fire','burn',f.x,f.y,frame/60+f.id);
+    for(const e of particles)sprite(api,'fire','explode',e.x,e.y,e.age);
+    for(const p of people){
+      if(p.lives<=0&&p.dead<=0)continue;
+      if(p.invulnerable>0&&p.dead<=0&&frame%8<3)continue;
+      const pose=p.pose==='death'?'death':p.pose==='hurt'?'hurt':p.pose==='climb'?'climb':p.pose==='jump'?'jump':p.pose==='walk'?'walk':'idle';
+      sprite(api,'worker',pose,p.x,p.y,pose==='jump'?(p.vy<0?0:0.2):p.walk+(pose==='idle'?frame/60:0),p.face<0,{'c':colorConfig(p.id,'overalls',p.id===0?12:8),'a':colorConfig(p.id,'helmet',p.id===0?10:7)},avatarSets[p.id]);
+      if(players===2){const nearby=people.some(other=>other.id!==p.id&&Math.abs(other.x-p.x)<10&&Math.abs(other.y-p.y)<18);api.text(String(p.id+1),p.x-3+(nearby?(p.id===0?-6:6):0),p.y-28,p.id===0?12:8);}
+    }
+    for(const p of people){const xx=p.id===0?4:151;api.text('P'+(p.id+1),xx,215,p.id===0?12:8);for(let n=0;n<p.lives;n++){api.rectfill(xx+22+n*7,216,5,4,p.id===0?12:8);api.pset(xx+24+n*7,215,p.id===0?12:8);}}
+    for(const e of popups)api.text(e.text,clamp(e.x,0,256-api.textWidth(e.text)),e.y,e.color);
+    if(phase==='rescue'){const text=String(config.rescueText||'CAT RESCUED!').toUpperCase().slice(0,25);const width=Math.max(128,Math.min(248,api.textWidth(text)+16)),x=Math.floor((256-width)/2);api.rectfill(x,111,width,19,0);api.rect(x,111,width,19,10);api.text(text,config.rescueText?Math.round((256-api.textWidth(text))/2):80,117,10);}
+  }
+  function inspect(){return {phase,stage:stage+1,stages:stageCount,time:clock,totalTime,goal:{...goal},stats:{...stats},
+    floors:floors.map(f=>({...f})),ladders:ladders.map(l=>({...l})),
+    people:people.map(p=>({id:p.id,x:p.x,y:p.y,vy:p.vy,floor:p.floor,checkpoint:p.checkpoint,grounded:p.grounded,ladder:p.ladder,
+      lives:p.lives,score:p.score,dead:p.dead,invulnerable:p.invulnerable,pose:p.pose})),
+    barrels:barrels.map(b=>({id:b.id,x:b.x,y:b.y,floor:b.floor,mode:b.mode,dir:b.dir,jumped:b.jumped,speed:b.speed})),fires:fires.map(f=>({...f}))};}
+  return {init,update,draw,inspect};
+}
+);
+const look={"avatars":[{"sprites":{"anchor":{"x":8,"y":16},"animations":{"idle":{"frames":["walk-0"],"frameMs":300,"loop":true},"walk":{"frames":["walk-0","walk-1","walk-0","walk-2"],"frameMs":50,"loop":true,"referenceGif":"252263-3242.gif"},"climb":{"frames":["climb-0","climb-1"],"frameMs":120,"loop":true,"timingProvenance":"Authored for controller"},"jump":{"frames":["jump-0"],"frameMs":180,"loop":false},"hurt":{"frames":["death-0"],"frameMs":150,"loop":false,"confidence":"proxy","notes":"No separate hurt labeled on sheet; first verified death pose reused for controller hit phase."},"death":{"frames":["death-0","death-1","death-2","death-3"],"frameMs":90,"loop":true,"referenceGif":"252263-5795.gif"}},"width":16,"height":16,"frames":{"walk-0":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[1,1,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":[".....1111.......","....11111111....","....000022......","...0220220222...","...02200220222..","..00022220000...",".....2222222....","....000000......","...00001100.....","...00011211.....","...000011111....","...102221111....","...112211111....","...1111.111.....","...000..000.....","...0000.0000...."],"palette":["#0301dc","#e80709","#f5bb9f"]},"walk-1":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[19,1,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":[".....1111.......","....11111111....","....000222......","...0220020222...","...02200220222..","..00022220000...",".....2222222....","..00001100...22.","220000111000222.","222.00121112022.","22..11111111.0..","...11111111100..","..111111111100..",".00011...11100..",".000............","..000..........."],"palette":["#0301dc","#e80709","#f5bb9f"]},"walk-2":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[37,1,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","......1111......",".....11111111...",".....000022.....","....0220220222..","....02200220222.","...00022220000..","......2222222...","....000001.2....","...2000000222...","..2211000022....","001111111111....","001111111111....","001111..111.....","0......000......",".......0000....."],"palette":["#0301dc","#e80709","#f5bb9f"]},"jump-0":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"medium","rect":[55,1,16,16],"notes":"Airborne/running pose assigned to controller jump; original animation role not labeled."},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","......1111......",".....11111111...",".....000022.....","....0220220222..","....02200220222.","...00022220000..",".22...2222222.22","22200001100..022","..2.00011100000.",".....0012111....","..00.1111111...0",".000011111111100","00.0111111111100","....1111........",".....11........."],"palette":["#0301dc","#e80709","#f5bb9f"]},"climb-0":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[91,1,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["...........22...",".....11111122...",".....01111000...","....0000000000..","....0000000000..","..000222222000..",".000010000100...",".000010000100...","...1111001111...","...11111111111..","...11111111111..","...1111111111...","....1111.0000...","....10001.......","....000000......",".....00000......"],"palette":["#0301dc","#e80709","#f5bb9f"]},"climb-1":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[109,1,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["...22...........","...22111111.....","...00011110.....","..0000000000....","..0000000000....","..000222222000..","...001000010000.","...001000010000.","...1111001111...","..11111111111...","..11111111111...","...1111111111...","...0000.1111....",".......10001....","......000000....","......00000....."],"palette":["#0301dc","#e80709","#f5bb9f"]},"climb-rest":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[199,1,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................",".....111111.....",".....011110.....","....00000000....","....00000000....",".....222222.....","...0010000100...","..000100001000..",".00011000011000.","2001111001111002","2221111111111222","...1111111111...","...1111111111...","...1111..1111...","....11111111....","...0000000000..."],"palette":["#0301dc","#e80709","#f5bb9f"]},"death-0":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[1,37,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":[".....111111.1...","....11111111....","...2020220202...","...0222222220...","..002002200200..",".20022000022002.","222..221122..222","200.01000010.002",".00001100110000.","...0121111210...","00..11111111....","0001111111111...","000011111111000.",".00011...100000.","..........000...","................"],"palette":["#0301dc","#e80709","#f5bb9f"]},"death-1":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[19,37,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["......22........",".....2222.......","......200..0000.","....00.10..00000","...000.000..0000",".102220001111000","112202211121111.","11020010011111..","11222010001111..","110200.0011111..","112202011121111.",".10222200111111.","...000.000.11000","....00.00...0000",".....2200..0000.","......22...000.."],"palette":["#0301dc","#e80709","#f5bb9f"]},"death-2":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[37,37,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","...000..........",".000001...11000.",".000111111110000","...1111111111000","....11111111..00","...0121111210...",".00001100110000.","200.01000010.002","222..221122..222",".20022000022002.","..002002200200..","...0222222220...","...2020220202...","....11111111....","...1.111111....."],"palette":["#0301dc","#e80709","#f5bb9f"]},"death-3":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[55,37,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["..000...22......",".0000..0022.....","0000...00.00....","00011.000.000...",".11111100222201.",".111121110202211","..1111100.002011","..11110001022211","..11111001002011",".111121112202211","000111100022201.","0000..000.000...","00000..01.00....",".0000..002......",".......2222.....","........22......"],"palette":["#0301dc","#e80709","#f5bb9f"]}}}},{"sprites":{"anchor":{"x":8,"y":16},"animations":{"idle":{"frames":["walk-0"],"frameMs":300,"loop":true},"walk":{"frames":["walk-0","walk-1","walk-0","walk-2"],"frameMs":50,"loop":true,"referenceGif":"252263-3242.gif"},"climb":{"frames":["climb-0","climb-1"],"frameMs":120,"loop":true,"timingProvenance":"Authored for controller"},"jump":{"frames":["jump-0"],"frameMs":180,"loop":false},"hurt":{"frames":["death-0"],"frameMs":150,"loop":false,"confidence":"proxy","notes":"No separate hurt labeled on sheet; first verified death pose reused for controller hit phase."},"death":{"frames":["death-0","death-1","death-2","death-3"],"frameMs":90,"loop":true,"referenceGif":"252263-5795.gif"}},"width":16,"height":16,"frames":{"walk-0":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[1,1,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":[".....1111.......","....11111111....","....000022......","...0220220222...","...02200220222..","..00022220000...",".....2222222....","....000000......","...00001100.....","...00011211.....","...000011111....","...102221111....","...112211111....","...1111.111.....","...000..000.....","...0000.0000...."],"palette":["#0301dc","#e80709","#f5bb9f"]},"walk-1":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[19,1,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":[".....1111.......","....11111111....","....000222......","...0220020222...","...02200220222..","..00022220000...",".....2222222....","..00001100...22.","220000111000222.","222.00121112022.","22..11111111.0..","...11111111100..","..111111111100..",".00011...11100..",".000............","..000..........."],"palette":["#0301dc","#e80709","#f5bb9f"]},"walk-2":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[37,1,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","......1111......",".....11111111...",".....000022.....","....0220220222..","....02200220222.","...00022220000..","......2222222...","....000001.2....","...2000000222...","..2211000022....","001111111111....","001111111111....","001111..111.....","0......000......",".......0000....."],"palette":["#0301dc","#e80709","#f5bb9f"]},"jump-0":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"medium","rect":[55,1,16,16],"notes":"Airborne/running pose assigned to controller jump; original animation role not labeled."},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","......1111......",".....11111111...",".....000022.....","....0220220222..","....02200220222.","...00022220000..",".22...2222222.22","22200001100..022","..2.00011100000.",".....0012111....","..00.1111111...0",".000011111111100","00.0111111111100","....1111........",".....11........."],"palette":["#0301dc","#e80709","#f5bb9f"]},"climb-0":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[91,1,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["...........22...",".....11111122...",".....01111000...","....0000000000..","....0000000000..","..000222222000..",".000010000100...",".000010000100...","...1111001111...","...11111111111..","...11111111111..","...1111111111...","....1111.0000...","....10001.......","....000000......",".....00000......"],"palette":["#0301dc","#e80709","#f5bb9f"]},"climb-1":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[109,1,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["...22...........","...22111111.....","...00011110.....","..0000000000....","..0000000000....","..000222222000..","...001000010000.","...001000010000.","...1111001111...","..11111111111...","..11111111111...","...1111111111...","...0000.1111....",".......10001....","......000000....","......00000....."],"palette":["#0301dc","#e80709","#f5bb9f"]},"climb-rest":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[199,1,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................",".....111111.....",".....011110.....","....00000000....","....00000000....",".....222222.....","...0010000100...","..000100001000..",".00011000011000.","2001111001111002","2221111111111222","...1111111111...","...1111111111...","...1111..1111...","....11111111....","...0000000000..."],"palette":["#0301dc","#e80709","#f5bb9f"]},"death-0":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[1,37,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":[".....111111.1...","....11111111....","...2020220202...","...0222222220...","..002002200200..",".20022000022002.","222..221122..222","200.01000010.002",".00001100110000.","...0121111210...","00..11111111....","0001111111111...","000011111111000.",".00011...100000.","..........000...","................"],"palette":["#0301dc","#e80709","#f5bb9f"]},"death-1":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[19,37,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["......22........",".....2222.......","......200..0000.","....00.10..00000","...000.000..0000",".102220001111000","112202211121111.","11020010011111..","11222010001111..","110200.0011111..","112202011121111.",".10222200111111.","...000.000.11000","....00.00...0000",".....2200..0000.","......22...000.."],"palette":["#0301dc","#e80709","#f5bb9f"]},"death-2":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[37,37,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","...000..........",".000001...11000.",".000111111110000","...1111111111000","....11111111..00","...0121111210...",".00001100110000.","200.01000010.002","222..221122..222",".20022000022002.","..002002200200..","...0222222220...","...2020220202...","....11111111....","...1.111111....."],"palette":["#0301dc","#e80709","#f5bb9f"]},"death-3":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[55,37,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["..000...22......",".0000..0022.....","0000...00.00....","00011.000.000...",".11111100222201.",".111121110202211","..1111100.002011","..11110001022211","..11111001002011",".111121112202211","000111100022201.","0000..000.000...","00000..01.00....",".0000..002......",".......2222.....","........22......"],"palette":["#0301dc","#e80709","#f5bb9f"]}}}}],"targetSprites":{"anchor":{"x":8,"y":32},"animations":{"wait":{"frames":["wait-0","wait-1"],"frameMs":250,"loop":true,"timingProvenance":"Authored; sprite identity/sequence visually mapped"},"rescued":{"frames":["wait-2","wait-3"],"frameMs":250,"loop":false,"confidence":"proxy","notes":"Standing Pauline poses; original rescue transition not labeled."}},"width":16,"height":32,"frames":{"wait-0":{"anchor":{"x":8,"y":32},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[1,141,16,32]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","................","................","................","................","................","................","........111111..",".......11111111.","......11113333..",".11...113133133.","..11...1133333..","...1111133333...",".1111122333.....","..1111222332....",".1.1..222222....","......22222.....",".......22222233.",".......0002223..",".....2222222....","...22222222233..","22332222222223..",".223332222222...","..22233222222...","..00222333222...",".0000.2223333...","..00....22222...","...00....000....",".........0.000..","................","................","................"],"palette":["#0301dc","#ee7511","#f057e8","#fefcff"]},"wait-1":{"anchor":{"x":8,"y":32},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[19,141,16,32]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","................","................","................","................","................","................","........111111..",".......11111111.","......11113333..",".11...113133133.","..11...1133333..","...1111133333...",".1111122333.....","..1111222332....",".1.1..222222....",".....2222222....","....22.000022...","...22.22222222..",".333.222222233..",".....222222223..","....222222222...","....2222222233..","...3332223333222","...22333332222.0","..2222222220000.","....000....000..","...000......0...","....000.........","................","................","................"],"palette":["#0301dc","#ee7511","#f057e8","#fefcff"]},"wait-2":{"anchor":{"x":8,"y":32},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[37,141,16,32]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","................","................","................","................","................","................","........111111..",".......11111111.","......11113333..",".11...113133133.","..11...1133333..","...1111133333...",".1111122333.....","..1111222332....",".1.1..222222....",".....2222222....","...2220000.22...","..22.222222.22..","3332222222222333","..3.22222222.3..","..222222222222..","..222222222222..","..222222222222..","..333222223333..",".22233333333222.","...2222222222...","....000..0.0....","...00.0..0.00...","................","................","................"],"palette":["#0301dc","#ee7511","#f057e8","#fefcff"]},"wait-3":{"anchor":{"x":8,"y":32},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[55,141,16,32]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","................","................","................","................","................","................","..111111........",".11111111.......","..33331111......",".331331311...11.","..3333311...11..","...3333311111...",".....3332211111.","....2332221111..","....222222..1.1.",".....2222222....","...2220000.22...","..22.222222.22..","3332222222222333","..3.22222222.3..","..222222222222..","..222222222222..","..222222222222..","..333222223333..",".22233333333222.","...2222222222...","....000..0.0....","...00.0..0.00...","................","................","................"],"palette":["#0301dc","#ee7511","#f057e8","#fefcff"]}}},"art":{"gorilla":{"anchor":{"x":24,"y":32},"animations":{"idle":{"frames":["idle-0","idle-1"],"frameMs":350,"loop":true,"timingProvenance":"Authored idle breath cycle"},"throw":{"frames":["throw-0","throw-1","throw-2"],"frameMs":166.66666666666666,"loop":false,"referenceGif":"252263-5797.gif","sourceGifFrameMs":260,"timingProvenance":"Authored retime from 780ms GIF cycle to engine 500ms throw telegraph"}},"width":48,"height":32,"frames":{"idle-0":{"anchor":{"x":24,"y":32},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[1,258,48,32]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":[".....................0000000....................","....................000000000...................","...................00220002200..................","..................0022220222200.................","...............220022233233222022...............","..............22200022302032200222..............","..............22200022222222200222..............","............100022222220002222220001............","..........1100022222222222222222200011..........",".........100000222200000000000222000001.........",".......1100000022202222222222202200000011.......","......100000000000222222222222200000000001......",".....00000100000002222222222222000000100000.....",".....00000011000000022222222200000011000000.....",".....00000001110000000000000000001110000000.....",".....00000000111022200000000222011100000000.....","......000000000002222210012222200000000000......",".......0000000000020222112220200000000000.......","........00000000000222211222200000000000........","...........00000002022211222020000000...........","...........10010122222122122222101001...........","..........1000010111112222111110100001..........",".........100000000122222222221000000001.........","........10000000001212122121210000000001........",".......1000000000001212120121000000000001.......",".......1000000000010010100100100000000001.......",".......1000000000000........0000000000001.......","........00000000000..........00000000000........","........0000000000............0000000000........","......20220002202..............20220002202......",".....212202222022..............220222202212.....","....212222222222................222222222212...."],"palette":["#ab0507","#ee7511","#f5bb9f","#fefcff"]},"idle-1":{"anchor":{"x":24,"y":32},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[51,258,48,32]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":[".....................0000000....................","....................000000000...................","...................00220002200..................","..................0022220222200.................","...............220022233233222022...............","..............22200022302032200222..............","..............22200022222222200222..............","............100022222220002222220001............","..........1100022233222222222332200011..........",".........100000223330333033303332000001.........",".......1100000022030003000300030200000011.......","......100000000022330333033303320000000001......",".....00000100000022223332333222000000100000.....",".....00000011000000022222222200000011000000.....",".....00000001110000000000000000001110000000.....",".....00000000111022200000000222011100000000.....","......000000000002222210012222200000000000......",".......0000000000020222112220200000000000.......","........00000000000222211222200000000000........","...........00000002022211222020000000...........","...........10010122222122122222101001...........","..........1000010111112222111110100001..........",".........100000000122222222221000000001.........","........10000000001212122121210000000001........",".......1000000000001212120121000000000001.......",".......1000000000010010100100100000000001.......",".......1000000000000........0000000000001.......","........00000000000..........00000000000........","........0000000000............0000000000........","......20220002202..............20220002202......",".....212202222022..............220222202212.....","....212222222222................222222222212...."],"palette":["#ab0507","#ee7511","#f5bb9f","#fefcff"]},"throw-0":{"anchor":{"x":24,"y":32},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[1,292,48,32]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":[".......000000...................................","......000000000.................................","......2220000000................................",".....222222000001110............................",".....233222200000001111.........................","...0020322200220000000011.......................","..222222220022220000000001......................",".22222222000222200001100001.....................",".222222200000200000001000001....................","2222222220002200000001000001....................","20000022220220000000010000001...................",".2222202222200000000010000001...................","..222220222000000000010000001...................","...222222220000000001100000011..................","......222200000000001000000001..................",".........0000000000110000000011.................","........000000000011000000000001................","........0000000001100000000000001...............",".......000000000110000000000000000..............",".......0000000002200000000000000000.............","......000000000222000000000000000000............",".....0000000002121110000000000000000............",".....00000000.2211111100000000000000............","....00000000.0022211111100000000000011..........","22220000000.000000211111110000000000011002......","2222200000..0000000011111110000000000000021.....","..2200000..00000000000111110000000000000221.....","..2220000..000000000........000000000000221.....",".2222220....00000000.........00000000000021.....","2221222..212002002200...............000202......","221222..2120222222220..............2220222......",".222....2122222222222.............2121222......."],"palette":["#ab0507","#ee7511","#f5bb9f","#fefcff"]},"throw-1":{"anchor":{"x":24,"y":32},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[51,292,48,32]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":[".....................0000000....................","....................000000000...................","...................00220002200..................","..................0022220222200.................","...............220022233233222022...............","..........111.22200022302032200222.111..........",".........110002220002222222220022200011.........","........11000100222222200022222200100011........",".......1100000022222222222222222200000011.......","......110000000222200000000000222000000011......",".....11000000002220222222222220220000000011.....",".....10000000000002222222222222000000000001.....",".....10000000000002222222222222000000000001.....",".....10000000000000022222222200000000000001.....","....1000000000100000000000000000010000000001....","....1000000001100000000000000000011000000001....","....1000000011010212121001212120101100000001....","....1100000010000122222112222210000100000011....",".....10000001001122222211222222110010000001.....",".....10000020001122022211222022110002000001.....",".....10000000010122222122122222101000000001.....","......000001112201111122221111102211100000......","......000001122200122222222221002221100000......",".......0000212000012121221212100002120000.......",".......1002022000001212120121000002202001.......",".......1011202000010010100100100002021101.......",".......1001122000000........0000002211001.......","........00012220000..........00002221000........","........0000022000............0002200000........","......20220002202..............20220002202......",".....212202222022..............220222202212.....","....212222222222................222222222212...."],"palette":["#ab0507","#ee7511","#f5bb9f","#fefcff"]},"throw-2":{"anchor":{"x":24,"y":32},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[101,292,48,32]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["...................................000000.......",".................................000000000......","................................0000000222......","............................011100000222222.....",".........................111100000002222332.....",".......................1100000000220022230200...","......................100000000022220022222222..",".....................10000110000222200022222222.","....................100000100000002000002222222.","....................1000001000000022000222222222","...................10000001000000002202222000002","...................1000000100000000022222022222.","...................100000010000000000222022222..","..................110000001100000000022222222...","..................100000000100000000002222......",".................1100000000110000000000.........","................100000000000110000000000........","...............1000000000000011000000000........","..............000000000000000011000000000.......",".............0000000000000000022000000000.......","............000000000000000000222000000000......","............0000000000000000111212000000000.....","............0000000000000011111122.00000000.....","..........1100000000000011111122200.00000000....","......200110000000000011111112000000.00000002222",".....1200000000000000111111100000000..0000022222",".....12200000000000001111100000000000..0000022..",".....122000000000000........000000000..0000222..",".....12000000000000.........00000000....0222222.","......202000...............002200200212..2221222","......2220222..............0222222220212..222122",".......2221212.............2222222222212....222."],"palette":["#ab0507","#ee7511","#f5bb9f","#fefcff"]}}},"barrel":{"anchor":{"x":8,"y":8},"animations":{"roll":{"frames":["roll-0","roll-1","roll-2","roll-3"],"frameMs":80,"loop":true,"sourceNote":"Sheet explicitly says barrel animation reverses when rolling left; engine currently flips only."},"fall":{"frames":["fall-0","fall-1"],"frameMs":90,"loop":true,"confidence":"medium","notes":"Side-view barrel poses assigned to falling state; source sheet does not label this state."}},"width":16,"height":16,"frames":{"roll-0":{"anchor":{"x":8,"y":8},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[1,229,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","................","................","......2222......","....22111122....","...2100111112...","..211001110112..","..211111101112..","..211111011112..","..211110111112..","...2111111112...","....22111122....","......2222......","................","................","................"],"palette":["#0303ff","#ee7511","#f5bb9f"]},"roll-1":{"anchor":{"x":8,"y":8},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[19,229,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","................","................","......2222......","....22111122....","...2111111112...","..211110111112..","..211111011112..","..211111101112..","..211001110112..","...2100111112...","....22111122....","......2222......","................","................","................"],"palette":["#0303ff","#ee7511","#f5bb9f"]},"roll-2":{"anchor":{"x":8,"y":8},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[37,229,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","................","................","......2222......","....22111122....","...2111111112...","..211111011112..","..211110111112..","..211101111112..","..211011100112..","...2111110012...","....22111122....","......2222......","................","................","................"],"palette":["#0303ff","#ee7511","#f5bb9f"]},"roll-3":{"anchor":{"x":8,"y":8},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[55,229,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","................","................","......2222......","....22111122....","...2111110012...","..211011100112..","..211101111112..","..211110111112..","..211111011112..","...2111111112...","....22111122....","......2222......","................","................","................"],"palette":["#0303ff","#ee7511","#f5bb9f"]},"fall-0":{"anchor":{"x":8,"y":8},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[73,229,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","................","................","...1111111111...",".01122222222110.","1022222222222201","2011111111111102","1011111111111101","1011111111111101","2011111111111102","1022222222222201",".01122222222110.","...1111111111...","................","................","................"],"palette":["#0303ff","#ee7511","#f5bb9f"]},"fall-1":{"anchor":{"x":8,"y":8},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[91,229,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","................","................","...2222222222...",".02211111111220.","2011111111111102","1022222222222201","2022222222222202","2022222222222202","1022222222222201","2011111111111102",".02211111111220.","...2222222222...","................","................","................"],"palette":["#0303ff","#ee7511","#f5bb9f"]}}},"fire":{"anchor":{"x":8,"y":16},"animations":{"burn":{"frames":["burn-0","burn-1","burn-2","burn-3"],"frameMs":100,"loop":true,"referenceGif":"252263-5798.gif","notes":"Verified drum-flame GIF poses; reused for engine moving fires too, whose original enemy identity differs."},"explode":{"frames":["burst-0","burst-1","burst-2","burst-3"],"frameMs":80,"loop":false,"confidence":"adaptation"}},"width":16,"height":16,"frames":{"burn-0":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[163,193,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................",".......2........","..........0.1...","......0......0..","........1......1","...1.....1..1...",".....0..0.0..0..",".........1..01..","........00.01...",".......01..00...","...02.000.1201..","..10.10110.1121.","..010.1011.0111.",".101.022201120..",".0110.122.021...","..11100201221..."],"palette":["#e80709","#f4ba15","#fefcff"]},"burn-1":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[181,193,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","......0...2..1..",".....0......2...",".........0......",".......1......1.","........1..1....","....01....0....1",".....0...10...0.","....0...00...00.","...01..010...0..","..00....110.00..",".100...0110100..",".0000..012000...","..120.01200010..","..112102101210..","...1200210221..."],"palette":["#e80709","#f4ba15","#fefcff"]},"burn-2":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[199,193,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":[".......0.......2","...0....0....0..","2...0...10...0..","....0..001..001.","...01.0010.0010.","..010000100110..","..00100110110.0.","..0101111010.0..","0.00112111100...","01.0111211100...",".0101212111100.1","..0111222211000.","0.001121221010.0","0000012112210010",".101.2211121110.",".01112111122100."],"palette":["#e80709","#f4ba15","#fefcff"]},"burn-3":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"high","rect":[217,193,16,16]},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["..0.......0...0.",".0.......0....1.","..0.............","1..1..0.........",".....0.....0...0","..0..10...0.....",".00..110..01....",".010.0110.10...1","..01002100100...","0..0111211110...",".1.0111222110...","..00112222110...","..02122222210.0.","0.0122212221000.",".1.02211112221..",".00222111112110."],"palette":["#e80709","#f4ba15","#fefcff"]},"burst-0":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"medium","rect":[127,55,16,16],"notes":"Source blue impact-effect artwork; used as generic consumption burst, not claimed original fire explosion."},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","2......2.......2",".0.....0......0.","..1....1.....1..","...1...1....1...","....1......1....","................","................","2011...2....1102","................","....1......1....","...1...0....1...","..1....0.....1..",".0.....1......0.","2......2.......2","................"],"palette":["#0303ff","#13f3ff","#fefcff"]},"burst-1":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"medium","rect":[73,55,16,16],"notes":"Source blue impact-effect artwork; used as generic consumption burst, not claimed original fire explosion."},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","................",".....000000.....","....01111110....","...01......10...","..01........10..",".01..........10.",".01..........10.",".01..........10.",".01..........10.","..01........10..","...01......10...","....01111110....",".....000000.....","................","................"],"palette":["#0303ff","#13f3ff"]},"burst-2":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"medium","rect":[91,55,16,16],"notes":"Source blue impact-effect artwork; used as generic consumption burst, not claimed original fire explosion."},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","................","................","................","......0000......",".....011110.....","....01222210....","...012....210...","...012....210...","....01222210....",".....011110.....","......0000......","................","................","................","................"],"palette":["#0303ff","#13f3ff","#fefcff"]},"burst-3":{"anchor":{"x":8,"y":16},"durationMs":120,"hurtboxes":[],"hitboxes":[],"source":{"sheet":"characters","confidence":"medium","rect":[109,55,16,16],"notes":"Source blue impact-effect artwork; used as generic consumption burst, not claimed original fire explosion."},"geometryProvenance":"Source rectangle inspected; timing, canvas placement and anchor authored for local proof, not extracted original game metadata.","pixels":["................","................","................","................","................",".......00.......","......0110......",".....012210.....",".....012210.....","......0110......",".......00.......","................","................","................","................","................"],"palette":["#0303ff","#13f3ff","#fefcff"]}}}},"cage":false,"rescueText":"PAULINE RESCUED!"};
+return function(config={}){return base({...look,...config,art:{...look.art,...config.art}})};
+})())
+});
+// </arcade-catalog-bundle>
+// GOOSE KONG — the tested climber, with a custom goose cast.
+const GOOSE_PALETTE = [
+  "#000000", "#1D2B53", "#7E2553", "#008751",
+  "#AB5236", "#5F574F", "#C2C3C7", "#FFF1E8",
+  "#FF004D", "#FFA300", "#FFEC27", "#00E436",
+  "#29ADFF", "#83769C", "#FF77A8", "#FFCCAA"
+];
+
+// All player frames are 16×20, facing right, anchored at the feet.
+const GOOSE_IDLE = [
+  "................",
+  "................",
+  "..........777...",
+  ".........77777..",
+  ".........7770799",
+  ".........7777799",
+  ".........6777...",
+  ".........6777...",
+  ".........6777...",
+  "........67777...",
+  "..77...777777...",
+  "..77777777777...",
+  "...7777666777...",
+  "...7776666777...",
+  "...6777667776...",
+  "....67777776....",
+  ".....666666.....",
+  "......9..9......",
+  ".....99..99.....",
+  "....999..999...."
+];
+
+const GOOSE_IDLE_B = [
+  "................",
+  "................",
+  "..........777...",
+  ".........77777..",
+  ".........7770799",
+  ".........7777799",
+  ".........6777...",
+  ".........6777...",
+  ".........6777...",
+  "..7.....67777...",
+  "..77...777777...",
+  "..77777777777...",
+  "...7777667777...",
+  "...7776666777...",
+  "...6777666776...",
+  "....67777776....",
+  ".....666666.....",
+  "......9..9......",
+  ".....99..99.....",
+  "....999..999...."
+];
+
+const GOOSE_WALK_A = [
+  "................",
+  "................",
+  "...........777..",
+  "..........77777.",
+  "..........770799",
+  "..........777799",
+  "..........6777..",
+  ".........6777...",
+  ".........6777...",
+  "..7.....67777...",
+  "..77...777777...",
+  "..77777777777...",
+  "...7777667777...",
+  "...7776666777...",
+  "...6777666776...",
+  "....67777776....",
+  ".....666666.....",
+  ".....99...9.....",
+  "...999....99....",
+  "..........999..."
+];
+
+const GOOSE_WALK_B = [
+  "................",
+  "................",
+  "................",
+  ".........7777...",
+  ".........7777799",
+  ".........7707799",
+  ".........7777...",
+  ".........6777...",
+  ".........6777...",
+  "........67777...",
+  "..77...777777...",
+  "..77777777777...",
+  "...7776667777...",
+  "...7766666777...",
+  "...6777667776...",
+  "....67777776....",
+  ".....666666.....",
+  "......9..99.....",
+  ".....99...999...",
+  "....999........."
+];
+
+const GOOSE_CLIMB_A = [
+  "................",
+  "......7777......",
+  ".....777777.....",
+  ".....707707.....",
+  ".....777777.....",
+  "......7997......",
+  "......6996......",
+  "......6776......",
+  "..77..6776......",
+  "..777777777777..",
+  "...77777777777..",
+  "....776667777...",
+  "....76666677....",
+  "....76666677....",
+  "....77666777....",
+  ".....777777.....",
+  ".....666666.....",
+  ".....99..9......",
+  ".....99..99.....",
+  ".........999...."
+];
+
+const GOOSE_CLIMB_B = [
+  "................",
+  "......7777......",
+  ".....777777.....",
+  ".....707707.....",
+  ".....777777.....",
+  "......7997......",
+  "......6996......",
+  "......6776......",
+  "......6776..77..",
+  "..777777777777..",
+  "..77777777777...",
+  "...777766677....",
+  "....77666667....",
+  "....77666667....",
+  "....77766677....",
+  ".....777777.....",
+  ".....666666.....",
+  "......9..99.....",
+  ".....99..99.....",
+  "....999........."
+];
+
+const GOOSE_JUMP = [
+  "................",
+  "..........777...",
+  ".........77777..",
+  ".........7770799",
+  ".........7777799",
+  ".........6777...",
+  "...7.....6777...",
+  "..777....6777...",
+  "..7777..67777...",
+  "...7777777777...",
+  "...77777777777..",
+  "..777766777777..",
+  "...7766677777...",
+  "...7776677776...",
+  "....67777776....",
+  ".....666666.....",
+  ".....99..99.....",
+  "....999...999...",
+  "................",
+  "................"
+];
+
+const GOOSE_HURT = [
+  "................",
+  "........7777....",
+  ".......777777...",
+  ".......77070799.",
+  ".......777077999",
+  ".......777777...",
+  "........6777....",
+  "........6777....",
+  "..7....67777....",
+  "..77...77777....",
+  "..77777777777...",
+  "...77767777777..",
+  "...77666777777..",
+  "...7766667777...",
+  "....67777776....",
+  ".....666666.....",
+  ".....99..9......",
+  "....99....99....",
+  "...999....999...",
+  "................"
+];
+
+const GOOSE_DEATH = [
+  "................",
+  "................",
+  "................",
+  "................",
+  "................",
+  "................",
+  "................",
+  ".....999..999...",
+  "......9...9.....",
+  "......9..99.....",
+  "...66666666.....",
+  "..6777777776....",
+  ".777766777777...",
+  ".77766677777777.",
+  "..77666777777777",
+  "..77777777777077",
+  "...7777777777077",
+  "....66666...7799",
+  "..............99",
+  "................"
+];
+
+const FRIEND_WAIT = [
+  "................",
+  "................",
+  ".....aaa........",
+  "....aa7aa.......",
+  "..99a0aaa.......",
+  "..99aaaaa.......",
+  ".....6aa........",
+  ".....7aa........",
+  ".....7777...7...",
+  "....777777777...",
+  "....77667777....",
+  "....77666777....",
+  ".....677776.....",
+  "......6666......",
+  "......9..9......",
+  ".....99.99......"
+];
+
+const FRIEND_PEEP = [
+  "................",
+  ".....aaa........",
+  "....aa7aa.......",
+  "..99a0aaa.......",
+  "..99aaaaa.......",
+  ".....6aa........",
+  ".....7aa........",
+  ".....7777.......",
+  "....777777..7...",
+  "....776677777...",
+  "....76667777....",
+  "....77667777....",
+  ".....677776.....",
+  "......6666......",
+  "......9..9......",
+  ".....99.99......"
+];
+
+const FRIEND_RESCUED = [
+  ".....aaa........",
+  "....aa7aa.......",
+  "..99a0aaa.......",
+  "..99aaaaa.......",
+  ".....7aa........",
+  "..7..7aa...7....",
+  ".777.7777.777...",
+  "..7777777777....",
+  "...77777777.....",
+  "....7766777.....",
+  "....7766777.....",
+  ".....77776......",
+  "......666.......",
+  ".....99.99......",
+  "....99...99.....",
+  "................"
+];
+
+let game;
+
+function gooseFrame(pixels, width, height, durationMs) {
+  return {
+    pixels: pixels,
+    palette: GOOSE_PALETTE,
+    anchor: { x: Math.floor(width / 2), y: height },
+    durationMs: durationMs,
+    hurtboxes: [],
+    hitboxes: []
+  };
+}
+
+function init(api) {
+  const goose = {
+    width: 16,
+    height: 20,
+    animations: {
+      idle: { frames: ["idle", "breathe"], frameMs: 360, loop: true },
+      walk: { frames: ["stepA", "stepB"], frameMs: 115, loop: true },
+      climb: { frames: ["climbA", "climbB"], frameMs: 150, loop: true },
+      jump: { frames: ["wings"], frameMs: 120, loop: true },
+      hurt: { frames: ["flinch"], frameMs: 160, loop: false },
+      death: { frames: ["flinch", "tumble"], frameMs: 220, loop: false }
+    },
+    frames: {
+      idle: gooseFrame(GOOSE_IDLE, 16, 20, 360),
+      breathe: gooseFrame(GOOSE_IDLE_B, 16, 20, 360),
+      stepA: gooseFrame(GOOSE_WALK_A, 16, 20, 115),
+      stepB: gooseFrame(GOOSE_WALK_B, 16, 20, 115),
+      climbA: gooseFrame(GOOSE_CLIMB_A, 16, 20, 150),
+      climbB: gooseFrame(GOOSE_CLIMB_B, 16, 20, 150),
+      wings: gooseFrame(GOOSE_JUMP, 16, 20, 120),
+      flinch: gooseFrame(GOOSE_HURT, 16, 20, 160),
+      tumble: gooseFrame(GOOSE_DEATH, 16, 20, 220)
+    }
+  };
+
+  const friend = {
+    width: 16,
+    height: 16,
+    animations: {
+      wait: { frames: ["wait", "peep"], frameMs: 440, loop: true },
+      rescued: { frames: ["cheer", "peep"], frameMs: 150, loop: true }
+    },
+    frames: {
+      wait: gooseFrame(FRIEND_WAIT, 16, 16, 440),
+      peep: gooseFrame(FRIEND_PEEP, 16, 16, 440),
+      cheer: gooseFrame(FRIEND_RESCUED, 16, 16, 150)
+    }
+  };
+
+  game = ARCADE.climber({
+    stages: 3,
+    lives: 3,
+    timeLimit: 100,
+    difficulty: 0,
+    seed: 7,
+    girderColor: 9,
+    goalX: 226,
+    cage: false,
+    avatars: [
+      { overalls: 7, helmet: 7, sprites: goose },
+      { overalls: 7, helmet: 7, sprites: goose }
+    ],
+    targetSprites: friend,
+    rescueText: "GOOSE RESCUED!"
+  });
+  game.init(api);
+}
+
+function update(api, dt) {
+  game.update(api, dt);
+}
+
+function draw(api) {
+  api.cls(1);
+  game.draw(api);
+}

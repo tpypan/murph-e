@@ -1,0 +1,27 @@
+{
+  "reviewedAt": "2026-09-19T23:00:45.638Z",
+  "passed": true,
+  "contentHash": "e33a1e7d03d98d7110b8f848ec9f0f44a5cf183407719f5b9f44f9debb8e755d",
+  "sourceHash": "5496fd7087843ba1b203a24ae219caf77933bd574f34ed29e07f85b72ecfbd30",
+  "method": "Direct visual inspection of native framebuffer PNGs with independent runtime/pixel and behavior evidence.",
+  "screenshots": [
+    {
+      "path": "evidence/classic-1p-house.png",
+      "sha256": "4594060bff431091446f15a34fb4efa0e638135dfdd6b3c26039569f0e4e6fc4"
+    },
+    {
+      "path": "evidence/goose-hunt-2p-capture.png",
+      "sha256": "1be118986e6cec039ad62a3ff031e28ed5e44b5ce7fef3dc8d19f8cc71c7b7df"
+    }
+  ],
+  "findings": [
+    "Optional imported art leaves all11 original native comparison screenshots unchanged.",
+    "Visible ghost house, continuous wall outlines and original goose identity preserved.",
+    "Imported drawing timing/palettes remain separate from canonical contact rules."
+  ],
+  "limits": [
+    "Original project maze and strategy, not original ROM/map/timing.",
+    "No human balance study or physical CRT verification.",
+    "Fresh model-generation test unavailable due enforced project spend limit."
+  ]
+}

@@ -1,4 +1,6 @@
 import { syntaxCheck } from './build.ts'
+import { REQUEST_LIMITS, withDeadline } from './deadline.ts'
+import type { DesignContext } from './design-context.ts'
 import { MODELS, ms, now, openai } from './env.ts'
 import type { BuildPrompt } from './prompt.ts'
 import type { GameSpec } from './spec.ts'
@@ -80,7 +82,13 @@ export function applyBlocks(
   return out
 }
 
-export function remixUserTurn(spec: GameSpec, code: string, changes: string[]): string {
+export function remixUserTurn(
+  spec: GameSpec,
+  code: string,
+  changes: string[],
+  context?: DesignContext,
+  transcript?: string,
+): string {
   return [
     '=== THE GAME ON SCREEN ===',
     '```js',
@@ -89,6 +97,10 @@ export function remixUserTurn(spec: GameSpec, code: string, changes: string[]): 
     '',
     '=== WHAT THE PLAYER WANTS CHANGED ===',
     ...changes.map((c) => `- ${c}`),
+    '',
+    ...(transcript ? ['=== WHAT THE PERSON SAID ===', transcript, ''] : []),
+    context?.text ?? '',
+    'Use design guidance only for the requested edits. Do not redesign or retune unrelated mechanics.',
     '',
     '=== SPEC AFTER THE CHANGES ===',
     JSON.stringify({
@@ -110,6 +122,22 @@ export function remixUserTurn(spec: GameSpec, code: string, changes: string[]): 
   ].join('\n')
 }
 
+export function remixSystemPrompt(prompt: BuildPrompt): string {
+  return [
+    prompt.system,
+    '',
+    '=== REMIX STAGE OUTPUT CONTRACT ===',
+    'This call edits an existing game. The earlier complete-game output instruction is replaced for this call.',
+    'Output only small SEARCH/REPLACE blocks, with no Markdown fence, no prose and no complete game file:',
+    '<<<<<<< SEARCH',
+    'exact existing lines',
+    '=======',
+    'replacement lines',
+    '>>>>>>> REPLACE',
+    'Copy each SEARCH verbatim from the supplied current game and make it unique. Preserve all unrelated code. Apply design guidance only to the requested changes. The examples above describe runtime usage; do not copy them as output.',
+  ].join('\n')
+}
+
 /** One streamed call: current game + changes in, search/replace blocks out, applied here. */
 export async function remix(
   prompt: BuildPrompt,
@@ -122,38 +150,56 @@ export async function remix(
   let ttft: number | null = null
   const parts: string[] = []
   const usage = { input: 0, cached: 0, output: 0, reasoning: 0 }
-  const stream = await openai().responses.create(
-    {
-      model: opts.model ?? MODELS.remix,
-      reasoning: { effort: (opts.effort ?? MODELS.remixEffort) as 'none' },
-      instructions: prompt.system,
-      input: remixUserTurn(spec, code, changes),
-      stream: true,
-      prompt_cache_key: prompt.cacheKey,
-      max_output_tokens: 4000,
-    },
-    { signal: opts.signal },
-  )
-  for await (const ev of stream) {
-    if (ev.type === 'response.output_text.delta') {
-      if (ttft === null) ttft = ms(t0)
-      parts.push(ev.delta)
-      opts.onDelta?.(ev.delta)
-    } else if (ev.type === 'response.completed') {
-      const u = ev.response.usage
-      usage.input = u?.input_tokens ?? 0
-      usage.cached = u?.input_tokens_details?.cached_tokens ?? 0
-      usage.output = u?.output_tokens ?? 0
-      usage.reasoning = u?.output_tokens_details?.reasoning_tokens ?? 0
-    } else if (ev.type === 'response.failed' || ev.type === 'error') {
-      throw new Error(`remix failed: ${JSON.stringify(ev).slice(0, 300)}`)
-    }
+  let receivedTerminal = false
+  let incompleteReason: string | null = null
+  try {
+    await withDeadline('remix', REQUEST_LIMITS.remix, opts.signal, async (signal) => {
+      const stream = await openai().responses.create(
+        {
+          model: opts.model ?? MODELS.remix,
+          reasoning: { effort: (opts.effort ?? MODELS.remixEffort) as 'low' },
+          instructions: remixSystemPrompt(prompt),
+          input: remixUserTurn(spec, code, changes, prompt.designContext, prompt.transcript),
+          stream: true,
+          prompt_cache_key: `${prompt.cacheKey}-remix`,
+          max_output_tokens: 4000,
+        },
+        { signal },
+      )
+      for await (const ev of stream) {
+        if (ev.type === 'response.output_text.delta') {
+          if (ttft === null) ttft = ms(t0)
+          parts.push(ev.delta)
+          opts.onDelta?.(ev.delta)
+        } else if (ev.type === 'response.completed' || ev.type === 'response.incomplete') {
+          receivedTerminal = true
+          if (ev.type === 'response.incomplete')
+            incompleteReason = ev.response.incomplete_details?.reason ?? 'unknown'
+          const u = ev.response.usage
+          usage.input = u?.input_tokens ?? 0
+          usage.cached = u?.input_tokens_details?.cached_tokens ?? 0
+          usage.output = u?.output_tokens ?? 0
+          usage.reasoning = u?.output_tokens_details?.reasoning_tokens ?? 0
+          break
+        } else if (ev.type === 'response.failed' || ev.type === 'error') {
+          throw new Error(`remix failed: ${JSON.stringify(ev).slice(0, 300)}`)
+        }
+      }
+    })
+  } catch (error) {
+    // Terminal output must survive iterator cleanup and simultaneous cancellation.
+    if (!receivedTerminal) throw error
   }
+  if (!receivedTerminal) incompleteReason = 'stream_ended_before_completion'
   const raw = parts.join('')
   const blocks = parseBlocks(raw)
   let out = code
-  let applyError: string | null = null
-  if (blocks.length === 0) applyError = 'the reply had no search/replace blocks'
+  let applyError: string | null = incompleteReason
+    ? `Model output incomplete: ${incompleteReason}`
+    : null
+  if (applyError) {
+    // Preserve the raw reply but never apply a possibly truncated edit.
+  } else if (blocks.length === 0) applyError = 'the reply had no search/replace blocks'
   else {
     try {
       out = applyBlocks(code, blocks)

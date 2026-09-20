@@ -1,0 +1,3 @@
+# Named-reference checks for the two failures reported in the cabinet.
+Can we generate a game like Pac-Man? But instead of Pac-Man, it is a little goose that is chasing after the ghosts.
+Street Fighter but with Batman, Superman and Flash. Keep recognizable characters, a detailed rooftop arena, and a proper fighting moveset.

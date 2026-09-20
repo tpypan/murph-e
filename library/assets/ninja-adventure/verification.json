@@ -1,0 +1,2010 @@
+{
+  "manifestSha256": "2f519af0e39e79badecb923d2ada01dca5395290217501ae9e0bfc92b803a639",
+  "checks": [
+    {
+      "name": "file-integrity:LICENSE.md",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:README.md",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:actors/ninja-blue.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:actors/pig.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:actors/samurai-blue.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:actors/samurai-green.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:compile.py",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:contact-sheet.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/character/Shadow.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/character/ninja_blue/sprite.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/character/pig/pig.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/character/samurai_blue/sprite.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/character/samurai_green/samurai_green.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/destroyable/crate.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/destroyable/grass.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/destroyable/pot.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/weapon/axe/in_hand.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/weapon/axe/sprite.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/weapon/big_sword/in_hand.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/weapon/big_sword/sprite.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/weapon/bone/in_hand.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/weapon/bone/sprite.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/weapon/book/in_hand.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/weapon/book/sprite.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/weapon/club/in_hand.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:original/content/weapon/club/sprite.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:palette-map.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:props-contact-sheet.png",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:props/axe-held.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:props/axe-item.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:props/big-sword-held.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:props/big-sword-item.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:props/bone-held.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:props/bone-item.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:props/book-held.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:props/book-item.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:props/club-held.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:props/club-item.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:props/crate.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:props/grass.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:props/pot.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:props/shadow.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:source-tree.json",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:verify.py",
+      "passed": true
+    },
+    {
+      "name": "file-integrity:walk-preview.gif",
+      "passed": true
+    },
+    {
+      "name": "unique-frames:ninja-blue",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/down-0",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/down-0",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/down-0",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/down-0",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/down-1",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/down-1",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/down-1",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/down-1",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/down-2",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/down-2",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/down-2",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/down-2",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/down-3",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/down-3",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/down-3",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/down-3",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/down-4",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/down-4",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/down-4",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/down-4",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/down-5",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/down-5",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/down-5",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/down-5",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/up-0",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/up-0",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/up-0",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/up-0",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/up-1",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/up-1",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/up-1",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/up-1",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/up-2",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/up-2",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/up-2",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/up-2",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/up-3",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/up-3",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/up-3",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/up-3",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/up-4",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/up-4",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/up-4",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/up-4",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/up-5",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/up-5",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/up-5",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/up-5",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/left-0",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/left-0",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/left-0",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/left-0",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/left-1",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/left-1",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/left-1",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/left-1",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/left-2",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/left-2",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/left-2",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/left-2",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/left-3",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/left-3",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/left-3",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/left-3",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/left-4",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/left-4",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/left-4",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/left-4",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/left-5",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/left-5",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/left-5",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/left-5",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/right-0",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/right-0",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/right-0",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/right-0",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/right-1",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/right-1",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/right-1",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/right-1",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/right-2",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/right-2",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/right-2",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/right-2",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/right-3",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/right-3",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/right-3",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/right-3",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/right-4",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/right-4",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/right-4",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/right-4",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/right-5",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/right-5",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/right-5",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/right-5",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/death-pose",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/death-pose",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/death-pose",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/death-pose",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/item-pose",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/item-pose",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/item-pose",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/item-pose",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/ability-pose",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/ability-pose",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/ability-pose",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/ability-pose",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:ninja-blue/ability-2-pose",
+      "passed": true
+    },
+    {
+      "name": "timing:ninja-blue/ability-2-pose",
+      "passed": true
+    },
+    {
+      "name": "anchor:ninja-blue/ability-2-pose",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:ninja-blue/ability-2-pose",
+      "passed": true
+    },
+    {
+      "name": "all-source-pixels-represented:ninja-blue",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/idle-down",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/walk-down",
+      "passed": true
+    },
+    {
+      "name": "actual-changing-motion:ninja-blue/walk-down",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/attack-pose-down",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/jump-pose-down",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/idle-up",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/walk-up",
+      "passed": true
+    },
+    {
+      "name": "actual-changing-motion:ninja-blue/walk-up",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/attack-pose-up",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/jump-pose-up",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/idle-left",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/walk-left",
+      "passed": true
+    },
+    {
+      "name": "actual-changing-motion:ninja-blue/walk-left",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/attack-pose-left",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/jump-pose-left",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/idle-right",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/walk-right",
+      "passed": true
+    },
+    {
+      "name": "actual-changing-motion:ninja-blue/walk-right",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/attack-pose-right",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/jump-pose-right",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/death-pose",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/item-pose",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/ability-pose",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:ninja-blue/ability-2-pose",
+      "passed": true
+    },
+    {
+      "name": "four-direction-walk:ninja-blue",
+      "passed": true
+    },
+    {
+      "name": "static-action-honesty:ninja-blue",
+      "passed": true
+    },
+    {
+      "name": "unique-frames:samurai-blue",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/down-0",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/down-0",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/down-0",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/down-0",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/down-1",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/down-1",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/down-1",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/down-1",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/down-2",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/down-2",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/down-2",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/down-2",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/down-3",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/down-3",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/down-3",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/down-3",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/down-4",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/down-4",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/down-4",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/down-4",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/down-5",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/down-5",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/down-5",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/down-5",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/up-0",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/up-0",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/up-0",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/up-0",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/up-1",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/up-1",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/up-1",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/up-1",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/up-2",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/up-2",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/up-2",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/up-2",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/up-3",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/up-3",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/up-3",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/up-3",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/up-4",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/up-4",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/up-4",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/up-4",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/up-5",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/up-5",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/up-5",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/up-5",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/left-0",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/left-0",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/left-0",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/left-0",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/left-1",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/left-1",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/left-1",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/left-1",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/left-2",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/left-2",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/left-2",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/left-2",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/left-3",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/left-3",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/left-3",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/left-3",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/left-4",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/left-4",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/left-4",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/left-4",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/left-5",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/left-5",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/left-5",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/left-5",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/right-0",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/right-0",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/right-0",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/right-0",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/right-1",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/right-1",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/right-1",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/right-1",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/right-2",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/right-2",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/right-2",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/right-2",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/right-3",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/right-3",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/right-3",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/right-3",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/right-4",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/right-4",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/right-4",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/right-4",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/right-5",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/right-5",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/right-5",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/right-5",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/death-pose",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/death-pose",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/death-pose",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/death-pose",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/item-pose",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/item-pose",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/item-pose",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/item-pose",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/ability-pose",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/ability-pose",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/ability-pose",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/ability-pose",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-blue/ability-2-pose",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-blue/ability-2-pose",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-blue/ability-2-pose",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-blue/ability-2-pose",
+      "passed": true
+    },
+    {
+      "name": "all-source-pixels-represented:samurai-blue",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/idle-down",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/walk-down",
+      "passed": true
+    },
+    {
+      "name": "actual-changing-motion:samurai-blue/walk-down",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/attack-pose-down",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/jump-pose-down",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/idle-up",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/walk-up",
+      "passed": true
+    },
+    {
+      "name": "actual-changing-motion:samurai-blue/walk-up",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/attack-pose-up",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/jump-pose-up",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/idle-left",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/walk-left",
+      "passed": true
+    },
+    {
+      "name": "actual-changing-motion:samurai-blue/walk-left",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/attack-pose-left",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/jump-pose-left",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/idle-right",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/walk-right",
+      "passed": true
+    },
+    {
+      "name": "actual-changing-motion:samurai-blue/walk-right",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/attack-pose-right",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/jump-pose-right",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/death-pose",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/item-pose",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/ability-pose",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-blue/ability-2-pose",
+      "passed": true
+    },
+    {
+      "name": "four-direction-walk:samurai-blue",
+      "passed": true
+    },
+    {
+      "name": "static-action-honesty:samurai-blue",
+      "passed": true
+    },
+    {
+      "name": "unique-frames:samurai-green",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/down-0",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/down-0",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/down-0",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/down-0",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/down-1",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/down-1",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/down-1",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/down-1",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/down-2",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/down-2",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/down-2",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/down-2",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/down-3",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/down-3",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/down-3",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/down-3",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/down-4",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/down-4",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/down-4",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/down-4",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/down-5",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/down-5",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/down-5",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/down-5",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/up-0",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/up-0",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/up-0",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/up-0",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/up-1",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/up-1",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/up-1",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/up-1",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/up-2",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/up-2",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/up-2",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/up-2",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/up-3",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/up-3",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/up-3",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/up-3",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/up-4",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/up-4",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/up-4",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/up-4",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/up-5",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/up-5",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/up-5",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/up-5",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/left-0",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/left-0",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/left-0",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/left-0",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/left-1",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/left-1",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/left-1",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/left-1",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/left-2",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/left-2",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/left-2",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/left-2",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/left-3",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/left-3",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/left-3",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/left-3",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/left-4",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/left-4",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/left-4",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/left-4",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/left-5",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/left-5",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/left-5",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/left-5",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/right-0",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/right-0",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/right-0",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/right-0",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/right-1",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/right-1",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/right-1",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/right-1",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/right-2",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/right-2",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/right-2",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/right-2",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/right-3",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/right-3",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/right-3",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/right-3",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/right-4",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/right-4",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/right-4",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/right-4",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/right-5",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/right-5",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/right-5",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/right-5",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/death-pose",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/death-pose",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/death-pose",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/death-pose",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/item-pose",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/item-pose",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/item-pose",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/item-pose",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/ability-pose",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/ability-pose",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/ability-pose",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/ability-pose",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:samurai-green/ability-2-pose",
+      "passed": true
+    },
+    {
+      "name": "timing:samurai-green/ability-2-pose",
+      "passed": true
+    },
+    {
+      "name": "anchor:samurai-green/ability-2-pose",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:samurai-green/ability-2-pose",
+      "passed": true
+    },
+    {
+      "name": "all-source-pixels-represented:samurai-green",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/idle-down",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/walk-down",
+      "passed": true
+    },
+    {
+      "name": "actual-changing-motion:samurai-green/walk-down",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/attack-pose-down",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/jump-pose-down",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/idle-up",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/walk-up",
+      "passed": true
+    },
+    {
+      "name": "actual-changing-motion:samurai-green/walk-up",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/attack-pose-up",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/jump-pose-up",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/idle-left",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/walk-left",
+      "passed": true
+    },
+    {
+      "name": "actual-changing-motion:samurai-green/walk-left",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/attack-pose-left",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/jump-pose-left",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/idle-right",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/walk-right",
+      "passed": true
+    },
+    {
+      "name": "actual-changing-motion:samurai-green/walk-right",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/attack-pose-right",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/jump-pose-right",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/death-pose",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/item-pose",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/ability-pose",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:samurai-green/ability-2-pose",
+      "passed": true
+    },
+    {
+      "name": "four-direction-walk:samurai-green",
+      "passed": true
+    },
+    {
+      "name": "static-action-honesty:samurai-green",
+      "passed": true
+    },
+    {
+      "name": "unique-frames:pig",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:pig/left-0",
+      "passed": true
+    },
+    {
+      "name": "timing:pig/left-0",
+      "passed": true
+    },
+    {
+      "name": "anchor:pig/left-0",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:pig/left-0",
+      "passed": true
+    },
+    {
+      "name": "runtime-pixels:pig/left-1",
+      "passed": true
+    },
+    {
+      "name": "timing:pig/left-1",
+      "passed": true
+    },
+    {
+      "name": "anchor:pig/left-1",
+      "passed": true
+    },
+    {
+      "name": "no-fabricated-attacks:pig/left-1",
+      "passed": true
+    },
+    {
+      "name": "all-source-pixels-represented:pig",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:pig/idle-left",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:pig/walk-left",
+      "passed": true
+    },
+    {
+      "name": "actual-changing-motion:pig/walk-left",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:pig/idle-right",
+      "passed": true
+    },
+    {
+      "name": "animation-resolves:pig/walk-right",
+      "passed": true
+    },
+    {
+      "name": "actual-changing-motion:pig/walk-right",
+      "passed": true
+    },
+    {
+      "name": "pig-direction-honesty",
+      "passed": true
+    },
+    {
+      "name": "static-prop-contract:shadow",
+      "passed": true
+    },
+    {
+      "name": "static-prop-contract:crate",
+      "passed": true
+    },
+    {
+      "name": "static-prop-contract:grass",
+      "passed": true
+    },
+    {
+      "name": "static-prop-contract:pot",
+      "passed": true
+    },
+    {
+      "name": "static-prop-contract:axe-held",
+      "passed": true
+    },
+    {
+      "name": "static-prop-contract:axe-item",
+      "passed": true
+    },
+    {
+      "name": "static-prop-contract:big-sword-held",
+      "passed": true
+    },
+    {
+      "name": "static-prop-contract:big-sword-item",
+      "passed": true
+    },
+    {
+      "name": "static-prop-contract:bone-held",
+      "passed": true
+    },
+    {
+      "name": "static-prop-contract:bone-item",
+      "passed": true
+    },
+    {
+      "name": "static-prop-contract:book-held",
+      "passed": true
+    },
+    {
+      "name": "static-prop-contract:book-item",
+      "passed": true
+    },
+    {
+      "name": "static-prop-contract:club-held",
+      "passed": true
+    },
+    {
+      "name": "static-prop-contract:club-item",
+      "passed": true
+    },
+    {
+      "name": "honest-counts",
+      "passed": true
+    },
+    {
+      "name": "bounded-assets",
+      "passed": true
+    }
+  ],
+  "summary": {
+    "passed": 498,
+    "actors": 4,
+    "sourceActorFrames": 86,
+    "directionalMotionCyclesIncludingMirrors": 14,
+    "staticProps": 14
+  },
+  "visualArtifact": "contact-sheet.png",
+  "limitations": [
+    "No fighter action cycles or new named-character art.",
+    "Geometry is authored baseline data; consuming game must verify mechanic-specific interactions.",
+    "These checks do not claim gameplay polish or complete the 15-family goal."
+  ]
+}

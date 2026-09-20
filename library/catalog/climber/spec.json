@@ -1,0 +1,10 @@
+{
+ "title":"CRANE RESCUE",
+ "oneLiner":"Climb the construction tower, leap rolling barrels and rescue the kitten from a mischievous gorilla.",
+ "genre":"barrel ladder platformer",
+ "mechanics":["Five sloped girders connected by usable ladders; broken shortcuts are visibly marked.","A construction gorilla telegraphs and throws barrels. Barrels roll downhill, fall off edges and sometimes descend ladders.","Jumping over a barrel awards 100 only once per player and barrel; reaching each new floor awards 100.","Reach the kitten at the upper-right cage to rescue it, earn a time bonus and advance to a different, harder layout.","Each player has three lives and respawns at the highest reached floor with temporary protection. In 2P, either player can rescue the kitten for the team."],
+ "controls":{"left":"Walk left","right":"Walk right","up":"Climb ladder up","down":"Climb ladder down","a":"Jump (hold for full height)","b":null},
+ "palette":"arcade","lose":"The team runs out of lives; running out of stage time costs a life.",
+ "scoring":"100 for each new floor and each distinct barrel jumped; 1000 plus the remaining stage bonus when the kitten is rescued.",
+ "moderated":false,"note":"Original construction art and code inspired by the barrel-ladder arcade structure.","remix":false,"changes":[],"players":1
+}

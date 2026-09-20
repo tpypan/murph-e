@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "bone-held",
+  "packId": "ninja-adventure",
+  "camera": "top-down",
+  "width": 7,
+  "height": 8,
+  "source": {
+    "path": "original/content/weapon/bone/in_hand.png",
+    "url": "https://raw.githubusercontent.com/pixel-boy/NinjaAdventure/6ac78232d5aedcc85ce5f27d060ea92366f7c24a/content/weapon/bone/in_hand.png",
+    "sha256": "d13603214eb2a38e36a82c0166d6ae572b4635fecb4e6c64d70926439aa43be4",
+    "sourceRevision": "6ac78232d5aedcc85ce5f27d060ea92366f7c24a"
+  },
+  "pixels": [
+    "..060..",
+    "..060..",
+    "..060..",
+    "..060..",
+    ".07770.",
+    "0776770",
+    "0770770",
+    ".00.00."
+  ],
+  "anchor": {
+    "x": 3,
+    "y": 8
+  },
+  "normalization": {
+    "palette": "pico-8",
+    "reviewedOverrides": {}
+  },
+  "anchorOrigin": "Authored bottom-center placement; source attachment pivots have not been reconstructed.",
+  "hitboxes": [],
+  "hurtboxes": [],
+  "animations": {},
+  "tags": [
+    "weapon",
+    "static"
+  ],
+  "notes": "Static source image only. No implied attack animation, damage volume or destruction sequence."
+}

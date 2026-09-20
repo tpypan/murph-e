@@ -1,0 +1,190 @@
+{
+  "at": "2026-09-19T21:49:40.634Z",
+  "results": [
+    {
+      "players": 1,
+      "name": "serve",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 1,
+        "error": null
+      },
+      "stepMs": 5
+    },
+    {
+      "players": 1,
+      "name": "launch",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 25,
+        "scores": [
+          25
+        ],
+        "winner": null,
+        "frame": 80,
+        "error": null
+      },
+      "stepMs": 15
+    },
+    {
+      "players": 1,
+      "name": "impact",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 300,
+        "scores": [
+          300
+        ],
+        "winner": null,
+        "frame": 750,
+        "error": null
+      },
+      "stepMs": 88
+    },
+    {
+      "players": 1,
+      "name": "formation-2",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 2215,
+        "scores": [
+          2215
+        ],
+        "winner": null,
+        "frame": 4500,
+        "error": null
+      },
+      "stepMs": 482
+    },
+    {
+      "players": 1,
+      "name": "stage-end",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "win",
+        "score": 4300,
+        "scores": [
+          4300
+        ],
+        "winner": null,
+        "frame": 15000,
+        "error": null
+      },
+      "stepMs": 1682
+    },
+    {
+      "players": 2,
+      "name": "serve",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0,
+          0
+        ],
+        "winner": null,
+        "frame": 15001,
+        "error": null
+      },
+      "stepMs": 8
+    },
+    {
+      "players": 2,
+      "name": "launch",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 25,
+        "scores": [
+          25,
+          0
+        ],
+        "winner": null,
+        "frame": 15080,
+        "error": null
+      },
+      "stepMs": 24
+    },
+    {
+      "players": 2,
+      "name": "impact",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 25,
+        "scores": [
+          25,
+          100
+        ],
+        "winner": null,
+        "frame": 15750,
+        "error": null
+      },
+      "stepMs": 168
+    },
+    {
+      "players": 2,
+      "name": "formation-2",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "playing",
+        "score": 1025,
+        "scores": [
+          1025,
+          2015
+        ],
+        "winner": null,
+        "frame": 19500,
+        "error": null
+      },
+      "stepMs": 664
+    },
+    {
+      "players": 2,
+      "name": "stage-end",
+      "load": {
+        "ok": true
+      },
+      "state": {
+        "state": "win",
+        "score": 2380,
+        "scores": [
+          2380,
+          2700
+        ],
+        "winner": null,
+        "frame": 30000,
+        "error": null
+      },
+      "stepMs": 1036
+    }
+  ]
+}

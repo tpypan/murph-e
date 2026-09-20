@@ -1,0 +1,44 @@
+{
+  "model": "gpt-6-astra",
+  "effort": "medium",
+  "players": 1,
+  "n": 1,
+  "rows": [
+    {
+      "prompt": "Street Fighter but with Batman and the Flash. Make the characters recognizable, with proper fighting moves, blocking, specials and rounds.",
+      "title": "",
+      "genre": "",
+      "runId": "",
+      "specMs": 0,
+      "buildMs": 0,
+      "ttftMs": null,
+      "totalMs": 0,
+      "tokens": 0,
+      "reasoning": 0,
+      "cached": 0,
+      "lines": 0,
+      "syntaxError": null,
+      "probeOk": null,
+      "observations": [],
+      "error": "ENOENT: no such file or directory, open '/Users/shayaanazeem/Downloads/htncodex/htn-2026/library/catalog/climber/api.md'"
+    },
+    {
+      "prompt": "A kart racing game around a coastal circuit at night. Let me drift for turbo boosts and race against rival drivers over three laps.",
+      "title": "",
+      "genre": "",
+      "runId": "",
+      "specMs": 0,
+      "buildMs": 0,
+      "ttftMs": null,
+      "totalMs": 0,
+      "tokens": 0,
+      "reasoning": 0,
+      "cached": 0,
+      "lines": 0,
+      "syntaxError": null,
+      "probeOk": null,
+      "observations": [],
+      "error": "ENOENT: no such file or directory, open '/Users/shayaanazeem/Downloads/htncodex/htn-2026/library/catalog/climber/api.md'"
+    }
+  ]
+}

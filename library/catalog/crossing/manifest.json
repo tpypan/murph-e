@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "id": "crossing",
+  "version": "1.1.0",
+  "title": "Road and River Crossing",
+  "description": "Complete original Frogger-inspired crossing game with buffered hops, moving traffic, rideable logs, telegraphed sinking turtles, five reservable home bays, timers/lives, bounded level acceleration, and independent cooperative players and scores.",
+  "tags": [
+    "frogger",
+    "crossing",
+    "river",
+    "traffic"
+  ],
+  "match": {
+    "phrases": [
+      "frogger",
+      "road crossing",
+      "river crossing",
+      "cross the road"
+    ],
+    "genres": [
+      "crossing",
+      "road crossing",
+      "river crossing",
+      "frogger"
+    ]
+  },
+  "supportsPlayers": [
+    1,
+    2
+  ],
+  "module": "module.js",
+  "entry": "crossing",
+  "apiVersion": 1,
+  "license": {
+    "spdx": "LicenseRef-Project-Original",
+    "notes": "Original code, lane arrangement and authored pixel assets; no commercial source, ROM or sprite extraction."
+  },
+  "provenance": {
+    "kind": "original",
+    "authors": [
+      "Arcade project"
+    ],
+    "sources": [],
+    "createdAt": "2026-09-19"
+  },
+  "assets": [
+    "assets.json"
+  ],
+  "files": [
+    "core.js",
+    "build-assets.mjs",
+    "build.mjs",
+    "demo.js",
+    "spec.json",
+    "test.mjs",
+    "route.mjs",
+    "verify.mjs",
+    "screenshots.mjs",
+    "README.md",
+    "presentation-proof.mjs"
+  ],
+  "quality": {
+    "status": "draft"
+  }
+}

@@ -1,0 +1,2597 @@
+{
+  "at": "2026-09-20T00:32:01.135Z",
+  "passed": true,
+  "failures": [],
+  "factoryPath": "/Users/shayaanazeem/Downloads/htncodex/htn-2026/library/catalog/kart/module.js",
+  "configPath": "/tmp/kart-no-source-art.json",
+  "output": "/Users/shayaanazeem/Downloads/htncodex/htn-2026/library/catalog/kart/verification/default-play",
+  "configMode": "exact factory defaults ({})",
+  "method": "Read-only VM telemetry plans ordinary button transitions. Identical game.js runs in native Chromium with __probe.inject only; no state mutation, teleportation, API replacement, source rendering mock, model calls or network. Every ordered checkpoint is checked against native scores. Native 256x224 framebuffer PNGs preserve exact source palettes.",
+  "sourceArt": "Original authored kart artwork and environment; no imported source-art config was supplied for this proof invocation.",
+  "hashes": {
+    "factory": "9daa187d6b6313086ad2cf254b0a7cfb4f6ebe811209dc2f512b2d71e2279eae",
+    "config": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "code": "877ded3a899df1ad014d97491583f872275ed5cf50260c462829ac50eb5ba540",
+    "runtime": "057ae1d8271580c901ff3c05ff1d40dcd14f73e0dc551f5e35e746b9f7d8f1d5",
+    "script": "ea6f3b7f40da3b9d5622cb1af92ea679038f383d962f9d3275926508db238d91"
+  },
+  "sourceColors": [],
+  "sourceOnlyColors": [],
+  "generic": [
+    {
+      "players": 1,
+      "ok": true,
+      "observations": [],
+      "thumb": "1p-probe.png",
+      "ms": 1617,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true
+      }
+    },
+    {
+      "players": 2,
+      "ok": true,
+      "observations": [],
+      "thumb": "2p-probe.png",
+      "ms": 2631,
+      "checks": {
+        "loads": true,
+        "survives": true,
+        "notInstantDeath": true,
+        "draws": true,
+        "moves": true,
+        "survivesInput": true,
+        "soft:responds:left": true,
+        "soft:responds:right": true,
+        "soft:responds:up": true,
+        "soft:responds:down": true,
+        "respondsToDirection": true,
+        "responds:a": true,
+        "soft:responds:b": true,
+        "respondsToP2": true,
+        "soft:responds:p2:a": true
+      }
+    }
+  ],
+  "races": [
+    {
+      "name": "1p-race",
+      "players": 1,
+      "mode": "race",
+      "loaded": {
+        "ok": true
+      },
+      "checks": [
+        {
+          "frame": 1,
+          "names": [
+            "grid"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 2,
+            "error": null
+          }
+        },
+        {
+          "frame": 120,
+          "names": [
+            "countdown"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 121,
+            "error": null
+          }
+        },
+        {
+          "frame": 181,
+          "names": [
+            "green-light"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 182,
+            "error": null
+          }
+        },
+        {
+          "frame": 282,
+          "names": [
+            "straight"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 283,
+            "error": null
+          }
+        },
+        {
+          "frame": 354,
+          "names": [
+            "right-turn"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 25,
+            "scores": [
+              25
+            ],
+            "winner": null,
+            "frame": 355,
+            "error": null
+          }
+        },
+        {
+          "frame": 374,
+          "names": [
+            "drift"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 25,
+            "scores": [
+              25
+            ],
+            "winner": null,
+            "frame": 375,
+            "error": null
+          }
+        },
+        {
+          "frame": 404,
+          "names": [
+            "p1-gate-1"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 125,
+            "scores": [
+              125
+            ],
+            "winner": null,
+            "frame": 405,
+            "error": null
+          }
+        },
+        {
+          "frame": 406,
+          "names": [
+            "turbo"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 165,
+            "scores": [
+              165
+            ],
+            "winner": null,
+            "frame": 407,
+            "error": null
+          }
+        },
+        {
+          "frame": 496,
+          "names": [
+            "left-turn"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 165,
+            "scores": [
+              165
+            ],
+            "winner": null,
+            "frame": 497,
+            "error": null
+          }
+        },
+        {
+          "frame": 563,
+          "names": [
+            "p1-gate-2"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 265,
+            "scores": [
+              265
+            ],
+            "winner": null,
+            "frame": 564,
+            "error": null
+          }
+        },
+        {
+          "frame": 733,
+          "names": [
+            "p1-gate-3"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 405,
+            "scores": [
+              405
+            ],
+            "winner": null,
+            "frame": 734,
+            "error": null
+          }
+        },
+        {
+          "frame": 876,
+          "names": [
+            "p1-gate-4"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 530,
+            "scores": [
+              530
+            ],
+            "winner": null,
+            "frame": 877,
+            "error": null
+          }
+        },
+        {
+          "frame": 1031,
+          "names": [
+            "p1-gate-5"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 655,
+            "scores": [
+              655
+            ],
+            "winner": null,
+            "frame": 1032,
+            "error": null
+          }
+        },
+        {
+          "frame": 1203,
+          "names": [
+            "p1-gate-6"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 755,
+            "scores": [
+              755
+            ],
+            "winner": null,
+            "frame": 1204,
+            "error": null
+          }
+        },
+        {
+          "frame": 1374,
+          "names": [
+            "p1-gate-7"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 855,
+            "scores": [
+              855
+            ],
+            "winner": null,
+            "frame": 1375,
+            "error": null
+          }
+        },
+        {
+          "frame": 1529,
+          "names": [
+            "p1-gate-8"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 980,
+            "scores": [
+              980
+            ],
+            "winner": null,
+            "frame": 1530,
+            "error": null
+          }
+        },
+        {
+          "frame": 1684,
+          "names": [
+            "p1-gate-9"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 1105,
+            "scores": [
+              1105
+            ],
+            "winner": null,
+            "frame": 1685,
+            "error": null
+          }
+        },
+        {
+          "frame": 1855,
+          "names": [
+            "p1-gate-10"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 1205,
+            "scores": [
+              1205
+            ],
+            "winner": null,
+            "frame": 1856,
+            "error": null
+          }
+        },
+        {
+          "frame": 2027,
+          "names": [
+            "p1-gate-11"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 1305,
+            "scores": [
+              1305
+            ],
+            "winner": null,
+            "frame": 2028,
+            "error": null
+          }
+        },
+        {
+          "frame": 2182,
+          "names": [
+            "p1-gate-12",
+            "p1-finish"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 2430,
+            "scores": [
+              2430
+            ],
+            "winner": null,
+            "frame": 2183,
+            "error": null
+          }
+        },
+        {
+          "frame": 2302,
+          "names": [
+            "terminal"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "win",
+            "score": 2430,
+            "scores": [
+              2430
+            ],
+            "winner": null,
+            "frame": 2303,
+            "error": null
+          }
+        }
+      ],
+      "captures": [
+        {
+          "frame": 1,
+          "names": [
+            "grid"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 2,
+            "error": null
+          },
+          "file": "1p-race-grid.png",
+          "hash": "bdf30a75",
+          "stats": {
+            "colors": 30,
+            "dominant": 0,
+            "dominantShare": 0.262939453125
+          },
+          "matches": {}
+        },
+        {
+          "frame": 120,
+          "names": [
+            "countdown"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 121,
+            "error": null
+          },
+          "file": "1p-race-countdown.png",
+          "hash": "feab9cd3",
+          "stats": {
+            "colors": 30,
+            "dominant": 0,
+            "dominantShare": 0.2637241908482143
+          },
+          "matches": {}
+        },
+        {
+          "frame": 181,
+          "names": [
+            "green-light"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 182,
+            "error": null
+          },
+          "file": "1p-race-green-light.png",
+          "hash": "c5e8282b",
+          "stats": {
+            "colors": 30,
+            "dominant": 0,
+            "dominantShare": 0.24525669642857142
+          },
+          "matches": {}
+        },
+        {
+          "frame": 282,
+          "names": [
+            "straight"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 283,
+            "error": null
+          },
+          "file": "1p-race-straight.png",
+          "hash": "c4a3479c",
+          "stats": {
+            "colors": 30,
+            "dominant": 21318480,
+            "dominantShare": 0.28672572544642855
+          },
+          "matches": {}
+        },
+        {
+          "frame": 354,
+          "names": [
+            "right-turn"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 25,
+            "scores": [
+              25
+            ],
+            "winner": null,
+            "frame": 355,
+            "error": null
+          },
+          "file": "1p-race-right-turn.png",
+          "hash": "e1f703f4",
+          "stats": {
+            "colors": 31,
+            "dominant": 21318480,
+            "dominantShare": 0.15044294084821427
+          },
+          "matches": {}
+        },
+        {
+          "frame": 374,
+          "names": [
+            "drift"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 25,
+            "scores": [
+              25
+            ],
+            "winner": null,
+            "frame": 375,
+            "error": null
+          },
+          "file": "1p-race-drift.png",
+          "hash": "bdc163fd",
+          "stats": {
+            "colors": 31,
+            "dominant": 21581652,
+            "dominantShare": 0.28812081473214285
+          },
+          "matches": {}
+        },
+        {
+          "frame": 404,
+          "names": [
+            "p1-gate-1"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 125,
+            "scores": [
+              125
+            ],
+            "winner": null,
+            "frame": 405,
+            "error": null
+          },
+          "file": "1p-race-p1-gate-1.png",
+          "hash": "dcb5f9e6",
+          "stats": {
+            "colors": 31,
+            "dominant": 21581652,
+            "dominantShare": 0.29115513392857145
+          },
+          "matches": {}
+        },
+        {
+          "frame": 406,
+          "names": [
+            "turbo"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 165,
+            "scores": [
+              165
+            ],
+            "winner": null,
+            "frame": 407,
+            "error": null
+          },
+          "file": "1p-race-turbo.png",
+          "hash": "09e53c0e",
+          "stats": {
+            "colors": 31,
+            "dominant": 21581652,
+            "dominantShare": 0.27566964285714285
+          },
+          "matches": {}
+        },
+        {
+          "frame": 496,
+          "names": [
+            "left-turn"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 165,
+            "scores": [
+              165
+            ],
+            "winner": null,
+            "frame": 497,
+            "error": null
+          },
+          "file": "1p-race-left-turn.png",
+          "hash": "5d605a59",
+          "stats": {
+            "colors": 31,
+            "dominant": 21318480,
+            "dominantShare": 0.279052734375
+          },
+          "matches": {}
+        },
+        {
+          "frame": 2182,
+          "names": [
+            "p1-gate-12",
+            "p1-finish"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 2430,
+            "scores": [
+              2430
+            ],
+            "winner": null,
+            "frame": 2183,
+            "error": null
+          },
+          "file": "1p-race-p1-gate-12.png",
+          "hash": "a92f0e4e",
+          "stats": {
+            "colors": 30,
+            "dominant": 0,
+            "dominantShare": 0.24715750558035715
+          },
+          "matches": {}
+        },
+        {
+          "frame": 2302,
+          "names": [
+            "terminal"
+          ],
+          "state": {
+            "state": "win",
+            "score": 2430,
+            "scores": [
+              2430
+            ],
+            "winner": null,
+            "frame": 2303,
+            "error": null
+          },
+          "file": "1p-race-terminal.png",
+          "hash": "9f8e183f",
+          "stats": {
+            "colors": 30,
+            "dominant": 21318480,
+            "dominantShare": 0.28829520089285715
+          },
+          "matches": {}
+        },
+        {
+          "frame": 2303,
+          "names": [
+            "terminal-overlay"
+          ],
+          "state": {
+            "state": "win",
+            "score": 2430,
+            "scores": [
+              2430
+            ],
+            "winner": null,
+            "frame": 2304,
+            "error": null
+          },
+          "file": "1p-race-terminal-overlay.png",
+          "hash": "2b7795bc",
+          "stats": {
+            "colors": 25,
+            "dominant": 0,
+            "dominantShare": 0.4624546595982143
+          },
+          "matches": {}
+        }
+      ],
+      "terminalReason": "human-finish",
+      "plannedTerminal": {
+        "state": "win",
+        "winner": null,
+        "frame": 2302
+      },
+      "final": {
+        "state": "win",
+        "score": 2430,
+        "scores": [
+          2430
+        ],
+        "winner": null,
+        "frame": 2304,
+        "error": null
+      },
+      "reset": {
+        "state": {
+          "state": "playing",
+          "score": 0,
+          "scores": [
+            0
+          ],
+          "winner": null,
+          "frame": 2305,
+          "error": null
+        },
+        "hash": "ca6c2b49"
+      },
+      "fresh": {
+        "state": {
+          "state": "playing",
+          "score": 0,
+          "scores": [
+            0
+          ],
+          "winner": null,
+          "frame": 2306,
+          "error": null
+        },
+        "hash": "ca6c2b49"
+      },
+      "errors": []
+    },
+    {
+      "name": "2p-race",
+      "players": 2,
+      "mode": "race",
+      "loaded": {
+        "ok": true
+      },
+      "checks": [
+        {
+          "frame": 1,
+          "names": [
+            "grid"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 2307,
+            "error": null
+          }
+        },
+        {
+          "frame": 120,
+          "names": [
+            "countdown"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 2426,
+            "error": null
+          }
+        },
+        {
+          "frame": 181,
+          "names": [
+            "green-light"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 2487,
+            "error": null
+          }
+        },
+        {
+          "frame": 282,
+          "names": [
+            "straight"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 2588,
+            "error": null
+          }
+        },
+        {
+          "frame": 354,
+          "names": [
+            "right-turn"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 25,
+            "scores": [
+              25,
+              25
+            ],
+            "winner": null,
+            "frame": 2660,
+            "error": null
+          }
+        },
+        {
+          "frame": 374,
+          "names": [
+            "drift"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 25,
+            "scores": [
+              25,
+              25
+            ],
+            "winner": null,
+            "frame": 2680,
+            "error": null
+          }
+        },
+        {
+          "frame": 404,
+          "names": [
+            "p1-gate-1",
+            "p2-gate-1"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 125,
+            "scores": [
+              125,
+              125
+            ],
+            "winner": null,
+            "frame": 2710,
+            "error": null
+          }
+        },
+        {
+          "frame": 406,
+          "names": [
+            "turbo"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 165,
+            "scores": [
+              165,
+              125
+            ],
+            "winner": null,
+            "frame": 2712,
+            "error": null
+          }
+        },
+        {
+          "frame": 496,
+          "names": [
+            "left-turn"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 165,
+            "scores": [
+              165,
+              125
+            ],
+            "winner": null,
+            "frame": 2802,
+            "error": null
+          }
+        },
+        {
+          "frame": 563,
+          "names": [
+            "p1-gate-2"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 265,
+            "scores": [
+              265,
+              125
+            ],
+            "winner": null,
+            "frame": 2869,
+            "error": null
+          }
+        },
+        {
+          "frame": 576,
+          "names": [
+            "p2-gate-2"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 265,
+            "scores": [
+              265,
+              225
+            ],
+            "winner": null,
+            "frame": 2882,
+            "error": null
+          }
+        },
+        {
+          "frame": 733,
+          "names": [
+            "p1-gate-3"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 405,
+            "scores": [
+              405,
+              225
+            ],
+            "winner": null,
+            "frame": 3039,
+            "error": null
+          }
+        },
+        {
+          "frame": 745,
+          "names": [
+            "p2-gate-3"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 405,
+            "scores": [
+              405,
+              365
+            ],
+            "winner": null,
+            "frame": 3051,
+            "error": null
+          }
+        },
+        {
+          "frame": 889,
+          "names": [
+            "p2-gate-4"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 405,
+            "scores": [
+              405,
+              490
+            ],
+            "winner": null,
+            "frame": 3195,
+            "error": null
+          }
+        },
+        {
+          "frame": 891,
+          "names": [
+            "p1-gate-4"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 505,
+            "scores": [
+              505,
+              490
+            ],
+            "winner": null,
+            "frame": 3197,
+            "error": null
+          }
+        },
+        {
+          "frame": 1044,
+          "names": [
+            "p2-gate-5"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 530,
+            "scores": [
+              530,
+              615
+            ],
+            "winner": null,
+            "frame": 3350,
+            "error": null
+          }
+        },
+        {
+          "frame": 1046,
+          "names": [
+            "p1-gate-5"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 630,
+            "scores": [
+              630,
+              615
+            ],
+            "winner": null,
+            "frame": 3352,
+            "error": null
+          }
+        },
+        {
+          "frame": 1205,
+          "names": [
+            "p1-gate-6"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 770,
+            "scores": [
+              770,
+              615
+            ],
+            "winner": null,
+            "frame": 3511,
+            "error": null
+          }
+        },
+        {
+          "frame": 1215,
+          "names": [
+            "p2-gate-6"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 770,
+            "scores": [
+              770,
+              715
+            ],
+            "winner": null,
+            "frame": 3521,
+            "error": null
+          }
+        },
+        {
+          "frame": 1376,
+          "names": [
+            "p1-gate-7"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 870,
+            "scores": [
+              870,
+              755
+            ],
+            "winner": null,
+            "frame": 3682,
+            "error": null
+          }
+        },
+        {
+          "frame": 1385,
+          "names": [
+            "p2-gate-7"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 870,
+            "scores": [
+              870,
+              855
+            ],
+            "winner": null,
+            "frame": 3691,
+            "error": null
+          }
+        },
+        {
+          "frame": 1529,
+          "names": [
+            "p2-gate-8"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 870,
+            "scores": [
+              870,
+              980
+            ],
+            "winner": null,
+            "frame": 3835,
+            "error": null
+          }
+        },
+        {
+          "frame": 1547,
+          "names": [
+            "p1-gate-8"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 970,
+            "scores": [
+              970,
+              980
+            ],
+            "winner": null,
+            "frame": 3853,
+            "error": null
+          }
+        },
+        {
+          "frame": 1684,
+          "names": [
+            "p2-gate-9"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 995,
+            "scores": [
+              995,
+              1105
+            ],
+            "winner": null,
+            "frame": 3990,
+            "error": null
+          }
+        },
+        {
+          "frame": 1702,
+          "names": [
+            "p1-gate-9"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 1095,
+            "scores": [
+              1095,
+              1105
+            ],
+            "winner": null,
+            "frame": 4008,
+            "error": null
+          }
+        },
+        {
+          "frame": 1855,
+          "names": [
+            "p2-gate-10"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 1095,
+            "scores": [
+              1095,
+              1205
+            ],
+            "winner": null,
+            "frame": 4161,
+            "error": null
+          }
+        },
+        {
+          "frame": 1873,
+          "names": [
+            "p1-gate-10"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 1195,
+            "scores": [
+              1195,
+              1205
+            ],
+            "winner": null,
+            "frame": 4179,
+            "error": null
+          }
+        },
+        {
+          "frame": 2026,
+          "names": [
+            "p2-gate-11"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 1195,
+            "scores": [
+              1195,
+              1305
+            ],
+            "winner": null,
+            "frame": 4332,
+            "error": null
+          }
+        },
+        {
+          "frame": 2043,
+          "names": [
+            "p1-gate-11"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 1335,
+            "scores": [
+              1335,
+              1305
+            ],
+            "winner": null,
+            "frame": 4349,
+            "error": null
+          }
+        },
+        {
+          "frame": 2182,
+          "names": [
+            "p2-gate-12",
+            "p2-finish"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 1335,
+            "scores": [
+              1335,
+              2430
+            ],
+            "winner": null,
+            "frame": 4488,
+            "error": null
+          }
+        },
+        {
+          "frame": 2202,
+          "names": [
+            "p1-gate-12",
+            "p1-finish"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 2435,
+            "scores": [
+              2435,
+              2430
+            ],
+            "winner": null,
+            "frame": 4508,
+            "error": null
+          }
+        },
+        {
+          "frame": 2239,
+          "names": [
+            "crash"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 2435,
+            "scores": [
+              2435,
+              2430
+            ],
+            "winner": null,
+            "frame": 4545,
+            "error": null
+          }
+        },
+        {
+          "frame": 2249,
+          "names": [
+            "crash-plus-10"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 2435,
+            "scores": [
+              2435,
+              2430
+            ],
+            "winner": null,
+            "frame": 4555,
+            "error": null
+          }
+        },
+        {
+          "frame": 2259,
+          "names": [
+            "crash-plus-20"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 2435,
+            "scores": [
+              2435,
+              2430
+            ],
+            "winner": null,
+            "frame": 4565,
+            "error": null
+          }
+        },
+        {
+          "frame": 2269,
+          "names": [
+            "crash-plus-30"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 2435,
+            "scores": [
+              2435,
+              2430
+            ],
+            "winner": null,
+            "frame": 4575,
+            "error": null
+          }
+        },
+        {
+          "frame": 2302,
+          "names": [
+            "terminal"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "win",
+            "score": 2435,
+            "scores": [
+              2435,
+              2430
+            ],
+            "winner": 1,
+            "frame": 4608,
+            "error": null
+          }
+        }
+      ],
+      "captures": [
+        {
+          "frame": 1,
+          "names": [
+            "grid"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 2307,
+            "error": null
+          },
+          "file": "2p-race-grid.png",
+          "hash": "dc4d1408",
+          "stats": {
+            "colors": 28,
+            "dominant": 0,
+            "dominantShare": 0.30142647879464285
+          },
+          "matches": {}
+        },
+        {
+          "frame": 120,
+          "names": [
+            "countdown"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 2426,
+            "error": null
+          },
+          "file": "2p-race-countdown.png",
+          "hash": "8f741388",
+          "stats": {
+            "colors": 28,
+            "dominant": 0,
+            "dominantShare": 0.30062430245535715
+          },
+          "matches": {}
+        },
+        {
+          "frame": 181,
+          "names": [
+            "green-light"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 2487,
+            "error": null
+          },
+          "file": "2p-race-green-light.png",
+          "hash": "ef37f7a3",
+          "stats": {
+            "colors": 28,
+            "dominant": 0,
+            "dominantShare": 0.3061000279017857
+          },
+          "matches": {}
+        },
+        {
+          "frame": 282,
+          "names": [
+            "straight"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 2588,
+            "error": null
+          },
+          "file": "2p-race-straight.png",
+          "hash": "ff00dbb8",
+          "stats": {
+            "colors": 28,
+            "dominant": 21318480,
+            "dominantShare": 0.22021484375
+          },
+          "matches": {}
+        },
+        {
+          "frame": 354,
+          "names": [
+            "right-turn"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 25,
+            "scores": [
+              25,
+              25
+            ],
+            "winner": null,
+            "frame": 2660,
+            "error": null
+          },
+          "file": "2p-race-right-turn.png",
+          "hash": "476b1a86",
+          "stats": {
+            "colors": 29,
+            "dominant": 0,
+            "dominantShare": 0.19294084821428573
+          },
+          "matches": {}
+        },
+        {
+          "frame": 374,
+          "names": [
+            "drift"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 25,
+            "scores": [
+              25,
+              25
+            ],
+            "winner": null,
+            "frame": 2680,
+            "error": null
+          },
+          "file": "2p-race-drift.png",
+          "hash": "67b30a06",
+          "stats": {
+            "colors": 29,
+            "dominant": 21581652,
+            "dominantShare": 0.22251674107142858
+          },
+          "matches": {}
+        },
+        {
+          "frame": 404,
+          "names": [
+            "p1-gate-1",
+            "p2-gate-1"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 125,
+            "scores": [
+              125,
+              125
+            ],
+            "winner": null,
+            "frame": 2710,
+            "error": null
+          },
+          "file": "2p-race-p1-gate-1.png",
+          "hash": "461fedb5",
+          "stats": {
+            "colors": 29,
+            "dominant": 21581652,
+            "dominantShare": 0.22530691964285715
+          },
+          "matches": {}
+        },
+        {
+          "frame": 406,
+          "names": [
+            "turbo"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 165,
+            "scores": [
+              165,
+              125
+            ],
+            "winner": null,
+            "frame": 2712,
+            "error": null
+          },
+          "file": "2p-race-turbo.png",
+          "hash": "3427ddd6",
+          "stats": {
+            "colors": 29,
+            "dominant": 21581652,
+            "dominantShare": 0.21562848772321427
+          },
+          "matches": {}
+        },
+        {
+          "frame": 496,
+          "names": [
+            "left-turn"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 165,
+            "scores": [
+              165,
+              125
+            ],
+            "winner": null,
+            "frame": 2802,
+            "error": null
+          },
+          "file": "2p-race-left-turn.png",
+          "hash": "98c109d4",
+          "stats": {
+            "colors": 28,
+            "dominant": 0,
+            "dominantShare": 0.20476422991071427
+          },
+          "matches": {}
+        },
+        {
+          "frame": 2182,
+          "names": [
+            "p2-gate-12",
+            "p2-finish"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 1335,
+            "scores": [
+              1335,
+              2430
+            ],
+            "winner": null,
+            "frame": 4488,
+            "error": null
+          },
+          "file": "2p-race-p2-gate-12.png",
+          "hash": "73115848",
+          "stats": {
+            "colors": 28,
+            "dominant": 0,
+            "dominantShare": 0.25537109375
+          },
+          "matches": {}
+        },
+        {
+          "frame": 2202,
+          "names": [
+            "p1-gate-12",
+            "p1-finish"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 2435,
+            "scores": [
+              2435,
+              2430
+            ],
+            "winner": null,
+            "frame": 4508,
+            "error": null
+          },
+          "file": "2p-race-p1-gate-12.png",
+          "hash": "e41ef94a",
+          "stats": {
+            "colors": 28,
+            "dominant": 0,
+            "dominantShare": 0.27382114955357145
+          },
+          "matches": {}
+        },
+        {
+          "frame": 2239,
+          "names": [
+            "crash"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 2435,
+            "scores": [
+              2435,
+              2430
+            ],
+            "winner": null,
+            "frame": 4545,
+            "error": null
+          },
+          "file": "2p-race-crash.png",
+          "hash": "2f62582a",
+          "stats": {
+            "colors": 28,
+            "dominant": 0,
+            "dominantShare": 0.23149762834821427
+          },
+          "matches": {}
+        },
+        {
+          "frame": 2249,
+          "names": [
+            "crash-plus-10"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 2435,
+            "scores": [
+              2435,
+              2430
+            ],
+            "winner": null,
+            "frame": 4555,
+            "error": null
+          },
+          "file": "2p-race-crash-plus-10.png",
+          "hash": "63130e8a",
+          "stats": {
+            "colors": 28,
+            "dominant": 0,
+            "dominantShare": 0.2318115234375
+          },
+          "matches": {}
+        },
+        {
+          "frame": 2259,
+          "names": [
+            "crash-plus-20"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 2435,
+            "scores": [
+              2435,
+              2430
+            ],
+            "winner": null,
+            "frame": 4565,
+            "error": null
+          },
+          "file": "2p-race-crash-plus-20.png",
+          "hash": "d64f0b8a",
+          "stats": {
+            "colors": 28,
+            "dominant": 0,
+            "dominantShare": 0.23196847098214285
+          },
+          "matches": {}
+        },
+        {
+          "frame": 2269,
+          "names": [
+            "crash-plus-30"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 2435,
+            "scores": [
+              2435,
+              2430
+            ],
+            "winner": null,
+            "frame": 4575,
+            "error": null
+          },
+          "file": "2p-race-crash-plus-30.png",
+          "hash": "4668079e",
+          "stats": {
+            "colors": 28,
+            "dominant": 0,
+            "dominantShare": 0.23209054129464285
+          },
+          "matches": {}
+        },
+        {
+          "frame": 2302,
+          "names": [
+            "terminal"
+          ],
+          "state": {
+            "state": "win",
+            "score": 2435,
+            "scores": [
+              2435,
+              2430
+            ],
+            "winner": 1,
+            "frame": 4608,
+            "error": null
+          },
+          "file": "2p-race-terminal.png",
+          "hash": "84627ec0",
+          "stats": {
+            "colors": 28,
+            "dominant": 0,
+            "dominantShare": 0.2332763671875
+          },
+          "matches": {}
+        },
+        {
+          "frame": 2303,
+          "names": [
+            "terminal-overlay"
+          ],
+          "state": {
+            "state": "win",
+            "score": 2435,
+            "scores": [
+              2435,
+              2430
+            ],
+            "winner": 1,
+            "frame": 4609,
+            "error": null
+          },
+          "file": "2p-race-terminal-overlay.png",
+          "hash": "28296486",
+          "stats": {
+            "colors": 28,
+            "dominant": 0,
+            "dominantShare": 0.4941929408482143
+          },
+          "matches": {}
+        }
+      ],
+      "terminalReason": "human-finish",
+      "plannedTerminal": {
+        "state": "win",
+        "winner": 1,
+        "frame": 2302
+      },
+      "final": {
+        "state": "win",
+        "score": 2435,
+        "scores": [
+          2435,
+          2430
+        ],
+        "winner": 1,
+        "frame": 4609,
+        "error": null
+      },
+      "reset": {
+        "state": {
+          "state": "playing",
+          "score": 0,
+          "scores": [
+            0,
+            0
+          ],
+          "winner": null,
+          "frame": 4610,
+          "error": null
+        },
+        "hash": "a458875e"
+      },
+      "fresh": {
+        "state": {
+          "state": "playing",
+          "score": 0,
+          "scores": [
+            0,
+            0
+          ],
+          "winner": null,
+          "frame": 4611,
+          "error": null
+        },
+        "hash": "a458875e"
+      },
+      "errors": []
+    },
+    {
+      "name": "1p-timeout",
+      "players": 1,
+      "mode": "timeout",
+      "loaded": {
+        "ok": true
+      },
+      "checks": [
+        {
+          "frame": 1,
+          "names": [
+            "grid"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 4612,
+            "error": null
+          }
+        },
+        {
+          "frame": 120,
+          "names": [
+            "countdown"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 4731,
+            "error": null
+          }
+        },
+        {
+          "frame": 181,
+          "names": [
+            "green-light"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 4792,
+            "error": null
+          }
+        },
+        {
+          "frame": 10981,
+          "names": [
+            "terminal"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "gameover",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 15592,
+            "error": null
+          }
+        }
+      ],
+      "captures": [
+        {
+          "frame": 1,
+          "names": [
+            "grid"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 4612,
+            "error": null
+          },
+          "file": "1p-timeout-grid.png",
+          "hash": "ca6c2b49",
+          "stats": {
+            "colors": 30,
+            "dominant": 0,
+            "dominantShare": 0.2633056640625
+          },
+          "matches": {}
+        },
+        {
+          "frame": 120,
+          "names": [
+            "countdown"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 4731,
+            "error": null
+          },
+          "file": "1p-timeout-countdown.png",
+          "hash": "41e11c19",
+          "stats": {
+            "colors": 30,
+            "dominant": 0,
+            "dominantShare": 0.26328822544642855
+          },
+          "matches": {}
+        },
+        {
+          "frame": 181,
+          "names": [
+            "green-light"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 4792,
+            "error": null
+          },
+          "file": "1p-timeout-green-light.png",
+          "hash": "84ecbbd7",
+          "stats": {
+            "colors": 30,
+            "dominant": 0,
+            "dominantShare": 0.24361746651785715
+          },
+          "matches": {}
+        },
+        {
+          "frame": 10981,
+          "names": [
+            "terminal"
+          ],
+          "state": {
+            "state": "gameover",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 15592,
+            "error": null
+          },
+          "file": "1p-timeout-terminal.png",
+          "hash": "fffbef04",
+          "stats": {
+            "colors": 30,
+            "dominant": 0,
+            "dominantShare": 0.2220458984375
+          },
+          "matches": {}
+        },
+        {
+          "frame": 10982,
+          "names": [
+            "terminal-overlay"
+          ],
+          "state": {
+            "state": "gameover",
+            "score": 0,
+            "scores": [
+              0
+            ],
+            "winner": null,
+            "frame": 15593,
+            "error": null
+          },
+          "file": "1p-timeout-terminal-overlay.png",
+          "hash": "a70bed99",
+          "stats": {
+            "colors": 25,
+            "dominant": 0,
+            "dominantShare": 0.5486363002232143
+          },
+          "matches": {}
+        }
+      ],
+      "terminalReason": "time-limit",
+      "plannedTerminal": {
+        "state": "gameover",
+        "winner": null,
+        "frame": 10981
+      },
+      "final": {
+        "state": "gameover",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 15593,
+        "error": null
+      },
+      "reset": {
+        "state": {
+          "state": "playing",
+          "score": 0,
+          "scores": [
+            0
+          ],
+          "winner": null,
+          "frame": 15594,
+          "error": null
+        },
+        "hash": "ca6c2b49"
+      },
+      "fresh": {
+        "state": {
+          "state": "playing",
+          "score": 0,
+          "scores": [
+            0
+          ],
+          "winner": null,
+          "frame": 15595,
+          "error": null
+        },
+        "hash": "ca6c2b49"
+      },
+      "errors": []
+    },
+    {
+      "name": "2p-timeout",
+      "players": 2,
+      "mode": "timeout",
+      "loaded": {
+        "ok": true
+      },
+      "checks": [
+        {
+          "frame": 1,
+          "names": [
+            "grid"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 15596,
+            "error": null
+          }
+        },
+        {
+          "frame": 120,
+          "names": [
+            "countdown"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 15715,
+            "error": null
+          }
+        },
+        {
+          "frame": 181,
+          "names": [
+            "green-light"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 15776,
+            "error": null
+          }
+        },
+        {
+          "frame": 10981,
+          "names": [
+            "terminal"
+          ],
+          "scoresMatch": true,
+          "state": {
+            "state": "win",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": 0,
+            "frame": 26576,
+            "error": null
+          }
+        }
+      ],
+      "captures": [
+        {
+          "frame": 1,
+          "names": [
+            "grid"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 15596,
+            "error": null
+          },
+          "file": "2p-timeout-grid.png",
+          "hash": "a458875e",
+          "stats": {
+            "colors": 28,
+            "dominant": 0,
+            "dominantShare": 0.3013218470982143
+          },
+          "matches": {}
+        },
+        {
+          "frame": 120,
+          "names": [
+            "countdown"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 15715,
+            "error": null
+          },
+          "file": "2p-timeout-countdown.png",
+          "hash": "9c74398e",
+          "stats": {
+            "colors": 28,
+            "dominant": 0,
+            "dominantShare": 0.30128696986607145
+          },
+          "matches": {}
+        },
+        {
+          "frame": 181,
+          "names": [
+            "green-light"
+          ],
+          "state": {
+            "state": "playing",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": null,
+            "frame": 15776,
+            "error": null
+          },
+          "file": "2p-timeout-green-light.png",
+          "hash": "e770457d",
+          "stats": {
+            "colors": 28,
+            "dominant": 0,
+            "dominantShare": 0.30550711495535715
+          },
+          "matches": {}
+        },
+        {
+          "frame": 10981,
+          "names": [
+            "terminal"
+          ],
+          "state": {
+            "state": "win",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": 0,
+            "frame": 26576,
+            "error": null
+          },
+          "file": "2p-timeout-terminal.png",
+          "hash": "8722bec4",
+          "stats": {
+            "colors": 29,
+            "dominant": 0,
+            "dominantShare": 0.28206961495535715
+          },
+          "matches": {}
+        },
+        {
+          "frame": 10982,
+          "names": [
+            "terminal-overlay"
+          ],
+          "state": {
+            "state": "win",
+            "score": 0,
+            "scores": [
+              0,
+              0
+            ],
+            "winner": 0,
+            "frame": 26577,
+            "error": null
+          },
+          "file": "2p-timeout-terminal-overlay.png",
+          "hash": "2f94ea5d",
+          "stats": {
+            "colors": 29,
+            "dominant": 0,
+            "dominantShare": 0.5181187220982143
+          },
+          "matches": {}
+        }
+      ],
+      "terminalReason": "time-limit",
+      "plannedTerminal": {
+        "state": "win",
+        "winner": 0,
+        "frame": 10981
+      },
+      "final": {
+        "state": "win",
+        "score": 0,
+        "scores": [
+          0,
+          0
+        ],
+        "winner": 0,
+        "frame": 26577,
+        "error": null
+      },
+      "reset": {
+        "state": {
+          "state": "playing",
+          "score": 0,
+          "scores": [
+            0,
+            0
+          ],
+          "winner": null,
+          "frame": 26578,
+          "error": null
+        },
+        "hash": "a458875e"
+      },
+      "fresh": {
+        "state": {
+          "state": "playing",
+          "score": 0,
+          "scores": [
+            0,
+            0
+          ],
+          "winner": null,
+          "frame": 26579,
+          "error": null
+        },
+        "hash": "a458875e"
+      },
+      "errors": []
+    }
+  ],
+  "controls": [
+    {
+      "name": "1p-control-coast",
+      "players": 1,
+      "state": {
+        "state": "playing",
+        "score": 25,
+        "scores": [
+          25
+        ],
+        "winner": null,
+        "frame": 26910,
+        "error": null
+      },
+      "errors": [],
+      "file": "1p-control-coast.png",
+      "hash": "87a53398",
+      "stats": {
+        "colors": 31,
+        "dominant": 21581652,
+        "dominantShare": 0.23915318080357142
+      },
+      "matches": {}
+    },
+    {
+      "name": "1p-control-left",
+      "players": 1,
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 27241,
+        "error": null
+      },
+      "errors": [],
+      "file": "1p-control-left.png",
+      "hash": "df7b6c10",
+      "stats": {
+        "colors": 31,
+        "dominant": 20804171,
+        "dominantShare": 0.19356863839285715
+      },
+      "matches": {}
+    },
+    {
+      "name": "1p-control-right",
+      "players": 1,
+      "state": {
+        "state": "playing",
+        "score": 25,
+        "scores": [
+          25
+        ],
+        "winner": null,
+        "frame": 27572,
+        "error": null
+      },
+      "errors": [],
+      "file": "1p-control-right.png",
+      "hash": "894fe071",
+      "stats": {
+        "colors": 31,
+        "dominant": 21581652,
+        "dominantShare": 0.21881975446428573
+      },
+      "matches": {}
+    },
+    {
+      "name": "1p-control-down",
+      "players": 1,
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0
+        ],
+        "winner": null,
+        "frame": 27903,
+        "error": null
+      },
+      "errors": [],
+      "file": "1p-control-down.png",
+      "hash": "73ab7cbf",
+      "stats": {
+        "colors": 31,
+        "dominant": 21318480,
+        "dominantShare": 0.24986049107142858
+      },
+      "matches": {}
+    },
+    {
+      "name": "2p-control-coast",
+      "players": 2,
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0,
+          25
+        ],
+        "winner": null,
+        "frame": 28234,
+        "error": null
+      },
+      "errors": [],
+      "file": "2p-control-coast.png",
+      "hash": "705bfbd6",
+      "stats": {
+        "colors": 29,
+        "dominant": 0,
+        "dominantShare": 0.24701799665178573
+      },
+      "matches": {}
+    },
+    {
+      "name": "2p-control-left",
+      "players": 2,
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0,
+          25
+        ],
+        "winner": null,
+        "frame": 28565,
+        "error": null
+      },
+      "errors": [],
+      "file": "2p-control-left.png",
+      "hash": "750d6901",
+      "stats": {
+        "colors": 29,
+        "dominant": 0,
+        "dominantShare": 0.24689592633928573
+      },
+      "matches": {}
+    },
+    {
+      "name": "2p-control-right",
+      "players": 2,
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0,
+          0
+        ],
+        "winner": null,
+        "frame": 28896,
+        "error": null
+      },
+      "errors": [],
+      "file": "2p-control-right.png",
+      "hash": "68cce8e6",
+      "stats": {
+        "colors": 29,
+        "dominant": 0,
+        "dominantShare": 0.24764578683035715
+      },
+      "matches": {}
+    },
+    {
+      "name": "2p-control-down",
+      "players": 2,
+      "state": {
+        "state": "playing",
+        "score": 0,
+        "scores": [
+          0,
+          25
+        ],
+        "winner": null,
+        "frame": 29227,
+        "error": null
+      },
+      "errors": [],
+      "file": "2p-control-down.png",
+      "hash": "f2d64d14",
+      "stats": {
+        "colors": 29,
+        "dominant": 0,
+        "dominantShare": 0.24651227678571427
+      },
+      "matches": {}
+    }
+  ]
+}

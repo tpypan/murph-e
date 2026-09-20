@@ -1,0 +1,27 @@
+{
+  "title": "VOLT RALLY",
+  "oneLiner": "Place your returns, charge your shot, and win the first-to-seven duel.",
+  "genre": "pong",
+  "mechanics": [
+    "First to seven points. Missed returns award the opponent one point.",
+    "Paddle contact position and paddle movement control the outgoing angle and spin.",
+    "Hold A during a rally to charge a faster return; charging reduces movement speed.",
+    "One player faces a finite-reaction CPU; two players control separate opposing paddles."
+  ],
+  "controls": {
+    "up": "Move paddle up",
+    "down": "Move paddle down",
+    "left": "Move paddle up",
+    "right": "Move paddle down",
+    "a": "Serve; hold during rallies to charge a power return",
+    "b": "Hold for precision movement"
+  },
+  "palette": "arcade",
+  "lose": "The opponent wins seven points, or leads at the time limit. A tied limit enters sudden death.",
+  "scoring": "100 per point for the player who wins the rally.",
+  "moderated": false,
+  "note": "Original catalogue foundation; no commercial game assets.",
+  "remix": false,
+  "changes": [],
+  "players": 1
+}

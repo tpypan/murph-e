@@ -1,13 +1,26 @@
 'use client'
 
 import { useCallback, useEffect, useReducer, useRef, useState } from 'react'
-import { attachBadges, type BadgePlayer, rgb } from './badges'
-import { attachKeyboard, attractScript, type InputEvent } from './input'
+import { attachBadges, type BadgePlayer } from './badges'
+import { BuildConsole, type BuildStatus } from './build-console'
+import { GameControls } from './game-controls'
+import { classifyGenerationError } from './generation-error'
+import { type DemoGame, type HomeHandle, HomeScreen } from './home-screen'
+import { attachKeyboard, type InputEvent } from './input'
 import { readSse } from './sse'
 import { Stt } from './stt'
+import { textPages, VoiceInput, type VoiceStage } from './voice-input'
 
-type Phase = 'ATTRACT' | 'LISTENING' | 'BUILDING' | 'PLAYING' | 'GAMEOVER' | 'FALLBACK'
-type Status = 'BUILDING' | 'REMIXING' | 'CHECKING' | 'REPAIRING' | 'READY'
+type Phase =
+  | 'ATTRACT'
+  | 'READY'
+  | 'OPTIONS'
+  | 'LISTENING'
+  | 'BUILDING'
+  | 'PLAYING'
+  | 'GAMEOVER'
+  | 'FALLBACK'
+type Status = BuildStatus
 type Players = 1 | 2
 
 interface Spec {
@@ -26,7 +39,7 @@ interface LibraryGame {
   spec: Record<string, unknown> | null
   source: 'library' | 'template'
 }
-/** The game on screen, as /api/generate needs it to remix. */
+/** The prepared game and its instructions, retained for replay and resume. */
 interface CurrentGame {
   code: string
   spec: Record<string, unknown>
@@ -54,11 +67,11 @@ interface SessionPlayer {
 }
 type PipelineEvent =
   | { type: 'spec'; spec: Spec; ms: number }
-  | { type: 'token'; text: string; variant: number }
+  | { type: 'foundation'; prefix: string; demo: string }
+  | { type: 'token'; text: string; variant: number; stage?: 'build' | 'repair' }
   | { type: 'built'; variant: number; ms: number; tokens: number; syntaxError: string | null }
   | { type: 'probe'; variant: number; ok: boolean; observations: string[]; ms: number }
   | { type: 'repair'; phase: 'start' | 'done'; ok?: boolean; observations?: string[] }
-  | { type: 'remix'; phase: 'start' | 'done'; changes: string[]; ok?: boolean }
   | { type: 'fallback'; reason: string; title: string; slug: string }
   | {
       type: 'ready'
@@ -72,16 +85,15 @@ type PipelineEvent =
       runId: string
       totalMs: number
     }
-  | { type: 'error'; message: string }
+  | { type: 'error'; message: string; terminal?: boolean }
 
 interface View {
   phase: Phase
   mode: Players
-  /** LISTENING opened over a game that can be remixed. */
-  remixable: boolean
   transcript: string
   spec: Spec | null
   code: string
+  foundation: { prefix: string; demo: string } | null
   status: Status
   observations: string[]
   game: Game | null
@@ -92,7 +104,7 @@ interface View {
   rtState: string
   error: string | null
   libraryCount: number
-  mic: 'idle' | 'on' | 'unavailable'
+  voiceStage: VoiceStage
   badges: BadgePlayer[]
   session: Array<SessionPlayer | null>
   waitingFor2: boolean
@@ -103,18 +115,19 @@ type Action =
   | { type: 'badges'; badges: BadgePlayer[] }
   | { type: 'session'; session: Array<SessionPlayer | null> }
   | { type: 'mode'; mode: Players }
-  | { type: 'remixable'; remixable: boolean }
   | { type: 'phase'; phase: Phase }
   | { type: 'transcript'; transcript: string }
   | { type: 'spec'; spec: Spec }
   | { type: 'token'; text: string }
+  | { type: 'foundation'; prefix: string; demo: string }
+  | { type: 'clearDraft' }
   | { type: 'status'; status: Status; observations?: string[] }
   | { type: 'game'; game: Game | null; banner?: string | null }
   | { type: 'banner'; banner: string | null }
   | { type: 'score'; score: number; scores: number[]; hi: number; rtState: string }
   | { type: 'error'; error: string | null }
   | { type: 'library'; count: number }
-  | { type: 'mic'; mic: View['mic'] }
+  | { type: 'voice'; stage: VoiceStage }
   | { type: 'waiting2'; waiting: boolean }
   | { type: 'board'; board: Partial<View['board']> }
   | { type: 'resetBuild' }
@@ -122,10 +135,10 @@ type Action =
 const initial: View = {
   phase: 'ATTRACT',
   mode: 1,
-  remixable: false,
   transcript: '',
   spec: null,
   code: '',
+  foundation: null,
   status: 'BUILDING',
   observations: [],
   game: null,
@@ -136,19 +149,16 @@ const initial: View = {
   rtState: 'idle',
   error: null,
   libraryCount: 0,
-  mic: 'idle',
+  voiceStage: 'ready',
   badges: [],
   session: [null, null],
   waitingFor2: false,
   board: { overall: [], game: [] },
 }
 
-const MAX_CODE_CHARS = 20000
-const EXPECTED_CHARS = 6500
+const MAX_CODE_CHARS = 64000
 const IDLE_MS = 60_000
-const ATTRACT_SCRIPT_S = 40
 const BOARD_REFRESH_MS = 30_000
-const PLAYER_CSS = ['#29adff', '#ff004d'] // the runtime's P1 and P2 colours
 
 function reduce(v: View, a: Action): View {
   switch (a.type) {
@@ -156,14 +166,19 @@ function reduce(v: View, a: Action): View {
       return { ...v, phase: a.phase }
     case 'mode':
       return { ...v, mode: a.mode }
-    case 'remixable':
-      return { ...v, remixable: a.remixable }
     case 'transcript':
       return { ...v, transcript: a.transcript }
     case 'spec':
       return { ...v, spec: a.spec }
     case 'token':
-      return { ...v, code: (v.code + a.text).slice(-MAX_CODE_CHARS) }
+      return {
+        ...v,
+        code: (v.code + a.text).slice(-MAX_CODE_CHARS),
+      }
+    case 'clearDraft':
+      return { ...v, code: '' }
+    case 'foundation':
+      return { ...v, foundation: { prefix: a.prefix, demo: a.demo } }
     case 'status':
       return { ...v, status: a.status, observations: a.observations ?? v.observations }
     case 'game':
@@ -176,8 +191,8 @@ function reduce(v: View, a: Action): View {
       return { ...v, error: a.error }
     case 'library':
       return { ...v, libraryCount: a.count }
-    case 'mic':
-      return { ...v, mic: a.mic }
+    case 'voice':
+      return { ...v, voiceStage: a.stage }
     case 'badges':
       return { ...v, badges: a.badges }
     case 'session':
@@ -191,7 +206,8 @@ function reduce(v: View, a: Action): View {
         ...v,
         spec: null,
         code: '',
-        status: 'BUILDING',
+        foundation: null,
+        status: 'CONNECTING',
         observations: [],
         error: null,
         waitingFor2: false,
@@ -213,16 +229,36 @@ export default function Cabinet() {
   const view = useRef(v)
   view.current = v
   const frame = useRef<HTMLIFrameElement>(null)
+  const home = useRef<HomeHandle>(null)
+  const rememberedHome = useRef<{ id?: string; players: Players }>({ players: 1 })
+  const rememberHome = useCallback((id: string, players: Players) => {
+    rememberedHome.current = { id, players }
+  }, [])
   const library = useRef<LibraryGame[]>([])
   const lastInput = useRef(Date.now())
-  const attractTimer = useRef<ReturnType<typeof setInterval> | null>(null)
   const abort = useRef<AbortController | null>(null)
-  const inputEl = useRef<HTMLInputElement>(null)
+  const [audioStream, setAudioStream] = useState<MediaStream | null>(null)
+  const listeningFrom = useRef<Phase>('ATTRACT')
+  const [selection, setSelection] = useState(0)
+  const selectionRef = useRef(selection)
+  selectionRef.current = selection
+  const [page, setPage] = useState(0)
+  const [sound, setSound] = useState(true)
+  const screen = useRef<HTMLElement>(null)
+  const fullscreen = useCallback(() => {
+    const task = document.fullscreenElement
+      ? document.exitFullscreen()
+      : screen.current?.requestFullscreen()
+    void task?.catch(() =>
+      dispatch({ type: 'error', error: 'Fullscreen unavailable. Use browser kiosk mode.' }),
+    )
+  }, [])
   const seedRef = useRef(1)
-  // The game on screen, when it has a spec (generated or from the library),
-  // so holding TALK over it can remix it instead of starting over.
+  // Preserve the current game for its controls, replay and resume.
   const current = useRef<CurrentGame | null>(null)
   const stt = useRef<Stt | null>(null)
+  const talkHeld = useRef(false)
+  const listeningAttempt = useRef(0)
   const getStt = useCallback(() => {
     if (!stt.current) stt.current = new Stt()
     return stt.current
@@ -292,31 +328,33 @@ export default function Cabinet() {
   }, [])
 
   // ---- attract -----------------------------------------------------------
-  const stopAttract = useCallback(() => {
-    if (attractTimer.current) clearInterval(attractTimer.current)
-    attractTimer.current = null
-  }, [])
+  const playDemo = useCallback(
+    (game: DemoGame, players: Players) => {
+      const slug = `demo-${game.id}`
+      current.current = { code: game.code, spec: game.spec, slug, title: game.title }
+      dispatch({ type: 'mode', mode: players })
+      syncSession(view.current.badges, players, 'ATTRACT')
+      dispatch({
+        type: 'game',
+        game: { title: game.title, source: 'demo', slug, players },
+        banner: null,
+      })
+      dispatch({ type: 'error', error: null })
+      dispatch({ type: 'waiting2', waiting: false })
+      loadGame(game.code, game.title, players)
+      dispatch({ type: 'phase', phase: 'READY' })
+    },
+    [loadGame, syncSession],
+  )
 
   const startAttract = useCallback(() => {
-    stopAttract()
-    const pool = library.current
-    if (pool.length === 0) return
-    const g = pool[Math.floor(Math.random() * pool.length)]!
-    const players: Players = g.players === 2 ? 2 : 1
-    current.current = g.spec ? { code: g.code, spec: g.spec, slug: g.slug, title: g.title } : null
-    dispatch({ type: 'game', game: { title: g.title, source: g.source, slug: g.slug, players } })
+    abort.current?.abort()
+    post({ type: 'pause', paused: true })
     dispatch({ type: 'phase', phase: 'ATTRACT' })
     dispatch({ type: 'waiting2', waiting: false })
-    syncSession(view.current.badges, view.current.mode, 'ATTRACT')
+    setSelection(0)
     void fetchBoard(null)
-    loadGame(g.code, g.title, players)
-    const drive = () => {
-      post({ type: 'start' })
-      post({ type: 'inject', frames: attractScript(ATTRACT_SCRIPT_S) })
-    }
-    setTimeout(drive, 300)
-    attractTimer.current = setInterval(drive, ATTRACT_SCRIPT_S * 1000)
-  }, [fetchBoard, loadGame, post, stopAttract, syncSession])
+  }, [fetchBoard, post])
 
   // ---- build -------------------------------------------------------------
   const crashFallback = useCallback(
@@ -325,86 +363,115 @@ export default function Cabinet() {
       const same = library.current.filter((g) => (g.players === 2 ? 2 : 1) === mode)
       const pool = same.length > 0 ? same : library.current
       const g = pool[Math.floor(Math.random() * pool.length)]
-      if (!g) return
+      if (!g) {
+        dispatch({ type: 'error', error: 'Game unavailable. Choose players to try again.' })
+        dispatch({ type: 'phase', phase: 'ATTRACT' })
+        return
+      }
       const players: Players = g.players === 2 ? 2 : 1
-      current.current = g.spec ? { code: g.code, spec: g.spec, slug: g.slug, title: g.title } : null
+      current.current = {
+        code: g.code,
+        spec: g.spec ?? demoSpec(g.genre),
+        slug: g.slug,
+        title: g.title,
+      }
       dispatch({
         type: 'game',
         game: { title: g.title, source: g.source, slug: g.slug, players },
         banner: `${why}. HERE'S ${g.title}`,
       })
-      dispatch({ type: 'phase', phase: 'FALLBACK' })
+      dispatch({ type: 'phase', phase: 'READY' })
       loadGame(g.code, g.title, players)
-      setTimeout(() => {
-        if (view.current.phase === 'FALLBACK') dispatch({ type: 'phase', phase: 'PLAYING' })
-      }, 2500)
     },
     [loadGame],
   )
 
   const build = useCallback(
     async (transcript: string) => {
-      stopAttract()
+      listeningAttempt.current++
+      talkHeld.current = false
+      stt.current?.cancel()
       abort.current?.abort()
       const ac = new AbortController()
       abort.current = ac
       const players = view.current.mode
-      const remixOf = view.current.remixable ? current.current : null
       dispatch({ type: 'resetBuild' })
       dispatch({ type: 'transcript', transcript })
       dispatch({ type: 'phase', phase: 'BUILDING' })
+      let delivered = false
+      let lastFailure = ''
+      const fail = (message: string, status?: number) => {
+        delivered = true
+        // An error is terminal. Do not let a later library fallback replace it.
+        ac.abort()
+        listeningFrom.current = 'ATTRACT'
+        dispatch({ type: 'error', error: classifyGenerationError(message, status).message })
+        dispatch({ type: 'voice', stage: 'review' })
+        dispatch({ type: 'phase', phase: 'LISTENING' })
+      }
+      // Show one coherent candidate, even when the second builder starts first.
+      let previewVariant: number | null = null
+      let streamStatus: Status = 'BUILDING'
       try {
         const res = await fetch('/api/generate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ transcript, players, current: remixOf }),
+          body: JSON.stringify({ transcript, players }),
           signal: ac.signal,
         })
+        if (!res.ok) {
+          fail(await res.text(), res.status)
+          return
+        }
+        dispatch({ type: 'status', status: 'WAITING' })
         await readSse<PipelineEvent>(
           res,
           (ev) => {
+            if (ac.signal.aborted) return
             switch (ev.type) {
               case 'spec':
                 dispatch({ type: 'spec', spec: ev.spec })
                 break
+              case 'foundation':
+                dispatch(ev)
+                break
               case 'token':
-                if (ev.variant === 0) dispatch({ type: 'token', text: ev.text })
+                if (previewVariant === null) previewVariant = ev.variant
+                if (ev.stage === 'repair' || ev.variant === previewVariant) {
+                  dispatch({ type: 'token', text: ev.text })
+                  dispatch({ type: 'status', status: streamStatus })
+                }
                 break
               case 'built':
-                if (ev.variant === 0) dispatch({ type: 'status', status: 'CHECKING' })
+                if (ev.variant === previewVariant) dispatch({ type: 'status', status: 'CHECKING' })
                 break
               case 'probe':
                 if (!ev.ok)
                   dispatch({ type: 'status', status: 'CHECKING', observations: ev.observations })
                 break
               case 'repair':
+                if (ev.phase === 'start') {
+                  streamStatus = 'REPAIRING'
+                  dispatch({ type: 'clearDraft' })
+                }
                 dispatch({
                   type: 'status',
                   status: ev.phase === 'start' ? 'REPAIRING' : 'CHECKING',
                   observations: ev.observations,
                 })
                 break
-              case 'remix':
-                if (ev.phase === 'start')
-                  dispatch({ type: 'status', status: 'REMIXING', observations: ev.changes })
-                break
               case 'fallback':
-                dispatch({
-                  type: 'game',
-                  game: { title: ev.title, source: 'library', slug: ev.slug, players },
-                  banner: `COULDN'T BUILD THAT ONE. HERE'S ${ev.title}`,
-                })
+                fail(lastFailure || ev.reason)
                 break
               case 'ready': {
+                delivered = true
                 dispatch({ type: 'status', status: 'READY' })
                 const fromLibrary = ev.source === 'library' || ev.source === 'template'
-                const banner = fromLibrary
-                  ? `COULDN'T BUILD THAT ONE. HERE'S ${ev.title}`
-                  : ev.source === 'remix'
-                    ? `REMIXED: ${ev.title}`
-                    : ev.note
-                      ? ev.note
-                      : null
+                if (fromLibrary || ev.source === 'kept') {
+                  fail(lastFailure || 'No generated game passed validation')
+                  return
+                }
+                const banner = ev.note || null
                 const game: Game = {
                   title: ev.title,
                   source: ev.source,
@@ -413,95 +480,133 @@ export default function Cabinet() {
                 }
                 current.current = ev.spec
                   ? { code: ev.code, spec: ev.spec, slug: ev.slug, title: ev.title }
-                  : null
+                  : { code: ev.code, spec: demoSpec(''), slug: ev.slug, title: ev.title }
                 dispatch({ type: 'game', game, banner })
                 loadGame(ev.code, ev.title, ev.players)
                 lastInput.current = Date.now()
                 // Two players, but only one badge has said hello: offer 1P on the stick.
                 const ready = view.current.session.filter((p) => p && !p.detached).length
                 dispatch({ type: 'waiting2', waiting: ev.players === 2 && ready < 2 })
-                if (banner) {
-                  dispatch({ type: 'phase', phase: 'FALLBACK' })
-                  setTimeout(() => {
-                    if (view.current.phase === 'FALLBACK')
-                      dispatch({ type: 'phase', phase: 'PLAYING' })
-                  }, 2500)
-                } else dispatch({ type: 'phase', phase: 'PLAYING' })
+                dispatch({ type: 'phase', phase: 'READY' })
                 break
               }
               case 'error':
-                dispatch({ type: 'error', error: ev.message })
+                lastFailure = ev.message
+                // A candidate may fail while another is still being generated.
+                if (ev.terminal === false && classifyGenerationError(ev.message).retryable) break
+                fail(ev.message)
                 break
             }
           },
           ac.signal,
         )
-      } catch (e) {
+        if (!delivered && !ac.signal.aborted)
+          throw new Error(lastFailure || 'Incomplete generation')
+      } catch (error) {
         if (ac.signal.aborted) return
-        dispatch({ type: 'error', error: e instanceof Error ? e.message : String(e) })
-        // The server is unreachable or crashed: never dead-end.
-        crashFallback("COULDN'T REACH THE BUILDER")
+        fail(error instanceof Error ? error.message : '')
       }
     },
-    [crashFallback, loadGame, stopAttract],
+    [loadGame],
   )
 
   // ---- listening ---------------------------------------------------------
-  const startListening = useCallback(() => {
+  const openVoice = useCallback(() => {
     const p = view.current.phase
-    const overGame = p === 'PLAYING' || p === 'GAMEOVER' || p === 'FALLBACK'
-    dispatch({ type: 'remixable', remixable: overGame && current.current !== null })
-    stopAttract()
+    if (p !== 'ATTRACT' && p !== 'LISTENING') return
+    if (p !== 'LISTENING') {
+      listeningFrom.current = p
+    }
     abort.current?.abort()
+    post({ type: 'pause', paused: true })
     dispatch({ type: 'transcript', transcript: '' })
     dispatch({ type: 'error', error: null })
     dispatch({ type: 'phase', phase: 'LISTENING' })
-    const s = getStt()
-    if (s.hasMic()) {
-      dispatch({ type: 'mic', mic: 'on' })
-      void s.start({
-        onText: (committed, partial) => {
-          if (view.current.phase !== 'LISTENING') return
-          dispatch({ type: 'transcript', transcript: `${committed} ${partial}`.trim() })
-        },
-        onState: (state, detail) => {
-          if (state === 'error') {
-            dispatch({ type: 'mic', mic: 'unavailable' })
-            dispatch({ type: 'error', error: `MIC: ${detail ?? 'error'}` })
-            setTimeout(() => inputEl.current?.focus(), 50)
-          }
-        },
-      })
-    } else {
-      dispatch({ type: 'mic', mic: 'unavailable' })
-      setTimeout(() => inputEl.current?.focus(), 50)
-    }
-  }, [getStt, stopAttract])
+    dispatch({ type: 'voice', stage: 'ready' })
+  }, [post])
+
+  const startListening = useCallback(() => {
+    if (view.current.phase !== 'LISTENING') return
+    listeningAttempt.current++
+    openVoice()
+    dispatch({ type: 'voice', stage: 'connecting' })
+    void getStt().start({
+      onStream: (stream) => {
+        setAudioStream(stream)
+        if (stream) dispatch({ type: 'voice', stage: 'recording' })
+      },
+      onState: (state, detail) => {
+        if (state === 'error') {
+          talkHeld.current = false
+          dispatch({ type: 'voice', stage: 'ready' })
+          dispatch({ type: 'error', error: detail ?? 'Microphone unavailable. Try again.' })
+        }
+      },
+    })
+  }, [getStt, openVoice])
 
   const stopListening = useCallback(async () => {
-    const s = getStt()
-    let t = view.current.transcript.trim()
-    if (s.hasMic()) {
-      dispatch({ type: 'mic', mic: 'idle' })
-      const heard = await s.stop()
-      if (view.current.phase !== 'LISTENING') return
-      if (heard) t = heard
-      dispatch({ type: 'transcript', transcript: t })
+    const attempt = listeningAttempt.current
+    dispatch({ type: 'voice', stage: 'finishing' })
+    let heard: string
+    try {
+      heard = await getStt().stop()
+    } catch (error) {
+      if (listeningAttempt.current !== attempt || view.current.phase !== 'LISTENING') return
+      dispatch({ type: 'voice', stage: 'ready' })
+      dispatch({
+        type: 'error',
+        error: error instanceof Error ? error.message : 'Transcription failed. Try again.',
+      })
+      return
     }
-    if (t) build(t)
-    else {
-      // Nothing heard: stay in LISTENING with the typed fallback visible.
-      dispatch({ type: 'error', error: "DIDN'T CATCH THAT. HOLD TALK AND TRY AGAIN, OR TYPE IT." })
-      setTimeout(() => inputEl.current?.focus(), 50)
-    }
-  }, [build, getStt])
+    if (listeningAttempt.current !== attempt || view.current.phase !== 'LISTENING') return
+    const t = heard || view.current.transcript.trim()
+    dispatch({ type: 'transcript', transcript: t })
+    dispatch({ type: 'voice', stage: t ? 'review' : 'ready' })
+    dispatch({
+      type: 'error',
+      error: t ? null : 'No transcript came through. Hold to talk and try again.',
+    })
+  }, [getStt])
 
   const cancelListening = useCallback(() => {
-    if (view.current.game && view.current.phase === 'LISTENING') {
-      dispatch({ type: 'phase', phase: 'PLAYING' })
-      post({ type: 'reset' })
-    } else startAttract()
-  }, [post, startAttract])
+    listeningAttempt.current++
+    talkHeld.current = false
+    stt.current?.cancel()
+    dispatch({ type: 'voice', stage: 'ready' })
+    dispatch({ type: 'error', error: null })
+    dispatch({ type: 'phase', phase: listeningFrom.current })
+  }, [])
+
+  const confirmMenu = useCallback(
+    (index: number) => {
+      if (index === 0 || index === 1) {
+        const mode = index === 0 ? 1 : 2
+        dispatch({ type: 'mode', mode })
+        syncSession(view.current.badges, mode, 'ATTRACT')
+        openVoice()
+      } else if (index === 2 && view.current.game) {
+        const mode = view.current.game.players
+        dispatch({ type: 'mode', mode })
+        syncSession(view.current.badges, mode, 'ATTRACT')
+        dispatch({ type: 'phase', phase: view.current.rtState === 'playing' ? 'PLAYING' : 'READY' })
+      } else {
+        setSelection(0)
+        dispatch({ type: 'phase', phase: 'OPTIONS' })
+      }
+    },
+    [openVoice, syncSession],
+  )
+
+  const confirmOption = useCallback(
+    (index: number) => {
+      if (index === 0) setSound((on) => !on)
+      else if (index === 1) fullscreen()
+      else startAttract()
+    },
+    [fullscreen, startAttract],
+  )
 
   // ---- input -------------------------------------------------------------
   const onInput = useCallback(
@@ -509,32 +614,80 @@ export default function Cabinet() {
       lastInput.current = Date.now()
       const phase = view.current.phase
       if (ev.button === 'talk') {
-        if (ev.down && phase !== 'BUILDING' && phase !== 'LISTENING') startListening()
-        else if (!ev.down && phase === 'LISTENING') stopListening()
-        return
-      }
-      if (phase === 'ATTRACT') {
-        if (!ev.down) return
-        if (ev.button === 'up' || ev.button === 'left') {
-          dispatch({ type: 'mode', mode: 1 })
-          syncSession(view.current.badges, 1, 'ATTRACT')
-        } else if (ev.button === 'down' || ev.button === 'right') {
-          dispatch({ type: 'mode', mode: 2 })
-          syncSession(view.current.badges, 2, 'ATTRACT')
-        } else if (ev.button === 'start') {
-          stopAttract()
-          post({ type: 'reset' })
-          post({ type: 'start' })
-          dispatch({ type: 'phase', phase: 'PLAYING' })
+        if (
+          ev.down &&
+          phase === 'LISTENING' &&
+          view.current.voiceStage !== 'finishing' &&
+          !talkHeld.current
+        ) {
+          talkHeld.current = true
+          startListening()
+        } else if (!ev.down && talkHeld.current) {
+          talkHeld.current = false
+          void stopListening()
         }
         return
       }
-      if (phase === 'PLAYING' || phase === 'GAMEOVER' || phase === 'FALLBACK') {
-        if (ev.button === 'start' && ev.down) dispatch({ type: 'waiting2', waiting: false })
-        post({ type: 'input', player: ev.player, button: ev.button, down: ev.down })
+      if (phase === 'ATTRACT') {
+        if (ev.down) {
+          home.current?.input(ev.button)
+          screen.current?.focus({ preventScroll: true })
+        }
+        return
+      }
+      if (phase === 'OPTIONS') {
+        if (!ev.down) return
+        const count = 3
+        if (['up', 'left', 'down', 'right'].includes(ev.button)) {
+          const direction = ev.button === 'up' || ev.button === 'left' ? -1 : 1
+          setSelection((n) => (n + direction + count) % count)
+          screen.current?.focus({ preventScroll: true })
+        } else if (ev.button === 'start' || ev.button === 'a') {
+          confirmOption(selectionRef.current)
+        } else if (ev.button === 'b') {
+          dispatch({ type: 'error', error: null })
+          startAttract()
+        }
+        return
+      }
+      if (phase === 'LISTENING') {
+        if (!ev.down) return
+        if (ev.button === 'b') cancelListening()
+        else if (
+          (ev.button === 'start' || ev.button === 'a') &&
+          view.current.voiceStage === 'review'
+        )
+          void build(view.current.transcript)
+        else if (ev.button === 'left' || ev.button === 'right') {
+          const count = textPages(view.current.transcript).length
+          setPage((n) => (n + (ev.button === 'left' ? -1 : 1) + count) % count)
+        }
+        return
+      }
+      if (phase === 'BUILDING') {
+        if (ev.down && ev.button === 'b') startAttract()
+        return
+      }
+      if (phase === 'READY' || phase === 'GAMEOVER') {
+        if (!ev.down) return
+        if (ev.button === 'b') startAttract()
+        else if (ev.button === 'start' || ev.button === 'a') {
+          if (phase === 'GAMEOVER') dispatch({ type: 'phase', phase: 'READY' })
+          else {
+            post({ type: 'start' })
+            dispatch({ type: 'phase', phase: 'PLAYING' })
+            dispatch({ type: 'waiting2', waiting: false })
+          }
+        } else if (ev.button === 'left' || ev.button === 'right')
+          setPage((n) => Math.max(0, n + (ev.button === 'left' ? -1 : 1)))
+        return
+      }
+      if (phase === 'PLAYING') {
+        if (ev.button === 'start' && ev.down) startAttract()
+        else post({ type: 'input', player: ev.player, button: ev.button, down: ev.down })
       }
     },
-    [post, startListening, stopListening, stopAttract, syncSession],
+    [post, startListening, stopListening, confirmOption, startAttract, cancelListening, build],
   )
 
   useEffect(() => attachKeyboard(onInput), [onInput])
@@ -576,7 +729,6 @@ export default function Cabinet() {
         }).catch(() => {})
       }
       if (e.code === 'F8') {
-        stopAttract()
         dispatch({
           type: 'game',
           game: { title: 'CRASH TEST', source: 'build', slug: null, players: 1 },
@@ -587,19 +739,28 @@ export default function Cabinet() {
       }
       // F9 ends the round on screen, so a game over can be reached on demand.
       if (e.code === 'F9') post({ type: 'end' })
+      if (e.repeat) return
+      if (e.code === 'KeyF') fullscreen()
+      if (e.code === 'KeyP' && view.current.phase === 'PLAYING') startAttract()
+      if (
+        e.code === 'KeyR' &&
+        (view.current.phase === 'PLAYING' || view.current.phase === 'GAMEOVER')
+      )
+        dispatch({ type: 'phase', phase: 'READY' })
       if (e.code === 'Escape') {
         const p = view.current.phase
         if (p === 'LISTENING') cancelListening()
-        else if (p === 'PLAYING' || p === 'GAMEOVER' || p === 'FALLBACK') startAttract()
+        else startAttract()
       }
     }
     window.addEventListener('keydown', h)
     return () => window.removeEventListener('keydown', h)
-  }, [cancelListening, loadGame, post, startAttract, stopAttract])
+  }, [cancelListening, fullscreen, loadGame, post, startAttract])
 
   // ---- runtime messages --------------------------------------------------
   useEffect(() => {
     const h = (ev: MessageEvent) => {
+      if (ev.source !== frame.current?.contentWindow) return
       const m = ev.data
       if (!m || typeof m.type !== 'string') return
       const { phase, game } = view.current
@@ -618,31 +779,46 @@ export default function Cabinet() {
         }
         if (phase === 'GAMEOVER' && m.state === 'playing')
           dispatch({ type: 'phase', phase: 'PLAYING' })
-        if (phase === 'ATTRACT' && (m.state === 'gameover' || m.state === 'win')) {
-          setTimeout(() => {
-            if (view.current.phase !== 'ATTRACT') return
-            post({ type: 'start' })
-            post({ type: 'inject', frames: attractScript(ATTRACT_SCRIPT_S) })
-          }, 1500)
-        }
       } else if (m.type === 'error') {
-        if (phase === 'PLAYING' || phase === 'GAMEOVER' || phase === 'FALLBACK')
+        if (
+          phase === 'PLAYING' ||
+          phase === 'GAMEOVER' ||
+          phase === 'FALLBACK' ||
+          phase === 'READY'
+        )
           crashFallback('THAT GAME CRASHED')
         else if (phase === 'ATTRACT') startAttract()
       }
     }
     window.addEventListener('message', h)
     return () => window.removeEventListener('message', h)
-  }, [crashFallback, post, postScores, startAttract])
+  }, [crashFallback, postScores, startAttract])
 
-  // ---- mic warm-up -------------------------------------------------------
+  // The microphone and local transcription request belong to this mounted cabinet.
   useEffect(() => {
     const s = getStt()
-    void s.warmMic().then((ok) => dispatch({ type: 'mic', mic: ok ? 'idle' : 'unavailable' }))
-    void s.warmToken()
-    const t = setInterval(() => void s.warmToken(), 120_000)
-    return () => clearInterval(t)
-  }, [getStt])
+    const release = () => {
+      if (view.current.phase === 'PLAYING') startAttract()
+      if (talkHeld.current) {
+        talkHeld.current = false
+        void stopListening()
+      }
+    }
+    const onVisibility = () => {
+      if (document.hidden) release()
+    }
+    window.addEventListener('blur', release)
+    window.addEventListener('pagehide', release)
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => {
+      window.removeEventListener('blur', release)
+      window.removeEventListener('pagehide', release)
+      document.removeEventListener('visibilitychange', onVisibility)
+      listeningAttempt.current++
+      talkHeld.current = false
+      s.cancel()
+    }
+  }, [getStt, stopListening, startAttract])
 
   // ---- library, board, idle ----------------------------------------------
   useEffect(() => {
@@ -672,12 +848,20 @@ export default function Cabinet() {
   const [frameSrc, setFrameSrc] = useState<string | undefined>(undefined)
   useEffect(() => setFrameSrc('/runtime/index.html'), [])
   const onFrameLoad = useCallback(() => {
-    const tryStart = () => {
-      if (library.current.length > 0) startAttract()
-      else setTimeout(tryStart, 200)
-    }
-    tryStart()
-  }, [startAttract])
+    post({ type: 'pause', paused: true })
+    post({ type: 'mute', muted: true })
+  }, [post])
+
+  useEffect(() => {
+    post({ type: 'pause', paused: v.phase !== 'PLAYING' })
+    setPage(0)
+    screen.current?.focus({ preventScroll: true })
+  }, [v.phase, post])
+  useEffect(() => {
+    // Keep the last gameplay effect ringing while the results screen appears.
+    // The runtime is paused there, so no new game sounds are scheduled.
+    post({ type: 'mute', muted: !sound || !['PLAYING', 'GAMEOVER'].includes(v.phase) })
+  }, [sound, v.phase, post])
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -689,59 +873,42 @@ export default function Cabinet() {
   }, [startAttract])
 
   // ---- render ------------------------------------------------------------
-  const dim = v.phase === 'LISTENING' || v.phase === 'BUILDING'
-  const progress = v.status === 'READY' ? 1 : Math.min(0.95, v.code.length / EXPECTED_CHARS)
-  const codeTail = v.code.split('\n').slice(-18).join('\n')
-  const inGame = v.phase === 'PLAYING' || v.phase === 'GAMEOVER' || v.phase === 'FALLBACK'
-  const showWaiting = v.waitingFor2 && v.phase === 'PLAYING' && v.rtState === 'title'
-  const slotsToShow = v.mode === 2 ? 2 : 1
-  const bothReady = v.session.filter((p) => p && !p.detached).length >= 2
-
-  const board = (title: string, rows: ScoreEntry[], withGame: boolean) => (
-    <div className="flex w-[420px] flex-col gap-2 border-4 border-[#83769c] bg-black/85 px-6 py-5 text-[12px]">
-      <div className="mb-1 text-[14px] text-[#ffec27]">{title}</div>
-      {rows.length === 0 && <div className="text-[#5f574f]">NO SCORES YET. BE THE FIRST.</div>}
-      {rows.map((e, i) => (
-        <div key={e.id} className="flex gap-3 leading-snug">
-          <span className="w-6 text-[#5f574f]">{i + 1}.</span>
-          <span className={`flex-1 truncate ${e.badgeId ? 'text-[#fff1e8]' : 'text-[#83769c]'}`}>
-            {e.name}
-          </span>
-          {withGame && <span className="w-32 truncate text-[#5f574f]">{e.game.title}</span>}
-          <span className="w-14 text-right text-[#ffa300]">{e.score}</span>
-        </div>
-      ))}
-    </div>
+  const talk = (down: boolean) => onInput({ player: 0, button: 'talk', down })
+  const start = () => onInput({ player: 0, button: 'start', down: true })
+  const spec = current.current?.spec
+  const objective = typeof spec?.oneLiner === 'string' ? spec.oneLiner : 'PLAY FOR A HIGH SCORE'
+  const controls = Object.entries((spec?.controls ?? {}) as Record<string, string | null>).filter(
+    (row): row is [string, string] => typeof row[1] === 'string' && !!row[1],
   )
-
-  const roster = (
-    <div className="flex flex-col gap-2 text-[14px] drop-shadow-[2px_2px_0_#000]">
-      {(['P1', 'P2'] as const).slice(0, slotsToShow).map((tag, i) => {
-        const p = v.session[i]
-        const colour = p ? rgb(p.color) : '#5f574f'
-        const label = p
-          ? `${p.name.toUpperCase()}${p.detached ? ' (UNPLUGGED)' : ''}`
-          : v.mode === 2
-            ? 'PLUG IN A BADGE'
-            : 'GUEST'
-        return (
-          <div key={tag} className="flex items-center gap-3">
-            <span
-              className="inline-block h-4 w-4 border-2"
-              style={{ background: p ? colour : 'transparent', borderColor: PLAYER_CSS[i] }}
-            />
-            <span style={{ color: p ? colour : '#5f574f' }}>
-              {v.mode === 2 ? `${tag} ` : ''}
-              {label}
-            </span>
-          </div>
-        )
-      })}
-    </div>
+  const badgeDisplay = JSON.stringify({
+    players: v.mode,
+    playing: v.phase === 'PLAYING',
+    controls: Object.fromEntries(controls),
+  })
+  useEffect(() => {
+    void fetch('/api/badges/display', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: badgeDisplay,
+    }).catch(() => {})
+  }, [badgeDisplay])
+  const controlRows = controls.flatMap(([key, action]) =>
+    textPages(action, 24).map((part, i) => [i === 0 ? key : '', part]),
   )
-
+  const instructionPages: Array<{ objective: string; rows: string[][] }> = []
+  if (objective.length > 60)
+    for (const part of textPages(objective)) instructionPages.push({ objective: part, rows: [] })
+  for (let i = 0; i < Math.max(1, controlRows.length); i += 3)
+    instructionPages.push({
+      objective: objective.length <= 60 && i === 0 ? objective : '',
+      rows: controlRows.slice(i, i + 3),
+    })
+  const controlPages = instructionPages.length
+  const readyPage = page % controlPages
+  const instructions = instructionPages[readyPage]!
+  const options = [`SOUND ${sound ? 'ON' : 'OFF'}`, 'FULLSCREEN', 'BACK']
   return (
-    <main className="relative h-screen w-screen overflow-hidden bg-black text-white select-none">
+    <main className="arcade-screen" ref={screen} tabIndex={-1} aria-label="Arcade">
       <iframe
         ref={frame}
         title="game"
@@ -749,194 +916,154 @@ export default function Cabinet() {
         sandbox="allow-scripts"
         allow="autoplay"
         onLoad={onFrameLoad}
-        className={`absolute inset-0 h-full w-full border-0 transition-opacity duration-300 ${dim ? 'opacity-20' : 'opacity-100'}`}
+        className="game-frame"
+        style={{ visibility: v.phase === 'PLAYING' ? 'visible' : 'hidden' }}
       />
-
-      {v.phase === 'ATTRACT' && (
-        <>
-          <div className="absolute top-6 left-8 text-[18px] text-[#ffec27] drop-shadow-[3px_3px_0_#000]">
-            HTN ARCADE
-          </div>
-          <div className="absolute top-6 right-8 text-[14px] text-[#c2c3c7] drop-shadow-[3px_3px_0_#000]">
-            NOW PLAYING: {v.game?.title}
-          </div>
-          <div className="absolute top-16 left-8">{roster}</div>
-          {v.board.overall.length > 0 && (
-            <div className="absolute top-[28%] left-8">
-              {board('TOP SCORES', v.board.overall, true)}
-            </div>
-          )}
-          <div className="absolute inset-x-0 bottom-10 flex flex-col items-center gap-4">
-            <div className="flex gap-6 text-[20px]">
-              {([1, 2] as const).map((m) => (
-                <div
-                  key={m}
-                  className={`border-4 px-6 py-3 ${
-                    v.mode === m
-                      ? 'border-[#ffec27] bg-[#ffec27] text-black'
-                      : 'border-[#5f574f] bg-black/80 text-[#c2c3c7]'
-                  }`}
-                >
-                  {m === 1 ? '1 PLAYER' : '2 PLAYERS'}
-                </div>
-              ))}
-            </div>
-            <div className="blink border-4 border-[#fff1e8] bg-black/85 px-8 py-5 text-[30px] text-[#fff1e8]">
-              HOLD TALK AND SAY A GAME
-            </div>
-            <div className="text-[14px] text-[#c2c3c7] drop-shadow-[2px_2px_0_#000]">
-              {v.mode === 2
-                ? 'PLUG IN BOTH BADGES. D-PAD AND A B ON THE BADGE ARE THE CONTROLS'
-                : 'PLUG IN YOUR BADGE TO SAVE YOUR SCORE. OR PRESS START TO PLAY THIS ONE'}
-            </div>
-          </div>
-        </>
-      )}
-
-      {v.phase !== 'ATTRACT' && v.session.some((p) => p) && (
-        <div className="absolute top-6 left-8">{roster}</div>
-      )}
-
-      {v.phase === 'LISTENING' && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="flex w-[80vw] max-w-[1100px] flex-col items-center gap-8 border-4 border-[#29adff] bg-black/90 px-12 py-12">
-            <div className="flex items-center gap-6 text-[34px] text-[#29adff]">
-              <span className="mic" aria-hidden />
-              LISTENING
-            </div>
-            <div className="text-[14px] text-[#c2c3c7]">
-              {v.remixable
-                ? `SAY A CHANGE TO ${v.game?.title ?? 'THIS GAME'}, OR A NEW GAME`
-                : v.mode === 2
-                  ? 'A GAME FOR TWO PLAYERS'
-                  : 'A GAME FOR ONE PLAYER'}
-            </div>
-            <div className="min-h-[3em] text-center text-[24px] leading-relaxed text-[#fff1e8]">
-              {v.transcript || (
-                <span className="text-[#5f574f]">
-                  {v.remixable
-                    ? '"MAKE IT FASTER", "ADD A BOSS"... LET GO OF TALK WHEN DONE.'
-                    : 'SAY A GAME. LET GO OF TALK WHEN DONE.'}
-                </span>
-              )}
-            </div>
-            {v.error && <div className="text-center text-[14px] text-[#ff77a8]">{v.error}</div>}
-            {v.mic !== 'on' && (
-              <form
-                className="flex w-full gap-3"
-                onSubmit={(e) => {
-                  e.preventDefault()
-                  const t = view.current.transcript.trim()
-                  if (t) build(t)
-                }}
-              >
-                <input
-                  ref={inputEl}
-                  value={v.transcript}
-                  onChange={(e) => dispatch({ type: 'transcript', transcript: e.target.value })}
-                  placeholder="OR TYPE IT HERE AND PRESS ENTER"
-                  className="w-full border-2 border-[#5f574f] bg-black px-4 py-3 text-[16px] text-white outline-none placeholder:text-[#5f574f] focus:border-[#29adff]"
-                />
-              </form>
-            )}
-            <div className="text-[12px] text-[#5f574f]">ESC TO CANCEL</div>
-          </div>
-        </div>
-      )}
-
-      {v.phase === 'BUILDING' && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="flex w-[86vw] max-w-[1200px] flex-col gap-6 border-4 border-[#ffa300] bg-black/92 px-12 py-10">
-            <div className="text-[14px] text-[#c2c3c7]">YOU SAID: {v.transcript.toUpperCase()}</div>
-            {v.spec ? (
-              <>
-                <div className="flex items-baseline gap-6">
-                  <div className="text-[44px] leading-tight text-[#ffec27]">{v.spec.title}</div>
-                  <div className="text-[16px] text-[#c2c3c7]">
-                    {(v.spec.players ?? v.mode) === 2 ? '2 PLAYERS' : '1 PLAYER'}
-                  </div>
-                </div>
-                <div className="text-[18px] leading-relaxed text-[#fff1e8]">
-                  {v.spec.oneLiner.toUpperCase()}
-                </div>
-                {v.spec.note && <div className="text-[14px] text-[#ff77a8]">{v.spec.note}</div>}
-              </>
-            ) : (
-              <div className="blink text-[30px] text-[#ffec27]">THINKING...</div>
-            )}
-            <div className="flex items-center gap-6">
-              <div className="w-[240px] text-[18px] text-[#ffa300]">
-                {v.status === 'READY' ? 'READY!' : `${v.status}...`}
-              </div>
-              <div className="h-6 flex-1 border-2 border-[#ffa300] p-[3px]">
-                <div
-                  className="h-full bg-[#ffa300] transition-[width] duration-200"
-                  style={{ width: `${Math.round(progress * 100)}%` }}
-                />
-              </div>
-            </div>
-            {v.observations.length > 0 && v.status === 'REPAIRING' && (
-              <div className="text-[12px] leading-relaxed text-[#ff77a8]">
-                FIXING: {v.observations.join(' / ').toUpperCase()}
-              </div>
-            )}
-            {v.observations.length > 0 && v.status === 'REMIXING' && (
-              <div className="text-[12px] leading-relaxed text-[#29adff]">
-                CHANGING: {v.observations.join(' / ').toUpperCase()}
-              </div>
-            )}
-            <pre className="h-[34vh] overflow-hidden whitespace-pre-wrap break-all font-mono text-[12px] leading-[1.35] text-[#00e436]/80">
-              {codeTail}
-              <span className="blink">_</span>
-            </pre>
-            {v.mode === 2 && (
-              <div className="text-[12px] text-[#c2c3c7]">
-                {bothReady
-                  ? 'BOTH BADGES READY'
-                  : 'PLUG IN BOTH BADGES AND OPEN ARCADE ON THEM WHILE THIS BUILDS'}
-              </div>
-            )}
-            {v.error && <div className="text-[12px] text-[#ff004d]">{v.error.toUpperCase()}</div>}
-          </div>
-        </div>
-      )}
-
-      {v.phase === 'FALLBACK' && v.banner && (
-        <div className="absolute inset-x-0 top-[12%] flex justify-center">
-          <div className="border-4 border-[#ff77a8] bg-black/90 px-10 py-6 text-center text-[22px] leading-relaxed text-[#ff77a8]">
-            {v.banner}
-          </div>
-        </div>
-      )}
-
-      {showWaiting && (
-        <div className="absolute inset-x-0 top-[12%] flex justify-center">
-          <div className="border-4 border-[#29adff] bg-black/90 px-10 py-6 text-center text-[18px] leading-relaxed text-[#29adff]">
-            WAITING FOR PLAYER 2...
-            <br />
-            <span className="text-[14px] text-[#c2c3c7]">
-              PLUG IN A BADGE AND OPEN ARCADE, OR PRESS START TO PLAY 1P ON THE STICK
+      <header className="arcade-header" hidden={v.phase === 'ATTRACT'}>
+        {[0, 1].slice(0, v.mode).map((i) => {
+          const player = v.session[i]
+          const name = player?.name.trim() || 'GUEST'
+          return (
+            <span className="player-name" key={i} title={`P${i + 1} ${name}`}>
+              <span
+                className="player-marker"
+                aria-hidden="true"
+                style={{ backgroundColor: player ? `rgb(${player.color.join(',')})` : '#aaa' }}
+              />
+              <span className="player-number">P{i + 1}</span>
+              <span className="player-label">{name}</span>
             </span>
-          </div>
-        </div>
+          )
+        })}
+      </header>
+      {v.phase === 'ATTRACT' && (
+        <HomeScreen
+          ref={home}
+          onPlay={playDemo}
+          onCreate={(players) => confirmMenu(players - 1)}
+          onOptions={() => {
+            setSelection(0)
+            dispatch({ type: 'phase', phase: 'OPTIONS' })
+          }}
+          onResume={v.game ? () => confirmMenu(2) : undefined}
+          remembered={rememberedHome.current}
+          onRemember={rememberHome}
+          error={v.error}
+        />
       )}
-
-      {v.phase === 'GAMEOVER' && v.game?.slug && (
-        <div className="absolute top-[18%] right-8">
-          {board(`TOP SCORES: ${v.game.title}`, v.board.game, false)}
-        </div>
+      {v.phase === 'OPTIONS' && (
+        <section className="stage">
+          <h1>OPTIONS</h1>
+          <nav className="menu-list" aria-label="Options">
+            {options.map((label, i) => (
+              <button
+                type="button"
+                key={label}
+                data-selected={selection === i}
+                onClick={() => confirmOption(i)}
+              >
+                {selection === i ? '> ' : '  '}
+                {label}
+              </button>
+            ))}
+          </nav>
+          <p className="support">
+            KEYBOARD: ARROWS · Z / X<br />
+            ENTER START · SPACE TALK
+          </p>
+          <p className="support">
+            {v.badges.length} BADGES CONNECTED
+            <br />
+            VOICE: LOCAL · GAME: OPENAI
+          </p>
+        </section>
       )}
-
-      {inGame && (
-        <div className="absolute inset-x-0 bottom-3 flex justify-center gap-10 text-[12px] text-[#5f574f]">
-          <span>{v.game?.title}</span>
-          {v.game?.players === 2 && <span>2 PLAYERS</span>}
-          <span>HOLD TALK FOR A NEW GAME</span>
-          {v.phase === 'GAMEOVER' && <span className="text-[#c2c3c7]">START TO PLAY AGAIN</span>}
-        </div>
+      {v.phase === 'LISTENING' && (
+        <VoiceInput
+          stage={v.voiceStage}
+          stream={audioStream}
+          transcript={v.transcript}
+          error={v.error}
+          onTalk={talk}
+          onCreate={() => {
+            if (view.current.transcript.trim()) void build(view.current.transcript.trim())
+          }}
+          onCancel={cancelListening}
+          page={page}
+          onPage={() => setPage((n) => n + 1)}
+        />
       )}
-
-      <div className="scanlines pointer-events-none absolute inset-0" aria-hidden />
+      {v.phase === 'BUILDING' && (
+        <BuildConsole
+          code={v.code}
+          foundation={v.foundation}
+          title={v.spec?.title}
+          status={v.status}
+          players={v.spec?.players ?? v.mode}
+          onCancel={startAttract}
+        />
+      )}
+      {(v.phase === 'READY' || v.phase === 'FALLBACK') && (
+        <section className="stage ready-stage">
+          <h1 className="cyan">READY!</h1>
+          <h2>{v.game?.title}</h2>
+          {v.banner ? (
+            <p role="status" className="notice">
+              {v.banner}
+            </p>
+          ) : (
+            <p className="objective">{instructions.objective}</p>
+          )}
+          <dl className="control-list">
+            {instructions.rows.map(([key, action]) => (
+              <div key={`${key}-${action}`}>
+                <dt>{key === 'a' || key === 'b' ? `BUTTON ${key}` : key}</dt>
+                <dd>{action}</dd>
+              </div>
+            ))}
+          </dl>
+          {controlPages > 1 && (
+            <button type="button" className="support" onClick={() => setPage((n) => n + 1)}>
+              MORE · {readyPage + 1}/{controlPages}
+            </button>
+          )}
+          {v.waitingFor2 && <p className="support">P2: PLUG IN BADGE OR PLAY SOLO</p>}
+          <button type="button" className="primary" onClick={start}>
+            &gt; PLAY
+          </button>
+          <button type="button" className="back" onClick={startAttract}>
+            MENU
+          </button>
+        </section>
+      )}
+      {v.phase === 'GAMEOVER' && (
+        <section className="stage">
+          <h2>{v.game?.title}</h2>
+          <h1 className="result-title">{v.rtState === 'win' ? 'STAGE CLEAR' : 'GAME OVER'}</h1>
+          <p className="score">
+            {v.game?.players === 2 ? `P1 ${v.scores[0]} · P2 ${v.scores[1]}` : `SCORE ${v.score}`}
+          </p>
+          <button type="button" className="primary" onClick={start}>
+            &gt; PLAY AGAIN
+          </button>
+          <button type="button" className="back" onClick={startAttract}>
+            MENU
+          </button>
+        </section>
+      )}
+      {v.phase === 'PLAYING' && <GameControls controls={controls} players={v.game?.players ?? 1} />}
     </main>
   )
+}
+
+function demoSpec(genre: string): Record<string, unknown> {
+  return {
+    oneLiner:
+      genre === 'shooter'
+        ? 'SHOOT THE FLEET. DODGE THE BOMBS.'
+        : genre === 'platformer'
+          ? 'GRAB COINS. AVOID THE SLIMES.'
+          : 'CATCH THE PIES. DODGE THE ANVILS.',
+    controls: { left: 'MOVE LEFT', right: 'MOVE RIGHT', a: genre === 'shooter' ? 'SHOOT' : 'JUMP' },
+  }
 }

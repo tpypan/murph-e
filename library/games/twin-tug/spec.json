@@ -1,0 +1,28 @@
+{
+  "title": "TWIN TUG",
+  "oneLiner": "Both players tug a runaway star through a maze of shifting walls before it escapes!",
+  "genre": "coop",
+  "mechanics": [
+    "Player one is the red tugger; player two is the blue tugger.",
+    "Move around the shared arena and pull the star by touching it.",
+    "A fires a short-range tether; B gives the star a quick shove.",
+    "Collect sparks for shared points while walls shift faster over time."
+  ],
+  "controls": {
+    "left": "Move left",
+    "right": "Move right",
+    "up": "Move up",
+    "down": "Move down",
+    "a": "Fire tether to pull the star",
+    "b": "Shove the star away"
+  },
+  "palette": "arcade",
+  "lose": "The star reaches an arena edge or both players are stunned at once.",
+  "scoring": "Collect sparks and guide the star through bonus gates.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "players": 2,
+  "runId": "2026-09-19-1806-so-we-re-going-to-take"
+}

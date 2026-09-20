@@ -1,0 +1,48 @@
+{
+  "model": "gpt-6-astra",
+  "effort": "medium",
+  "players": 1,
+  "n": 1,
+  "rows": [
+    {
+      "prompt": "Can we generate a game like Pac-Man? But instead of Pac-Man, it is a little goose that is chasing after the ghosts.",
+      "title": "GOOSE CHASE",
+      "genre": "maze chase",
+      "runId": "2026-09-19-2042-can-we-generate-a-game-like-pac",
+      "specMs": 11912,
+      "buildMs": 271176,
+      "ttftMs": 124161,
+      "totalMs": 283100,
+      "tokens": 14430,
+      "reasoning": 4142,
+      "cached": 2956,
+      "lines": 906,
+      "syntaxError": null,
+      "probeOk": true,
+      "observations": [
+        "holding RIGHT changed nothing on screen, including after A when available",
+        "holding UP changed nothing on screen, including after A when available",
+        "holding DOWN changed nothing on screen, including after A when available"
+      ],
+      "error": null
+    },
+    {
+      "prompt": "Street Fighter but with Batman, Superman and Flash. Keep recognizable characters, a detailed rooftop arena, and a proper fighting moveset.",
+      "title": "",
+      "genre": "",
+      "runId": "",
+      "specMs": 0,
+      "buildMs": 0,
+      "ttftMs": null,
+      "totalMs": 0,
+      "tokens": 0,
+      "reasoning": 0,
+      "cached": 0,
+      "lines": 0,
+      "syntaxError": null,
+      "probeOk": null,
+      "observations": [],
+      "error": "build exceeded its 300s request deadline"
+    }
+  ]
+}

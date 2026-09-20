@@ -1,0 +1,55 @@
+{
+  "title": "CASPER CLIMB",
+  "oneLiner": "Climb the haunted construction tower, dodge Casper's rolling spooks, and rescue your friend at the top!",
+  "genre": "arcade platformer",
+  "mechanics": [
+    "The player starts on the bottom platform and climbs four vertically stacked platforms using left/right movement and ladders; screen remains fixed while the tower is fully visible.",
+    "A jumps with a short fixed arc when on a platform, letting the player clear small gaps and roll hazards; jumping is unavailable while climbing a ladder.",
+    "B swings the player's hammer for 10 frames: 3-frame startup, 3-frame active hit window, 4-frame recovery. It hits one nearby rolling ghost orb once and awards 100 points.",
+    "Casper throws one rolling ghost orb every 2.2 seconds from the top, aimed along the current platform route; each orb rolls to an edge, drops to the next platform, then continues. Casper telegraphs with a raised arm for 18 frames and cannot throw during 24 frames of recovery.",
+    "The first 15 seconds use a safe teaching cadence: one slow orb, a reachable ladder, and a nearby bonus bell. Later stages add one orb at a time, capped at three simultaneous orbs, with speed increasing from 55 to 78 pixels per second.",
+    "Platforms have alternating short gaps and ladders; a jump across a gap or hammer strike is the skillful way to maintain progress and score. A bell on each stage awards 500 points and briefly freezes hazards for 45 frames.",
+    "Reaching the cage at the top completes the stage, awards 2000 points, restores one missed life up to a maximum of three, and advances to a remixed tower with ladder locations shifted and a faster Casper cadence.",
+    "Contact with a rolling orb or falling through a platform gap costs one life, plays a flashing knockback animation, and restarts the player at the bottom with hazards reset; three lost lives ends the game.",
+    "After every stage, show a brief stage-clear banner and preserve the score; after stage four, show a rescue ending and final score. All hazards, timers, pickups and score awards reset deterministically on life loss or new game."
+  ],
+  "artDirection": "256x224 fixed-screen construction tower with four wide orange-brown platforms spanning the playfield, ladders in bright yellow, dark blue sky and muted brick/building silhouettes behind it. The player is a 16x24 pixel climber with a red cap, blue shirt, pale face, and two-frame walk cycle; show a crouched jump pose, arms-up ladder pose, and distinct flattened hurt pose. Casper is a large 32x32 translucent white cartoon ghost at the top, with a rounded sheet silhouette, blue-gray outline, expressive black eyes, and a friendly-but-mischievous grin; animate a hover bob and throwing pose. Haunted rolling hazards are 12x12 pale-purple ghost orbs with tiny faces, clearly separated from brown ladders and platforms. Keep active lanes high contrast and backgrounds low-detail; rescue target is a bright 20x20 character in a gold cage at the top.",
+  "referenceIntent": {
+    "reference": "Donkey Kong",
+    "preserve": [
+      "Four compact construction-site platforms with ladders and gaps",
+      "A vertical climb toward a captive character at the top",
+      "Barrels rolling down platforms as the signature hazard",
+      "A large top-platform antagonist and a clear stage-by-stage rescue goal",
+      "Arcade platforming with immediate movement, jumping, score pickups and limited lives"
+    ],
+    "change": [
+      "Replace Donkey with Casper as the top antagonist",
+      "Use Casper as a friendly cartoon ghost who throws and guides haunted objects rather than a gorilla throwing barrels",
+      "Keep the player as a climbing rescuer pursuing the top-of-stage captive, with Casper as the obstacle and encounter identity"
+    ]
+  },
+  "controls": {
+    "left": "Move left on platforms; steer left while airborne; climb down a ladder when overlapping it.",
+    "right": "Move right on platforms; steer right while airborne; climb up a ladder when overlapping it.",
+    "up": "Climb upward while overlapping a ladder; otherwise no action.",
+    "down": "Climb downward while overlapping a ladder; otherwise no action.",
+    "a": "Jump when standing on a platform; unavailable while climbing.",
+    "b": "Swing hammer when standing or moving on a platform; unavailable while climbing or airborne."
+  },
+  "palette": "arcade",
+  "lose": "Lose one of three lives by touching a rolling ghost orb or falling through a platform gap; the game ends when all lives are gone.",
+  "scoring": "Score 100 for each ghost orb smashed, 500 for each bell, 2000 for reaching the cage, with no repeated score from one collision.",
+  "moderated": false,
+  "note": "",
+  "remix": false,
+  "changes": [],
+  "designCards": [
+    "platforming",
+    "collision",
+    "pacing",
+    "readability"
+  ],
+  "players": 1,
+  "runId": "2026-09-19-2105-hey-i-wanna-make-a-game-that-s-l"
+}

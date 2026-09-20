@@ -117,6 +117,7 @@ export class Runtime {
   private accumulator = 0
   private lastTime = 0
   private running = false
+  private paused = false
 
   constructor(canvas: HTMLCanvasElement, opts: RuntimeOptions) {
     this.opts = opts
@@ -188,7 +189,21 @@ export class Runtime {
     this.lockout = START_LOCKOUT_FRAMES
   }
 
+  /** Shell pause is separate from the game state and never resets a run. */
+  setPaused(paused: boolean): void {
+    this.paused = paused
+    this.accumulator = 0
+    this.lastTime = performance.now()
+    this.input.releaseAll()
+    this.input.clearScheduled()
+  }
+
+  setMuted(muted: boolean): void {
+    this.synth.setMuted(this.opts.probe || muted)
+  }
+
   setInput(player: unknown, button: unknown, down: boolean): void {
+    if (this.paused && down) return
     this.input.set(player, button, down)
     if (down) this.synth.unlock()
   }
@@ -219,6 +234,10 @@ export class Runtime {
       if (!this.running) return
       const elapsed = Math.min(0.25, (now - this.lastTime) / 1000)
       this.lastTime = now
+      if (this.paused) {
+        requestAnimationFrame(loop)
+        return
+      }
       this.accumulator += elapsed
       let steps = 0
       while (this.accumulator >= DT && steps < MAX_CATCHUP) {
@@ -496,8 +515,14 @@ export class Runtime {
         s.rectfill(x, y, w, h, c),
       circ: (x: number, y: number, r: number, c: number) => s.circ(x, y, r, c),
       circfill: (x: number, y: number, r: number, c: number) => s.circfill(x, y, r, c),
-      spr: (sprite: Sprite, x: number, y: number, flipX = false, flipY = false) =>
-        s.spr(sprite, x, y, !!flipX, !!flipY),
+      spr: (
+        sprite: Sprite,
+        x: number,
+        y: number,
+        flipX = false,
+        flipY = false,
+        colors?: readonly string[],
+      ) => s.spr(sprite, x, y, !!flipX, !!flipY, colors),
       text: (str: unknown, x: number, y: number, c = 7, scale = 1) => s.text(str, x, y, c, scale),
       textCenter: (str: unknown, y: number, c = 7, scale = 1) => s.textCenter(str, y, c, scale),
       textWidth: (str: unknown, scale = 1) => s.textWidth(str, scale),

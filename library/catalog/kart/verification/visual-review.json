@@ -1,0 +1,28 @@
+{
+  "contentHash": "656b9abef8dfe90156d78d5c09cc16ae9e17472df906c62d5c712c9ab69430e0",
+  "reviewedAt": "2026-09-20T00:33:22.949Z",
+  "passed": true,
+  "images": [
+    "screenshots/1p-grid.png",
+    "screenshots/1p-corner.png",
+    "screenshots/2p-s-bend.png",
+    "verification/polish-comparison-3x.png"
+  ],
+  "imageHashes": {
+    "screenshots/1p-grid.png": "d664fbc718739692eb539714eca179eb049ff103906d39561b990debe99c5280",
+    "screenshots/1p-corner.png": "d9cc1fedcc4a6f42afa3da572e0dd66521a20cc5a0ca992b905a88cdfacb2da0",
+    "screenshots/2p-s-bend.png": "de21fcc13acf682d444e4dc91ab298bfc35c1e22a4a53494266053c110cf8a84",
+    "verification/polish-comparison-3x.png": "c6191e9a9d90a543b8fb6a654e2e2f5afd54d6e72da21e937371aa33a57d4ddc"
+  },
+  "observations": [
+    "Reviewed native original and private-source driving frames and separate stacked cameras. Muted coastal palette, road shoulders/edge lines and scenery landmarks improve depth and closing-speed readability.",
+    "Advance bend cue uses actual ahead-track curvature; 13 behavior checks include state purity, default three-lap gates and lap HUD. No steering, acceleration, drift, collision or source-pixel changes.",
+    "Native default full races pass all ordered gates, both controllers, scoring, terminal result and reset. Original/source car art remains distinct from exact-RGB environment colors."
+  ],
+  "limitations": [
+    "Lightweight pseudo-3D arcade racer, not realistic vehicle dynamics or a commercial circuit replica.",
+    "Original Pole Position qualification, gearing, topology and ROM timing are not implemented.",
+    "Historical adapter-only before/after hashes are retained; current scenery is intentionally different and separately labeled.",
+    "No physical CRT or human handling study."
+  ]
+}

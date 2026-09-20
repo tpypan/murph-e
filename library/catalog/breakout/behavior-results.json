@@ -1,0 +1,116 @@
+{
+  "at": "2026-09-19T21:49:15.914Z",
+  "reports": [
+    {
+      "name": "complete-palette-frames-and-animation-metadata",
+      "passed": true,
+      "frames": 44
+    },
+    {
+      "name": "explicit-launch-and-precision-modifier",
+      "passed": true
+    },
+    {
+      "name": "fresh-and-damaged-1-2-3-hit-brick-render-progression",
+      "passed": true,
+      "transitions": {
+        "1": [
+          1,
+          0
+        ],
+        "2": [
+          2,
+          1,
+          0
+        ],
+        "3": [
+          3,
+          2,
+          1,
+          0
+        ]
+      },
+      "frames": 1060
+    },
+    {
+      "name": "two-independent-halves-and-player-two-launch",
+      "passed": true
+    },
+    {
+      "name": "three-authored-stages-1p",
+      "passed": true,
+      "seconds": 135.01666666666625,
+      "stats": {
+        "paddleHits": [
+          104,
+          0
+        ],
+        "brickHits": 142,
+        "destroyed": 84,
+        "pickups": 3,
+        "stagesCleared": 3,
+        "misses": 0,
+        "launches": 3,
+        "maxCombo": 5,
+        "powerHits": 42
+      },
+      "scores": [
+        4300,
+        0
+      ],
+      "terminal": [
+        "win",
+        null
+      ]
+    },
+    {
+      "name": "three-authored-stages-2p",
+      "passed": true,
+      "seconds": 154.11666666668145,
+      "stats": {
+        "paddleHits": [
+          57,
+          62
+        ],
+        "brickHits": 142,
+        "destroyed": 84,
+        "pickups": 4,
+        "stagesCleared": 3,
+        "misses": 0,
+        "launches": 3,
+        "maxCombo": 4,
+        "powerHits": 45
+      },
+      "scores": [
+        2380,
+        2700
+      ],
+      "terminal": [
+        "win",
+        null
+      ]
+    },
+    {
+      "name": "miss-exhausts-life-and-ends",
+      "passed": true
+    },
+    {
+      "name": "swept-thin-bricks-at-large-timestep",
+      "passed": true,
+      "stats": {
+        "paddleHits": [
+          27,
+          0
+        ],
+        "brickHits": 24,
+        "destroyed": 8,
+        "pickups": 1,
+        "stagesCleared": 1,
+        "misses": 0,
+        "launches": 1,
+        "maxCombo": 1,
+        "powerHits": 4
+      }
+    }
+  ]
+}
