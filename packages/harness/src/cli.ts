@@ -30,7 +30,7 @@ const USAGE = `usage:
   harness components export <id> <output.js>        export a closed component for review
   harness gen "<transcript>" [--model M] [--effort E] [--variant N] [--players 2]
   harness play <run-id>
-  harness run "<transcript>" [--race 2] [--players 2|both]   full pipeline: spec, race, probe, repair, fallback; both = a 1P and a 2P version, as the cabinet does
+  harness run "<transcript>" [--race 1] [--players 2|both]   one shared game: spec, build, both-mode probe, repair, fallback; both = two session views of the same game
   harness seed <prompts.txt> [--n 2] [--players 2]      fill library/games with passing games
   harness bench <prompts.txt> [--model M] [--effort E] [--players 2] [--n 1] [--concurrency 4] [--label L] [--no-probe] [--fun]
   harness bench-remix <remixes.txt> [--concurrency 3] [--label L]   "<slug> | <words>" per line
@@ -294,7 +294,7 @@ try {
     const onEvent = (ev: PipelineEvent) => {
       const tag = ev.players ? `${ev.players}P ` : ''
       if (ev.type === 'token') {
-        // With both versions streaming, only the one-player stream goes to stdout.
+        // A shared game has one build stream for either initial player count.
         if (ev.variant === 0 && (ev.players ?? 1) === 1) process.stdout.write(ev.text)
       } else if (ev.type === 'ready') {
         process.stderr.write(
@@ -303,7 +303,7 @@ try {
       } else process.stderr.write(`\n[${tag}${ev.type}] ${JSON.stringify(ev).slice(0, 300)}\n`)
     }
     const common = {
-      race: values.race ? Number(values.race) : 2,
+      race: values.race ? Number(values.race) : 1,
       model: values.model,
       effort: values.effort,
       onEvent,

@@ -28,7 +28,7 @@ const stubs: Record<string, string> = {
     'export const BUILD_MAX_OUTPUT_TOKENS=20000;export const build=(...args)=>fixture.build(...args);',
   './repair.ts': 'export const repair=(...args)=>fixture.repair(...args);',
   './spec.ts':
-    'export const specify=async(t,o)=>({spec:{...fixture.spec,players:o?.players??1},context:{},prompt:{system:"",user:""},ms:0,usage:{}});',
+    'export const specify=async(t,o)=>(fixture.specifyCalls=(fixture.specifyCalls??0)+1,{spec:{...fixture.spec,players:o?.players??1},context:{},prompt:{system:"",user:""},ms:0,usage:{}});',
   './prompt.ts':
     'export const loadTemplates=()=>[];export const buildPrompt=(...args)=>{fixture.capturePrompt?.(...args);return {system:"",user:"",designContext:{},referenceContext:{}}};',
   './remix.ts':
@@ -366,128 +366,90 @@ test('race keeps winner and archives a completed loser returned after cancellati
   }
 })
 
-test('pipelineBoth builds a 1P and a 2P version in isolated runs and tags every event', async (t) => {
+test('both modes share one default build/run and both must pass before ready', async (t) => {
   t.mock.method(globalThis, 'fetch', () => {
-    throw Error('NETWORK FORBIDDEN IN OFFLINE TEST')
+    throw Error('NETWORK FORBIDDEN')
   })
-  const root = mkdtempSync(resolve(tmpdir(), 'pipeline-both-'))
-  const events: PipelineEvent[] = []
-  const probes: number[] = []
-  const fixture = {
-    root,
-    spec: {
-      title: 'FIXTURE',
-      genre: 'paddle',
-      players: 1,
-      note: '',
-      controls: [],
-      remix: false,
-      changes: [],
-    },
-    build: async () => output('function init() {}'),
-    repair: async () => output('function init() {return 1}'),
-    remix: async () => ({ ...output(), blocks: 0, applyError: null }),
-    probe: async (_code: string, o: { players: number }) => {
-      probes.push(o.players)
-      return probeResult(true)
-    },
-  }
-  const { pipelineBoth } = await moduleFor(fixture)
-  const runFor = (players: 1 | 2) => ({
-    id: `run-${players}p`,
-    dir: resolve(root, `run-${players}p`),
-    write: (name: string) => resolve(root, `run-${players}p`, name),
-    event: () => {},
-  })
-  try {
-    const r = await pipelineBoth('a fixture game', {
-      race: 1,
-      keep: false,
-      runFor,
-      onEvent: (ev) => events.push(ev),
-    })
-    for (const players of [1, 2] as const) {
-      const v = r.results[players]
-      assert.ok(!(v instanceof Error), `${players}P: ${v instanceof Error ? v.message : ''}`)
-      assert.equal(v.players, players)
-      assert.equal(v.run.id, `run-${players}p`)
-      assert.equal(v.source, 'build')
+  for (const rejectTwoPlayers of [false, true]) {
+    const root = mkdtempSync(resolve(tmpdir(), 'shared-game-'))
+    const events: PipelineEvent[] = []
+    const checked: Array<{ code: string; players: number }> = []
+    let builds = 0,
+      repairs = 0
+    const fixture = {
+      root,
+      specifyCalls: 0,
+      spec: {
+        title: 'SHARED',
+        genre: 'paddle',
+        players: 1,
+        note: '',
+        controls: [],
+        remix: false,
+        multiplayer: {
+          mode: 'versus',
+          solo: 'CPU rival',
+          playerOne: 'P1',
+          playerTwo: 'P2',
+          camera: 'shared',
+          scoring: 'Separate',
+          endConditions: 'First to five',
+        },
+      },
+      build: async () => {
+        builds++
+        return output('function init() {}')
+      },
+      repair: async () => {
+        repairs++
+        return output('function init() {return 1}')
+      },
+      probe: async (code: string, opts: { players: number }) => {
+        checked.push({ code, players: opts.players })
+        return probeResult(!rejectTwoPlayers || opts.players === 1)
+      },
     }
-    assert.ok(events.length > 0)
-    assert.ok(
-      events.every((ev) => ev.players === 1 || ev.players === 2),
-      'every event names its version',
-    )
-    const ready = events.filter((ev) => ev.type === 'ready')
-    assert.deepEqual(ready.map((ev) => ev.players).sort(), [1, 2])
-    assert.deepEqual(ready.map((ev) => (ev.type === 'ready' ? ev.runId : '')).sort(), [
-      'run-1p',
-      'run-2p',
-    ])
-    const specs = events.filter((ev) => ev.type === 'spec')
-    assert.deepEqual(
-      specs.map((ev) => (ev.type === 'spec' ? ev.spec.players : 0)).sort(),
-      [1, 2],
-      'each version gets its own spec',
-    )
-    assert.deepEqual(probes.sort(), [1, 2], 'each version is probed as itself')
-  } finally {
-    rmSync(root, { recursive: true, force: true })
-  }
-})
-
-test('pipelineBoth keeps the 1P version when the 2P version falls back', async (t) => {
-  t.mock.method(globalThis, 'fetch', () => {
-    throw Error('NETWORK FORBIDDEN IN OFFLINE TEST')
-  })
-  const root = mkdtempSync(resolve(tmpdir(), 'pipeline-both-fallback-'))
-  const events: PipelineEvent[] = []
-  const fixture = {
-    root,
-    spec: {
-      title: 'FIXTURE',
-      genre: 'paddle',
-      players: 1,
-      note: '',
-      controls: [],
-      remix: false,
-      changes: [],
-    },
-    build: async () => output('function init() {}'),
-    repair: async () => output('function init() {return 1}'),
-    remix: async () => ({ ...output(), blocks: 0, applyError: null }),
-    // The two-player probe never passes, so that version repairs and falls back.
-    probe: async (_code: string, o: { players: number }) => probeResult(o.players === 1),
-  }
-  const { pipelineBoth } = await moduleFor(fixture)
-  const runFor = (players: 1 | 2) => ({
-    id: `run-${players}p`,
-    dir: resolve(root, `run-${players}p`),
-    write: (name: string) => resolve(root, `run-${players}p`, name),
-    event: () => {},
-  })
-  try {
-    const r = await pipelineBoth('a fixture game', {
-      race: 1,
-      keep: false,
-      runFor,
-      onEvent: (ev) => events.push(ev),
-    })
-    const one = r.results[1]
-    const two = r.results[2]
-    assert.ok(!(one instanceof Error) && one.source === 'build')
-    assert.ok(!(two instanceof Error) && two.source === 'library')
-    const ready = events.filter((ev) => ev.type === 'ready')
-    assert.deepEqual(
-      ready.map((ev) => (ev.type === 'ready' ? `${ev.players}:${ev.source}` : '')).sort(),
-      ['1:build', '2:library'],
-    )
-    assert.ok(
-      events.some((ev) => ev.type === 'fallback' && ev.players === 2),
-      'the fallback is tagged with its version',
-    )
-  } finally {
-    rmSync(root, { recursive: true, force: true })
+    try {
+      const { pipelineBoth } = await moduleFor(fixture)
+      const result = await pipelineBoth('one game in either mode', {
+        keep: false,
+        run: { id: 'shared-run', dir: root, write: (name) => resolve(root, name), event: () => {} },
+        onEvent: (e) => events.push(e),
+      })
+      assert.equal(fixture.specifyCalls, 1, 'one spec for the shared game')
+      assert.equal(builds, 1, 'default must not race or split by player count')
+      assert.equal(repairs, rejectTwoPlayers ? 1 : 0)
+      assert.deepEqual(checked.slice(0, 2), [
+        { code: 'function init() {}', players: 1 },
+        { code: 'function init() {}', players: 2 },
+      ])
+      const ready = events.filter((e) => e.type === 'ready')
+      assert.equal(ready.length, 1, 'one ready event and saved output')
+      if (rejectTwoPlayers) {
+        assert.ok(result.results[2] instanceof Error)
+        assert.equal(ready[0]!.source, 'library')
+        assert.deepEqual(
+          ready[0]!.supportedPlayers,
+          [1],
+          'never advertise an unverified fallback as dual-mode',
+        )
+        assert.deepEqual(
+          checked.slice(2).map((p) => p.players),
+          [1, 2],
+          'repair also passes through both probes',
+        )
+      } else {
+        const one = result.results[1],
+          two = result.results[2]
+        assert.ok(!(one instanceof Error) && !(two instanceof Error))
+        assert.equal(one.code, two.code)
+        assert.equal(one.run, two.run)
+        assert.equal(one.slug, two.slug)
+        assert.deepEqual(ready[0]!.supportedPlayers, [1, 2])
+      }
+    } finally {
+      rmSync(root, { recursive: true, force: true })
+    }
   }
 })
 
@@ -701,11 +663,12 @@ test('cancellation between player-mode checks archives cancellation and never re
   }
 })
 
-test('pipelineBoth preserves tagged versions while Jev selection and both-mode checks run per version', async (t) => {
+test('shared hybrid game selects Jev and builds once, then validates the same code in both modes', async (t) => {
   t.mock.method(globalThis, 'fetch', () => {
     throw Error('NETWORK FORBIDDEN')
   })
   const root = mkdtempSync(resolve(tmpdir(), 'hybrid-both-'))
+  let builds = 0
   const selected: number[] = [],
     checked: number[] = [],
     events: PipelineEvent[] = []
@@ -737,7 +700,10 @@ test('pipelineBoth preserves tagged versions while Jev selection and both-mode c
         audit: { selectedId: null },
       }
     },
-    build: async () => output(),
+    build: async () => {
+      builds++
+      return output()
+    },
     probe: async (_code: string, opts: { players: number }) => {
       checked.push(opts.players)
       return probeResult(true)
@@ -746,24 +712,21 @@ test('pipelineBoth preserves tagged versions while Jev selection and both-mode c
   try {
     const { pipelineBoth } = await moduleFor(fixture)
     const result = await pipelineBoth('hybrid both', {
-      race: 1,
       keep: false,
       onEvent: (e) => events.push(e),
-      runFor: (players) => ({
-        id: `hybrid-${players}`,
-        dir: resolve(root, String(players)),
+      run: {
+        id: 'hybrid-shared',
+        dir: root,
         event: () => {},
-        write: (name) => resolve(root, String(players), name),
-      }),
+        write: (name) => resolve(root, name),
+      },
     })
-    assert.deepEqual(selected.sort(), [1, 2])
-    assert.deepEqual(checked.sort(), [1, 1, 2, 2])
+    assert.deepEqual(selected, [1])
+    assert.equal(builds, 1)
+    assert.deepEqual(checked, [1, 2])
     assert.deepEqual(
-      events
-        .filter((e) => e.type === 'ready')
-        .map((e) => e.players)
-        .sort(),
-      [1, 2],
+      events.filter((e) => e.type === 'ready').map((e) => e.supportedPlayers),
+      [[1, 2]],
     )
     for (const n of [1, 2] as const) {
       const r = result.results[n]

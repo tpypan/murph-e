@@ -53,8 +53,7 @@ interface Game {
   slug: string | null
   players: Players
 }
-/** One of the two versions a request builds: the 1P game for the cabinet
- *  controls and the 2P game for the badges. */
+/** A player-mode view of the same generated game. */
 interface Version {
   game: Game
   code: string
@@ -93,6 +92,7 @@ type PipelineEvent =
       spec: Record<string, unknown> | null
       source: string
       players: Players
+      supportedPlayers?: Players[]
       slug: string
       runId: string
       totalMs: number
@@ -118,7 +118,7 @@ interface View {
   badges: BadgePlayer[]
   session: Array<SessionPlayer | null>
   board: { overall: ScoreEntry[]; game: ScoreEntry[] }
-  /** The two versions of the last request; null when nothing was requested (demos). */
+  /** Available session modes of the last generated game; null for demos. */
   versions: Record<Players, VersionState | null>
 }
 
@@ -448,9 +448,8 @@ export default function Cabinet({
       abort.current?.abort()
       const ac = new AbortController()
       abort.current = ac
-      // Nobody is asked how many players: the server builds a 1P and a 2P
-      // version in parallel. The console follows the version the badges call
-      // for, and READY opens as soon as that one lands.
+      // Generate one shared game. The badges select its initial player mode;
+      // switching modes after READY reuses the same code without another request.
       const primary = preferredMode()
       const other: Players = primary === 1 ? 2 : 1
       modeOverride.current = null
@@ -505,7 +504,7 @@ export default function Cabinet({
           res,
           (ev) => {
             if (ac.signal.aborted) return
-            const p: Players = ev.players === 2 ? 2 : 1
+            const p: Players = ev.players === 2 ? 2 : ev.players === 1 ? 1 : primary
             const onConsole = p === primary && !shown
             switch (ev.type) {
               case 'spec':
@@ -547,6 +546,21 @@ export default function Cabinet({
                 const fromLibrary = ev.source === 'library' || ev.source === 'template'
                 if (fromLibrary || ev.source === 'kept') {
                   markFailed(p, lastFailure[p] || 'No generated game passed validation')
+                  break
+                }
+                if (ev.supportedPlayers?.includes(1) && ev.supportedPlayers.includes(2)) {
+                  for (const players of [1, 2] as const) {
+                    setVersion(players, {
+                      status: 'ready',
+                      version: {
+                        game: { title: ev.title, slug: ev.slug, players },
+                        code: ev.code,
+                        spec: ev.spec ?? demoSpec(''),
+                      },
+                    })
+                  }
+                  dispatch({ type: 'status', status: 'READY' })
+                  show(modeOverride.current ?? preferredMode())
                   break
                 }
                 const version: Version = {
@@ -1043,17 +1057,17 @@ export default function Cabinet({
   const instructions = instructionPages[readyPage]!
   const options = [`SOUND ${sound ? 'ON' : 'OFF'}`, 'FULLSCREEN', 'BACK']
   const readyBadges = v.session.filter((p) => p && !p.detached).length
-  // The other version of the request on screen: switchable, still building, or gone.
+  // Switching player mode reuses the same generated code.
   const altMode: Players = v.mode === 1 ? 2 : 1
   const altState = v.versions[altMode]
   const altName = altMode === 2 ? '2 PLAYER' : '1 PLAYER'
   const otherVersion = !altState
     ? null
     : altState.status === 'ready'
-      ? `UP / DOWN: ${altName} VERSION`
+      ? `UP / DOWN: ${altName} MODE`
       : altState.status === 'building'
-        ? `${altName} VERSION STILL BUILDING`
-        : `COULDN'T MAKE THE ${altName} VERSION`
+        ? `${altName} MODE NOT READY`
+        : `${altName} MODE UNAVAILABLE`
   return (
     <main className="arcade-screen" ref={screen} tabIndex={-1} aria-label="Arcade">
       <iframe

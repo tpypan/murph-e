@@ -107,7 +107,7 @@ export const HomeScreen = forwardRef<
   HomeHandle,
   {
     onPlay: (game: DemoGame, players: 1 | 2) => void
-    /** MAKE A GAME never asks how many players: both versions get built. */
+    /** MAKE A GAME creates one game supporting both player modes. */
     onCreate: () => void
     onOptions: () => void
     onResume?: () => void

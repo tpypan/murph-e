@@ -1,6 +1,6 @@
 // LIVE cabinet check: one spoken idea through the real /api/generate, which
-// builds a one-player and a two-player version with the model. Costs about two
-// game builds. Transcription is stubbed; everything else is the real path.
+// builds one game supporting both player counts. One model build
+// plus a bounded repair if needed. Transcription is stubbed; everything else is the real path.
 // Needs `HTN_BADGES=off pnpm dev` and OPENAI_API_KEY in .env.
 // Run: pnpm --filter @htn/probe exec node scripts/live-generation-ui-test.mjs ["idea"]
 import assert from 'node:assert/strict'
@@ -61,8 +61,7 @@ try {
   console.log(`first version ready after ${(since() / 1000).toFixed(1)}s: ${await versionLine()}`)
   assert.match(await versionLine(), /1 PLAYER · CABINET/, 'no badges: the 1P version opens first')
   await shot('ready-first')
-  // The other version keeps building in the background; wait until it is
-  // switchable or the page says it could not be made.
+  // Both validated modes become available from the same READY event.
   await page.waitForFunction(
     () => /UP \/ DOWN|COULDN'T/.test(document.querySelector('.version-line')?.textContent ?? ''),
     null,
@@ -71,7 +70,7 @@ try {
   results.ms.bothDone = since()
   const line = await versionLine()
   console.log(`second version after ${(since() / 1000).toFixed(1)}s: ${line.replace('\n', ' / ')}`)
-  assert.match(line, /UP \/ DOWN: 2 PLAYER VERSION/, 'the 2P version must land too')
+  assert.match(line, /UP \/ DOWN: 2 PLAYER MODE/, 'the 2P version must land too')
   await shot('ready-both')
 
   const play = async (players) => {
@@ -112,7 +111,7 @@ try {
   results.passed = true
   writeFileSync(resolve(output, 'results.json'), `${JSON.stringify(results, null, 2)}\n`)
   console.log(
-    `PASS live: both versions built, switched and played (first ready ${(results.ms.firstReady / 1000).toFixed(1)}s, both ${(results.ms.bothDone / 1000).toFixed(1)}s)`,
+    `PASS live: one game built, switched between modes and played (first ready ${(results.ms.firstReady / 1000).toFixed(1)}s, both ${(results.ms.bothDone / 1000).toFixed(1)}s)`,
   )
 } finally {
   await browser.close()

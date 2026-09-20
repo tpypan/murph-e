@@ -1,24 +1,16 @@
-import {
-  closeProbe,
-  type PipelineEvent,
-  pipeline,
-  pipelineBoth,
-  withAppGeneration,
-} from '@htn/harness'
+import { closeProbe, type PipelineEvent, pipeline, withAppGeneration } from '@htn/harness'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 /**
- * POST { transcript } -> server-sent pipeline events. Without `players` the
- * cabinet's default applies: a one-player and a two-player version are built
- * in parallel and every event carries its `players`, so the stream ends after
- * two `ready`s (or a version's fallback/error). `players: 1 | 2` builds one.
+ * POST { transcript, players? } -> one shared game, checked in both player modes.
+ * `players` chooses the initial session mode, never another generated version.
+ * The cabinet always starts one build; legacy client race values are ignored.
  */
 export async function POST(req: Request): Promise<Response> {
   const body = (await req.json().catch(() => ({}))) as {
     transcript?: string
-    race?: number
     players?: number
   }
   const transcript = String(body.transcript ?? '').trim()
@@ -35,19 +27,15 @@ export async function POST(req: Request): Promise<Response> {
           closed = true
         }
       }
-      const players = body.players === 1 || body.players === 2 ? body.players : null
+      const players = body.players === 2 ? 2 : 1
       const common = {
-        race: body.race ?? 2,
+        race: 1,
         // The cabinet only creates new games. Ignore legacy clients' remix context.
         current: null,
         onEvent: send,
         signal: req.signal,
       }
-      withAppGeneration(() =>
-        players
-          ? pipeline(transcript, { ...common, players })
-          : pipelineBoth(transcript, common).then(() => undefined),
-      )
+      withAppGeneration(() => pipeline(transcript, { ...common, players }))
         .catch((e: unknown) =>
           send({
             type: 'error',

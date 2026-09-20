@@ -83,24 +83,20 @@ try {
       }
       await route.fulfill({
         contentType: 'text/event-stream',
-        // The server builds both versions; the page picks by the badges.
-        body: [1, 2]
-          .map(
-            (players) =>
-              `data: ${JSON.stringify({
-                type: 'ready',
-                players,
-                title: 'PLAYER FLOW TEST',
-                code: code,
-                note: '',
-                source: 'build',
-                slug: players === 2 ? 'player-flow-test-2p' : 'player-flow-test',
-                spec: { ...spec, players },
-                runId: `player-flow-test-${players}p`,
-                totalMs: 1,
-              })}\n\n`,
-          )
-          .join(''),
+        // One shared output advertises both validated runtime modes.
+        body: `data: ${JSON.stringify({
+          type: 'ready',
+          players: 1,
+          supportedPlayers: [1, 2],
+          title: 'PLAYER FLOW TEST',
+          code,
+          note: '',
+          source: 'build',
+          slug: 'player-flow-test',
+          spec: { ...spec, players: 1 },
+          runId: 'player-flow-test-shared',
+          totalMs: 1,
+        })}\n\n`,
       })
     })
     const shot = (name) => page.screenshot({ path: resolve(output, `${players}p-${name}.png`) })
@@ -201,10 +197,10 @@ try {
       'ready must not autoplay',
     )
     assert.equal(await runtime().evaluate(() => window.__runtime.players), players)
-    // Both versions exist; the badges decide which one opens, up/down switches.
+    // Both modes share one output; badges choose initially, up/down switches.
     const versionLine = () => page.locator('.version-line').innerText()
     assert.match(await versionLine(), players === 2 ? /2 PLAYERS · BADGES/ : /1 PLAYER · CABINET/)
-    assert.match(await versionLine(), players === 2 ? /1 PLAYER VERSION/ : /2 PLAYER VERSION/)
+    assert.match(await versionLine(), players === 2 ? /1 PLAYER MODE/ : /2 PLAYER MODE/)
     await shot('ready')
     await page.keyboard.press('ArrowDown')
     await page.waitForFunction(
@@ -221,7 +217,7 @@ try {
       players === 2 ? '2 PLAYERS · BADGES' : '1 PLAYER · CABINET',
     )
     await runtime().waitForFunction((want) => window.__runtime.players === want, players)
-    assert.equal(builds.length, 1, 'switching versions never regenerates')
+    assert.equal(builds.length, 1, 'switching modes never regenerates')
 
     if (players === 1) {
       await page.getByRole('button', { name: /^(?:>\s*)?PLAY$/ }).click()

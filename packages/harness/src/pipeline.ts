@@ -5,8 +5,8 @@ import { type CandidateStage, catalogPreview, catalogSnapshot } from './catalog.
 import { recordDesignContext } from './design-context.ts'
 import { MODELS } from './env.ts'
 import { assertJevConfigured, jevEnabled, selectWithJev } from './jev.ts'
-import { probeGameModes } from './multiplayer-probe.ts'
 import { keepInLibrary, pickFallback } from './library.ts'
+import { probeGameModes } from './multiplayer-probe.ts'
 import { buildPrompt, loadTemplates } from './prompt.ts'
 import { remix, remixSystemPrompt, remixUserTurn } from './remix.ts'
 import { repair } from './repair.ts'
@@ -14,8 +14,8 @@ import { createRun, type Run } from './run-store.ts'
 import { type GameSpec, type Players, specify } from './spec.ts'
 
 // Every event may carry the player count of the pipeline that produced it.
-// A single pipeline() leaves it unset except on `ready`; pipelineBoth() stamps
-// it on everything so the two streams can be told apart.
+// Build progress is shared. `ready.players` is the initial session mode;
+// supportedPlayers lists the modes validated on this same generated file.
 export type PipelineEvent = (
   | { type: 'spec'; spec: GameSpec; ms: number }
   | { type: 'foundation'; prefix: string; demo: string }
@@ -32,6 +32,7 @@ export type PipelineEvent = (
       note: string
       spec: GameSpec | null
       players: Players
+      supportedPlayers: Players[]
       /** Library slug when the game was kept, else the run id; keys the leaderboard. */
       slug: string
       source: Source
@@ -54,7 +55,7 @@ export interface CurrentGame {
 
 export interface PipelineOptions {
   race?: number
-  /** Which version this pipeline builds. Default 1. The cabinet builds both: pipelineBoth(). */
+  /** Initial session mode; new games must support and pass checks in both modes. */
   players?: Players
   /** The game on screen, so "make it faster" edits it instead of starting over. */
   current?: CurrentGame | null
@@ -79,52 +80,32 @@ export interface PipelineResult {
   observations: string[]
 }
 
-export interface PipelineBothOptions extends Omit<PipelineOptions, 'players' | 'run'> {
-  /** One isolated run per version; defaults to createRun for each. */
-  runFor?: (players: Players) => Run
-}
+export interface PipelineBothOptions extends Omit<PipelineOptions, 'players'> {}
 
 export interface PipelineBothResult {
-  /** One entry per version: the result, or the error that ended that pipeline. */
+  /** Two session views of one build/run, or an unavailable mode's error. */
   results: Record<Players, PipelineResult | Error>
   totalMs: number
 }
 
 /**
- * Nobody is asked how many players: every idea is built twice, in parallel,
- * as a one-player game for the cabinet controls and a two-player game for the
- * two badges. Each version is an ordinary pipeline() with its own run, spec,
- * race, probe and library slot; every event it emits is tagged with its
- * player count. One version failing never touches the other.
+ * Compatibility entry point for callers requesting both modes. Generate once;
+ * expose two session views only after that file passes both-mode validation.
+ * This never starts a separate spec, router or build for the second player count.
  */
 export async function pipelineBoth(
   transcript: string,
   opts: PipelineBothOptions = {},
 ): Promise<PipelineBothResult> {
   const t0 = performance.now()
-  const emit = opts.onEvent ?? (() => {})
-  const runFor = opts.runFor ?? (() => createRun(transcript))
-  const modes: Players[] = [1, 2]
-  const settled = await Promise.allSettled(
-    modes.map((players) =>
-      pipeline(transcript, {
-        ...opts,
-        players,
-        run: runFor(players),
-        onEvent: (ev) => emit({ ...ev, players }),
-      }),
-    ),
-  )
-  const results = {} as Record<Players, PipelineResult | Error>
-  modes.forEach((players, i) => {
-    const s = settled[i]!
-    results[players] =
-      s.status === 'fulfilled'
-        ? s.value
-        : s.reason instanceof Error
-          ? s.reason
-          : new Error(String(s.reason))
-  })
+  const game = await pipeline(transcript, { ...opts, players: 1 })
+  const shared = !!game.spec?.multiplayer && ['build', 'repair'].includes(game.source)
+  const results: PipelineBothResult['results'] = {
+    1: game,
+    2: shared
+      ? { ...game, players: 2 }
+      : new Error('The returned fallback has not been validated for both player modes'),
+  }
   return { results, totalMs: Math.round(performance.now() - t0) }
 }
 
@@ -167,7 +148,7 @@ export async function pipeline(
     buildEffort: opts.effort ?? MODELS.buildEffort,
     buildMaxOutputTokens: BUILD_MAX_OUTPUT_TOKENS,
   })
-  const race = Math.max(1, opts.race ?? 2)
+  const race = Math.max(1, opts.race ?? 1)
   const players: Players = opts.players === 2 ? 2 : 1
   const done = (r: Omit<PipelineResult, 'run' | 'totalMs'>): PipelineResult => {
     checkCancelled(opts.signal)
@@ -189,6 +170,8 @@ export async function pipeline(
       note: r.note,
       spec: r.spec,
       players: r.players,
+      supportedPlayers:
+        r.spec?.multiplayer && ['build', 'repair'].includes(r.source) ? [1, 2] : [r.players],
       slug: r.slug,
       source: r.source,
       runId: run.id,

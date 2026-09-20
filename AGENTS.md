@@ -127,12 +127,13 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   blocked by the billing rule above; use offline saved-game playtests.
 - Spec: `gpt-5.6-luna`, `reasoning.effort: "none"`, structured output. The
   same call decides whether words spoken over a running game are a remix
-  of it or a new game. Main's cabinet runs `pipelineBoth`: separate 1P and 2P
-  pipelines concurrently, each with its own spec, run and library slot. Events
-  carry `players`; badge state selects the initial READY version and up/down
-  switches versions. Each newly generated file also supports both player counts
-  and passes both runtime checks. This preserves the current cabinet flow;
-  eliminating duplicate builds would be a separate change.
+  of it or a new game. The cabinet generates one shared game per request:
+  one spec, one optional Jev selection, one Astra build, then probes the same
+  file in both 1P and 2P. One bounded repair is allowed if validation fails.
+  Never fork generation by player count or enable a default candidate race.
+  READY advertises both supported modes; badge state chooses the initial mode,
+  and up/down switches modes without generation. One run and library entry
+  preserve the shared code and provenance.
 - Genre is open-ended metadata, independent of player count. New specs include
   art direction; do not remap unsupported requests to dodge or impose line/sprite
   size ceilings. Examples are optional and must match genre and player count.
@@ -153,7 +154,7 @@ hardware is the checklist in `docs/plans/tier-2.md`.
 
 ## Hard rules
 
-1. **The build path is one streamed call per version.** Versions run in parallel.
+1. **The build path is one streamed call per game.** The same file supports both player modes.
    No agent loops, no tool use, no
    "let the model run the game and iterate." That is what made the previous
    harness take 40 minutes. Repair is one bounded round, then the fallback
@@ -252,7 +253,7 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   `?cabinet=1` keycaps. The real board is a USB HID gamepad mapped in `GAMEPAD`
   (`apps/cabinet/app/input.ts`; `docs/encoder-bringup.md`). `pnpm test:probe`
   covers its decoder; `scripts/gamepad-ui-test.mjs` verifies the page with a fake
-  pad. Both-version generation is tested offline in `pipeline-history.test.ts`
+  pad. Shared-game generation and mode switching are tested offline in `pipeline-history.test.ts`
   and UI generation stubs. Do not run the paid live-generation script without
   new explicit authorization.
   `pnpm --filter @htn/probe exec node scripts/input-routing-ui-test.mjs` (server

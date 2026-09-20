@@ -8,8 +8,9 @@ Worktree: `/Users/shayaanazeem/Downloads/htncodex/htn-2026-jev`.
 The cabinet transcribes speech with OpenAI `gpt-4o-mini-transcribe` and uses Luna to create its detailed
 game specification. With `HTN_JEV=1`, the harness then makes one TypeSafe request
 to select a compatible verified game foundation and optional settings. Astra
-still writes new JavaScript, including custom mechanics and art. Its two-build
-race, catalog linker, runtime probe and bounded repair path remain in place.
+still writes new JavaScript, including custom mechanics and art. The cabinet builds one shared game for both 1P and 2P: one spec, one Jev
+selection, one Astra build, then runtime checks in both modes. One repair is
+allowed if either mode fails; switching modes does not generate new code.
 
 Jev uses `POST https://api.typesafe.ai/v1/systemone`, pinned by default to
 `jev-1.13.0`. It returns typed choices, not code. Foundation selection uses the
@@ -88,7 +89,7 @@ pnpm test:scores
 ```
 
 Coverage includes the Jev-to-Astra prompt and linking handoff, one selection
-before the two-build race, no-match/uncertainty, invalid responses, cancellation,
+before the single default build, no-match/uncertainty, invalid responses, cancellation,
 deadline, player count, moderation, catalog exclusions, missing-key preflight,
 spending policy, provider errors and the original pipeline/history regressions.
 

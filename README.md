@@ -110,6 +110,11 @@ are also excluded from Git.
 
 ## Generation models and context
 
+Each request generates **one game that supports both solo and local two-player
+play**: one spec, one optional Jev selection, and one Astra build. The same code
+is tested in both modes, with at most one repair if validation fails. Changing
+player count reuses the saved game; it does not start another model request.
+
 In the app, game writing and repair use `gpt-6-astra` at medium reasoning effort.
 The historical CLI-only remix path is blocked for developer use.
 The short structured spec uses `gpt-5.6-luna`. With `HTN_JEV=1`, Jev then selects

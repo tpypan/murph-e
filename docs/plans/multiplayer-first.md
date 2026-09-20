@@ -5,6 +5,11 @@ local two-player play in one game.js**. The menu's `players` value still chooses
 how many humans are active now. The runtime and badge hardware currently support
 one or two local humans; this change does not add network play or higher counts.
 
+The default generation path makes one spec, one optional Jev selection and one
+Astra build. It validates that one file in both modes before READY advertises
+`supportedPlayers: [1, 2]`. One bounded repair handles a failed mode. There are
+no separate 1P/2P builds and no default candidate race.
+
 ## Design and generation
 
 The generated-spec schema now requires a `multiplayer` plan: co-op or versus,
