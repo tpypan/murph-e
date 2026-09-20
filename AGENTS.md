@@ -113,7 +113,9 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   `.env.example` is the template. Never commit or print a key.
 - Build: `gpt-6-astra`, `reasoning.effort: "low"`, streamed. Medium was tried
   on 2026-09-19 and took 279 s against 88 s at low for the same prompt (the
-  2026-09-20 dog race runs in `runs/`), so low is the default again.
+  2026-09-20 dog race runs in `runs/`), so low is the code default. The
+  cabinet's `.env` overrides both build and repair to medium (decided
+  2026-09-20, quality over speed); `.env.example` carries the same lines.
   Override with `HTN_BUILD_MODEL` / `HTN_BUILD_EFFORT`. Current validation:
   `docs/bench-2026-09-19-astra-medium.md`; earlier context and Sol results are historical.
 - Repair: `gpt-6-astra`, `reasoning.effort: "low"`.
