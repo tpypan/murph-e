@@ -1,4 +1,4 @@
-# htn-2026: the talking arcade cabinet
+# murph-e: the talking arcade cabinet
 
 A Mac mini in an arcade cabinet. You hold the mic button, say a game, watch
 it get written on the screen, and play it on the joystick about a minute

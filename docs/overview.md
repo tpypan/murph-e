@@ -77,9 +77,11 @@ code, the engine, or the judge.
 - **Badges as identity and controllers, over one cable.** Plugging a badge
   into the cabinet over USB-C is the only way to tap in. The cabinet pushes
   the arcade Lua app to the badge if it is missing and reads the badge ID
-  and name back over the same wire. Single players play on the cabinet
-  stick and plug in only to put a name on their score. Two-player games are
-  played on two plugged-in badges, which become controllers 1 and 2.
+  and name back over the same wire. Who plays is fixed by the mode, never
+  decided per press: a one-player game is played on the cabinet controls, and
+  a plugged-in badge only puts a name on the score; a two-player game is
+  played on two plugged-in badges, which become controllers 1 and 2, and the
+  cabinet controls only work the menus.
 
 The scope in three tiers is in `docs/goals/`. Tier 1 is the cabinet working
 end to end for one player. Tier 2 adds identity, leaderboard, multiplayer on
@@ -108,8 +110,12 @@ Tier 3 is wireless badges and take-home games.
 ## Hardware on the cabinet
 
 - Mac mini, monitor, microphone.
-- One joystick and four buttons on a USB encoder. Button roles: A, B, START,
-  TALK (hold to speak). Exact keycodes read on setup day.
+- One joystick and four buttons, A B X Y in a diamond, on a USB encoder that
+  shows up as a keyboard. A is confirm and B is back on every shell screen; in
+  a game they are the game's A and B. X is START and Y is TALK (hold to speak),
+  set by `PANEL_ROLES` in `apps/cabinet/app/input.ts` and confirmed on setup
+  day. Until the board is on the desk the encoder codes are numpad
+  placeholders and F3 on the cabinet page shows a simulated panel.
 - To buy: a USB hub and two or three USB-C data cables on the front of the
   cabinet (one per badge, plus a spare). Not a barcode scanner, not an NFC
   reader.

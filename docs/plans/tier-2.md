@@ -308,7 +308,7 @@ hub, or the cabinet. Each is a few minutes with the hardware on the desk.
 | H5 | LED chase on win | add a START-hold chase to `on_button` in `main.lua`; the sandbox has no `pcall`, so test on a badge before shipping | badge feedback beyond the A/B flash |
 | H6 | cable pull mid-game on real hardware | pull the cable, keep playing on the stick, check the score is named | the detach path with a real port close |
 | H7 | a badge that is already in the app when plugged in | open the app first, then plug in | the `uitree` identity shortcut on a fresh port |
-| H8 | encoder mapping and which button is TALK | `packages/runtime/keys.html` | unchanged from tier 1 (M7) |
+| H8 | encoder mapping: the eight panel codes and which of X/Y is START and TALK | `docs/encoder-bringup.md`, start to finish | the placeholders are numpad codes; the whole encoder path and the 1P/2P routing are already exercised by `panel-ui-test.mjs` and `input-routing-ui-test.mjs` |
 | H9 | remix and 2P on the real cabinet mic | say "make it faster" during a game on the floor | STT quality on remix phrasing |
 
 ## 6. Status

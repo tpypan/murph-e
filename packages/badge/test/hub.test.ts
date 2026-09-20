@@ -200,10 +200,16 @@ test('display mailbox follows actual slots, mode and latest controls without rel
     await waitText(a, 'PLAYER 1')
     await waitText(b, 'PLAYER 2')
     assert.ok(text(b).includes('A: JUMP'))
-    hub.setDisplay({ players: 1, playing: true, controls: { a: 'Attack\nEND\n', b: null } })
-    hub.setDisplay({ players: 1, playing: true, controls: { a: 'Punch', b: 'Block' } })
+    hub.setDisplay({ players: 2, playing: true, controls: { a: 'Attack\nEND\n', b: null } })
+    hub.setDisplay({ players: 2, playing: true, controls: { a: 'Punch', b: 'Block' } })
     await waitText(b, 'B: BLOCK')
+    assert.ok(text(b).includes('PLAYER 2'))
+    // A one-player game is played on the cabinet controls: the badge says so
+    // instead of listing controls it cannot use.
+    hub.setDisplay({ players: 1, playing: true, controls: { a: 'Punch', b: 'Block' } })
+    await waitText(b, 'CABINET CONTROLS')
     assert.ok(text(b).includes('PLAYER 1'))
+    assert.ok(!text(b).includes('B: BLOCK'))
     assert.ok(a.inApp && b.inApp, 'display updates must not reload or exit the app')
     b.tap('a')
     await next('button', (e) => e.type === 'button' && e.path === b.path && e.down)

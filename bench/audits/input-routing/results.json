@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "steps": [
+    "1P: build a game on the panel",
+    "1P: a plugged-in badge names player one",
+    "1P: the panel moves and scores",
+    "1P: the badge does not reach the game",
+    "1P: the score is saved under the badge name",
+    "1P: a badge works the menus",
+    "2P: build a game; READY asks for both badges",
+    "2P: one badge is enough to start (never dead-ends)",
+    "2P: the panel does not reach the game",
+    "2P: the panel START still pauses; RESUME continues",
+    "2P: the second badge is player two",
+    "2P: pulling a badge keeps the game and the name",
+    "2P: both scores are posted, badge one named",
+    "laptop 2P: arrows and I J K L stand in for the badges"
+  ]
+}

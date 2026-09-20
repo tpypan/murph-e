@@ -272,7 +272,7 @@ from a terminal with no cabinet, no mic, and no browser window, because that is
 how we will iterate on the prompt for 30 hours.
 
 ```
-htn-2026/
+murph-e/
   packages/
     runtime/        the fantasy-console API. Plain TS -> one runtime.js. No deps.
                     Also exports the test hook the probe uses.

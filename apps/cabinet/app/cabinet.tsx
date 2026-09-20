@@ -7,6 +7,7 @@ import { GameControls } from './game-controls'
 import { classifyGenerationError } from './generation-error'
 import { type DemoGame, type HomeHandle, HomeScreen } from './home-screen'
 import { attachKeyboard, type InputEvent } from './input'
+import { Panel } from './panel'
 import { readSse } from './sse'
 import { Stt } from './stt'
 import { textPages, VoiceInput, type VoiceStage } from './voice-input'
@@ -244,6 +245,17 @@ export default function Cabinet() {
   selectionRef.current = selection
   const [page, setPage] = useState(0)
   const [sound, setSound] = useState(true)
+  // F3 shows the simulated cabinet panel (docs/design-guide.md, Physical input).
+  const [showPanel, setShowPanel] = useState(false)
+  // ?cabinet=1 (set by scripts/kiosk.sh): the keycaps on screen are the panel's
+  // own letters instead of the keyboard hints a developer sees.
+  const [cabinet, setCabinet] = useState(false)
+  const cabinetRef = useRef(false)
+  useEffect(() => {
+    const on = new URLSearchParams(window.location.search).get('cabinet') === '1'
+    cabinetRef.current = on
+    setCabinet(on)
+  }, [])
   const screen = useRef<HTMLElement>(null)
   const fullscreen = useCallback(() => {
     const task = document.fullscreenElement
@@ -690,15 +702,36 @@ export default function Cabinet() {
     [post, startListening, stopListening, confirmOption, startAttract, cancelListening, build],
   )
 
-  useEffect(() => attachKeyboard(onInput), [onInput])
+  // Who plays is fixed by the mode, not decided per press (docs/design-guide.md,
+  // Physical input): a one-player game is played on the cabinet controls and a
+  // two-player game on the two badges. Every device may still work the shell
+  // screens, and START pauses from anywhere. Off the cabinet (no ?cabinet=1)
+  // the keyboard stands in for whichever device the mode needs, so a
+  // two-player game can be developed on a laptop with arrows and I J K L.
+  const onKeyboardInput = useCallback(
+    (ev: InputEvent) => {
+      if (view.current.phase === 'PLAYING' && ev.button !== 'start' && ev.button !== 'talk') {
+        const mode = view.current.mode
+        if (mode === 1 && ev.player !== 0) return
+        if (mode === 2 && cabinetRef.current) return
+      }
+      onInput(ev)
+    },
+    [onInput],
+  )
+  useEffect(() => attachKeyboard(onKeyboardInput), [onKeyboardInput])
 
-  // Badges: in 1P every badge drives player 0 (docs/badge-integration.md §4);
-  // in 2P the hub slot is the player index.
+  // Badges: during play a badge drives its hub slot in a two-player game and
+  // nothing at all in a one-player game, where it only names the score. On
+  // every other screen a badge's d-pad, A, B and START work the shell.
   const onBadgeInput = useCallback(
     (ev: InputEvent) => {
-      const mode = view.current.mode
-      if (mode === 1) onInput({ ...ev, player: 0 })
-      else if (ev.player < 2) onInput(ev)
+      if (view.current.phase === 'PLAYING') {
+        if (view.current.mode === 1 || ev.player > 1) return
+        onInput(ev)
+        return
+      }
+      onInput({ ...ev, player: 0 })
     },
     [onInput],
   )
@@ -740,6 +773,10 @@ export default function Cabinet() {
       // F9 ends the round on screen, so a game over can be reached on demand.
       if (e.code === 'F9') post({ type: 'end' })
       if (e.repeat) return
+      if (e.code === 'F3') {
+        e.preventDefault()
+        setShowPanel((on) => !on)
+      }
       if (e.code === 'KeyF') fullscreen()
       if (e.code === 'KeyP' && view.current.phase === 'PLAYING') startAttract()
       if (
@@ -907,6 +944,7 @@ export default function Cabinet() {
   const readyPage = page % controlPages
   const instructions = instructionPages[readyPage]!
   const options = [`SOUND ${sound ? 'ON' : 'OFF'}`, 'FULLSCREEN', 'BACK']
+  const readyBadges = v.session.filter((p) => p && !p.detached).length
   return (
     <main className="arcade-screen" ref={screen} tabIndex={-1} aria-label="Arcade">
       <iframe
@@ -967,10 +1005,16 @@ export default function Cabinet() {
               </button>
             ))}
           </nav>
-          <p className="support">
-            KEYBOARD: ARROWS · Z / X<br />
-            ENTER START · SPACE TALK
-          </p>
+          {cabinet ? (
+            <p className="support">
+              PANEL: A B X Y<br />X START · Y TALK
+            </p>
+          ) : (
+            <p className="support">
+              KEYBOARD: ARROWS · Z / X<br />
+              ENTER START · SPACE TALK
+            </p>
+          )}
           <p className="support">
             {v.badges.length} BADGES CONNECTED
             <br />
@@ -1027,7 +1071,16 @@ export default function Cabinet() {
               MORE · {readyPage + 1}/{controlPages}
             </button>
           )}
-          {v.waitingFor2 && <p className="support">P2: PLUG IN BADGE OR PLAY SOLO</p>}
+          {v.game?.players === 2 && (
+            <p className="support">
+              {readyBadges < 2
+                ? 'PLUG IN BOTH BADGES. THEY ARE THE CONTROLS'
+                : 'THE BADGES ARE THE CONTROLS'}
+            </p>
+          )}
+          {v.game?.players === 1 && v.session[0] && (
+            <p className="support">PLAY ON THE CABINET CONTROLS. THE BADGE KEEPS THE SCORE</p>
+          )}
           <button type="button" className="primary" onClick={start}>
             &gt; PLAY
           </button>
@@ -1051,7 +1104,10 @@ export default function Cabinet() {
           </button>
         </section>
       )}
-      {v.phase === 'PLAYING' && <GameControls controls={controls} players={v.game?.players ?? 1} />}
+      {v.phase === 'PLAYING' && (
+        <GameControls controls={controls} players={v.game?.players ?? 1} cabinet={cabinet} />
+      )}
+      {showPanel && <Panel />}
     </main>
   )
 }

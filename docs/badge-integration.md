@@ -139,11 +139,13 @@ inference and lets the spec step pick the multiplayer templates
 deterministically. It adds nothing to the latency budget because it happens
 before speech.
 
-**1P: the cabinet controls.** Joystick plus 4 buttons on the USB encoder.
-A plugged-in badge is optional and only affects whether the score gets a
-name. Nothing changes in the game runtime.
+**1P: the cabinet controls.** Joystick plus A B X Y on the USB encoder (X is
+START, Y is TALK). A plugged-in badge does not play: during the game its
+buttons are ignored, and it only puts a name on the score. Its screen says
+so. On every other screen the badge's d-pad, A and B work the menus.
 
-**2P: both players on badges.** The cabinet stick is not used. Both players
+**2P: both players on badges.** The cabinet controls do not play; the panel
+still works the menus and START still pauses. Both players
 plug in; each badge gets the arcade app pushed if it is missing, each player
 opens it, and the badge becomes controller 1 or 2 with their name and
 colour, in the order the hellos arrive. The game runtime already takes a

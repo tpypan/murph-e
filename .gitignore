@@ -19,3 +19,5 @@ data/
 .venv-stt/
 .models/
 __pycache__/
+
+.claude/worktrees/

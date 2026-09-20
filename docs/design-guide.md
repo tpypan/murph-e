@@ -23,19 +23,39 @@ physical-control requirements take precedence over its desktop typing examples.
 ## Physical input
 
 All keyboard, encoder and badge input passes through the same shell handler.
-The encoder keycodes remain unassigned until the actual hardware is known.
+The panel is a joystick and four buttons, A B X Y in a diamond. X is START and
+Y is TALK (`PANEL_ROLES` in `apps/cabinet/app/input.ts`; sticker the buttons to
+match). The encoder keycodes are numpad placeholders (8 2 4 6, then 1 3 7 9 for
+A B X Y) until the actual hardware is read on setup day; F3 shows a simulated
+panel whose buttons send those codes, lights on every player-one press and
+names the last code it received. It sits in the gutter beside the game.
+`docs/encoder-bringup.md` is the procedure for mapping the real board.
 
-| Control | Menu / voice / ready | During play |
-| --- | --- | --- |
-| Stick | Select; left/right page through text | Game movement |
-| A | Confirm | Game action A |
-| B | Back or cancel | Game action B |
-| START | Confirm / play / resume | Pause to menu |
-| Hold TALK | Record only after choosing player count | No action |
-| Release TALK | Stop mic, transcribe locally when recording | No action |
+Who plays is fixed by the player count, never decided per press. A
+one-player game is played on the cabinet controls; a plugged-in badge only
+names the score and its buttons are ignored during play. A two-player game
+is played on the two badges (hub slot 1 and 2); the cabinet controls are
+ignored during play except START, which pauses from anywhere. On every other
+screen the panel and any badge both work the menus. Off the cabinet (no
+`?cabinet=1`) the keyboard stands in for the badges in a two-player game so
+it can be developed on a laptop.
+
+| Control | Menu / voice / ready | During 1P play | During 2P play |
+| --- | --- | --- | --- |
+| Stick | Select; left/right page through text | Game movement | Ignored |
+| A | Confirm | Game action A | Ignored |
+| B | Back or cancel | Game action B | Ignored |
+| START (X) | Confirm / play / resume | Pause to menu | Pause to menu |
+| Hold TALK (Y) | Record only after choosing player count | No action | No action |
+| Release TALK | Stop mic, transcribe locally when recording | No action | No action |
+| Badge d-pad, A, B | Same as the panel | Ignored | Player 1 or 2 by slot |
+| Badge START | Confirm / play / resume | Ignored | Pause to menu |
 
 Development keyboard: arrows, Z=A, X=B, Enter=START, Space or V=TALK.
-Escape cancels or opens menu, P pauses, R opens Ready to restart, F fullscreen.
+Escape cancels or opens menu, P pauses, R opens Ready to restart, F fullscreen,
+F3 toggles the simulated panel. The kiosk opens `/?cabinet=1`, which makes the
+play legend's keycaps the panel letters (A, B) instead of the keyboard hints
+(A / Z, B / X) and hides the player-two keyboard hint.
 Player-two development keys remain I/J/K/L/N/M; M is not a global mute key.
 Sound and fullscreen are available in Options. Player count is the first choice,
 not an option buried in settings. Keep the development input bindings working,

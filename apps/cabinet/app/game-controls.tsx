@@ -7,9 +7,12 @@ import { controlReminders } from './control-labels'
 export function GameControls({
   controls,
   players,
+  cabinet = false,
 }: {
   controls: Array<[string, string]>
   players: number
+  /** On the cabinet the keycaps are the panel's own letters; the Z/X hints are for a keyboard. */
+  cabinet?: boolean
 }) {
   const footer = useRef<HTMLElement>(null)
   useLayoutEffect(() => {
@@ -59,9 +62,13 @@ export function GameControls({
           <div key={key}>
             <dt title={key}>
               {key === 'a'
-                ? 'A / Z'
+                ? cabinet
+                  ? 'A'
+                  : 'A / Z'
                 : key === 'b'
-                  ? 'B / X'
+                  ? cabinet
+                    ? 'B'
+                    : 'B / X'
                   : key === 'left/right'
                     ? 'L / R'
                     : key === 'up/down'
@@ -77,7 +84,7 @@ export function GameControls({
         ))}
       </dl>
       <div className="game-hints">
-        {players === 2 && <span className="game-control-p2">P2: IJKL · N/M</span>}
+        {players === 2 && !cabinet && <span className="game-control-p2">P2: IJKL · N/M</span>}
         <span>START: PAUSE</span>
       </div>
     </section>

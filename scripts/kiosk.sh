@@ -7,7 +7,9 @@ cd "$(dirname "$0")/.."
 
 MODE="${1:-prod}"
 PORT="${PORT:-3000}"
-URL="http://localhost:${PORT}/"
+# ?cabinet=1 makes the on-screen keycaps the panel's own letters (A, B) instead of the
+# keyboard hints (A / Z) a developer sees.
+URL="http://localhost:${PORT}/?cabinet=1"
 LOG_DIR="${LOG_DIR:-$HOME/htn-arcade-logs}"
 mkdir -p "$LOG_DIR"
 

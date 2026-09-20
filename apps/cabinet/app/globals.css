@@ -574,3 +574,83 @@ h2 {
     animation: none;
   }
 }
+
+/* The simulated cabinet panel (F3): stick plus the A/B/X/Y diamond, stacked
+   in the gutter right of the game frame so it never covers the play legend.
+   Inside the 8% CRT margin, above the game frame, hidden by default. */
+.panel-sim {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1cqw;
+  padding: 0.8cqw;
+  border: 0.3cqw solid #555;
+  background: rgba(0, 0, 0, 0.85);
+  font-size: 1cqw;
+  touch-action: none;
+}
+.panel-group {
+  display: grid;
+  grid-template-areas: ". up ." "left hub right" ". down .";
+  gap: 0.3cqw;
+}
+.panel-hub {
+  grid-area: hub;
+  width: 3.4cqw;
+  height: 3.4cqw;
+  border-radius: 50%;
+  border: 0.3cqw solid #333;
+}
+.panel-sim .panel-key {
+  width: 3.4cqw;
+  height: 3.4cqw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0.25cqw solid #777;
+  border-radius: 50%;
+  background: #111;
+  color: #fff;
+  font-size: 1.4cqw;
+  line-height: 1;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+}
+.panel-sim .panel-key[data-slot="up"] {
+  grid-area: up;
+}
+.panel-sim .panel-key[data-slot="down"] {
+  grid-area: down;
+}
+.panel-sim .panel-key[data-slot="left"] {
+  grid-area: left;
+}
+.panel-sim .panel-key[data-slot="right"] {
+  grid-area: right;
+}
+.panel-sim .panel-key[data-lit="true"] {
+  background: #ffff55;
+  border-color: #ffff55;
+  color: #000;
+}
+.panel-sim .panel-key:focus-visible {
+  outline: none;
+}
+.panel-title {
+  color: #aaa;
+  white-space: nowrap;
+}
+.panel-readout {
+  font-size: 0.9cqw;
+  line-height: 1.6;
+  color: #aaa;
+  text-align: center;
+  white-space: nowrap;
+}

@@ -185,8 +185,8 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   plug-in, a real two-player generation, a cable pull mid-game, the
   leaderboards and a remix. Or drive it by hand: arrows, Z, X, Enter (confirm/pause), hold
   Space or V to talk, Esc cancels or returns to menu, F1/F2 plug or unplug a
-  fake badge, I J K L N M are player two, F8 injects a crash, F9 ends the
-  round.
+  fake badge, F3 shows the simulated panel, I J K L N M are player two, F8
+  injects a crash, F9 ends the round.
   `pnpm --filter @htn/probe exec node scripts/home-ui-test.mjs` verifies all local
   demo previews, swipe/keyboard browsing, mode selection, pause/resume, reduced
   motion and screenshots with model/speech calls blocked.
@@ -198,6 +198,16 @@ hardware is the checklist in `docs/plans/tier-2.md`.
   `pnpm --filter @htn/probe exec node scripts/player-flow-ui-test.mjs` checks the
   initial 1P/2P choice, microphone gating, chosen count in generation requests,
   cancellation, current-game resume and retained in-game controls.
+  `pnpm --filter @htn/probe exec node scripts/panel-ui-test.mjs` drives the same
+  loop only through the physical panel's encoder codes (numpad placeholders in
+  `apps/cabinet/app/input.ts`: 8 2 4 6 stick, 1 3 7 9 for A B X Y; X is START,
+  Y is TALK), presses the F3 simulated panel with the mouse, and checks the
+  `?cabinet=1` keycaps. Fill `ENCODER_KEYS` from the real board on setup day.
+  `pnpm --filter @htn/probe exec node scripts/input-routing-ui-test.mjs` (server
+  started with `HTN_BADGES=off`) proves who plays: 1P on the cabinet controls
+  with a badge only naming the score, 2P on the two fake badges with the panel
+  ignored except START, menus from either, and the laptop keyboard stand-in.
+  `docs/encoder-bringup.md` is the setup-day procedure for the real encoder.
 - STT change: `pnpm stt:test <clip.wav> "<expected words>"` feeds a 24 kHz
   WAV through Chromium's fake microphone (make one with `say -o x.aiff ...`
   and `afconvert -f WAVE -d LEI16@24000 -c 1 x.aiff x.wav`).
