@@ -24,7 +24,8 @@ Use the same Supabase project as the cabinet. Only the publishable key belongs i
 2. Set **Root Directory** to `apps/web` and Framework Preset to **Next.js**.
 3. Keep the workspace available outside the root directory. Vercel installs the root pnpm workspace and uses this app's `build` script.
 4. Add the two environment variables above to the project's Preview and Production environments.
-5. Deploy. The app has no model API key, cabinet hardware dependency, or writable local database.
+5. Add `ENABLE_EXPERIMENTAL_COREPACK=1` so Vercel uses the pnpm version pinned by the repository.
+6. Deploy. The app has no model API key, cabinet hardware dependency, or writable local database.
 
 The CLI alternative is `vercel login`, then link a new project with root directory `apps/web` and deploy it. Do not link this app to an existing cabinet project.
 
