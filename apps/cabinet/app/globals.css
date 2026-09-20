@@ -654,8 +654,7 @@ h2 {
   color: #aaa;
   pointer-events: none;
 }
-.controls-strip[data-top="true"] {
-  top: 8%;
-  bottom: auto;
-  text-align: right;
+.home-hint {
+  position: static;
+  margin-top: 0.5cqw;
 }

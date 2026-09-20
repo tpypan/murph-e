@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useReducer, useRef, useState } from 'react'
 import { attachBadges, type BadgePlayer } from './badges'
 import { BuildConsole, type BuildStatus } from './build-console'
-import { ControlsStrip } from './controls-strip'
+import { ControlsStrip, controlsHint } from './controls-strip'
 import { GameControls } from './game-controls'
 import { classifyGenerationError } from './generation-error'
 import { type DemoGame, type HomeHandle, HomeScreen } from './home-screen'
@@ -1091,6 +1091,7 @@ export default function Cabinet() {
           onPlay={playDemo}
           onCreate={startCreate}
           badgesReady={v.badges.filter((b) => b.slot < 2).length}
+          hint={controlsHint('ATTRACT', { cabinet, players: preferredMode() })}
           onOptions={() => {
             setSelection(0)
             dispatch({ type: 'phase', phase: 'OPTIONS' })
@@ -1223,8 +1224,7 @@ export default function Cabinet() {
       {v.phase === 'PLAYING' && (
         <GameControls controls={controls} players={v.game?.players ?? 1} cabinet={cabinet} />
       )}
-      {(v.phase === 'ATTRACT' ||
-        v.phase === 'OPTIONS' ||
+      {(v.phase === 'OPTIONS' ||
         v.phase === 'LISTENING' ||
         v.phase === 'BUILDING' ||
         v.phase === 'READY' ||

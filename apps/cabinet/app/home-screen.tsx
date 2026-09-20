@@ -115,10 +115,12 @@ export const HomeScreen = forwardRef<
     onRemember: (id: string, players: 1 | 2) => void
     /** Badges that have said hello; two of them make the demos default to 2P. */
     badgesReady?: number
+    /** What the controls do here, in the words of the device that plays. */
+    hint?: string
     error: string | null
   }
 >(function HomeScreen(
-  { onPlay, onCreate, onOptions, onResume, remembered, onRemember, badgesReady = 0, error },
+  { onPlay, onCreate, onOptions, onResume, remembered, onRemember, badgesReady = 0, hint, error },
   ref,
 ) {
   const [games, setGames] = useState<DemoSummary[]>([])
@@ -401,6 +403,11 @@ export const HomeScreen = forwardRef<
           OPTIONS
         </button>
       </div>
+      {hint && (
+        <p className="support controls-strip home-hint" aria-label="Controls">
+          {hint}
+        </p>
+      )}
     </section>
   )
 })

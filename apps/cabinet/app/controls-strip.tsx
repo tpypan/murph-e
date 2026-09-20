@@ -27,7 +27,7 @@ export function controlsHint(phase: StripPhase, ctx: StripContext): string {
           a: 'A',
           b: 'B',
           start: 'START',
-          talk: 'HOLD Y ON THE CABINET',
+          talk: 'HOLD CABINET Y',
         }
       : { who: 'CABINET', stick: 'STICK', a: 'A', b: 'B', start: 'X', talk: 'HOLD Y' }
   const join = (parts: Array<string | false | undefined>) =>
@@ -38,24 +38,23 @@ export function controlsHint(phase: StripPhase, ctx: StripContext): string {
     case 'OPTIONS':
       return join([`${k.stick}: MOVE`, `${k.a}: SELECT`, `${k.b}: BACK`])
     case 'LISTENING':
-      return join([
-        `${k.talk}: TALK`,
-        ctx.reviewing && `${k.a}: MAKE GAME`,
-        ctx.reviewing && `${k.stick} ◀ ▶: PAGE`,
-        `${k.b}: CANCEL`,
-      ])
+      // Reviewing: the HOLD TO RETRY button already says how to talk again.
+      return ctx.reviewing
+        ? join([`${k.a}: MAKE GAME`, '◀ ▶: PAGE', `${k.b}: CANCEL`])
+        : join([`${k.talk}: TALK`, `${k.b}: CANCEL`])
     case 'BUILDING':
       return join([`${k.b}: CANCEL`])
     case 'READY':
-      return join([`${k.a}: PLAY`, ctx.pages && `${k.stick} ◀ ▶: MORE`, `${k.b}: MENU`])
+      return join([`${k.a}: PLAY`, ctx.pages && '◀ ▶: MORE', `${k.b}: MENU`])
     case 'GAMEOVER':
       return join([`${k.a}: PLAY AGAIN`, `${k.b}: MENU`])
   }
 }
 
+/** The absolute strip for the stage screens; the home screen renders its hint in flow. */
 export function ControlsStrip({ phase, ...ctx }: { phase: StripPhase } & StripContext) {
   return (
-    <p className="support controls-strip" data-top={phase === 'ATTRACT'} aria-label="Controls">
+    <p className="support controls-strip" aria-label="Controls">
       {controlsHint(phase, ctx)}
     </p>
   )
