@@ -1,5 +1,7 @@
 # murphe
 
+![Assembling murphe with its CRT, microphone, and custom arcade controls](images/murphe/machine-assembly.png)
+
 ## Inspiration
 
 Murphy’s law says anything that can go wrong will go wrong. We borrowed the idea of possibility becoming reality and named our machine **murphe**. Whatever arcade game you can think of, we want you to be able to describe it and play it.
@@ -37,6 +39,8 @@ Our Lua app turns the badges into controllers. It reads button presses and sends
 - We desoldered an analog joystick from an existing controller, designed a larger assembly in SolidWorks, and 3D printed the joystick parts and buttons.
 - We designed the circuitry in KiCad and wrote ESP32 firmware to calibrate the joystick, debounce buttons, and report inputs as a USB gamepad.
 - We implemented the badge’s USB application transfer protocol so the machine can install our Lua app when a player connects their badge.
+
+![The CRT running on our workbench during hardware development](images/murphe/crt-workbench.png)
 
 ![Our custom joystick and four button controller](images/murphe/controller.png)
 
