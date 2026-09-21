@@ -1,6 +1,13 @@
 # murph-e
 
-Hack the North 2026.
+Hack the North 2026. Semifinalist — top 25 of 349 projects.
+
+![The murph-e team with the arcade cabinet](docs/photos/team.jpg)
+
+| Building the cabinet | On the expo floor |
+| :---: | :---: |
+| ![Building the arcade cabinet](docs/photos/cabinet-build.jpg) | ![murph-e on the Hack the North expo floor](docs/photos/expo.jpg) |
+| ![Arcade controls and CRT menu](docs/photos/controls.jpg) | ![A crowd around murph-e at Hack the North](docs/photos/crowd.jpg) |
 
 - `docs/overview.md`: background, what we are building, decisions so far.
 - `docs/goals/`: what tier 1, 2 and 3 look like when done.
