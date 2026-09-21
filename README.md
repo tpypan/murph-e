@@ -2,6 +2,8 @@
 
 Hack the North 2026. Semifinalist — top 25 of 349 projects.
 
+An arcade machine that creates any game you describe, live, and lets you play it with a hacker badge. [Devpost](https://devpost.com/software/arcade-l34jba).
+
 ![The murph-e team with the arcade cabinet](docs/photos/team.jpg)
 
 | Building the cabinet | On the expo floor |
@@ -15,6 +17,56 @@ Hack the North 2026. Semifinalist — top 25 of 349 projects.
 - `docs/harness-plan.md`: the generation pipeline design and its latency budget.
 - `docs/badge-integration.md`: hacker badges as controllers and identity.
 - `AGENTS.md`: conventions for anyone, human or agent, working in this repo.
+
+## Inspiration
+
+Murphy’s law says anything that can go wrong will go wrong. We borrowed the idea of possibility becoming reality and named our machine **murph-e**. Whatever arcade game you can think of, we want you to be able to describe it and play it.
+
+A racing game with ridiculous rules, a platformer built around an inside joke, or something you and a friend just came up with. The idea is yours. The machine figures out how to make it playable.
+
+We built both the software that generates the games and the physical machine you play them on, starting with an old CRT, salvaged joystick parts, and a steel tire rack.
+
+![Our initial whiteboard sketch of the arcade machine](docs/images/murphe/initial-design.png)
+
+## What it does
+
+- Hold TALK and describe a game. Review what the machine heard, then start generation.
+- Watch the game description and code appear while the system builds and tests it.
+- Play solo using our homemade joystick and buttons, or plug in two Hack the North badges for multiplayer.
+- Browse games other people have created, see their creator credits, and try to beat their scores.
+
+A Lua app on the badge turns it into a controller. It sends button presses plus the player’s name and badge ID, so scores stay attached to people across sessions. The badge screen also shows their player number and the controls for the current game.
+
+![Playing a fighting game on murph-e](docs/images/murphe/playing-murphe.png)
+
+![The finished machine with its game library on screen](docs/images/murphe/finished-machine.png)
+
+## How we built it
+
+**Software**
+
+- Next.js, React, and TypeScript for the cabinet interface.
+- A small game runtime with a 256 × 224 canvas, pixel sprites, synthesized sound, scoring, and shared input handling.
+- A generation pipeline that transcribes speech, writes a structured spec, and uses OpenAI models to emit `game.js`.
+- A local catalog of tested foundations, sprite data, and mechanic guidance. Optional TypeSafe Jev selection picks a foundation and settings before Astra writes code.
+- Generated games run in sandboxed iframes. Playwright checks that they run and respond to controls in both solo and two-player modes. One bounded repair is allowed if a check fails.
+- SQLite indexes reusable game material and generation history. Scores and creator credits show up in the library.
+
+**Hardware**
+
+- A 27 inch Sony Trinitron CRT, with the UI designed for its 4:3 screen.
+- A steel tire rack cut and modified into the cabinet frame.
+- An analog joystick desoldered from an existing controller, then a larger assembly designed in SolidWorks and 3D printed with the buttons.
+- Circuitry designed in KiCad. ESP32 firmware calibrates the stick, debounces buttons, and reports input as a USB gamepad.
+- The badge USB application-transfer protocol installs our Lua app when a player plugs in.
+
+![Custom joystick and four-button controller](docs/images/murphe/controller.png)
+
+![Joystick circuit with X/Y potentiometers and filtering](docs/images/murphe/joystick-circuit.png)
+
+![Assembling the CRT, microphone, and arcade controls](docs/images/murphe/machine-assembly.png)
+
+![CRT on the workbench during hardware development](docs/images/murphe/crt-workbench.png)
 
 ## Community website
 
