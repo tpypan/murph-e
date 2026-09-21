@@ -2,7 +2,7 @@
 
 Hack the North 2026. Semifinalist — top 25 of 349 projects.
 
-An arcade machine that creates any game you describe, live, and lets you play it with a hacker badge. [Devpost](https://devpost.com/software/arcade-l34jba).
+An arcade machine that creates any game you describe in 8-bit retro arcade style, and lets you play it with a hacker badge with a live leaderboard. [Devpost](https://devpost.com/software/arcade-l34jba).
 
 ![The murph-e team with the arcade cabinet](docs/photos/team.jpg)
 
@@ -20,9 +20,7 @@ An arcade machine that creates any game you describe, live, and lets you play it
 
 ## Inspiration
 
-Murphy’s law says anything that can go wrong will go wrong. We borrowed the idea of possibility becoming reality and named our machine **murph-e**. Whatever arcade game you can think of, we want you to be able to describe it and play it.
-
-A racing game with ridiculous rules, a platformer built around an inside joke, or something you and a friend just came up with. The idea is yours. The machine figures out how to make it playable.
+Murphy’s law says anything that can go wrong will go wrong. We borrowed the idea of possibility becoming reality and named our machine **murph-e**. 
 
 We built both the software that generates the games and the physical machine you play them on, starting with an old CRT, salvaged joystick parts, and a steel tire rack.
 
