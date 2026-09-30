@@ -1,0 +1,19 @@
+[Unit]
+Description=murph-e solo arcade server
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/arcade/murph-e/apps/cabinet
+Environment=NODE_ENV=production
+Environment=NEXT_TELEMETRY_DISABLED=1
+Environment=HTN_BADGES=off
+Environment=MURPH_PI=1
+Environment=PATH=/home/arcade/.local/opt/node-v24/bin:/home/arcade/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/arcade/.local/opt/node-v24/bin/node /home/arcade/murph-e/apps/cabinet/node_modules/next/dist/bin/next start -p 3000 -H 127.0.0.1
+Restart=always
+RestartSec=5
+TimeoutStopSec=10
+
+[Install]
+WantedBy=default.target

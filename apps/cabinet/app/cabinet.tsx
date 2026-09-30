@@ -231,8 +231,10 @@ function badgeForPlayer(badges: BadgePlayer[], mode: Players, i: number): BadgeP
 
 export default function Cabinet({
   speechProvider = 'openai',
+  piMode = false,
 }: {
   speechProvider?: 'openai' | 'local'
+  piMode?: boolean
 }) {
   const [v, dispatch] = useReducer(reduce, initial)
   const view = useRef(v)
@@ -428,6 +430,11 @@ export default function Cabinet({
   // ---- build -------------------------------------------------------------
   const crashFallback = useCallback(
     (why: string) => {
+      if (piMode) {
+        dispatch({ type: 'error', error: 'GAME UNAVAILABLE. CHOOSE ANOTHER.' })
+        dispatch({ type: 'phase', phase: 'ATTRACT' })
+        return
+      }
       const mode = view.current.mode
       const same = library.current.filter((g) => (g.players === 2 ? 2 : 1) === mode)
       const pool = same.length > 0 ? same : library.current
@@ -452,7 +459,7 @@ export default function Cabinet({
       dispatch({ type: 'phase', phase: 'READY' })
       loadGame(g.code, g.title, players)
     },
-    [loadGame],
+    [loadGame, piMode],
   )
 
   /** Two badges in: the 2P version; otherwise the 1P version for the cabinet. */
@@ -715,11 +722,12 @@ export default function Cabinet({
   }, [])
 
   const startCreate = useCallback(() => {
+    if (piMode) return
     const mode = preferredMode()
     dispatch({ type: 'mode', mode })
     syncSession(view.current.badges, mode, 'ATTRACT')
     openVoice()
-  }, [openVoice, preferredMode, syncSession])
+  }, [openVoice, preferredMode, syncSession, piMode])
 
   const confirmMenu = useCallback(
     (index: number) => {
@@ -752,6 +760,7 @@ export default function Cabinet({
       lastInput.current = Date.now()
       const phase = view.current.phase
       if (ev.button === 'talk') {
+        if (piMode) return
         if (
           ev.down &&
           phase === 'LISTENING' &&
@@ -816,7 +825,7 @@ export default function Cabinet({
           }
         } else if (ev.button === 'left' || ev.button === 'right')
           setPage((n) => Math.max(0, n + (ev.button === 'left' ? -1 : 1)))
-        else if ((ev.button === 'up' || ev.button === 'down') && phase === 'READY') {
+        else if (!piMode && (ev.button === 'up' || ev.button === 'down') && phase === 'READY') {
           // The other version of this request, if it exists.
           const alt: Players = view.current.mode === 1 ? 2 : 1
           if (versions.current[alt]?.status === 'ready') {
@@ -841,6 +850,7 @@ export default function Cabinet({
       build,
       showVersion,
       beginRound,
+      piMode,
     ],
   )
 
@@ -879,27 +889,26 @@ export default function Cabinet({
     },
     [onInput],
   )
-  useEffect(
-    () =>
-      attachBadges({
-        onInput: onBadgeInput,
-        onRoster: (badges) => {
-          dispatch({ type: 'badges', badges })
-          syncSession(badges, view.current.mode, view.current.phase)
-          // On READY the version on screen follows the badges until someone
-          // picks one: plug both in for the 2P game, pull one for the 1P game.
-          const want = preferredMode(badges)
-          if (
-            view.current.phase === 'READY' &&
-            modeOverride.current === null &&
-            want !== view.current.mode &&
-            versions.current[want]?.status === 'ready'
-          )
-            showVersion(want, 'READY', badges)
-        },
-      }),
-    [onBadgeInput, preferredMode, showVersion, syncSession],
-  )
+  useEffect(() => {
+    if (piMode) return
+    return attachBadges({
+      onInput: onBadgeInput,
+      onRoster: (badges) => {
+        dispatch({ type: 'badges', badges })
+        syncSession(badges, view.current.mode, view.current.phase)
+        // On READY the version on screen follows the badges until someone
+        // picks one: plug both in for the 2P game, pull one for the 1P game.
+        const want = preferredMode(badges)
+        if (
+          view.current.phase === 'READY' &&
+          modeOverride.current === null &&
+          want !== view.current.mode &&
+          versions.current[want]?.status === 'ready'
+        )
+          showVersion(want, 'READY', badges)
+      },
+    })
+  }, [onBadgeInput, preferredMode, showVersion, syncSession, piMode])
 
   // Dev hooks: F8 injects a crashing game to exercise the fallback path;
   // F1 and F2 plug (or unplug) a fake badge through the real hub.
@@ -985,6 +994,7 @@ export default function Cabinet({
 
   // The microphone and transcription request belong to this mounted cabinet.
   useEffect(() => {
+    if (piMode) return
     const s = getStt()
     const release = () => {
       if (view.current.phase === 'PLAYING') startAttract()
@@ -1007,10 +1017,11 @@ export default function Cabinet({
       talkHeld.current = false
       s.cancel()
     }
-  }, [getStt, stopListening, startAttract])
+  }, [getStt, stopListening, startAttract, piMode])
 
   // ---- library, board, idle ----------------------------------------------
   useEffect(() => {
+    if (piMode) return
     let cancelled = false
     fetch('/api/library')
       .then((r) => r.json())
@@ -1022,7 +1033,7 @@ export default function Cabinet({
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [piMode])
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -1074,12 +1085,13 @@ export default function Cabinet({
     controls: Object.fromEntries(controls),
   })
   useEffect(() => {
+    if (piMode) return
     void fetch('/api/badges/display', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: badgeDisplay,
     }).catch(() => {})
-  }, [badgeDisplay])
+  }, [badgeDisplay, piMode])
   const controlRows = controls.flatMap(([key, action]) =>
     textPages(action, 24).map((part, i) => [i === 0 ? key : '', part]),
   )
@@ -1108,7 +1120,13 @@ export default function Cabinet({
         ? `${altName} MODE NOT READY`
         : `${altName} MODE UNAVAILABLE`
   return (
-    <main className="arcade-screen" ref={screen} tabIndex={-1} aria-label="Arcade">
+    <main
+      className={`arcade-screen${piMode ? ' pi-kiosk' : ''}`}
+      ref={screen}
+      tabIndex={-1}
+      aria-label="Arcade"
+    >
+      {piMode && <p className="pi-banner">made with &lt;3 by zane &amp; tony</p>}
       <iframe
         ref={frame}
         title="game"
@@ -1147,8 +1165,9 @@ export default function Cabinet({
           ref={home}
           onPlay={playDemo}
           onCreate={startCreate}
+          soloOnly={piMode}
           badgesReady={v.badges.filter((b) => b.slot < 2).length}
-          hint={controlsHint('ATTRACT', { cabinet, players: preferredMode() })}
+          hint={controlsHint('ATTRACT', { cabinet, players: piMode ? 1 : preferredMode() })}
           onOptions={() => {
             setSelection(0)
             dispatch({ type: 'phase', phase: 'OPTIONS' })
@@ -1175,11 +1194,13 @@ export default function Cabinet({
               </button>
             ))}
           </nav>
-          <p className="support">
-            {v.badges.length} BADGES CONNECTED
-            <br />
-            VOICE: {speechProvider === 'local' ? 'LOCAL' : 'OPENAI'} · GAME: OPENAI
-          </p>
+          {!piMode && (
+            <p className="support">
+              {v.badges.length} BADGES CONNECTED
+              <br />
+              VOICE: {speechProvider === 'local' ? 'LOCAL' : 'OPENAI'} · GAME: OPENAI
+            </p>
+          )}
         </section>
       )}
       {v.phase === 'LISTENING' && (
@@ -1214,13 +1235,15 @@ export default function Cabinet({
           <h1 className="cyan">READY!</h1>
           <h2>{v.game?.title}</h2>
           <p className="support version-line">
-            {v.mode === 2
-              ? readyBadges < 2
-                ? '2 PLAYERS · BADGES · PLUG IN BOTH BADGES'
-                : '2 PLAYERS · BADGES'
-              : v.session[0]
-                ? '1 PLAYER · CABINET CONTROLS · BADGE KEEPS SCORE'
-                : '1 PLAYER · CABINET CONTROLS'}
+            {piMode
+              ? 'CABINET CONTROLS'
+              : v.mode === 2
+                ? readyBadges < 2
+                  ? '2 PLAYERS · BADGES · PLUG IN BOTH BADGES'
+                  : '2 PLAYERS · BADGES'
+                : v.session[0]
+                  ? '1 PLAYER · CABINET CONTROLS · BADGE KEEPS SCORE'
+                  : '1 PLAYER · CABINET CONTROLS'}
             {otherVersion && (
               <>
                 <br />

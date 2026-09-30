@@ -9,6 +9,8 @@ export async function GET(
 ): Promise<Response> {
   const { id } = await context.params
   const requestedPlayers = new URL(request.url).searchParams.get('players') ?? '1'
+  if (process.env.MURPH_PI === '1' && requestedPlayers !== '1')
+    return Response.json({ error: 'Demo not found' }, { status: 404 })
   const game =
     requestedPlayers === '1' || requestedPlayers === '2'
       ? loadDemo(id, Number(requestedPlayers) as 1 | 2)

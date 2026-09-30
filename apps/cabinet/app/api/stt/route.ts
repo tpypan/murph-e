@@ -13,6 +13,8 @@ export const dynamic = 'force-dynamic'
 
 /** A real player's completed clip. Provider credentials stay on the server. */
 export async function POST(req: Request): Promise<Response> {
+  if (process.env.MURPH_PI === '1')
+    return Response.json({ error: 'Speech is disabled' }, { status: 403 })
   try {
     const form = await req.formData()
     const audio = form.get('audio')
