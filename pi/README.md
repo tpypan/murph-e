@@ -35,8 +35,15 @@ The credit banner stays at the top in every screen: “made with <3 by zane & to
 The page preserves a centered 4:3 image with an 8% safe area. The existing
 Samsung monitor remains at its detected 1920x1080 mode. Do not force a CRT
 mode before connecting the HDMI-to-AV converter and checking its detected
-input modes. The Sony KV-27FS100L takes the converter's analog NTSC signal;
-calibrate overscan and text legibility with the actual converter and screen.
+input modes. With the converter connected, first run `wlr-randr` over SSH and
+confirm that `HDMI-A-1` lists a 4:3 mode. Prefer `640x480` near 60 Hz for the
+converter's HDMI input when it advertises that mode. For example,
+`wlr-randr --output HDMI-A-1 --mode 640x480@60Hz` changes only the current
+desktop session. Do not place a fixed mode in boot configuration until the
+converter and Sony KV-27FS100L have actually displayed it. The converter
+produces the analog NTSC signal; inspect overscan and text legibility on the
+CRT itself. The 640x480 smoke screenshots are a layout check, not a substitute
+for that physical inspection.
 
 The service and kiosk are user files. Privileged display, boot, or account
 changes should wait until sudo authentication is working.

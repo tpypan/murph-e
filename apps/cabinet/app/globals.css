@@ -27,8 +27,8 @@ body:has(.pi-kiosk) * {
   width: 84%;
   z-index: 4;
   color: #aaa;
-  font-size: clamp(8px, 1.3cqw, 14px);
-  line-height: 1.4;
+  font-size: clamp(8px, 2cqw, 16px);
+  line-height: 1.2;
   text-align: center;
   text-transform: none;
   pointer-events: none;

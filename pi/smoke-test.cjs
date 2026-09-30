@@ -25,6 +25,9 @@ async function main() {
     await page.waitForFunction(
       () => !document.querySelector('.home-actions button.primary')?.disabled,
     )
+    await page.waitForFunction(
+      () => document.querySelector('.home-current .home-preview')?.dataset.ready === 'true',
+    )
     assert.equal(await page.getByText('MAKE A GAME').count(), 0)
     assert.equal(await page.getByText('2 PLAYERS').count(), 0)
     assert.equal(await page.locator('.pi-banner').innerText(), 'made with <3 by zane & tony')
@@ -37,6 +40,16 @@ async function main() {
     await page.waitForFunction(
       () => document.querySelector('iframe.game-frame')?.style.visibility === 'visible',
     )
+    const gameFrame = page.frameLocator('iframe.game-frame')
+    await gameFrame.locator('#screen').waitFor()
+    await page.frame({ url: /\/runtime\/index\.html/ }).waitForFunction(
+      () => window.__runtime?.state === 'playing' && window.__runtime?.frame > 3,
+    )
+    await gameFrame.locator('#screen').evaluate(async (canvas) => {
+      const pixels = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data
+      if (!pixels.some((value, index) => index % 4 !== 3 && value !== 0))
+        throw new Error('Game canvas stayed blank after starting')
+    })
     assert(await page.locator('.pi-banner').isVisible())
     await page.screenshot({ path: '/tmp/murph-e-playing-640.png' })
 
