@@ -51,6 +51,7 @@ async function main() {
         throw new Error('Game canvas stayed blank after starting')
     })
     assert(await page.locator('.pi-banner').isVisible())
+    await page.waitForTimeout(500)
     await page.screenshot({ path: '/tmp/murph-e-playing-640.png' })
 
     await page.keyboard.press('Numpad7')
