@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -u
+
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+export WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-wayland-0}"
+
+URL=http://127.0.0.1:3000/?cabinet=1
+PROFILE="$HOME/.config/murph-e-chromium"
+LOG_DIR="$HOME/.local/state/murph-e"
+mkdir -p "$PROFILE" "$LOG_DIR"
+
+while true; do
+  until curl -fsS -o /dev/null --max-time 3 "$URL"; do
+    sleep 2
+  done
+  chromium \
+    --user-data-dir="$PROFILE" \
+    --ozone-platform=wayland \
+    --kiosk --start-maximized \
+    --no-first-run --no-default-browser-check \
+    --noerrdialogs --disable-infobars --disable-session-crashed-bubble \
+    --password-store=basic \
+    --autoplay-policy=no-user-gesture-required \
+    --disable-features=TranslateUI \
+    --overscroll-history-navigation=0 --disable-pinch \
+    "$URL" >> "$LOG_DIR/chromium.log" 2>&1
+  sleep 3
+done

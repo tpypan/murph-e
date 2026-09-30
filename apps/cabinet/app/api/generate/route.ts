@@ -11,6 +11,8 @@ export const dynamic = 'force-dynamic'
  * The cabinet always starts one build; legacy client race values are ignored.
  */
 export async function POST(req: Request): Promise<Response> {
+  if (process.env.MURPH_PI === '1')
+    return new Response('Game creation is disabled', { status: 403 })
   const body = (await req.json().catch(() => ({}))) as {
     transcript?: string
     players?: number

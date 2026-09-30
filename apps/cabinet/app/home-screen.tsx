@@ -110,6 +110,7 @@ export const HomeScreen = forwardRef<
     onPlay: (game: DemoGame, players: 1 | 2) => void
     /** MAKE A GAME creates one game supporting both player modes. */
     onCreate: () => void
+    soloOnly?: boolean
     onOptions: () => void
     onResume?: () => void
     remembered: { id?: string; players: 1 | 2 }
@@ -121,22 +122,38 @@ export const HomeScreen = forwardRef<
     error: string | null
   }
 >(function HomeScreen(
-  { onPlay, onCreate, onOptions, onResume, remembered, onRemember, badgesReady = 0, hint, error },
+  {
+    onPlay,
+    onCreate,
+    soloOnly = false,
+    onOptions,
+    onResume,
+    remembered,
+    onRemember,
+    badgesReady = 0,
+    hint,
+    error,
+  },
   ref,
 ) {
   const [games, setGames] = useState<DemoSummary[]>([])
   const [index, setIndex] = useState(0)
-  const [players, setPlayers] = useState<1 | 2>(badgesReady >= 2 ? 2 : remembered.players)
+  const [players, setPlayers] = useState<1 | 2>(
+    soloOnly ? 1 : badgesReady >= 2 ? 2 : remembered.players,
+  )
   // The row follows the badges (two in: 2P) and can still be overridden for a demo.
   useEffect(() => {
-    setPlayers(badgesReady >= 2 ? 2 : 1)
-  }, [badgesReady])
+    setPlayers(soloOnly ? 1 : badgesReady >= 2 ? 2 : 1)
+  }, [badgesReady, soloOnly])
   const cache = useRef(new Map<string, DemoGame>())
   const [loaded, setLoaded] = useState(new Map<string, DemoGame>())
   // The stick walks a grid: row 0 the game carousel (left/right browses),
   // row 1 the player count (left/right toggles), row 2 PLAY | MAKE A GAME and
   // row 3 RESUME GAME | OPTIONS (left/right picks the column). Opens on PLAY.
-  const [cursor, setCursor] = useState<{ row: number; col: number }>({ row: 2, col: 0 })
+  const [cursor, setCursor] = useState<{ row: number; col: number }>({
+    row: soloOnly ? 1 : 2,
+    col: 0,
+  })
   const selection = cursor.row
   const at = (row: number, col = 0) => cursor.row === row && cursor.col === col
   const focus =
@@ -252,14 +269,15 @@ export const HomeScreen = forwardRef<
   const play = () => {
     if (loadedGame) onPlay(loadedGame, players)
   }
-  const ROWS = 4
-  const columns = (row: number) => (row === 2 ? 2 : row === 3 && onResume ? 2 : 1)
+  const ROWS = soloOnly ? 3 : 4
+  const columns = (row: number) =>
+    soloOnly ? (row === 2 && onResume ? 2 : 1) : row === 2 ? 2 : row === 3 && onResume ? 2 : 1
   useImperativeHandle(ref, () => ({
     input(button) {
       const { row, col } = cursor
       if (button === 'left' || button === 'right') {
         const step = button === 'left' ? -1 : 1
-        if (row === 0) browse(step)
+        if (row === 0 || (soloOnly && row === 1)) browse(step)
         else if (row === 1) {
           if (selected?.players.length === 2) setPlayers((p) => (p === 1 ? 2 : 1))
         } else {
@@ -270,7 +288,11 @@ export const HomeScreen = forwardRef<
         const next = (row + (button === 'up' ? -1 : 1) + ROWS) % ROWS
         setCursor({ row: next, col: Math.min(col, columns(next) - 1) })
       } else if (button === 'a' || button === 'start') {
-        if (row <= 1) play()
+        if (soloOnly) {
+          if (row <= 1) play()
+          else if (onResume && col === 0) onResume()
+          else onOptions()
+        } else if (row <= 1) play()
         else if (row === 2) {
           if (col === 0) play()
           else onCreate()
@@ -331,7 +353,12 @@ export const HomeScreen = forwardRef<
           ) : (
             <div className="home-preview">
               <p className="support">
-                {loadError ?? (loadingList || selected ? 'LOADING GAMES' : 'MAKE THE FIRST GAME')}
+                {loadError ??
+                  (loadingList || selected
+                    ? 'LOADING GAMES'
+                    : soloOnly
+                      ? 'NO GAMES AVAILABLE'
+                      : 'MAKE THE FIRST GAME')}
               </p>
             </div>
           )}
@@ -360,40 +387,46 @@ export const HomeScreen = forwardRef<
         <h2 data-selected={selection === 0}>{selected?.title ?? 'YOUR NEXT HIGH SCORE'}</h2>
         {selected?.creator && <p className="home-creator">BY {selected.creator.name}</p>}
       </div>
-      <fieldset className="home-players" aria-label="Players">
-        {([1, 2] as const).map((n) => (
-          <button
-            key={n}
-            type="button"
-            aria-label={n === 1 ? '1 PLAYER' : '2 PLAYERS'}
-            aria-pressed={players === n}
-            disabled={!!selected && !selected.players.includes(n)}
-            data-selected={selection === 1 && players === n}
-            onFocus={focus(1)}
-            onClick={() => setPlayers(n)}
-          >
-            {players === n ? '■ ' : ''}
-            {n === 1 ? '1 PLAYER' : '2 PLAYERS'}
-          </button>
-        ))}
-      </fieldset>
-      <p className="support home-badges">
-        {badgesReady >= 2 ? '2 BADGES IN: PLAYING AS 2' : 'PLUG IN 2 BADGES TO PLAY TOGETHER'}
-      </p>
+      {!soloOnly && (
+        <fieldset className="home-players" aria-label="Players">
+          {([1, 2] as const).map((n) => (
+            <button
+              key={n}
+              type="button"
+              aria-label={n === 1 ? '1 PLAYER' : '2 PLAYERS'}
+              aria-pressed={players === n}
+              disabled={!!selected && !selected.players.includes(n)}
+              data-selected={selection === 1 && players === n}
+              onFocus={focus(1)}
+              onClick={() => setPlayers(n)}
+            >
+              {players === n ? '■ ' : ''}
+              {n === 1 ? '1 PLAYER' : '2 PLAYERS'}
+            </button>
+          ))}
+        </fieldset>
+      )}
+      {!soloOnly && (
+        <p className="support home-badges">
+          {badgesReady >= 2 ? '2 BADGES IN: PLAYING AS 2' : 'PLUG IN 2 BADGES TO PLAY TOGETHER'}
+        </p>
+      )}
       <div className="home-actions">
         <button
           type="button"
           className="primary"
           disabled={!loadedGame}
-          data-selected={at(2, 0)}
-          onFocus={focus(2, 0)}
+          data-selected={at(soloOnly ? 1 : 2, 0)}
+          onFocus={focus(soloOnly ? 1 : 2, 0)}
           onClick={play}
         >
-          {at(2, 0) ? '> ' : ''}PLAY
+          {at(soloOnly ? 1 : 2, 0) ? '> ' : ''}PLAY
         </button>
-        <button type="button" data-selected={at(2, 1)} onFocus={focus(2, 1)} onClick={onCreate}>
-          MAKE A GAME
-        </button>
+        {!soloOnly && (
+          <button type="button" data-selected={at(2, 1)} onFocus={focus(2, 1)} onClick={onCreate}>
+            MAKE A GAME
+          </button>
+        )}
       </div>
       {(loadError || error) && (
         <p className="home-error" role="alert">
@@ -402,14 +435,19 @@ export const HomeScreen = forwardRef<
       )}
       <div className="home-footer">
         {onResume && (
-          <button type="button" data-selected={at(3, 0)} onFocus={focus(3, 0)} onClick={onResume}>
+          <button
+            type="button"
+            data-selected={at(soloOnly ? 2 : 3, 0)}
+            onFocus={focus(soloOnly ? 2 : 3, 0)}
+            onClick={onResume}
+          >
             RESUME GAME
           </button>
         )}
         <button
           type="button"
-          data-selected={at(3, onResume ? 1 : 0)}
-          onFocus={focus(3, onResume ? 1 : 0)}
+          data-selected={at(soloOnly ? 2 : 3, onResume ? 1 : 0)}
+          onFocus={focus(soloOnly ? 2 : 3, onResume ? 1 : 0)}
           onClick={onOptions}
         >
           OPTIONS

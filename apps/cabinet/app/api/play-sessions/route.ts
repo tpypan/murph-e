@@ -7,15 +7,17 @@ import {
 } from '@htn/harness'
 import { getHub } from '../badges/hub'
 import { startCloudSync } from '../cloud-sync'
+import { sameOrigin } from '../same-origin'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 export async function POST(req: Request) {
-  if (req.headers.get('origin') && req.headers.get('origin') !== new URL(req.url).origin)
-    return Response.json({ error: 'Invalid origin' }, { status: 403 })
+  if (!sameOrigin(req)) return Response.json({ error: 'Invalid origin' }, { status: 403 })
   const body = await req.json().catch(() => null)
   if (!body || typeof body.slug !== 'string' || ![1, 2].includes(body.players))
     return Response.json({ error: 'Game and player count required' }, { status: 400 })
+  if (process.env.MURPH_PI === '1' && body.players !== 1)
+    return Response.json({ error: 'Player mode unavailable' }, { status: 400 })
   const demo = body.slug.startsWith('demo-')
     ? listDemos().find((g) => `demo-${g.id}` === body.slug)
     : null
@@ -55,6 +57,6 @@ export async function POST(req: Request) {
     return badge?.identity ? { badgeId: badge.identity.badgeId, name: badge.identity.name } : null
   })
   const session = beginPlaySession(game, body.players, identities)
-  startCloudSync()
+  if (process.env.MURPH_PI !== '1') startCloudSync()
   return Response.json({ sessionId: session.id }, { headers: { 'Cache-Control': 'no-store' } })
 }

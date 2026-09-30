@@ -16,6 +16,23 @@ body {
   font-family: var(--font-pixel), monospace;
   text-transform: uppercase;
 }
+body:has(.pi-kiosk),
+body:has(.pi-kiosk) * {
+  cursor: none;
+}
+.pi-banner {
+  position: absolute;
+  top: 8%;
+  left: 8%;
+  width: 84%;
+  z-index: 4;
+  color: #aaa;
+  font-size: clamp(8px, 1.3cqw, 14px);
+  line-height: 1.4;
+  text-align: center;
+  text-transform: none;
+  pointer-events: none;
+}
 body {
   min-height: 100dvh;
   display: grid;
@@ -641,4 +658,14 @@ h2 {
 .home-hint {
   position: static;
   margin-top: 0.5cqw;
+}
+.pi-kiosk .arcade-header {
+  top: 12%;
+}
+.pi-kiosk .home-stage {
+  top: 12%;
+}
+.pi-kiosk .game-frame {
+  top: 18%;
+  height: calc(74% - min(var(--game-controls-height, 12cqw), 20cqw) - 2cqw);
 }
